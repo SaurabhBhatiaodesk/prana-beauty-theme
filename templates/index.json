@@ -238,14 +238,14 @@
         "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
         "background_color": "#f8f2e6",
         "eyebrow_color": "#a4773d",
-        "heading_color": "#561A24",
+        "heading_color": "#561a24",
         "subtitle_color": "#323232",
         "description_color": "#323232",
         "benefit_color": "#323232",
         "icon_color": "#a4773d",
-        "button_background": "#A4773D",
+        "button_background": "#a4773d",
         "button_text_color": "#ffffff",
-        "button_hover_background": "#561A24",
+        "button_hover_background": "#561a24",
         "button_hover_text_color": "#ffffff",
         "eyebrow_size_desktop": 12,
         "heading_size_desktop": 40,
@@ -260,7 +260,10 @@
         "benefit_size_mobile": 12,
         "button_size_mobile": 12,
         "height": 600,
-        "overlay": 0
+        "mobile_height": 620,
+        "overlay": 0,
+        "mobile_overlay_color": "#E3C39F",
+        "mobile_overlay": 0
       }
     },
     "custom_rituals_section_RJGTFd": {
