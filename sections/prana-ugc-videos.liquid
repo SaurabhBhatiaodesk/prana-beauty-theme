@@ -85,6 +85,7 @@
 
 
         <prana-ugc-videos
+<<<<<<< HEAD
 
           data-autoplay="{{ section.settings.autoplay }}"
 
@@ -92,6 +93,11 @@
 
           data-slider-speed="{{ section.settings.slider_autoplay_speed }}"
 
+=======
+          data-autoplay="{{ section.settings.autoplay }}"
+          data-slider-autoplay="{{ section.settings.slider_autoplay }}"
+          data-slider-speed="{{ section.settings.slider_autoplay_speed }}"
+>>>>>>> 81acb75 (update the prana ugc section)
         >
 
           <div
@@ -115,17 +121,25 @@
                 <article class="prana-ugc__card" {{ block.shopify_attributes }}>
 
                   {% if block.settings.video_file != blank %}
+<<<<<<< HEAD
 
                     {% assign video_poster = block.settings.video_file.preview_image | image_url: width: 700 %}
 
+=======
+                    {% assign video_poster = block.settings.video_file.preview_image | image_url: width: 700 %}
+>>>>>>> 81acb75 (update the prana ugc section)
                     {{
 
                       block.settings.video_file
 
                       | video_tag:
+<<<<<<< HEAD
 
                         autoplay: section.settings.autoplay,
 
+=======
+                        autoplay: section.settings.autoplay,
+>>>>>>> 81acb75 (update the prana ugc section)
                         loop: true,
 
                         muted: true,
@@ -133,11 +147,16 @@
                         controls: false,
 
                         playsinline: true,
+<<<<<<< HEAD
 
                         preload: 'auto',
 
                         poster: video_poster,
 
+=======
+                        preload: 'auto',
+                        poster: video_poster,
+>>>>>>> 81acb75 (update the prana ugc section)
                         class: 'prana-ugc__video'
 
                     }}
@@ -221,11 +240,16 @@
   color: var(--ugc-text);
 
   font-family: var(--U);
+<<<<<<< HEAD
 
   position: relative;
 
   z-index: 1;
 
+=======
+  position: relative;
+  z-index: 1;
+>>>>>>> 81acb75 (update the prana ugc section)
 }
 
 
@@ -572,6 +596,7 @@ if (!customElements.get('prana-ugc-videos')) {
 
         const signal = this.controller.signal;
 
+<<<<<<< HEAD
 
 
         const autoplay = this.dataset.autoplay === 'true';
@@ -585,6 +610,13 @@ if (!customElements.get('prana-ugc-videos')) {
         const shouldAutoplay = () => autoplay;
 
 
+=======
+        const autoplay = this.dataset.autoplay === 'true';
+        const sliderAutoplay = this.dataset.sliderAutoplay === 'true';
+        const sliderSpeed = Math.max(1000, Number(this.dataset.sliderSpeed || 3000));
+
+        const shouldAutoplay = () => autoplay;
+>>>>>>> 81acb75 (update the prana ugc section)
 
         const updateNavigation = () => {
 
@@ -616,6 +648,7 @@ if (!customElements.get('prana-ugc-videos')) {
 
         };
 
+<<<<<<< HEAD
 
 
         const getSlideDistance = () => {
@@ -710,6 +743,54 @@ if (!customElements.get('prana-ugc-videos')) {
 
             moveSlider(Number(button.dataset.step));
 
+=======
+        const getSlideDistance = () => {
+          const card = this.track.querySelector('.prana-ugc__card');
+          if (!card) return 0;
+
+          const gap = parseFloat(getComputedStyle(this.track).gap) || 0;
+          return card.getBoundingClientRect().width + gap;
+        };
+
+        const moveSlider = (step = 1) => {
+          const distance = getSlideDistance();
+          if (!distance) return;
+
+          const max = this.track.scrollWidth - this.track.clientWidth;
+          const nextLeft = this.track.scrollLeft + (step * distance);
+
+          if (step > 0 && nextLeft >= max - 2) {
+            this.track.scrollTo({
+              left: 0,
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 'auto'
+                : 'smooth'
+            });
+          } else if (step < 0 && nextLeft <= 0) {
+            this.track.scrollTo({
+              left: max,
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 'auto'
+                : 'smooth'
+            });
+          } else {
+            this.track.scrollBy({
+              left: step * distance,
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 'auto'
+                : 'smooth'
+            });
+          }
+        };
+
+        this.nav.addEventListener(
+          'click',
+          (event) => {
+            const button = event.target.closest('button[data-step]');
+            if (!button) return;
+
+            moveSlider(Number(button.dataset.step));
+>>>>>>> 81acb75 (update the prana ugc section)
           },
 
           { signal }
@@ -856,6 +937,7 @@ if (!customElements.get('prana-ugc-videos')) {
 
         );
 
+<<<<<<< HEAD
 
 
         let sliderTimer = null;
@@ -930,6 +1012,44 @@ if (!customElements.get('prana-ugc-videos')) {
 
         startSliderAutoplay();
 
+=======
+        let sliderTimer = null;
+
+        const startSliderAutoplay = () => {
+          if (
+            !sliderAutoplay ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+            this.track.scrollWidth <= this.track.clientWidth + 2
+          ) {
+            return;
+          }
+
+          stopSliderAutoplay();
+
+          sliderTimer = window.setInterval(() => {
+            moveSlider(1);
+          }, sliderSpeed);
+        };
+
+        const stopSliderAutoplay = () => {
+          if (sliderTimer) {
+            window.clearInterval(sliderTimer);
+            sliderTimer = null;
+          }
+        };
+
+        this.addEventListener('mouseenter', stopSliderAutoplay, { signal });
+        this.addEventListener('mouseleave', startSliderAutoplay, { signal });
+        this.addEventListener('touchstart', stopSliderAutoplay, { passive: true, signal });
+        this.addEventListener('touchend', startSliderAutoplay, { passive: true, signal });
+        this.addEventListener('focusin', stopSliderAutoplay, { signal });
+        this.addEventListener('focusout', startSliderAutoplay, { signal });
+
+        this.stopSliderAutoplay = stopSliderAutoplay;
+
+        updateNavigation();
+        startSliderAutoplay();
+>>>>>>> 81acb75 (update the prana ugc section)
       }
 
 
@@ -941,6 +1061,7 @@ if (!customElements.get('prana-ugc-videos')) {
         this.resizeObserver?.disconnect();
 
         this.visibilityObserver?.disconnect();
+        this.stopSliderAutoplay?.();
 
         this.stopSliderAutoplay?.();
 
@@ -1009,7 +1130,64 @@ if (!customElements.get('prana-ugc-videos')) {
       "default": "<p>Discover PRANA through the rituals of our community.</p>"
 
     },
+<<<<<<< HEAD
 
+=======
+    {
+      "type": "range",
+      "id": "desktop_videos",
+      "label": "Videos visible on desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "mobile_videos",
+      "label": "Videos visible on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay videos",
+      "default": true,
+      "info": "When enabled, all visible videos autoplay muted and loop continuously."
+    },
+    {
+      "type": "checkbox",
+      "id": "slider_autoplay",
+      "label": "Autoplay slider",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slider_autoplay_speed",
+      "label": "Slider autoplay speed",
+      "min": 2000,
+      "max": 8000,
+      "step": 500,
+      "unit": "ms",
+      "default": 3000
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_item",
+      "name": "UGC video",
+      "settings": [
+>>>>>>> 81acb75 (update the prana ugc section)
         {
       "type": "header",
       "content": "Colors"
