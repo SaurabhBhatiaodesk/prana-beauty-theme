@@ -417,10 +417,25 @@
         "eyebrow": "The PRANA community",
         "heading": "Real rituals. Real stories.",
         "subheading": "<p>Discover PRANA through the rituals of our community.</p>",
+        "background_color": "#E3C39F",
+        "eyebrow_color": "#a4773d",
+        "eyebrow_line_color": "#c9b28f",
+        "heading_color": "#2e2925",
+        "text_color": "#5c554f",
+        "card_background_color": "#ffffff",
+        "card_border_color": "#ded5ca",
+        "video_background_color": "#111111",
+        "placeholder_text_color": "#5c554f",
+        "nav_button_background_color": "#ffffff",
+        "nav_button_border_color": "#a4773d",
+        "nav_button_icon_color": "#2e2925",
+        "scrollbar_thumb_color": "#a4773d",
+        "scrollbar_track_color": "#ede6dd",
         "desktop_videos": 5,
         "mobile_videos": "2",
-        "autoplay_desktop": true,
-        "autoplay_mobile": true
+        "autoplay": true,
+        "slider_autoplay": true,
+        "slider_autoplay_speed": 3000
       }
     },
     "custom_newsletter_hfhNpi": {
