@@ -141,541 +141,130 @@
 
 {% stylesheet %}
   .prana-ugc {
-
-
-
     padding: 60px 0;
-
-
-
     background: var(--ugc-bg);
-
-
-
     color: var(--ugc-text);
-
-
-
     font-family: var(--U);
-
-
-
     position: relative;
-
-
-
     z-index: 1;
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc > .section {
     background: transparent !important;
   }
-
   .prana-ugc__inner {
-
-
-
     width: 100%;
-
-
-
     min-width: 0;
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc__header {
-
-
-
     max-width: 700px;
-
-
-
     margin: 0 auto 32px;
-
-
-
     text-align: center;
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc .prana-ugc__eyebrow {
-
-
-
     display: flex;
-
-
-
     align-items: center;
-
-
-
     justify-content: center;
-
-
-
     gap: 14px;
-
-
-
     margin: 0 0 12px;
-
-
-
     color: var(--ugc-eyebrow) !important;
-
-
-
     font: 400 14px/1.5 var(--U);
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc__eyebrow::before,
-
-
-
   .prana-ugc__eyebrow::after {
-
-
-
     content: '';
-
-
-
     width: 40px;
-
-
-
     height: 1px;
-
-
-
     background: var(--ugc-line);
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc .prana-ugc__heading {
-
-
-
     margin: 0 0 12px;
-
-
-
     color: var(--ugc-heading) !important;
-
-
-
     font: 400 38px/1.15 var(--D);
-
-
-
   }
-
-
-
-
-
-
 
   .prana-ugc__intro,
-
-
-
   .prana-ugc__intro p {
-
-
-
     margin: 0;
-
     color: var(--ugc-text) !important;
-
-
-
     font: 400 17px/1.5 var(--U);
-
-
-
   }
-
-
-
-
-
-
 
   prana-ugc-videos {
-
-
-
     display: block;
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc__swiper {
     width: 100%;
     max-width: min(100%, var(--ugc-desktop-max));
     margin: 0 auto;
     overflow: hidden;
   }
-    .prana-ugc__card {
-      max-width: none;
-    }
-
-
-
-
-
-
-
+  .prana-ugc__card {
+    max-width: none;
+  }
   .prana-ugc__video {
-
-
-
     display: block;
-
-
-
     width: 100%;
-
-
-
     aspect-ratio: 9 / 16;
-
-
-
     object-fit: cover;
-
-
-
     object-position: center;
-
-
-
     background: var(--ugc-video-bg);
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc__placeholder {
-
-
-
     display: grid;
-
-
-
     place-items: center;
-
-
-
     aspect-ratio: 9 / 16;
-
-
-
     padding: 24px;
-
     color: var(--ugc-placeholder-text);
-
-
-
     text-align: center;
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc__navigation {
-
-
-
     display: flex;
-
-
-
     justify-content: center;
-
-
-
     gap: 12px;
-
-
-
     margin-top: 20px;
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   .prana-ugc__navigation button {
-
-
-
     width: 44px;
-
-
-
     height: 44px;
-
-
-
     border: 1px solid var(--ugc-nav-border) !important;
-
-
-
     border-radius: 50%;
-
-
-
     background: var(--ugc-nav-bg) !important;
-
-
-
     color: var(--ugc-nav-icon) !important;
-
-
-
     font-size: 24px;
-
-
-
     cursor: pointer;
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc__navigation button:disabled {
-
-
-
     opacity: 0.35;
-
-
-
     cursor: default;
-
-
-
   }
-
-
-
-
-
-
-
   .prana-ugc__navigation button:focus-visible,
-
-
-
   .prana-ugc__swiper:focus-visible {
-
-
-
     outline: 2px solid var(--ugc-nav-border);
-
-
-
     outline-offset: 3px;
-
-
-
   }
-
-
-
-
-
-
 
   @media (max-width: 749px) {
-
-
-
     .prana-ugc {
-
-
-
       padding: 40px 0;
-
-
-
     }
-
-
-
-
-
-
-
     .prana-ugc .prana-ugc__heading {
-
-
-
       font-size: 24px;
-
-
-
     }
-
-
-
-
-
-
-
     .prana-ugc__intro,
-
-
-
     .prana-ugc__intro p {
-
-
-
       font-size: 15px;
-
-
-
     }
-
-
-
-
-
-
-
     .prana-ugc__header {
-
-
-
       margin-bottom: 24px;
-
-
-
     }
     .prana-ugc__swiper {
       max-width: 100%;
       margin: 0 auto;
     }
-
-
-
-
-
-
-
     .prana-ugc__card {
-
-
-
-      flex: 0 0 calc(
-
-
-
-        (100% - ((var(--ugc-mobile-count) - 1) * 14px))
-
-
-
-        / var(--ugc-mobile-count)
-
-
-
-      );
-
-
-
+      flex: 0 0 calc((100% - ((var(--ugc-mobile-count) - 1) * 14px))/ var(--ugc-mobile-count));
       max-width: none;
-
-
-
     }
-
-
-
   }
 {% endstylesheet %}
 
