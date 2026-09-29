@@ -1046,6 +1046,48 @@
         "sub_text": "Your first one-time purchase",
         "button_text": "CONTINUE"
       }
+    },
+    "prana_bestseller_banner": {
+      "type": "prana-bestseller-banner",
+      "settings": {
+        "button_link": "shopify://products/turmeric-and-sandalwood-face-mask"
+      },
+      "blocks": {
+        "benefit_0": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "label": "Brightens\nDull Skin"
+          }
+        },
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "waves",
+            "label": "Calms\nRedness"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "drop",
+            "label": "Purifies\nPores"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "flower",
+            "label": "Supports\nRadiant Skin"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_0",
+        "benefit_1",
+        "benefit_2",
+        "benefit_3"
+      ]
     }
   },
   "order": [
@@ -1053,6 +1095,7 @@
     "hero_banner_jxwpbW",
     "custom_proof_jqHQB6",
     "custom_product_slider_qajQbd",
+    "prana_bestseller_banner",
     "founder_section_4CgtMW",
     "custom_rituals_section_RJGTFd",
     "find_ritual_section_XPMGpF",
