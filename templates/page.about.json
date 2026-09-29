@@ -74,55 +74,6 @@
         "padding-block-end": 0
       }
     },
-    "about_content_ERQ77G": {
-      "type": "about-content",
-      "blocks": {
-        "feature_XWjiRC": {
-          "type": "feature",
-          "settings": {
-            "title": "Woman-founded"
-          }
-        },
-        "feature_4tjVMc": {
-          "type": "feature",
-          "settings": {
-            "title": "AI-Powered"
-          }
-        },
-        "feature_wXWLT7": {
-          "type": "feature",
-          "settings": {
-            "title": "Ayurvedic Roots"
-          }
-        },
-        "feature_DDfbAf": {
-          "type": "feature",
-          "settings": {
-            "title": "Clean Beauty Certified"
-          }
-        }
-      },
-      "block_order": [
-        "feature_XWjiRC",
-        "feature_4tjVMc",
-        "feature_wXWLT7",
-        "feature_DDfbAf"
-      ],
-      "disabled": true,
-      "name": "PRANA About",
-      "settings": {
-        "subheading": "PRANA Beauty",
-        "heading": "Where Ayurveda Meets Modern Science",
-        "description": "<p>Discover skincare that’s intelligent, clean, and deeply rooted in timeless tradition.At PRANA Beauty, we combine the wisdom of Ayurveda with advanced AI-powered personalization to create a collection of vegan, cruelty-free, conscious skincare designed for your unique skin needs.<br/><br/>Each formula is crafted with potent botanicals, adaptogens, and Ayurvedic herbs—proven through centuries of use—while technology helps match you to the products your skin truly craves. With PRANA, you don’t just buy skincare,you unlock a personalized daily ritual.</p>",
-        "video_poster": "shopify://shop_images/image_25_1.png",
-        "video": "shopify://files/videos/7221de0752ba46579bc87105e5f783c5.mp4",
-        "video_url": "",
-        "autoplay": true,
-        "muted": true,
-        "show_controls": true,
-        "loop_video": true
-      }
-    },
     "prana_meet_the_founder_mUAarL": {
       "type": "prana-meet-the-founder",
       "blocks": {
@@ -194,6 +145,81 @@
         "video": "shopify://files/videos/7221de0752ba46579bc87105e5f783c5.mp4",
         "location": "Jersey City, NJ",
         "film_caption": "Watch the brand film"
+      }
+    },
+    "prana_founder_journey_9YWGmi": {
+      "type": "prana-founder-journey",
+      "blocks": {
+        "milestone_8UGmhx": {
+          "type": "milestone",
+          "settings": {
+            "year": "2008",
+            "title": "New York",
+            "description": "Prabha moves to New York to build her career in technology — carrying an Ayurvedic inheritance she hadn't yet found a place for."
+          }
+        },
+        "milestone_cYm4Dt": {
+          "type": "milestone",
+          "settings": {
+            "year": "2021",
+            "title": "Building the Source",
+            "description": "Direct sourcing established before a single formula is finalized: Rosa Damascena from Pushkar, Rajasthan, and wild Curcuma aromatica (Kasthuri Manjal) from Tamil Nadu."
+          }
+        },
+        "milestone_J4VKmg": {
+          "type": "milestone",
+          "settings": {
+            "year": "2021–2022",
+            "title": "Formulation",
+            "description": "Eleven versions of the Saffron Glow Serum. Twenty versions of the Turmeric & Sandalwood Mask. No formula ships until it earns it."
+          }
+        },
+        "milestone_tMmJUQ": {
+          "type": "milestone",
+          "settings": {
+            "year": "2023",
+            "title": "PRANA Launches",
+            "description": "Six formulations, zero-synthetic and waterless, launch direct-to-consumer — built around the seven-sutra ritual framework."
+          }
+        },
+        "milestone_ztcWhr": {
+          "type": "milestone",
+          "settings": {
+            "year": "2025",
+            "title": "AI Meets Ayurveda",
+            "description": "AI-powered facial skin analysis is integrated into the ritual — reading skin markers and mapping them to Ayurvedic dosha balance."
+          }
+        },
+        "milestone_UBKDXk": {
+          "type": "milestone",
+          "settings": {
+            "year": "April 2026",
+            "title": "The Relaunch",
+            "description": "PRANA relaunches to an 11,000-person waitlist."
+          }
+        },
+        "milestone_QmEDr8": {
+          "type": "milestone",
+          "settings": {
+            "year": "2026",
+            "title": "Going Global",
+            "description": "The UK launch goes live, with UAE market entry underway."
+          }
+        }
+      },
+      "block_order": [
+        "milestone_8UGmhx",
+        "milestone_cYm4Dt",
+        "milestone_J4VKmg",
+        "milestone_tMmJUQ",
+        "milestone_ztcWhr",
+        "milestone_UBKDXk",
+        "milestone_QmEDr8"
+      ],
+      "name": "PRANA Founder Journey",
+      "settings": {
+        "journey_label": "The Journey",
+        "journey_heading": "Two years of formulation, none of it rushed."
       }
     },
     "hero_collection_section_pAbR78": {
@@ -1623,88 +1649,13 @@
         "padding-block-start": 50,
         "padding-block-end": 60
       }
-    },
-    "prana_founder_journey": {
-      "type": "prana-founder-journey",
-      "settings": {
-        "journey_label": "The Journey",
-        "journey_heading": "Two years of formulation, none of it rushed."
-      },
-      "blocks": {
-        "milestone_BLpkhd": {
-          "type": "milestone",
-          "settings": {
-            "year": "2008",
-            "title": "New York",
-            "description": "Prabha moves to New York to build her career in technology — carrying an Ayurvedic inheritance she hadn't yet found a place for."
-          }
-        },
-        "milestone_pRcMA6": {
-          "type": "milestone",
-          "settings": {
-            "year": "2021",
-            "title": "Building the Source",
-            "description": "Direct sourcing established before a single formula is finalized: Rosa Damascena from Pushkar, Rajasthan, and wild Curcuma aromatica (Kasthuri Manjal) from Tamil Nadu."
-          }
-        },
-        "milestone_MxfYRm": {
-          "type": "milestone",
-          "settings": {
-            "year": "2021–2022",
-            "title": "Formulation",
-            "description": "Eleven versions of the Saffron Glow Serum. Twenty versions of the Turmeric & Sandalwood Mask. No formula ships until it earns it."
-          }
-        },
-        "milestone_TChrQF": {
-          "type": "milestone",
-          "settings": {
-            "year": "2023",
-            "title": "PRANA Launches",
-            "description": "Six formulations, zero-synthetic and waterless, launch direct-to-consumer — built around the seven-sutra ritual framework."
-          }
-        },
-        "milestone_ggdq9P": {
-          "type": "milestone",
-          "settings": {
-            "year": "2025",
-            "title": "AI Meets Ayurveda",
-            "description": "AI-powered facial skin analysis is integrated into the ritual — reading skin markers and mapping them to Ayurvedic dosha balance."
-          }
-        },
-        "milestone_He49tN": {
-          "type": "milestone",
-          "settings": {
-            "year": "April 2026",
-            "title": "The Relaunch",
-            "description": "PRANA relaunches to an 11,000-person waitlist."
-          }
-        },
-        "milestone_yQKrAV": {
-          "type": "milestone",
-          "settings": {
-            "year": "2026",
-            "title": "Going Global",
-            "description": "The UK launch goes live, with UAE market entry underway."
-          }
-        }
-      },
-      "block_order": [
-        "milestone_BLpkhd",
-        "milestone_pRcMA6",
-        "milestone_MxfYRm",
-        "milestone_TChrQF",
-        "milestone_ggdq9P",
-        "milestone_He49tN",
-        "milestone_yQKrAV"
-      ]
     }
   },
   "order": [
     "main",
     "blocks_8bQEP8",
-    "about_content_ERQ77G",
     "prana_meet_the_founder_mUAarL",
-    "prana_founder_journey",
+    "prana_founder_journey_9YWGmi",
     "hero_collection_section_pAbR78",
     "blocking_cards_KJtFfG",
     "prana_promise_xpKbUz",
