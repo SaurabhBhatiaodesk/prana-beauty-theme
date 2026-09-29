@@ -34,7 +34,11 @@
           {% endif %}
         </header>
 
-        <prana-ugc-videos data-autoplay="{{ section.settings.autoplay }}">
+        <prana-ugc-videos
+          data-autoplay="{{ section.settings.autoplay }}"
+          data-slider-autoplay="{{ section.settings.slider_autoplay }}"
+          data-slider-speed="{{ section.settings.slider_autoplay_speed }}"
+        >
           <div
             class="prana-ugc__track"
             id="UgcTrack-{{ section.id }}"
@@ -271,6 +275,8 @@ if (!customElements.get('prana-ugc-videos')) {
         const signal = this.controller.signal;
 
         const autoplay = this.dataset.autoplay === 'true';
+        const sliderAutoplay = this.dataset.sliderAutoplay === 'true';
+        const sliderSpeed = Math.max(1000, Number(this.dataset.sliderSpeed || 3000));
 
         const shouldAutoplay = () => autoplay;
 
@@ -290,24 +296,52 @@ if (!customElements.get('prana-ugc-videos')) {
           }
         };
 
+        const getSlideDistance = () => {
+          const card = this.track.querySelector('.prana-ugc__card');
+          if (!card) return 0;
+
+          const gap = parseFloat(getComputedStyle(this.track).gap) || 0;
+          return card.getBoundingClientRect().width + gap;
+        };
+
+        const moveSlider = (step = 1) => {
+          const distance = getSlideDistance();
+          if (!distance) return;
+
+          const max = this.track.scrollWidth - this.track.clientWidth;
+          const nextLeft = this.track.scrollLeft + (step * distance);
+
+          if (step > 0 && nextLeft >= max - 2) {
+            this.track.scrollTo({
+              left: 0,
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 'auto'
+                : 'smooth'
+            });
+          } else if (step < 0 && nextLeft <= 0) {
+            this.track.scrollTo({
+              left: max,
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 'auto'
+                : 'smooth'
+            });
+          } else {
+            this.track.scrollBy({
+              left: step * distance,
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 'auto'
+                : 'smooth'
+            });
+          }
+        };
+
         this.nav.addEventListener(
           'click',
           (event) => {
             const button = event.target.closest('button[data-step]');
             if (!button) return;
 
-            const card = this.track.querySelector('.prana-ugc__card');
-            if (!card) return;
-
-            const gap = parseFloat(getComputedStyle(this.track).gap) || 0;
-            const distance = card.getBoundingClientRect().width + gap;
-
-            this.track.scrollBy({
-              left: Number(button.dataset.step) * distance,
-              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-                ? 'auto'
-                : 'smooth'
-            });
+            moveSlider(Number(button.dataset.step));
           },
           { signal }
         );
@@ -382,13 +416,49 @@ if (!customElements.get('prana-ugc-videos')) {
           { signal }
         );
 
+        let sliderTimer = null;
+
+        const startSliderAutoplay = () => {
+          if (
+            !sliderAutoplay ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+            this.track.scrollWidth <= this.track.clientWidth + 2
+          ) {
+            return;
+          }
+
+          stopSliderAutoplay();
+
+          sliderTimer = window.setInterval(() => {
+            moveSlider(1);
+          }, sliderSpeed);
+        };
+
+        const stopSliderAutoplay = () => {
+          if (sliderTimer) {
+            window.clearInterval(sliderTimer);
+            sliderTimer = null;
+          }
+        };
+
+        this.addEventListener('mouseenter', stopSliderAutoplay, { signal });
+        this.addEventListener('mouseleave', startSliderAutoplay, { signal });
+        this.addEventListener('touchstart', stopSliderAutoplay, { passive: true, signal });
+        this.addEventListener('touchend', startSliderAutoplay, { passive: true, signal });
+        this.addEventListener('focusin', stopSliderAutoplay, { signal });
+        this.addEventListener('focusout', startSliderAutoplay, { signal });
+
+        this.stopSliderAutoplay = stopSliderAutoplay;
+
         updateNavigation();
+        startSliderAutoplay();
       }
 
       disconnectedCallback() {
         this.controller?.abort();
         this.resizeObserver?.disconnect();
         this.visibilityObserver?.disconnect();
+        this.stopSliderAutoplay?.();
 
         this.querySelectorAll('video').forEach((video) => {
           video.pause();
@@ -453,6 +523,22 @@ if (!customElements.get('prana-ugc-videos')) {
       "label": "Autoplay videos",
       "default": true,
       "info": "When enabled, all visible videos autoplay muted and loop continuously."
+    },
+    {
+      "type": "checkbox",
+      "id": "slider_autoplay",
+      "label": "Autoplay slider",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slider_autoplay_speed",
+      "label": "Slider autoplay speed",
+      "min": 2000,
+      "max": 8000,
+      "step": 500,
+      "unit": "ms",
+      "default": 3000
     }
   ],
   "blocks": [
