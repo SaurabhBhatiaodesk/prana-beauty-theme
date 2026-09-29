@@ -136,24 +136,6 @@
         "last-proof": ""
       }
     },
-    "custom_product_slider_qajQbd": {
-      "type": "custom-product-slider",
-      "custom_css": [],
-      "name": "Custom Product Slider",
-      "settings": {
-        "caption": "The PRANA SUTRAS",
-        "title": "Six Formulations.",
-        "title2": "One Complete Ritual.",
-        "description": "Each product stands alone. Together they become a RITUAL — morning, night, weekly reset.",
-        "collection": "six-formulations",
-        "view_all_text": "View All",
-        "view_all_link": "",
-        "view_product_text": "View Product",
-        "buy_now_text": "Buy Now",
-        "btn_text": "View All Products →",
-        "btn_link": "/checkout"
-      }
-    },
     "prana_bestseller_banner": {
       "type": "prana-bestseller-banner",
       "blocks": {
@@ -205,6 +187,24 @@
         "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
         "height": 600,
         "overlay": 0
+      }
+    },
+    "custom_product_slider_qajQbd": {
+      "type": "custom-product-slider",
+      "custom_css": [],
+      "name": "Custom Product Slider",
+      "settings": {
+        "caption": "The PRANA SUTRAS",
+        "title": "Six Formulations.",
+        "title2": "One Complete Ritual.",
+        "description": "Each product stands alone. Together they become a RITUAL — morning, night, weekly reset.",
+        "collection": "six-formulations",
+        "view_all_text": "View All",
+        "view_all_link": "",
+        "view_product_text": "View Product",
+        "buy_now_text": "Buy Now",
+        "btn_text": "View All Products →",
+        "btn_link": "/checkout"
       }
     },
     "founder_section_4CgtMW": {
@@ -1105,8 +1105,8 @@
     "top_banner_mobile_yjKWDH",
     "hero_banner_jxwpbW",
     "custom_proof_jqHQB6",
-    "custom_product_slider_qajQbd",
     "prana_bestseller_banner",
+    "custom_product_slider_qajQbd",
     "founder_section_4CgtMW",
     "custom_rituals_section_RJGTFd",
     "find_ritual_section_XPMGpF",
