@@ -1,16 +1,36 @@
 <section
+
   class="prana-bestseller{% unless section.settings.show_content %} prana-bestseller--image-only{% endunless %}"
 
+
+
   style="
+
     --pb-height: {{ section.settings.height }}px;
+
+
 
     --pb-mobile-height: {{ section.settings.mobile_height }}px;
 
 
 
+
+
+
+
     --pb-overlay: {{ section.settings.overlay | divided_by: 100.0 }};
+
     --pb-mobile-overlay: {{ section.settings.mobile_overlay | divided_by: 100.0 }};
+
     --pb-mobile-overlay-color: {{ section.settings.mobile_overlay_color }};
+
+
+
+
+
+
+
+
 
 
 
@@ -22,7 +42,15 @@
 
 
 
+
+
+
+
     --pb-eyebrow-color: {{ section.settings.eyebrow_color }};
+
+
+
+
 
 
 
@@ -30,7 +58,15 @@
 
 
 
+
+
+
+
     --pb-subtitle-color: {{ section.settings.subtitle_color }};
+
+
+
+
 
 
 
@@ -38,7 +74,15 @@
 
 
 
+
+
+
+
     --pb-benefit-color: {{ section.settings.benefit_color }};
+
+
+
+
 
 
 
@@ -46,7 +90,15 @@
 
 
 
+
+
+
+
     --pb-button-bg: {{ section.settings.button_background }};
+
+
+
+
 
 
 
@@ -54,7 +106,15 @@
 
 
 
+
+
+
+
     --pb-button-hover-bg: {{ section.settings.button_hover_background }};
+
+
+
+
 
 
 
@@ -66,7 +126,19 @@
 
 
 
+
+
+
+
+
+
+
+
     --pb-eyebrow-size-desktop: {{ section.settings.eyebrow_size_desktop }}px;
+
+
+
+
 
 
 
@@ -74,7 +146,15 @@
 
 
 
+
+
+
+
     --pb-subtitle-size-desktop: {{ section.settings.subtitle_size_desktop }}px;
+
+
+
+
 
 
 
@@ -82,7 +162,15 @@
 
 
 
+
+
+
+
     --pb-benefit-size-desktop: {{ section.settings.benefit_size_desktop }}px;
+
+
+
+
 
 
 
@@ -94,7 +182,19 @@
 
 
 
+
+
+
+
+
+
+
+
     --pb-eyebrow-size-mobile: {{ section.settings.eyebrow_size_mobile }}px;
+
+
+
+
 
 
 
@@ -102,7 +202,15 @@
 
 
 
+
+
+
+
     --pb-subtitle-size-mobile: {{ section.settings.subtitle_size_mobile }}px;
+
+
+
+
 
 
 
@@ -110,85 +218,171 @@
 
 
 
+
+
+
+
     --pb-benefit-size-mobile: {{ section.settings.benefit_size_mobile }}px;
 
 
 
+
+
+
+
     --pb-button-size-mobile: {{ section.settings.button_size_mobile }}px;
+
   "
+
 >
+
   {% if section.settings.image != blank %}
+
     <picture class="prana-bestseller__background">
+
       {% if section.settings.mobile_image != blank %}
+
         <source
+
           media="(max-width:749px)"
 
+
+
           srcset="{{ section.settings.mobile_image | image_url: width: 900 }}"
+
         >
+
       {% endif %}
 
+
+
       {{
+
         section.settings.image
+
         | image_url: width: 2400
+
         | image_tag:
+
           widths: '750, 1100, 1500, 2000, 2400',
+
           sizes: '100vw',
+
           loading: 'lazy',
+
           class: 'prana-bestseller__image'
+
       }}
+
     </picture>
+
   {% endif %}
 
+
+
   {% if section.settings.show_content %}
+
     <div class="prana-bestseller__shade"></div>
 
+
+
     <div class="section">
+
       <div class="prana-bestseller__content">
+
         {% if section.settings.eyebrow != blank %}
+
           <p class="prana-bestseller__eyebrow">
+
             {{ section.settings.eyebrow | escape }}
+
           </p>
+
         {% endif %}
+
+
 
         {% if section.settings.heading != blank %}
+
           <h2 class="prana-bestseller__heading">
+
             {{ section.settings.heading | escape | newline_to_br }}
+
           </h2>
+
         {% endif %}
+
+
 
         {% if section.settings.subtitle != blank %}
+
           <p class="prana-bestseller__subtitle">
+
             {{ section.settings.subtitle | escape }}
+
           </p>
+
         {% endif %}
+
+
 
         {% if section.settings.description != blank %}
+
           <div class="prana-bestseller__description">
+
             {{ section.settings.description }}
+
           </div>
+
         {% endif %}
 
+
+
         {% if section.blocks.size > 0 %}
+
           <div class="prana-bestseller__benefits">
+
             {% for block in section.blocks %}
+
               <div class="prana-bestseller__benefit" {{ block.shopify_attributes }}>
+
                 <div class="prana-bestseller__icon">
+
                   {% if block.settings.icon_image != blank %}
+
                     {{ block.settings.icon_image | image_url: width: 100 | image_tag: loading: 'lazy', alt: '' }}
 
+
+
                   {% else %}
+
                     <svg
+
                       viewBox="0 0 32 32"
+
+
 
                       fill="none"
 
+
+
                       stroke="currentColor"
+
+
 
                       stroke-width="1.2"
 
+
+
                       aria-hidden="true"
+
                     >
+
                       {% case block.settings.icon %}
+
+
+
+
 
 
 
@@ -196,7 +390,15 @@
 
 
 
+
+
+
+
                           <path d="M7 25C2 12 14 8 26 5c0 15-7 22-17 18M7 27 22 11M12 21l-1-7m6 2 6 1"/>
+
+
+
+
 
 
 
@@ -204,7 +406,15 @@
 
 
 
+
+
+
+
                           <path d="M3 9q6-5 13 0t13 0M3 16q6-5 13 0t13 0M3 23q6-5 13 0t13 0"/>
+
+
+
+
 
 
 
@@ -212,7 +422,15 @@
 
 
 
+
+
+
+
                           <path d="M16 3C13 9 6 15 6 21a10 10 0 0 0 20 0c0-6-7-12-10-18Z"/>
+
+
+
+
 
 
 
@@ -220,48 +438,97 @@
 
 
 
+
+
+
+
                           <path d="M16 27C7 21 9 11 16 4c7 7 9 17 0 23ZM16 27C5 28 2 20 3 13c9 0 13 6 13 14ZM16 27c11 1 14-7 13-14-9 0-13 6-13 14Z"/>
 
 
 
+
+
+
+
                       {% endcase %}
+
                     </svg>
+
                   {% endif %}
+
                 </div>
 
+
+
                 <p>{{ block.settings.label | escape | newline_to_br }}</p>
+
               </div>
+
             {% endfor %}
+
           </div>
+
         {% endif %}
+
+
 
         {% if section.settings.button_link != blank and section.settings.button_label != blank %}
+
           <a
+
             class="prana-bestseller__button"
 
+
+
             href="{{ section.settings.button_link }}"
+
           >
+
             {{ section.settings.button_label | escape }}
 
+
+
             <span aria-hidden="true">&#10230;</span>
+
           </a>
+
         {% endif %}
+
       </div>
+
     </div>
 
+
+
   {% elsif section.settings.button_link != blank %}
+
     <a
+
       class="prana-bestseller__full-link"
+
+
 
       href="{{ section.settings.button_link }}"
 
+
+
       aria-label="{{ section.settings.button_label | default: section.settings.heading | escape }}"
+
     ></a>
+
   {% endif %}
+
 </section>
 
+
+
 {% stylesheet %}
+
   .prana-bestseller {
+
+
+
+
 
 
 
@@ -269,7 +536,15 @@
 
 
 
+
+
+
+
     isolation: isolate;
+
+
+
+
 
 
 
@@ -277,7 +552,15 @@
 
 
 
+
+
+
+
     background: var(--pb-bg);
+
+
+
+
 
 
 
@@ -285,7 +568,15 @@
 
 
 
+
+
+
+
     display: grid;
+
+
+
+
 
 
 
@@ -293,7 +584,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -305,7 +608,15 @@
 
 
 
+
+
+
+
   .prana-bestseller__shade {
+
+
+
+
 
 
 
@@ -313,7 +624,15 @@
 
 
 
+
+
+
+
     inset: 0;
+
+
+
+
 
 
 
@@ -321,7 +640,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -333,7 +664,15 @@
 
 
 
+
+
+
+
     width: 100%;
+
+
+
+
 
 
 
@@ -341,7 +680,15 @@
 
 
 
+
+
+
+
     object-fit: cover;
+
+
+
+
 
 
 
@@ -349,7 +696,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -361,7 +720,15 @@
 
 
 
+
+
+
+
     background: linear-gradient(
+
+
+
+
 
 
 
@@ -369,7 +736,15 @@
 
 
 
+
+
+
+
       rgba(248, 242, 230, var(--pb-overlay)),
+
+
+
+
 
 
 
@@ -377,11 +752,27 @@
 
 
 
+
+
+
+
     );
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -393,7 +784,15 @@
 
 
 
+
+
+
+
     width: 44%;
+
+
+
+
 
 
 
@@ -401,7 +800,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -413,7 +824,15 @@
 
 
 
+
+
+
+
     display: flex;
+
+
+
+
 
 
 
@@ -421,7 +840,15 @@
 
 
 
+
+
+
+
     gap: 18px;
+
+
+
+
 
 
 
@@ -429,7 +856,15 @@
 
 
 
+
+
+
+
     color: var(--pb-eyebrow-color);
+
+
+
+
 
 
 
@@ -437,7 +872,15 @@
 
 
 
+
+
+
+
     letter-spacing: .25em;
+
+
+
+
 
 
 
@@ -445,7 +888,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -457,7 +912,15 @@
 
 
 
+
+
+
+
   .prana-bestseller__eyebrow::after {
+
+
+
+
 
 
 
@@ -465,7 +928,15 @@
 
 
 
+
+
+
+
     width: 36px;
+
+
+
+
 
 
 
@@ -473,11 +944,27 @@
 
 
 
+
+
+
+
     background: var(--pb-eyebrow-color);
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -489,7 +976,15 @@
 
 
 
+
+
+
+
     margin: 0 0 14px;
+
+
+
+
 
 
 
@@ -497,7 +992,15 @@
 
 
 
+
+
+
+
     font: 400 var(--pb-heading-size-desktop)/.98 var(--D);
+
+
+
+
 
 
 
@@ -505,7 +1008,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -517,7 +1032,15 @@
 
 
 
+
+
+
+
     margin: 0 0 14px;
+
+
+
+
 
 
 
@@ -525,11 +1048,27 @@
 
 
 
+
+
+
+
     font: 400 var(--pb-subtitle-size-desktop)/1.2 var(--D);
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -541,7 +1080,15 @@
 
 
 
+
+
+
+
   .prana-bestseller__description p {
+
+
+
+
 
 
 
@@ -549,7 +1096,15 @@
 
 
 
+
+
+
+
     margin: 0;
+
+
+
+
 
 
 
@@ -557,11 +1112,27 @@
 
 
 
+
+
+
+
     font: 400 var(--pb-description-size-desktop)/1.5 var(--S);
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -573,7 +1144,15 @@
 
 
 
+
+
+
+
     display: grid;
+
+
+
+
 
 
 
@@ -581,7 +1160,15 @@
 
 
 
+
+
+
+
     gap: 12px;
+
+
+
+
 
 
 
@@ -589,11 +1176,27 @@
 
 
 
+
+
+
+
     margin: 24px 0;
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -605,7 +1208,15 @@
 
 
 
+
+
+
+
     text-align: center;
+
+
+
+
 
 
 
@@ -613,7 +1224,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -625,7 +1248,15 @@
 
 
 
+
+
+
+
     width: 44px;
+
+
+
+
 
 
 
@@ -633,7 +1264,15 @@
 
 
 
+
+
+
+
     display: grid;
+
+
+
+
 
 
 
@@ -641,7 +1280,15 @@
 
 
 
+
+
+
+
     margin: 0 auto 8px;
+
+
+
+
 
 
 
@@ -649,7 +1296,15 @@
 
 
 
+
+
+
+
     border-radius: 50%;
+
+
+
+
 
 
 
@@ -657,7 +1312,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -669,7 +1336,15 @@
 
 
 
+
+
+
+
   .prana-bestseller__icon img {
+
+
+
+
 
 
 
@@ -677,7 +1352,15 @@
 
 
 
+
+
+
+
     height: 28px;
+
+
+
+
 
 
 
@@ -685,7 +1368,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -697,7 +1392,15 @@
 
 
 
+
+
+
+
     margin: 0;
+
+
+
+
 
 
 
@@ -705,11 +1408,27 @@
 
 
 
+
+
+
+
     font: 400 var(--pb-benefit-size-desktop)/1.2 var(--S);
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -721,7 +1440,15 @@
 
 
 
+
+
+
+
     display: inline-flex;
+
+
+
+
 
 
 
@@ -729,7 +1456,15 @@
 
 
 
+
+
+
+
     justify-content: center;
+
+
+
+
 
 
 
@@ -737,7 +1472,15 @@
 
 
 
+
+
+
+
     min-width: 240px;
+
+
+
+
 
 
 
@@ -745,7 +1488,15 @@
 
 
 
+
+
+
+
     border-radius: 2px;
+
+
+
+
 
 
 
@@ -753,7 +1504,15 @@
 
 
 
+
+
+
+
     color: var(--pb-button-text);
+
+
+
+
 
 
 
@@ -761,7 +1520,15 @@
 
 
 
+
+
+
+
     letter-spacing: .18em;
+
+
+
+
 
 
 
@@ -769,11 +1536,27 @@
 
 
 
+
+
+
+
     transition: background .2s ease, color .2s ease;
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -785,7 +1568,15 @@
 
 
 
+
+
+
+
     background: var(--pb-button-hover-bg);
+
+
+
+
 
 
 
@@ -793,7 +1584,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -805,7 +1608,15 @@
 
 
 
+
+
+
+
   .prana-bestseller__full-link:focus-visible {
+
+
+
+
 
 
 
@@ -813,11 +1624,27 @@
 
 
 
+
+
+
+
     outline-offset: 4px;
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -829,7 +1656,15 @@
 
 
 
+
+
+
+
     position: absolute;
+
+
+
+
 
 
 
@@ -837,7 +1672,19 @@
 
 
 
+
+
+
+
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -847,788 +1694,1574 @@
 
   @media (max-width: 749px) {
 
+
+
     .prana-bestseller {
+
+
 
       min-height: var(--pb-mobile-height);
 
+
+
       display: grid;
+
+
 
       align-items: center;
 
+
+
       overflow: hidden;
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller__background {
 
+
+
       position: absolute;
+
+
 
       inset: 0;
 
+
+
       width: 100%;
+
+
 
       height: 100%;
 
+
+
       z-index: -2;
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller__image {
 
+
+
       width: 100%;
+
+
 
       height: 100%;
 
+
+
       object-fit: cover;
 
+
+
       object-position: center;
+
+
 
     }
 
 
 
+
+
+
+
     .prana-bestseller__shade {
+
     display: block;
+
     z-index: -1;
+
     background: var(--pb-mobile-overlay-color);
+
     opacity: var(--pb-mobile-overlay);
+
   }
+
+
+
+
 
 
 
     .prana-bestseller__content {
 
+
+
       width: 100%;
+
+
 
       padding: 42px 0;
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller .prana-bestseller__eyebrow {
 
+
+
       font-size: var(--pb-eyebrow-size-mobile);
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller .prana-bestseller__heading {
 
+
+
       font-size: var(--pb-heading-size-mobile);
+
+
 
       line-height: 1.05;
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller .prana-bestseller__subtitle {
 
+
+
       font-size: var(--pb-subtitle-size-mobile);
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller__description,
 
+
+
     .prana-bestseller__description p {
+
+
 
       font-size: var(--pb-description-size-mobile);
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller__benefits {
 
+
+
       gap: 8px;
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller__benefit p {
 
+
+
       font-size: var(--pb-benefit-size-mobile);
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller__button {
 
+
+
       font-size: var(--pb-button-size-mobile);
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller--image-only {
 
+
+
       min-height: var(--pb-mobile-height);
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller--image-only .prana-bestseller__background {
 
+
+
       position: absolute;
+
+
 
       inset: 0;
 
+
+
       height: 100%;
 
+
+
     }
+
+
+
+
 
 
 
     .prana-bestseller--image-only .prana-bestseller__image {
 
+
+
       width: 100%;
+
+
 
       height: 100%;
 
+
+
       object-fit: cover;
+
+
 
     }
 
+
+
   }
+
 {% endstylesheet %}
 
+
+
 {% schema %}
+
 {
+
   "name": "PRANA Bestseller Banner",
 
+
+
   "settings": [
+
     {
+
       "type": "image_picker",
+
+
 
       "id": "image",
 
+
+
       "label": "Desktop background image",
 
+
+
       "info": "Use an image without text; keep the product on the right."
+
     },
 
+
+
     {
+
       "type": "image_picker",
+
+
 
       "id": "mobile_image",
 
+
+
       "label": "Mobile background image"
+
     },
 
+
+
     {
+
       "type": "checkbox",
+
+
 
       "id": "show_content",
 
+
+
       "label": "Show text and benefits",
+
+
 
       "default": true,
 
+
+
       "info": "Turn off if your uploaded banner already includes text."
+
     },
 
+
+
     {
+
       "type": "text",
+
+
 
       "id": "eyebrow",
 
+
+
       "label": "Eyebrow",
 
+
+
       "default": "Best seller"
+
     },
 
+
+
     {
+
       "type": "textarea",
+
+
 
       "id": "heading",
 
+
+
       "label": "Heading",
 
+
+
       "default": "Turmeric &\nSandalwood\nFace Mask"
+
     },
 
+
+
     {
+
       "type": "text",
+
+
 
       "id": "subtitle",
 
+
+
       "label": "Subtitle",
 
+
+
       "default": "Brighten. Calm. Restore."
+
     },
 
+
+
     {
+
       "type": "richtext",
+
+
 
       "id": "description",
 
+
+
       "label": "Description",
 
+
+
       "default": "<p>A golden ritual to visibly brighten skin, calm inflammation and reveal a healthy, radiant glow.</p>"
+
     },
 
+
+
     {
+
       "type": "text",
+
+
 
       "id": "button_label",
 
+
+
       "label": "Button label",
 
+
+
       "default": "Shop now"
+
     },
 
+
+
     {
+
       "type": "url",
+
+
 
       "id": "button_link",
 
+
+
       "label": "Button link"
+
     },
 
+
+
     {
+
       "type": "header",
 
+
+
       "content": "Colors"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "background_color",
 
+
+
       "label": "Section background",
 
+
+
       "default": "#F8F2E6"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "eyebrow_color",
 
+
+
       "label": "Eyebrow color",
 
+
+
       "default": "#A4773D"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "heading_color",
 
+
+
       "label": "Heading color",
 
+
+
       "default": "#2E2925"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "subtitle_color",
 
+
+
       "label": "Subtitle color",
 
+
+
       "default": "#2E2925"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "description_color",
 
+
+
       "label": "Description color",
 
+
+
       "default": "#5C554F"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "benefit_color",
 
+
+
       "label": "Benefit text color",
 
+
+
       "default": "#5C554F"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "icon_color",
 
+
+
       "label": "Benefit icon color",
 
+
+
       "default": "#A4773D"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "button_background",
 
+
+
       "label": "Button background",
 
+
+
       "default": "#2E2925"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "button_text_color",
 
+
+
       "label": "Button text",
 
+
+
       "default": "#FFFFFF"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "button_hover_background",
 
+
+
       "label": "Button hover background",
 
+
+
       "default": "#A4773D"
+
     },
 
+
+
     {
+
       "type": "color",
+
+
 
       "id": "button_hover_text_color",
 
+
+
       "label": "Button hover text",
 
+
+
       "default": "#FFFFFF"
+
     },
 
+
+
     {
+
       "type": "header",
 
+
+
       "content": "Desktop font sizes"
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "eyebrow_size_desktop",
 
+
+
       "label": "Eyebrow font size",
+
+
 
       "min": 8,
 
+
+
       "max": 24,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 12
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "heading_size_desktop",
 
+
+
       "label": "Heading font size",
+
+
 
       "min": 28,
 
+
+
       "max": 80,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 56
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "subtitle_size_desktop",
 
+
+
       "label": "Subtitle font size",
+
+
 
       "min": 14,
 
+
+
       "max": 48,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 28
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "description_size_desktop",
 
+
+
       "label": "Description font size",
 
+
+
       "min": 12,
+
+
 
       "max": 28,
 
+
+
       "step": 1,
+
+
 
       "unit": "px",
 
+
+
       "default": 17
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "benefit_size_desktop",
 
+
+
       "label": "Benefit font size",
+
+
 
       "min": 9,
 
+
+
       "max": 22,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 13
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "button_size_desktop",
 
+
+
       "label": "Button font size",
 
+
+
       "min": 9,
+
+
 
       "max": 22,
 
+
+
       "step": 1,
+
+
 
       "unit": "px",
 
+
+
       "default": 12
+
     },
 
+
+
     {
+
       "type": "header",
 
+
+
       "content": "Mobile font sizes"
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "eyebrow_size_mobile",
 
+
+
       "label": "Eyebrow font size",
+
+
 
       "min": 8,
 
+
+
       "max": 20,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 11
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "heading_size_mobile",
 
+
+
       "label": "Heading font size",
+
+
 
       "min": 22,
 
+
+
       "max": 48,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 30
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "subtitle_size_mobile",
 
+
+
       "label": "Subtitle font size",
+
+
 
       "min": 14,
 
+
+
       "max": 34,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 22
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "description_size_mobile",
 
+
+
       "label": "Description font size",
+
+
 
       "min": 12,
 
+
+
       "max": 24,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 15
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "benefit_size_mobile",
 
+
+
       "label": "Benefit font size",
+
+
 
       "min": 9,
 
+
+
       "max": 20,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 12
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "button_size_mobile",
 
+
+
       "label": "Button font size",
+
+
 
       "min": 9,
 
+
+
       "max": 20,
+
+
 
       "step": 1,
 
+
+
       "unit": "px",
 
+
+
       "default": 12
+
     },
 
+
+
     {
+
       "type": "header",
 
+
+
       "content": "Layout"
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "height",
 
+
+
       "label": "Desktop minimum height",
+
+
 
       "min": 400,
 
+
+
       "max": 800,
+
+
 
       "step": 20,
 
+
+
       "unit": "px",
 
+
+
       "default": 600
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "mobile_height",
 
+
+
       "label": "Mobile minimum height",
+
+
 
       "min": 400,
 
+
+
       "max": 800,
+
+
 
       "step": 20,
 
+
+
       "unit": "px",
 
+
+
       "default": 620
+
     },
 
+
+
     {
+
       "type": "range",
+
+
 
       "id": "overlay",
 
+
+
       "label": "Text background overlay",
 
+
+
       "min": 0,
+
+
 
       "max": 100,
 
+
+
       "step": 5,
+
+
 
       "unit": "%",
 
+
+
       "default": 65
+
     },
+
     {
+
       "type": "color",
+
       "id": "mobile_overlay_color",
+
       "label": "Mobile overlay color",
+
       "default": "#F8F2E6"
+
     },
+
     {
+
       "type": "range",
+
       "id": "mobile_overlay",
+
       "label": "Mobile text background overlay",
+
       "min": 0,
+
       "max": 100,
+
       "step": 5,
+
       "unit": "%",
+
       "default": 65
+
     }
+
   ],
+
+
 
   "max_blocks": 4,
 
+
+
   "blocks": [
+
     {
+
       "type": "benefit",
+
+
 
       "name": "Benefit",
 
+
+
       "settings": [
+
         {
+
           "type": "image_picker",
+
+
 
           "id": "icon_image",
 
+
+
           "label": "Custom icon"
+
         },
 
+
+
         {
+
           "type": "select",
+
+
 
           "id": "icon",
 
+
+
           "label": "Icon",
 
+
+
           "options": [
+
             {
+
               "value": "leaf",
 
+
+
               "label": "Leaf"
+
             },
 
+
+
             {
+
               "value": "waves",
 
+
+
               "label": "Calm waves"
+
             },
 
+
+
             {
+
               "value": "drop",
 
+
+
               "label": "Water drop"
+
             },
 
+
+
             {
+
               "value": "flower",
 
+
+
               "label": "Flower"
+
             }
+
           ],
 
+
+
           "default": "leaf"
+
         },
 
+
+
         {
+
           "type": "textarea",
+
+
 
           "id": "label",
 
+
+
           "label": "Label",
 
+
+
           "default": "Brightens\nDull Skin"
+
         }
+
       ]
+
     }
+
   ],
 
+
+
   "presets": [
+
     {
+
       "name": "PRANA Bestseller Banner",
 
+
+
       "blocks": [
+
         {
+
           "type": "benefit",
 
+
+
           "settings": {
+
             "icon": "leaf",
 
+
+
             "label": "Brightens\nDull Skin"
+
           }
+
         },
 
+
+
         {
+
           "type": "benefit",
 
+
+
           "settings": {
+
             "icon": "waves",
 
+
+
             "label": "Calms\nRedness"
+
           }
+
         },
 
+
+
         {
+
           "type": "benefit",
 
+
+
           "settings": {
+
             "icon": "drop",
 
+
+
             "label": "Purifies\nPores"
+
           }
+
         },
 
+
+
         {
+
           "type": "benefit",
 
+
+
           "settings": {
+
             "icon": "flower",
 
+
+
             "label": "Supports\nRadiant Skin"
+
           }
+
         }
+
       ]
+
     }
+
   ]
+
 }
+
 {% endschema %}
