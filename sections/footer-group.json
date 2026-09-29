@@ -1,1 +1,692 @@
-{"type":"footer","name":"Footer","sections":{"marquee_X4XJ34":{"type":"marquee","blocks":{"icon_kYB6pe":{"type":"icon","name":"t:names.icon","settings":{"icon":"none","image_upload":"shopify:\/\/shop_images\/Gemini_Generated_Image_walt72walt72walt_1.png","width":44,"link":"","open_in_new_tab":false},"blocks":{}},"text_8reHdD":{"type":"text","settings":{"text":"<p>AYURVEDIC INGREDIENTS<\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"tight","letter_spacing":"tight","case":"none","wrap":"nowrap","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon_A46F6B":{"type":"icon","name":"t:names.icon","settings":{"icon":"none","image_upload":"shopify:\/\/shop_images\/Vector_1_721428bb-10d0-475b-9ca9-4fd083723705.svg","width":44,"link":"","open_in_new_tab":false},"blocks":{}},"text_WjMcJB":{"type":"text","name":"t:names.text","settings":{"text":"<p>PURE & UNSCENTED<br\/><\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon_ixTVX3":{"type":"icon","name":"t:names.icon","settings":{"icon":"none","image_upload":"shopify:\/\/shop_images\/Group_18_1de47219-fba5-439c-bbc4-607e85910dcc.svg","width":44,"link":"","open_in_new_tab":false},"blocks":{}},"text_bcxfhR":{"type":"text","name":"t:names.text","settings":{"text":"<p>CRUELTY FREE<\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon_GcLDK3":{"type":"icon","name":"t:names.icon","settings":{"icon":"none","image_upload":"shopify:\/\/shop_images\/Vector_cb13b99e-57ec-44cb-857f-d4405da78dcc.svg","width":40,"link":"","open_in_new_tab":false},"blocks":{}},"text_8enczA":{"type":"text","name":"t:names.text","settings":{"text":"<p>PURE VEGAN<\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_kYB6pe","text_8reHdD","icon_A46F6B","text_WjMcJB","icon_ixTVX3","text_bcxfhR","icon_GcLDK3","text_8enczA"],"name":"t:names.marquee_section","settings":{"movement_direction":"normal","color_scheme":"scheme-ade8cd00-4765-4469-9c51-01827e65e70c","padding-block-start":24,"padding-block-end":24,"gap_between_elements":24}},"faq_pg_sec_DEwKXJ":{"type":"faq-pg-sec","blocks":{"faq_nNMLJG":{"type":"faq","settings":{"question":"What are natural skincare products?","answer":"<p>Natural skincare products use plant, mineral, and botanical ingredients, not synthetic fillers. At PRANA, they are 100% botanical and anhydrous. They are also free from parabens and silicones, so every drop provides active skincare.<\/p>"}},"faq_Y4zVeT":{"type":"faq","settings":{"question":" What are vegan skincare products?","answer":"<p>Vegan skincare products have no animal ingredients, like beeswax, honey, or lanolin. They are also never tested on animals. All PRANA vegan skincare products are 100% plant-based, cruelty-free, and made with clean formulas.<\/p>"}},"faq_w6pktE":{"type":"faq","settings":{"question":"Are natural and vegan skincare products the same thing?","answer":"<p>No. Natural skincare products can contain beeswax or honey, so they aren't vegan. Vegan skincare can be synthetic, which means it isn't always natural. The best vegan skincare products are both natural and vegan, like PRANA.<\/p>"}},"faq_QHtabc":{"type":"faq","settings":{"question":"What are ayurvedic skin care products?","answer":"<p>Ayurvedic skin care products come from 5,000 years of Ayurveda. They use herb-infused oils, like sesame, to deliver actives such as saffron and triphala deep into the skin. This approach supports balance, not just surface results.<\/p>"}},"faq_M96LG8":{"type":"faq","settings":{"question":"What are ayurvedic beauty products used for?","answer":"<p>Ayurvedic beauty products enhance radiance, even skin tone, and soothe sensitivity. Ingredients like saffron brighten, turmeric clarifies, and bakuchiol firms. Use them in daily morning and evening routines, as well as weekly rituals.<\/p>"}},"faq_meBUTm":{"type":"faq","settings":{"question":"How does ayurvedic skincare work?","answer":"<p>Ayurvedic skincare balances Vata, Pitta, and Kapha energies instead of just hiding symptoms. It uses warm, oil-based rituals to deeply deliver botanical actives. With regular use, it restores glow and resilience.<\/p>"}},"faq_6gE397":{"type":"faq","settings":{"question":"What should I look for in the best ayurvedic skincare brands in the USA?","answer":"<p>Seek classical formulations and traceable sources, such as Kashmiri saffron. Look for anhydrous, oil-based ayurvedic skincare that is 100% vegan and cruelty-free. Also, ensure full ingredient transparency. The top ayurvedic skincare brands in the USA meet all five criteria.<\/p>"}}},"block_order":["faq_nNMLJG","faq_Y4zVeT","faq_w6pktE","faq_QHtabc","faq_M96LG8","faq_meBUTm","faq_6gE397"],"name":"FAQ Section","settings":{"eyebrow":"Got Questions?","heading":"Frequently Asked Questions","subheading":"","max_width":880,"padding_top":64,"padding_bottom":64,"padding_top_mobile":64,"padding_bottom_mobile":64,"heading_size":42,"heading_color":"#2c1f18","text_color":"#6b5645"}},"prana_footer_3Uy6Gk":{"type":"prana-footer","name":"Custom Footer","settings":{"footer_bg":"#a8681a","button_bg":"#461324","button_text_color":"#ffffff","logo":"shopify:\/\/shop_images\/image_1_3.png","tagline":"Beauty begins beneath the surface","placeholder_text":"Enter Your Email","button_text":"Join","shop_title":"SHOP","shop_menu":"shop","prana_title":"PRANA","prana_menu":"prana","help_title":"HELP","help_menu":"policies","padding_top_desktop":60,"padding_bottom_desktop":60,"padding_top_mobile":40,"padding_bottom_mobile":40}},"footer_utilities_jLGE8U":{"type":"footer-utilities","blocks":{"social_links_e6erxP":{"type":"social-links","name":"t:names.social_media_links","settings":{"facebook_url":"https:\/\/www.facebook.com\/login","instagram_url":"https:\/\/www.instagram.com\/accounts\/login\/?hl=en","youtube_url":"","tiktok_url":"","twitter_url":"","threads_url":"","linkedin_url":"","bluesky_url":"","snapchat_url":"","pinterest_url":"","tumblr_url":"","vimeo_url":"","custom_url":""},"blocks":{}},"footer_copyright_jweRK8":{"type":"footer-copyright","settings":{"show_powered_by":false,"font_size":"0.75rem","case":"none"},"blocks":{}},"menu_WRHUBM":{"type":"menu","name":"t:names.menu","settings":{"menu":"policy-menus","heading":"","menu_spacing":12,"show_as_accordion":false,"accordion_icon":"caret","accordion_dividers":false,"inherit_color_scheme":true,"color_scheme":"","heading_preset":"h3","link_preset":"paragraph","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["social_links_e6erxP","footer_copyright_jweRK8","menu_WRHUBM"],"name":"t:names.utilities","settings":{"section_width":"page-width","gap":24,"divider_thickness":0,"color_scheme":"scheme-ade8cd00-4765-4469-9c51-01827e65e70c","padding-block-start":25,"padding-block-end":25}},"footer_m9NzUG":{"type":"footer","blocks":{"group_H6VpwJ":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"flex-start","gap":5,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_LWt8Pz":{"type":"text","disabled":true,"settings":{"text":"<h3>Prana Beauty<\/h3><p>& Wellness<br\/><\/p>","width":"100%","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"image_7fUdWX":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/image_1_3.png","link":"\/","image_ratio":"adapt","width":"custom","custom_width":30,"width_mobile":"custom","custom_width_mobile":0,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"image_web6B8":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/Logo-3.png","link":"https:\/\/www.pranabeauty.com\/","image_ratio":"adapt","width":"custom","custom_width":0,"width_mobile":"custom","custom_width_mobile":40,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_f9CFLH":{"type":"text","settings":{"text":"<p><em>\"Beauty begins beneath the surface.\"<\/em><\/p>","width":"100%","max_width":"normal","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-primary)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_qi7JAR":{"type":"text","name":"t:names.text","settings":{"text":"","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground-heading)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":50,"padding-block-end":20,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"email_signup_6ifUBG":{"type":"email-signup","name":"t:names.email_signup","settings":{"width":"fill","custom_width":100,"inherit_color_scheme":true,"color_scheme":"","heading":"","heading_preset":"h3","border_style":"all","border_width":1,"border_radius":100,"input_type_preset":"paragraph","style_class":"button","display_type":"text","label":"Sign up","integrated_button":false,"button_type_preset":"paragraph","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_LWt8Pz","image_7fUdWX","image_web6B8","text_f9CFLH","text_qi7JAR","email_signup_6ifUBG"]},"group_HVxiQX":{"type":"group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"menu_gxXUfH":{"type":"menu","name":"t:names.menu","settings":{"menu":"shop","heading":"SHOP","menu_spacing":12,"show_as_accordion":false,"accordion_icon":"caret","accordion_dividers":false,"inherit_color_scheme":true,"color_scheme":"","heading_preset":"h5","link_preset":"paragraph","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"menu_QnFrxC":{"type":"menu","name":"t:names.menu","settings":{"menu":"prana","heading":"Prana","menu_spacing":12,"show_as_accordion":false,"accordion_icon":"caret","accordion_dividers":false,"inherit_color_scheme":true,"color_scheme":"","heading_preset":"h5","link_preset":"paragraph","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"menu_6yANnf":{"type":"menu","name":"t:names.menu","settings":{"menu":"policies","heading":"Help","menu_spacing":12,"show_as_accordion":false,"accordion_icon":"caret","accordion_dividers":false,"inherit_color_scheme":true,"color_scheme":"","heading_preset":"h5","link_preset":"paragraph","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["menu_gxXUfH","menu_QnFrxC","menu_6yANnf"]}},"block_order":["group_H6VpwJ","group_HVxiQX"],"disabled":true,"custom_css":[],"name":"t:names.footer","settings":{"section_width":"page-width","gap":30,"color_scheme":"scheme-3aae0717-ca52-44f1-882d-10336cf58102","padding-block-start":30,"padding-block-end":77}}},"order":["marquee_X4XJ34","faq_pg_sec_DEwKXJ","prana_footer_3Uy6Gk","footer_utilities_jLGE8U","footer_m9NzUG"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "marquee_X4XJ34": {
+      "type": "marquee",
+      "blocks": {
+        "icon_kYB6pe": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "none",
+            "image_upload": "shopify://shop_images/Gemini_Generated_Image_walt72walt72walt_1.png",
+            "width": 44,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_8reHdD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>AYURVEDIC INGREDIENTS</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_A46F6B": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "none",
+            "image_upload": "shopify://shop_images/Vector_1_721428bb-10d0-475b-9ca9-4fd083723705.svg",
+            "width": 44,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_WjMcJB": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>PURE & UNSCENTED<br/></p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_ixTVX3": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "none",
+            "image_upload": "shopify://shop_images/Group_18_1de47219-fba5-439c-bbc4-607e85910dcc.svg",
+            "width": 44,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_bcxfhR": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>CRUELTY FREE</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_GcLDK3": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "none",
+            "image_upload": "shopify://shop_images/Vector_cb13b99e-57ec-44cb-857f-d4405da78dcc.svg",
+            "width": 40,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_8enczA": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>PURE VEGAN</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "icon_kYB6pe",
+        "text_8reHdD",
+        "icon_A46F6B",
+        "text_WjMcJB",
+        "icon_ixTVX3",
+        "text_bcxfhR",
+        "icon_GcLDK3",
+        "text_8enczA"
+      ],
+      "name": "t:names.marquee_section",
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "scheme-ade8cd00-4765-4469-9c51-01827e65e70c",
+        "padding-block-start": 24,
+        "padding-block-end": 24,
+        "gap_between_elements": 24
+      }
+    },
+    "faq_pg_sec_DEwKXJ": {
+      "type": "faq-pg-sec",
+      "blocks": {
+        "faq_nNMLJG": {
+          "type": "faq",
+          "settings": {
+            "question": "What are natural skincare products?",
+            "answer": "<p>Natural skincare products use plant, mineral, and botanical ingredients, not synthetic fillers. At PRANA, they are 100% botanical and anhydrous. They are also free from parabens and silicones, so every drop provides active skincare.</p>"
+          }
+        },
+        "faq_Y4zVeT": {
+          "type": "faq",
+          "settings": {
+            "question": " What are vegan skincare products?",
+            "answer": "<p>Vegan skincare products have no animal ingredients, like beeswax, honey, or lanolin. They are also never tested on animals. All PRANA vegan skincare products are 100% plant-based, cruelty-free, and made with clean formulas.</p>"
+          }
+        },
+        "faq_w6pktE": {
+          "type": "faq",
+          "settings": {
+            "question": "Are natural and vegan skincare products the same thing?",
+            "answer": "<p>No. Natural skincare products can contain beeswax or honey, so they aren't vegan. Vegan skincare can be synthetic, which means it isn't always natural. The best vegan skincare products are both natural and vegan, like PRANA.</p>"
+          }
+        },
+        "faq_QHtabc": {
+          "type": "faq",
+          "settings": {
+            "question": "What are ayurvedic skin care products?",
+            "answer": "<p>Ayurvedic skin care products come from 5,000 years of Ayurveda. They use herb-infused oils, like sesame, to deliver actives such as saffron and triphala deep into the skin. This approach supports balance, not just surface results.</p>"
+          }
+        },
+        "faq_M96LG8": {
+          "type": "faq",
+          "settings": {
+            "question": "What are ayurvedic beauty products used for?",
+            "answer": "<p>Ayurvedic beauty products enhance radiance, even skin tone, and soothe sensitivity. Ingredients like saffron brighten, turmeric clarifies, and bakuchiol firms. Use them in daily morning and evening routines, as well as weekly rituals.</p>"
+          }
+        },
+        "faq_meBUTm": {
+          "type": "faq",
+          "settings": {
+            "question": "How does ayurvedic skincare work?",
+            "answer": "<p>Ayurvedic skincare balances Vata, Pitta, and Kapha energies instead of just hiding symptoms. It uses warm, oil-based rituals to deeply deliver botanical actives. With regular use, it restores glow and resilience.</p>"
+          }
+        },
+        "faq_6gE397": {
+          "type": "faq",
+          "settings": {
+            "question": "What should I look for in the best ayurvedic skincare brands in the USA?",
+            "answer": "<p>Seek classical formulations and traceable sources, such as Kashmiri saffron. Look for anhydrous, oil-based ayurvedic skincare that is 100% vegan and cruelty-free. Also, ensure full ingredient transparency. The top ayurvedic skincare brands in the USA meet all five criteria.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_nNMLJG",
+        "faq_Y4zVeT",
+        "faq_w6pktE",
+        "faq_QHtabc",
+        "faq_M96LG8",
+        "faq_meBUTm",
+        "faq_6gE397"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "eyebrow": "Got Questions?",
+        "heading": "Frequently Asked Questions",
+        "subheading": "",
+        "max_width": 880,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "heading_size": 42,
+        "heading_color": "#2c1f18",
+        "text_color": "#6b5645"
+      }
+    },
+    "prana_footer_3Uy6Gk": {
+      "type": "prana-footer",
+      "name": "Custom Footer",
+      "settings": {
+        "footer_bg": "#a8681a",
+        "button_bg": "#461324",
+        "button_text_color": "#ffffff",
+        "logo": "shopify://shop_images/image_1_3.png",
+        "tagline": "Beauty begins beneath the surface",
+        "placeholder_text": "Enter Your Email",
+        "button_text": "Join",
+        "shop_title": "SHOP",
+        "shop_menu": "shop",
+        "prana_title": "PRANA",
+        "prana_menu": "prana",
+        "help_title": "HELP",
+        "help_menu": "policies",
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "footer_utilities_jLGE8U": {
+      "type": "footer-utilities",
+      "blocks": {
+        "social_links_e6erxP": {
+          "type": "social-links",
+          "name": "t:names.social_media_links",
+          "settings": {
+            "facebook_url": "https://www.facebook.com/login",
+            "instagram_url": "https://www.instagram.com/pranabeautywellness/",
+            "youtube_url": "",
+            "tiktok_url": "",
+            "twitter_url": "",
+            "threads_url": "",
+            "linkedin_url": "",
+            "bluesky_url": "",
+            "snapchat_url": "",
+            "pinterest_url": "",
+            "tumblr_url": "",
+            "vimeo_url": "",
+            "custom_url": ""
+          },
+          "blocks": {}
+        },
+        "footer_copyright_jweRK8": {
+          "type": "footer-copyright",
+          "settings": {
+            "show_powered_by": false,
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "menu_WRHUBM": {
+          "type": "menu",
+          "name": "t:names.menu",
+          "settings": {
+            "menu": "policy-menus",
+            "heading": "",
+            "menu_spacing": 12,
+            "show_as_accordion": false,
+            "accordion_icon": "caret",
+            "accordion_dividers": false,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "heading_preset": "h3",
+            "link_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "social_links_e6erxP",
+        "footer_copyright_jweRK8",
+        "menu_WRHUBM"
+      ],
+      "name": "t:names.utilities",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 24,
+        "divider_thickness": 0,
+        "color_scheme": "scheme-ade8cd00-4765-4469-9c51-01827e65e70c",
+        "padding-block-start": 25,
+        "padding-block-end": 25
+      }
+    },
+    "footer_m9NzUG": {
+      "type": "footer",
+      "blocks": {
+        "group_H6VpwJ": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 5,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_LWt8Pz": {
+              "type": "text",
+              "disabled": true,
+              "settings": {
+                "text": "<h3>Prana Beauty</h3><p>& Wellness<br/></p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image_7fUdWX": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/image_1_3.png",
+                "link": "/",
+                "image_ratio": "adapt",
+                "width": "custom",
+                "custom_width": 30,
+                "width_mobile": "custom",
+                "custom_width_mobile": 0,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image_web6B8": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/Logo-3.png",
+                "link": "https://www.pranabeauty.com/",
+                "image_ratio": "adapt",
+                "width": "custom",
+                "custom_width": 0,
+                "width_mobile": "custom",
+                "custom_width_mobile": 40,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_f9CFLH": {
+              "type": "text",
+              "settings": {
+                "text": "<p><em>\"Beauty begins beneath the surface.\"</em></p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-primary)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_qi7JAR": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 50,
+                "padding-block-end": 20,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "email_signup_6ifUBG": {
+              "type": "email-signup",
+              "name": "t:names.email_signup",
+              "settings": {
+                "width": "fill",
+                "custom_width": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "heading": "",
+                "heading_preset": "h3",
+                "border_style": "all",
+                "border_width": 1,
+                "border_radius": 100,
+                "input_type_preset": "paragraph",
+                "style_class": "button",
+                "display_type": "text",
+                "label": "Sign up",
+                "integrated_button": false,
+                "button_type_preset": "paragraph",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_LWt8Pz",
+            "image_7fUdWX",
+            "image_web6B8",
+            "text_f9CFLH",
+            "text_qi7JAR",
+            "email_signup_6ifUBG"
+          ]
+        },
+        "group_HVxiQX": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "menu_gxXUfH": {
+              "type": "menu",
+              "name": "t:names.menu",
+              "settings": {
+                "menu": "shop",
+                "heading": "SHOP",
+                "menu_spacing": 12,
+                "show_as_accordion": false,
+                "accordion_icon": "caret",
+                "accordion_dividers": false,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "heading_preset": "h5",
+                "link_preset": "paragraph",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "menu_QnFrxC": {
+              "type": "menu",
+              "name": "t:names.menu",
+              "settings": {
+                "menu": "prana",
+                "heading": "Prana",
+                "menu_spacing": 12,
+                "show_as_accordion": false,
+                "accordion_icon": "caret",
+                "accordion_dividers": false,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "heading_preset": "h5",
+                "link_preset": "paragraph",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "menu_6yANnf": {
+              "type": "menu",
+              "name": "t:names.menu",
+              "settings": {
+                "menu": "policies",
+                "heading": "Help",
+                "menu_spacing": 12,
+                "show_as_accordion": false,
+                "accordion_icon": "caret",
+                "accordion_dividers": false,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "heading_preset": "h5",
+                "link_preset": "paragraph",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "menu_gxXUfH",
+            "menu_QnFrxC",
+            "menu_6yANnf"
+          ]
+        }
+      },
+      "block_order": [
+        "group_H6VpwJ",
+        "group_HVxiQX"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "name": "t:names.footer",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 30,
+        "color_scheme": "scheme-3aae0717-ca52-44f1-882d-10336cf58102",
+        "padding-block-start": 30,
+        "padding-block-end": 77
+      }
+    }
+  },
+  "order": [
+    "marquee_X4XJ34",
+    "faq_pg_sec_DEwKXJ",
+    "prana_footer_3Uy6Gk",
+    "footer_utilities_jLGE8U",
+    "footer_m9NzUG"
+  ]
+}
