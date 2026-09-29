@@ -154,6 +154,58 @@
         "btn_link": "/checkout"
       }
     },
+    "prana_bestseller_banner": {
+      "type": "prana-bestseller-banner",
+      "blocks": {
+        "benefit_0": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "label": "Brightens\nDull Skin"
+          }
+        },
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "waves",
+            "label": "Calms\nRedness"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "drop",
+            "label": "Purifies\nPores"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "flower",
+            "label": "Supports\nRadiant Skin"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_0",
+        "benefit_1",
+        "benefit_2",
+        "benefit_3"
+      ],
+      "name": "PRANA Bestseller Banner",
+      "settings": {
+        "image": "shopify://shop_images/turmeric_sandalwood_product_visual.png",
+        "show_content": true,
+        "eyebrow": "Best seller",
+        "heading": "Turmeric &\nSandalwood\nFace Mask",
+        "subtitle": "Brighten. Calm. Restore.",
+        "description": "<p>A golden ritual to visibly brighten skin, calm inflammation and reveal a healthy, radiant glow.</p>",
+        "button_label": "Shop now",
+        "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
+        "height": 600,
+        "overlay": 65
+      }
+    },
     "founder_section_4CgtMW": {
       "type": "founder-section",
       "custom_css": [],
@@ -1045,57 +1097,6 @@
         "main_text": "20% OFF",
         "sub_text": "Your first one-time purchase",
         "button_text": "CONTINUE"
-      }
-    },
-    "prana_bestseller_banner": {
-      "type": "prana-bestseller-banner",
-      "blocks": {
-        "benefit_0": {
-          "type": "benefit",
-          "settings": {
-            "icon": "leaf",
-            "label": "Brightens\nDull Skin"
-          }
-        },
-        "benefit_1": {
-          "type": "benefit",
-          "settings": {
-            "icon": "waves",
-            "label": "Calms\nRedness"
-          }
-        },
-        "benefit_2": {
-          "type": "benefit",
-          "settings": {
-            "icon": "drop",
-            "label": "Purifies\nPores"
-          }
-        },
-        "benefit_3": {
-          "type": "benefit",
-          "settings": {
-            "icon": "flower",
-            "label": "Supports\nRadiant Skin"
-          }
-        }
-      },
-      "block_order": [
-        "benefit_0",
-        "benefit_1",
-        "benefit_2",
-        "benefit_3"
-      ],
-      "name": "PRANA Bestseller Banner",
-      "settings": {
-        "show_content": true,
-        "eyebrow": "Best seller",
-        "heading": "Turmeric &\nSandalwood\nFace Mask",
-        "subtitle": "Brighten. Calm. Restore.",
-        "description": "<p>A golden ritual to visibly brighten skin, calm inflammation and reveal a healthy, radiant glow.</p>",
-        "button_label": "Shop now",
-        "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
-        "height": 600,
-        "overlay": 65
       }
     }
   },
