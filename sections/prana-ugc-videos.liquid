@@ -1,19 +1,7 @@
 {% assign video_count = 0 %}
-
-{% for block in section.blocks %}
-  {% if block.settings.video_file != blank %}
-    {% assign video_count = video_count | plus: 1 %}
-  {% endif %}
-{% endfor %}
-
+{% for block in section.blocks %}{% if block.settings.video_file != blank %}{% assign video_count = video_count | plus: 1 %}{% endif %}{% endfor %}
 {% if video_count > 0 or request.design_mode %}
-  <section
-    class="prana-ugc"
-    style="
-      --ugc-desktop-count: {{ section.settings.desktop_videos }};
-      --ugc-mobile-count: {{ section.settings.mobile_videos }};
-    "
-  >
+  <section class="prana-ugc">
     <div class="section">
       <div class="prana-ugc__inner">
 
@@ -31,10 +19,7 @@
           {% endif %}
         </header>
 
-        <prana-ugc-videos
-          data-autoplay-desktop="{{ section.settings.autoplay_desktop }}"
-          data-autoplay-mobile="{{ section.settings.autoplay_mobile }}"
-        >
+        <prana-ugc-videos>
           <div
             class="prana-ugc__track"
             id="UgcTrack-{{ section.id }}"
@@ -49,7 +34,7 @@
                     {{
                       block.settings.video_file
                       | video_tag:
-                        autoplay: false,
+                        autoplay: true,
                         loop: true,
                         muted: true,
                         controls: false,
@@ -75,265 +60,75 @@
     </div>
   </section>
 {% endif %}
-
 {% stylesheet %}
-.prana-ugc {
-  padding: 60px 0;
-  background: var(--canvas);
-  color: var(--ink3);
-  font-family: var(--U);
-}
-
-.prana-ugc__inner {
-  min-width: 0;
-  width: 100%;
-}
-
-.prana-ugc__header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 32px;
-}
-
-.prana-ugc .prana-ugc__eyebrow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  font: 400 14px/1.5 var(--U);
-  color: var(--gold);
-  margin: 0 0 12px;
-}
-
-.prana-ugc__eyebrow::before,
-.prana-ugc__eyebrow::after {
-  content: '';
-  width: 40px;
-  height: 1px;
-  background: var(--gold-line);
-}
-
-.prana-ugc .prana-ugc__heading {
-  font: 400 38px/1.15 var(--D);
-  color: var(--heading-color);
-  margin: 0 0 12px;
-}
-
-.prana-ugc__intro,
-.prana-ugc__intro p {
-  font: 400 17px/1.5 var(--U);
-  margin: 0;
-}
-
-prana-ugc-videos {
-  display: block;
-}
-
-.prana-ugc__track {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 4px 2px 18px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--gold) var(--canvas2);
-  width: 100%;
-  max-width: calc(
-    (var(--ugc-desktop-count) * 300px)
-    + ((var(--ugc-desktop-count) - 1) * 20px)
-  );
-  margin-inline: auto;
-}
-
-.prana-ugc__card {
-  flex: 0 0 calc(
-    (100% - ((var(--ugc-desktop-count) - 1) * 20px))
-    / var(--ugc-desktop-count)
-  );
-  max-width: 300px;
-  min-width: 0;
-  scroll-snap-align: start;
-  border: 1px solid var(--gold-line);
-  border-radius: 12px;
-  background: var(--canvas2);
-  overflow: hidden;
-}
-
-.prana-ugc__video {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  object-position: center;
-  background: var(--ink);
-  image-rendering: auto;
-}
-
-.prana-ugc__placeholder {
-  aspect-ratio: 9 / 16;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  text-align: center;
-}
-
-.prana-ugc__navigation {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.prana-ugc__navigation[hidden] {
-  display: none;
-}
-
-.prana-ugc__navigation button {
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  background: transparent;
-  color: var(--heading-color);
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.prana-ugc__navigation button:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-
-.prana-ugc__navigation button:focus-visible,
-.prana-ugc__track:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-
-@media (max-width: 749px) {
-  .prana-ugc {
-    padding: 40px 0;
-  }
-
-  .prana-ugc .prana-ugc__heading {
-    font-size: 24px;
-  }
-
-  .prana-ugc__intro,
-  .prana-ugc__intro p {
-    font-size: 15px;
-  }
-
-  .prana-ugc__header {
-    margin-bottom: 24px;
-  }
-
-  .prana-ugc__track {
-    gap: 14px;
-    max-width: 100%;
-    margin-inline: 0;
-  }
-
-  .prana-ugc__card {
-    flex: 0 0 calc(
-      (100% - ((var(--ugc-mobile-count) - 1) * 14px))
-      / var(--ugc-mobile-count)
-    );
-    max-width: 300px;
-  }
-
-  .prana-ugc[style*="--ugc-mobile-count: 1"] .prana-ugc__card {
-    flex-basis: 78%;
-  }
+.prana-ugc { padding:60px 0; background:var(--canvas); color:var(--ink3); font-family:var(--U); }
+.prana-ugc__inner { min-width:0; width:100%; }
+.prana-ugc__header { text-align:center; max-width:700px; margin:0 auto 32px; }
+.prana-ugc .prana-ugc__eyebrow { display:flex; justify-content:center; align-items:center; gap:14px; font:400 14px/1.5 var(--U); color:var(--gold); margin:0 0 12px; }
+.prana-ugc__eyebrow::before,.prana-ugc__eyebrow::after { content:''; width:40px; height:1px; background:var(--gold-line); }
+.prana-ugc .prana-ugc__heading { font:400 38px/1.15 var(--D); color:var(--heading-color); margin:0 0 12px; }
+.prana-ugc__intro,.prana-ugc__intro p { font:400 17px/1.5 var(--U); margin:0; }
+prana-ugc-videos { display:block; }
+.prana-ugc__track { display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 18px; scrollbar-width:thin; scrollbar-color:var(--gold) var(--canvas2); }
+.prana-ugc__card { flex:0 0 calc((100% - 60px)/4); min-width:0; scroll-snap-align:start; border:1px solid var(--gold-line); border-radius:12px; background:var(--canvas2); overflow:hidden; }
+.prana-ugc__video { display:block; width:100%; height:auto; aspect-ratio:9/16; object-fit:cover; background:var(--ink); }
+.prana-ugc__placeholder { aspect-ratio:9/16; display:grid; place-items:center; padding:24px; text-align:center; }
+.prana-ugc .prana-ugc__caption { font:400 15px/1.4 var(--U); margin:0; padding:14px 14px 0; }
+.prana-ugc__product { display:flex; align-items:center; gap:10px; padding:14px; color:var(--heading-color); }
+.prana-ugc__product > span:nth-last-child(2) { flex:1; min-width:0; }
+.prana-ugc__product-image { width:48px; height:58px; object-fit:contain; flex-shrink:0; border-radius:5px; }
+.prana-ugc__product-title { display:block; font:500 14px/1.4 var(--U); }
+.prana-ugc__price { display:block; margin-top:4px; font:400 13px/1.4 var(--U); color:var(--ink3); }
+.prana-ugc__navigation { display:flex; justify-content:center; gap:12px; margin-top:20px; }
+.prana-ugc__navigation[hidden] { display:none; }
+.prana-ugc__navigation button { width:44px; height:44px; border:1px solid var(--gold); border-radius:50%; background:transparent; color:var(--heading-color); font-size:24px; cursor:pointer; }
+.prana-ugc__navigation button:disabled { opacity:.35; cursor:default; }
+.prana-ugc__navigation button:focus-visible,.prana-ugc__track:focus-visible,.prana-ugc__product:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+@media(max-width:1024px) { .prana-ugc__card { flex-basis:calc((100% - 40px)/3); } }
+@media(max-width:749px) {
+.prana-ugc { padding:40px 0; }
+.prana-ugc .prana-ugc__heading { font-size:24px; }
+.prana-ugc__intro,.prana-ugc__intro p { font-size:15px; }
+.prana-ugc__header { margin-bottom:24px; }
+.prana-ugc__track { gap:14px; }
+.prana-ugc__card { flex-basis:78%; max-width:300px; }
 }
 {% endstylesheet %}
-
 {% javascript %}
 if (!customElements.get('prana-ugc-videos')) {
   customElements.define('prana-ugc-videos', class extends HTMLElement {
     connectedCallback() {
       this.track = this.querySelector('.prana-ugc__track');
       this.nav = this.querySelector('.prana-ugc__navigation');
-
-      if (!this.track || !this.nav) return;
-
       this.controller = new AbortController();
       const signal = this.controller.signal;
-
-      const updateNavigation = () => {
+      const update = () => {
         const max = this.track.scrollWidth - this.track.clientWidth;
         this.nav.hidden = max < 2;
-
-        const previousButton = this.querySelector('[data-step="-1"]');
-        const nextButton = this.querySelector('[data-step="1"]');
-
-        if (previousButton) previousButton.disabled = this.track.scrollLeft < 2;
-        if (nextButton) nextButton.disabled = this.track.scrollLeft >= max - 2;
+        this.querySelector('[data-step="-1"]').disabled = this.track.scrollLeft < 2;
+        this.querySelector('[data-step="1"]').disabled = this.track.scrollLeft >= max - 2;
       };
-
       this.nav.addEventListener('click', (event) => {
         const button = event.target.closest('button[data-step]');
         if (!button) return;
-
         const card = this.track.querySelector('.prana-ugc__card');
         if (!card) return;
-
-        const gap = parseFloat(getComputedStyle(this.track).gap) || 0;
-        const distance = card.getBoundingClientRect().width + gap;
-
-        this.track.scrollBy({
-          left: Number(button.dataset.step) * distance,
-          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-        });
+        const distance = card.getBoundingClientRect().width + parseFloat(getComputedStyle(this.track).gap);
+        this.track.scrollBy({ left: Number(button.dataset.step) * distance, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
       }, { signal });
-
-      this.track.addEventListener('scroll', updateNavigation, { passive: true, signal });
-
-      this.addEventListener('shopify:block:select', (event) => {
-        event.target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-      }, { signal });
-
-      this.querySelectorAll('video').forEach((video) => {
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-      });
-
+      this.addEventListener('play', (event) => {
+        if (event.target.tagName !== 'VIDEO') return;
+        this.querySelectorAll('video').forEach((video) => { if (video !== event.target) video.pause(); });
+      }, { capture:true, signal });
+      this.track.addEventListener('scroll', update, { passive:true, signal });
+      this.addEventListener('shopify:block:select', (event) => event.target.scrollIntoView({ block:'nearest', inline:'nearest' }), { signal });
+      if ('ResizeObserver' in window) { this.resizeObserver = new ResizeObserver(update); this.resizeObserver.observe(this.track); }
       if ('IntersectionObserver' in window) {
-        this.visibilityObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            const video = entry.target;
-
-            if (!entry.isIntersecting || entry.intersectionRatio < 0.25) {
-              video.pause();
-              return;
-            }
-
-            if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-              video.muted = true;
-              video.play().catch(() => {});
-            }
-          });
-        }, { threshold: [0, 0.25] });
-
-        this.querySelectorAll('video').forEach((video) => {
-          this.visibilityObserver.observe(video);
-        });
-      } else if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        this.querySelectorAll('video').forEach((video) => {
-          video.play().catch(() => {});
-        });
+        this.visibilityObserver = new IntersectionObserver((entries) => entries.forEach((entry) => { if (!entry.isIntersecting) entry.target.pause(); }));
+        this.querySelectorAll('video').forEach((video) => this.visibilityObserver.observe(video));
       }
-
-      if ('ResizeObserver' in window) {
-        this.resizeObserver = new ResizeObserver(updateNavigation);
-        this.resizeObserver.observe(this.track);
-      }
-
-      updateNavigation();
+      update();
     }
-
     disconnectedCallback() {
       this.controller?.abort();
       this.resizeObserver?.disconnect();
@@ -343,7 +138,6 @@ if (!customElements.get('prana-ugc-videos')) {
   });
 }
 {% endjavascript %}
-
 {% schema %}
 {
   "name": "PRANA UGC Videos",
@@ -368,34 +162,11 @@ if (!customElements.get('prana-ugc-videos')) {
       "default": "<p>Discover PRANA through the rituals of our community.</p>"
     },
     {
-      "type": "range",
-      "id": "desktop_videos",
-      "label": "Videos visible on desktop",
-      "min": 2,
-      "max": 6,
-      "step": 1,
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "mobile_videos",
-      "label": "Videos visible on mobile",
-      "min": 1,
-      "max": 2,
-      "step": 1,
-      "default": 1
-    },
-    {
       "type": "checkbox",
-      "id": "autoplay_desktop",
-      "label": "Autoplay videos on desktop",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay_mobile",
-      "label": "Autoplay videos on mobile",
-      "default": true
+      "id": "autoplay",
+      "label": "Autoplay videos",
+      "default": true,
+      "info": "When enabled, visible videos autoplay muted and loop."
     }
   ],
   "blocks": [
@@ -407,6 +178,21 @@ if (!customElements.get('prana-ugc-videos')) {
           "type": "video",
           "id": "video_file",
           "label": "Video"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Cover image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Linked product"
         }
       ]
     }
@@ -415,9 +201,15 @@ if (!customElements.get('prana-ugc-videos')) {
     {
       "name": "PRANA UGC Videos",
       "blocks": [
-        { "type": "video_item" },
-        { "type": "video_item" },
-        { "type": "video_item" }
+        {
+          "type": "video_item"
+        },
+        {
+          "type": "video_item"
+        },
+        {
+          "type": "video_item"
+        }
       ]
     }
   ]

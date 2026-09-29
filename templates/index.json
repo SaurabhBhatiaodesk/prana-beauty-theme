@@ -369,7 +369,7 @@
         "video_item_DVPafq": {
           "type": "video_item",
           "settings": {
-            "video_file": "shopify://files/videos/Video.mp4",
+            "video_file": "shopify://files/videos/3ebe3a108b8f49219933a97b3583bc1c.MP4",
             "caption": "",
             "product": ""
           }
@@ -446,7 +446,8 @@
       "settings": {
         "eyebrow": "The PRANA community",
         "heading": "Real rituals. Real stories.",
-        "subheading": "<p>Discover PRANA through the rituals of our community.</p>"
+        "subheading": "<p>Discover PRANA through the rituals of our community.</p>",
+        "autoplay": true
       }
     },
     "custom_newsletter_hfhNpi": {
