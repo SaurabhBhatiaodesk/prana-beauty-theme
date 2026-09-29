@@ -1,45 +1,64 @@
 {% assign video_count = 0 %}
 {% for block in section.blocks %}{% if block.settings.video_file != blank %}{% assign video_count = video_count | plus: 1 %}{% endif %}{% endfor %}
 {% if video_count > 0 or request.design_mode %}
-<section class="prana-ugc">
-  <div class="section"><div class="prana-ugc__inner">
-    <header class="prana-ugc__header">
-      {% if section.settings.eyebrow != blank %}<p class="prana-ugc__eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
-      <h2 class="prana-ugc__heading">{{ section.settings.heading | escape }}</h2>
-      {% if section.settings.subheading != blank %}<div class="prana-ugc__intro">{{ section.settings.subheading }}</div>{% endif %}
-    </header>
-    <prana-ugc-videos>
-      <div class="prana-ugc__track" id="UgcTrack-{{ section.id }}" tabindex="0" role="region" aria-label="{{ section.settings.heading | escape }}">
-        {% for block in section.blocks %}
-          {% if block.settings.video_file != blank or request.design_mode %}
-            <article class="prana-ugc__card" {{ block.shopify_attributes }}>
-              {% if block.settings.video_file != blank %}
-                {% assign cover = block.settings.poster | default: block.settings.video_file.preview_image %}
-                {% assign poster_url = cover | image_url: width: 900 %}
-                {{ block.settings.video_file | video_tag: controls: true, playsinline: true, preload: 'none', poster: poster_url, class: 'prana-ugc__video' }}
-              {% else %}
-                <div class="prana-ugc__placeholder">Select a video in this block.</div>
-              {% endif %}
-              {% if block.settings.caption != blank %}<p class="prana-ugc__caption">{{ block.settings.caption | escape }}</p>{% endif %}
-              {% assign linked_product = block.settings.product %}
-              {% if linked_product != blank %}
-                <a class="prana-ugc__product" href="{{ linked_product.url }}">
-                  {% if linked_product.featured_image != blank %}{{ linked_product.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', class: 'prana-ugc__product-image' }}{% endif %}
-                  <span><span class="prana-ugc__product-title">{{ linked_product.title | escape }}</span><span class="prana-ugc__price">{{ linked_product.price | money }}</span></span>
-                  <span aria-hidden="true">&#8599;</span>
-                </a>
-              {% endif %}
-            </article>
+  <section class="prana-ugc">
+    <div class="section">
+      <div class="prana-ugc__inner">
+
+        <header class="prana-ugc__header">
+          {% if section.settings.eyebrow != blank %}
+            <p class="prana-ugc__eyebrow">{{ section.settings.eyebrow | escape }}</p>
           {% endif %}
-        {% endfor %}
+
+          {% if section.settings.heading != blank %}
+            <h2 class="prana-ugc__heading">{{ section.settings.heading | escape }}</h2>
+          {% endif %}
+
+          {% if section.settings.subheading != blank %}
+            <div class="prana-ugc__intro">{{ section.settings.subheading }}</div>
+          {% endif %}
+        </header>
+
+        <prana-ugc-videos>
+          <div
+            class="prana-ugc__track"
+            id="UgcTrack-{{ section.id }}"
+            tabindex="0"
+            role="region"
+            aria-label="{{ section.settings.heading | escape }}"
+          >
+            {% for block in section.blocks %}
+              {% if block.settings.video_file != blank or request.design_mode %}
+                <article class="prana-ugc__card" {{ block.shopify_attributes }}>
+                  {% if block.settings.video_file != blank %}
+                    {{
+                      block.settings.video_file
+                      | video_tag:
+                        autoplay: true,
+                        loop: true,
+                        muted: true,
+                        controls: false,
+                        playsinline: true,
+                        preload: 'metadata',
+                        class: 'prana-ugc__video'
+                    }}
+                  {% else %}
+                    <div class="prana-ugc__placeholder">Select a video in this block.</div>
+                  {% endif %}
+                </article>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="prana-ugc__navigation" hidden>
+            <button type="button" data-step="-1" aria-label="Previous videos" aria-controls="UgcTrack-{{ section.id }}">&#8592;</button>
+            <button type="button" data-step="1" aria-label="Next videos" aria-controls="UgcTrack-{{ section.id }}">&#8594;</button>
+          </div>
+        </prana-ugc-videos>
+
       </div>
-      <div class="prana-ugc__navigation" hidden>
-        <button type="button" data-step="-1" aria-label="Previous videos" aria-controls="UgcTrack-{{ section.id }}">&#8592;</button>
-        <button type="button" data-step="1" aria-label="Next videos" aria-controls="UgcTrack-{{ section.id }}">&#8594;</button>
-      </div>
-    </prana-ugc-videos>
-  </div></div>
-</section>
+    </div>
+  </section>
 {% endif %}
 {% stylesheet %}
 .prana-ugc { padding:60px 0; background:var(--canvas); color:var(--ink3); font-family:var(--U); }
@@ -141,6 +160,13 @@ if (!customElements.get('prana-ugc-videos')) {
       "id": "subheading",
       "label": "Description",
       "default": "<p>Discover PRANA through the rituals of our community.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay videos",
+      "default": true,
+      "info": "When enabled, visible videos autoplay muted and loop."
     }
   ],
   "blocks": [
