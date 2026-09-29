@@ -369,65 +369,37 @@
         "video_item_DVPafq": {
           "type": "video_item",
           "settings": {
-            "video_file": "shopify://files/videos/3ebe3a108b8f49219933a97b3583bc1c.MP4",
-            "caption": "",
-            "product": ""
+            "video_file": "shopify://files/videos/3ebe3a108b8f49219933a97b3583bc1c.MP4"
           }
         },
         "video_item_JYfgHm": {
           "type": "video_item",
           "settings": {
-            "video_file": "shopify://files/videos/93bfcddd5b644185b8c6b705ac6bcf71.MOV",
-            "caption": "",
-            "product": ""
+            "video_file": "shopify://files/videos/93bfcddd5b644185b8c6b705ac6bcf71.MOV"
           }
         },
         "video_item_EWG7MR": {
           "type": "video_item",
           "settings": {
-            "video_file": "shopify://files/videos/Christina Blaskey_Prana Beauty UGC.MOV",
-            "caption": "",
-            "product": ""
+            "video_file": "shopify://files/videos/Christina Blaskey_Prana Beauty UGC.MOV"
           }
         },
         "video_item_NgwQV3": {
           "type": "video_item",
           "settings": {
-            "video_file": "shopify://files/videos/Unboxing Saffron serum.mov",
-            "caption": "",
-            "product": ""
+            "video_file": "shopify://files/videos/copy_8C574949-418B-41DF-A467-4C4839836748.MP4"
           }
         },
         "video_item_b8E88U": {
           "type": "video_item",
           "settings": {
-            "video_file": "shopify://files/videos/PRANA TURMERIC SAND.mov",
-            "caption": "",
-            "product": ""
+            "video_file": "shopify://files/videos/copy_467E966B-868D-4C83-81D8-B0C104654F84_20e09f6d-9bad-4efb-b496-3167252f6395.mov"
           }
         },
         "video_item_DJdkF8": {
           "type": "video_item",
           "settings": {
-            "video_file": "shopify://files/videos/export_1739122243431.MP4",
-            "caption": "",
-            "product": "cleanser-turmeric-mask-and-saffron-serum"
-          }
-        },
-        "video_item_Ka6mXE": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/prana done 1.mp4",
-            "caption": "",
-            "product": ""
-          }
-        },
-        "video_item_4pTXwA": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Video 2.mp4",
-            "caption": "",
-            "product": ""
+            "video_file": "shopify://files/videos/Unboxing PRANA skincare with text & title.mov"
           }
         }
       },
@@ -437,9 +409,7 @@
         "video_item_EWG7MR",
         "video_item_NgwQV3",
         "video_item_b8E88U",
-        "video_item_DJdkF8",
-        "video_item_Ka6mXE",
-        "video_item_4pTXwA"
+        "video_item_DJdkF8"
       ],
       "custom_css": [],
       "name": "PRANA UGC Videos",
@@ -447,7 +417,10 @@
         "eyebrow": "The PRANA community",
         "heading": "Real rituals. Real stories.",
         "subheading": "<p>Discover PRANA through the rituals of our community.</p>",
-        "autoplay": true
+        "desktop_videos": 5,
+        "mobile_videos": "2",
+        "autoplay_desktop": true,
+        "autoplay_mobile": true
       }
     },
     "custom_newsletter_hfhNpi": {
