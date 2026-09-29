@@ -363,6 +363,92 @@
       "name": "Custom counter",
       "settings": {}
     },
+    "ugc_video_slider_Y9pfFV": {
+      "type": "prana-ugc-videos",
+      "blocks": {
+        "video_item_DVPafq": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/Video.mp4",
+            "caption": "",
+            "product": ""
+          }
+        },
+        "video_item_JYfgHm": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/Video V2.mp4",
+            "caption": "",
+            "product": ""
+          }
+        },
+        "video_item_EWG7MR": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/Video V2 - W-VO.mp4",
+            "caption": "",
+            "product": ""
+          }
+        },
+        "video_item_NgwQV3": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/Unboxing Saffron serum.mov",
+            "caption": "",
+            "product": ""
+          }
+        },
+        "video_item_b8E88U": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/PRANA TURMERIC SAND.mov",
+            "caption": "",
+            "product": ""
+          }
+        },
+        "video_item_DJdkF8": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/export_1739122243431.MP4",
+            "caption": "",
+            "product": "cleanser-turmeric-mask-and-saffron-serum"
+          }
+        },
+        "video_item_Ka6mXE": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/prana done 1.mp4",
+            "caption": "",
+            "product": ""
+          }
+        },
+        "video_item_4pTXwA": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/Video 2.mp4",
+            "caption": "",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_item_DVPafq",
+        "video_item_JYfgHm",
+        "video_item_EWG7MR",
+        "video_item_NgwQV3",
+        "video_item_b8E88U",
+        "video_item_DJdkF8",
+        "video_item_Ka6mXE",
+        "video_item_4pTXwA"
+      ],
+      "custom_css": [],
+      "name": "PRANA UGC Videos",
+      "settings": {
+        "eyebrow": "The PRANA community",
+        "heading": "Real rituals. Real stories.",
+        "subheading": "<p>Discover PRANA through the rituals of our community.</p>"
+      }
+    },
     "custom_newsletter_hfhNpi": {
       "type": "custom-newsletter",
       "name": "Custom newsletter",
@@ -737,85 +823,6 @@
       "settings": {
         "title": "Shop by concern",
         "des": "Perfect if you want a wink of personality."
-      }
-    },
-    "ugc_video_slider_Y9pfFV": {
-      "type": "prana-ugc-videos",
-      "blocks": {
-        "video_item_DVPafq": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Video.mp4",
-            "product": "saffron-glow-serum"
-          }
-        },
-        "video_item_JYfgHm": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Video V2.mp4",
-            "product": "bakuchiol"
-          }
-        },
-        "video_item_EWG7MR": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Video V2 - W-VO.mp4",
-            "product": "rose-jasmine-milk-cleanser"
-          }
-        },
-        "video_item_NgwQV3": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Unboxing Saffron serum.mov",
-            "product": "saffron-glow-serum"
-          }
-        },
-        "video_item_b8E88U": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/PRANA TURMERIC SAND.mov",
-            "product": "turmeric-and-sandalwood-face-mask"
-          }
-        },
-        "video_item_DJdkF8": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/export_1739122243431.MP4",
-            "product": "cleanser-turmeric-mask-and-saffron-serum"
-          }
-        },
-        "video_item_Ka6mXE": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/prana done 1.mp4",
-            "product": "bakuchiol"
-          }
-        },
-        "video_item_4pTXwA": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Video 2.mp4",
-            "product": "turmeric-and-sandalwood-face-mask"
-          }
-        }
-      },
-      "block_order": [
-        "video_item_DVPafq",
-        "video_item_JYfgHm",
-        "video_item_EWG7MR",
-        "video_item_NgwQV3",
-        "video_item_b8E88U",
-        "video_item_DJdkF8",
-        "video_item_Ka6mXE",
-        "video_item_4pTXwA"
-      ],
-      "disabled": false,
-      "custom_css": [],
-      "name": "PRANA UGC Videos",
-      "settings": {
-        "eyebrow": "The PRANA community",
-        "heading": "Real rituals. Real stories.",
-        "subheading": "<p>Discover PRANA through the rituals of our community.</p>"
       }
     },
     "bundle_cards_layout_Qi7tD6": {
