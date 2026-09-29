@@ -34,10 +34,7 @@
           {% endif %}
         </header>
 
-        <prana-ugc-videos
-          data-autoplay-desktop="{{ section.settings.autoplay_desktop }}"
-          data-autoplay-mobile="{{ section.settings.autoplay_mobile }}"
-        >
+        <prana-ugc-videos data-autoplay="{{ section.settings.autoplay }}">
           <div
             class="prana-ugc__track"
             id="UgcTrack-{{ section.id }}"
@@ -52,7 +49,7 @@
                     {{
                       block.settings.video_file
                       | video_tag:
-                        autoplay: false,
+                        autoplay: section.settings.autoplay,
                         loop: true,
                         muted: true,
                         controls: false,
@@ -273,14 +270,9 @@ if (!customElements.get('prana-ugc-videos')) {
         this.controller = new AbortController();
         const signal = this.controller.signal;
 
-        const autoplayDesktop = this.dataset.autoplayDesktop === 'true';
-        const autoplayMobile = this.dataset.autoplayMobile === 'true';
+        const autoplay = this.dataset.autoplay === 'true';
 
-        const shouldAutoplay = () => {
-          return window.matchMedia('(max-width: 749px)').matches
-            ? autoplayMobile
-            : autoplayDesktop;
-        };
+        const shouldAutoplay = () => autoplay;
 
         const updateNavigation = () => {
           const max = this.track.scrollWidth - this.track.clientWidth;
@@ -457,15 +449,10 @@ if (!customElements.get('prana-ugc-videos')) {
     },
     {
       "type": "checkbox",
-      "id": "autoplay_desktop",
-      "label": "Autoplay videos on desktop",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay_mobile",
-      "label": "Autoplay videos on mobile",
-      "default": true
+      "id": "autoplay",
+      "label": "Autoplay videos",
+      "default": true,
+      "info": "When enabled, all visible videos autoplay muted and loop continuously."
     }
   ],
   "blocks": [
