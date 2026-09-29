@@ -137,6 +137,12 @@ prana-ugc-videos {
   padding: 4px 2px 18px;
   scrollbar-width: thin;
   scrollbar-color: var(--gold) var(--canvas2);
+  width: 100%;
+  max-width: calc(
+    (var(--ugc-desktop-count) * 300px)
+    + ((var(--ugc-desktop-count) - 1) * 20px)
+  );
+  margin-inline: auto;
 }
 
 .prana-ugc__card {
@@ -144,6 +150,7 @@ prana-ugc-videos {
     (100% - ((var(--ugc-desktop-count) - 1) * 20px))
     / var(--ugc-desktop-count)
   );
+  max-width: 300px;
   min-width: 0;
   scroll-snap-align: start;
   border: 1px solid var(--gold-line);
@@ -224,6 +231,8 @@ prana-ugc-videos {
 
   .prana-ugc__track {
     gap: 14px;
+    max-width: 100%;
+    margin-inline: 0;
   }
 
   .prana-ugc__card {
@@ -231,7 +240,11 @@ prana-ugc-videos {
       (100% - ((var(--ugc-mobile-count) - 1) * 14px))
       / var(--ugc-mobile-count)
     );
-    max-width: none;
+    max-width: 300px;
+  }
+
+  .prana-ugc[style*="--ugc-mobile-count: 1"] .prana-ugc__card {
+    flex-basis: 78%;
   }
 }
 {% endstylesheet %}
