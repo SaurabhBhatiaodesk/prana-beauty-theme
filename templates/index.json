@@ -195,6 +195,7 @@
       "name": "PRANA Bestseller Banner",
       "settings": {
         "image": "shopify://shop_images/turmeric_sandalwood_product_visual_9fcd272e-e1bd-4020-b5ab-6261930a79c1.png",
+        "mobile_image": "shopify://shop_images/turmeric-sandalwood-mobile.png",
         "show_content": true,
         "eyebrow": "Best seller",
         "heading": "Turmeric &\nSandalwood\nFace Mask",
@@ -472,7 +473,7 @@
         "background_color": "#f7f3ee",
         "eyebrow_color": "#a4773d",
         "eyebrow_line_color": "#c9b28f",
-        "heading_color": "#561A24",
+        "heading_color": "#561a24",
         "text_color": "#5c554f",
         "card_background_color": "#ffffff",
         "card_border_color": "#ded5ca",
