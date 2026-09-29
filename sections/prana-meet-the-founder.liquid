@@ -34,108 +34,81 @@
     </div>
 
 
-    <div class="pf-timeline-section">
-      <div class="pf-tl-head">{{ section.settings.journey_label | escape }}</div>
-      <h2 class="pf-tl-title">{{ section.settings.journey_heading | escape }}</h2>
-
-<ol class="pf-timeline">
-{% for block in section.blocks %}
-{% if block.type == 'milestone' %}
-<li class="pf-milestone" {{ block.shopify_attributes }}>
-<div class="pf-tl-year">{{ block.settings.year | escape }}</div>
-<h3 class="pf-tl-event">{{ block.settings.title | escape }}</h3>
-<p class="pf-tl-desc">{{ block.settings.description | escape }}</p>
-</li>
-{% endif %}
-{% endfor %}
-</ol></div></div></div></section>
+    </div></div></section>
 {% stylesheet %}
-.prana-founder-about{
+.prana-founder-about {
     background:var(--canvas);
     color:var(--heading-color);
     font-family:var(--U);
     padding:96px 24px 40px;
     overflow:hidden;
   }
-  .prana-founder-about .pf-wrap{max-width:1180px; margin:0 auto;}
-  .prana-founder-about .pf-eyebrow{
+.prana-founder-about .pf-wrap {max-width:1180px; margin:0 auto;}
+.prana-founder-about .pf-eyebrow {
     display:flex; align-items:center; gap:14px;
     font-family:var(--U);
     font-size:12px; letter-spacing:0.22em; text-transform:uppercase;
     color:var(--ink3); margin-bottom:24px;
   }
-  .prana-founder-about .pf-eyebrow::before{content:""; width:34px; height:1px; background:var(--gold); display:inline-block;}
-  .prana-founder-about .pf-headline{
+.prana-founder-about .pf-eyebrow::before {content:""; width:34px; height:1px; background:var(--gold); display:inline-block;}
+.prana-founder-about .pf-headline {
     font-family:var(--D); font-weight:400;
     font-size:clamp(32px, 3.6vw, 50px); line-height:1.12; letter-spacing:-0.01em;
     margin:0 0 20px; color:var(--heading-color); max-width:16ch;
   }
-  .prana-founder-about .pf-headline em{font-style:italic; font-weight:500; color:var(--heading-color);}
-  .prana-founder-about .pf-subhead{
+.prana-founder-about .pf-headline em {font-style:italic; font-weight:500; color:var(--heading-color);}
+.prana-founder-about .pf-subhead {
     font-size:17px; line-height:1.6; color:var(--ink3); max-width:52ch; margin:0 0 36px;
   }
-  .prana-founder-about .pf-tags{
+.prana-founder-about .pf-tags {
     display:flex; flex-wrap:wrap; gap:10px; margin-bottom:56px;
   }
-  .prana-founder-about .pf-tag{
+.prana-founder-about .pf-tag {
     font-family:var(--U); font-size:11px; letter-spacing:0.05em;
     padding:7px 14px; border:1px solid var(--gold-line); border-radius:999px;
     color:var(--ink3); background:rgba(251,248,242,0.5);
   }
-  .prana-founder-about .pf-media-grid{
+.prana-founder-about .pf-media-grid {
     display:grid;
     grid-template-columns:0.85fr 1.15fr;
     gap:56px;
     align-items:start;
     margin-bottom:88px;
   }
-  .prana-founder-about .pf-media-col{
+.prana-founder-about .pf-media-col {
     display:flex; flex-direction:column; gap:20px;
   }
-  .prana-founder-about .pf-media-caption{
+.prana-founder-about .pf-media-caption {
     display:flex; justify-content:space-between; align-items:baseline;
     font-family:var(--U); font-size:11px; letter-spacing:0.04em;
     color:var(--ink3); padding:0 2px;
   }
-  .prana-founder-about .pf-media-caption span:last-child{color:var(--gold);}
-
-  .prana-founder-about .pf-story-quote{
+.prana-founder-about .pf-media-caption span:last-child {color:var(--gold);}
+.prana-founder-about .pf-story-quote {
     font-family:var(--D); font-style:italic; font-weight:400;
     font-size:22px; line-height:1.5; color:var(--heading-color);
     padding-left:22px; border-left:2px solid var(--gold);
     margin:0 0 32px; max-width:48ch;
   }
-  .prana-founder-about .pf-body{font-size:16px; line-height:1.75; color:var(--ink3); max-width:58ch;}
-  .prana-founder-about .pf-body p{margin:0 0 18px;}
-  .prana-founder-about .pf-body p:last-child{margin-bottom:0;}
-  .prana-founder-about .pf-body strong{color:var(--heading-color); font-weight:600;}
-  .prana-founder-about .pf-stats{
+.prana-founder-about .pf-body {font-size:16px; line-height:1.75; color:var(--ink3); max-width:58ch;}
+.prana-founder-about .pf-body p {margin:0 0 18px;}
+.prana-founder-about .pf-body p:last-child {margin-bottom:0;}
+.prana-founder-about .pf-body strong {color:var(--heading-color); font-weight:600;}
+.prana-founder-about .pf-stats {
     display:grid; grid-template-columns:repeat(3,1fr);
     gap:1px; background:var(--gold-line); border:1px solid var(--gold-line);
     margin:36px 0 32px;
   }
-  .prana-founder-about .pf-stat{background:var(--canvas); padding:20px 18px;}
-  .prana-founder-about .pf-stat-num{font-family:var(--D); font-weight:600; font-size:28px; color:var(--heading-color); line-height:1;}
-  .prana-founder-about .pf-stat-label{font-size:12px; color:var(--ink3); margin-top:6px; line-height:1.4;}
-  .prana-founder-about .pf-sign{display:flex; flex-direction:column; gap:2px;}
-  .prana-founder-about .pf-sign-name{font-family:var(--D); font-size:18px; font-weight:500;}
-  .prana-founder-about .pf-sign-title{font-family:var(--U); font-size:12px; letter-spacing:0.05em; color:var(--ink3); text-transform:uppercase;}
-  .prana-founder-about .pf-timeline-section{margin-top:20px; padding-top:56px; border-top:1px solid var(--gold-line);}
-  .prana-founder-about .pf-tl-head{
-    font-family:var(--U); font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
-    color:var(--ink3); margin-bottom:8px;
-  }
-  .prana-founder-about .pf-tl-title{
-    font-family:var(--D); font-weight:400; font-size:clamp(26px,2.6vw,34px);
-    margin:0 0 56px; color:var(--heading-color);
-  }
-  .prana-founder-about .pf-tl-year{font-family:var(--U); font-size:12.5px; letter-spacing:0.08em; color:var(--gold); margin-bottom:8px;}
-  .prana-founder-about .pf-tl-event{font-family:var(--D); font-weight:500; font-size:19px; color:var(--heading-color); margin-bottom:8px; line-height:1.3;}
-  .prana-founder-about .pf-tl-desc{font-size:14.5px; line-height:1.65; color:var(--ink3); max-width:36ch;}
+.prana-founder-about .pf-stat {background:var(--canvas); padding:20px 18px;}
+.prana-founder-about .pf-stat-num {font-family:var(--D); font-weight:600; font-size:28px; color:var(--heading-color); line-height:1;}
+.prana-founder-about .pf-stat-label {font-size:12px; color:var(--ink3); margin-top:6px; line-height:1.4;}
+.prana-founder-about .pf-sign {display:flex; flex-direction:column; gap:2px;}
+.prana-founder-about .pf-sign-name {font-family:var(--D); font-size:18px; font-weight:500;}
+.prana-founder-about .pf-sign-title {font-family:var(--U); font-size:12px; letter-spacing:0.05em; color:var(--ink3); text-transform:uppercase;}
 .prana-founder-about { background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%); padding:60px 0; color:var(--ink3); }
 .prana-founder-about .pf-wrap { width:100%; max-width:none; min-width:0; grid-column:2; }
-.prana-founder-about .pf-headline, .prana-founder-about .pf-tl-title { font-family:var(--font-h2--family); font-size:38px; font-weight:400; line-height:1.1; max-width:700px; }
-.prana-founder-about .pf-eyebrow, .prana-founder-about .pf-tl-head { font-size:14px; letter-spacing:normal; text-transform:none; }
+.prana-founder-about .pf-headline { font-family:var(--font-h2--family); font-size:38px; font-weight:400; line-height:1.1; max-width:700px; }
+.prana-founder-about .pf-eyebrow { font-size:14px; letter-spacing:normal; text-transform:none; }
 .prana-founder-about .pf-tag { font-size:14px; letter-spacing:normal; border-color:var(--gold); background:var(--canvas); }
 .prana-founder-about .pf-body, .prana-founder-about .pf-body p { font-family:var(--U); font-size:17px; line-height:1.65; color:var(--ink3); }
 .prana-founder-about .pf-story-quote { font-family:var(--S); font-size:24px; }
@@ -149,28 +122,18 @@
 .prana-founder-about .pf-media-caption { margin-top:10px; }
 .prana-founder-about .pf-media-grid--text { grid-template-columns:1fr; }
 .prana-founder-about .pf-media-grid--text .pf-content { max-width:850px; }
-.prana-founder-about .pf-timeline { position:relative; list-style:none; margin:0; padding:0; }
-.prana-founder-about .pf-timeline::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--gold); }
-.prana-founder-about .pf-milestone { position:relative; width:50%; padding:0 36px 40px 0; text-align:right; }
-.prana-founder-about .pf-milestone:nth-child(even) { margin-left:50%; padding:0 0 40px 36px; text-align:left; }
-.prana-founder-about .pf-milestone::before { content:''; position:absolute; right:-6px; top:5px; width:12px; height:12px; border-radius:50%; background:var(--gold); border:2px solid var(--canvas); }
-.prana-founder-about .pf-milestone:nth-child(even)::before { left:-6px; right:auto; }
-.prana-founder-about .pf-tl-year { font-size:14px; letter-spacing:normal; }
-.prana-founder-about .pf-tl-event { font-family:var(--font-h3--family); font-size:24px; }
-.prana-founder-about .pf-tl-desc { font-family:var(--U); font-size:16px; max-width:none; margin:0; }
 @media(max-width:900px) {
 .prana-founder-about .pf-media-grid { grid-template-columns:1fr; gap:32px; }
 .prana-founder-about .pf-stats { grid-template-columns:1fr; }
-.prana-founder-about .pf-timeline::before { left:6px; }
-.prana-founder-about .pf-milestone, .prana-founder-about .pf-milestone:nth-child(even) { width:100%; margin-left:0; padding:0 0 32px 36px; text-align:left; }
-.prana-founder-about .pf-milestone::before, .prana-founder-about .pf-milestone:nth-child(even)::before { left:0; right:auto; }
 }
 @media(max-width:749px) {
 .prana-founder-about { padding:40px 0; }
-.prana-founder-about .pf-headline, .prana-founder-about .pf-tl-title { font-size:28px; }
-.prana-founder-about .pf-body, .prana-founder-about .pf-body p, .prana-founder-about .pf-subhead, .prana-founder-about .pf-tl-desc { font-size:15px; line-height:1.5; }
+.prana-founder-about .pf-headline { font-size:28px; }
+.prana-founder-about .pf-body, .prana-founder-about .pf-body p, .prana-founder-about .pf-subhead { font-size:15px; line-height:1.5; }
 .prana-founder-about .pf-story-quote { font-size:22px; }
 }
+
+.prana-founder-about .pf-media-grid { margin-bottom:0; }
 {% endstylesheet %}
 {% schema %}
 {
@@ -211,18 +174,6 @@
       "id": "founder_role",
       "label": "Founder role",
       "default": "Founder, PRANA Beauty & Wellness"
-    },
-    {
-      "type": "text",
-      "id": "journey_label",
-      "label": "Journey label",
-      "default": "The Journey"
-    },
-    {
-      "type": "text",
-      "id": "journey_heading",
-      "label": "Journey heading",
-      "default": "Two years of formulation, none of it rushed."
     },
     {
       "type": "richtext",
@@ -280,27 +231,6 @@
           "label": "Label"
         }
       ]
-    },
-    {
-      "type": "milestone",
-      "name": "Journey milestone",
-      "settings": [
-        {
-          "type": "text",
-          "id": "year",
-          "label": "Year"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Heading"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description"
-        }
-      ]
     }
   ],
   "presets": [
@@ -350,62 +280,6 @@
           "settings": {
             "number": "100%",
             "title": "Woman-founded"
-          }
-        },
-        {
-          "type": "milestone",
-          "settings": {
-            "year": "2008",
-            "title": "New York",
-            "description": "Prabha moves to New York to build her career in technology — carrying an Ayurvedic inheritance she hadn't yet found a place for."
-          }
-        },
-        {
-          "type": "milestone",
-          "settings": {
-            "year": "2021",
-            "title": "Building the Source",
-            "description": "Direct sourcing established before a single formula is finalized: Rosa Damascena from Pushkar, Rajasthan, and wild Curcuma aromatica (Kasthuri Manjal) from Tamil Nadu."
-          }
-        },
-        {
-          "type": "milestone",
-          "settings": {
-            "year": "2021–2022",
-            "title": "Formulation",
-            "description": "Eleven versions of the Saffron Glow Serum. Twenty versions of the Turmeric & Sandalwood Mask. No formula ships until it earns it."
-          }
-        },
-        {
-          "type": "milestone",
-          "settings": {
-            "year": "2023",
-            "title": "PRANA Launches",
-            "description": "Six formulations, zero-synthetic and waterless, launch direct-to-consumer — built around the seven-sutra ritual framework."
-          }
-        },
-        {
-          "type": "milestone",
-          "settings": {
-            "year": "2025",
-            "title": "AI Meets Ayurveda",
-            "description": "AI-powered facial skin analysis is integrated into the ritual — reading skin markers and mapping them to Ayurvedic dosha balance."
-          }
-        },
-        {
-          "type": "milestone",
-          "settings": {
-            "year": "April 2026",
-            "title": "The Relaunch",
-            "description": "PRANA relaunches to an 11,000-person waitlist."
-          }
-        },
-        {
-          "type": "milestone",
-          "settings": {
-            "year": "2026",
-            "title": "Going Global",
-            "description": "The UK launch goes live, with UAE market entry underway."
           }
         }
       ]
