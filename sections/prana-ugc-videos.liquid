@@ -1,572 +1,1251 @@
 {% assign video_count = 0 %}
+
 {% assign desktop_gap_total = section.settings.desktop_videos | minus: 1 | times: 20 %}
+
 {% assign desktop_width_total = section.settings.desktop_videos | times: 300 | plus: desktop_gap_total %}
 
+
+
 {% for block in section.blocks %}
+
   {% if block.settings.video_file != blank %}
+
     {% assign video_count = video_count | plus: 1 %}
+
   {% endif %}
+
 {% endfor %}
 
+
+
 {% if video_count > 0 or request.design_mode %}
+
   <section
+
     class="prana-ugc"
+
     style="
+
       --ugc-desktop-count: {{ section.settings.desktop_videos }};
+
       --ugc-mobile-count: {{ section.settings.mobile_videos }};
+
       --ugc-desktop-max: {{ desktop_width_total }}px;
+      --ugc-bg: {{ section.settings.background_color }};
+      --ugc-eyebrow: {{ section.settings.eyebrow_color }};
+      --ugc-line: {{ section.settings.eyebrow_line_color }};
+      --ugc-heading: {{ section.settings.heading_color }};
+      --ugc-text: {{ section.settings.text_color }};
+      --ugc-card-bg: {{ section.settings.card_background_color }};
+      --ugc-card-border: {{ section.settings.card_border_color }};
+      --ugc-video-bg: {{ section.settings.video_background_color }};
+      --ugc-placeholder-text: {{ section.settings.placeholder_text_color }};
+      --ugc-nav-bg: {{ section.settings.nav_button_background_color }};
+      --ugc-nav-border: {{ section.settings.nav_button_border_color }};
+      --ugc-nav-icon: {{ section.settings.nav_button_icon_color }};
+      --ugc-scrollbar-thumb: {{ section.settings.scrollbar_thumb_color }};
+      --ugc-scrollbar-track: {{ section.settings.scrollbar_track_color }};
+
     "
+
   >
+
     <div class="section">
+
       <div class="prana-ugc__inner">
 
+
+
         <header class="prana-ugc__header">
+
           {% if section.settings.eyebrow != blank %}
+
             <p class="prana-ugc__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+
           {% endif %}
+
+
 
           {% if section.settings.heading != blank %}
+
             <h2 class="prana-ugc__heading">{{ section.settings.heading | escape }}</h2>
+
           {% endif %}
+
+
 
           {% if section.settings.subheading != blank %}
+
             <div class="prana-ugc__intro">{{ section.settings.subheading }}</div>
+
           {% endif %}
+
         </header>
 
+
+
         <prana-ugc-videos
+
           data-autoplay="{{ section.settings.autoplay }}"
+
           data-slider-autoplay="{{ section.settings.slider_autoplay }}"
+
           data-slider-speed="{{ section.settings.slider_autoplay_speed }}"
+
         >
+
           <div
+
             class="prana-ugc__track"
+
             id="UgcTrack-{{ section.id }}"
+
             tabindex="0"
+
             role="region"
+
             aria-label="{{ section.settings.heading | escape }}"
+
           >
+
             {% for block in section.blocks %}
+
               {% if block.settings.video_file != blank or request.design_mode %}
+
                 <article class="prana-ugc__card" {{ block.shopify_attributes }}>
+
                   {% if block.settings.video_file != blank %}
+
                     {% assign video_poster = block.settings.video_file.preview_image | image_url: width: 700 %}
+
                     {{
+
                       block.settings.video_file
+
                       | video_tag:
+
                         autoplay: section.settings.autoplay,
+
                         loop: true,
+
                         muted: true,
+
                         controls: false,
+
                         playsinline: true,
+
                         preload: 'auto',
+
                         poster: video_poster,
+
                         class: 'prana-ugc__video'
+
                     }}
+
                   {% else %}
+
                     <div class="prana-ugc__placeholder">Select a video in this block.</div>
+
                   {% endif %}
+
                 </article>
+
               {% endif %}
+
             {% endfor %}
+
           </div>
+
+
 
           <div class="prana-ugc__navigation" hidden>
-            <button
-              type="button"
-              data-step="-1"
-              aria-label="Previous videos"
-              aria-controls="UgcTrack-{{ section.id }}"
-            >
-              &#8592;
-            </button>
 
             <button
+
               type="button"
-              data-step="1"
-              aria-label="Next videos"
+
+              data-step="-1"
+
+              aria-label="Previous videos"
+
               aria-controls="UgcTrack-{{ section.id }}"
+
             >
-              &#8594;
+
+              &#8592;
+
             </button>
+
+
+
+            <button
+
+              type="button"
+
+              data-step="1"
+
+              aria-label="Next videos"
+
+              aria-controls="UgcTrack-{{ section.id }}"
+
+            >
+
+              &#8594;
+
+            </button>
+
           </div>
+
         </prana-ugc-videos>
 
+
+
       </div>
+
     </div>
+
   </section>
+
 {% endif %}
 
+
+
 {% stylesheet %}
+
 .prana-ugc {
+
   padding: 60px 0;
-  background: var(--canvas);
-  color: var(--ink3);
+
+  background: var(--ugc-bg);
+
+  color: var(--ugc-text);
+
   font-family: var(--U);
+
   position: relative;
+
   z-index: 1;
+
 }
+
+
 
 .prana-ugc__inner {
+
   width: 100%;
+
   min-width: 0;
+
 }
+
+
 
 .prana-ugc__header {
+
   max-width: 700px;
+
   margin: 0 auto 32px;
+
   text-align: center;
+
 }
+
+
 
 .prana-ugc .prana-ugc__eyebrow {
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 14px;
+
   margin: 0 0 12px;
-  color: var(--gold);
+
+  color: var(--ugc-eyebrow);
+
   font: 400 14px/1.5 var(--U);
+
 }
+
+
 
 .prana-ugc__eyebrow::before,
+
 .prana-ugc__eyebrow::after {
+
   content: '';
+
   width: 40px;
+
   height: 1px;
-  background: var(--gold-line);
+
+  background: var(--ugc-line);
+
 }
+
+
 
 .prana-ugc .prana-ugc__heading {
+
   margin: 0 0 12px;
-  color: var(--heading-color);
+
+  color: var(--ugc-heading);
+
   font: 400 38px/1.15 var(--D);
+
 }
+
+
 
 .prana-ugc__intro,
+
 .prana-ugc__intro p {
+
   margin: 0;
+  color: var(--ugc-text);
+
   font: 400 17px/1.5 var(--U);
+
 }
+
+
 
 prana-ugc-videos {
+
   display: block;
+
 }
+
+
 
 .prana-ugc__track {
+
   display: flex;
+
   gap: 20px;
+
   width: 100%;
+
   max-width: min(100%, var(--ugc-desktop-max));
+
   margin: 0 auto;
+
   padding: 4px 2px 18px;
+
   overflow-x: auto;
+
   scroll-snap-type: x mandatory;
+
   scrollbar-width: thin;
-  scrollbar-color: var(--gold) var(--canvas2);
+
+  scrollbar-color: var(--ugc-scrollbar-thumb) var(--ugc-scrollbar-track);
+
   box-sizing: border-box;
+
 }
+
+
 
 .prana-ugc__card {
+
   flex: 0 0 calc(
+
     (100% - ((var(--ugc-desktop-count) - 1) * 20px))
+
     / var(--ugc-desktop-count)
+
   );
+
   min-width: 0;
+
   max-width: 300px;
+
   overflow: hidden;
+
   scroll-snap-align: start;
-  border: 1px solid var(--gold-line);
+
+  border: 1px solid var(--ugc-card-border);
+
   border-radius: 12px;
-  background: var(--canvas2);
+
+  background: var(--ugc-card-bg);
+
 }
+
+
 
 .prana-ugc__video {
+
   display: block;
+
   width: 100%;
+
   aspect-ratio: 9 / 16;
+
   object-fit: cover;
+
   object-position: center;
-  background: var(--ink);
+
+  background: var(--ugc-video-bg);
+
 }
+
+
 
 .prana-ugc__placeholder {
+
   display: grid;
+
   place-items: center;
+
   aspect-ratio: 9 / 16;
+
   padding: 24px;
+  color: var(--ugc-placeholder-text);
+
   text-align: center;
+
 }
+
+
 
 .prana-ugc__navigation {
+
   display: flex;
+
   justify-content: center;
+
   gap: 12px;
+
   margin-top: 20px;
+
 }
+
+
 
 .prana-ugc__navigation[hidden] {
+
   display: none;
+
 }
+
+
 
 .prana-ugc__navigation button {
+
   width: 44px;
+
   height: 44px;
-  border: 1px solid var(--gold);
+
+  border: 1px solid var(--ugc-nav-border);
+
   border-radius: 50%;
+
   background: transparent;
-  color: var(--heading-color);
+
+  color: var(--ugc-heading);
+
   font-size: 24px;
+
   cursor: pointer;
+
 }
+
+
 
 .prana-ugc__navigation button:disabled {
+
   opacity: 0.35;
+
   cursor: default;
+
 }
+
+
 
 .prana-ugc__navigation button:focus-visible,
+
 .prana-ugc__track:focus-visible {
-  outline: 2px solid var(--gold);
+
+  outline: 2px solid var(--ugc-nav-border);
+
   outline-offset: 3px;
+
 }
+
+
 
 @media (max-width: 749px) {
+
   .prana-ugc {
+
     padding: 40px 0;
+
   }
+
+
 
   .prana-ugc .prana-ugc__heading {
+
     font-size: 24px;
+
   }
+
+
 
   .prana-ugc__intro,
+
   .prana-ugc__intro p {
+
     font-size: 15px;
+
   }
+
+
 
   .prana-ugc__header {
+
     margin-bottom: 24px;
+
   }
+
+
 
   .prana-ugc__track {
+
     gap: 14px;
+
     max-width: 100%;
+
     margin: 0;
+
   }
+
+
 
   .prana-ugc__card {
+
     flex: 0 0 calc(
+
       (100% - ((var(--ugc-mobile-count) - 1) * 14px))
+
       / var(--ugc-mobile-count)
+
     );
+
     max-width: none;
+
   }
+
 }
+
 {% endstylesheet %}
 
+
+
 {% javascript %}
+
 if (!customElements.get('prana-ugc-videos')) {
+
   customElements.define(
+
     'prana-ugc-videos',
+
     class extends HTMLElement {
+
       connectedCallback() {
+
         this.track = this.querySelector('.prana-ugc__track');
+
         this.nav = this.querySelector('.prana-ugc__navigation');
+
+
 
         if (!this.track || !this.nav) return;
 
+
+
         this.controller = new AbortController();
+
         const signal = this.controller.signal;
 
+
+
         const autoplay = this.dataset.autoplay === 'true';
+
         const sliderAutoplay = this.dataset.sliderAutoplay === 'true';
+
         const sliderSpeed = Math.max(1000, Number(this.dataset.sliderSpeed || 3000));
+
+
 
         const shouldAutoplay = () => autoplay;
 
+
+
         const updateNavigation = () => {
+
           const max = this.track.scrollWidth - this.track.clientWidth;
+
           this.nav.hidden = max < 2;
 
+
+
           const previousButton = this.querySelector('[data-step="-1"]');
+
           const nextButton = this.querySelector('[data-step="1"]');
 
+
+
           if (previousButton) {
+
             previousButton.disabled = this.track.scrollLeft < 2;
+
           }
+
+
 
           if (nextButton) {
+
             nextButton.disabled = this.track.scrollLeft >= max - 2;
+
           }
+
         };
+
+
 
         const getSlideDistance = () => {
+
           const card = this.track.querySelector('.prana-ugc__card');
+
           if (!card) return 0;
 
+
+
           const gap = parseFloat(getComputedStyle(this.track).gap) || 0;
+
           return card.getBoundingClientRect().width + gap;
+
         };
+
+
 
         const moveSlider = (step = 1) => {
+
           const distance = getSlideDistance();
+
           if (!distance) return;
 
+
+
           const max = this.track.scrollWidth - this.track.clientWidth;
+
           const nextLeft = this.track.scrollLeft + (step * distance);
 
+
+
           if (step > 0 && nextLeft >= max - 2) {
+
             this.track.scrollTo({
+
               left: 0,
+
               behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
                 ? 'auto'
+
                 : 'smooth'
+
             });
+
           } else if (step < 0 && nextLeft <= 0) {
+
             this.track.scrollTo({
+
               left: max,
+
               behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
                 ? 'auto'
+
                 : 'smooth'
+
             });
+
           } else {
+
             this.track.scrollBy({
+
               left: step * distance,
+
               behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
                 ? 'auto'
+
                 : 'smooth'
+
             });
+
           }
+
         };
 
+
+
         this.nav.addEventListener(
+
           'click',
+
           (event) => {
+
             const button = event.target.closest('button[data-step]');
+
             if (!button) return;
 
+
+
             moveSlider(Number(button.dataset.step));
+
           },
+
           { signal }
+
         );
+
+
 
         this.track.addEventListener('scroll', updateNavigation, {
+
           passive: true,
+
           signal
+
         });
+
+
 
         this.addEventListener(
+
           'shopify:block:select',
+
           (event) => {
+
             event.target.scrollIntoView({
+
               block: 'nearest',
+
               inline: 'nearest'
+
             });
+
           },
+
           { signal }
+
         );
+
+
 
         this.querySelectorAll('video').forEach((video) => {
+
           video.muted = true;
+
           video.loop = true;
+
           video.playsInline = true;
+
         });
 
+
+
         if ('IntersectionObserver' in window) {
+
           this.visibilityObserver = new IntersectionObserver(
+
             (entries) => {
+
               entries.forEach((entry) => {
+
                 const video = entry.target;
 
+
+
                 if (
+
                   !entry.isIntersecting ||
+
                   entry.intersectionRatio < 0.25 ||
+
                   !shouldAutoplay()
+
                 ) {
+
                   video.pause();
+
                   return;
+
                 }
+
+
 
                 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
                   video.muted = true;
+
                   video.play().catch(() => {});
+
                 }
+
               });
+
             },
+
             { threshold: [0, 0.25] }
+
           );
 
+
+
           this.querySelectorAll('video').forEach((video) => {
+
             this.visibilityObserver.observe(video);
+
           });
+
         }
+
+
 
         if ('ResizeObserver' in window) {
+
           this.resizeObserver = new ResizeObserver(updateNavigation);
+
           this.resizeObserver.observe(this.track);
+
         }
 
+
+
         window.addEventListener(
+
           'resize',
+
           () => {
+
             this.querySelectorAll('video').forEach((video) => {
+
               if (!shouldAutoplay()) {
+
                 video.pause();
+
               }
+
             });
 
+
+
             updateNavigation();
+
           },
+
           { signal }
+
         );
+
+
 
         let sliderTimer = null;
 
+
+
         const startSliderAutoplay = () => {
+
           if (
+
             !sliderAutoplay ||
+
             window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+
             this.track.scrollWidth <= this.track.clientWidth + 2
+
           ) {
+
             return;
+
           }
+
+
 
           stopSliderAutoplay();
 
+
+
           sliderTimer = window.setInterval(() => {
+
             moveSlider(1);
+
           }, sliderSpeed);
+
         };
+
+
 
         const stopSliderAutoplay = () => {
+
           if (sliderTimer) {
+
             window.clearInterval(sliderTimer);
+
             sliderTimer = null;
+
           }
+
         };
 
+
+
         this.addEventListener('mouseenter', stopSliderAutoplay, { signal });
+
         this.addEventListener('mouseleave', startSliderAutoplay, { signal });
+
         this.addEventListener('touchstart', stopSliderAutoplay, { passive: true, signal });
+
         this.addEventListener('touchend', startSliderAutoplay, { passive: true, signal });
+
         this.addEventListener('focusin', stopSliderAutoplay, { signal });
+
         this.addEventListener('focusout', startSliderAutoplay, { signal });
+
+
 
         this.stopSliderAutoplay = stopSliderAutoplay;
 
+
+
         updateNavigation();
+
         startSliderAutoplay();
+
       }
+
+
 
       disconnectedCallback() {
+
         this.controller?.abort();
+
         this.resizeObserver?.disconnect();
+
         this.visibilityObserver?.disconnect();
+
         this.stopSliderAutoplay?.();
 
+
+
         this.querySelectorAll('video').forEach((video) => {
+
           video.pause();
+
         });
+
       }
+
     }
+
   );
+
 }
+
 {% endjavascript %}
 
+
+
 {% schema %}
+
 {
+
   "name": "PRANA UGC Videos",
+
   "max_blocks": 50,
+
   "settings": [
+
     {
+
       "type": "text",
+
       "id": "eyebrow",
+
       "label": "Eyebrow",
+
       "default": "The PRANA community"
+
     },
+
     {
+
       "type": "text",
+
       "id": "heading",
+
       "label": "Heading",
+
       "default": "Real rituals. Real stories."
+
     },
+
     {
+
       "type": "richtext",
+
       "id": "subheading",
+
       "label": "Description",
+
       "default": "<p>Discover PRANA through the rituals of our community.</p>"
+
+    },
+
+        {
+      "type": "header",
+      "content": "Colors"
     },
     {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#F7F3EE"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow text",
+      "default": "#A4773D"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_line_color",
+      "label": "Eyebrow line",
+      "default": "#C9B28F"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#2E2925"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Description text",
+      "default": "#5C554F"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Video card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Video card border",
+      "default": "#DED5CA"
+    },
+    {
+      "type": "color",
+      "id": "video_background_color",
+      "label": "Video background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_text_color",
+      "label": "Placeholder text",
+      "default": "#5C554F"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_background_color",
+      "label": "Arrow button background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_border_color",
+      "label": "Arrow button border",
+      "default": "#A4773D"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_icon_color",
+      "label": "Arrow icon",
+      "default": "#2E2925"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_thumb_color",
+      "label": "Scrollbar",
+      "default": "#A4773D"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_track_color",
+      "label": "Scrollbar track",
+      "default": "#EDE6DD"
+    },
+    {
+      "type": "header",
+      "content": "Layout & autoplay"
+    },
+{
+
       "type": "range",
+
       "id": "desktop_videos",
+
       "label": "Videos visible on desktop",
+
       "min": 2,
+
       "max": 6,
+
       "step": 1,
+
       "default": 4
+
     },
+
     {
+
       "type": "select",
+
       "id": "mobile_videos",
+
       "label": "Videos visible on mobile",
+
       "options": [
+
         {
+
           "value": "1",
+
           "label": "1"
+
         },
+
         {
+
           "value": "2",
+
           "label": "2"
+
         }
+
       ],
+
       "default": "1"
+
     },
+
     {
+
       "type": "checkbox",
+
       "id": "autoplay",
+
       "label": "Autoplay videos",
+
       "default": true,
+
       "info": "When enabled, all visible videos autoplay muted and loop continuously."
+
     },
+
     {
+
       "type": "checkbox",
+
       "id": "slider_autoplay",
+
       "label": "Autoplay slider",
+
       "default": true
+
     },
+
     {
+
       "type": "range",
+
       "id": "slider_autoplay_speed",
+
       "label": "Slider autoplay speed",
+
       "min": 2000,
+
       "max": 8000,
+
       "step": 500,
+
       "unit": "ms",
+
       "default": 3000
+
     }
+
   ],
+
   "blocks": [
+
     {
+
       "type": "video_item",
+
       "name": "UGC video",
+
       "settings": [
+
         {
+
           "type": "video",
+
           "id": "video_file",
+
           "label": "Video"
+
         }
+
       ]
+
     }
+
   ],
+
   "presets": [
+
     {
+
       "name": "PRANA UGC Videos",
+
       "blocks": [
+
         { "type": "video_item" },
+
         { "type": "video_item" },
+
         { "type": "video_item" }
+
       ]
+
     }
+
   ]
+
 }
+
 {% endschema %}
