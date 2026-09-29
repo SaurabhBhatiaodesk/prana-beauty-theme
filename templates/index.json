@@ -740,7 +740,7 @@
       }
     },
     "ugc_video_slider_Y9pfFV": {
-      "type": "ugc-video-slider",
+      "type": "prana-ugc-videos",
       "blocks": {
         "video_item_DVPafq": {
           "type": "video_item",
@@ -809,12 +809,13 @@
         "video_item_Ka6mXE",
         "video_item_4pTXwA"
       ],
-      "disabled": true,
+      "disabled": false,
       "custom_css": [],
-      "name": "UGC Video + Image Slider",
+      "name": "PRANA UGC Videos",
       "settings": {
-        "heading": "SHOPPABLE UGC",
-        "subheading": "<p>Perfect if you want a wink of personality.</p>"
+        "eyebrow": "The PRANA community",
+        "heading": "Real rituals. Real stories.",
+        "subheading": "<p>Discover PRANA through the rituals of our community.</p>"
       }
     },
     "bundle_cards_layout_Qi7tD6": {
@@ -1060,6 +1061,7 @@
     "custom_rituals_section_RJGTFd",
     "find_ritual_section_XPMGpF",
     "custom_counter_b4J6qT",
+    "ugc_video_slider_Y9pfFV",
     "custom_newsletter_hfhNpi",
     "17768332015c8fec7e",
     "products_list_slider_rGDQ8B",
@@ -1067,7 +1069,6 @@
     "collection_slider_9mdHQf",
     "video_hero_yChCHJ",
     "shop_by_concern_j4WhyH",
-    "ugc_video_slider_Y9pfFV",
     "bundle_cards_layout_Qi7tD6",
     "image_with_product_slider_XMd3kT",
     "review_slider_iLR8ih",
