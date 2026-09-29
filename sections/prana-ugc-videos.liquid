@@ -50,6 +50,7 @@
               {% if block.settings.video_file != blank or request.design_mode %}
                 <article class="prana-ugc__card" {{ block.shopify_attributes }}>
                   {% if block.settings.video_file != blank %}
+                    {% assign video_poster = block.settings.video_file.preview_image | image_url: width: 700 %}
                     {{
                       block.settings.video_file
                       | video_tag:
@@ -58,7 +59,8 @@
                         muted: true,
                         controls: false,
                         playsinline: true,
-                        preload: 'metadata',
+                        preload: 'auto',
+                        poster: video_poster,
                         class: 'prana-ugc__video'
                     }}
                   {% else %}
