@@ -61,6 +61,7 @@
   </section>
 {% endif %}
 {% stylesheet %}
+<<<<<<< HEAD
 .prana-ugc { padding:60px 0; background:var(--canvas); color:var(--ink3); font-family:var(--U); }
 .prana-ugc__inner { min-width:0; width:100%; }
 .prana-ugc__header { text-align:center; max-width:700px; margin:0 auto 32px; }
@@ -92,6 +93,171 @@ prana-ugc-videos { display:block; }
 .prana-ugc__header { margin-bottom:24px; }
 .prana-ugc__track { gap:14px; }
 .prana-ugc__card { flex-basis:78%; max-width:300px; }
+=======
+.prana-ugc {
+  padding: 60px 0;
+  background: var(--canvas);
+  color: var(--ink3);
+  font-family: var(--U);
+}
+
+.prana-ugc__inner {
+  min-width: 0;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  box-sizing: border-box;
+}
+
+.prana-ugc__header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 32px;
+}
+
+.prana-ugc .prana-ugc__eyebrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  font: 400 14px/1.5 var(--U);
+  color: var(--gold);
+  margin: 0 0 12px;
+}
+
+.prana-ugc__eyebrow::before,
+.prana-ugc__eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold-line);
+}
+
+.prana-ugc .prana-ugc__heading {
+  font: 400 38px/1.15 var(--D);
+  color: var(--heading-color);
+  margin: 0 0 12px;
+}
+
+.prana-ugc__intro,
+.prana-ugc__intro p {
+  font: 400 17px/1.5 var(--U);
+  margin: 0;
+}
+
+prana-ugc-videos {
+  display: block;
+}
+
+.prana-ugc__track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 2px 18px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) var(--canvas2);
+}
+
+.prana-ugc__card {
+  flex: 0 0 calc(
+    (100% - ((var(--ugc-desktop-count) - 1) * 20px))
+    / var(--ugc-desktop-count)
+  );
+  min-width: 0;
+  scroll-snap-align: start;
+  border: 1px solid var(--gold-line);
+  border-radius: 12px;
+  background: var(--canvas2);
+  overflow: hidden;
+}
+
+.prana-ugc__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  background: var(--ink);
+}
+
+.prana-ugc__placeholder {
+  aspect-ratio: 9 / 16;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.prana-ugc__navigation {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.prana-ugc__navigation[hidden] {
+  display: none;
+}
+
+.prana-ugc__navigation button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--heading-color);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.prana-ugc__navigation button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.prana-ugc__navigation button:focus-visible,
+.prana-ugc__track:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 749px) {
+  .prana-ugc {
+    padding: 40px 0;
+  }
+
+  .prana-ugc .prana-ugc__heading {
+    font-size: 24px;
+  }
+
+  .prana-ugc__intro,
+  .prana-ugc__intro p {
+    font-size: 15px;
+  }
+
+  .prana-ugc__header {
+    margin-bottom: 24px;
+  }
+
+  .prana-ugc__inner {
+    padding-inline: 14px;
+  }
+
+  .prana-ugc__track {
+    gap: 14px;
+  }
+
+  .prana-ugc__card {
+    flex: 0 0 calc(
+      (100% - ((var(--ugc-mobile-count) - 1) * 14px))
+      / var(--ugc-mobile-count)
+    );
+    max-width: none;
+  }
+>>>>>>> e916b4a (video fixed issue)
 }
 {% endstylesheet %}
 {% javascript %}
@@ -102,7 +268,21 @@ if (!customElements.get('prana-ugc-videos')) {
       this.nav = this.querySelector('.prana-ugc__navigation');
       this.controller = new AbortController();
       const signal = this.controller.signal;
+<<<<<<< HEAD
       const update = () => {
+=======
+
+      const autoplayDesktop = this.dataset.autoplayDesktop === 'true';
+      const autoplayMobile = this.dataset.autoplayMobile === 'true';
+
+      const shouldAutoplay = () => {
+        return window.matchMedia('(max-width: 749px)').matches
+          ? autoplayMobile
+          : autoplayDesktop;
+      };
+
+      const updateNavigation = () => {
+>>>>>>> e916b4a (video fixed issue)
         const max = this.track.scrollWidth - this.track.clientWidth;
         this.nav.hidden = max < 2;
         this.querySelector('[data-step="-1"]').disabled = this.track.scrollLeft < 2;
@@ -124,10 +304,62 @@ if (!customElements.get('prana-ugc-videos')) {
       this.addEventListener('shopify:block:select', (event) => event.target.scrollIntoView({ block:'nearest', inline:'nearest' }), { signal });
       if ('ResizeObserver' in window) { this.resizeObserver = new ResizeObserver(update); this.resizeObserver.observe(this.track); }
       if ('IntersectionObserver' in window) {
+<<<<<<< HEAD
         this.visibilityObserver = new IntersectionObserver((entries) => entries.forEach((entry) => { if (!entry.isIntersecting) entry.target.pause(); }));
         this.querySelectorAll('video').forEach((video) => this.visibilityObserver.observe(video));
       }
       update();
+=======
+        this.visibilityObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+
+            if (!entry.isIntersecting || entry.intersectionRatio < 0.25) {
+              video.pause();
+              return;
+            }
+
+            if (
+              shouldAutoplay() &&
+              !matchMedia('(prefers-reduced-motion: reduce)').matches
+            ) {
+              video.muted = true;
+              video.play().catch(() => {});
+            }
+          });
+        }, { threshold: [0, 0.25] });
+
+        this.querySelectorAll('video').forEach((video) => {
+          this.visibilityObserver.observe(video);
+        });
+      } else if (
+        shouldAutoplay() &&
+        !matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        this.querySelectorAll('video').forEach((video) => {
+          video.muted = true;
+          video.play().catch(() => {});
+        });
+      }
+
+      if ('ResizeObserver' in window) {
+        this.resizeObserver = new ResizeObserver(updateNavigation);
+        this.resizeObserver.observe(this.track);
+      }
+
+      window.addEventListener('resize', () => {
+        this.querySelectorAll('video').forEach((video) => {
+          if (!shouldAutoplay()) {
+            video.pause();
+          } else if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            video.muted = true;
+            video.play().catch(() => {});
+          }
+        });
+      }, { signal });
+
+      updateNavigation();
+>>>>>>> e916b4a (video fixed issue)
     }
     disconnectedCallback() {
       this.controller?.abort();
