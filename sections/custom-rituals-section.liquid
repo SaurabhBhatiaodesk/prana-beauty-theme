@@ -1,0 +1,946 @@
+<!-- RITUAL TABS -->
+<section class="ritual-3col">
+  <div class="section">
+    <!-- HEADER -->
+    <div class="r3-header">
+      <p class="rule rule-c reveal">{{ section.settings.caption }}</p>
+      <h2 class="sec-h2 reveal d1">{{ section.settings.title }}</h2>
+      <p class="r3-sub reveal d2">{{ section.settings.description }}</p>
+    </div>
+
+    <!-- THREE RITUAL COLUMNS -->
+    <div class="r3-grid">
+      {% for block in section.blocks %}
+        {% assign products = block.settings.collection.products %}
+        {% assign collection = block.settings.collection %}
+        {% assign total_original_price = 0 %}
+        {% assign total_selling_price = 0 %}
+        {% assign total_saving = 0 %}
+        {% assign bundle_items_json = '' %}
+        {% assign bundle_variant_ids = '' %}
+
+        <div class="r3-col reveal">
+          <!-- Bundle image placeholder -->
+          <div class="r3-bundle-img">
+            <a href="{{ block.settings.ritual_link }}" class="r3-sanskrit">{{ block.settings.sanskrit }}</a>
+            <div class="r3-img-ph">
+              {% if block.settings.bundle_image != blank %}
+                <a href="{{ block.settings.ritual_link }}">
+                  <img width="" height="" loading="lazy" src="{{ block.settings.bundle_image | img_url: 'original' }}">
+                </a>
+              {% else %}
+                <div class="r3-img-ph-inner">
+                  <div class="r3-img-label">{{ block.settings.bundle_label }}</div>
+                  <div class="r3-img-sub">{{ block.settings.bundle_name }}</div>
+                  <div class="r3-img-note">{{ block.settings.bundle_note }}</div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="content-ritual">
+            <!-- Ritual identity -->
+            <div class="r3-identity">
+              <a href="{{ block.settings.ritual_link }}" class="r3-ritual-name">{{ block.settings.ritual_name }}</a>
+              <div class="r3-meaning">{{ block.settings.meaning }}</div>
+            </div>
+
+            <!-- Products -->
+            <div class="r3-products">
+              {% for product in products %}
+                {% assign variant = product.selected_or_first_available_variant %}
+
+                {% if variant != blank %}
+                  {% assign product_original_price = variant.price %}
+                  {% assign product_selling_price = variant.price %}
+                  {% assign product_saving = 0 %}
+                  {% assign product_selling_plan_id = '' %}
+                  {% assign selling_plan_allocation = variant.selling_plan_allocations | first %}
+
+                  {% if selling_plan_allocation != blank %}
+                    {% if selling_plan_allocation.compare_at_price != blank and selling_plan_allocation.compare_at_price > 0 %}
+                      {% assign product_original_price = selling_plan_allocation.compare_at_price %}
+                    {% endif %}
+
+                    {% if selling_plan_allocation.price != blank and selling_plan_allocation.price > 0 %}
+                      {% assign product_selling_price = selling_plan_allocation.price %}
+                    {% endif %}
+
+                    {% if selling_plan_allocation.selling_plan != blank %}
+                      {% assign product_selling_plan_id = selling_plan_allocation.selling_plan.id %}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if product_original_price > product_selling_price %}
+                    {% assign product_saving = product_original_price | minus: product_selling_price %}
+                  {% endif %}
+
+                  {% assign total_original_price = total_original_price | plus: product_original_price %}
+                  {% assign total_selling_price = total_selling_price | plus: product_selling_price %}
+                  {% assign total_saving = total_saving | plus: product_saving %}
+                  {% assign bundle_variant_ids = bundle_variant_ids | append: variant.id | append: ',' %}
+
+                  {% capture bundle_item_json %}
+                    {"id":{{ variant.id }},"quantity":1{% if product_selling_plan_id != blank %},"selling_plan":{{ product_selling_plan_id }}{% endif %}}
+                  {% endcapture %}
+
+                  {% if bundle_items_json != blank %}
+                    {% assign bundle_items_json = bundle_items_json | append: ',' %}
+                  {% endif %}
+
+                  {% assign bundle_items_json = bundle_items_json | append: bundle_item_json %}
+
+                  <div class="r3-product">
+                    <div class="r3-product-top">
+                      <span class="r3-n">01</span>
+                      <div class="r3-product-info">
+                        <a href="{{ product.url }}" class="r3-pname">{{ product.title }}</a>
+                        <div class="r3-pdesc">
+                          {% if forloop.first %}
+                            {{ block.settings.pdt_desc_1 }}
+                          {% endif %}
+                          {% if forloop.index == 2 %}
+                            {{ block.settings.pdt_desc_2 }}
+                          {% endif %}
+                          {% if forloop.last %}
+                            {{ block.settings.pdt_desc_3 }}
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="r3-product-actions">
+                      <span class="r3-price">
+                        {% if product_saving > 0 %}
+                          <span class="r3-original-price">{{ product_original_price | money | split: '.' | first }}</span>
+                          <span class="r3-selling-price">{{ product_selling_price | money | split: '.' | first }}</span>
+                        {% else %}
+                          <span class="r3-selling-price">{{ product_selling_price | money | split: '.' | first }}</span>
+                        {% endif %}
+                      </span>
+
+                      <div class="button-action">
+                        <a href="{{ product.url }}" class="r3-view" onclick="nav('pdp','cleanser')">View</a>
+                        <div pid="{{ variant.id }}"data-variant-id="{{ variant.id }}"data-selling-plan-id="{{ product_selling_plan_id }}"class="pcaro-atc r3-atc">
+                          <span>+</span> Add
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <!-- Bundle CTA -->
+            <div class="r3-bundle-cta">
+              <div class="r3-bundle-price-row">
+                {% if total_saving > 0 %}
+                  <span class="r3-bundle-save">
+                    Save <span class="save-price">{{ total_saving | money | split: '.' | first }}</span>
+                  </span>
+                {% endif %}
+
+                <span class="r3-bundle-price">
+                  {% if total_saving > 0 %}
+                    <span class="r3-bundle-original-price">{{ total_original_price | money | split: '.' | first }}</span>
+                    <span class="r3-bundle-selling-price">{{ total_selling_price | money | split: '.' | first }}</span>
+                  {% else %}
+                    <span class="r3-bundle-selling-price">{{ total_selling_price | money | split: '.' | first }}</span>
+                  {% endif %}
+                </span>
+              </div>
+
+              <div class="yes-r3-action">
+                <div class="action-r3-bundle">
+                  <button
+                    type="button"
+                    class="r3-add-bundle"
+                    data-bundle-ids="{{ bundle_variant_ids | remove_last: ',' }}"
+                    data-bundle-items='[{{ bundle_items_json | escape }}]'
+                  >
+                    Add Full {{ block.settings.sanskrit }} Ritual to Bag
+                  </button>
+
+                  <div class="explore">
+                    <a href="{{ block.settings.collection_link }}" class="r3-explore">
+                      Explore {{ block.settings.sanskrit }}
+                    </a>
+                  </div>
+                </div>
+
+                <div class="r3-proof">★★★★★ {{ block.settings.review }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <!-- /r3-grid -->
+  </div>
+</section>
+
+<style>
+/* ══════════════════════════════════════════
+         THREE-COLUMN RITUAL SECTION
+      ══════════════════════════════════════════ */
+.ritual-3col {
+  background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+  padding: 60px 0;
+  border-bottom: 1px solid var(--gold-line);
+}
+
+.r3-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.r3-header h2 {
+  font-size: 41px;
+  color: var(--heading-color);
+  padding: 15px 0 10px 0;
+}
+
+.r3-sub {
+  font-size: 20px;
+  color: var(--ink3);
+  line-height: 23px;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.r3-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 23px;
+  align-items: start;
+}
+
+.r3-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.r3-img-ph {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: linear-gradient(145deg, rgba(200, 136, 30, .08), rgba(168, 104, 26, .04));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px #4613244d;
+  border: .5px solid #461324;
+  border-bottom: 0;
+}
+
+.r3-img-ph-night {
+  background: linear-gradient(145deg, rgba(26, 18, 6, .06), rgba(74, 56, 40, .04));
+  border-color: rgba(200, 146, 26, .15);
+}
+
+.r3-img-ph-spa {
+  background: linear-gradient(145deg, rgba(28, 43, 26, .06), rgba(200, 146, 26, .04));
+  border-color: rgba(200, 146, 26, .18);
+}
+
+.r3-img-ph-inner {
+  text-align: center;
+  z-index: 1;
+}
+
+.r3-product-actions .button-action {
+  display: flex;
+  gap: 5px;
+}
+
+.r3-img-label {
+  font-family: var(--U);
+  font-size: 15px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.r3-img-sub {
+  font-family: var(--D);
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--ink3);
+  margin-bottom: 6px;
+}
+
+.r3-img-note {
+  font-family: var(--S);
+  font-size: 15px;
+  color: var(--ink5);
+}
+
+.r3-identity {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--gold-line);
+}
+
+.r3-bundle-img {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 2px 2px 4px 0px #4613244D;
+}
+
+.r3-sanskrit {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 4px;
+  position: absolute;
+  top: 17px;
+  z-index: 1;
+  background: var(--heading-color, #461324);
+  padding: 5px 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 6px 0 0 6px;
+  right: 0;
+}
+
+.r3-ritual-name {
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--heading-color);
+  margin-bottom: 3px;
+}
+
+.r3-meaning {
+  font-family: var(--S);
+  font-size: 16px;
+  color: var(--ink3);
+  font-style: italic;
+}
+
+.r3-products {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 4px;
+  flex: 1;
+}
+
+.r3-product {
+  padding: 14px 0;
+  border-bottom: 1px solid #561A24;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.r3-product:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.r3-product-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.r3-n {
+  display: none;
+}
+
+.r3-product-info {
+  flex: 1;
+}
+
+.r3-pname {
+  font-family: var(--D);
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--heading-color);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.r3-pdesc {
+  font-family: var(--S);
+  font-size: 15px;
+  color: var(--ink3);
+  line-height: 20px;
+}
+
+.r3-price {
+  font-family: var(--D);
+  font-size: 17px;
+  color: var(--ink);
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.r3-original-price {
+  color: var(--gold);
+  text-decoration: line-through;
+  font-size: 16px;
+}
+
+.r3-selling-price {
+  color: var(--ink);
+  font-size: 17px;
+}
+
+.r3-product-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: end;
+}
+
+.r3-view {
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--canvas);
+  border: none;
+  padding: 6px 11px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background .15s, transform .1s;
+}
+
+.r3-view:hover {
+  background: var(--heading-color);
+  border-color: var(--gold);
+}
+
+.r3-atc {
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--canvas);
+  border: none;
+  padding: 6px 11px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background .15s, transform .1s;
+}
+
+.r3-atc:hover {
+  background: var(--heading-color);
+}
+
+.ritual-3col .r3-col {
+  min-height: 100%;
+  background: #E3C39F;
+  box-shadow: 0px -3px 4px 0px #D3B18A inset;
+  border-radius: 10px;
+  transition: ease-in-out 0.5s;
+  overflow: hidden;
+}
+
+.ritual-3col .r3-col:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.content-ritual {
+  padding: 20px;
+}
+
+.r3-bundle-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.r3-bundle-price {
+  font-family: var(--D);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: normal;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.r3-bundle-original-price {
+  text-decoration: line-through;
+  color: var(--gold);
+  font-size: 20px;
+}
+
+.r3-bundle-selling-price {
+  color: var(--ink);
+}
+
+.r3-bundle-save {
+  font-family: var(--U);
+  font-size: 12px;
+  letter-spacing: .2em;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 3px 8px;
+  background: white;
+  border-radius: 4px;
+}
+.r3-add-bundle {
+    width: 100%;
+    color: var(--canvas);
+    border: none;
+    padding: 10px 16px;
+    font-size: 16px;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s;
+    margin-bottom: 8px;
+    background: var(--gold);
+    border-radius: 8px;
+}
+
+.r3-add-bundle:hover {
+  background: var(--heading-color);
+}
+
+.r3-explore {
+  width: 100%;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 11px 16px;
+  font-size: 14px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: border-color .15s, color .15s;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.r3-explore:hover {
+  border-color: var(--gold);
+  color: white;
+  background: var(--heading-color);
+}
+
+.r3-proof {
+  font-family: var(--S);
+  font-size: 14px;
+  color: var(--ink3);
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media only screen and (max-width:1199px) {
+  .ritual-3col .r3-sub {
+    font-size: 16px;
+    line-height: 1.55;
+    max-width: 528px;
+    margin: 12px auto 0;
+  }
+
+  .ritual-3col .r3-ritual-name {
+    font-size: 19px;
+    margin-bottom: 3px;
+  }
+
+  .ritual-3col .r3-identity {
+    margin-bottom: 13px;
+  }
+
+  .ritual-3col .r3-pname {
+    font-size: 17px;
+    line-height: 15px;
+  }
+
+  .ritual-3col .r3-bundle-price {
+    font-size: 32px;
+  }
+}
+
+@media only screen and (max-width:767px) {
+  .ritual-3col .r3-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .ritual-3col .r3-img-ph {
+    aspect-ratio: 4 /3;
+  }
+
+  .ritual-3col {
+    border-top: 1px solid rgba(168, 104, 26, .18);
+  }
+
+  .ritual-3col .r3-header .rule {
+    margin: 0 0px;
+    padding: 0px 0px;
+    letter-spacing: 1px;
+    color: var(--ink3);
+    font-size: 13px;
+  }
+
+  .r3-grid {
+    gap: 30px;
+  }
+
+  .ritual-3col .r3-header .rule:after {
+    max-width: 100px;
+    margin-right: auto;
+  }
+}
+
+@media(max-width:900px) {
+  .r3-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .content-ritual {
+    padding: 15px;
+  }
+
+  .r3-sanskrit {
+    font-size: 14px;
+    padding: 4px 7px;
+  }
+
+  .r3-col {
+    padding: 0;
+  }
+}
+
+@media all and (max-width:600px) {
+  .r3-pdesc {
+    padding: 5px 0;
+    line-height: 15px;
+    font-size: 14px;
+  }
+
+  .r3-product {
+    padding: 10px 0 5px 0;
+  }
+
+  .r3-product-actions {
+    gap: 0;
+    display: grid;
+  }
+
+  .r3-add-bundle {
+    padding: 5px 10px;
+    font-size: 13px;
+    letter-spacing: unset;
+    border-radius: 5px;
+  }
+
+  .r3-bundle-price-row {
+    order: 2;
+  }
+
+  .yes-r3-action {
+    order: 1;
+  }
+
+  .r3-explore {
+    padding: 5px 10px;
+    font-size: 13px;
+    letter-spacing: unset;
+    border-radius: 5px;
+    margin: 0 0 5px;
+  }
+
+  .ritual-3col .r3-bundle-price {
+    line-height: 18px;
+    font-size: 18px;
+  }
+
+  .r3-bundle-save {
+    font-size: 13px;
+    letter-spacing: unset;
+  }
+
+  .r3-atc,
+  .r3-view {
+    font-size: 13px;
+    padding: 5px 7px;
+  }
+
+  .r3-atc span {
+    display: none;
+  }
+
+  .r3-header h2 {
+    font-size: 20px;
+    text-align: left;
+    padding: 12px 0 3px 0;
+  }
+
+  .ritual-3col {
+    padding: 35px 0;
+  }
+
+  .ritual-3col .r3-sub {
+    text-align: left;
+    font-size: 16px;
+    line-height: 21px;
+    margin: 0;
+  }
+
+  .r3-price {
+    font-size: 15px;
+    padding-right: 4px;
+  }
+
+  .r3-meaning {
+    font-size: 14px;
+  }
+
+  .r3-bundle-cta {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .r3-bundle-price-row {
+    order: 2;
+    gap: 8px;
+    justify-content: end;
+    align-items: center;
+    margin: 0;
+  }
+
+  .r3-proof {
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .yes-r3-action {
+    order: 1;
+  }
+}
+</style>
+
+<script>
+(function() {
+  function rootPath() {
+    if (window.Shopify && Shopify.routes && Shopify.routes.root) {
+      return Shopify.routes.root;
+    }
+
+    return '/';
+  }
+
+  function refreshCartUI() {
+    fetch(rootPath() + 'cart.js', {
+      credentials: 'same-origin',
+      cache: 'no-store'
+    })
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(cart) {
+        var cartCountElements = document.querySelectorAll('[data-cart-count], .cart-count, .cart__count, .header__cart-count');
+
+        cartCountElements.forEach(function(el) {
+          el.textContent = cart.item_count;
+        });
+
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: {
+            data: {
+              itemCount: cart.item_count,
+              source: 'custom-ritual-section'
+            },
+            cart: cart
+          }
+        }));
+      })
+      .catch(function(error) {
+        console.log('Cart refresh error:', error);
+      });
+  }
+
+  function addItemsToCart(items, btn) {
+    if (!items || !items.length || !btn) return;
+
+    var originalText = btn.textContent;
+
+    btn.textContent = 'Adding...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+
+    fetch(rootPath() + 'cart/add.js', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        items: items
+      })
+    })
+      .then(function(response) {
+        if (!response.ok) throw new Error('Add to cart failed');
+        return response.json();
+      })
+      .then(function() {
+        btn.textContent = 'Added ✓';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+        refreshCartUI();
+
+        setTimeout(function() {
+          btn.textContent = originalText;
+        }, 2000);
+      })
+      .catch(function(error) {
+        console.error('Bundle add error:', error);
+        btn.textContent = 'Error!';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+
+        setTimeout(function() {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+  }
+
+  document.querySelectorAll('.r3-add-bundle').forEach(function(btn) {
+    btn.addEventListener('click', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var rawItems = btn.getAttribute('data-bundle-items');
+      var items = [];
+
+      if (rawItems) {
+        try {
+          items = JSON.parse(rawItems);
+        } catch (error) {
+          console.error('Bundle JSON parse error:', error);
+        }
+      }
+
+      addItemsToCart(items, btn);
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Ritual",
+  "settings": [
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "bundle_image",
+          "label": "Bundle Image"
+        },
+        {
+          "type": "text",
+          "id": "bundle_label",
+          "label": "Bundle label"
+        },
+        {
+          "type": "text",
+          "id": "bundle_name",
+          "label": "Bundle name"
+        },
+        {
+          "type": "text",
+          "id": "bundle_note",
+          "label": "Bundle note"
+        },
+        {
+          "type": "text",
+          "id": "sanskrit",
+          "label": "Sanskrit label"
+        },
+        {
+          "type": "text",
+          "id": "ritual_name",
+          "label": "Ritual name"
+        },
+        {
+          "type": "url",
+          "id": "ritual_link",
+          "label": "Ritual Link"
+        },
+        {
+          "type": "text",
+          "id": "meaning",
+          "label": "Meaning"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Choose collection"
+        },
+        {
+          "type": "url",
+          "id": "collection_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "pdt_desc_1",
+          "label": "Product description 1"
+        },
+        {
+          "type": "text",
+          "id": "pdt_desc_2",
+          "label": "Product description 2"
+        },
+        {
+          "type": "text",
+          "id": "pdt_desc_3",
+          "label": "Product description 3"
+        },
+        {
+          "type": "text",
+          "id": "review",
+          "label": "Static review"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Ritual"
+    }
+  ]
+}
+{% endschema %}

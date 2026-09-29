@@ -1,0 +1,56 @@
+<div class="pdp-faq" id="pdp-faq-section" itemscope="" itemtype="https://schema.org/FAQPage">
+    <div class="pdp-faq-label">{{ section.settings.caption }}</div>
+    <div class="pdp-faq-title">{{ section.settings.heading }}</div>
+    {% for block in section.blocks %}
+        <div class="pdp-faq-item" itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="pdp-faq-q" onclick="toggleFaq(this)" itemprop="name">
+            {{ block.settings.question }}
+            <span class="pdp-faq-icon">+</span>
+        </div>
+        <div class="pdp-faq-a" itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div class="pdp-faq-a-inner" itemprop="text">{{ block.settings.answer }}</div>
+        </div>
+        </div>
+    {% endfor %}
+  </div>
+
+  {% schema %}
+  {
+    "name": "Custom faq",
+    "settings": [
+    {
+    "type": "text",
+    "id": "caption",
+    "label": "Caption"
+    },
+    {
+    "type": "textarea",
+    "id": "heading",
+    "label": "Heading"
+    }    
+    ],
+    "blocks": [
+      {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+        "type": "text",
+        "id": "question",
+        "label": "Question"
+        },
+        {
+        "type": "textarea",
+        "id": "answer",
+        "label": "Answer"
+        }
+      ]
+    },
+    ],
+    "presets": [
+    {
+      "name": "Custom faq",
+    }
+  ]
+  }
+{% endschema %}

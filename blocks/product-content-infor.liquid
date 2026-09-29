@@ -1,0 +1,73 @@
+{% if block.settings.title %}
+    <div class="product-information">
+        <h2 class="product-title">{{ block.settings.title }}</h2>
+    </div>
+{% endif %}
+
+{% if block.settings.description  %}
+  <div class="card-ct-description">
+    {{ block.settings.description }}
+  </div>
+{% endif %}
+
+<style>
+  .card-ct-description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 0 15px;
+    min-height: 39px;
+  }
+    .product-information h2.product-title {
+        font-size: 18px;
+        margin:5px 15px 5px;
+        color: var(--heading-color);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    @media all and (max-width:768px){
+      .product-information h2.product-title {
+        font-size: 16px;
+      }
+    }
+
+    @media all and (max-width:575px){
+      .product-information h2.product-title {
+        font-size: 14px;
+        margin: 0 5px;
+        line-height: normal;
+        -webkit-line-clamp: 2;
+        min-height: 38px;
+      }
+      .card-ct-description{
+        padding:0 5px;
+      }
+    }
+</style>
+{% schema %}
+{
+  "name": "Product Info",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Main Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Info"
+    }
+  ]
+}
+{% endschema %}

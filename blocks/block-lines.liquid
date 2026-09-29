@@ -1,0 +1,31 @@
+
+
+<div class="block-lnsets">
+    <h5 class="block-lnsets-title">{{ block.settings.title }}</h5>
+    <div class="block-lnsets-content">{{ block.settings.content }}</div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "title Content Lines",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "title Content Lines"
+    }
+  ]
+}
+{% endschema %}

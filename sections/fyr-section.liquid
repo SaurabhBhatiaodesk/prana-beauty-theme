@@ -1,0 +1,487 @@
+<section class="fyr-section" id="findYourRitual">
+  <div class="section">
+
+    <!-- TWO COLUMN LAYOUT -->
+    <div class="fyr-grid">
+      
+      <!-- LEFT COLUMN: HEADER CONTENT -->
+      <div class="fyr-left">
+        {% if section.settings.caption != blank %}
+            <div class="inner-header">
+                <p class="prana-subheading">{{ section.settings.caption }}</p>
+                <div class="fv-cap-line"></div>
+            </div>
+        {% endif %}
+        {% if section.settings.title != blank %}
+          <h2 class="sec-h2 reveal d1">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.titled != blank %}
+          <h2 class="sec-h2 reveal highlight">{{ section.settings.titled }}</h2>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <p class="fyr-sub reveal d2">{{ section.settings.description }}</p>
+        {% endif %}
+
+        <!-- BUTTONS -->
+        <div class="fyr-hero-btns">
+          {% if section.settings.btn_primary_txt != blank %}
+            <a href="{{ section.settings.btn_primary_link }}" class="btn btn-gold fyr-hero-btn-primary">
+              {{ section.settings.btn_primary_txt }}
+            </a>
+          {% endif %}
+          {% if section.settings.btn_secondary_txt != blank %}
+            <a href="{{ section.settings.btn_secondary_link }}" class="btn btn-outline fyr-hero-btn-secondary">
+              {{ section.settings.btn_secondary_txt }}
+            </a>
+          {% endif %}
+        </div>
+
+        <!-- TRUST BAR -->
+        {% if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank %}
+          <div class="fyr-trust-bar">
+            {% if section.settings.trust_1 != blank %}
+              <span class="fyr-trust-item">
+                <span class="fyr-trust-dot">•</span>{{ section.settings.trust_1 }}
+              </span>
+            {% endif %}
+            {% if section.settings.trust_2 != blank %}
+              <span class="fyr-trust-item">
+                <span class="fyr-trust-dot">•</span>{{ section.settings.trust_2 }}
+              </span>
+            {% endif %}
+            {% if section.settings.trust_3 != blank %}
+              <span class="fyr-trust-item">
+                <span class="fyr-trust-dot">•</span>{{ section.settings.trust_3 }}
+              </span>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- RIGHT COLUMN: SCAN VISUAL CARD -->
+      <div class="fyr-right">
+        <div class="fyr-scan-card">
+          <div class="scan-vis fyr-vis">
+            <div class="sfc">
+              <!-- Sunburst rings -->
+              <div class="sr4"></div>
+              <div class="sr sr1"></div>
+              <div class="sr sr2"></div>
+              <div class="sr sr3"></div>
+              <div class="scan-sweep"></div>
+              <!-- Dots -->
+              <div class="ldot" style="top:27%;left:30%"></div>
+              <div class="ldot" style="top:27%;right:26%;animation-delay:.7s"></div>
+              <div class="ldot" style="top:47%;left:50%;transform:translateX(-50%);animation-delay:1.4s"></div>
+              <div class="ldot" style="top:63%;left:36%;animation-delay:.35s"></div>
+              <div class="ldot" style="top:63%;right:32%;animation-delay:1.1s"></div>
+              <!-- Left chips -->
+              <div class="dchips l">
+                <div class="dc">{{ section.settings.chip_1 | default: 'Hydration' }}</div>
+                <div class="dc">{{ section.settings.chip_2 | default: 'Pigmentation' }}</div>
+                <div class="dc">{{ section.settings.chip_3 | default: 'Texture' }}</div>
+              </div>
+              <!-- Right chips -->
+              <div class="dchips r">
+                <div class="dc">{{ section.settings.chip_4 | default: 'Elasticity' }}</div>
+                <div class="dc">{{ section.settings.chip_5 | default: 'Radiance' }}</div>
+                <div class="dc">{{ section.settings.chip_6 | default: 'Barrier' }}</div>
+              </div>
+              <!-- Face silhouette -->
+              <div class="face-sil"></div>
+            </div>
+          </div>
+          {% if section.settings.scan_quote != blank %}
+            <div class="fyr-scan-quote">{{ section.settings.scan_quote }}</div>
+          {% endif %}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+
+/* ── SECTION ── */
+.fyr-section {
+  background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+  padding: 52px 0 60px;
+}
+.fyr-left .inner-header {
+    font-family: var(--U);
+    font-size: 14px;
+    color: var(--ink3);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+/* ── TWO COLUMN GRID ── */
+.fyr-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+}
+.fyr-left {
+  flex: 1;
+  min-width: 280px;
+}
+.fyr-right {
+  flex: 1;
+  min-width: 320px;
+}
+
+/* ── HEADER (LEFT) ── */
+.fyr-left {
+  text-align: left;
+}
+
+
+
+/* Heading — matches .sec-h2 */
+.fyr-section .sec-h2 {
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--ink3);
+    line-height: 1.1;
+    margin: 0;
+}
+.fyr-section h2.sec-h2.reveal.highlight {
+    color: var(--heading-color);
+    margin-top: 8px;
+}
+.fyr-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ink3, #6b5645);
+    line-height: 24px;
+    margin: 9px 0 22px;
+    max-width: 520px;
+}
+.fyr-right .fyr-scan-card .sfc {
+    position: relative;
+    width: 310px;
+    height: 310px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* ── BUTTONS ── */
+.fyr-hero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.fyr-hero-btn-primary {
+    background: var(--gold);
+    color: #F2E4D3;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 7px 24px;
+    letter-spacing: 0.06em;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    transition: background 0.2s;
+    text-transform: capitalize;
+}
+.fyr-hero-btn-primary:hover { 
+    background: var(--heading-color); 
+}
+.fyr-hero-btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    padding: 7px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    display: inline-flex;
+    align-items: center;
+    transition: background 0.2s;
+    text-transform: capitalize;
+}
+.fyr-hero-btn-secondary:hover { 
+    background: var(--gold); 
+    color:white;
+}
+
+/* ── TRUST BAR ── */
+.fyr-trust-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 11px;
+    border: 1px solid var(--heading-color);
+    border-radius: 6px;
+    padding: 12px 20px;
+    background: #E3C39F;
+    width: fit-content;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+}
+.fyr-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--heading-color, #2c1f18);
+    letter-spacing: 0.02em;
+}
+.fyr-trust-item:last-child { border-right: none; padding-right: 0; }
+.fyr-trust-dot {
+  color: var(--gold, #A8681A);
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ── SCAN CARD (RIGHT) ── */
+.fyr-scan-card {
+    background: #F3E4CD;
+    border: 1px solid var(--heading-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+}
+.fyr-vis {
+  padding: 48px 40px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+
+.fyr-scan-quote {
+    border-top: 1px solid var(--gold);
+    padding: 18px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink3, #6b5645);
+    line-height: 1.7;
+}
+
+
+
+@media only screen and (max-width: 1199px) {
+    .fyr-section .fyr-sub {
+        font-size: 15px;
+        max-width: 490px;
+        margin: 10px 0 15px 0;
+        line-height: 1.5;
+    }
+}
+
+@media (min-width: 1024px) {
+  .fyr-vis {
+    min-height: 380px;
+  }
+  .fyr-section .fyr-sub {
+    font-size: 15px;
+    max-width: 490px;
+    margin: 10px 0 15px 0;
+    line-height: 1.5;
+    }
+}
+
+
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .fyr-grid {
+    flex-direction: column;
+    gap: 28px;
+  }
+    .fyr-section .sec-h2{
+        font-size: 28px;    
+    }
+  .fyr-left {
+    width: 100%;
+  }
+  .fyr-right {
+    width: 100%;
+  }
+  .fyr-section {
+    padding: 32px 0 44px;
+  }
+  .fyr-trust-bar {
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 12px;
+  }
+  .fyr-trust-item {
+    font-size: 12px;
+    padding: 0 10px;
+  }
+  .fyr-hero-btns {
+    gap: 8px;
+  }
+    .fyr-hero-btn-primary,
+    .fyr-hero-btn-secondary {
+        font-size: 12px;
+        padding: 10px 16px;
+    }
+    .fyr-scan-card {
+        max-width: 100%;
+    }
+    .fyr-vis {
+        padding: 32px 16px 24px;
+        min-height: 240px;
+    }
+    .fyr-scan-quote {
+        font-size: 13px;
+        padding: 14px 18px;
+        line-height: 18px;
+    }
+}
+
+@media all and (max-width:575px){
+    .fyr-section .fyr-sub{
+        padding: 0;
+    }
+}
+
+
+
+</style>
+
+{% schema %}
+{
+  "name": "Benefits Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Eyebrow Caption",
+      "default": "The Benefits · What The Skin Receives"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Results The Skin Already."
+    },
+    {
+      "type": "text",
+      "id": "titled",
+      "label": "Sub heading",
+      "default": "Knew How To Make."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Subtext",
+      "default": "Every PRANA formula does one thing: it returns the skin to the function it was always meant to perform. Not a transformation. A remembering. Below — the actives, the rituals, the timeline, and the truth of what to expect."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_txt",
+      "label": "Primary Button Text",
+      "default": "Shop The Range"
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_txt",
+      "label": "Secondary Button Text",
+      "default": "Find My Sutra"
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Trust Bar"
+    },
+    {
+      "type": "text",
+      "id": "trust_1",
+      "label": "Trust Item 1",
+      "default": "Six Products"
+    },
+    {
+      "type": "text",
+      "id": "trust_2",
+      "label": "Trust Item 2",
+      "default": "Seven Sutras"
+    },
+    {
+      "type": "text",
+      "id": "trust_3",
+      "label": "Trust Item 3",
+      "default": "Zero Synthetics"
+    },
+    {
+      "type": "header",
+      "content": "Skin Scan Visual"
+    },
+    {
+      "type": "text",
+      "id": "chip_1",
+      "label": "Chip 1",
+      "default": "Hydration"
+    },
+    {
+      "type": "text",
+      "id": "chip_2",
+      "label": "Chip 2",
+      "default": "Pigmentation"
+    },
+    {
+      "type": "text",
+      "id": "chip_3",
+      "label": "Chip 3",
+      "default": "Texture"
+    },
+    {
+      "type": "text",
+      "id": "chip_4",
+      "label": "Chip 4",
+      "default": "Elasticity"
+    },
+    {
+      "type": "text",
+      "id": "chip_5",
+      "label": "Chip 5",
+      "default": "Radiance"
+    },
+    {
+      "type": "text",
+      "id": "chip_6",
+      "label": "Chip 6",
+      "default": "Barrier"
+    },
+    {
+      "type": "textarea",
+      "id": "scan_quote",
+      "label": "Bottom Quote",
+      "default": "The skin does not need a new formula. It needs the formula that has been waiting for it for five thousand years."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Hero"
+    }
+  ]
+}
+{% endschema %}

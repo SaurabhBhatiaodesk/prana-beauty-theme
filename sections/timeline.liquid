@@ -1,0 +1,487 @@
+{% comment %}
+  The Timeline Section — "What To Expect. Honestly."
+  Mobile: 2-col grid | Desktop: 2-col wider layout
+{% endcomment %}
+
+<style>
+/* ── SECTION ── */
+.dev-timeline {
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+}
+
+/* ── HEADER ── */
+.dev-timeline .timeline-header {
+  margin-bottom: 28px;
+}
+.dev-timeline .timeline-eyebrow {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--ink3, #6b5645);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom:13px;
+}
+.dev-timeline .timeline-eyebrow::after {
+    content: '';
+    display: block;
+    height:0.5px;
+    width: 80px;
+    background: var(--gold);
+    opacity: 1;
+}
+.dev-timeline .timeline-heading {
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--ink3);
+    line-height: 1.1;
+    margin: 0 0 10px;
+}
+.dev-timeline h2.timeline-heading.highlight{
+    color: var(--heading-color);
+}
+.dev-timeline .timeline-subtext {
+    font-weight: 300;
+    line-height:normal;
+    margin: 0;
+    font-size: 16px;
+    color: var(--ink3);
+    font-family: 'Ponomar';
+}
+.dev-timeline .timeline-subtext a,
+.dev-timeline .timeline-subtext-link {
+  color: var(--gold, #A8681A);
+  text-decoration: none;
+}
+.dev-timeline .timeline-subtext a:hover { text-decoration: underline; }
+
+/* ── DARK GRID WRAPPER ── */
+.dev-timeline .timeline-grid-wrap {
+  background: linear-gradient(90deg, #813850 0%, #461324 100%);
+  padding:50px 0;
+  margin-top: 0;
+}
+
+/* ── GRID ── */
+.dev-timeline .timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* ── CARD ── */
+.dev-timeline .timeline-card {
+    background: #461324;
+    border: 1px solid #E3C39F;
+    border-radius: 10px;
+    padding: 20px 14px 18px;
+    text-align: center;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 2px 2px 2px 0px #00000026;
+}
+.dev-timeline .timeline-card:hover {
+  background:#461324;
+}
+
+/* Badge circle */
+.dev-timeline .timeline-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background:white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 6px;
+}
+.dev-timeline .timeline-badge-text {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+}
+
+/* Card label */
+.dev-timeline .timeline-card-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gold);
+    text-transform: capitalize;
+    margin: 16px 0 13px;
+}
+
+/* Card title */
+.dev-timeline .timeline-card-title {
+  font-size: 22px;
+  font-weight: 400;
+  color:#E3C39F;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+/* Divider */
+.dev-timeline .timeline-card-divider {
+    height: 0.5px;
+    background: var(--gold);
+    margin: 0 0 10px;
+}
+
+/* Card body */
+.dev-timeline .timeline-card-body {
+  font-size: 14px;
+  font-weight: 300;
+  line-height:normal;
+  color:white;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── BOTTOM NOTE ── */
+.dev-timeline .timeline-note-wrap {
+  margin-top:40px;
+  width:fit-content;
+}
+.dev-timeline .timeline-note {
+    background: #F3E4CD;
+    border: 1px solid var(--heading-color);
+    border-radius: 8px;
+    padding: 16px 18px;
+    border-left: 2px solid var(--gold);
+}
+.dev-timeline .timeline-note-label {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--heading-color);
+    margin: 0 0 3px;
+    text-transform: capitalize;
+}
+.dev-timeline .timeline-note-body {
+  font-size: 12.5px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink3, #6b5645);
+  margin: 0;
+}
+
+/* ── DESKTOP ── */
+@media (min-width: 640px) {
+  .dev-timeline .timeline-card { padding: 24px 20px 22px; }
+  .dev-timeline .timeline-badge { width: 56px; height: 56px; }
+  .dev-timeline .timeline-badge-text { font-size: 20px; }
+  .dev-timeline .timeline-card-title { font-size: 24px; }
+  .dev-timeline .timeline-card-body { font-size: 13px; }
+  .dev-timeline .timeline-note { padding: 20px 24px; }
+  .dev-timeline .timeline-note-body { font-size: 13.5px; }
+}
+
+@media (min-width: 1024px) {
+    .dev-timeline { padding-top: {{ section.settings.padding_top }}px; }
+    .dev-timeline .timeline-card { padding: 28px 24px 24px; }
+    .dev-timeline .timeline-badge { width: 64px; height: 64px; }
+    .dev-timeline .timeline-badge-text { font-size: 22px; }
+    .dev-timeline .timeline-card-body { font-size: 14px; }
+    .dev-timeline .timeline-note { padding: 22px 28px; }
+    .dev-timeline .timeline-note-body {
+        font-size: 16px;
+        max-width: 800px;
+        line-height: normal;
+    }
+}
+
+@media all and (max-width:768px){
+    .dev-timeline .timeline-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .dev-timeline .timeline-heading{
+        font-size:28px;
+        margin: 0 0 8px;
+    }
+}
+
+/* Mobile padding override */
+@media (max-width: 639px) {
+  .dev-timeline {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+}
+
+/* Mobile grid 2 columns */
+@media (max-width: 640px) {
+    .dev-timeline .timeline-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+    }
+    .dev-timeline .timeline-card-label {
+        text-transform: capitalize;
+        margin: 10px 0 9px;
+    }
+    .dev-timeline .timeline-card-title {
+        font-size: 19px;
+        line-height:normal;
+    }
+    .dev-timeline .timeline-subtext {
+        line-height: 19px;
+        font-size: 15px;
+    }
+    .dev-timeline .timeline-eyebrow::after{
+        width: 70px;
+    }
+}
+</style>
+
+<section class="dev-timeline" id="timeline-section">
+  <div class="section">
+
+    <!-- HEADER -->
+    <div class="timeline-header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="timeline-eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      
+      {% if section.settings.heading != blank %}
+        <h2 class="timeline-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.highlight != blank %}
+        <h2 class="timeline-heading highlight">{{ section.settings.highlight }}</h2>
+      {% endif %}
+      
+      {% if section.settings.subtext != blank %}
+        <div class="timeline-subtext">
+          {{ section.settings.subtext }}
+          {% if section.settings.subtext_link_label != blank and section.settings.subtext_link_url != blank %}
+            <a href="{{ section.settings.subtext_link_url }}" class="timeline-subtext-link">{{ section.settings.subtext_link_label }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+
+  <!-- DARK GRID WRAPPER -->
+  <div class="timeline-grid-wrap">
+    <div class="section">
+      <div class="timeline-grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'timeline_card' %}
+            <div class="timeline-card" {{ block.shopify_attributes }}>
+              {% if block.settings.badge != blank %}
+                <div class="timeline-badge">
+                  <span class="timeline-badge-text">{{ block.settings.badge }}</span>
+                </div>
+              {% endif %}
+              
+              {% if block.settings.label != blank %}
+                <p class="timeline-card-label">{{ block.settings.label }}</p>
+              {% endif %}
+              
+              {% if block.settings.title != blank %}
+                <h3 class="timeline-card-title">{{ block.settings.title }}</h3>
+              {% endif %}
+              
+              <div class="timeline-card-divider"></div>
+              
+              {% if block.settings.description != blank %}
+                <p class="timeline-card-body">{{ block.settings.description }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- BOTTOM NOTE -->
+  <div class="section">
+    {% for block in section.blocks %}
+        {% if block.type == 'note' %}
+          <div class="timeline-note-wrap" {{ block.shopify_attributes }}>
+            <div class="timeline-note">
+              {% if block.settings.note_label != blank %}
+                <h3 class="timeline-note-label">{{ block.settings.note_label }}</h3>
+              {% endif %}
+              
+              {% if block.settings.note_text != blank %}
+                <p class="timeline-note-body">{{ block.settings.note_text }}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "The Timeline",
+  "tag": "section",
+  "class": "timeline-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "The Timeline"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What To Expect."
+    },
+    {
+      "type": "text",
+      "id": "highlight",
+      "label": "Highlight",
+      "default": "Honestly."
+    },
+    
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Botanical actives do not deliver in 72 hours. They do not need to."
+    },
+    {
+      "type": "text",
+      "id": "subtext_link_label",
+      "label": "Subtext Highlighted Link Label",
+      "default": "What they deliver, they keep."
+    },
+    {
+      "type": "url",
+      "id": "subtext_link_url",
+      "label": "Subtext Link URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop Top Padding",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop Bottom Padding",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Top Padding",
+      "min": 0, "max": 120, "step": 2, "unit": "px", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Bottom Padding",
+      "min": 0, "max": 120, "step": 2, "unit": "px", "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_card",
+      "name": "Timeline Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge (e.g. 7d, 28d, 8w)",
+          "default": "7d"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Sub-label (e.g. Week One)",
+          "default": "Week One"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "The First Quiet"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Surface tightness goes. The skin sits differently after washing. No drama, no shedding — the barrier acknowledges the formula."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "name": "Bottom Note",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "note_label",
+          "label": "Note Label",
+          "default": "Pigment Shift"
+        },
+        {
+          "type": "textarea",
+          "id": "note_text",
+          "label": "Note Text",
+          "default": "If a formula promises a transformation in 72 hours, it is not delivering an active — it is delivering an effect. PRANA delivers actives, on the timeline the skin actually metabolises them. The benefits compound."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "The Timeline",
+      "blocks": [
+        {
+          "type": "timeline_card",
+          "settings": {
+            "badge": "7d",
+            "label": "Week One",
+            "title": "The First Quiet",
+            "description": "Surface tightness goes. The skin sits differently after washing. No drama, no shedding — the barrier acknowledges the formula."
+          }
+        },
+        {
+          "type": "timeline_card",
+          "settings": {
+            "badge": "28d",
+            "label": "Cell Turnover",
+            "title": "Light, Returning",
+            "description": "Visible glow. Dullness lifts. Bakuchiol completes its first turnover cycle. The face reads brighter at the end of the day, not just the beginning."
+          }
+        },
+        {
+          "type": "timeline_card",
+          "settings": {
+            "badge": "8w",
+            "label": "Pigment Shift",
+            "title": "Tone, Evening",
+            "description": "Saffron's tyrosinase regulation becomes visible. Dark spots fade. Post-inflammatory marks lift. A face that needs less concealer."
+          }
+        },
+        {
+          "type": "timeline_card",
+          "settings": {
+            "badge": "12w",
+            "label": "Structural",
+            "title": "Firm, Resilient",
+            "description": "Collagen synthesis from bakuchiol enters its established phase. Fine lines soften. Skin holds expression and returns. The full benefit, sustained."
+          }
+        },
+        {
+          "type": "note",
+          "settings": {
+            "note_label": "Pigment Shift",
+            "note_text": "If a formula promises a transformation in 72 hours, it is not delivering an active — it is delivering an effect. PRANA delivers actives, on the timeline the skin actually metabolises them. The benefits compound."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

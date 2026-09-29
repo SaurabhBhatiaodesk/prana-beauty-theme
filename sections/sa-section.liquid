@@ -1,0 +1,486 @@
+{% comment %}
+  The Six Actives Section — Desktop + Mobile Responsive
+  Mobile: 2-col grid on dark maroon bg
+  Desktop: 3-col grid, wider layout
+  WITH BLANK CONDITIONS
+{% endcomment %}
+
+<style>
+.sa-section {
+  background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: 0;
+}
+
+/* ── HEADER ── */
+.sa-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 29px;
+}
+.sa-eyebrow {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink3, #6b5645);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.sa-eyebrow::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+}
+.sa-heading {
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--ink3);
+  margin: 0;
+  line-height: 1.1;
+}
+h2.sa-heading.highlight {
+  color: var(--heading-color);
+  margin-top: 6px;
+}
+
+.sa-card .contented {
+    padding-bottom: 12px;
+}
+.sa-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink3);
+    text-decoration: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid currentColor;
+    transition: opacity 0.2s;
+    align-self: center;
+}
+.sa-link:hover { color: var(--heading-color); }
+
+/* ── DARK GRID WRAPPER ── */
+.sa-grid-wrap {
+  background: linear-gradient(90deg, #813850 0%, #461324 100%);
+  padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+}
+
+/* ── GRID ── */
+.sa-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* ── CARD ── */
+.sa-card {
+    background:#461324;
+    border-radius: 10px;
+    padding: 18px 16px 16px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 2px 2px 2px 0px #00000026;
+    border: 0.5px solid #D3B18A;
+}
+.sa-card:hover{
+  background:#461324;
+}
+
+/* Sanskrit pill — top right */
+.sa-sanskrit-badge {
+    position: absolute;
+    top: 0;
+    right: 12px;
+    background: #D3B18A;
+    color: var(--heading-color, #2c1f18);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 3px 10px;
+    border-radius: 0 0 6px 6px;
+}
+/* Hexagon number */
+.sa-hex-wrap {
+  margin-bottom: 15px;
+}
+.sa-hex {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sa-hex svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+.sa-hex svg path {
+  fill: #fff;
+}
+.sa-hex-num {
+  position: relative;
+  z-index: 1;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+}
+
+/* Name */
+.sa-name {
+    font-size: 22px;
+    font-weight: 400;
+    color: #E3C39F;
+    margin: 0;
+    line-height: 1.15;
+}
+/* Benefit */
+.sa-benefit {
+    font-size: 18.5px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: white;
+    margin: 0 0 14px;
+}
+/* Divider */
+.sa-card-divider {
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 10px;
+}
+/* Scientific */
+.sa-scientific {
+    font-size: 16px;
+    font-weight: 300;
+    color: #E3C39F;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+/* ── DESKTOP ── */
+@media (min-width: 768px) {
+  .sa-grid { grid-template-columns: repeat(3, 1fr); }
+  .sa-card { padding: 22px 20px 18px; }
+  .sa-hex { width: 52px; height: 58px; }
+  .sa-hex-num { font-size: 24px; }
+}
+
+@media (min-width: 1024px) {
+  .sa-card { padding: 26px 24px 22px; }
+}
+
+@media all and (max-width: 768px) {
+    .sa-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .sa-heading {
+      font-size: 28px;
+    } 
+}
+
+/* Mobile padding override */
+@media (max-width: 767px) {
+  .sa-section {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+  }
+  .sa-heading {
+    font-size: 23px;
+  }
+  .sa-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .sa-grid-wrap {
+    padding: {{ section.settings.padding_top_mobile }}px 0 {{ section.settings.padding_bottom_mobile }}px;
+  }
+  .sa-sanskrit-badge {
+    position: absolute;
+    top: 13px;
+    right: 0;
+    border-radius: 6px 0px 0 6px;
+  }
+  .sa-hex {
+    width: 40px;
+    height: 40px;
+  }
+  .sa-header {
+    flex-wrap: nowrap;
+  }
+  .sa-link {
+    align-self: end;
+    font-size: 13px;
+  }
+  .sa-link svg {
+    width: 10px;
+    height: 10px;
+    max-width: 10px;
+  }
+  .sa-benefit {
+    font-size: 15px;
+    margin: 0 0 11px;
+  }
+  .sa-name {
+    font-size: 19px;
+  }
+  .sa-scientific {
+    font-size: 14px;
+    text-align: center;
+  }
+  .sa-card {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 11px;
+  }
+  .divider-and-ct {
+    width: 100%;
+  }
+}
+</style>
+
+<section class="sa-section">
+  <div class="section">
+    <div class="sa-header">
+      <div class="sa-title-wrap">
+        {% if section.settings.eyebrow != blank %}
+          <div class="sa-eyebrow">{{ section.settings.eyebrow }}</div>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="sa-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.subheading != blank %}
+          <h2 class="sa-heading highlight">{{ section.settings.subheading }}</h2>
+        {% endif %}
+      </div>
+      {% if section.settings.link_text != blank and section.settings.link_url != blank %}
+        <a href="{{ section.settings.link_url }}" class="sa-link">
+          {{ section.settings.link_text }} 
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.35355 4.03544C9.54882 3.84018 9.54882 3.52359 9.35355 3.32833L6.17157 0.146351C5.97631 -0.0489108 5.65973 -0.0489108 5.46447 0.146351C5.2692 0.341614 5.2692 0.658196 5.46447 0.853458L8.29289 3.68189L5.46447 6.51031C5.2692 6.70557 5.2692 7.02216 5.46447 7.21742C5.65973 7.41268 5.97631 7.41268 6.17157 7.21742L9.35355 4.03544ZM0 3.68188L-4.37114e-08 4.18188L9 4.18189L9 3.68189L9 3.18189L4.37114e-08 3.18188L0 3.68188Z" fill="currentColor"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="sa-grid-wrap">
+    <div class="section">
+      <div class="sa-grid">
+        {% for block in section.blocks %}
+          <div class="sa-card" {{ block.shopify_attributes }}>
+
+            {% if block.settings.sanskrit != blank %}
+              <span class="sa-sanskrit-badge">{{ block.settings.sanskrit }}</span>
+            {% endif %}
+
+            <div class="sa-hex-wrap">
+              <div class="sa-hex">
+                <svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 1L43 13V37L22 49L1 37V13Z" stroke="rgba(227,195,159,0.5)" stroke-width="1.2" fill="rgba(255,255,255,0.07)"/>
+                </svg>
+                <span class="sa-hex-num">{{ forloop.index }}</span>
+              </div>
+            </div>
+            
+            <div class="contented">
+              {% if block.settings.name != blank %}
+                <h3 class="sa-name">{{ block.settings.name }}</h3>
+              {% endif %}
+              {% if block.settings.benefit != blank %}
+                <p class="sa-benefit">{{ block.settings.benefit }}</p>
+              {% endif %}
+            </div>
+
+            {% if block.settings.scientific != blank or block.settings.origin != blank %}
+              <div class="divider-and-ct">
+                <div class="sa-card-divider"></div>
+                <p class="sa-scientific">
+                  {% if block.settings.scientific != blank %}{{ block.settings.scientific }}{% endif %}
+                  {% if block.settings.scientific != blank and block.settings.origin != blank %} · {% endif %}
+                  {% if block.settings.origin != blank %}{{ block.settings.origin }}{% endif %}
+                </p>
+              </div>
+            {% endif %}
+            
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The Six Actives",
+  "tag": "section",
+  "class": "six-actives-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "The Six Actives"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Every formula begins with One of these six."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "One of these six."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "VIEW ALL"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop Top Padding",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop Bottom Padding",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Top Padding",
+      "min": 0, "max": 120, "step": 2, "unit": "px", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Bottom Padding",
+      "min": 0, "max": 120, "step": 2, "unit": "px", "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "active",
+      "name": "Active Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Active Name",
+          "default": "Saffron"
+        },
+        {
+          "type": "text",
+          "id": "sanskrit",
+          "label": "Sanskrit / Hindi Name (pill badge)",
+          "default": "Kesar"
+        },
+        {
+          "type": "text",
+          "id": "scientific",
+          "label": "Scientific Name",
+          "default": "Crocus sativus"
+        },
+        {
+          "type": "text",
+          "id": "origin",
+          "label": "Origin / Grade",
+          "default": "Kashmir"
+        },
+        {
+          "type": "textarea",
+          "id": "benefit",
+          "label": "Benefit Description",
+          "default": "Tone, glow, melanin regulation."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "The Six Actives",
+      "blocks": [
+        {
+          "type": "active",
+          "settings": {
+            "name": "Saffron",
+            "sanskrit": "Kesar",
+            "scientific": "Crocus sativus",
+            "origin": "Kashmir",
+            "benefit": "Tone, glow, melanin regulation."
+          }
+        },
+        {
+          "type": "active",
+          "settings": {
+            "name": "Bakuchiol",
+            "sanskrit": "Bakuchi",
+            "scientific": "Psoralea corylifolia",
+            "origin": "≥99%",
+            "benefit": "Firmness, retinol-equivalent action."
+          }
+        },
+        {
+          "type": "active",
+          "settings": {
+            "name": "Turmeric",
+            "sanskrit": "Haridra",
+            "scientific": "Curcuma longa",
+            "origin": "Lakadong",
+            "benefit": "Anti-inflammatory, clarifying."
+          }
+        },
+        {
+          "type": "active",
+          "settings": {
+            "name": "Rose Damascena",
+            "sanskrit": "Gulab",
+            "scientific": "Rosa damascena",
+            "origin": "Pushkar",
+            "benefit": "Hydration, pH balance, calm."
+          }
+        },
+        {
+          "type": "active",
+          "settings": {
+            "name": "Sandalwood",
+            "sanskrit": "Chandana",
+            "scientific": "Santalum album",
+            "origin": "Mysuru",
+            "benefit": "Reactive skin, redness, quiet."
+          }
+        },
+        {
+          "type": "active",
+          "settings": {
+            "name": "Sesame Oil",
+            "sanskrit": "Til",
+            "scientific": "Sesamum indicum",
+            "origin": "cold-pressed",
+            "benefit": "Lipid barrier, carrier intelligence."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

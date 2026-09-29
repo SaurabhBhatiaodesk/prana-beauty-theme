@@ -1,0 +1,165 @@
+
+<section class="bundle-section">
+  <div class="page-width">
+    <div class="bundle-header">
+      <h2>{{ section.settings.main_heading }}</h2>
+      <p>{{ section.settings.subtext }}</p>
+    </div>
+
+    <div class="bundle-grid">
+      {% for block in section.blocks %}
+        <div class="bundle-card">
+          <div class="bundle-badge">{{ block.settings.badge_text }}</div>
+          <div class="bundle-save">{{ block.settings.save_text }}</div>
+
+          <div class="bundle-image">
+            {% if block.settings.bundle_image %}
+              <a href="{{ block.settings.button_link }}"> 
+                <img src="{{ block.settings.bundle_image | img_url: '600x' }}" alt="{{ block.settings.title }}" width="" height="">
+              </a>
+            {% endif %}
+          </div>
+
+          <h3 class="bundle-title">{{ block.settings.title }}</h3>
+          <p class="bundle-description">{{ block.settings.description }}</p>
+
+          <a href="{{ block.settings.button_link }}" class="bundle-button">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.23199 0.00195312V1.40186H10.983L0.00195312 12.2251L1.01898 13.2251L12 2.40186V10.041H13.4189V0L3.23199 0.00195312Z" fill="black"/>
+            <path d="M0 12.2241L10.982 1.40088H3.23102V0.000976562H13.418V10.042H12V2.40186L1.01801 13.2251L0 12.2241Z" fill="#97371E"/>
+            </svg>
+            {{ block.settings.button_label }}</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.bundle-section { padding: 60px 15px; }
+.bundle-header { text-align: center; margin-bottom: 50px; }
+.bundle-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.bundle-card { background: #FAF8F4; padding: 20px; text-align: center; position: relative; }
+.bundle-badge { position: absolute;
+    top: 18px;
+    left: 20px;
+    background: transparent;
+    color: #443531;
+    padding: 8px 15px;
+    font-size: 12px;
+    border-radius: 25px;
+    font-weight: 600;
+    border: 1px solid #443531;
+    letter-spacing: -1px;
+    line-height: 12px; }
+.bundle-save {     position: absolute;
+    top: 18px;
+    right: 30px;
+    background: #F4E3B8;
+    line-height: 18px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Josefin Sans';
+    color: #4E403C;
+    border: 1px solid #4E403c;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 6px; }
+.bundle-image img { width: 100%; height: auto; max-height: 480px;object-fit: contain;}
+.bundle-section h3 {
+    color: #4E403C;
+    font-size: 24px;
+    font-family: 'Josefin Sans';
+    margin: 0 0 15px 0;
+}
+.bundle-button { 
+    display: flex;
+    margin-top: 20px;
+    padding: 20px 20px;
+    background: #F4F1EA;
+    color: #1B1716;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: center;
+    line-height: 14px;
+ }
+ .bundle-button svg {
+    margin-right: 8px;
+} 
+p.bundle-description {
+    height: 54px;
+    overflow: hidden;
+}
+
+
+
+@media screen and (max-width: 767px) {
+.bundle-grid {
+    grid-template-columns: repeat(1, 1fr);
+}
+.bundle-section {
+    padding: 10px 10px;
+}
+#shopify-section-template--25824165036322__bundle_cards_layout_Qi7tD6 p {
+    font-size: 18px!important;
+}
+#shopify-section-template--25824165036322__bundle_cards_layout_Qi7tD6 p br{
+  display: none;
+}
+.bundle-header {
+    margin-bottom: 30px;
+}
+.bundle-section h3 {
+    font-size: 22px;
+}
+p.bundle-description {
+  margin-bottom: 20px!important;
+}
+}
+</style>
+
+{% schema %}
+{
+  "name": "Bundle Cards Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "BUY MORE, SAVE MORE"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Sub Heading Text",
+      "default": "Each bundle was designed..."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle Card",
+      "settings": [
+        { "type": "text", "id": "badge_text", "label": "Badge Text", "default": "NIGHTTIME RITUAL" },
+        { "type": "text", "id": "save_text", "label": "Save Text", "default": "SAVE $16.0" },
+        { "type": "image_picker", "id": "bundle_image", "label": "Bundle Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Anti-Aging Heroes" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Bundle description goes here." },
+        { "type": "text", "id": "button_label", "label": "Button Label", "default": "Explore the Bundle" },
+        { "type": "url", "id": "button_link", "label": "Button Link" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    { "name": "Bundle Cards Layout" }
+  ]
+}
+{% endschema %}

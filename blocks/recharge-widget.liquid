@@ -1,0 +1,337 @@
+{%- assign subscription_current_variant = product.selected_or_first_available_variant -%}
+
+<div class="subscription-widget">
+
+  <!-- One Time Purchase -->
+  <label class="subscription-option subscription-option--onetime">
+
+    <input
+      type="radio"
+      class="subscription-option__input"
+      name="purchase_type"
+      value="onetime"
+      checked
+    >
+
+    <div class="subscription-option__row">
+
+      <div class="subscription-option__left">
+
+        <span class="subscription-option__radio"></span>
+
+        <span class="subscription-option__title">
+          One-time
+        </span>
+
+      </div>
+
+      <div class="subscription-option__right">
+
+        <span class="subscription-option__price">
+          {{ subscription_current_variant.price | money | split: '.' | first }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </label>
+
+  <!-- Subscription Plans -->
+  {% for subscription_group in product.selling_plan_groups %}
+    {% for subscription_plan in subscription_group.selling_plans %}
+
+      {% assign subscription_adjustment = subscription_plan.price_adjustments.first %}
+
+      <label class="subscription-option subscription-option--plan">
+
+        <input
+          type="radio"
+          class="subscription-option__input"
+          name="purchase_type"
+          value="subscription"
+          data-selling-plan="{{ subscription_plan.id }}"
+          data-discount-value="{{ subscription_adjustment.value }}"
+          data-discount-type="{{ subscription_adjustment.value_type }}"
+        >
+
+        <div class="subscription-option__row">
+
+          <div class="subscription-option__left">
+
+            <span class="subscription-option__radio"></span>
+
+            <span class="subscription-option__title">
+              Subscribe & save
+            </span>
+
+            <span class="subscription-option__dropdown-icon">
+              <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                <path
+                  d="M2 2L8 8L14 2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+
+          </div>
+
+          <div class="subscription-option__right">
+
+            {% if subscription_adjustment.value_type == 'percentage' %}
+
+              {% assign subscription_factor = 100 | minus: subscription_adjustment.value %}
+              {% assign subscription_discounted_price = subscription_current_variant.price | times: subscription_factor | divided_by: 100 %}
+
+              <span class="subscription-option__old-price">
+                {{ subscription_current_variant.price | money | split: '.' | first }}
+              </span>
+
+              <span class="subscription-option__new-price">
+                {{ subscription_discounted_price | money | split: '.' | first }}
+              </span>
+
+            {% else %}
+
+              <span class="subscription-option__new-price">
+                {{ subscription_current_variant.price | money | split: '.' | first }}
+              </span>
+
+            {% endif %}
+
+          </div>
+
+        </div>
+
+        <div class="subscription-option__details">
+
+          <div class="subscription-option__plan-name">
+            {{ subscription_plan.name }}
+          </div>
+
+        </div>
+
+      </label>
+
+    {% endfor %}
+  {% endfor %}
+
+</div>
+
+<style>
+.subscription-widget{
+    margin-top:0px;
+}
+
+.subscription-option{
+    display:block;
+    background:#F4EBDD;
+    border:1px solid #9B7C73;
+    border-radius:8px;
+    padding:16px 18px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:all .3s ease;
+}
+
+.subscription-option__input{
+    display:none;
+}
+
+.subscription-option__radio{
+    width:24px;
+    height:24px;
+    min-width:24px;
+    border:1px solid var(--heading-color);
+    border-radius:50%;
+    position:relative;
+}
+.subscription-option__radio:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--heading-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    transition: .25s ease;
+}
+
+.subscription-option:has(.subscription-option__input:checked) .subscription-option__radio:after{
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.subscription-option:has(.subscription-option__input:checked){
+    border-color:var(--heading-color);
+}
+
+.subscription-option__row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.subscription-option__left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.subscription-option__title {
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: var(--ink3);
+}
+.subscription-option__dropdown-icon{
+    display:flex;
+    align-items:center;
+    color:#3A2A27;
+}
+
+.subscription-option__right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.subscription-option__price {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink3);
+}
+
+.subscription-option__old-price{
+    font-size:16px;
+    color:#7C706D;
+    text-decoration:line-through;
+}
+.subscription-option__new-price {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.subscription-option__details{
+    display:none;
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid rgba(90,39,56,.15);
+}
+
+.subscription-option:has(.subscription-option__input:checked) .subscription-option__details{
+    display:block;
+}
+
+.subscription-option__plan-name{
+    font-size:14px;
+    color:#6F5A54;
+}
+
+.subscription-option--onetime .subscription-option__dropdown-icon{
+    display:none;
+}
+
+@media(max-width:749px){
+
+    .subscription-option{
+        padding:14px;
+    }
+
+    .subscription-option__title{
+        font-size:16px;
+    }
+
+    .subscription-option__price,
+    .subscription-option__new-price{
+        font-size:16px;
+    }
+
+    .subscription-option__old-price{
+        font-size:14px;
+    }
+
+    .subscription-option__row{
+        gap:10px;
+    }
+
+    .subscription-option__radio{
+        width:20px;
+        height:20px;
+        min-width:20px;
+    }
+
+    .subscription-option__radio:after{
+        width:10px;
+        height:10px;
+    }
+}
+
+</style>
+
+<script>
+document.addEventListener('change', function(e){
+
+    if(!e.target.matches('[name="purchase_type"]')) return;
+
+    const sellingPlanInput = document.getElementById('selling-plan-input');
+    const subscriptionName = document.getElementById('subscription-name');
+    const subscriptionDiscount = document.getElementById('subscription-discount');
+
+    if(e.target.value === 'subscription'){
+
+        const selectedSubscriptionOption = e.target.closest('.subscription-option--plan');
+        const sellingPlanId = e.target.dataset.sellingPlan || '';
+        const discountValue = e.target.dataset.discountValue || '';
+        const discountType = e.target.dataset.discountType || '';
+
+        sellingPlanInput.value = sellingPlanId;
+
+        const planName =
+          selectedSubscriptionOption
+          ?.querySelector('.subscription-option__plan-name')
+          ?.innerText
+          ?.trim() || '';
+
+        if(subscriptionName){
+          subscriptionName.value = planName;
+        }
+
+        if(subscriptionDiscount){
+          if(discountType === 'percentage' && discountValue){
+            subscriptionDiscount.value = discountValue + '%';
+          }else{
+            subscriptionDiscount.value = discountValue;
+          }
+        }
+
+    }else{
+
+        sellingPlanInput.value = '';
+
+        if(subscriptionName){
+          subscriptionName.value = '';
+        }
+
+        if(subscriptionDiscount){
+          subscriptionDiscount.value = '';
+        }
+    }
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Recharge Subscription",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Recharge Subscription"
+    }
+  ]
+}
+{% endschema %}

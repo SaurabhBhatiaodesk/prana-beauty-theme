@@ -1,0 +1,121 @@
+<section class="hp-ba pdp-ba-section" id="pdp-ba-section" style="padding:72px 80px">
+    <div style="text-align:center;margin-bottom:48px">
+      <p class="rule rule-c reveal vis">{{ section.settings.caption }}</p>
+      <h2 class="sec-h2 reveal d1 vis">{{ section.settings.heading }}</h2>
+      <p class="sec-sub reveal d2 vis" style="max-width:520px;margin:14px auto 0">{{ section.settings.sub_text }}</p>
+    </div>
+    <div class="hp-ba-grid" style="grid-template-columns:1fr 1fr;max-width:960px;margin:0 auto 1px">
+      <div class="hp-ba-card reveal vis">
+        <div class="hp-ba-imgs">
+          {% if section.settings.main_image != blank %}
+            <img width="" height="" loading="lazy" src="{{ section.settings.main_image | img_url : "original" }}">
+          {% endif %}
+          
+        </div>
+        <div class="hp-ba-info">
+          <div class="hp-ba-name" id="pdp-ba-person">{{ section.settings.person }}</div>
+          <div class="hp-ba-quote" id="pdp-ba-quote">{{ section.settings.quote }}</div>
+        </div>
+      </div>
+      <div class="hp-ba-card reveal d1 vis" style="display:flex;flex-direction:column;justify-content:center;padding:48px 44px;background:var(--canvas)">
+        <div style="font-family:var(--U);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:32px">{{ section.settings.data_text }}</div>
+        <div style="margin-bottom:32px">
+          <div class="pdp-ba-n1" id="pdp-ba-n1" style="font-family:var(--D);font-size:clamp(40px,5vw,64px);font-weight:300;color:var(--ink);line-height:1;margin-bottom:8px">{{ section.settings.result1 }}</div>
+          <div id="pdp-ba-l1" style="font-family:var(--S);font-size:16px;color:var(--ink3);line-height:1.65">{{ section.settings.result_text1 }}</div>
+        </div>
+        <div style="height:1px;background:var(--gold-line);margin-bottom:32px"></div>
+        <div>
+          <div id="pdp-ba-n2" style="font-family:var(--D);font-size:clamp(40px,5vw,64px);font-weight:300;color:var(--ink);line-height:1;margin-bottom:8px">{{ section.settings.result2 }}</div>
+          <div id="pdp-ba-l2" style="font-family:var(--S);font-size:16px;color:var(--ink3);line-height:1.65">{{ section.settings.result_text2 }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% schema %}
+  {
+    "name": "Before after",
+    "settings": [
+    {
+    "type": "text",
+    "id": "caption",
+    "label": "Heading"
+    },
+    {
+    "type": "textarea",
+    "id": "heading",
+    "label": "Heading"
+    },
+    {
+    "type": "text",
+    "id": "sub_text",
+    "label": "Sub Text"
+    },
+    {
+    "type": "image_picker",
+    "id": "main_image",
+    "label": "Before After image"
+    },
+    {
+    "type": "image_picker",
+    "id": "before_image",
+    "label": "Before image"
+    },
+    {
+    "type": "text",
+    "id": "before_text",
+    "label": "Before Text"
+    },
+    {
+    "type": "image_picker",
+    "id": "after_image",
+    "label": "After image"
+    },
+    {
+    "type": "text",
+    "id": "after_text",
+    "label": "After Text"
+    },
+    {
+    "type": "text",
+    "id": "person",
+    "label": "Person"
+    },
+    {
+    "type": "textarea",
+    "id": "quote",
+    "label": "Quote"
+    },
+    {
+    "type": "text",
+    "id": "data_text",
+    "label": "Text"
+    },
+    {
+    "type": "text",
+    "id": "result1",
+    "label": "Result"
+    },
+    {
+    "type": "text",
+    "id": "result_text1",
+    "label": "Text"
+    },
+    {
+    "type": "text",
+    "id": "result2",
+    "label": "Result"
+    },
+    {
+    "type": "text",
+    "id": "result_text2",
+    "label": "Text"
+    }
+    ],
+    "presets": [
+    {
+      "name": "Before after",
+    }
+  ]
+  }
+{% endschema %}

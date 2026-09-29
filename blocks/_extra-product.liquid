@@ -1,0 +1,205 @@
+<style>
+.product-toggler {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+.product-toggler input {
+  display: none;
+}
+
+.toggler-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff; /* white track */
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+/* Circle */
+.toggler-slider::before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #e8d5a7; /* beige circle */
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+/* ON state */
+input:checked + .toggler-slider {
+  background-color: #e8d5a7; /* beige background */
+}
+
+input:checked + .toggler-slider::before {
+  background-color: #ffffff; /* white circle */
+  transform: translateX(24px);
+}
+
+.extra-prodct{
+    background: #F2EEE4;
+    display: flex;
+    border-radius: 6px;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 22px;
+}
+.extra-prodcut-img{
+    width: 62px;
+    height: 61px;
+}
+.extra-product-title{
+    font-family: Cormorant Garamond;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 1.1;
+    letter-spacing: 0.01rem;
+    color: #97371E;
+    text-transform: capitalize;
+    margin: 0 0 13px;
+}
+.price-sources{
+    display: flex;
+    border-radius: 6px;
+    align-items: center;
+    width:max-content;
+}
+.prd-real-price,
+.prd-compare-price{
+    font-family: Josefin Sans;
+    font-weight: 500;
+    font-size: 15.23px;
+    line-height: 1;
+    letter-spacing: -o.02rem;
+    color:#4E403C;
+}
+.prd-compare-price{
+    opacity:.5
+}
+.product-checked-for-purchase{
+    margin: 0 0 0 auto;
+}
+@media(max-width:768px){
+    .extra-prodct {
+        padding: 8px 8px;
+    }
+    .extra-product-title{
+        font-size: 22px;
+        margin: 0 0 8px;
+    }
+    .prd-real-price, .prd-compare-price {
+        font-size: 14px;
+    }
+    .extra-prodcut-img {
+        width: 59px;
+        height: 59px;
+    }
+}
+</style>
+
+
+
+<a href="{{ block.settings.select_product }}" class="extra-prodct" data-extra-product-id = "{{ block.settings.select_product.selected_or_first_available_variant.id }}">
+    <div class="extra-prodcut-img">
+        <img src="{{ block.settings.select_product.featured_image | img_url: '600x' }}">
+    </div>
+    <div class="product-content">
+        <h3 class="extra-product-title">{{ block.settings.select_product.title }}</h3>
+        <div class="price-sources">
+            <span class="prd-real-price">{{ block.settings.select_product.selected_or_first_available_variant.price | money }}</span>
+            {% if block.settings.select_product.selected_or_first_available_variant.compare_at_price > block.settings.select_product.selected_or_first_available_variant.price %}
+                <span class="prd-compare-price">{{ block.settings.select_product.selected_or_first_available_variant.compare_at_price | money }}</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="product-checked-for-purchase">
+        <label class="product-toggler">
+            <input type="checkbox" class="extra-product-checkbox">
+            <span class="toggler-slider"></span>
+        </label>
+    </div>
+</a>
+
+<script type="module">
+  import { CartAddEvent, CartUpdateEvent } from '@theme/events';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainAddBtn = document.querySelector('.add-to-cart-text--added');
+    if (!mainAddBtn) return;
+
+    mainAddBtn.addEventListener('click', () => {
+
+      setTimeout(async () => {
+        const extraItems = [];
+
+        document.querySelectorAll(".extra-product-checkbox:checked").forEach(check => {
+          const parent = check.closest(".extra-prodct");
+          if (parent) {
+            extraItems.push({
+              id: parent.dataset.extraProductId,
+              quantity: 1
+            });
+          }
+        });
+
+        if (extraItems.length === 0) return;
+
+        try {
+          await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items: extraItems }),
+          });
+
+          document.dispatchEvent(new CartAddEvent({ source: 'extra-product' }));
+
+          const res = await fetch('/cart.js');
+          const cart = await res.json();
+
+          const updateEvent = new CartUpdateEvent(cart, 'manual-refresh', {
+            itemCount: cart.item_count,
+            source: 'instant-refresh',
+          });
+          document.dispatchEvent(updateEvent);
+
+          const drawer = document.querySelector('cart-drawer-component');
+          if (drawer) drawer.open();
+
+        } catch (err) {
+          console.error("Error adding extra product:", err);
+        }
+      }, 300);
+    });
+
+  });
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Extra Product",
+  "settings": [
+    {
+        "type": "product",
+        "id": "select_product",
+        "label": "Select Product"
+    }
+  ],
+  
+  "presets": [
+    {
+      "name": "Extra Product"
+    }
+  ]
+}
+{% endschema %}

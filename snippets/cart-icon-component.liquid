@@ -1,0 +1,38 @@
+{%- doc -%}
+  Renders the cart icon, which displays the number of items in the cart via a bubble.
+{%- enddoc -%}
+<cart-icon
+  class="
+    header-actions__cart-icon
+    {% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}
+  "
+  data-testid="cart-icon"
+>
+  <span
+    class="svg-wrapper"
+    aria-hidden="true"
+  >
+  
+  <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M6.59998 1.75001L3.84998 5.25001V17.5C3.84998 17.9641 4.04313 18.4093 4.38695 18.7374C4.73076 19.0656 5.19708 19.25 5.68331 19.25H18.5166C19.0029 19.25 19.4692 19.0656 19.813 18.7374C20.1568 18.4093 20.35 17.9641 20.35 17.5V5.25001L17.6 1.75001H6.59998Z" stroke="#A8681A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M3.84998 5.25H20.35" stroke="#A8681A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M15.7666 8.75001C15.7666 9.67827 15.3803 10.5685 14.6927 11.2249C14.005 11.8813 13.0724 12.25 12.1 12.25C11.1275 12.25 10.1949 11.8813 9.50723 11.2249C8.8196 10.5685 8.43329 9.67827 8.43329 8.75001" stroke="#A8681A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  </span>
+
+  {% render 'cart-bubble', limit: 100, live_region: true, test_id: test_id %}
+</cart-icon>
+
+{% stylesheet %}
+  cart-icon:has(.cart-bubble__text-count:empty) {
+    --cart-bubble-size: 10px;
+    --cart-bubble-top: 9px;
+    --cart-bubble-right: 9px;
+
+    .svg-wrapper {
+      --cart-bubble-top: 4px;
+      --cart-bubble-right: 4px;
+    }
+  }
+{% endstylesheet %}

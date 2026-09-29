@@ -1,0 +1,147 @@
+<style>
+.top-conversion-point {
+    max-width: 100%;
+}
+.top-conversion-point h3 {
+    font-size: 23px;
+    line-height: 1.2;
+    color: var(--heading-color);
+    margin: 0;
+    font-weight: 500;
+}
+.top-conversion-point p.top-description {
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--ink3);
+    margin: 5px 0;
+} 
+.conversion-table {
+    border: 1px solid var(--heading-color);
+    border-radius: 13px;
+    overflow: hidden;
+    background: #F3E4CD;
+    padding: 0 20px;
+    margin-top:22px;
+}
+.conversion-item {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding: 22px 0px;
+    border-bottom: 1px solid var(--ink3);
+}
+.conversion-item:last-child {
+    border-bottom: 0;
+}
+.conversion-item h4 {
+    min-width: 55px;
+    margin: 0;
+    font-size: 23px;
+    line-height: 1;
+    font-weight:400;
+    color: var(--heading-color);
+}
+.conversion-item p,
+.conversion-item .conversion-description {
+    margin: 0;
+    font-size:18px;
+    line-height: 1.4;
+    color: var(--ink3);
+}
+.conversion-description p {
+    margin: 0;
+}
+
+@media screen and (max-width: 749px) {
+    .top-conversion-point h3 {
+        font-size:19px;
+    }
+    .top-conversion-point p.top-description {
+        font-size: 15px;
+        margin-bottom: 22px;
+    }
+    .conversion-table {
+        border-radius: 10px;
+    }
+    .conversion-item {
+        gap: 16px;
+        padding: 18px 0px;
+    }
+    .conversion-item h4 {
+        min-width: 55px;
+        font-size: 19px;
+    }
+    .conversion-item p,
+    .conversion-item .conversion-description {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+}
+</style>
+
+{% assign top_conversion_points = product.metafields.custom.top_conversion_points.value %}
+{% if top_conversion_points != blank %}
+
+<div class="top-conversion-point">
+
+    {% if block.settings.title != blank %}
+        <h3>{{ block.settings.title }}</h3>
+    {% endif %}
+
+    {% if block.settings.description != blank %}
+        <p class="top-description">
+            {{ block.settings.description }}
+        </p>
+    {% endif %}
+
+    <div class="conversion-table">
+        {% for point in top_conversion_points %}
+            {% assign conversion_title = point.top_conversion_points_title.value | default: point.top_conversion_points_title %}
+            {% if conversion_title != blank or point.top_conversion_points_description != blank %}
+                <div class="conversion-item">
+
+                    {% if conversion_title != blank %}
+                        <h4>{{ conversion_title }}</h4>
+                    {% endif %}
+
+                    {% if  point.top_conversion_points_description != blank %}
+                        <div class="conversion-description">
+                            {{  point.top_conversion_points_description | metafield_tag }}
+                        </div>
+                    {% endif %}
+
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Top Conversion Point",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "Priya K., 38 · Combination Skin"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "My hyperpigmentation faded more in 12 weeks than two years of prescriptions. People started asking if I had something done."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Top Conversion Point"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,715 @@
+<section id="productsSection" class="pscroll-section">
+
+  <div class="section">
+    <div class="pscroll-hd sec-hd reveal">
+
+      <div class="pscroll-dev">
+        <p class="rule rule-c">{{ section.settings.caption }}</p>
+        <h2 class="sec-h2">{{ section.settings.title }}</h2>
+        <h2 class="sec-h2 highlight">{{ section.settings.title2 }}</h2>
+
+        <p style="font-family:var(--S);font-size:17px;line-height:1.85;color:var(--ink3);max-width:520px;margin:14px auto 0">
+          {{ section.settings.description }}
+        </p>
+      </div>
+
+      {% if section.settings.view_all_text != blank %}
+        <div class="mobile_viewall">
+          <a href="{{ section.settings.view_all_link }}" class="btn btn-ghost">
+            {{ section.settings.view_all_text }}
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.35355 4.03556C9.54882 3.8403 9.54882 3.52372 9.35355 3.32845L6.17157 0.146473C5.97631 -0.0487887 5.65973 -0.0487888 5.46447 0.146473C5.2692 0.341736 5.2692 0.658318 5.46447 0.85358L8.29289 3.68201L5.46447 6.51043C5.2692 6.7057 5.2692 7.02228 5.46447 7.21754C5.65973 7.4128 5.97631 7.4128 6.17157 7.21754L9.35355 4.03556ZM0 3.68201L-4.37114e-08 4.18201L9 4.18201L9 3.68201L9 3.18201L4.37114e-08 3.18201L0 3.68201Z" fill="black"/>
+            </svg>
+          </a>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- SWIPER -->
+  <div class="section">
+    <div class="swiper productSwiper">
+
+      <div class="swiper-wrapper">
+
+        {% assign products = section.settings.collection.products %}
+
+        {% for product in products %}
+          {% assign first_variant = product.selected_or_first_available_variant %}
+          {% assign plan = first_variant.selling_plan_allocations.first %}
+
+          <div class="swiper-slide">
+
+            <div class="pcaro-card">
+
+              <div class="pcaro-accent"
+                style="background:linear-gradient(90deg,{{ product.metafields.custom.gradient_color }},{{ product.metafields.custom.gradient_color }});">
+              </div>
+
+              <div class="pcaro-img">
+                {% if product.metafields.reviews.rating_count %}
+                  <div class="count-review-pdp">
+                    <svg width="70" height="14" viewBox="0 0 70 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M62.8333 1L64.6358 4.65167L68.6667 5.24083L65.75 8.08167L66.4383 12.095L62.8333 10.1992L59.2283 12.095L59.9167 8.08167L57 5.24083L61.0308 4.65167L62.8333 1Z" stroke="black" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M62.8333 1L64.6358 4.65167L68.6667 5.24083L65.75 8.08167L66.4383 12.095L62.8333 10.1992L59.2283 12.095L59.9167 8.08167L57 5.24083L61.0308 4.65167L62.8333 1Z" fill="#561A24"/>
+                      <rect x="63" y="1" width="6" height="12" fill="#F3E4CD"/>
+                      <path d="M62.8333 1L64.6358 4.65167L68.6667 5.24083L65.75 8.08167L66.4383 12.095L62.8333 10.1992L59.2283 12.095L59.9167 8.08167L57 5.24083L61.0308 4.65167L62.8333 1Z" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M48.8333 1L50.6358 4.65167L54.6667 5.24083L51.75 8.08167L52.4383 12.095L48.8333 10.1992L45.2283 12.095L45.9167 8.08167L43 5.24083L47.0308 4.65167L48.8333 1Z" stroke="black" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M48.8333 1L50.6358 4.65167L54.6667 5.24083L51.75 8.08167L52.4383 12.095L48.8333 10.1992L45.2283 12.095L45.9167 8.08167L43 5.24083L47.0308 4.65167L48.8333 1Z" fill="#561A24"/>
+                      <path d="M34.8333 1L36.6358 4.65167L40.6667 5.24083L37.75 8.08167L38.4383 12.095L34.8333 10.1992L31.2283 12.095L31.9167 8.08167L29 5.24083L33.0308 4.65167L34.8333 1Z" stroke="black" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M34.8333 1L36.6358 4.65167L40.6667 5.24083L37.75 8.08167L38.4383 12.095L34.8333 10.1992L31.2283 12.095L31.9167 8.08167L29 5.24083L33.0308 4.65167L34.8333 1Z" fill="#561A24"/>
+                      <path d="M20.8333 1L22.6358 4.65167L26.6667 5.24083L23.75 8.08167L24.4383 12.095L20.8333 10.1992L17.2283 12.095L17.9167 8.08167L15 5.24083L19.0308 4.65167L20.8333 1Z" stroke="black" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M20.8333 1L22.6358 4.65167L26.6667 5.24083L23.75 8.08167L24.4383 12.095L20.8333 10.1992L17.2283 12.095L17.9167 8.08167L15 5.24083L19.0308 4.65167L20.8333 1Z" fill="#561A24"/>
+                      <path d="M6.83333 1L8.63583 4.65167L12.6667 5.24083L9.75 8.08167L10.4383 12.095L6.83333 10.1992L3.22833 12.095L3.91667 8.08167L1 5.24083L5.03083 4.65167L6.83333 1Z" stroke="black" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M6.83333 1L8.63583 4.65167L12.6667 5.24083L9.75 8.08167L10.4383 12.095L6.83333 10.1992L3.22833 12.095L3.91667 8.08167L1 5.24083L5.03083 4.65167L6.83333 1Z" fill="#561A24"/>
+                    </svg>
+                    {{ product.metafields.reviews.rating_count }}
+                  </div>
+                {% else %}
+                  <div class="count-review-pdp">
+                    No Review (0)
+                  </div>
+                {% endif %}
+
+                <img
+                  loading="lazy"
+                  width=""
+                  height=""
+                  src="{{ product.featured_image | img_url: 'original' }}"
+                  alt="{{ product.title }}"
+                >
+
+                <a href="{{ product.url }}" class="pcaro-veil">
+                  <span class="pcaro-cta">
+                    {{ section.settings.view_product_text }}
+                  </span>
+                </a>
+              </div>
+
+              <div class="pcaro-body">
+                <div class="pcaro-line">{{ product.metafields.custom.sub_heading }}</div>
+                <a class="pcaro-name" href="{{ product.handle }}">{{ product.title }}</a>
+                <div class="pcaro-tag">{{ product.metafields.custom.expert }}</div>
+
+                <div class="pcaro-foot">
+                  <div>
+                    <div class="pcaro-price">{{ product.price | money | split: '.' | first }}</div>
+
+                    {% if plan != blank and plan.price != blank %}
+                      <div class="pcaro-sub">
+                        or {{ plan.price | money | split: '.' | first }}/mo · subscribe & save
+                      </div>
+                    {% endif %}
+                  </div>
+
+                  <div pid="{{ product.selected_or_first_available_variant.id }}" class="pcaro-atc">
+                    {{ section.settings.buy_now_text }}
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+      <!-- arrows -->
+      {% comment %}
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      {% endcomment %}
+
+      <!-- pagination -->
+      <div class="swiper-pagination"></div>
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+/* products grid */
+.pscroll-section {
+  background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+  padding: 60px 0 0 0;
+}
+
+.pscroll-outer {
+  position: relative;
+}
+
+.pscroll-track {
+  display: flex;
+  gap: 1px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0;
+  background: var(--canvas-dk);
+}
+
+.pscroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+.psc {
+  flex: 0 0 calc(33.333% - 1px);
+  background: var(--canvas);
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: background .28s;
+  position: relative;
+}
+
+.psc:hover {
+  background: var(--canvas2);
+}
+
+.psc-accent {
+  height: 2px;
+  width: 100%;
+}
+
+.psc-img {
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  background: var(--canvas);
+}
+
+.psc-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 32px 28px;
+  transition: transform .65s ease;
+}
+
+.psc:hover .psc-img img {
+  transform: scale(1.05);
+}
+
+.psc-veil {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 18, 6, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s;
+}
+
+.psc:hover .psc-veil {
+  background: rgba(26, 18, 6, .08);
+}
+
+.psc-cta {
+  opacity: 0;
+  font-family: var(--S);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 10px 22px;
+  background: var(--canvas);
+  transition: opacity .25s, background .25s, color .25s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.psc:hover .psc-cta {
+  opacity: 1;
+}
+
+.psc-cta:hover {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+.psc-body {
+  padding: 20px 24px 28px;
+  border-top: 1px solid var(--canvas-dk);
+}
+
+.psc-line {
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.psc-name {
+  font-family: var(--D);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.psc-tag {
+  font-family: var(--S);
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--ink3);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.psc-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--canvas-dk);
+}
+
+.psc-price {
+  font-family: var(--D);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.psc-sub {
+  font-size: 12px;
+  color: var(--ink4);
+  margin-top: 2px;
+}
+
+.psc-atc {
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-family: var(--U);
+  font-weight: 300;
+  color: var(--ink4);
+  padding: 8px 16px;
+  border: 1px solid var(--canvas-dk);
+  background: none;
+  cursor: pointer;
+  transition: all .22s;
+}
+
+.psc-atc:hover {
+  background: var(--ink);
+  color: var(--canvas);
+  border-color: var(--ink);
+}
+
+/* ── PRODUCT CAROUSEL ── */
+
+.pcaro-wrap {
+  overflow: hidden;
+  background: var(--canvas-dk);
+}
+
+.pcaro-track {
+  display: flex;
+  gap: 1px;
+  transition: transform .55s cubic-bezier(.4, 0, .2, 1);
+  will-change: transform;
+}
+
+.pcaro-card {
+  min-width: 0;
+  background: var(--canvas);
+  cursor: pointer;
+  transition: background .28s;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.pcaro-accent {
+  height: 2px;
+  width: 100%;
+}
+
+.pcaro-img {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.pcaro-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 36px 28px;
+  transition: transform .65s ease;
+}
+
+.pcaro-card:hover .pcaro-img img {
+  transform: scale(1.05);
+}
+
+.pcaro-veil {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 18, 6, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s;
+}
+
+.pcaro-card:hover .pcaro-veil {
+  background: rgba(26, 18, 6, .07);
+}
+
+.pcaro-cta {
+  opacity: 0;
+  font-family: var(--S);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: white;
+  border: 1px solid var(--heading-color);
+  padding: 10px 22px;
+  background: var(--heading-color);
+  transition: opacity .25s, background .25s, color .25s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pcaro-card:hover .pcaro-cta {
+  opacity: 1;
+}
+
+.pcaro-cta:hover {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+.pcaro-body {
+  padding: 20px 24px 28px;
+  background: #E3C39F;
+  border-top: 1px solid var(--canvas-dk);
+  box-shadow: 0px -3px 4px 0px #D3B18A inset;
+}
+
+.pcaro-line {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.pcaro-name {
+  font-family: var(--D);
+  font-size: 20px;
+  font-weight: 400;
+  color: #461324;
+  line-height: 1.2;
+}
+
+.pcaro-tag {
+  font-family: var(--S);
+  font-size: 14.5px;
+  color: var(--ink3);
+  margin-bottom: 14px;
+  line-height: 1.6;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.pcaro-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.pcaro-price {
+  font-family: var(--D);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.pcaro-sub {
+  font-size: 13px;
+  color: #323232;
+  margin-top: 2px;
+}
+
+.pcaro-atc {
+  font-size: 13px;
+  text-transform: capitalize;
+  font-family: "Ponomar", sans-serif;
+  font-weight: 300;
+  color: var(--ink4);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all .22s;
+  border-radius: 4px;
+  background: #461324;
+  color: var(--canvas);
+}
+
+.pcaro-atc:hover {
+  opacity: .9;
+}
+
+/* ── FLOATING SIDE ARROWS (Tatcha style) ── */
+.pcaro-arrow {
+  position: absolute;
+  top: 200px;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background: var(--canvas);
+  border: none;
+  box-shadow: 0 2px 12px rgba(26, 18, 6, .10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .22s;
+  font-size: 16px;
+  color: var(--ink3);
+}
+
+.pcaro-arrow:hover {
+  background: var(--ink);
+  color: var(--canvas);
+  box-shadow: 0 4px 20px rgba(26, 18, 6, .18);
+}
+
+.pcaro-arrow-prev {
+  left: -20px;
+}
+
+.pcaro-arrow-next {
+  right: 16px;
+}
+
+.pcaro-arrow[data-dim="1"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pcaro-nav {
+  display: none;
+}
+
+.pcaro-rail {
+  display: none;
+}
+
+@media(max-width:900px) {
+
+  .pcaro-card {
+    flex: 0 0 calc(100% - 1px);
+  }
+
+  .pcaro-arrow-prev {
+    left: 8px;
+  }
+
+  .pcaro-arrow-next {
+    right: 8px;
+  }
+}
+
+@media all and (max-width:575px) {
+  .pcaro-atc {
+    font-size: 14px;
+    padding: 7px 10px;
+    text-align: center;
+  }
+
+  .pcaro-foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pscroll-section {
+    padding: 50px 0 0 0;
+  }
+
+  .pcaro-atc {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .pcaro-price {
+    font-size: 21px;
+  }
+
+  .pcaro-sub {
+    font-size: 14px;
+  }
+
+  .pcaro-card {
+    background: #E3C39F;
+  }
+
+  .pcaro-tag {
+    font-size: 12px;
+    margin-bottom: 0;
+    line-height: 20px;
+    -webkit-line-clamp: 2;
+    padding: 2px 0;
+  }
+
+  #productsSection .pcaro-name {
+    font-size: 19px;
+    line-height: 17px;
+  }
+}
+</style>
+
+<script>
+(function () {
+
+  function initProductSwiper() {
+
+    if (typeof Swiper === "undefined") return;
+
+    new Swiper(".productSwiper", {
+      slidesPerView: 3,
+      spaceBetween: 20,
+      loop: true,
+      speed: 600,
+
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+
+      observer: true,
+      observeParents: true,
+      observeSlideChildren: true,
+
+      preloadImages: false,
+      lazy: true,
+
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      pagination: {
+        el: ".productSwiper .swiper-pagination",
+        clickable: true,
+      },
+
+      breakpoints: {
+        0: {
+          slidesPerView: 1.2,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+      },
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProductSwiper);
+  } else {
+    initProductSwiper();
+  }
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Product Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title2",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Choose Collection"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Button Text",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    },
+    {
+      "type": "text",
+      "id": "view_product_text",
+      "label": "View Product Text",
+      "default": "View Product"
+    },
+    {
+      "type": "text",
+      "id": "buy_now_text",
+      "label": "Buy Button Text",
+      "default": "Buy Now"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Bottom Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Bottom Button Link"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Custom Product Slider"
+    }
+  ]
+}
+{% endschema %}

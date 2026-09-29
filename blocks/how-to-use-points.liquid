@@ -1,0 +1,20 @@
+
+{% for text in product.metafields.custom.how_to_use_points.value %}
+    <div class="block-lnsets">
+        <h5 class="block-lnsets-title">{{ text.title }}</h5>
+        <div class="block-lnsets-content">{{ text.content | metafield_tag }}</div>
+    </div>
+{% endfor %}
+
+
+
+{% schema %}
+{
+  "name": "How To Use Points",
+  "presets": [
+    {
+      "name": "How To Use Points"
+    }
+  ]
+}
+{% endschema %}

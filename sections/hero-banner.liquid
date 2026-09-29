@@ -1,0 +1,638 @@
+<section class="hero-banner hero-banner-{{ section.id }}">
+
+  <div class="hero-banner__overlay"></div>
+
+  <div class="section hero-banner__container">
+    <div class="hero-banner__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="hero-banner__eyebrow">
+          {{ section.settings.eyebrow }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="hero-banner__heading">
+          {{ section.settings.heading | newline_to_br }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="hero-banner__text">
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="hero-banner__button">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+</section>
+
+<style>
+.hero-banner-{{ section.id }} {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  min-height: {{ section.settings.desktop_height }}px;
+  background-color: {{ section.settings.section_background }};
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: {{ section.settings.desktop_image_position }};
+  display: flex;
+  align-items: center;
+  padding-top: {{ section.settings.desktop_spacing_top }}px;
+  padding-bottom: {{ section.settings.desktop_spacing_bottom }}px;
+
+  {% if section.settings.desktop_image != blank %}
+    background-image: url('{{ section.settings.desktop_image | image_url: width: 2600 }}');
+  {% endif %}
+
+  {% if section.settings.enable_shadow %}
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  {% else %}
+    box-shadow: none;
+  {% endif %}
+}
+
+.hero-banner-{{ section.id }} .hero-banner__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: {{ section.settings.overlay_color }};
+  opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  pointer-events: none;
+}
+
+.hero-banner-{{ section.id }} .hero-banner__container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-banner-{{ section.id }} .hero-banner__content {
+  width: 100%;
+  max-width: {{ section.settings.content_width }}px;
+}
+
+.hero-banner-{{ section.id }} .hero-banner__eyebrow {
+  font-size: {{ section.settings.eyebrow_size }}px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  margin: 0 0 13px;
+  color: {{ section.settings.eyebrow_color }};
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.hero-banner-{{ section.id }} .hero-banner__heading {
+  font-size: {{ section.settings.heading_size }}px;
+  line-height: normal;
+  font-weight:500;
+  margin: 0 0 5px 0;
+  color: {{ section.settings.heading_color }};
+  max-width: {{ section.settings.heading_width }}px;
+}
+
+.hero-banner-{{ section.id }} .hero-banner__text {
+  font-size: {{ section.settings.description_size }}px;
+  line-height: 1.45;
+  max-width: {{ section.settings.description_width }}px;
+  margin: 0 0 34px;
+  color: {{ section.settings.description_color }};
+}
+
+.hero-banner-{{ section.id }} .hero-banner__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding:10px 30px;
+  background: {{ section.settings.button_background }};
+  color: {{ section.settings.button_text_color }};
+  text-decoration: none;
+  border-radius: {{ section.settings.button_radius }}px;
+  font-size: {{ section.settings.button_font_size }}px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  transition: .3s ease;
+}
+
+.hero-banner-{{ section.id }} .hero-banner__button:hover {
+  background: {{ section.settings.button_hover_background }};
+  color: {{ section.settings.button_hover_text_color }};
+}
+
+@media(max-width: 991px) {
+  .hero-banner-{{ section.id }} {
+    min-height: {{ section.settings.tablet_height }}px;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__content {
+    max-width: 520px;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__heading {
+    font-size: {{ section.settings.tablet_heading_size }}px;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__text {
+    font-size: 20px;
+  }
+}
+
+@media(max-width: 767px) {
+  .hero-banner-{{ section.id }} {
+    min-height: {{ section.settings.mobile_height }}px;
+    align-items: flex-start;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    padding-top: {{ section.settings.mobile_spacing_top }}px;
+    padding-bottom: {{ section.settings.mobile_spacing_bottom }}px;
+
+    {% if section.settings.mobile_image != blank %}
+      background-image: url('{{ section.settings.mobile_image | image_url: width: 1200 }}');
+    {% elsif section.settings.desktop_image != blank %}
+      background-image: url('{{ section.settings.desktop_image | image_url: width: 1200 }}');
+    {% endif %}
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__container {
+    width: 100%;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__content {
+    max-width: 100%;
+    padding: {{ section.settings.mobile_content_padding_top }}px {{ section.settings.mobile_content_padding_horizontal }}px {{ section.settings.mobile_content_padding_bottom }}px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__eyebrow {
+    display: none;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__heading {
+    font-size: {{ section.settings.mobile_heading_size }}px;
+    line-height:normal;
+    max-width: 310px;
+    margin: 0 auto 8px;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__text {
+    font-size: {{ section.settings.mobile_description_size }}px;
+    line-height: 1.35;
+    max-width: 270px;
+    margin: 0 auto 12px;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__button {
+    padding: 9px 22px;
+    font-size: {{ section.settings.mobile_button_font_size }}px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "hero-banner-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_position",
+      "label": "Desktop image position",
+      "default": "center center",
+      "options": [
+        {
+          "value": "left center",
+          "label": "Left center"
+        },
+        {
+          "value": "center center",
+          "label": "Center center"
+        },
+        {
+          "value": "right center",
+          "label": "Right center"
+        },
+        {
+          "value": "center top",
+          "label": "Center top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Center bottom"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile image position",
+      "default": "center bottom",
+      "options": [
+        {
+          "value": "left center",
+          "label": "Left center"
+        },
+        {
+          "value": "center center",
+          "label": "Center center"
+        },
+        {
+          "value": "right center",
+          "label": "Right center"
+        },
+        {
+          "value": "center top",
+          "label": "Center top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Center bottom"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "ANCIENT RITUALS, RADIANT SKIN"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ayurveda.\nSix Formulas.\nSeven Days to Glow."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Clinically proven Ayurvedic skincare that transforms your skin from within."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "SHOP BEST SELLERS"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Layout"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Fallback background",
+      "default": "#f8f1e6"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop banner height",
+      "min": 400,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 620
+    },
+    {
+      "type": "range",
+      "id": "tablet_height",
+      "label": "Tablet banner height",
+      "min": 350,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "range",
+      "id": "desktop_spacing_top",
+      "label": "Desktop top spacing",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_spacing_bottom",
+      "label": "Desktop bottom spacing",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable banner shadow",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content max width",
+      "min": 350,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "heading_width",
+      "label": "Heading max width",
+      "min": 350,
+      "max": 950,
+      "step": 10,
+      "unit": "px",
+      "default": 720
+    },
+    {
+      "type": "range",
+      "id": "description_width",
+      "label": "Description max width",
+      "min": 250,
+      "max": 750,
+      "step": 10,
+      "unit": "px",
+      "default": 520
+    },
+    {
+      "type": "header",
+      "content": "Mobile Layout"
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile banner height",
+      "min": 360,
+      "max": 850,
+      "step": 10,
+      "unit": "px",
+      "default": 620
+    },
+    {
+      "type": "range",
+      "id": "mobile_spacing_top",
+      "label": "Mobile top spacing",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_spacing_bottom",
+      "label": "Mobile bottom spacing",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding_top",
+      "label": "Mobile content padding top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding_bottom",
+      "label": "Mobile content padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding_horizontal",
+      "label": "Mobile content left/right padding",
+      "min": 15,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Text Style"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#3b2417"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#3b2417"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#3b2417"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Desktop heading size",
+      "min": 36,
+      "max": 110,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "tablet_heading_size",
+      "label": "Tablet heading size",
+      "min": 32,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Desktop description size",
+      "min": 14,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "default": 23
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_size",
+      "label": "Mobile eyebrow size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile heading size",
+      "min": 22,
+      "max": 58,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_size",
+      "label": "Mobile description size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "header",
+      "content": "Button Style"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#b75f39"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#3b2417"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Desktop button font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_font_size",
+      "label": "Mobile button font size",
+      "min": 9,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

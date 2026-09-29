@@ -1,0 +1,210 @@
+<style>
+.product-shiping-plocy {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background:#E3C39F;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.product-shiping-plocy-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 25px;
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  box-shadow: 0px -3px 4px 0px #D3B18A inset;
+}
+
+.product-shiping-plocy-item:nth-child(2n) {
+  border-right: 0;
+}
+
+.product-shiping-plocy-item:nth-last-child(-n+2) {
+  border-bottom: 0;
+}
+
+.product-shiping-plocy-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.product-shiping-plocy-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.product-shiping-plocy-title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--ink3);
+}
+
+@media screen and (max-width: 749px) {
+  .product-shiping-plocy {
+      grid-template-columns: 1fr 1fr;
+      border-radius: 8px;
+      margin-top: 15px;
+  }
+
+  .product-shiping-plocy-item {
+    padding: 18px;
+  }
+
+  .product-shiping-plocy-item:nth-last-child(-n+2) {
+    border-bottom: 1px solid #c7a57b;
+  }
+
+  .product-shiping-plocy-item:last-child {
+    border-bottom: 0;
+  }
+
+  .product-shiping-plocy-title {
+    font-size:13px;
+  }
+  .product-shiping-plocy-icon {
+    width: 34px;
+    height: 34px;
+  }
+}
+</style>
+
+<div class="product-shiping-plocy">
+
+  {% if block.settings.icon1 != blank %}
+    <div class="product-shiping-plocy-item">
+      <div class="product-shiping-plocy-icon">
+        <img
+          src="{{ block.settings.icon1 | img_url: 'master' }}"
+          alt="{{ block.settings.title1 }}"
+          loading="lazy"
+          width=""
+          height=""
+        >
+      </div>
+
+      <h4 class="product-shiping-plocy-title">
+        {{ block.settings.title1 }}
+      </h4>
+    </div>
+  {% endif %}
+
+  {% if block.settings.icon2 != blank %}
+    <div class="product-shiping-plocy-item">
+      <div class="product-shiping-plocy-icon">
+        <img
+          src="{{ block.settings.icon2 | img_url: 'master' }}"
+          alt="{{ block.settings.title2 }}"
+          loading="lazy"
+          width=""
+          height=""
+        >
+      </div>
+
+      <h4 class="product-shiping-plocy-title">
+        {{ block.settings.title2 }}
+      </h4>
+    </div>
+  {% endif %}
+
+  {% if block.settings.icon3 != blank %}
+    <div class="product-shiping-plocy-item">
+      <div class="product-shiping-plocy-icon">
+        <img
+          src="{{ block.settings.icon3 | img_url: 'master' }}"
+          alt="{{ block.settings.title3 }}"
+          loading="lazy"
+          width=""
+          height=""
+        >
+      </div>
+
+      <h4 class="product-shiping-plocy-title">
+        {{ block.settings.title3 }}
+      </h4>
+    </div>
+  {% endif %}
+
+  {% if block.settings.icon4 != blank %}
+    <div class="product-shiping-plocy-item">
+      <div class="product-shiping-plocy-icon">
+        <img
+          src="{{ block.settings.icon4 | img_url: 'master' }}"
+          alt="{{ block.settings.title4 }}"
+          loading="lazy"
+          width=""
+          height=""
+        >
+      </div>
+
+      <h4 class="product-shiping-plocy-title">
+        {{ block.settings.title4 }}
+      </h4>
+    </div>
+  {% endif %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Product Shipping Policy",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon1",
+      "label": "Icon 1"
+    },
+    {
+      "type": "text",
+      "id": "title1",
+      "label": "Title 1"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "icon2",
+      "label": "Icon 2"
+    },
+    {
+      "type": "text",
+      "id": "title2",
+      "label": "Title 2"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "icon3",
+      "label": "Icon 3"
+    },
+    {
+      "type": "text",
+      "id": "title3",
+      "label": "Title 3"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "icon4",
+      "label": "Icon 4"
+    },
+    {
+      "type": "text",
+      "id": "title4",
+      "label": "Title 4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Shipping Policy"
+    }
+  ]
+}
+{% endschema %}

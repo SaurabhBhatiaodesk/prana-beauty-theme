@@ -1,0 +1,189 @@
+<!-- STICKY TABS -->
+  <div class="shop-tabs" id="shopTabs">
+    {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'tabs' %}
+            <a href="{{ block.settings.link }}" id="{{ block.settings.id }}" class="shop-tab {% if forloop.first %}on{% endif %}" >{{ block.settings.title }}</a>
+        {% endcase %}
+    {% endfor %}
+  </div>
+ 
+
+  <!-- ── SHOP ALL ── -->
+  <div class="ritual-main">
+    {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'tab-details' %}
+              
+            <section class="ritual-section">
+              {% assign bundle = block.settings.bundle.products %}
+                {% assign total_price = 0 %}
+                {% comment %} {% assign total_compare_price = 0 %} {% endcomment %}
+
+                {% for product in bundle %}
+                {% comment %} calculate price {% endcomment %}
+                {% assign variant = product.selected_or_first_available_variant %}
+                {% assign total_price = total_price | plus: variant.price %}
+
+                {% comment %} {% if variant.compare_at_price > variant.price %}
+                    {% assign total_compare_price = total_compare_price | plus: variant.compare_at_price %}
+                {% else %}
+                    {% assign total_compare_price = total_compare_price | plus: variant.price %}
+                {% endif %}
+                {% assign total_saving = total_compare_price | minus: total_price %} {% endcomment %}
+
+                <input type="hidden" class="variant-id" value="{{ product.selected_or_first_available_variant.id }}">
+                {% endfor %}
+
+                {% assign discount = block.settings.bundle_discount %}
+                {% assign discount_amount = total_price | times: discount | divided_by: 100 %}
+                {% assign final_price = total_price | minus: discount_amount %}
+
+                <div class="ritual-header vis reveal">
+                <div>
+                    <div class="ritual-badge">{{ block.settings.caption }}</div>
+                    <h2 class="ritual-title">{{ block.settings.title }}</h2>
+                    <p class="ritual-sutra-meaning">{{ block.settings.meaning }}</p>
+                    <p class="ritual-sutra-body">{{ block.settings.body_text }}</p>
+                    <p class="ritual-desc">{{ block.settings.desc }}</p>
+                </div>
+                {% if bundle != blank %}
+                  <div class="ritual-total">Save together<span>{{ total_price | money }}</span></div>
+                {%endif %}
+                </div>
+
+                {% if bundle != blank %}
+                    <div class="ritual-bundle reveal">
+                    <div class="rb-icon">✦</div>
+                    <div class="rb-text">
+                        <div class="rb-label">Bundle &amp; Save</div>
+                        <div class="rb-name">{{ block.settings.bundle_title }}</div>
+                        <div class="rb-saving">{{ block.settings.bundle_save_text }} · Save <span class="save-price">{{ discount_amount | money }}</span></div>
+                    </div>
+                    <div class="rb-price">{{ final_price | money }}</div>
+                    <div class="rb-atc">Add Bundle to Cart</div>
+                    </div>
+                {% endif %}
+
+                {% if block.settings.show_products == true %}
+                    <div class="ritual-steps reveal vis">
+                        {% assign products = block.settings.collection.products %}
+                        {% for product in products %}
+                        <div class="rstep reveal" style="cursor:pointer">
+                            <div class="rn" style="opacity:.3">◈</div>
+                            <div style="flex:1">
+                             <img loading="lazy" src="{{ product.featured_image | img_url: "original" }}" alt="">
+                            <div class="rname"><a href="{{ product.url }}">{{ product.title }}</a></div>
+                            <div class="rdesc">{{ product.metafields.custom.expert }}</div>
+                            <div class="rprice-row">
+                                <span class="rprice">{{ product.price | money }}</span>
+                                <a href="{{ product.url }}" class="r-view" data-pid="saffron-serum">View →</a>
+                                <div pid="{{ product.selected_or_first_available_variant.id }}" class="r-atc custom-atc" data-pid="saffron-serum">+ Add</div>
+                            </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+
+            </section>
+        {% endcase %}
+    {% endfor %}
+  </div>
+
+  {% schema %}
+  {
+    "name": "shop tabs",
+    "settings": [
+    ],
+    "blocks": [
+      {
+      "type": "tabs",
+      "name": "tabs",
+      "settings": [
+        {
+        "type": "text",
+        "id": "id",
+        "label": "Id"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "tab-details",
+      "name": "tab details",
+      "settings": [
+        {
+        "type": "text",
+        "id": "caption",
+        "label": "Caption"
+        },
+        {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "textarea",
+        "id": "meaning",
+        "label": "Meaning"
+        },
+        {
+        "type": "textarea",
+        "id": "body_text",
+        "label": "Body text"
+        },
+        {
+        "type": "textarea",
+        "id": "desc",
+        "label": "Content"
+        },
+        {
+        "type": "checkbox",
+        "id": "show_products",
+        "label": "Show All Products"
+        },
+        {
+        "type": "collection",
+        "id": "collection",
+        "label": "All products"
+        },
+        {
+        "type": "collection",
+        "id": "bundle",
+        "label": "Choose Bundle"
+        },
+        {
+        "type": "number",
+        "id": "bundle_discount",
+        "label": "Bundle discount %"
+        },
+        {
+        "type": "text",
+        "id": "bundle_title",
+        "label": "Bundle Title"
+        },
+        {
+        "type": "text",
+        "id": "bundle_save_text",
+        "label": "Bundle text"
+        }
+      ]
+    },
+    ],
+    "presets": [
+    {
+      "name": "shop tabs",
+    }
+  ]
+  }
+{% endschema %}

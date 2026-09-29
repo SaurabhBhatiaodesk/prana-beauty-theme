@@ -1,0 +1,520 @@
+<section class="sacred-rituals-section" id="sacred-rituals-{{ section.id }}">
+
+  <div class="section">
+
+    <div class="sacred-head">
+      <div class="inner-header">
+        <p>{{ section.settings.small_heading }}</p>
+        <div class="fv-cap-line"></div>
+      </div>
+      <h2>
+        {{ section.settings.heading }}
+        <span>{{ section.settings.highlight_heading }}</span>
+      </h2>
+    </div>
+
+    <div class="sacred-grid" id="sacred-grid-{{ section.id }}">
+    </div>
+
+  </div>
+
+</section>
+
+<template id="sacred-card-template-{{ section.id }}">
+  <div class="sacred-card">
+    <a href="" class="sacred-card-link">
+      <div class="sacred-image-wrap">
+        <img width="auto" height="auto" src="" alt="" loading="lazy" class="sacred-product-img">
+      </div>
+      <div class="sacred-content">
+        <h3 class="sacred-product-title"></h3>
+        <p class="sacred-product-desc" style="display: none;"></p>
+        <div class="sacred-bottom">
+          <span class="price sacred-product-price"></span>
+        </div>
+      </div>
+    </a>
+    <div class="sacred-atc-wrapper">
+      <div class="sacred-btn sacred-atc" pid="">
+        {{ section.settings.button_text }}
+      </div>
+    </div>
+  </div>
+</template>
+
+<style>
+
+.sacred-rituals-section {
+  padding:50px 0 0 0;
+  background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+}
+
+.sacred-head {
+  margin-bottom: 40px;
+}
+
+.sacred-head .inner-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sacred-head .inner-header p {
+  font-size: 14px;
+  color: var(--ink3);
+  margin: 0;
+}
+.sacred-head h2 {
+    font-size: 40px;
+    line-height: 1.05;
+    color: var(--ink3);
+    margin: 0;
+    font-weight: 400;
+    max-width: 700px;
+}
+.sacred-head h2 span {
+  color: var(--heading-color);
+  display: block;
+}
+
+.sacred-grid {
+  display: grid;
+  grid-template-columns: repeat({{ section.settings.products_limit }}, 1fr);
+  gap:14px;
+}
+.sacred-card {
+    background: #E3C39F;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    border: 1px solid #8A5A55;
+}
+.sacred-card-link {
+  text-decoration: none;
+  display: block;
+}
+.sacred-image-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 17px;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--heading-color);
+    background: #f3e4cd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px #4613244d;
+}
+.sacred-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.sacred-content {
+    padding: 20px 20px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.sacred-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: var(--heading-color);
+    line-height: 1.2;
+}
+.sacred-content p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #000;
+  flex: 1;
+  display: -webkit-box !important;
+  -webkit-line-clamp:2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sacred-content p.hide-description {
+  display: none;
+}
+
+.sacred-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.sacred-bottom .price {
+    font-size:20px;
+    color:#000;
+    font-weight: 500;
+}
+
+.sacred-atc-wrapper {
+  padding: 0 20px 20px 20px;
+}
+.sacred-btn {
+    background: var(--heading-color);
+    color: #fff;
+    padding: 7px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    width: 100%;
+}
+.sacred-btn:hover {
+  background:var(--gold);
+}
+
+/* TABLET */
+@media (max-width: 991px) {
+  .sacred-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sacred-head h2 {
+    font-size: 48px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .sacred-rituals-section {
+    padding: 45px 0 0 0;
+  }
+  .sacred-head {
+    margin-bottom: 20px;
+  }
+  .sacred-head h2 {
+    font-size:20px;
+    line-height: 1.15;
+  }
+  .sacred-head .inner-header{
+    margin-bottom:7px;
+  }
+  .sacred-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap:9px;
+  }
+  .sacred-image-wrap {
+    padding:10px;
+  }
+  .sacred-content {
+    padding: 14px 14px 7px;
+  }
+  .sacred-content h3 {
+      font-size: 14px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-height: 18px;
+      margin-bottom: 2px;
+  }
+  .sacred-content p {
+      font-size: 13px;
+      line-height: 16px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box !important;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      margin: 0 0 4px 0;
+  }
+  .sacred-bottom .price {
+    font-size: 16px;
+  }
+  .sacred-atc-wrapper {
+    padding: 0 14px 14px 14px;
+  }
+  .sacred-btn {
+      font-size: 14px;
+      padding: 7px 12px;
+  }
+}
+
+</style>
+
+<script>
+(function () {
+
+  var productId      = {{ product.id }};
+  var limit          = {{ section.settings.products_limit }};
+  var sectionId      = '{{ section.id }}';
+  var grid           = document.getElementById('sacred-grid-' + sectionId);
+  var template       = document.getElementById('sacred-card-template-' + sectionId);
+  var moneyFormat    = {{ shop.money_format | json }};
+
+  function formatNumberWithDelimiter(number, delimiter) {
+    delimiter = delimiter || ',';
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, delimiter);
+  }
+
+  function formatMoney(cents) {
+    var value = parseFloat(cents);
+
+    if (isNaN(value)) {
+      return '';
+    }
+
+    var amountNoDecimals = Math.floor(value / 100);
+    var amountNoDecimalsWithComma = formatNumberWithDelimiter(amountNoDecimals, ',');
+    var amountNoDecimalsWithPeriod = formatNumberWithDelimiter(amountNoDecimals, '.');
+
+    return moneyFormat
+      .replace(/\{\{\s*amount\s*\}\}/g, amountNoDecimalsWithComma)
+      .replace(/\{\{\s*amount_no_decimals\s*\}\}/g, amountNoDecimalsWithComma)
+      .replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, amountNoDecimalsWithPeriod)
+      .replace(/\{\{\s*amount_no_decimals_with_comma_separator\s*\}\}/g, amountNoDecimalsWithPeriod);
+  }
+
+  // Clean description function - HTML tags hatao aur text do
+  function cleanDescription(html) {
+    if (!html) return '';
+    var text = html.replace(/<[^>]*>/g, '');
+    text = text.replace(/&nbsp;/g, ' ');
+    text = text.replace(/\s+/g, ' ').trim();
+    if (text.length > 100) {
+      text = text.substring(0, 100) + '...';
+    }
+    return text;
+  }
+
+  // Cart refresh function
+  function refreshCartDrawer() {
+    fetch('/cart.js')
+      .then(function(res) { return res.json(); })
+      .then(function(cart) {
+        // Update cart count in header
+        var cartCountElements = document.querySelectorAll('[data-cart-count], .cart-count, .cart__count, .header__cart-count');
+        cartCountElements.forEach(function(el) {
+          if (el) el.textContent = cart.item_count;
+        });
+        
+        // Dispatch Horizon cart update event
+        document.dispatchEvent(
+          new CustomEvent('cart:update', {
+            bubbles: true,
+            detail: {
+              data: {
+                itemCount: cart.item_count,
+                source: 'sacred-rituals-section'
+              }
+            }
+          })
+        );
+        
+        return cart;
+      })
+      .catch(function(err) {
+        console.log('Cart refresh error:', err);
+      });
+  }
+
+  // Open cart drawer
+  function openCartDrawer() {
+    refreshCartDrawer();
+    
+    setTimeout(function() {
+      var cartDrawer = document.querySelector('cart-drawer-component');
+      
+      if (cartDrawer && typeof cartDrawer.open === 'function') {
+        cartDrawer.open();
+      } else {
+        var cartIcon = document.querySelector('[data-cart-icon], .header__icon--cart, .cart-link, a[href*="/cart"]');
+        if (cartIcon) {
+          cartIcon.click();
+        }
+      }
+    }, 150);
+  }
+
+  function addToCart(variantId, btn) {
+    var originalText = btn.textContent;
+    btn.textContent = 'Adding...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+    
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ 
+        id: parseInt(variantId), 
+        quantity: 1 
+      })
+    })
+    .then(function(response) {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    })
+    .then(function(data) {
+      btn.textContent = 'Added ✓';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      
+      openCartDrawer();
+      
+      setTimeout(function() {
+        btn.textContent = originalText;
+      }, 2000);
+    })
+    .catch(function(error) {
+      console.error('Error:', error);
+      btn.textContent = 'Error!';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      
+      setTimeout(function() {
+        btn.textContent = originalText;
+      }, 2000);
+    });
+  }
+
+  function renderCards(products) {
+    grid.innerHTML = '';
+
+    if (!products || products.length === 0) {
+      grid.innerHTML = '<p style="color:var(--ink3);font-size:16px;">No related products found.</p>';
+      return;
+    }
+
+    products.slice(0, limit).forEach(function (p) {
+
+      var clone = template.content.cloneNode(true);
+      var cardLink = clone.querySelector('.sacred-card-link');
+      cardLink.href = p.url;
+
+      var img = clone.querySelector('.sacred-product-img');
+      var imgSrc = p.featured_image ? p.featured_image : (p.images && p.images.length > 0 ? p.images[0].src : '');
+
+      if (imgSrc) {
+        img.src = imgSrc.replace(/(\.[a-z]+)(\?|$)/, '_500x500$1$2');
+        img.alt = p.title;
+      } else {
+        clone.querySelector('.sacred-image-wrap').style.display = 'none';
+      }
+
+      clone.querySelector('.sacred-product-title').textContent = p.title;
+
+      // ✅ Description - agar hai tabhi show karo, nahi toh hide
+      var descElement = clone.querySelector('.sacred-product-desc');
+      var descriptionText = '';
+      
+      if (p.body_html) {
+        descriptionText = cleanDescription(p.body_html);
+      } else if (p.description) {
+        descriptionText = cleanDescription(p.description);
+      }
+      
+      if (descriptionText && descriptionText.length > 0) {
+        descElement.textContent = descriptionText;
+        descElement.style.display = 'block';  // Show description
+      } else {
+        descElement.style.display = 'none';   // Hide description
+      }
+
+      var variant = p.variants && p.variants[0] ? p.variants[0] : null;
+      var priceElement = clone.querySelector('.sacred-product-price');
+      if (variant) {
+        priceElement.innerHTML = formatMoney(variant.price);
+        if (variant.compare_at_price && variant.compare_at_price > variant.price) {
+          priceElement.innerHTML = '<del style="opacity:0.6;">' + formatMoney(variant.compare_at_price) + '</del> ' + formatMoney(variant.price);
+        }
+      } else {
+        priceElement.innerHTML = '';
+      }
+
+      var atcBtn = clone.querySelector('.sacred-atc');
+      if (variant && variant.available) {
+        atcBtn.setAttribute('pid', variant.id);
+        atcBtn.style.cursor = 'pointer';
+        atcBtn.style.opacity = '1';
+        
+        atcBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var selectedVariant = this.getAttribute('pid');
+          if (selectedVariant) {
+            addToCart(selectedVariant, this);
+          }
+        });
+      } else {
+        atcBtn.textContent = 'Sold Out';
+        atcBtn.style.opacity = '0.5';
+        atcBtn.style.cursor = 'not-allowed';
+      }
+
+      grid.appendChild(clone);
+    });
+  }
+
+  // Fetch product recommendations
+  fetch('/recommendations/products.json?product_id=' + productId + '&limit=' + limit + '&intent=related')
+    .then(function (r) { return r.json(); })
+    .then(function (data) { renderCards(data.products); })
+    .catch(function () {
+      grid.innerHTML = '<p style="color:var(--ink3);font-size:16px;">Could not load recommendations.</p>';
+    });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Sacred Rituals",
+  "settings": [
+    {
+      "type": "text",
+      "id": "small_heading",
+      "label": "Small Heading",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sacred Rituals"
+    },
+    {
+      "type": "text",
+      "id": "highlight_heading",
+      "label": "Highlight Heading",
+      "default": "Built for your skin."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products to Show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sacred Rituals"
+    }
+  ]
+}
+{% endschema %}

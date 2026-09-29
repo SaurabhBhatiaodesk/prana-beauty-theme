@@ -1,0 +1,191 @@
+<section class="doshas-section">
+  <div class="section">
+    {% if section.settings.heading != blank %}
+      <h2 class="doshas-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <p class="doshas-subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    <div class="doshas-wrapper">
+      {% for block in section.blocks %}
+        <div class="dosha-item" {{ block.shopify_attributes }}>
+          {% if block.settings.icon != blank %}
+            <img
+              width=""
+              height="auto"
+              loading="lazy"
+              src="{{ block.settings.icon | image_url: width:150 }}"
+              alt="{{ block.settings.title }}"
+              class="dosha-icon">
+          {% endif %}
+            <div class="content">
+                {% if block.settings.title != blank %}
+                    <h4 class="dosha-title">{{ block.settings.title }}</h4>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                    <div class="dosha-description">{{ block.settings.description }}</div>
+                {% endif %}
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+   
+    {% if section.settings.description != blank %}
+      <p class="doshas-description">{{ section.settings.description }}</p>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+    .doshas-section {
+      background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+      padding: 60px 0px;
+    }
+    .doshas-heading {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 38px;
+        line-height: 1.1;
+        color: var(--heading-color);
+        font-weight: 400;
+    }
+    .doshas-subheading {
+        text-align: center;
+        color: var(--ink3);
+        max-width: 600px;
+        margin: 8px auto 32px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .doshas-wrapper{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:20px;
+        justify-items:center;
+    }
+    .dosha-item {
+        background: #E3C39F;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        width: 100%;
+    }
+    .dosha-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+    .dosha-title {
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--heading-color);
+        padding: 18px 0 10px 0;
+    }
+    .dosha-description {
+        font-size: 17px;
+        color: var(--ink3);
+        line-height: 21px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    p.doshas-description {
+        text-align: center;
+        color: var(--ink3);
+        font-size: 20px;
+        max-width: 700px;
+        margin: 40px auto 0;
+    }
+    /* Tablet */
+    @media screen and (max-width:991px){
+        .doshas-wrapper{
+        grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* tab */
+    @media screen and (max-width:768px){
+        .doshas-wrapper{
+        grid-template-columns:1fr 1fr;
+        }
+        .doshas-section{
+        padding:40px 0;
+        }
+        .doshas-heading{
+            font-size: 27px;
+        }
+        .dosha-title{
+        font-size:20px;
+        }
+        .dosha-description{
+        font-size:14px;
+        }
+    }
+
+    @media all and (max-width:575px){
+        .doshas-wrapper {
+            grid-template-columns: 1fr;
+            gap: 13px;
+        }
+        p.doshas-description {
+            font-size: 15px;
+            margin: 24px auto 0;
+        }
+        .doshas-heading {
+            font-size: 26px;
+            line-height: normal;
+        }
+        .doshas-subheading {
+            margin: 0 0 28px 0;
+            font-size: 15px;
+            line-height: 19px;
+        }
+        .dosha-item {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .dosha-title {
+            font-size: 17px;
+            padding:5px 0;
+        }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Doshas Section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Philosophy of the Three Doshas" },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Understanding the three life energies according to Ayurveda"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Understanding your dosha is the foundation of personalized beauty.At Prana Beauty"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "dosha_item",
+      "name": "Dosha Item",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Doshas Section" }]
+}
+{% endschema %}

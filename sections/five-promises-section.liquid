@@ -1,0 +1,427 @@
+{% comment %}
+  Five Promises Section — Mobile + Desktop responsive
+  With Image + SVG Option
+{% endcomment %}
+
+<style>
+/* =====================
+   SECTION WRAPPER
+===================== */
+.fp-section {
+    background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+/* =====================
+   HEADER
+===================== */
+.fp-eyebrow {
+    margin-bottom: 20px;
+    font-family: var(--U);
+    font-size: 14px;
+    color: var(--ink3);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.fp-heading {
+    margin: 13px 0 12px;
+    font-size: 38px;
+    line-height: 1.1;
+    color: var(--heading-color);
+    font-weight: 400;
+}
+.fp-subtext {
+    margin: 0;
+    max-width: 500px;
+    font-size: 16px;
+    line-height: -0.3;
+    color: var(--ink3);
+}
+
+/* =====================
+   CARDS GRID
+===================== */
+.fp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 13px;
+    margin-top: 30px;
+}
+
+/* =====================
+   SINGLE CARD
+===================== */
+.fp-card {
+    background: #E3C39F;
+    border: 1px solid #461324;
+    border-radius: 9px;
+    padding: 22px 20px 18px;
+    position: relative;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+}
+
+/* Number badge */
+.fp-card-num {
+    right: 0;
+    letter-spacing: 0.05em;
+    background: var(--heading-color);
+    color: #fff;
+    font-size: 16px;
+    padding: 5px 12px;
+    border-radius: 6px 0 0 6px;
+    display: inline-block;
+    position: absolute;
+    top: 16px;
+}
+
+/* Icon */
+.fp-icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold, #A8681A);
+}
+.fp-icon svg {
+    width: 100%;
+    height: 100%;
+}
+.fp-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Card title */
+.fp-card-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--heading-color, #2c1f18);
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Card body */
+.fp-card-body {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    color: var(--ink3, #6b5645);
+    margin: 4px 0 10px 0;
+}
+
+/* Outcome tag */
+.fp-outcome {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gold, #A8681A);
+    border-top: 1px solid rgba(168, 104, 26, 0.25);
+    padding-top: 10px;
+}
+
+@media (max-width: 1200px) {
+  .fp-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+}
+
+/* Tablet */
+@media all and (max-width:1024px) {
+    .fp-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+}
+
+
+@media screen and (max-width: 749px) {
+    .fp-section {
+        padding-top: {{ section.settings.padding_top_mobile }}px;
+        padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+}
+
+
+
+/* Mobile */
+@media screen and (max-width: 640px) {
+    .fp-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .fp-eyebrow {
+        margin-bottom: 12px;
+        font-size: 14px;
+    }
+    .fp-heading {
+        margin: 0px 0px 6px;
+        font-size: 20px;
+        line-height: normal;
+    }
+    .fp-card-title {
+        font-size: 18px;
+    }
+    .fp-card-body {
+        font-size: 15px;
+        line-height: 21px;
+    }
+        
+    .fp-outcome {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width:575px) {
+    .fp-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+</style>
+
+<section class="fp-section" id="five-promises">
+    <div class="section">
+        <div class="fp-header">
+            {% if section.settings.eyebrow != blank %}
+                <div class="fp-eyebrow">
+                    {{ section.settings.eyebrow }}
+                    <div class="fv-cap-line"></div>
+                </div>
+            {% endif %}
+            <h2 class="fp-heading">{{ section.settings.heading }}</h2>
+            {% if section.settings.subtext != blank %}
+            <p class="fp-subtext">{{ section.settings.subtext }}</p>
+            {% endif %}
+        </div>
+
+        <div class="fp-grid">
+            {% for block in section.blocks %}
+            <div class="fp-card" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+                <span class="fp-card-num">0{{ forloop.index }}</span>
+
+                <div class="fp-icon">
+                    {% if block.settings.icon_type == 'image' and block.settings.icon_image != blank %}
+                        <!-- Image Option -->
+                        <img 
+                            src="{{ block.settings.icon_image | image_url: width: 100 }}"
+                            alt="{{ block.settings.title | escape }}"
+                            width="44"
+                            height="44"
+                            loading="lazy"
+                        >
+                    {% elsif block.settings.icon_type == 'svg' and block.settings.icon_svg != blank %}
+                        <!-- SVG Code Option -->
+                        {{ block.settings.icon_svg }}
+                    {% else %}
+                        <!-- Default SVG Fallback -->
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="18" stroke="#A8681A" stroke-width="1.5"/>
+                        </svg>
+                    {% endif %}
+                </div>
+
+                <h3 class="fp-card-title">{{ block.settings.title }}</h3>
+                <p class="fp-card-body">{{ block.settings.description }}</p>
+                {% if block.settings.outcome != blank %}
+                <div class="fp-outcome">Outcome — <span>{{ block.settings.outcome }}</span></div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Five Promises",
+    "tag": "section",
+    "class": "five-promises-section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "eyebrow",
+            "label": "Eyebrow Label",
+            "default": "The Five Promises"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "What Every Formula Will Do."
+        },
+        {
+            "type": "textarea",
+            "id": "subtext",
+            "label": "Subtext",
+            "default": "Five outcomes. Every one measured against modern dermatological standards and the original Charaka Samhita. Both. Always."
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Desktop Top Padding",
+            "min": 0,
+            "max": 200,
+            "step": 4,
+            "unit": "px",
+            "default": 48
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Desktop Bottom Padding",
+            "min": 0,
+            "max": 200,
+            "step": 4,
+            "unit": "px",
+            "default": 64
+        },
+        {
+            "type": "range",
+            "id": "padding_top_mobile",
+            "label": "Mobile Top Padding",
+            "min": 0,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "default": 32
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom_mobile",
+            "label": "Mobile Bottom Padding",
+            "min": 0,
+            "max": 120,
+            "step": 2,
+            "unit": "px",
+            "default": 40
+        }
+    ],
+    "blocks": [
+        {
+            "type": "promise",
+            "name": "Promise",
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Icon Type Selection"
+                },
+                {
+                    "type": "radio",
+                    "id": "icon_type",
+                    "label": "Icon Type",
+                    "options": [
+                        {
+                            "value": "svg",
+                            "label": "SVG Code"
+                        },
+                        {
+                            "value": "image",
+                            "label": "Image Upload"
+                        }
+                    ],
+                    "default": "svg"
+                },
+                {
+                    "type": "textarea",
+                    "id": "icon_svg",
+                    "label": "SVG Code",
+                    "info": "Paste your SVG code here",
+                    "default": "<svg viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='24' cy='24' r='18' stroke='#A8681A' stroke-width='1.5'/></svg>"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "icon_image",
+                    "label": "Icon Image",
+                    "info": "Upload PNG, JPG, or SVG image"
+                },
+                {
+                    "type": "header",
+                    "content": "Content"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Visible Glow"
+                },
+                {
+                    "type": "textarea",
+                    "id": "description",
+                    "label": "Description",
+                    "default": "Light reflects differently from skin that is functioning. Not glitter. Not filter. The quiet luminescence of a barrier that is working."
+                },
+                {
+                    "type": "text",
+                    "id": "outcome",
+                    "label": "Outcome Label",
+                    "default": "Radiance & Tone"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Five Promises",
+            "blocks": [
+                {
+                    "type": "promise",
+                    "settings": {
+                        "title": "Visible Glow",
+                        "description": "Light reflects differently from skin that is functioning. Not glitter. Not filter. The quiet luminescence of a barrier that is working — driven by saffron carotenoids, kumkumadi-traditional botanicals, and oils the skin recognises immediately.",
+                        "outcome": "Radiance & Tone",
+                        "icon_type": "svg",
+                        "icon_svg": "<svg viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M24 4L44 24L24 44L4 24Z' stroke='#A8681A' stroke-width='1.5' fill='none'/><path d='M24 12L36 24L24 36L12 24Z' stroke='#A8681A' stroke-width='1' fill='none' opacity='0.5'/></svg>"
+                    }
+                },
+                {
+                    "type": "promise",
+                    "settings": {
+                        "title": "Even Tone",
+                        "description": "Hyperpigmentation, post-inflammatory marks, the dullness that follows winter or birth — addressed through bakuchiol, turmeric (curcumin), and saffron rather than chemical bleaches the skin will eventually resent.",
+                        "outcome": "Pigmentation & Clarity",
+                        "icon_type": "svg",
+                        "icon_svg": "<svg viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M24 4L27.5 20.5L44 24L27.5 27.5L24 44L20.5 27.5L4 24L20.5 20.5Z' stroke='#A8681A' stroke-width='1.5' fill='none' stroke-linejoin='round'/></svg>"
+                    }
+                },
+                {
+                    "type": "promise",
+                    "settings": {
+                        "title": "Firm Resilience",
+                        "description": "Bakuchiol — clinically equivalent to retinol on collagen synthesis without the irritation, photosensitivity, or barrier compromise. Skin that bounces back, holds its structure, and ages on its own quiet schedule.",
+                        "outcome": "Firmness & Anti-Age",
+                        "icon_type": "svg",
+                        "icon_svg": "<svg viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='24' y1='6' x2='24' y2='42' stroke='#A8681A' stroke-width='1.5' stroke-linecap='round'/><line x1='6' y1='24' x2='42' y2='24' stroke='#A8681A' stroke-width='1.5' stroke-linecap='round'/><line x1='9.51' y1='9.51' x2='38.49' y2='38.49' stroke='#A8681A' stroke-width='1.5' stroke-linecap='round'/><line x1='38.49' y1='9.51' x2='9.51' y2='38.49' stroke='#A8681A' stroke-width='1.5' stroke-linecap='round'/></svg>"
+                    }
+                },
+                {
+                    "type": "promise",
+                    "settings": {
+                        "title": "Quiet Balance",
+                        "description": "The barrier that decides whether moisture stays in and irritants stay out — restored through cold-pressed sesame, rose damascena hydrosol, and sandalwood. No ferment. No fragrance. No noise.",
+                        "outcome": "Barrier & Calm",
+                        "icon_type": "svg",
+                        "icon_svg": "<svg viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='24' cy='24' r='18' stroke='#A8681A' stroke-width='1.5'/><circle cx='24' cy='24' r='10' stroke='#A8681A' stroke-width='1' opacity='0.5'/><circle cx='24' cy='24' r='3' fill='#A8681A' opacity='0.7'/></svg>"
+                    }
+                },
+                {
+                    "type": "promise",
+                    "settings": {
+                        "title": "Daily Devotion",
+                        "description": "A ritual that holds — morning and night, the same six minutes, returning the woman to herself before the day takes her. The benefit you cannot quantify, but the one every long-term user names first.",
+                        "outcome": "Ritual & Stillness",
+                        "icon_type": "svg",
+                        "icon_svg": "<svg viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='24' cy='24' r='8' stroke='#A8681A' stroke-width='1.5'/><line x1='24' y1='4' x2='24' y2='13' stroke='#A8681A' stroke-width='1.3' stroke-linecap='round'/><line x1='24' y1='35' x2='24' y2='44' stroke='#A8681A' stroke-width='1.3' stroke-linecap='round'/><line x1='4' y1='24' x2='13' y2='24' stroke='#A8681A' stroke-width='1.3' stroke-linecap='round'/><line x1='35' y1='24' x2='44' y2='24' stroke='#A8681A' stroke-width='1.3' stroke-linecap='round'/></svg>"
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,343 @@
+{% comment %}
+  Begin Where The Skin Asks — CTA Section
+  Heading + subtext + 2 buttons + trust badges box
+{% endcomment %}
+
+<style>
+/* ── SECTION ── */
+.bw-section {
+  background: radial-gradient(    100.75% 105.17% at 95.4% 0%,    #cb964675 0%,    #e3c39f2e 100%  );
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+/* ── EYEBROW ── */
+.bw-eyebrow {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink3, #6b5645);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.bw-eyebrow::after {
+  content: '';
+  display: block;
+  height: 0.5px;
+  width: 80px;
+  background: var(--gold);
+}
+
+/* ── HEADING ── */
+.bw-heading {
+  font-size: 38px;
+  font-weight: 400;
+  color:var(--ink3, #6b5645);
+  line-height: 1.1;
+  margin: 0 0 9px;
+}
+h2.bw-heading.highlight{
+    color:var(--heading-color);
+}
+
+/* ── SUBTEXT ── */
+.bw-subtext {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    color: var(--ink3, #6b5645);
+    margin: 0 0 20px;
+    max-width: 520px;
+}
+
+/* ── BUTTONS ── */
+.bw-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.bw-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: #fff;
+  font-size:16px;
+  font-weight: 400;
+  padding:8px 17px;
+  border-radius:5px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 0.25s, color 0.25s;
+  white-space: nowrap;
+}
+.bw-btn-primary:hover {
+  background:var(--heading-color);
+}
+.bw-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--gold);
+  font-size: 16px;
+  font-weight: 400;
+  padding:8px 17px;
+  border-radius:5px;
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  transition:ease-in-out 0.5s;
+  white-space: nowrap;
+}
+.bw-btn-secondary:hover {
+  background:var(--gold);
+  border-color:var(--gold);
+  color:white;
+}
+
+/* ── TRUST BOX ── */
+.bw-trust {
+    background: #E3C39F;
+    border: 1px solid var(--heading-color);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+    max-width: 520px;
+}
+.bw-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size:16px;
+  font-weight: 400;
+  color:var(--heading-color);
+  line-height: 1.4;
+}
+.bw-trust-item::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink3);
+  flex-shrink: 0;
+}
+.bw-trust-item strong {
+  font-weight: 500;
+  color: var(--heading-color, #2c1f18);
+}
+
+/* Only 1 trust item → full width */
+.bw-trust-item:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+/* ── DESKTOP ── */
+@media (min-width: 768px) {
+  .bw-trust { padding: 18px 24px; gap: 12px 24px; max-width: 600px; }
+}
+
+@media (min-width: 1024px) {
+  .bw-trust { max-width: 640px; }
+}
+
+
+@media all and (max-width:768px){
+    .bw-heading{
+        font-size:28px;
+    }
+}
+/* ── MOBILE ── */
+@media (max-width: 480px) {
+    .bw-section {
+        padding-top: {{ section.settings.padding_top_mobile }}px;
+        padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+    .bw-btn-primary,
+    .bw-btn-secondary {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    .bw-subtext {
+        font-size: 14px;
+        line-height: normal;
+    }
+    .bw-trust-item{
+        font-size: 14px;
+    }
+    .bw-buttons{
+        gap:10px;
+    }
+    .bw-eyebrow::after{
+        width: 70px;
+    }
+    .bw-trust {
+        grid-template-columns: 1fr;
+        padding: 12px;
+        gap: 5px;
+    }
+    .bw-trust-item:last-child:nth-child(odd) { grid-column: 1; }
+}
+</style>
+
+<section class="bw-section">
+  <div class="section">
+
+    {% if section.settings.eyebrow != blank %}
+      <div class="bw-eyebrow">{{ section.settings.eyebrow }}</div>
+    {% endif %}
+
+    <h2 class="bw-heading">{{ section.settings.heading }}</h2>
+    <h2 class="bw-heading highlight">{{ section.settings.subheading }}</h2>
+
+    {% if section.settings.subtext != blank %}
+      <p class="bw-subtext">{{ section.settings.subtext }}</p>
+    {% endif %}
+
+    {% if section.settings.btn_primary_label != blank and section.settings.btn_primary_url != blank
+        or section.settings.btn_secondary_label != blank and section.settings.btn_secondary_url != blank %}
+            <div class="bw-buttons">
+                {% if section.settings.btn_primary_label != blank and section.settings.btn_primary_url != blank %}
+                <a href="{{ section.settings.btn_primary_url }}" class="bw-btn-primary">
+                    {{ section.settings.btn_primary_label }}
+                </a>
+                {% endif %}
+
+                {% if section.settings.btn_secondary_label != blank and section.settings.btn_secondary_url != blank %}
+                <a href="{{ section.settings.btn_secondary_url }}" class="bw-btn-secondary">
+                    {{ section.settings.btn_secondary_label }} →
+                </a>
+                {% endif %}
+            </div>
+    {% endif %}
+
+    {% assign trust_items = section.blocks | where: 'type', 'trust_item' %}
+    {% if trust_items.size > 0 %}
+      <div class="bw-trust">
+        {% for block in trust_items %}
+          <div class="bw-trust-item" {{ block.shopify_attributes }}>
+            {{ block.settings.label }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Begin Where The Skin Asks",
+  "tag": "section",
+  "class": "begin-where-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Begin Where The Skin Asks"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The skin already knows"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "Listen, then begin"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Take the 90-second skin scan. Receive the sutra and the sequence built for what your face is actually asking for. Or browse the full ritual library, and choose for yourself."
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_label",
+      "label": "Primary Button Label",
+      "default": "Start The Skin Scan"
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_url",
+      "label": "Primary Button URL"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_label",
+      "label": "Secondary Button Label",
+      "default": "Shop The Sutras"
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_url",
+      "label": "Secondary Button URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop Top Padding",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop Bottom Padding",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Top Padding",
+      "min": 0, "max": 120, "step": 2, "unit": "px", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Bottom Padding",
+      "min": 0, "max": 120, "step": 2, "unit": "px", "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Badge Text",
+          "default": "Free U.S. Shipping Over $75"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Begin Where The Skin Asks",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": { "label": "Free U.S. Shipping Over $75" }
+        },
+        {
+          "type": "trust_item",
+          "settings": { "label": "30-Day Ritual Guarantee" }
+        },
+        {
+          "type": "trust_item",
+          "settings": { "label": "Subscribe & Save 15%" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

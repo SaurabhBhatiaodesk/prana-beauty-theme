@@ -1,0 +1,408 @@
+{% schema %}
+{
+  "name": "Partner Application Form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Form Heading",
+      "default": "Join the Prana Partner Network"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Offer your clients the radiance of Ayurveda. Request our wholesale catalog or a discovery sample kit today.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partner Application Form"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.partner-form-section {
+  max-width: 815px;
+  margin: 0 auto;
+  padding: 50px 10px;
+}
+.partner-form-section h2 {
+  font-size: 62px;
+  margin-bottom: 10px;
+  letter-spacing: -2px;
+  text-align: center;
+  color: #97371E;
+  font-family: "Cormorant, serif";
+  font-weight: 400;
+}
+.partner-form-section .subheading {
+  text-align: center;
+  font-size: 18px;
+  color: #4E403C;
+  font-family: 'Josefin Sans';
+  font-weight: 300;
+  max-width: 680px;
+  margin: 0 auto 40px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #222;
+  font-family: 'Josefin Sans';
+}
+
+.form-group label .required {
+  color: #d9534f;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 16px 10px;
+  background: #F4F1EA;
+  font-size: 14px;
+  font-family: 'Josefin Sans';
+  color: #6E6E6E;
+  box-shadow: none;
+  border: none;
+  border-radius: 10px;  
+}
+
+.form-group textarea {
+      min-height: 160px;
+    resize: none;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.radio-option,
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.radio-option input[type="radio"] {
+   margin: 0;
+   width: 20px;
+    height: 20px;
+}
+.checkbox-option input[type=checkbox] {
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border-color: #e6e6e6;
+    background: transparent;
+}
+
+.radio-option label,
+.checkbox-option label {
+  margin: 0;
+  font-weight: normal;
+  font-size: 14px;
+  color: #6E6E6E;
+}
+
+.form-section-title {
+  font-size: 24px;
+    font-weight: 600;
+    margin: 40px 0 15px;
+    color: #4E403C;
+     font-family: 'Josefin Sans';
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 20px 35px;
+  font-size: 17px;
+  font-weight:500;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-family: 'Josefin Sans';
+}
+button.btn.btn-primary {
+    color: #4E403C;
+    background: radial-gradient(20.12% 87.6% at 53.59% 46.81%, #FEE7AA 0%, #ECCA6F 100%);
+}
+
+.checkbox-single {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.checkbox-single input {
+  margin: 0;
+}
+
+.checkbox-single label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .form-row,
+  .button-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .radio-group {
+    flex-direction: column;
+  }
+   #shopify-section-template--25981966090530__partner_banner_hTrArd .collection-banner__content h2 {
+      font-size: 30px;
+      line-height: 38px;
+  }
+  #shopify-section-template--25981966090530__partner_banner_hTrArd .btn-group a {
+    font-size: 12px!important;
+    padding: 12px 12px!important;
+    letter-spacing: -1px!important;
+  }
+  #shopify-section-template--25981966090530__section_nGaqzd .custom-text-image .section--full-width {
+      padding: 0 8px;
+  }
+  .partner-form-section h2 {
+    font-size: 40px;
+  }
+  .form-section-title {
+    font-size: 18px;
+  }
+  .btn {
+    padding: 18px;
+    font-size: 13px;
+  }
+}
+{% endstylesheet %}
+
+<div class="partner-form-section">
+  <h2>{{ section.settings.heading }}</h2>
+  <div class="subheading">{{ section.settings.subheading }}</div>
+
+    <form action="/contact#contact_form" method="POST" accept-charset="UTF-8">
+    <input type="hidden" name="form_type" value="contact">
+    <input type="hidden" name="utf8" value="✓">
+
+    <!-- Business Information -->
+    <div class="form-section-title">Business Information</div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Contact Name <span class="required">*</span></label>
+        <input type="text" name="contact_name" placeholder="Type here" required>
+      </div>
+      <div class="form-group">
+        <label>Business Name <span class="required">*</span></label>
+        <input type="text" name="business_name" placeholder="Type here" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email Address <span class="required">*</span></label>
+        <input type="email" name="email" placeholder="Type here" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number (optional)</label>
+        <input type="tel" name="phone" placeholder="Type here">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Website / Instagram Handle <span class="required">*</span></label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" id="spa" name="business_category" value="Spa" required>
+          <label for="spa">Spa</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="salon" name="business_category" value="Salon">
+          <label for="salon">Salon</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="yoga" name="business_category" value="Yoga Studio">
+          <label for="yoga">Yoga Studio</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="boutique" name="business_category" value="Boutique / Retail">
+          <label for="boutique">Boutique / Retail</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="wellness" name="business_category" value="Wellness Retreat">
+          <label for="wellness">Wellness Retreat</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="other" name="business_category" value="Other">
+          <label for="other">Other</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Business Type -->
+    <div class="form-group">
+       <div class="form-section-title">
+      Business Type</div>
+      <select name="business_type">
+        <option value="">Select here</option>
+        <option value="spa">Spa</option>
+        <option value="salon">Salon</option>
+        <option value="yoga_studio">Yoga Studio</option>
+        <option value="boutique">Boutique / Retail</option>
+        <option value="wellness_retreat">Wellness Retreat</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <!-- Location -->
+    <div class="form-section-title">Location</div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Street Address</label>
+        <input type="text" name="street_address" placeholder="Type here">
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" name="city" placeholder="Type here">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>State / Region</label>
+        <input type="text" name="state" placeholder="Type here">
+      </div>
+      <div class="form-group">
+        <label>Country</label>
+        <input type="text" name="country" placeholder="Type here">
+      </div>
+    </div>
+
+    <!-- Interest & Volume -->
+    <div class="form-section-title">Interest & Volume</div>
+    
+    <div class="form-group">
+      <label>How did you hear about Prana Beauty?</label>
+      <select name="how_heard">
+        <option value="">Select an option.</option>
+        <option value="search">Search Engine</option>
+        <option value="social">Social Media</option>
+        <option value="referral">Referral</option>
+        <option value="trade_show">Trade Show</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Website / Instagram Handle <span class="required">*</span></label>
+      <div class="checkbox-group">
+        <div class="checkbox-option">
+          <input type="checkbox" id="full_collection" name="products[]" value="Full Collection">
+          <label for="full_collection">Full Collection</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="saffron" name="products[]" value="Saffron Brightening Serum">
+          <label for="saffron">Saffron Brightening Serum</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="bakuchiol" name="products[]" value="Bakuchiol Anti-Aging Serum">
+          <label for="bakuchiol">Bakuchiol Anti-Aging Serum</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="ashwagandha" name="products[]" value="Ashwagandha Moisturizer">
+          <label for="ashwagandha">Ashwagandha Moisturizer</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="turmeric" name="products[]" value="Turmeric & Sandalwood Face Mask">
+          <label for="turmeric">Turmeric & Sandalwood Face Mask</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Estimated monthly retail or backbar volume:</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" id="small" name="volume" value="Small (1-5 dozen units)">
+          <label for="small">Small (1-5 dozen units)</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="medium" name="volume" value="Medium (5-5 dozen units)">
+          <label for="medium">Medium (5-5 dozen units)</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="large" name="volume" value="Large (6+ dozen units)">
+          <label for="large">Large (6+ dozen units)</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Estimated monthly retail or backbar volume:</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" id="yes_info" name="retail_preference" value="Yes, please send info">
+          <label for="yes_info">Yes, please send info</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="not_yet" name="retail_preference" value="Not yet">
+          <label for="not_yet">Not yet</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tell Us More -->
+    <div class="form-section-title">Tell Us More</div>
+    
+    <div class="form-group">
+      <label>Tell us a little about your business, clientele, or what drew you to Ayurveda.</label>
+      <textarea name="message" placeholder="Type short paragraph here"></textarea>
+    </div>
+
+    <div class="checkbox-single">
+      <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+      <label for="newsletter">Join Our Partner Newsletter</label>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <button type="submit" name="action" value="apply" class="btn btn-primary">Apply for Partnership</button>
+      <button type="submit" name="action" value="sample" class="btn btn-secondary">Request Sample Kit</button>
+    </div>
+    <p style="color: #6E6E6E;font-size: 14px;">By submitting you agree we may contact you regarding wholesale partnership opportunities.</p>
+  </form>
+</div>

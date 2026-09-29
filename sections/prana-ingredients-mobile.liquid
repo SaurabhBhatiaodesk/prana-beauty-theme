@@ -1,0 +1,622 @@
+{% comment %}
+  Ingredient Tabs with Slider Section
+  Matches the Kashmir Saffron / ingredient detail design
+{% endcomment %}
+
+<style>
+  .ing-section {
+    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+    padding:0 0 40px 0;
+    display:none;
+  }
+
+  /* Jump To Nav */
+  .ing-jump-nav {
+    text-align: center;
+    padding: 16px 14px;
+    background: linear-gradient(90deg, #813850 0%, #461324 100%);
+    margin-bottom: 20px;
+  }
+  .ing-jump-nav h3 {
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    color: #F2E4D3;
+    margin: 0 0 16px;
+  }
+  .ing-jump-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 4px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .ing-jump-btn {
+    background: none;
+    border: none;
+    padding: 6px 9px;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    border-radius: 3px;
+  }
+  .ing-jump-btn:hover,
+  .ing-jump-btn.active {
+    background: #E3C39F;
+    color: var(--heading-color);
+  }
+  .ing-jump-divider {
+    width: 100%;
+    height: 0.5px;
+    background: var(--gold);
+    margin: 10px 0;
+  }
+
+  /* Slider Wrapper */
+  .ing-slider-wrapper {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Card */
+  .ing-card {
+    background: #F3E4CD;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #461324;
+    display: none;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+  }
+  .ing-card.active {
+    display: block;
+  }
+
+  /* Card Counter */
+  .ing-card-counter {
+    display: inline-block;
+    padding: 2px 12px;
+    color: var(--heading-color);
+    background: #E3C39F;
+    width: fit-content;
+    font-size: 15px;
+    top: 13px;
+    text-align: center;
+    border-radius: 0 6px 6px 0;
+    z-index: 3;
+    border: 1px solid var(--heading-color);
+    border-left: 0;
+  }
+
+  /* Image */
+  .ing-card-image-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .ing-card-image-wrap img {
+    height: 100%;
+    width: calc(100% - 34px);
+    margin: 20px 17px 0 17px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 5px;
+    display: block;
+  }
+  .ing-card-image-wrap .ing-card-counter {
+    position: absolute;
+  }
+
+  /* Card Body */
+  .ing-card-body {
+    padding: 18px 17px 18px;
+  }
+  .ing-card-body h2.ing-card-name {
+    color: var(--heading-color);
+    font-size: 19px;
+    line-height: normal;
+    padding-bottom: 6px;
+  }
+  .ing-card-botanical {
+    color: var(--ink3);
+    margin: 0 0 6px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 11px;
+    letter-spacing: 0%;
+  }
+  .ing-card-description {
+    font-weight: 300;
+    color: var(--ink3);
+    margin: 0 0 20px;
+    font-size: 15px;
+    line-height: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Accordions */
+  .ing-accordion {
+    border-top: 1px solid var(--gold);
+  }
+  .ing-accordion-item {
+    border-bottom: 1px solid var(--gold);
+  }
+  .ing-accordion-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 0;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.2s;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: 0%;
+    color: var(--gold);
+  }
+  .ing-accordion-trigger:hover {
+    color: var(--gold);
+  }
+
+  .ing-accordion-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+  .ing-accordion-icon svg {
+    display: block;
+  }
+  .ing-accordion-trigger.open .ing-accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .ing-accordion-body {
+    display: none;
+    padding: 0 0 14px;
+    color: var(--ink3);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    font-family: Ponomar;
+    margin-top: -7px;
+  }
+  .ing-accordion-body.open {
+    display: block;
+  }
+
+  /* Product Tags */
+  .ing-product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 0 15px 20px;
+  }
+  .ing-product-tag {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 8px 7px;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--ink3);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+    background: #E3C39F;
+  }
+  .ing-product-tag:hover {
+    background: var(--tab-bg);
+    color: var(--tab-active);
+    border-color: var(--tab-bg);
+  }
+
+  /* Navigation Arrows */
+  .ing-nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .ing-nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background:transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+    font-size: 15px;
+    color: var(--dark);
+  }
+  {% comment %} .ing-nav-btn:hover {
+    background: var(--tab-bg);
+    border-color: var(--tab-bg);
+    color: var(--tab-active);
+  } {% endcomment %}
+  @media (max-width: 768px) {
+    .ing-section{
+      display:block
+    }
+  }
+</style>
+
+{% comment %} Unique ID for this section instance so multiple sections on same page don't conflict {% endcomment %}
+{% assign section_id = 'ing-' | append: section.id %}
+
+<section class="ing-section" id="{{ section_id }}">
+  <div class="ing-jump-nav">
+    {% if section.settings.heading != blank %}
+      <h3>{{ section.settings.heading }}</h3>
+    {% endif %}
+    <div class="ing-jump-grid">
+      {% for block in section.blocks %}
+        {% assign idx = forloop.index0 %}
+        <button
+          class="ing-jump-btn{% if forloop.first %} active{% endif %}"
+          data-index="{{ idx }}"
+          data-section="{{ section_id }}"
+          onclick="ingGoTo('{{ section_id }}', {{ idx }})"
+        >{{ block.settings.name }}</button>
+        {% if forloop.index == 5 or forloop.index == 10 %}
+          <div class="ing-jump-divider"></div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="ing-slider-wrapper">
+      {% for block in section.blocks %}
+        {% assign idx = forloop.index0 %}
+        <div class="ing-card{% if forloop.first %} active{% endif %}" data-index="{{ idx }}" {{ block.shopify_attributes }}>
+          <div class="ing-card-image-wrap">
+            <span class="ing-card-counter">{{ forloop.index }}</span>
+            {% if block.settings.image != blank %}
+              <img
+                src="{{ block.settings.image | image_url: width: 800 }}"
+                alt="{{ block.settings.name }}"
+                loading="lazy"
+                width="800"
+                height="416"
+              >
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+
+          <div class="ing-card-body">
+            <h2 class="ing-card-name">{{ block.settings.name }}</h2>
+            {% if block.settings.botanical != blank %}
+              <p class="ing-card-botanical">{{ block.settings.botanical }}</p>
+            {% endif %}
+            <p class="ing-card-description">{{ block.settings.description }}</p>
+
+            {% if block.settings.accordion_1_title != blank %}
+              <div class="ing-accordion">
+                <div class="ing-accordion-item">
+                  <button class="ing-accordion-trigger open" onclick="ingToggle(this)">
+                    {{ block.settings.accordion_1_title }}
+                    <span class="ing-accordion-icon">
+                      <svg width="7" height="4" viewBox="0 0 7 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.453613 0.453125L3.17529 3.1748L5.89697 0.453125" stroke="#A8681A" stroke-width="0.907227" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </button>
+                  <div class="ing-accordion-body open">{{ block.settings.accordion_1_content }}</div>
+                </div>
+
+                {% if block.settings.accordion_2_title != blank %}
+                  <div class="ing-accordion-item">
+                    <button class="ing-accordion-trigger" onclick="ingToggle(this)">
+                      {{ block.settings.accordion_2_title }}
+                      <span class="ing-accordion-icon">
+                        <svg width="7" height="4" viewBox="0 0 7 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.453613 0.453125L3.17529 3.1748L5.89697 0.453125" stroke="#A8681A" stroke-width="0.907227" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="ing-accordion-body">{{ block.settings.accordion_2_content }}</div>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.accordion_3_title != blank %}
+                  <div class="ing-accordion-item">
+                    <button class="ing-accordion-trigger" onclick="ingToggle(this)">
+                      {{ block.settings.accordion_3_title }}
+                      <span class="ing-accordion-icon">
+                        <svg width="7" height="4" viewBox="0 0 7 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.453613 0.453125L3.17529 3.1748L5.89697 0.453125" stroke="#A8681A" stroke-width="0.907227" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="ing-accordion-body">{{ block.settings.accordion_3_content }}</div>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.accordion_4_title != blank %}
+                  <div class="ing-accordion-item">
+                    <button class="ing-accordion-trigger" onclick="ingToggle(this)">
+                      {{ block.settings.accordion_4_title }}
+                      <span class="ing-accordion-icon">
+                        <svg width="7" height="4" viewBox="0 0 7 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.453613 0.453125L3.17529 3.1748L5.89697 0.453125" stroke="#A8681A" stroke-width="0.907227" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="ing-accordion-body">{{ block.settings.accordion_4_content }}</div>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if block.settings.product_1 != blank or block.settings.product_2 != blank or block.settings.product_3 != blank %}
+            <div class="ing-product-tags">
+              {% if block.settings.product_1 != blank %}
+                <a href="{{ block.settings.product_1_url }}" class="ing-product-tag">{{ block.settings.product_1 }}</a>
+              {% endif %}
+              {% if block.settings.product_2 != blank %}
+                <a href="{{ block.settings.product_2_url }}" class="ing-product-tag">{{ block.settings.product_2 }}</a>
+              {% endif %}
+              {% if block.settings.product_3 != blank %}
+                <a href="{{ block.settings.product_3_url }}" class="ing-product-tag">{{ block.settings.product_3 }}</a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <div class="ing-nav">
+        <button class="ing-nav-btn" onclick="ingPrev('{{ section_id }}')" aria-label="Previous">
+          <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.8291 14.5392L1.11858 7.82869L7.8291 1.11816" stroke="#A8681A" stroke-width="2.23684" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="ing-nav-btn" onclick="ingNext('{{ section_id }}')" aria-label="Next">
+          <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.11865 14.5392L7.82918 7.82869L1.11865 1.11816" stroke="#A8681A" stroke-width="2.23684" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  {% comment %} Per-section state stored by section ID — fixes multi-section conflicts {% endcomment %}
+  var sectionId = '{{ section_id }}';
+  var total = {{ section.blocks.size }};
+
+  // Global state map — one entry per section instance on the page
+  if (!window._ingSections) window._ingSections = {};
+  window._ingSections[sectionId] = { current: 0, total: total };
+
+  // ── Core navigation ──────────────────────────────────────────────
+  window.ingGoTo = function(sid, idx) {
+    var state = window._ingSections[sid];
+    if (!state) return;
+
+    var scope   = document.getElementById(sid);
+    if (!scope) return;
+
+    var cards = scope.querySelectorAll('.ing-card');
+    var btns  = scope.querySelectorAll('.ing-jump-btn');
+
+    if (!cards[idx]) return;
+
+    // Deactivate current
+    cards[state.current].classList.remove('active');
+    if (btns[state.current]) btns[state.current].classList.remove('active');
+
+    // Activate new
+    state.current = idx;
+    cards[state.current].classList.add('active');
+    if (btns[state.current]) btns[state.current].classList.add('active');
+  };
+
+  window.ingPrev = function(sid) {
+    var state = window._ingSections[sid];
+    if (!state) return;
+    var idx = (state.current - 1 + state.total) % state.total;
+    ingGoTo(sid, idx);
+  };
+
+  window.ingNext = function(sid) {
+    var state = window._ingSections[sid];
+    if (!state) return;
+    var idx = (state.current + 1) % state.total;
+    ingGoTo(sid, idx);
+  };
+
+  // ── Accordion toggle ─────────────────────────────────────────────
+  window.ingToggle = function(el) {
+    var btn = el.closest ? el.closest('button.ing-accordion-trigger') : el;
+    if (!btn) return;
+    var body = btn.nextElementSibling;
+    if (!body) return;
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+  };
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Ingredient Tabs Mobile",
+  "tag": "section",
+  "class": "ingredient-tabs-slider",
+   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ingredients and Sourcing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Ingredient Name",
+          "default": "Kashmir Saffron"
+        },
+        {
+          "type": "text",
+          "id": "botanical",
+          "label": "Botanical / Subtitle",
+          "default": "Crocus sativus flower extract"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Ingredient Image"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Describe the ingredient and its key benefits here."
+        },
+        {
+          "type": "text",
+          "id": "accordion_1_title",
+          "label": "Accordion 1 Title",
+          "default": "Brightening Mechanism"
+        },
+        {
+          "type": "textarea",
+          "id": "accordion_1_content",
+          "label": "Accordion 1 Content",
+          "default": "Explain how this property works."
+        },
+        {
+          "type": "text",
+          "id": "accordion_2_title",
+          "label": "Accordion 2 Title",
+          "default": "Antioxidant Activity"
+        },
+        {
+          "type": "textarea",
+          "id": "accordion_2_content",
+          "label": "Accordion 2 Content"
+        },
+        {
+          "type": "text",
+          "id": "accordion_3_title",
+          "label": "Accordion 3 Title",
+          "default": "Circulation & Glow"
+        },
+        {
+          "type": "textarea",
+          "id": "accordion_3_content",
+          "label": "Accordion 3 Content"
+        },
+        {
+          "type": "text",
+          "id": "accordion_4_title",
+          "label": "Accordion 4 Title",
+          "default": "Anti-inflammatory"
+        },
+        {
+          "type": "textarea",
+          "id": "accordion_4_content",
+          "label": "Accordion 4 Content"
+        },
+        {
+          "type": "text",
+          "id": "product_1",
+          "label": "Product Tag 1 Label",
+          "default": "Saffron Glow Face Oil"
+        },
+        {
+          "type": "url",
+          "id": "product_1_url",
+          "label": "Product Tag 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "product_2",
+          "label": "Product Tag 2 Label",
+          "default": "Saffron Radiance Moisturizer"
+        },
+        {
+          "type": "url",
+          "id": "product_2_url",
+          "label": "Product Tag 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "product_3",
+          "label": "Product Tag 3 Label",
+          "default": "Bakuchiol Night Restorative Serum"
+        },
+        {
+          "type": "url",
+          "id": "product_3_url",
+          "label": "Product Tag 3 URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredient Tabs Slider Mobile",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Saffron",
+            "botanical": "Crocus sativus flower extract",
+            "description": "Kashmir Saffron — Kumkuma in Sanskrit — is the most potent brightening ingredient in Ayurvedic skincare.",
+            "accordion_1_title": "Brightening Mechanism",
+            "accordion_1_content": "Crocin inhibits tyrosinase — the enzyme that converts tyrosine into melanin — reducing pigmentation at source rather than masking it at the surface.",
+            "accordion_2_title": "Antioxidant Activity",
+            "accordion_3_title": "Circulation & Glow",
+            "accordion_4_title": "Anti-inflammatory",
+            "product_1": "Saffron Glow Face Oil",
+            "product_2": "Saffron Radiance Moisturizer",
+            "product_3": "Bakuchiol Night Restorative Serum"
+          }
+        },
+        { "type": "ingredient", "settings": { "name": "Bakuchiol" } },
+        { "type": "ingredient", "settings": { "name": "Turmeric" } },
+        { "type": "ingredient", "settings": { "name": "Rose" } },
+        { "type": "ingredient", "settings": { "name": "Sandalwood" } },
+        { "type": "ingredient", "settings": { "name": "Jasmine" } },
+        { "type": "ingredient", "settings": { "name": "Gotu Kola" } },
+        { "type": "ingredient", "settings": { "name": "Sesame Oil" } },
+        { "type": "ingredient", "settings": { "name": "Ashwagandha" } },
+        { "type": "ingredient", "settings": { "name": "Amla" } },
+        { "type": "ingredient", "settings": { "name": "Triphala" } },
+        { "type": "ingredient", "settings": { "name": "Blue Lotus" } },
+        { "type": "ingredient", "settings": { "name": "Rose Water" } },
+        { "type": "ingredient", "settings": { "name": "Kaolin Clay" } },
+        { "type": "ingredient", "settings": { "name": "Squalane" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,98 @@
+<div class="pdp-complete" id="pdp-complete-section" style="margin:0;padding:72px 80px;background:var(--canvas2);border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line);">
+    <div style="font-family:var(--U);font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:16px">{{ section.settings.caption }}<span style="flex:1;height:1px;background:var(--gold-line);display:block"></span></div>
+    <div class="pdp-complete-title" id="pdp-complete-title" style="font-family:var(--D);font-size:38px;font-weight:300;color:var(--ink);margin-bottom:48px;line-height:1.05">{{ section.settings.heading }}</div>
+
+    <!-- Product cards — each with individual Add button -->
+    <div id="pdp-complete-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px;">
+        {% assign collection = section.settings.collection.products %}
+        {% assign main_collection = section.settings.collection %}
+        {% assign total_price = 0 %}
+        {% assign total_compare_price = 0 %}
+        {% for product_item in collection %}
+            {% comment %} calculate price {% endcomment %}
+            {% assign variant = product_item.selected_or_first_available_variant %}
+            {% assign total_price = total_price | plus: variant.price %}
+            {% if variant.compare_at_price > variant.price %}
+                {% assign total_compare_price = total_compare_price | plus: variant.compare_at_price %}
+            {% else %}
+                {% assign total_compare_price = total_compare_price | plus: variant.price %}
+            {% endif %}
+            {% assign total_saving = total_compare_price | minus: total_price %}
+
+        <div style="display:flex;flex-direction:column;background:white;border:1px solid var(--gold-line);position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(26,18,6,.04)">
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:transparent"></div>
+            <a href="{{ product_item.url }}" style="padding:28px 24px 0">
+                <div style="font-family:var(--U);font-size:14px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink5);margin-bottom:16px">
+                Step 0{{ forloop.index }}
+                </div>
+                <div style="width:100%;height:260px;background:var(--canvas2);overflow:hidden;margin-bottom:18px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--gold-line);">
+                    <img loading="lazy" src="{{ product_item.featured_image | img_url : "original" }}" style="width:100%;height:100%;object-fit:contain;padding:12px;">
+                </div>
+                <div style="font-family:var(--D);font-size:22px;color:var(--ink);line-height:1.15;margin-bottom:8px">
+                    {{ product_item.title }}
+                </div>
+                <div style="font-family:var(--S);font-size:17px;color:var(--ink4);line-height:1.65;">
+                    {{ product_item.metafields.custom.expert }}
+                </div>
+            </a>
+            <div class="card-footer" style="padding:18px 24px 22px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--gold-line);margin-top:20px"><div style="font-family:var(--D);font-size:22px;color:var(--ink);font-weight:300">{{ product_item.price | money }}</div>
+               <div class="success-btn" style="display:none; font-family:var(--U);font-size:11px;letter-spacing:.16em;color:var(--gold);background:rgba(168,104,26,.08);padding:6px 12px;">✓ In Bag</div> 
+            <button class="custom-atc" pid="{{ product_item.selected_or_first_available_variant.id }}" style="background: var(--ink); color: var(--canvas); border: none; padding: 10px 18px; font-family: var(--U); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.22s; white-space: nowrap;" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='var(--ink)'">+ Add to Bag</button>
+            </div>
+        </div>
+        {%endfor %}
+    </div>
+
+    {% assign discount = section.settings.bundle_discount %}
+    {% assign discount_amount = total_price | times: discount | divided_by: 100 %}
+
+    <!-- Divider + totals -->
+    <div style="border-top:1px solid var(--gold-line);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <div>
+        <div style="font-family:var(--U);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px" id="pdp-complete-ritual-name">{{ section.settings.ritual_name }}</div>
+        <div style="font-family:var(--D);font-size:22px;color:var(--ink1)" id="pdp-complete-total">{{ main_collection.metafields.custom.bundle_price.value | money  }} complete set</div>
+        <div style="font-family:var(--S);font-size:16px;color:var(--ink3);margin-top:2px" id="pdp-complete-save-line">Save <span class="save-price">{{ discount_amount | money }}</span> · Buy as {{ section.settings.ritual_name }} set →</div>
+      </div>
+      <button class="add-full-bundle" id="pdp-complete-btn" style="background: var(--gold); color: var(--canvas); border: none; padding: 16px 32px; font-family: var(--U); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; white-space: nowrap;" onmouseover="this.style.background='var(--ink)'" onmouseout="this.style.background='var(--gold)'">
+        Shop the Ritual Now →
+      </button>
+    </div>
+</div>
+
+  {% schema %}
+  {
+    "name": "Custom complete ritual",
+    "settings": [
+    {
+    "type": "text",
+    "id": "caption",
+    "label": "Caption"
+    },
+    {
+    "type": "textarea",
+    "id": "heading",
+    "label": "Heading"
+    },
+    {
+    "type": "collection",
+    "id": "collection",
+    "label": "Choose collection"
+    },
+    {
+    "type": "number",
+    "id": "bundle_discount",
+    "label": "Bundle Discount %"
+    },
+    {
+    "type": "text",
+    "id": "ritual_name",
+    "label": "Ritual name"
+    }
+    ],
+    "presets": [
+    {
+      "name": "Custom complete ritual",
+    }
+  ]
+  }
+{% endschema %}

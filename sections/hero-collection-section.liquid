@@ -1,0 +1,253 @@
+<section class="hero-collection-section">
+  <div class="section">
+    <div class="hero-collection-wrapper">
+
+      <div class="hero-collection-content">
+
+        {% if section.settings.subheading != blank %}
+          <div class="hero-inner-header">
+            <p class="hero-subheading">
+              {{ section.settings.subheading }}
+            </p>
+            <div class="fv-cap-line"></div>
+          </div>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="hero-collection-heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        <div class="hero-collection-items">
+          {% for block in section.blocks %}
+            <div class="hero-collection-item" {{ block.shopify_attributes }}>
+              <h4>{{ block.settings.title }}</h4>
+
+              {% if block.settings.description != blank %}
+                <p>{{ block.settings.description }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+      <div class="hero-collection-image">
+
+        {% if section.settings.image != blank %}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              class: 'hero-image'
+          }}
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.hero-collection-section{
+  background: radial-gradient(
+    100.75% 105.17% at 95.4% 0%,
+    #cb964675 0%,
+    #e3c39f2e 100%
+  );
+  padding-top: {{ section.settings.padding_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+}
+
+.hero-inner-header{
+  font-family:var(--U);
+  font-size:14px;
+  color:var(--ink3);
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.hero-collection-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.hero-collection-heading {
+    margin: 13px 0 20px;
+    font-size: 38px;
+    line-height: 1.1;
+    color: var(--heading-color);
+    font-weight: 400;
+}
+
+.hero-collection-items{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.hero-collection-item h4 {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold);
+}
+
+.hero-collection-item p{
+  margin:0;
+  font-size:16px;
+  line-height:1.7;
+  color:var(--ink3);
+}
+
+.hero-collection-image{
+  width:100%;
+}
+.hero-image {
+    width: 100%;
+    display: block;
+    border-radius: 13px;
+    object-fit: cover;
+    max-height: 500px;
+}
+
+@media screen and (max-width: 749px){
+    .hero-collection-section{
+        padding-top: {{ section.settings.padding_top_mobile }}px;
+        padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+    .hero-collection-wrapper{
+        grid-template-columns:1fr;
+        gap:22px;
+    }
+    .hero-collection-heading{
+        font-size:28px;
+        margin: 10px 0 12px 0;
+    }
+    .hero-collection-items {
+        gap: 12px;
+    }
+    .hero-collection-item h4 {
+        font-size: 16px;
+    }
+    .hero-collection-item p{
+        font-size:14px;
+        line-height:1.6;
+    }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Hero Collection About",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "Our Hero Collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Hero Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Collection About",
+      "blocks": [
+        {
+          "type": "collection_item",
+          "settings": {
+            "title": "Saffron Brightening Serum",
+            "description": "This antioxidant-rich brightening serum visibly boosts radiance, evens skin tone, and reduces dark spots for a youthful glow."
+          }
+        },
+        {
+          "type": "collection_item",
+          "settings": {
+            "title": "Bakuchiol Anti-aging Serum",
+            "description": "A gentle, plant-based alternative to retinol that smooths fine lines and improves texture."
+          }
+        },
+        {
+          "type": "collection_item",
+          "settings": {
+            "title": "Turmeric & Sandalwood Mask",
+            "description": "A 15-minute weekly skin reset that purifies pores, calms inflammation, and reduces breakouts."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

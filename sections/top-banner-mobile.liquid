@@ -1,0 +1,278 @@
+<style>
+  .MbileSwiper {
+      display: none;
+      padding-top: 0;
+  }
+
+  .MbileSwiper .product-dual-slide {
+    position: relative;
+    overflow: hidden;
+    min-height:510px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .MbileSwiper .mob-view-top {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    text-align: center;
+    z-index: 2;
+
+    /* animation default */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+  }
+
+  /* Active slide content animation */
+  .MbileSwiper .swiper-slide-active .mob-view-top {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobileSwiper .swiper-pagination {
+    bottom: 10px !important;
+    z-index: 3;
+  }
+
+  .mobileSwiper .swiper-pagination-bullet {
+      background: transparent;
+      width: 40px;
+      height:6px;
+      border: 1px solid #fff;
+      opacity: 1;
+      border-radius:3px;
+  }
+
+  .mobileSwiper .swiper-pagination-bullet-active {
+    background:#ffff;
+    opacity: 1;
+  }
+
+  .mob-view-top p {
+      width: 159px;
+      background: #d3b18a78;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 8px;
+      border-radius: 6px;
+      text-align: left;
+      color: #fff;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 15px;
+      letter-spacing: 0%;
+      margin: 0 0 0 auto;
+  }
+  .mobile-sec-head {
+      width: fit-content;
+      background: #d3b18a78;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 8px;
+      border-radius: 6px;
+      text-align: left;
+      color: #fff;
+  }
+
+  .mobile-sec-head h2,
+  .mobile-sec-head h3 {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin: 0;
+  }
+
+  .mobile-sec-head h3 {
+    padding-top: 4px;
+    background: linear-gradient(180deg, #561A24 0%, #642221 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .mob-view-top .link-mobile-btn {
+      width: 139px;
+      margin: 0 0 0 auto;
+      display: flex;
+  }
+
+  .mob-view-top a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      text-decoration: none;
+      background: #A8681A;
+      padding: 10px 21px;
+      border-radius: 6px;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 9px;
+      letter-spacing: 0%;
+      text-align: center;
+      width: fit-content;
+      margin: 20px 0 0 0;
+      border: 1px solid rgb(255, 255, 255, .4);
+  }
+
+  .mob-view-top a:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
+  }
+
+  @media(max-width: 768px) {
+    .MbileSwiper {
+      display: block;
+    }
+
+    .dual-left,
+    .dual-right {
+      width: 100%;
+    }
+
+    .product-dual-slide {
+      min-height: 400px;
+    }
+  }
+
+  @media(max-width: 480px) {
+    .product-dual-slide {
+      min-height: 350px;
+      height: 491px;
+    }
+
+    .mob-view-top {
+        position: absolute;
+        top: 60px;
+        padding: 15px;
+    }
+  }
+</style>
+
+<div class="MbileSwiper">
+  <div class="swiper mobileSwiper">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          <div class="product-dual-slide" style="background-image: url('{{ block.settings.left_image | image_url: width: 1000 }}');">
+            <div class="mob-view-top">
+              <div class="mobile-sec-head">
+                {% if block.settings.title %}
+                  <h2>{{ block.settings.title }}</h2>
+                {% endif %}
+                {% if block.settings.title2 %}
+                  <h3>{{ block.settings.title2 }}</h3>
+                {% endif %}
+              </div>
+
+              {% if block.settings.text %}
+                <p>{{ block.settings.text }}</p>
+              {% endif %}
+              
+              {% if block.settings.btn %}
+                <div class="link-mobile-btn">
+                  <a href="{{ block.settings.link }}">
+                    {{ block.settings.btn }}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    function initSwiper() {
+      if (typeof Swiper !== 'undefined') {
+        new Swiper('.mobileSwiper', {
+          slidesPerView: 1,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }, 
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          speed: 800,
+          effect: 'slide',
+        });
+      }
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSwiper);
+    } else {
+      initSwiper();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Top slider Mobile View",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "left_image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "title2",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "btn",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Top slider Mobile View",
+      "blocks": [
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

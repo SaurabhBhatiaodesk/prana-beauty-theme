@@ -1,0 +1,253 @@
+{% comment %}
+Collection Banner with Metafield Override
+Metafield: collection.metafields.custom.banner
+{% endcomment %}
+
+{% comment %} <section class="collection-banner">
+
+  {% assign custom_banner = collection.metafields.custom.banner %}
+
+  {% if custom_banner != blank %}
+    <!-- SHOW CUSTOM COLLECTION BANNER -->
+    <div class="collection-banner__image">
+      <img 
+        src="{{ custom_banner | img_url: '2000x' }}" 
+        alt="{{ collection.title }} banner" 
+        loading="lazy" width="" height=""
+      >
+    </div>
+
+  {% else %}
+    <!-- DEFAULT BANNER -->
+    <div class="collection-banner__image">
+      <img 
+        src="{{ section.settings.default_banner | img_url: '2000x' }}" 
+        alt="{{ collection.title }} default banner"
+        loading="lazy" width="" height=""
+      >
+    </div>
+
+    <div class="collection-banner__content">
+      <h2>{{ section.settings.title }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p>{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+  {% endif %}
+
+</section> {% endcomment %}
+
+{% comment %}
+Collection Banner with Metafield Override
+Metafield: collection.metafields.custom.banner
+{% endcomment %}
+
+<section class="collection-banner">
+
+  {% assign custom_banner = collection.metafields.custom.banner %}
+  {% assign default_banner = section.settings.default_banner %}
+  {% assign default_banner_mobile = section.settings.default_banner_mobile %}
+{% comment %} 
+  {% if custom_banner != blank %}
+    <!-- CUSTOM COLLECTION BANNER -->
+    <div class="collection-banner__image">
+      <img 
+        src="{{ custom_banner | img_url: '2000x' }}" 
+        alt="{{ collection.title }} banner" 
+        loading="lazy"
+        class="banner-desktop" width="" height=""
+      >
+      <img 
+        src="{{ custom_banner | img_url: '800x' }}" 
+        alt="{{ collection.title }} mobile banner" 
+        loading="lazy"
+        class="banner-mobile" width="" height=""
+      >
+    </div>
+
+  {% else %}
+    
+
+  {% endif %} {% endcomment %}
+
+
+  <!-- DEFAULT BANNER -->
+    <div class="collection-banner__image">
+      
+      {% if default_banner_mobile != blank %}
+        <img 
+          src="{{ default_banner | img_url: '2000x' }}" 
+          alt="{{ collection.title }} default banner" 
+          loading="lazy"
+          class="banner-desktop" width="" height=""
+        >
+        <img 
+          src="{{ default_banner_mobile | img_url: '800x' }}" 
+          alt="{{ collection.title }} default mobile banner" 
+          loading="lazy"
+          class="banner-mobile" width="" height=""
+        >
+      {% endif %}
+    </div>
+
+    <div class="collection-banner__content">
+      <h2>{{ section.settings.title }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p>{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+</section>
+
+
+<style>
+.collection-banner {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  padding:0;
+}
+.collection-banner__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 600px;
+    min-height: 600px;
+}
+.collection-banner__image {
+    max-width: 100%;
+    width: 100%;
+}
+.collection-banner__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #F0E0CB;
+    max-width: 560px;
+    width: 100%;
+    max-height: 560px;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+}
+.collection-banner__content h2 {
+    font-size: 56px;
+    color:var(--heading-color);
+    font-weight: 500;
+    margin: 0;
+    line-height: 50px;
+}
+.collection-banner__content p {
+    font-size: 20px;
+    color: var(--ink3);
+    font-weight: 300;
+    margin: 2rem 0 0;
+}
+.collection-banner:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background: #F0E0CB;
+    width: 255px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+.banner-mobile {
+    display: none !important;
+}
+
+@media all and (max-width:768px){
+  .collection-banner__content {
+    max-width: 485px;
+    width: 100%;
+    max-height: 485px;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner-desktop {
+    display: none!important;
+  }
+  .banner-mobile {
+    display: block!important;
+    min-height:400px;
+  }
+  .collection-banner__content {
+    max-width: 300px;
+    max-height: 300px;
+    padding: 20px;
+  }
+  .collection-banner__content p {
+      font-size: 13px;
+      margin: 10px 0;
+  }
+  .collection-banner__content h2 {
+    font-size: 26px;
+    line-height: normal;
+  }
+  .collection-banner:before {
+    width:118px;
+  }
+  .collection-banner {
+      padding: 0;
+  }
+  
+}
+
+@media all and (max-width:575px){
+  .collection-banner__image img {
+      max-height: 400px;
+      min-height: 400px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "default_banner",
+      "label": "Default Banner Image",
+      "info": "Shown when no metafield banner is available"
+    },
+    {
+      "type": "image_picker",
+      "id": "default_banner_mobile",
+      "label": "Mobile Default Banner Image",
+      "info": "Shown only on mobile if available"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Banner Title",
+      "default": "Discover Our Beauty Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Banner Subtitle",
+      "default": "A curated selection of skincare and makeup essentials crafted to elevate your routine with quality and care."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Banner",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

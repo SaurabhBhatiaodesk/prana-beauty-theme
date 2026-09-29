@@ -1,0 +1,378 @@
+<style>
+.product-dual-slide {
+  display: flex;
+  gap: 10px;
+}
+.dual-left {
+  width: 50%;
+  position: relative;
+}
+.dual-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dual-right {
+  width: 50%;
+  text-align: center;
+  background: #fff;
+  padding: 30px 40px;
+  position: relative;
+}
+.dual-right h3 {
+    color: #4E403C;
+    font-size: 24px;
+    font-family: 'Josefin Sans';
+    margin: 2rem 1rem 0;
+    text-transform: uppercase;
+}
+.dual-right p {
+    margin: 1rem 0;
+    font-family: "Josefin Sans";
+    color: #4e403c;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.dual-right h6 {
+    background: #F4E3B8;
+    line-height: 18px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Josefin Sans';
+    color: #4E403C;
+    border: 1px solid #4E403c;
+    max-width: max-content;
+    padding: 8px 13px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 -15px 0;
+}
+.svgs {
+    display: flex;
+    margin: 0 0 15px auto;
+}
+
+.product-image {
+  max-width: 300px;
+  margin: auto;
+}
+
+.add-to-cart-btn {
+  border: none;
+    cursor: pointer;
+    display: flex;
+    margin: 20px auto 0;
+    padding: 17px 100px;
+    background: #F4F1EA;
+    color: #1B1716;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: center;
+    line-height: 14px;
+        max-width: 55%;
+}
+.add-to-cart-btn svg{
+    margin-right: 8px;
+}
+.slider-arrows {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.productDualSwiper .custom-arrow.custom-next {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateX(-50%);
+}
+.productDualSwiper .custom-arrow.custom-prev {
+    position: absolute;
+    left: 9%;
+    top: 50%;
+    transform: translateX(-50%);
+}
+.productDualSwiper {
+    margin: 0 16px;
+}
+
+
+@media(max-width: 768px) {
+  .product-dual-slide {
+    flex-direction: column;
+  }
+  .dual-left, .dual-right {
+    width: 100%;
+  }
+  .dual-right {
+    padding: 16px;
+  }
+  .svgs {
+    display: flex;
+    margin: -25px 0 20px auto;
+    max-width: 150px;
+}
+.dual-right h3 {
+    font-size: 20px;
+    letter-spacing: -1px;
+}
+.add-to-cart-btn {
+    padding: 17px 0px;
+}
+.product-form-buttons button.quick-add__button {
+    height: 1px;
+    margin: 0;
+    padding: 0;
+}
+.dual-right h6 {
+    line-height: 12px;
+    font-size: 11px;
+}
+}
+</style>
+
+
+<div class="swiper productDualSwiper">
+  <div class="swiper-wrapper">
+
+{% assign left_product = all_products[section.settings.left_product] %}
+
+    {% for block in section.blocks %}
+      {% assign product = all_products[block.settings.product] %}
+
+      <div class="swiper-slide">
+        <div class="product-dual-slide">
+          
+          <!-- LEFT IMAGE FROM BLOCK -->
+          <div class="dual-left">
+            {% if block.settings.left_image %}
+              <img src="{{ block.settings.left_image | image_url: width: 1000 }}">
+            {% else %}
+              <div style="padding:50px; background:#eee; text-align:center;">Upload left image</div>
+            {% endif %}
+            <product-form-component
+  class="left-{{ section.id }}-{{ left_product.id }}"
+  data-section-id="{{ section.id }}"
+  data-product-id="{{ left_product.id }}"
+  style="opacity:0; visibility:hidden;"
+>
+  {% form 'product', left_product %}
+    <input
+      type="hidden"
+      name="id"
+      value="{{ left_product.selected_or_first_available_variant.id }}"
+    >
+    <button type="submit" class="quick-add__button"></button>
+  {% endform %}
+</product-form-component>
+
+            
+               <div class="add-btn add-to-cart-btn"
+  onclick="document
+    .querySelector('.left-{{ section.id }}-{{ left_product.id }} .quick-add__button')
+    .click()" style="position: absolute;bottom: 30px;left: 50%;transform: translateX(-50%);padding: 17px 30px;" class="add-btn add-to-cart-btn" onclick="document.querySelector('.m{{ section.id }}-{{ product.id }} .quick-add__button').click()">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 0H9V20H11V0Z" fill="#97371E"/>
+              <path d="M20 9H0V11H20V9Z" fill="#97371E"/>
+              </svg>
+  
+                  Add to Cart
+              </div>
+              {%- assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id -%}
+              <product-form-component 
+
+                data-section-id="{{ section.id }}"
+                data-product-id="{{ product.id }}"
+                data-product-url="{{ product.url }}"
+                on:submit="/handleSubmit"
+                style="opacity: 0;visibility: hidden;"
+                class="m{{ section.id }}-{{ product.id }}"
+                data-quantity-default="{% if product.selected_or_first_available_variant.quantity_rule.min %}{{ product.selected_or_first_available_variant.quantity_rule.min }}{% else %}1{% endif %}"
+                data-quantity-error-max="{{ 'products.product.quantity_error_max' | t }}">
+                <div
+                  class="visually-hidden"
+                  aria-live="assertive"
+                  role="status"
+                  aria-atomic="true"
+                  ref="liveRegion"
+                ></div>
+                {%- form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' -%}
+                  <input
+                    type="hidden"
+                    name="id"
+                    ref="variantId"
+                    value="{{ product.selected_or_first_available_variant.id }}"
+                  >
+                  <div
+                    class="product-form-buttons spacing-style{% if block_settings.stacking %} product-form-buttons--stacked{% endif %}"
+                    
+                    ref="productFormButtons"
+                  >
+                    {%- liquid
+                      assign has_quantity_rules = false
+                      if variant.quantity_rule.min > 1 or variant.quantity_rule.increment > 1 or variant.quantity_rule.max != null
+                        assign has_quantity_rules = true
+                      endif
+                    -%}
+                      <button class="quick-add__button" type="sumbit">aaaaa</button>
+                  </div>
+                {%- endform -%}
+              </product-form-component>
+          </div>
+          
+          <div class="dual-right">
+            {% if product %}
+                <h6>{{ product.category }}</h6>
+                <a href="https://www.pranabeauty.com/pages/prana-glow-quiz">
+                <svg class="svgs" width="215" height="27" viewBox="0 0 215 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M35.1924 5.72838H42.7326V7.46247H39.8218V17H38.0258V7.46247H35.1924V5.72838ZM47.5789 5.72838C48.1982 5.72838 48.766 5.81095 49.2821 5.9761C49.7982 6.13093 50.2368 6.36318 50.5981 6.67284C50.9594 6.9825 51.2381 7.36441 51.4342 7.81858C51.6406 8.26243 51.7439 8.77337 51.7439 9.3514C51.7439 9.79524 51.6768 10.2391 51.5426 10.6829C51.4084 11.1268 51.1865 11.5293 50.8768 11.8906C50.5775 12.2416 50.1801 12.5306 49.6846 12.7577C49.1892 12.9744 48.575 13.0828 47.8421 13.0828H46.2164V17H44.4049V5.72838H47.5789ZM47.8267 11.3487C48.2292 11.3487 48.5647 11.2868 48.833 11.1629C49.1014 11.0287 49.3079 10.8636 49.4524 10.6675C49.6072 10.4713 49.7156 10.2649 49.7775 10.0481C49.8498 9.82105 49.8859 9.60945 49.8859 9.41333C49.8859 9.22753 49.8549 9.02625 49.793 8.80949C49.7311 8.58241 49.6227 8.37081 49.4678 8.17469C49.3233 7.96825 49.1221 7.79794 48.864 7.66375C48.606 7.52956 48.2808 7.46247 47.8886 7.46247H46.2164V11.3487H47.8267ZM49.7775 12.417L52.6573 17H50.5671L47.6254 12.4635L49.7775 12.417ZM56.405 13.346L52.24 5.72838H54.4541L57.6281 11.7977L57.0862 11.8287L60.2138 5.72838H62.4278L58.201 13.346V17H56.405V13.346ZM73.9691 8.01986C73.5665 7.81342 73.1382 7.63795 72.684 7.49344C72.2298 7.33861 71.7963 7.26119 71.3834 7.26119C70.826 7.26119 70.3822 7.38506 70.0519 7.63278C69.7319 7.88051 69.5719 8.22114 69.5719 8.65466C69.5719 8.96432 69.6803 9.23786 69.8971 9.47526C70.1241 9.70235 70.4132 9.90362 70.7641 10.0791C71.1254 10.2443 71.5021 10.4042 71.8944 10.5591C72.235 10.6829 72.5705 10.8326 72.9008 11.0081C73.2414 11.1732 73.5459 11.3797 73.8143 11.6274C74.0826 11.8751 74.2942 12.1848 74.4491 12.5564C74.6039 12.9176 74.6813 13.3667 74.6813 13.9034C74.6813 14.4918 74.5316 15.0337 74.2323 15.5291C73.9433 16.0142 73.5201 16.4013 72.9627 16.6903C72.4053 16.9794 71.7292 17.1239 70.9344 17.1239C70.4596 17.1239 69.9951 17.0723 69.541 16.969C69.0971 16.8658 68.6739 16.7265 68.2713 16.551C67.8688 16.3652 67.4972 16.1588 67.1566 15.9317L67.9617 14.5227C68.2094 14.7085 68.4933 14.8788 68.8133 15.0337C69.1332 15.1885 69.4635 15.3124 69.8042 15.4053C70.1448 15.4981 70.4648 15.5446 70.7641 15.5446C71.0841 15.5446 71.3989 15.493 71.7086 15.3898C72.0286 15.2762 72.2918 15.1008 72.4982 14.8633C72.715 14.6259 72.8234 14.3111 72.8234 13.9189C72.8234 13.5989 72.7305 13.3254 72.5447 13.0983C72.3692 12.8712 72.1318 12.6751 71.8324 12.5099C71.5331 12.3345 71.208 12.1796 70.857 12.0454C70.5061 11.9113 70.15 11.7616 69.7887 11.5964C69.4274 11.4313 69.0868 11.23 68.7668 10.9926C68.4571 10.7449 68.2043 10.4455 68.0081 10.0946C67.812 9.74363 67.714 9.31011 67.714 8.79401C67.714 8.17469 67.8585 7.63795 68.1475 7.18378C68.4365 6.72961 68.8339 6.36834 69.3397 6.09997C69.8558 5.8316 70.4493 5.68709 71.1202 5.66644C71.915 5.66644 72.5911 5.7645 73.1485 5.96062C73.7162 6.14642 74.2168 6.3735 74.6503 6.64187L73.9691 8.01986ZM84.8077 16.1175C84.6425 16.231 84.3948 16.3704 84.0645 16.5355C83.7445 16.7007 83.3574 16.8452 82.9033 16.969C82.4594 17.0826 81.964 17.1342 81.4169 17.1239C80.5395 17.1135 79.7499 16.9587 79.048 16.6594C78.3461 16.3497 77.7526 15.9368 77.2675 15.4207C76.7823 14.8943 76.4056 14.2956 76.1372 13.6247C75.8791 12.9435 75.7501 12.2209 75.7501 11.4571C75.7501 10.6004 75.8843 9.81589 76.1527 9.10367C76.4211 8.39145 76.803 7.77729 77.2984 7.26119C77.7939 6.73477 78.3822 6.32705 79.0635 6.03804C79.7447 5.74902 80.4879 5.60451 81.293 5.60451C82.0053 5.60451 82.6401 5.70257 83.1974 5.89869C83.7652 6.08448 84.24 6.29609 84.6219 6.53349L83.9097 8.22114C83.6206 8.02502 83.2594 7.8289 82.8259 7.63278C82.3923 7.43667 81.902 7.33861 81.355 7.33861C80.8595 7.33861 80.3847 7.44183 79.9305 7.64827C79.4764 7.84439 79.079 8.12824 78.7383 8.49983C78.3977 8.8611 78.1242 9.28431 77.9177 9.76944C77.7216 10.2546 77.6236 10.781 77.6236 11.3487C77.6236 11.9371 77.7113 12.479 77.8868 12.9744C78.0726 13.4699 78.3306 13.8982 78.6609 14.2595C79.0016 14.6105 79.4041 14.8892 79.8686 15.0956C80.3434 15.2917 80.875 15.3898 81.4633 15.3898C82.0414 15.3898 82.5472 15.302 82.9807 15.1266C83.4245 14.9408 83.7806 14.7343 84.049 14.5072L84.8077 16.1175ZM85.4163 17L90.4019 5.26389H90.5103L95.4958 17H93.4211L89.9219 8.08179L91.207 7.21474L87.1814 17H85.4163ZM88.5439 12.8041H92.3992L93.0185 14.3524H88.002L88.5439 12.8041ZM106.709 17.4026L98.0539 9.01077L98.5803 9.22753L98.6267 17H96.7997V5.3413H96.8926L105.408 13.7331L104.99 13.6092L104.959 5.72838H106.755V17.4026H106.709ZM116.557 13.346L112.392 5.72838H114.606L117.78 11.7977L117.238 11.8287L120.366 5.72838H122.58L118.353 13.346V17H116.557V13.346ZM122.157 11.3797C122.157 10.5952 122.306 9.85718 122.606 9.1656C122.905 8.47403 123.318 7.85987 123.844 7.32313C124.371 6.78638 124.98 6.36834 125.671 6.069C126.373 5.75934 127.122 5.60451 127.916 5.60451C128.701 5.60451 129.439 5.75934 130.131 6.069C130.832 6.36834 131.447 6.78638 131.973 7.32313C132.51 7.85987 132.928 8.47403 133.227 9.1656C133.537 9.85718 133.692 10.5952 133.692 11.3797C133.692 12.1745 133.537 12.9228 133.227 13.6247C132.928 14.3163 132.51 14.9253 131.973 15.4517C131.447 15.9781 130.832 16.391 130.131 16.6903C129.439 16.9794 128.701 17.1239 127.916 17.1239C127.111 17.1239 126.363 16.9794 125.671 16.6903C124.98 16.391 124.371 15.9833 123.844 15.4672C123.318 14.9408 122.905 14.3318 122.606 13.6402C122.306 12.9383 122.157 12.1848 122.157 11.3797ZM124.015 11.3797C124.015 11.9371 124.113 12.4583 124.309 12.9435C124.515 13.4286 124.799 13.857 125.16 14.2285C125.522 14.5898 125.94 14.8737 126.415 15.0801C126.889 15.2865 127.406 15.3898 127.963 15.3898C128.5 15.3898 129 15.2865 129.465 15.0801C129.94 14.8737 130.352 14.5898 130.703 14.2285C131.054 13.857 131.328 13.4286 131.524 12.9435C131.73 12.4583 131.834 11.9371 131.834 11.3797C131.834 10.812 131.73 10.2855 131.524 9.8004C131.318 9.31527 131.039 8.88691 130.688 8.51532C130.337 8.14372 129.924 7.85471 129.449 7.64827C128.974 7.44183 128.464 7.33861 127.916 7.33861C127.369 7.33861 126.858 7.44183 126.384 7.64827C125.909 7.85471 125.491 8.14372 125.13 8.51532C124.779 8.88691 124.505 9.32043 124.309 9.81589C124.113 10.301 124.015 10.8223 124.015 11.3797ZM137.105 12.9435C137.105 13.3873 137.219 13.795 137.446 14.1666C137.683 14.5382 137.993 14.8324 138.375 15.0491C138.757 15.2659 139.185 15.3743 139.66 15.3743C140.155 15.3743 140.599 15.2659 140.991 15.0491C141.384 14.8324 141.693 14.5382 141.92 14.1666C142.147 13.795 142.261 13.3873 142.261 12.9435V5.72838H144.042V12.9899C144.042 13.8053 143.845 14.5279 143.453 15.1575C143.061 15.7768 142.535 16.262 141.874 16.6129C141.213 16.9536 140.475 17.1239 139.66 17.1239C138.855 17.1239 138.122 16.9536 137.461 16.6129C136.801 16.262 136.274 15.7768 135.882 15.1575C135.5 14.5279 135.309 13.8053 135.309 12.9899V5.72838H137.105V12.9435ZM149.51 5.72838C150.13 5.72838 150.697 5.81095 151.213 5.9761C151.73 6.13093 152.168 6.36318 152.529 6.67284C152.891 6.9825 153.169 7.36441 153.366 7.81858C153.572 8.26243 153.675 8.77337 153.675 9.3514C153.675 9.79524 153.608 10.2391 153.474 10.6829C153.34 11.1268 153.118 11.5293 152.808 11.8906C152.509 12.2416 152.111 12.5306 151.616 12.7577C151.121 12.9744 150.506 13.0828 149.773 13.0828H148.148V17H146.336V5.72838H149.51ZM149.758 11.3487C150.161 11.3487 150.496 11.2868 150.764 11.1629C151.033 11.0287 151.239 10.8636 151.384 10.6675C151.539 10.4713 151.647 10.2649 151.709 10.0481C151.781 9.82105 151.817 9.60945 151.817 9.41333C151.817 9.22753 151.786 9.02625 151.724 8.80949C151.662 8.58241 151.554 8.37081 151.399 8.17469C151.255 7.96825 151.053 7.79794 150.795 7.66375C150.537 7.52956 150.212 7.46247 149.82 7.46247H148.148V11.3487H149.758ZM151.709 12.417L154.589 17H152.499L149.557 12.4635L151.709 12.417ZM166.344 8.01986C165.941 7.81342 165.513 7.63795 165.059 7.49344C164.605 7.33861 164.171 7.26119 163.758 7.26119C163.201 7.26119 162.757 7.38506 162.427 7.63278C162.107 7.88051 161.947 8.22114 161.947 8.65466C161.947 8.96432 162.055 9.23786 162.272 9.47526C162.499 9.70235 162.788 9.90362 163.139 10.0791C163.5 10.2443 163.877 10.4042 164.269 10.5591C164.61 10.6829 164.945 10.8326 165.276 11.0081C165.616 11.1732 165.921 11.3797 166.189 11.6274C166.457 11.8751 166.669 12.1848 166.824 12.5564C166.979 12.9176 167.056 13.3667 167.056 13.9034C167.056 14.4918 166.906 15.0337 166.607 15.5291C166.318 16.0142 165.895 16.4013 165.338 16.6903C164.78 16.9794 164.104 17.1239 163.309 17.1239C162.834 17.1239 162.37 17.0723 161.916 16.969C161.472 16.8658 161.049 16.7265 160.646 16.551C160.244 16.3652 159.872 16.1588 159.531 15.9317L160.337 14.5227C160.584 14.7085 160.868 14.8788 161.188 15.0337C161.508 15.1885 161.838 15.3124 162.179 15.4053C162.52 15.4981 162.84 15.5446 163.139 15.5446C163.459 15.5446 163.774 15.493 164.083 15.3898C164.403 15.2762 164.667 15.1008 164.873 14.8633C165.09 14.6259 165.198 14.3111 165.198 13.9189C165.198 13.5989 165.105 13.3254 164.919 13.0983C164.744 12.8712 164.507 12.6751 164.207 12.5099C163.908 12.3345 163.583 12.1796 163.232 12.0454C162.881 11.9113 162.525 11.7616 162.164 11.5964C161.802 11.4313 161.462 11.23 161.142 10.9926C160.832 10.7449 160.579 10.4455 160.383 10.0946C160.187 9.74363 160.089 9.31011 160.089 8.79401C160.089 8.17469 160.233 7.63795 160.522 7.18378C160.811 6.72961 161.209 6.36834 161.715 6.09997C162.231 5.8316 162.824 5.68709 163.495 5.66644C164.29 5.66644 164.966 5.7645 165.523 5.96062C166.091 6.14642 166.592 6.3735 167.025 6.64187L166.344 8.01986ZM170.649 10.0481L170.602 10.621L170.85 10.2649L175.092 5.72838H177.415L172.754 10.652L177.585 17H175.294L171.438 11.7977L170.649 12.5719V17H168.822V5.72838H170.649V10.0481ZM178.877 5.72838H180.689V17H178.877V5.72838ZM193.081 17.4026L184.426 9.01077L184.952 9.22753L184.999 17H183.172V5.3413H183.265L191.78 13.7331L191.362 13.6092L191.331 5.72838H193.127V17.4026H193.081ZM198.78 17L203.765 5.26389H203.874L208.859 17H206.784L203.285 8.08179L204.57 7.21474L200.545 17H198.78ZM201.907 12.8041H205.763L206.382 14.3524H201.365L201.907 12.8041ZM210.163 5.72838H211.975V17H210.163V5.72838Z" fill="#1B1716"/>
+                <path d="M8.44082 5.13739L9.19699 7.24523C10.0382 9.58938 11.8814 11.4231 14.2256 12.2738L16.3334 13.03C16.5224 13.0961 16.5224 13.3703 16.3334 13.4364L14.2256 14.1926C11.8814 15.0338 10.0477 16.877 9.19699 19.2212L8.44082 21.329C8.37465 21.5181 8.10054 21.5181 8.03437 21.329L7.27819 19.2212C6.43695 16.877 4.59377 15.0433 2.24962 14.1926L0.141783 13.4364C-0.047261 13.3703 -0.047261 13.0961 0.141783 13.03L2.24962 12.2738C4.59377 11.4326 6.4275 9.58938 7.27819 7.24523L8.03437 5.13739C8.10054 4.94834 8.37465 4.94834 8.44082 5.13739Z" fill="#97371E"/>
+                <path d="M17.9314 0.0708915L18.319 1.13899C18.7443 2.32052 19.6801 3.25628 20.8616 3.68163L21.9297 4.06917C22.0242 4.10698 22.0242 4.23931 21.9297 4.27712L20.8616 4.66466C19.6801 5.09001 18.7443 6.02578 18.319 7.2073L17.9314 8.2754C17.8936 8.36993 17.7613 8.36993 17.7235 8.2754L17.3359 7.2073C16.9106 6.02578 15.9748 5.09001 14.7933 4.66466L13.7252 4.27712C13.6307 4.23931 13.6307 4.10698 13.7252 4.06917L14.7933 3.68163C15.9748 3.25628 16.9106 2.32052 17.3359 1.13899L17.7235 0.0708915C17.7613 -0.0236305 17.8936 -0.0236305 17.9314 0.0708915Z" fill="#97371E"/>
+                <path d="M17.9314 18.191L18.319 19.2591C18.7443 20.4406 19.6801 21.3764 20.8616 21.8017L21.9297 22.1893C22.0242 22.2271 22.0242 22.3594 21.9297 22.3972L20.8616 22.7848C19.6801 23.2101 18.7443 24.1459 18.319 25.3274L17.9314 26.3955C17.8936 26.49 17.7613 26.49 17.7235 26.3955L17.3359 25.3274C16.9106 24.1459 15.9748 23.2101 14.7933 22.7848L13.7252 22.3972C13.6307 22.3594 13.6307 22.2271 13.7252 22.1893L14.7933 21.8017C15.9748 21.3764 16.9106 20.4406 17.3359 19.2591L17.7235 18.191C17.7613 18.0965 17.8936 18.0965 17.9314 18.191Z" fill="#97371E"/>
+                </svg></a>
+              <a href="{{ product.url }}">
+              <img class="product-image" src="{{ product.featured_image | image_url: width: 700 }}" width=" " height="">
+              </a>
+             
+                {% comment %} rating {% endcomment %}
+                  <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+                {% comment %} end rating {% endcomment %}
+
+              <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+
+              <p>From {{ product.price | money }}</p>
+
+              
+               <div class="add-btn add-to-cart-btn" onclick="document.querySelector('.m{{ section.id }}-{{ product.id }} .quick-add__button').click()">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 0H9V20H11V0Z" fill="#97371E"/>
+              <path d="M20 9H0V11H20V9Z" fill="#97371E"/>
+              </svg>
+                  Add to Cart
+              </div>
+              {%- assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id -%}
+              <product-form-component 
+
+                data-section-id="{{ section.id }}"
+                data-product-id="{{ product.id }}"
+                data-product-url="{{ product.url }}"
+                on:submit="/handleSubmit"
+                style="opacity: 0;visibility: hidden;"
+                class="m{{ section.id }}-{{ product.id }}"
+                data-quantity-default="{% if product.selected_or_first_available_variant.quantity_rule.min %}{{ product.selected_or_first_available_variant.quantity_rule.min }}{% else %}1{% endif %}"
+                data-quantity-error-max="{{ 'products.product.quantity_error_max' | t }}">
+                <div
+                  class="visually-hidden"
+                  aria-live="assertive"
+                  role="status"
+                  aria-atomic="true"
+                  ref="liveRegion"
+                ></div>
+                {%- form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' -%}
+                  <input
+                    type="hidden"
+                    name="id"
+                    ref="variantId"
+                    value="{{ product.selected_or_first_available_variant.id }}"
+                  >
+                  <div
+                    class="product-form-buttons spacing-style{% if block_settings.stacking %} product-form-buttons--stacked{% endif %}"
+                    
+                    ref="productFormButtons"
+                  >
+                    {%- liquid
+                      assign has_quantity_rules = false
+                      if variant.quantity_rule.min > 1 or variant.quantity_rule.increment > 1 or variant.quantity_rule.max != null
+                        assign has_quantity_rules = true
+                      endif
+                    -%}
+                      <button class="quick-add__button" type="sumbit">aaaaa</button>
+                  </div>
+                {%- endform -%}
+              </product-form-component>
+
+              {% if section.blocks.size > 1 %}
+                <div class="slider-arrows">
+                  <div class="custom-arrow custom-prev custom-prev-{{ section.id }}">
+                      <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.259121 9.17002L9.11942 0.30972C9.43771 -0.0618701 9.99738 -0.105273 10.369 0.213015C10.7406 0.531304 10.784 1.09097 10.4657 1.46256C10.436 1.49759 10.404 1.52957 10.369 1.55927L3.02396 8.91341H38.1019C38.5916 8.91341 38.9883 9.31013 38.9883 9.79974C38.9883 10.2894 38.5916 10.6861 38.1019 10.6861H3.0232L10.3682 18.0311C10.7398 18.3494 10.7832 18.909 10.4649 19.2806C10.1466 19.6522 9.58695 19.6956 9.21536 19.3773C9.1811 19.3476 9.14835 19.3157 9.11866 19.2806L0.258358 10.4203C-0.0850601 10.0746 -0.0850601 9.51648 0.258358 9.17078L0.259121 9.17002Z" fill="#443531"/>
+                      </svg>
+                  </div>
+                  <div class="custom-arrow custom-next custom-next-{{ section.id }}">
+                      <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M38.7292 9.17002L29.8689 0.30972C29.5506 -0.0618701 28.9909 -0.105273 28.6193 0.213015C28.2477 0.531304 28.2043 1.09097 28.5226 1.46256C28.5523 1.49759 28.5843 1.52957 28.6193 1.55927L35.9643 8.91341H0.886335C0.396718 8.91341 0 9.31013 0 9.79974C0 10.2894 0.396718 10.6861 0.886335 10.6861H35.9651L28.6201 18.0311C28.2485 18.3494 28.2051 18.909 28.5234 19.2806C28.8417 19.6522 29.4013 19.6956 29.7729 19.3773C29.8072 19.3476 29.8399 19.3157 29.8696 19.2806L38.7299 10.4203C39.0733 10.0746 39.0733 9.51648 38.7299 9.17078L38.7292 9.17002Z" fill="#443531"/>
+                      </svg>
+                  </div>
+                </div>
+              {% endif %}
+            {% else %}
+              <p>Select a product</p>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+
+    {% endfor %}
+  </div>
+
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  new Swiper(".productDualSwiper", {
+    slidesPerView: 1,
+    navigation: {
+      nextEl: ".custom-next-{{ section.id }}",
+      prevEl: ".custom-prev-{{ section.id }}",
+    },
+    loop: true
+  });
+
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Image With Product Slider",
+  "settings": [
+    {
+  "type": "product",
+  "id": "left_product",
+  "label": "Left side product"
+}
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Product Slide",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "left_image",
+          "label": "Left Side Image (Model Image)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Image With Product Slider"
+    }
+  ]
+}
+{% endschema %}

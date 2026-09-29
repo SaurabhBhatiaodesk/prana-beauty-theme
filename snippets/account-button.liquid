@@ -1,0 +1,87 @@
+{%- doc -%}
+  Renders an account button.
+
+  @param {string} [tag] - The tag to use
+  @param {string} [popover_id] - The id of the popover to target
+  @param {string} [popover_action] - The id of the popover to target
+  @param {string} [attributes] - Additional attributes to add to the tag
+{%- enddoc -%}
+
+{%- assign tag = tag | default: 'button' -%}
+<{{ tag }}
+  class="nav-icon account-button header-actions__action"
+  aria-label="{{ 'accessibility.account' | t }}"
+  aria-haspopup="dialog"
+  {%- if popover_id -%}
+    popovertarget="{{ popover_id }}"
+    popovertargetaction="{{ popover_action | default: 'toggle' }}"
+  {%- endif -%}
+  ref="trigger"
+  {{ attributes }}
+>
+  {%- if customer.has_avatar? -%}
+    {{ customer | avatar }}
+  {%- elsif customer.first_name or customer.email -%}
+    {%- liquid
+      assign initial = customer.email | first
+
+      if customer.first_name != blank
+        assign initial = customer.first_name | first
+      endif
+    -%}
+    <span class="account-button__avatar"aria-hidden="true">
+      {% comment %} <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.3333 20.4079V18.5746C18.3333 17.6021 17.947 16.6695 17.2594 15.9818C16.5717 15.2942 15.6391 14.9079 14.6667 14.9079H7.33332C6.36086 14.9079 5.42823 15.2942 4.7406 15.9818C4.05296 16.6695 3.66666 17.6021 3.66666 18.5746V20.4079" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M11 11.2412C13.0251 11.2412 14.6667 9.5996 14.6667 7.57455C14.6667 5.54951 13.0251 3.90789 11 3.90789C8.97497 3.90789 7.33334 5.54951 7.33334 7.57455C7.33334 9.5996 8.97497 11.2412 11 11.2412Z" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg> {% endcomment %}
+      {{- initial -}}
+    </span>
+  {%- else -%}
+    <span class="account-button__icon"aria-hidden="true">
+      
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.3333 20.4079V18.5746C18.3333 17.6021 17.947 16.6695 17.2594 15.9818C16.5717 15.2942 15.6391 14.9079 14.6667 14.9079H7.33332C6.36086 14.9079 5.42823 15.2942 4.7406 15.9818C4.05296 16.6695 3.66666 17.6021 3.66666 18.5746V20.4079" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11 11.2412C13.0251 11.2412 14.6667 9.5996 14.6667 7.57455C14.6667 5.54951 13.0251 3.90789 11 3.90789C8.97497 3.90789 7.33334 5.54951 7.33334 7.57455C7.33334 9.5996 8.97497 11.2412 11 11.2412Z" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    </span>
+  {%- endif -%}
+</{{ tag }}>
+
+{% stylesheet %}
+  .account-button {
+    color: var(--color-foreground);
+    appearance: none;
+    border: none;
+    background: none;
+    height:20px;
+    width:20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    transition: color var(--animation-speed) var(--animation-easing);
+    anchor-name: --account-button-trigger;
+  }
+  .account-button__avatar {
+      --account-button-size: 1.625rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      border-radius: var(--style-border-radius-50);
+      background-color: var(--gold);
+      font-size: var(--font-size--sm);
+      font-weight: 500;
+      color: var(--color-primary-button-text);
+      text-transform: uppercase;
+      line-height: 1;
+  }
+
+
+  /* The shop avatar doesn't bubble the click event up to our button, so we need to prevent that or the button doesn't work */
+  .account-button shop-user-avatar {
+    pointer-events: none;
+  }
+{% endstylesheet %}

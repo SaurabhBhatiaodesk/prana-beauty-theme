@@ -1,0 +1,231 @@
+{% schema %}
+{
+  "name": "Image Custom Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SHOPPABLE UGC"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Perfect if you want a wink of personality.</p>"
+    }
+  ],
+  "blocks": [
+    {
+        "type": "image",
+        "name":"Image",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "select_image",
+                "label": "Select Image"
+            }       
+        ]
+    }
+  ],
+  "presets": [
+    { "name": "Image Custom Slider", "category": "slider" }
+  ]
+}
+{% endschema %}
+
+
+
+<style>
+    .ugc-video-section-{{ section.id }} .swiper-slide{
+        width:max-content;
+    }
+    .inter-images{
+        width:433px;
+        aspect-ratio:1/1;
+    }
+    .inter-images img{
+        display: flex;
+        object-fit: cover;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        
+    }
+    .ugc-video-section-{{ section.id }} .pls-title,
+    .ugc-video-section-{{ section.id }} .pls-des{
+        padding-inline:20px;
+    }
+    .ugc-video-section-{{ section.id }} .pls-title {
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: -0.05rem !important;
+    }
+    .ugc-video-section-{{ section.id }} .pls-des{
+        font-family: 'Josefin Sans';
+        color: #4E403C;
+        font-size: 21px;
+        line-height:1.2;
+        font-weight: 300;
+        text-align: center;
+        margin: 0 auto;
+        letter-spacing: -0.05rem !important;
+        max-width:482px
+    }
+    .product-list-swiper-{{ section.id }}{
+        margin:32px auto 0;
+    }
+
+    .pls-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+    .swiper-scrollbar { 
+        background: #ddd;
+        height: 4px !important;
+        width: calc(100% - 130px) !important;
+        position: relative !important;
+        top: 0px !important;
+    }
+    .swiper-scrollbar-drag { 
+        background: #97371E; 
+    }
+
+    .custom-arrows {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+    .custom-arrow {
+        cursor: pointer;
+        font-size: 26px;
+        user-select: none;
+    }
+    .product-list-slider .swiper-slide {
+        background: #FDFCFB;
+        padding: 15px;
+    }
+    .product-list-slider .pls-add-btn {
+          background: radial-gradient(20.12% 87.6% at 53.59% 46.81%, #fee7aa, #ecca6f);
+        border: none;
+        font-size: 14px;
+        font-weight: 700;
+        font-family: 'Josefin Sans';
+        display: flex;
+        max-width: 100%;
+        width: 100%;
+        color: #1B1716;
+        text-transform: uppercase;
+        padding: 16px;
+        margin-top: 15px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .product-list-slider .pls-add-btn svg {
+        margin-right: 8px;
+    }
+    .svg{
+        text-align: center;
+        margin: 10px auto 15px;
+        display: flex;
+    }
+    .product-list-swiper-{{ section.id }} .pls-controls{
+        padding-inline:22px;
+    }
+    .product-list-swiper-{{ section.id }}{
+        margin-bottom:38px;
+    }
+    @media(max-width:749px){
+        .product-list-swiper-{{ section.id }}{
+            margin-bottom:25px;
+        }
+        .product-list-swiper-{{ section.id }} .pls-controls {
+            margin-top: 20px;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .product-list-swiper-{{ section.id }} .swiper-scrollbar {
+            width: 100% !important;
+        }
+        .inter-images {
+            width: 220px;
+        }
+    }
+</style>
+
+<section class="ugc-video-section-{{ section.id }}">
+  <div class="ugc-header">
+    <h2 class="pls-title">{{ section.settings.heading }}</h2>
+    <div class="pls-des">{{ section.settings.subheading }}</div>
+  </div>
+  {% comment %} slider {% endcomment %}
+   <div class="swiper product-list-swiper product-list-swiper-{{ section.id }}">
+    <div class="swiper-wrapper">
+        {% for i in (1..2) %}
+            {% for block in section.blocks %}
+            <div class="swiper-slide">
+                {% if block.settings.select_image != blank %}
+                    <div class="inter-images">
+                        {%- assign widths = '600,800,1000,1200' | split: ',' -%}
+                        <img  src="{{ block.settings.select_image | image_url: width: 600 }}"  
+                            srcset="{%- for w in widths -%}{{ block.settings.select_image | image_url: width: w | replace: ' ', '' }} {{ w }}w{%- unless forloop.last -%}, {%- endunless -%}{%- endfor -%}" 
+                            sizes="(min-width: 1024px) 600px, 90vw"  
+                            loading="lazy"  
+                            decoding="async"  
+                            width="{{ block.settings.select_image.width }}"  
+                            height="{{ block.settings.select_image.height }}"  
+                            alt="{{ block.settings.select_image.alt | escape }}"/>
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="pls-controls">
+      <div class="swiper-pagination swiper-scrollbar"></div>
+
+      <div class="custom-arrows">
+        <div class="custom-arrow custom-prev">
+            <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.259121 9.17002L9.11942 0.30972C9.43771 -0.0618701 9.99738 -0.105273 10.369 0.213015C10.7406 0.531304 10.784 1.09097 10.4657 1.46256C10.436 1.49759 10.404 1.52957 10.369 1.55927L3.02396 8.91341H38.1019C38.5916 8.91341 38.9883 9.31013 38.9883 9.79974C38.9883 10.2894 38.5916 10.6861 38.1019 10.6861H3.0232L10.3682 18.0311C10.7398 18.3494 10.7832 18.909 10.4649 19.2806C10.1466 19.6522 9.58695 19.6956 9.21536 19.3773C9.1811 19.3476 9.14835 19.3157 9.11866 19.2806L0.258358 10.4203C-0.0850601 10.0746 -0.0850601 9.51648 0.258358 9.17078L0.259121 9.17002Z" fill="#443531"/>
+            </svg>
+        </div>
+        <div class="custom-arrow custom-next">
+            <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M38.7292 9.17002L29.8689 0.30972C29.5506 -0.0618701 28.9909 -0.105273 28.6193 0.213015C28.2477 0.531304 28.2043 1.09097 28.5226 1.46256C28.5523 1.49759 28.5843 1.52957 28.6193 1.55927L35.9643 8.91341H0.886335C0.396718 8.91341 0 9.31013 0 9.79974C0 10.2894 0.396718 10.6861 0.886335 10.6861H35.9651L28.6201 18.0311C28.2485 18.3494 28.2051 18.909 28.5234 19.2806C28.8417 19.6522 29.4013 19.6956 29.7729 19.3773C29.8072 19.3476 29.8399 19.3157 29.8696 19.2806L38.7299 10.4203C39.0733 10.0746 39.0733 9.51648 38.7299 9.17078L38.7292 9.17002Z" fill="#443531"/>
+            </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sliders = document.querySelectorAll(".product-list-swiper");
+  sliders.forEach(slider => {
+    new Swiper(slider, {
+      slidesPerView: '2',
+      spaceBetween: 10,
+      loop: true,
+      navigation: {
+        nextEl: slider.querySelector(".custom-next"),
+        prevEl: slider.querySelector(".custom-prev"),
+      },
+      scrollbar: {
+        el: slider.querySelector(".swiper-pagination"),
+        draggable: true,
+        dragSize: 300
+      },
+      breakpoints: {
+        768: { slidesPerView: 3.7},
+        1024: { slidesPerView: 3.7 }
+      }
+    });
+  });
+});
+</script>

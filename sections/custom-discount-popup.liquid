@@ -1,0 +1,199 @@
+{% style %}
+.custom-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  z-index: 9999;
+}
+
+.custom-popup {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-popup-content {
+  text-align: center;
+  color: #fff;
+  max-width: 420px;
+  width: 100%;
+  padding: 20px;
+}
+
+.custom-popup-content h2 {
+    font-size: 26px;
+letter-spacing: 2px!important;
+margin-bottom: 0;
+font-family: 'Josefin Sans';
+}
+
+.custom-popup-content h1 {
+  font-size: 76px;
+  margin: 0 0 10px 0;
+}
+
+.custom-popup-content p {
+      font-size: 20px;
+    margin-bottom: 25px;
+    font-family: 'Josefin Sans';
+    margin-top: 0;
+}
+
+.custom-popup-content input {
+      width: 100%;
+    padding: 15px 22px;
+    border-radius: 30px;
+    border: none;
+    margin-bottom: 12px;
+    background: #ffffff8f;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Josefin Sans';
+}
+.custom-popup-content button {
+    width: 100%;
+    padding: 20px 0 17px;
+    border-radius: 30px;
+    background: #fff;
+    border: none;
+    line-height: 18px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Josefin Sans';
+    font-weight: 400;
+}
+.custom-popup-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+}
+{% endstyle %}
+
+<div class="custom-popup-overlay" id="discountPopup">
+  <div class="custom-popup" style="background-image:url('{{ section.settings.bg_image | img_url: 'master' }}');">
+    
+    <button class="custom-popup-close" id="popupClose">✕</button>
+    
+    <div class="custom-popup-content">
+      <h2>{{ section.settings.top_text }}</h2>
+      <h1>{{ section.settings.main_text }}</h1>
+      <p>{{ section.settings.sub_text }}</p>
+      {% form 'customer', id: 'PopupNewsletterForm' %}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+
+  <input 
+    type="email" 
+    name="contact[email]" 
+    placeholder="Enter your email"
+    required
+  >
+
+  <button type="submit">
+    {{ section.settings.button_text }}
+  </button>
+
+  {% if form.errors %}
+    <div style="color:red; margin-top:10px;">
+      {{ form.errors | default_errors }}
+    </div>
+  {% endif %}
+
+  {% if form.posted_successfully? %}
+    <div style="margin-top:10px;">
+      ✅ Thanks for subscribing!
+    </div>
+  {% endif %}
+{% endform %}
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var delayMinutes = {{ section.settings.delay_time | default: 1 }};
+  var delay = delayMinutes * 1000;
+
+  if (!localStorage.getItem("discountPopupClosed")) {
+    setTimeout(function () {
+      document.getElementById("discountPopup").style.display = "block";
+    }, delay);
+  }
+
+  document.getElementById("popupClose").addEventListener("click", function () {
+    document.getElementById("discountPopup").style.display = "none";
+    localStorage.setItem("discountPopupClosed", "true");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById('PopupNewsletterForm');
+
+  if(form){
+    form.addEventListener('submit', function(){
+      localStorage.setItem("discountPopupClosed", "true");
+    });
+  }
+});
+
+</script>
+
+{% schema %}
+{
+  "name": "Discount Popup",
+  "settings": [
+    {
+      "type": "number",
+      "id": "delay_time",
+      "label": "Show popup after (seconds)",
+      "default": 1
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "Top text",
+      "default": "UNLOCK"
+    },
+    {
+      "type": "text",
+      "id": "main_text",
+      "label": "Main text",
+      "default": "20% OFF"
+    },
+    {
+      "type": "text",
+      "id": "sub_text",
+      "label": "Sub text",
+      "default": "Your first one-time purchase"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "CONTINUE"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Discount Popup"
+    }
+  ]
+}
+{% endschema %}

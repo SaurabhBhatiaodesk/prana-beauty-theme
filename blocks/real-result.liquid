@@ -1,0 +1,293 @@
+<style>
+.real-result {
+    max-width: 100%;
+}
+.real-result-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+.real-result-header p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1;
+    color: var(--ink3);
+}
+.fv-cap-line {
+    width:70px;
+    height: 1px;
+    background: var(--gold);
+}
+.real-result h3 {
+    margin: 0;
+    font-size: 23px;
+    line-height: 1.1;
+    color: var(--heading-color);
+    font-weight: 500;
+}
+.real-result-description {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink3);
+}
+.real-result-image-wrap {
+    background: #CB9646;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0;
+    margin-top: 20px;
+}
+.real-result-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.real-result-image-item {
+    position: relative;
+}
+.real-result-image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 1/1.2;
+}
+.real-result-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #CB9646;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    line-height: 1;
+    color: white;
+    letter-spacing: 2.5px;
+}
+.real-result-week {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 120px;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 15px;
+    line-height: 1;
+    color: #fff;
+}
+.real-result-week.before {
+    background: #000;
+}
+.real-result-week.after {
+    background: #B87A1F;
+}
+.real-result-image-item:first-child {
+    border-right: 2px solid #D8CCBE;
+}
+.real-result-empty-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 5px;
+    overflow: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 2px 2px 4px #4613244d;
+    border: 1px solid var(--heading-color)
+#561A24;
+    gap: 1px;
+    background: var(--gold);
+}
+@media screen and (max-width: 749px) {
+    .real-result-header p {
+        font-size: 14px;
+    }
+    .fv-cap-line {
+        width: 50px;
+    }
+    .real-result h3 {
+        font-size:19px;
+    }
+    .real-result-description {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .real-result-image-wrap {
+        border-radius:9px;
+    }
+    .real-result-label {
+        font-size: 16px;
+        padding: 8px;
+    }
+    .real-result-week {
+        min-width: 90px;
+        font-size: 13px;
+        bottom: 12px;
+    }
+}
+</style>
+
+{% if block.settings.before_image != blank or block.settings.after_image != blank %}
+    <div class="real-result">
+
+        <div class="real-result-header">
+            {% if block.settings.tag != blank %}
+                <p>{{ block.settings.tag }}</p>
+            {% endif %}
+
+            <div class="fv-cap-line"></div>
+        </div>
+
+        {% if block.settings.title != blank %}
+            <h3>{{ block.settings.title }}</h3>
+        {% endif %}
+
+        {% if block.settings.description != blank %}
+            <p class="real-result-description">
+                {{ block.settings.description }}
+            </p>
+        {% endif %}
+
+        <div class="real-result-image-wrap">
+            <div class="real-result-images">
+
+                {% if block.settings.before_image != blank %}
+                    <div class="real-result-image-item">
+                        <div class="real-result-label">BEFORE</div>
+
+                        <img
+                            src="{{ block.settings.before_image | img_url: 'master' }}"
+                            alt="Before Result"
+                            loading="lazy"
+                            width=""
+                            height=""
+                        >
+
+                        <div class="real-result-week before">
+                            {{ block.settings.before_week }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if block.settings.after_image != blank %}
+                    <div class="real-result-image-item">
+                        <div class="real-result-label">AFTER</div>
+
+                        <img
+                            src="{{ block.settings.after_image | img_url: 'master' }}"
+                            alt="After Result"
+                            loading="lazy"
+                            width=""
+                            height=""
+                        >
+
+                        <div class="real-result-week after">
+                            {{ block.settings.after_week }}
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+  {% else %}
+    <div class="real-result-empty">
+        <div class="real-result-empty-grid">
+
+            {% if block.settings.banner_without_before %}
+            <div class="real-result-empty-item">
+                <div class="real-result-empty-placeholder">
+                <img
+                    src="{{ block.settings.banner_without_before | img_url: 'master' }}"
+                    alt="Before Result"
+                    loading="lazy"
+                    width=""
+                    height="">
+                </div>
+            </div>
+            {% endif %}
+
+            {% if block.settings.banner_without %}
+            <div class="real-result-empty-item">
+                <div class="real-result-empty-placeholder">
+                <img
+                    src="{{ block.settings.banner_without | img_url: 'master' }}"
+                    alt="After Result"
+                    loading="lazy"
+                    width=""
+                    height="">
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Real Results",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "tag",
+      "label": "Tag",
+      "default": "Customer Results"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Real Results. 8 Weeks."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Verified customer. No filters — just consistent ritual."
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before Image"
+    },
+    {
+      "type": "text",
+      "id": "before_week",
+      "label": "Before Week Text",
+      "default": "WEEK 0"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After Image"
+    },
+    {
+      "type": "text",
+      "id": "after_week",
+      "label": "After Week Text",
+      "default": "WEEK 8"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "banner_without_before",
+      "label": "Placeholder Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_without",
+      "label": "Placeholder After Image"
+    },
+  ],
+  "presets": [
+    {
+      "name": "Real Results"
+    }
+  ]
+}
+{% endschema %}

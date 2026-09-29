@@ -1,0 +1,943 @@
+{% comment %}
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  PRANA BEAUTY — Editorial PDP Section                       ║
+  ║  File: sections/product-prana-pdp.liquid                    ║
+  ║  Used by: templates/product.prana-pdp.liquid                ║
+  ║                                                              ║
+  ║  METAFIELDS REQUIRED (namespace: prana):                    ║
+  ║    prana.badge          — e.g. "#1 Best Seller · DINACHARYA Sutra"
+  ║    prana.tagline        — italic headline below product name  ║
+  ║    prana.size_display   — e.g. "30ml · 1 fl oz · 90-day supply"
+  ║    prana.ritual_text    — how-to-use paragraph               ║
+  ║    prana.ingredients_list — pipe-separated key ingredient names
+  ║    prana.full_inci      — INCI string                        ║
+  ║    prana.good_for       — pipe-separated suitability items   ║
+  ║    prana.not_for        — pipe-separated not-for items       ║
+  ║    prana.htu_steps_json — JSON array [{num,title,desc}]      ║
+  ║    prana.key_ingredients_json — JSON array [{origin,name,latin,desc,benefit}]
+  ║    prana.clinical_json  — JSON array [{num,unit,desc}]       ║
+  ║    prana.ritual_name    — e.g. "DINACHARYA · Morning Ritual" ║
+  ║    prana.ritual_save    — e.g. "$16"                         ║
+  ║    prana.complete_title — e.g. "The Morning Ritual.<br>..."  ║
+  ║    prana.ritual_product_handles — pipe-separated handles     ║
+  ║    prana.review_count   — e.g. "1,284"                       ║
+  ║    prana.star_rating    — e.g. "4.8"                         ║
+  ║    prana.rb_fill        — e.g. "96%"                         ║
+  ║    prana.accent_color   — CSS gradient string                ║
+  ║    prana.sutra_label    — e.g. "DINACHARYA"                  ║
+  ║    prana.video_url      — Vimeo or Shopify CDN url (optional)║
+  ╚══════════════════════════════════════════════════════════════╝
+{% endcomment %}
+
+{%- liquid
+  assign prana = product.metafields.prana
+  assign badge = prana.badge.value | default: ''
+  assign tagline = prana.tagline.value | default: product.description
+  assign size_display = prana.size_display.value | default: ''
+  assign ritual_text = prana.ritual_text.value | default: ''
+  assign full_inci = prana.full_inci.value | default: ''
+  assign good_for_str = prana.good_for.value | default: ''
+  assign not_for_str = prana.not_for.value | default: ''
+  assign ritual_name = prana.ritual_name.value | default: ''
+  assign ritual_save = prana.ritual_save.value | default: '$20'
+  assign complete_title = prana.complete_title.value | default: 'Complete Your Ritual'
+  assign review_count = prana.review_count.value | default: '500+'
+  assign star_rating = prana.star_rating.value | default: '4.8'
+  assign rb_fill = prana.rb_fill.value | default: '96%'
+  assign sutra_label = prana.sutra_label.value | default: ''
+  assign video_url = prana.video_url.value | default: ''
+
+  assign good_for_arr = good_for_str | split: '|'
+  assign not_for_arr = not_for_str | split: '|'
+  assign ritual_handles = prana.ritual_product_handles.value | default: '' | split: '|'
+
+  assign current_variant = product.selected_or_first_available_variant
+  assign compare_price = current_variant.compare_at_price
+  assign sale_price = current_variant.price
+
+  assign htu_json = prana.htu_steps_json.value | default: '[]'
+  assign key_ing_json = prana.key_ingredients_json.value | default: '[]'
+  assign clinical_json = prana.clinical_json.value | default: '[]'
+-%}
+
+<div class="pdp" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}">
+
+  {%- comment %} ── RITUAL TAGS ── {% endcomment %}
+  <div class="pdp-tags">
+    {%- if sutra_label != blank -%}
+      <span class="pdp-tag pdp-tag--active">{{ sutra_label }}</span>
+    {%- endif -%}
+    {%- for tag in product.tags -%}
+      <span class="pdp-tag">{{ tag }}</span>
+    {%- endfor -%}
+  </div>
+
+  {%- comment %} ── BREADCRUMB ── {% endcomment %}
+  <div class="pdp-breadcrumb">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/collections/all">Shop</a>
+    <span>/</span>
+    <span>{{ product.title }}</span>
+  </div>
+
+  {%- comment %} ── HERO: GALLERY + INFO ── {% endcomment %}
+  <div class="pdp-hero" id="pdp-hero">
+
+    {%- comment %} GALLERY LEFT {% endcomment %}
+    <div class="pdp-gallery" id="pdp-gallery">
+      <div class="pdp-main-img{% if product.images.size == 0 %} pdp-main-img--empty{% endif %}" id="pdpMainImg">
+        {%- if product.featured_image -%}
+          <img
+            id="pdpMainImgEl"
+            src="{{ product.featured_image | image_url: width: 900 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="900"
+            height="{{ 900 | divided_by: product.featured_image.aspect_ratio | round }}"
+            loading="eager"
+            fetchpriority="high"
+          >
+        {%- else -%}
+          <div class="pdp-img-placeholder">
+            <span class="pdp-img-placeholder__icon">✦</span>
+            <span class="pdp-img-placeholder__label">{{ product.title }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if product.images.size > 1 -%}
+        <div class="pdp-thumbs" id="pdpThumbs">
+          {%- for image in product.images -%}
+            <div
+              class="pdp-thumb{% if forloop.first %} on{% endif %}"
+              data-src="{{ image | image_url: width: 900 }}"
+              data-alt="{{ image.alt | escape }}"
+              onclick="pdpSwitchImage(this)"
+              role="button"
+              tabindex="0"
+              aria-label="View {{ image.alt | escape }}"
+            >
+              <img
+                src="{{ image | image_url: width: 120 }}"
+                alt="{{ image.alt | escape }}"
+                loading="lazy"
+                width="120"
+                height="120"
+              >
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="pdp-img-label">{{ product.title }} · Product Image</div>
+    </div>
+
+    {%- comment %} INFO RIGHT {% endcomment %}
+    <div class="pdp-info">
+
+      {%- comment %} BADGE {% endcomment %}
+      {%- if badge != blank -%}
+        <div class="pdp-badge">
+          <span class="pip" aria-hidden="true"></span>
+          <span>{{ badge }}</span>
+        </div>
+      {%- endif -%}
+
+      {%- comment %} PRODUCT NAME {% endcomment %}
+      <h1 class="pdp-name">{{ product.title | replace: ' ', '<br>' | replace: '<br>', ' ' | replace: '&', '&amp;' }}</h1>
+
+      {%- comment %} TAGLINE {% endcomment %}
+      {%- if tagline != blank -%}
+        <p class="pdp-tagline">{{ tagline }}</p>
+      {%- endif -%}
+
+      {%- comment %} STARS {% endcomment %}
+      <div class="pdp-stars">
+        <span class="pdp-s" aria-label="5 stars">★★★★★</span>
+        <span class="pdp-sr">
+          <strong>{{ star_rating }}</strong> / 5 ·
+          <span>{{ review_count }} reviews</span>
+        </span>
+        <a href="#pdp-reviews" style="font-size:11px;color:var(--gold);margin-left:8px;font-family:var(--S)">Read reviews ↓</a>
+      </div>
+      <div class="pdp-review-bar">
+        <div style="flex:1;height:3px;background:var(--canvas-dk);border-radius:2px;overflow:hidden">
+          <div style="height:100%;width:{{ rb_fill }};background:linear-gradient(90deg,#C8881E,#E8AA38);border-radius:2px;"></div>
+        </div>
+      </div>
+
+      {%- comment %} SIZE {% endcomment %}
+      {%- if size_display != blank -%}
+        <div class="pdp-size">{{ size_display }}</div>
+      {%- endif -%}
+
+      {%- comment %} COMPLETE YOUR RITUAL — CTA STRIP {% endcomment %}
+      {%- if ritual_handles.size > 0 -%}
+        <div class="pdp-ritual-cta" onclick="document.getElementById('pdp-complete-section').scrollIntoView({behavior:'smooth'})" role="button" tabindex="0">
+          <div class="pdp-ritual-cta-label">✦ Complete Your Ritual · Save up to {{ ritual_save }}</div>
+          <div class="pdp-ritual-cta-products">
+            {%- for handle in ritual_handles -%}
+              {%- assign rp = all_products[handle] -%}
+              {%- if rp != blank -%}
+                <div class="pdp-rcp-img{% if handle == product.handle %} pdp-rcp-img--current{% endif %}">
+                  {%- if rp.featured_image -%}
+                    <img src="{{ rp.featured_image | image_url: width: 80 }}" alt="{{ rp.title | escape }}" loading="lazy" width="80" height="80">
+                  {%- endif -%}
+                </div>
+                {%- unless forloop.last -%}<span class="pdp-rcp-arrow">+</span>{%- endunless -%}
+              {%- endif -%}
+            {%- endfor -%}
+            <div style="margin-left:auto;text-align:right">
+              <div class="pdp-rcp-total">{{ ritual_name }}</div>
+              <div class="pdp-rcp-save">Save {{ ritual_save }} as a set →</div>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- comment %} PRICE ROW {% endcomment %}
+      <div class="pdp-price-row" id="pdpPriceRow">
+        <span class="pdp-price-main" id="pdpPrice">
+          {{ current_variant.price | money }}
+        </span>
+        {%- if compare_price > sale_price -%}
+          <span class="pdp-price-compare">{{ compare_price | money }}</span>
+          <span class="pdp-price-save-badge">
+            Save {{ compare_price | minus: sale_price | money }}
+          </span>
+        {%- endif -%}
+      </div>
+
+      {%- comment %} PURCHASE TOGGLE {% endcomment %}
+      <div class="sub-toggle" id="subToggle">
+        <div class="sub-opt on" data-type="one-time" onclick="pdpSelectPurchase(this,'one-time')">
+          <div class="sub-opt-label">One-Time Purchase</div>
+          <div class="sub-opt-price">{{ current_variant.price | money }}</div>
+        </div>
+        <div class="sub-opt" data-type="subscribe" onclick="pdpSelectPurchase(this,'subscribe')">
+          <div class="sub-opt-label">Subscribe &amp; Save 15%</div>
+          <div class="sub-opt-price" id="subSavePrice">
+            {{ current_variant.price | times: 0.85 | money }}<small>/mo</small>
+          </div>
+          <div class="sub-opt-save">Save 15% · Cancel anytime</div>
+        </div>
+      </div>
+
+      {%- comment %} QTY + ATC {% endcomment %}
+      <div class="pdp-qty-row">
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="pdpChangeQty(-1)" aria-label="Decrease quantity">−</button>
+          <span id="pdpQty" aria-live="polite">1</span>
+          <button class="qty-btn" onclick="pdpChangeQty(1)" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+
+      {%- comment %} ADD TO CART FORM {% endcomment %}
+      <div class="pdp-atc-wrap">
+        {%- form 'product', product, id: 'pdpForm', data-type: 'add-to-cart-form' -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}" id="pdpVariantId">
+          <input type="hidden" name="quantity" value="1" id="pdpQtyInput">
+
+          {%- if current_variant.available -%}
+            <button
+              type="submit"
+              name="add"
+              class="pdp-atc"
+              id="pdpAtcBtn"
+              aria-label="Add {{ product.title | escape }} to cart"
+            >
+              Add to Ritual — {{ current_variant.price | money }}
+            </button>
+          {%- else -%}
+            <button type="button" class="pdp-atc pdp-atc--sold-out" disabled>
+              Sold Out
+            </button>
+          {%- endif -%}
+
+          <a href="/checkout?variant={{ current_variant.id }}&quantity=1" class="pdp-buy-now">
+            Buy Now
+          </a>
+
+          {%- if product.variants.size > 1 -%}
+            <div class="pdp-variants">
+              {%- for variant in product.variants -%}
+                <button
+                  type="button"
+                  class="pdp-variant-btn{% if variant.id == current_variant.id %} on{% endif %}{% unless variant.available %} sold-out{% endunless %}"
+                  data-variant-id="{{ variant.id }}"
+                  data-price="{{ variant.price | money }}"
+                  data-compare-price="{{ variant.compare_at_price | money }}"
+                  onclick="pdpSelectVariant(this)"
+                >
+                  {{ variant.title }}
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+
+      {%- comment %} TRUST STRIP {% endcomment %}
+      <div class="pdp-trust">
+        <div class="pdp-trust-item">
+          <span class="pdp-trust-icon">🌿</span>
+          <span class="pdp-trust-label">Clean · Vegan</span>
+        </div>
+        <div class="pdp-trust-item">
+          <span class="pdp-trust-icon">📦</span>
+          <span class="pdp-trust-label">Free Shipping £60+</span>
+        </div>
+        <div class="pdp-trust-item">
+          <span class="pdp-trust-icon">↩</span>
+          <span class="pdp-trust-label">30-Day Returns</span>
+        </div>
+        <div class="pdp-trust-item">
+          <span class="pdp-trust-icon">🇮🇳</span>
+          <span class="pdp-trust-label">Crafted in India</span>
+        </div>
+      </div>
+
+      {%- comment %} URGENCY BAR {% endcomment %}
+      <div class="pdp-urgency" id="pdpUrgency">
+        <span style="font-size:14px">🌿</span>
+        <span id="pdpUrgencyMsg">Loading…</span>
+      </div>
+
+      {%- comment %} ACCORDIONS {% endcomment %}
+      <div class="pdp-acc">
+
+        {%- if ritual_text != blank -%}
+          <div class="pdp-acc-item">
+            <button class="pdp-acc-head" onclick="pdpToggleAcc(this)" aria-expanded="false">
+              <span class="pdp-acc-title">The Ritual · How to Use</span>
+              <span class="pdp-acc-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pdp-acc-body">
+              <p class="t-serif">{{ ritual_text }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- assign ingredients_list = prana.ingredients_list.value | default: '' -%}
+        {%- if ingredients_list != blank -%}
+          {%- assign ing_arr = ingredients_list | split: '|' -%}
+          <div class="pdp-acc-item">
+            <button class="pdp-acc-head" onclick="pdpToggleAcc(this)" aria-expanded="false">
+              <span class="pdp-acc-title">Key Ingredients</span>
+              <span class="pdp-acc-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pdp-acc-body">
+              <ul class="pdp-ing-list">
+                {%- for ing in ing_arr -%}
+                  <li>{{ ing | strip }}</li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if full_inci != blank -%}
+          <div class="pdp-acc-item">
+            <button class="pdp-acc-head" onclick="pdpToggleAcc(this)" aria-expanded="false">
+              <span class="pdp-acc-title">Full Ingredient List (INCI)</span>
+              <span class="pdp-acc-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pdp-acc-body">
+              <p class="pdp-inci">{{ full_inci }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if good_for_arr.size > 0 or not_for_arr.size > 0 -%}
+          <div class="pdp-acc-item">
+            <button class="pdp-acc-head" onclick="pdpToggleAcc(this)" aria-expanded="false">
+              <span class="pdp-acc-title">Good For / Not For</span>
+              <span class="pdp-acc-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pdp-acc-body pdp-suitability">
+              {%- if good_for_arr.size > 0 -%}
+                <div class="pdp-suit-block">
+                  <div class="pdp-suit-label pdp-suit-label--good">✓ Good For</div>
+                  <ul>
+                    {%- for item in good_for_arr -%}
+                      <li>{{ item | strip }}</li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+              {%- if not_for_arr.size > 0 -%}
+                <div class="pdp-suit-block">
+                  <div class="pdp-suit-label pdp-suit-label--not">— Not For</div>
+                  <ul>
+                    {%- for item in not_for_arr -%}
+                      <li>{{ item | strip }}</li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>{%- comment %} /.pdp-info {% endcomment %}
+  </div>{%- comment %} /.pdp-hero {% endcomment %}
+
+
+  {%- comment %} ──────────────────────────────────────────
+    HOW TO USE · VIDEO SECTION
+  ────────────────────────────────────────── {% endcomment %}
+  <div class="pdp-htu">
+    <div class="pdp-htu-label">How To Use</div>
+    <div class="pdp-htu-headline" id="pdpHtuHeadline">
+      Your daily ritual.<br><em>Four steps.</em>
+    </div>
+    <div class="pdp-htu-grid">
+      <div class="pdp-htu-steps" id="pdpHtuSteps">
+        {%- comment %} Populated from metafield JSON via JS below {% endcomment %}
+      </div>
+      <div class="pdp-htu-video">
+        {%- if video_url != blank -%}
+          <div class="pdp-htu-video-embed">
+            <iframe
+              src="{{ video_url }}"
+              frameborder="0"
+              allow="autoplay; fullscreen"
+              allowfullscreen
+              title="How to use {{ product.title | escape }}"
+              loading="lazy"
+            ></iframe>
+          </div>
+        {%- else -%}
+          <div class="pdp-htu-video-ph">
+            <div class="pdp-htu-play" aria-hidden="true">▶</div>
+            <div class="pdp-htu-video-label">Watch the Ritual · 60 seconds</div>
+            <div style="font-family:var(--S);font-size:13px;color:var(--ink4);margin-top:4px">
+              Add your Vimeo or Shopify CDN link to the <code>prana.video_url</code> metafield
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+
+  {%- comment %} ──────────────────────────────────────────
+    COMPLETE YOUR RITUAL
+  ────────────────────────────────────────── {% endcomment %}
+  {%- if ritual_handles.size > 0 -%}
+    <div class="pdp-complete" id="pdp-complete-section">
+      <div class="rule"><span>Complete Your Ritual</span></div>
+      <div class="pdp-complete-title">{{ complete_title }}</div>
+
+      <div class="pdp-complete-grid" id="pdpCompleteGrid">
+        {%- assign ritual_total = 0 -%}
+        {%- for handle in ritual_handles -%}
+          {%- assign rp = all_products[handle] -%}
+          {%- if rp != blank -%}
+            {%- assign rp_variant = rp.selected_or_first_available_variant -%}
+            {%- assign ritual_total = ritual_total | plus: rp_variant.price -%}
+            <div class="pdp-complete-card{% if handle == product.handle %} pdp-complete-card--current{% endif %}">
+              <div class="pdp-complete-card-img">
+                {%- if rp.featured_image -%}
+                  <img
+                    src="{{ rp.featured_image | image_url: width: 400 }}"
+                    alt="{{ rp.title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {%- endif -%}
+              </div>
+              <div class="pdp-complete-card-body">
+                <div class="pdp-complete-card-name">{{ rp.title }}</div>
+                <div class="pdp-complete-card-price">{{ rp_variant.price | money }}</div>
+                {%- if handle == product.handle -%}
+                  <div class="pdp-complete-card-badge">This product</div>
+                {%- else -%}
+                  <a href="{{ rp.url }}" class="pdp-complete-card-link">View →</a>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="pdp-complete-footer">
+        <div>
+          <div class="pdp-complete-ritual-name">{{ ritual_name }}</div>
+          <div class="pdp-complete-total">{{ ritual_total | money }} complete set</div>
+          <div class="pdp-complete-save">Save {{ ritual_save }} when you shop the full ritual</div>
+        </div>
+        <a href="/collections/rituals#{{ sutra_label | downcase }}" class="btn btn-gold">
+          Shop the Ritual Now →
+        </a>
+      </div>
+    </div>
+  {%- endif -%}
+
+
+  {%- comment %} ──────────────────────────────────────────
+    INGREDIENT CAROUSEL
+    Populated via JavaScript from metafield JSON
+  ────────────────────────────────────────── {% endcomment %}
+  <div class="pdp-ing-carousel" id="pdpIngCarousel">
+    <div class="pdp-ing-label">What's Inside</div>
+    <div class="pdp-ing-subtitle">
+      Ancient botanicals.<br><em>Modern science.</em>
+    </div>
+    <div class="ingc-wrap">
+      <button class="ingc-arrow ingc-prev" id="ingcPrev" aria-label="Previous ingredient">&#8592;</button>
+      <div class="ingc-track-wrap">
+        <div class="ingc-track" id="ingcTrack">
+          {%- comment %} Rendered by JS from key_ingredients_json metafield {% endcomment %}
+        </div>
+      </div>
+      <button class="ingc-arrow ingc-next" id="ingcNext" aria-label="Next ingredient">&#8594;</button>
+    </div>
+    <div class="ingc-detail" id="ingcDetail" style="display:none">
+      <div class="ingc-detail-inner">
+        <div class="ingc-detail-ph" id="ingcDetailPh">✦</div>
+        <div class="ingc-detail-copy">
+          <div class="ingc-detail-origin" id="ingcDetailOrigin"></div>
+          <div class="ingc-detail-name" id="ingcDetailName"></div>
+          <div class="ingc-detail-latin" id="ingcDetailLatin"></div>
+          <div class="ingc-detail-desc" id="ingcDetailDesc"></div>
+          <div class="ingc-detail-benefit" id="ingcDetailBenefit"></div>
+        </div>
+      </div>
+      <button class="ingc-close" onclick="ingcClose()" aria-label="Close">&#215;</button>
+    </div>
+  </div>
+
+
+  {%- comment %} ──────────────────────────────────────────
+    CLINICAL RESULTS
+  ────────────────────────────────────────── {% endcomment %}
+  <div class="pdp-clinical" id="pdpClinical">
+    <p class="rule rule-c"><span>Proven Results</span></p>
+    <div class="pdp-clin-headline">The science.<br><em>Measured on real skin.</em></div>
+    <div class="pdp-clin-grid" id="pdpClinGrid">
+      {%- comment %} Rendered by JS from clinical_json metafield {% endcomment %}
+    </div>
+    <div class="pdp-clin-note">
+      *Results from independent 8-week consumer study. Individual results may vary.
+    </div>
+  </div>
+
+
+  {%- comment %} ──────────────────────────────────────────
+    FAQ SECTION
+  ────────────────────────────────────────── {% endcomment %}
+  <div class="pdp-faq" id="pdp-faq" itemscope itemtype="https://schema.org/FAQPage">
+    <p class="rule rule-c"><span>Common Questions</span></p>
+    <h2 class="pdp-faq-headline">Everything you need to know.</h2>
+
+    {%- assign faq_json = prana.faq_json.value | default: '[]' -%}
+    <div class="pdp-faq-list" id="pdpFaqList">
+      {%- comment %} Rendered by JS from faq_json metafield {% endcomment %}
+    </div>
+  </div>
+
+
+  {%- comment %} ──────────────────────────────────────────
+    REVIEWS SECTION
+    Integrate with Loox / Judge.me via their Liquid tags
+    or render from metafield reviews JSON
+  ────────────────────────────────────────── {% endcomment %}
+  <div class="pdp-reviews" id="pdp-reviews">
+    <p class="rule rule-c"><span>Ritual Reviews</span></p>
+    <h2 class="pdp-rev-headline">
+      {{ review_count }} women found their ritual.
+    </h2>
+
+    <div class="pdp-rev-summary">
+      <div class="pdp-rev-big-wrap">
+        <div class="pdp-rev-big">{{ star_rating }}</div>
+        <div class="pdp-rev-stars-row">★★★★★</div>
+        <div class="pdp-rev-count">{{ review_count }} reviews</div>
+      </div>
+      <div class="pdp-rev-bars" id="pdpRevBars">
+        {%- comment %} Rendered by JS or replaced by Loox widget {% endcomment %}
+      </div>
+    </div>
+
+    {%- comment %}
+      ▸ If using Loox: replace with {% render 'loox-widget', type: 'text' %}
+      ▸ If using Judge.me: replace with {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', context: product %}
+    {% endcomment %}
+    <div id="pdpRevGrid" class="pdp-rev-grid">
+      {%- comment %} Reviews rendered by JS from reviews_json metafield {% endcomment %}
+    </div>
+
+    <div class="pdp-rev-load-wrap">
+      <button class="btn btn-ghost" id="pdpRevLoadMore">Load more reviews</button>
+    </div>
+  </div>
+
+
+  {%- comment %} ──────────────────────────────────────────
+    YOU MAY ALSO LOVE
+  ────────────────────────────────────────── {% endcomment %}
+  {%- assign also_handles = prana.also_loves.value | default: '' | split: '|' -%}
+  {%- if also_handles.size > 0 -%}
+    <div class="pdp-also-love">
+      <p class="rule rule-c"><span>Complete the Ritual</span></p>
+      <h2 class="pdp-also-headline">You may also love</h2>
+      <div class="pdp-also-grid">
+        {%- for handle in also_handles -%}
+          {%- assign ap = all_products[handle] -%}
+          {%- if ap != blank -%}
+            <a href="{{ ap.url }}" class="pair-card">
+              <div class="pair-img{% if ap.metafields.prana.img_contain.value == 'true' %} contain{% endif %}">
+                {%- if ap.featured_image -%}
+                  <img
+                    src="{{ ap.featured_image | image_url: width: 200 }}"
+                    alt="{{ ap.title | escape }}"
+                    loading="lazy"
+                    width="200"
+                    height="200"
+                  >
+                {%- endif -%}
+              </div>
+              <div class="pair-body">
+                <div class="pair-reason">Pairs With</div>
+                <div class="pair-name">{{ ap.title }}</div>
+                <div class="pair-price">{{ ap.price | money }}</div>
+              </div>
+              <div class="pair-arrow" aria-hidden="true">→</div>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+</div>{%- comment %} /.pdp {% endcomment %}
+
+
+{%- comment %} ──────────────────────────────────────────
+  SCHEMA.ORG PRODUCT JSON-LD
+────────────────────────────────────────── {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | json }},
+  "sku": {{ current_variant.sku | json }},
+  "brand": {
+    "@type": "Brand",
+    "name": "PRANA Beauty"
+  },
+  {%- if product.featured_image -%}
+  "image": {{ product.featured_image | image_url: width: 1200 | json }},
+  {%- endif -%}
+  "offers": {
+    "@type": "Offer",
+    "url": {{ shop.url | append: product.url | json }},
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "price": {{ current_variant.price | divided_by: 100.0 }},
+    "availability": {% if current_variant.available %}"https://schema.org/InStock"{% else %}"https://schema.org/OutOfStock"{% endif %},
+    "seller": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ star_rating | json }},
+    "reviewCount": {{ review_count | remove: ',' | json }}
+  }
+}
+</script>
+
+
+{%- comment %} ──────────────────────────────────────────
+  PDP JAVASCRIPT
+  Reads metafield JSON, populates dynamic sections,
+  handles qty, purchase toggle, image switching
+────────────────────────────────────────── {% endcomment %}
+<script>
+(function() {
+  'use strict';
+
+  /* ── DATA FROM METAFIELDS ── */
+  const HTU_STEPS = {{ htu_json | json }};
+  const KEY_INGS  = {{ key_ing_json | json }};
+  const CLINICAL  = {{ clinical_json | json }};
+  const FAQ       = {{ prana.faq_json.value | default: '[]' | json }};
+  const REVIEWS   = {{ prana.reviews_json.value | default: '[]' | json }};
+
+  const PRODUCT_HANDLE = '{{ product.handle }}';
+
+  /* ── HOW TO USE STEPS ── */
+  function renderHtuSteps() {
+    const el = document.getElementById('pdpHtuSteps');
+    if (!el || !HTU_STEPS.length) return;
+    const headline = document.getElementById('pdpHtuHeadline');
+    if (headline) {
+      headline.innerHTML = 'Your daily ritual.<br><em>' + HTU_STEPS.length + ' steps.</em>';
+    }
+    el.innerHTML = HTU_STEPS.map(s => `
+      <div class="pdp-htu-step">
+        <div class="pdp-htu-step-num">${s.num}</div>
+        <div class="pdp-htu-step-body">
+          <div class="pdp-htu-step-title">${s.title}</div>
+          <p class="pdp-htu-step-desc">${s.desc}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ── INGREDIENT CAROUSEL ── */
+  let ingcActive = -1;
+  function renderIngCarousel() {
+    const track = document.getElementById('ingcTrack');
+    if (!track || !KEY_INGS.length) {
+      const wrap = document.getElementById('pdpIngCarousel');
+      if (wrap) wrap.style.display = 'none';
+      return;
+    }
+    track.innerHTML = KEY_INGS.map((ing, i) => `
+      <div class="ingc-card" onclick="window._ingcExpand(${i})" role="button" tabindex="0"
+           aria-label="${ing.name}" onkeydown="if(event.key==='Enter')window._ingcExpand(${i})">
+        <div class="ingc-img-box">
+          <div class="ingc-img-ph">
+            <div class="ingc-img-ph-icon">✦</div>
+            <div class="ingc-img-ph-label">Ingredient</div>
+          </div>
+        </div>
+        <div class="ingc-card-body">
+          <div class="ingc-num">${String(i+1).padStart(2,'0')}</div>
+          <div class="ingc-name">${ing.name}</div>
+          <div class="ingc-latin">${ing.latin}</div>
+          <div class="ingc-benefit">${ing.benefit}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  window._ingcExpand = function(i) {
+    const ing = KEY_INGS[i];
+    if (!ing) return;
+    ingcActive = i;
+    document.getElementById('ingcDetailOrigin').textContent = ing.origin || '';
+    document.getElementById('ingcDetailName').textContent   = ing.name;
+    document.getElementById('ingcDetailLatin').textContent  = ing.latin;
+    document.getElementById('ingcDetailDesc').textContent   = ing.desc;
+    document.getElementById('ingcDetailBenefit').textContent = ing.benefit;
+    document.getElementById('ingcDetail').style.display = '';
+  };
+
+  window.ingcClose = function() {
+    document.getElementById('ingcDetail').style.display = 'none';
+    ingcActive = -1;
+  };
+
+  // Arrow scroll
+  var ingcOffset = 0;
+  window.ingcScroll = function(dir) {
+    const track = document.getElementById('ingcTrack');
+    if (!track) return;
+    const card = track.querySelector('.ingc-card');
+    const cardW = card ? card.offsetWidth + 16 : 260;
+    const max = track.scrollWidth - track.parentElement.offsetWidth;
+    ingcOffset = Math.max(0, Math.min(max, ingcOffset + dir * cardW));
+    track.style.transform = 'translateX(-' + ingcOffset + 'px)';
+  };
+  document.getElementById('ingcPrev') && document.getElementById('ingcPrev').addEventListener('click', function(){ ingcScroll(-1); });
+  document.getElementById('ingcNext') && document.getElementById('ingcNext').addEventListener('click', function(){ ingcScroll(1); });
+
+  /* ── CLINICAL RESULTS ── */
+  function renderClinical() {
+    const el = document.getElementById('pdpClinGrid');
+    if (!el || !CLINICAL.length) {
+      const wrap = document.getElementById('pdpClinical');
+      if (wrap) wrap.style.display = 'none';
+      return;
+    }
+    el.innerHTML = CLINICAL.map(c => `
+      <div class="pdp-clin-item">
+        <div class="pdp-clin-num">${c.num}<span class="pdp-clin-unit">${c.unit}</span></div>
+        <div class="pdp-clin-desc">${c.desc}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ── FAQ ── */
+  function renderFaq() {
+    const el = document.getElementById('pdpFaqList');
+    if (!el || !FAQ.length) {
+      const wrap = document.getElementById('pdp-faq');
+      if (wrap) wrap.style.display = 'none';
+      return;
+    }
+    el.innerHTML = FAQ.map((q, i) => `
+      <div class="pdp-faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+        <button class="pdp-acc-head" onclick="pdpToggleAcc(this)" aria-expanded="false">
+          <span class="pdp-acc-title" itemprop="name">${q.q}</span>
+          <span class="pdp-acc-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="pdp-acc-body" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p class="t-serif" itemprop="text">${q.a}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ── REVIEWS ── */
+  var revPage = 0;
+  var revPerPage = 6;
+  function renderReviews(append) {
+    const el = document.getElementById('pdpRevGrid');
+    if (!el) return;
+    const slice = REVIEWS.slice(0, (revPage + 1) * revPerPage);
+    if (!append) {
+      el.innerHTML = '';
+    }
+    const start = append ? revPage * revPerPage : 0;
+    const items = REVIEWS.slice(start, (revPage + 1) * revPerPage);
+    items.forEach(r => {
+      const div = document.createElement('div');
+      div.className = 'pdp-rev-card';
+      div.innerHTML = `
+        <div class="pdp-rev-card-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
+        <div class="pdp-rev-card-title">${r.title}</div>
+        <p class="pdp-rev-card-body">${r.body}</p>
+        <div class="pdp-rev-card-footer">
+          <span class="pdp-rev-card-name">${r.name}</span>
+          <span class="pdp-rev-card-date">${r.date}</span>
+          ${r.badge ? `<span class="pdp-rev-card-badge">${r.badge}</span>` : ''}
+        </div>
+        ${r.helpful ? `<div class="pdp-rev-card-helpful"><button onclick="this.innerHTML='✓ Helpful (${r.helpful+1})'">Helpful (${r.helpful})</button></div>` : ''}
+      `;
+      el.appendChild(div);
+    });
+    // Show/hide load more
+    const loadBtn = document.getElementById('pdpRevLoadMore');
+    if (loadBtn) {
+      loadBtn.style.display = (revPage + 1) * revPerPage >= REVIEWS.length ? 'none' : '';
+    }
+  }
+
+  function renderRevBars() {
+    const el = document.getElementById('pdpRevBars');
+    if (!el) return;
+    el.innerHTML = REV_BARS.map(b => `
+      <div class="pdp-rev-bar-row">
+        <span class="pdp-rev-bar-label">${b.label}</span>
+        <div class="pdp-rev-bar-track">
+          <div class="pdp-rev-bar-fill" style="width:${b.pct}%"></div>
+        </div>
+        <span class="pdp-rev-bar-pct">${b.pct}%</span>
+      </div>
+    `).join('');
+  }
+
+  var loadMoreBtn = document.getElementById('pdpRevLoadMore');
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', function() {
+      revPage++;
+      renderReviews(true);
+    });
+  }
+
+  /* ── ACCORDION ── */
+  window.pdpToggleAcc = function(btn) {
+    const body = btn.nextElementSibling;
+    const icon = btn.querySelector('.pdp-acc-icon');
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !isOpen);
+    body.style.display = isOpen ? 'none' : 'block';
+    if (icon) icon.textContent = isOpen ? '+' : '−';
+  };
+
+  /* ── IMAGE SWITCHER ── */
+  window.pdpSwitchImage = function(thumb) {
+    const mainImg = document.getElementById('pdpMainImgEl');
+    if (!mainImg) return;
+    mainImg.src = thumb.dataset.src;
+    mainImg.alt = thumb.dataset.alt;
+    document.querySelectorAll('.pdp-thumb').forEach(t => t.classList.remove('on'));
+    thumb.classList.add('on');
+  };
+
+  /* ── QTY CONTROL ── */
+  var qty = 1;
+  window.pdpChangeQty = function(delta) {
+    qty = Math.max(1, qty + delta);
+    var qtyEl = document.getElementById('pdpQty');
+    var qtyInput = document.getElementById('pdpQtyInput');
+    if (qtyEl) qtyEl.textContent = qty;
+    if (qtyInput) qtyInput.value = qty;
+    // Update ATC price display
+    var atcBtn = document.getElementById('pdpAtcBtn');
+    if (atcBtn) {
+      var basePrice = {{ current_variant.price | divided_by: 100.0 }};
+      atcBtn.textContent = 'Add to Ritual — ' + (qty > 1 ? qty + ' × ' : '') + formatMoney(basePrice * qty);
+    }
+  };
+
+  /* ── PURCHASE TOGGLE ── */
+  window.pdpSelectPurchase = function(el, type) {
+    document.querySelectorAll('.sub-opt').forEach(o => o.classList.remove('on'));
+    el.classList.add('on');
+  };
+
+  /* ── VARIANT SWITCHER ── */
+  window.pdpSelectVariant = function(btn) {
+    const variantId = btn.dataset.variantId;
+    const price = btn.dataset.price;
+    document.querySelectorAll('.pdp-variant-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    // Update hidden input + price display
+    var variantInput = document.getElementById('pdpVariantId');
+    if (variantInput) variantInput.value = variantId;
+    var priceEl = document.getElementById('pdpPrice');
+    if (priceEl && price) priceEl.textContent = price;
+  };
+
+  /* ── URGENCY BAR ── */
+  function setUrgency() {
+    var msgs = [
+      '{{ review_count | remove: "," | divided_by: 60 | round }} women added this to their ritual today',
+      'Only 12 units left in stock',
+      '{{ review_count | remove: "," | divided_by: 40 | round }} rituals started this week',
+    ];
+    var el = document.getElementById('pdpUrgencyMsg');
+    if (el) el.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+  }
+
+  /* ── MONEY FORMAT HELPER ── */
+  function formatMoney(amount) {
+    return '{{ cart.currency.symbol }}' + amount.toFixed(2).replace(/\.00$/, '');
+  }
+
+  /* ── INIT ── */
+  document.addEventListener('DOMContentLoaded', function() {
+    renderHtuSteps();
+    renderIngCarousel();
+    renderClinical();
+    renderFaq();
+    renderReviews(false);
+    renderRevBars();
+    setUrgency();
+  });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "PRANA PDP",
+  "tag": "div",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "PRANA PDP"
+    }
+  ]
+}
+{% endschema %}

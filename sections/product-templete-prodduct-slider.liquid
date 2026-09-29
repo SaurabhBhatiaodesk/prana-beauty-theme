@@ -1,0 +1,506 @@
+
+<style>
+    .list-select-btns{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        margin: 0 auto 24px;
+        padding: 0 20px;
+        flex-wrap:wrap;
+    }
+    .select-collection-shows{
+        background: #F1E2DE;
+        border: 1.16px solid #443531;
+        padding: 12px 21px;
+        list-style: none;
+        cursor: pointer;
+        width: max-content;
+        border-radius: 40px;
+        max-height: 35px;
+        text-align: center;
+        font-family: Josefin Sans;
+        font-weight: 600;
+        font-size: 14.08px;
+        line-height: 1;
+        letter-spacing: -0.04rem;
+        text-transform: uppercase;
+    }
+.product-slide-algin-header{
+    max-width:482px;
+    margin-inline:auto;
+    margin-bottom:27px;
+}
+.title-slides{
+    font-family: Josefin Sans;
+    font-weight: 400;
+    font-size: 25.51px;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    color:#4E403C;
+    text-align:center;
+
+}
+.content-slides{
+    font-family: Josefin Sans;
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 1.3;
+    letter-spacing: -0.04rem;
+    margin: 6px auto 0;
+    text-align: center;
+}
+
+
+.product-list-slider-{{ section.id }}{ 
+    padding:50px 23px;
+ }
+
+.pls-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 16px;
+  margin-top: 25px;
+}
+.pls-header div {
+    display: flex;
+    align-items: center;
+}
+.pls-des {
+    margin: 0 0 0 15px;
+    font-family: 'Josefin Sans';
+    color: #4E403C;
+    font-size: 21px;
+    font-weight: 300;
+}
+.pls-title {
+    font-family: 'Josefin Sans';
+    letter-spacing: 1px !important;
+    margin: 0;
+    color: #4E403C;
+    font-size: 25px;
+}
+
+.pls-button {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  line-height: 14px;
+  padding: 18px 37px;
+  background: #ECCA6F;
+  font-family: 'Josefin Sans';
+  color: #1B1716;
+}
+.pls-button svg {
+  margin-right: 8px;
+}
+
+.pls-image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  height: 300px;
+}
+
+.pls-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.pls-prod-title {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: 400;
+    font-size: 19px;
+    font-family: 'Josefin Sans';
+    color: #4E403C;
+    text-transform: uppercase;
+    height: 45px;
+     letter-spacing: -1px;
+}
+
+.pls-price {
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+  font-weight: 400;
+  font-family: 'Josefin Sans';
+  color: #4E403C;
+  text-transform: uppercase;
+}
+
+.pls-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.swiper-scrollbar { background: #ddd; height: 4px; width: 85%; position: relative !important;}
+.swiper-scrollbar-drag { background: #97371E; }
+
+.custom-arrows {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.custom-arrow {
+  cursor: pointer;
+  font-size: 26px;
+  user-select: none;
+}
+.product-list-slider .swiper-slide {
+    background: #FDFCFB;
+    padding: 15px;
+}
+.product-list-slider .pls-add-btn {
+    background: #F4F1EA;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Josefin Sans';
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+    color: #1B1716;
+    text-transform: uppercase;
+    padding: 16px;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:.2s linear;
+}
+.product-list-slider .pls-add-btn svg {
+    margin-right: 8px;
+}
+.svg{
+    text-align: center;
+    margin: 10px auto 15px;
+    display: flex;
+}
+
+.select-collection-shows.active {
+    background: #F5E5BC;
+    color: #000;
+}
+.product-list-swiper-{{ section.id }}{
+    max-width:1347px;
+    margin-inline:auto;
+}
+.product-list-swiper-{{ section.id }} .swiper-slide{
+    width:441px !important;
+    background:#FAF8F4 !important;
+    position:relative;
+}
+.custom-bnundle-tag,
+.save-related-bedge{
+  position:absolute;
+}
+.custom-bnundle-tag{
+    font-family: Josefin Sans;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 11.12px;
+    padding: 8px 12px;
+    line-height: 1;
+    letter-spacing: -0.04rem;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid #000;
+    color: #443531;
+    left: 22px;
+    top: 17px;
+    margin: 0;
+}
+.save-related-bedge{
+    width: 66px;
+    height: 66px;
+    top: 15.09px;
+    right: 32px;
+    background: #F4E3B8;
+    border: 1px solid #443531;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Josefin Sans;
+    font-weight: 400;
+    font-size: 15.04px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: #443531;
+    margin: 0;
+    padding: 4px;
+  }
+
+
+@media screen and (max-width: 767px) {
+  .pls-button {
+    display: none;
+  }
+  .pls-header div {
+    align-items: baseline;
+    flex-direction: column;
+  }
+  .pls-prod-title {
+      font-size: 14px;
+      height: 34px;
+  }
+  .pls-price {
+      font-size: 14px;
+  }
+  .product-list-swiper-{{ section.id }} .swiper-slide{
+      width:358px !important;
+  }
+  .custom-bnundle-tag {
+    font-size: 9px;
+    padding: 7px 10px;
+    left: 18px;
+    top: 14px;
+  }
+  .save-related-bedge {
+    width: 54px;
+    height: 54px;
+    top: 12px;
+    right: 26px;
+    font-size: 12px;
+  }
+
+  .list-select-btns {
+      gap: 12px;
+      padding: 0;
+  }
+  .select-collection-shows {
+      padding: 9px 15px;
+      max-height: 30px;
+      font-weight: 500;
+      font-size: 12px;
+  }
+  .product-list-slider-{{ section.id }} .pls-controls {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin-top: 27px;
+  }
+  .product-list-slider-{{ section.id }} .swiper-pagination{
+    width:100% !important;
+  }
+}
+
+</style>
+
+
+<section class="product-list-slider product-list-slider-{{ section.id }}">
+    <div class="product-slide-algin-header">
+      <h2 class="title-slides">{{ section.settings.main_heading }}</h2>
+      <p class="content-slides">{{ section.settings.subtext }}</p>
+    </div>
+    <ul class="list-select-btns">
+        {% for collection in section.settings.collections %}
+            <li class="select-collection-shows">{{ collection.title }}</li>
+        {% endfor %}
+    </ul>
+    {% for collection in section.settings.collections %}
+        <div class="swiper product-list-swiper product-list-swiper-{{ section.id }} slider-of-collections" id="{{ collection.title }}">
+            <div class="swiper-wrapper">
+                {% for product in collection.products %}
+                    <div class="swiper-slide">
+                        {% if section.settings.bundle_text != blank %}
+                          <span class="custom-bnundle-tag">{{ section.settings.bundle_text }}</span>
+                        {% endif %}
+                        {% if section.settings.save_text != blank %}
+                          <span class="save-related-bedge">{{ section.settings.save_text }}</span>
+                        {% endif %}
+                        <a href="{{ product.url }}" class="pls-item">
+                        <div class="pls-image">
+                            {% if product.featured_image %}
+                            <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title }}" width="" height="">
+                            {% endif %}
+                        </div>
+                        {% comment %} <svg class="svg" width="135" height="18" viewBox="0 0 135 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M113.756 10.8839V10.8669L120.573 2.26491H120.59V9.62591H122.035V10.8839H120.59V13.5869H118.941V10.8839H113.756ZM119.043 5.98791L116.17 9.71091L115.915 9.62591H118.941V5.68191L119.043 5.98791ZM123.211 12.6859C123.211 12.4366 123.301 12.2269 123.483 12.0569C123.675 11.8756 123.885 11.7849 124.112 11.7849C124.316 11.7849 124.508 11.8756 124.69 12.0569C124.882 12.2269 124.979 12.4366 124.979 12.6859C124.979 12.9579 124.882 13.1789 124.69 13.3489C124.508 13.5076 124.316 13.5869 124.112 13.5869C123.885 13.5869 123.675 13.5076 123.483 13.3489C123.301 13.1789 123.211 12.9579 123.211 12.6859ZM125.964 10.0679C125.964 9.48991 126.072 8.99125 126.287 8.57191C126.514 8.15258 126.792 7.80125 127.12 7.51791C127.46 7.22325 127.806 7.00225 128.157 6.85491C127.817 6.63958 127.534 6.37325 127.307 6.05591C127.092 5.73858 126.984 5.33058 126.984 4.83191C126.984 4.33325 127.109 3.89125 127.358 3.50591C127.619 3.12058 127.97 2.82025 128.412 2.60491C128.854 2.37825 129.359 2.26491 129.925 2.26491C130.481 2.26491 130.979 2.37825 131.421 2.60491C131.863 2.82025 132.215 3.11491 132.475 3.48891C132.736 3.86291 132.866 4.28791 132.866 4.76391C132.866 5.29658 132.753 5.72158 132.526 6.03891C132.311 6.35625 132.033 6.62825 131.693 6.85491C132.045 7.01358 132.39 7.24025 132.73 7.53491C133.07 7.81825 133.348 8.16958 133.563 8.58891C133.79 9.00825 133.903 9.50125 133.903 10.0679C133.903 10.7139 133.722 11.3146 133.359 11.8699C133.008 12.4252 132.532 12.8729 131.931 13.2129C131.342 13.5529 130.668 13.7229 129.908 13.7229C129.149 13.7229 128.475 13.5529 127.885 13.2129C127.296 12.8729 126.826 12.4252 126.474 11.8699C126.134 11.3146 125.964 10.7139 125.964 10.0679ZM127.647 9.98291C127.647 10.4136 127.749 10.8046 127.953 11.1559C128.157 11.5072 128.429 11.7906 128.769 12.0059C129.109 12.2212 129.489 12.3289 129.908 12.3289C130.339 12.3289 130.73 12.2212 131.081 12.0059C131.444 11.7906 131.727 11.5072 131.931 11.1559C132.147 10.8046 132.254 10.4192 132.254 9.99991C132.254 9.56925 132.152 9.18391 131.948 8.84391C131.744 8.49258 131.467 8.20925 131.115 7.99391C130.775 7.77858 130.396 7.67091 129.976 7.67091C129.557 7.65958 129.172 7.76158 128.82 7.97691C128.469 8.18091 128.186 8.45858 127.97 8.80991C127.755 9.16125 127.647 9.55225 127.647 9.98291ZM128.582 5.03591C128.582 5.38725 128.718 5.68758 128.99 5.93691C129.274 6.17491 129.597 6.29391 129.959 6.29391C130.322 6.29391 130.634 6.17491 130.894 5.93691C131.166 5.68758 131.302 5.38725 131.302 5.03591C131.302 4.62791 131.166 4.29358 130.894 4.03291C130.634 3.77225 130.322 3.64191 129.959 3.64191C129.585 3.64191 129.262 3.77225 128.99 4.03291C128.718 4.29358 128.582 4.62791 128.582 5.03591Z" fill="#4E403C"/>
+                        <path d="M16.6214 6.11127L10.5818 5.71424L8.30743 0L6.03303 5.71424L0 6.11127L4.62703 10.04L3.10871 16L8.30743 12.714L13.5061 16L11.9875 10.04L16.6214 6.11127Z" fill="#97371E"/>
+                        <path d="M39.6214 6.11127L33.5818 5.71424L31.3074 0L29.033 5.71424L23 6.11127L27.627 10.04L26.1087 16L31.3074 12.714L36.5061 16L34.9875 10.04L39.6214 6.11127Z" fill="#97371E"/>
+                        <path d="M62.6214 6.11127L56.5818 5.71424L54.3074 0L52.033 5.71424L46 6.11127L50.627 10.04L49.1087 16L54.3074 12.714L59.5061 16L57.9875 10.04L62.6214 6.11127Z" fill="#97371E"/>
+                        <path d="M85.6214 6.11127L79.5818 5.71424L77.3074 0L75.033 5.71424L69 6.11127L73.627 10.04L72.1087 16L77.3074 12.714L82.5061 16L80.9875 10.04L85.6214 6.11127Z" fill="#97371E"/>
+                        <path d="M108.621 6.11127L102.582 5.71424L100.307 0L98.033 5.71424L92 6.11127L96.627 10.04L95.1087 16L100.307 12.714L105.506 16L103.988 10.04L108.621 6.11127Z" fill="#97371E"/>
+                        </svg> {% endcomment %}
+
+                        {% comment %} rating {% endcomment %}
+                        <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+                        {% comment %} end rating {% endcomment %}
+
+                        <h3 class="pls-prod-title">{{ product.title }}</h3>
+
+                        <p class="pls-price">From {{ product.price | money }}</p>
+
+                        </a>
+                    
+                        <div class="add-btn pls-add-btn" onclick="document.querySelector('.m{{ section.id }}-{{ product.id }} .quick-add__button').click()">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 0H9V20H11V0Z" fill="#97371E"/>
+                        <path d="M20 9H0V11H20V9Z" fill="#97371E"/>
+                        </svg>
+                            Add to Cart
+                        </div>
+                        {%- assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id -%}
+                        <product-form-component 
+
+                            data-section-id="{{ section.id }}"
+                            data-product-id="{{ product.id }}"
+                            data-product-url="{{ product.url }}"
+                            on:submit="/handleSubmit"
+                            style="opacity: 0;visibility: hidden;"
+                            class="m{{ section.id }}-{{ product.id }}"
+                            data-quantity-default="{% if product.selected_or_first_available_variant.quantity_rule.min %}{{ product.selected_or_first_available_variant.quantity_rule.min }}{% else %}1{% endif %}"
+                            data-quantity-error-max="{{ 'products.product.quantity_error_max' | t }}">
+                            <div
+                            class="visually-hidden"
+                            aria-live="assertive"
+                            role="status"
+                            aria-atomic="true"
+                            ref="liveRegion"
+                            ></div>
+                            {%- form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' -%}
+                            <input
+                                type="hidden"
+                                name="id"
+                                ref="variantId"
+                                value="{{ product.selected_or_first_available_variant.id }}"
+                            >
+                            <div
+                                class="product-form-buttons spacing-style{% if block_settings.stacking %} product-form-buttons--stacked{% endif %}"
+                                
+                                ref="productFormButtons"
+                            >
+                                {%- liquid
+                                assign has_quantity_rules = false
+                                if variant.quantity_rule.min > 1 or variant.quantity_rule.increment > 1 or variant.quantity_rule.max != null
+                                    assign has_quantity_rules = true
+                                endif
+                                -%}
+                                <button class="quick-add__button" type="sumbit">aaaaa</button>
+                            </div>
+                            {%- endform -%}
+                        </product-form-component>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="pls-controls">
+            <div class="swiper-pagination swiper-scrollbar swiper-scrollbar-{{ section.id }}"></div>
+
+            <div class="custom-arrows">
+                <div class="custom-arrow custom-prev">
+                    <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.259121 9.17002L9.11942 0.30972C9.43771 -0.0618701 9.99738 -0.105273 10.369 0.213015C10.7406 0.531304 10.784 1.09097 10.4657 1.46256C10.436 1.49759 10.404 1.52957 10.369 1.55927L3.02396 8.91341H38.1019C38.5916 8.91341 38.9883 9.31013 38.9883 9.79974C38.9883 10.2894 38.5916 10.6861 38.1019 10.6861H3.0232L10.3682 18.0311C10.7398 18.3494 10.7832 18.909 10.4649 19.2806C10.1466 19.6522 9.58695 19.6956 9.21536 19.3773C9.1811 19.3476 9.14835 19.3157 9.11866 19.2806L0.258358 10.4203C-0.0850601 10.0746 -0.0850601 9.51648 0.258358 9.17078L0.259121 9.17002Z" fill="#443531"/>
+                    </svg>
+                </div>
+                <div class="custom-arrow custom-next">
+                    <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M38.7292 9.17002L29.8689 0.30972C29.5506 -0.0618701 28.9909 -0.105273 28.6193 0.213015C28.2477 0.531304 28.2043 1.09097 28.5226 1.46256C28.5523 1.49759 28.5843 1.52957 28.6193 1.55927L35.9643 8.91341H0.886335C0.396718 8.91341 0 9.31013 0 9.79974C0 10.2894 0.396718 10.6861 0.886335 10.6861H35.9651L28.6201 18.0311C28.2485 18.3494 28.2051 18.909 28.5234 19.2806C28.8417 19.6522 29.4013 19.6956 29.7729 19.3773C29.8072 19.3476 29.8399 19.3157 29.8696 19.2806L38.7299 10.4203C39.0733 10.0746 39.0733 9.51648 38.7299 9.17078L38.7292 9.17002Z" fill="#443531"/>
+                    </svg>
+                </div>
+            </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</section>
+
+
+
+{% schema %}
+{
+  "name": "collection Product Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Section Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "bundle_text",
+      "label": "Bundle Text",
+      "default": "CUSTOM BUNDLE"
+    },
+    {
+      "type": "text",
+      "id": "save_text",
+      "label": "Save text",
+      "default": "Save BIG"
+    },
+    {
+      "type": "collection_list",
+      "id": "collections",
+      "label": "Select Collection"
+    }
+  ],
+  "presets": [
+    { "name": "collection Product Slider" }
+  ]
+}
+{% endschema %}
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sliders = document.querySelectorAll(".product-list-swiper-{{ section.id }}");
+
+  sliders.forEach(slider => {
+    new Swiper(slider, {
+      spaceBetween: 11,
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      initialSlide: 1,
+      navigation: {
+        nextEl: slider.querySelector(".custom-next"),
+        prevEl: slider.querySelector(".custom-prev"),
+      },
+      scrollbar: {
+        el: slider.querySelector(".swiper-scrollbar-{{ section.id }}"),
+        draggable: true,
+        dragSize: 300
+      },
+     
+    });
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    let allCollectioons = document.querySelectorAll('.select-collection-shows');
+    let allCollectioonsSlider = document.querySelectorAll('.slider-of-collections');
+    
+    
+    allCollectioons.forEach((eachCollection,i)=>{
+        eachCollection.addEventListener('click', function(){
+            allCollectioonsSlider.forEach((eachCollection,p)=>{
+                allCollectioons[p].classList.remove('active');
+                eachCollection.style.display = "none";
+            })
+            eachCollection.classList.add('active');
+            allCollectioonsSlider[i].style.display = "block";
+        });
+    });
+    // Auto trigger AFTER listeners are attached
+    allCollectioons[0].click();
+});
+</script>

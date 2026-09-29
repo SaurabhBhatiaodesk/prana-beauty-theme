@@ -1,0 +1,516 @@
+<footer
+  class="custom-footer"
+  style="background: {{ section.settings.footer_bg }};"
+>
+  <div class="section page-width">
+
+    <div class="footer-grid">
+
+      <!-- LEFT -->
+      <div class="footer-newsletter">
+
+        {% if section.settings.logo != blank %}
+          <img
+            src="{{ section.settings.logo | image_url }}"
+            alt="{{ shop.name }}"
+            class="footer-logo"
+            loading="lazy"
+            width=""
+            height=""
+          >
+        {% endif %}
+
+        {% if section.settings.tagline != blank %}
+          <p class="footer-tagline">
+            "{{ section.settings.tagline }}"
+          </p>
+        {% endif %}
+
+        {% form 'customer', class: 'footer-form' %}
+
+          <input
+            type="email"
+            name="contact[email]"
+            placeholder="{{ section.settings.placeholder_text }}"
+            required
+          >
+
+          <button
+            type="submit"
+            style="
+              background: {{ section.settings.button_bg }};
+              color: {{ section.settings.button_text_color }};
+            "
+          >
+            {{ section.settings.button_text }}
+          </button>
+
+        {% endform %}
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="footer-menu-wrap">
+
+        <!-- SHOP -->
+        {% if section.settings.shop_menu != blank %}
+          <div class="footer-col">
+            <div class="footer-col-header">
+              {% if section.settings.shop_title != blank %}
+                <h4>{{ section.settings.shop_title }}</h4>
+              {% endif %}
+              <span class="footer-accordion-icon">+</span>
+            </div>
+            <div class="footer-col-content">
+              <ul>
+                {% for link in linklists[section.settings.shop_menu].links %}
+                  <li>
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- PRANA -->
+        {% if section.settings.prana_menu != blank %}
+          <div class="footer-col">
+            <div class="footer-col-header">
+              {% if section.settings.prana_title != blank %}
+                <h4>{{ section.settings.prana_title }}</h4>
+              {% endif %}
+              <span class="footer-accordion-icon">+</span>
+            </div>
+            <div class="footer-col-content">
+              <ul>
+                {% for link in linklists[section.settings.prana_menu].links %}
+                  <li>
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- HELP -->
+        {% if section.settings.help_menu != blank %}
+          <div class="footer-col">
+            <div class="footer-col-header">
+              {% if section.settings.help_title != blank %}
+                <h4>{{ section.settings.help_title }}</h4>
+              {% endif %}
+              <span class="footer-accordion-icon">+</span>
+            </div>
+            <div class="footer-col-content">
+              <ul>
+                {% for link in linklists[section.settings.help_menu].links %}
+                  <li>
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+<style>
+.custom-footer{
+  padding:
+    {{ section.settings.padding_top_desktop }}px
+    0
+    {{ section.settings.padding_bottom_desktop }}px;
+}
+
+/* GRID */
+.footer-grid{
+  display:grid;
+  grid-template-columns:420px 1fr;
+  gap:80px;
+  align-items:flex-start;
+}
+
+/* LEFT */
+.footer-logo{
+  max-width:140px;
+  width:100%;
+  display:block;
+}
+
+.footer-tagline{
+  color:#fff;
+  font-size:18px;
+  line-height:normal;
+  margin-bottom:23px;
+}
+
+/* FORM */
+.footer-form{
+  display:flex;
+  align-items:center;
+  position:relative;
+}
+
+.footer-form input{
+  width:100%;
+  height:50px;
+  border:none;
+  outline:none;
+  border-radius:6px;
+  padding:0 28px;
+  background:#F3E6D5;
+  color:var(--ink3);
+  font-size:17px;
+  text-transform:uppercase;
+}
+
+.footer-form input::placeholder{
+  font-size:17px;
+  text-transform:uppercase;
+}
+
+.footer-form button{
+  width:90px;
+  height:50px;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+  transition:.3s;
+  border-radius:6px;
+  position:absolute;
+  right:0;
+}
+
+.footer-form button:hover{
+  opacity:.9;
+}
+
+/* RIGHT */
+.footer-menu-wrap{
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr;
+  gap:70px;
+}
+
+.footer-col h4 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 11px;
+    font-weight: 500;
+}
+
+.footer-col ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.footer-col li{
+  margin-bottom:12px;
+}
+
+.footer-col a{
+  color:#fff;
+  text-decoration:none;
+  font-size:18px;
+  line-height:normal;
+  transition:.3s;
+}
+
+.footer-col a:hover{
+  color:var(--heading-color);
+  text-decoration:underline;
+}
+
+/* Hide accordion icons on desktop */
+.footer-accordion-icon {
+  display: none;
+}
+
+/* TABLET */
+@media(max-width:1100px){
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:50px;
+  }
+
+  .footer-newsletter{
+    padding-bottom:25px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+  }
+
+}
+
+/* MOBILE - ACCORDION STARTS */
+@media(max-width:767px){
+
+    .custom-footer{
+        padding:
+        {{ section.settings.padding_top_mobile }}px
+        0
+        {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    .footer-grid{
+        gap:0px;
+    }
+    
+    .footer-logo {
+        max-width: 110px;
+        margin: 0 auto;
+        margin-bottom:5px;
+    }
+    
+    .footer-tagline {
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 18px;
+    }
+
+    .footer-form input{
+        height:40px;
+        padding:0 18px;
+        font-size:12px;
+        border-radius: 4px;
+    }
+    
+    .footer-form input::placeholder{
+        font-size:12px;
+    }
+    
+    .footer-form button {
+        width: 90px;
+        height: 40px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+    .footer-menu-wrap{
+        grid-template-columns:1fr;
+        gap:0px;
+        width:100%;
+        margin-top:0px;
+    }
+
+    /* Accordion Styles */
+    .footer-col {
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .footer-col-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 16px 0;
+    }
+    
+    .footer-col h4 {
+        font-size: 16px;
+        margin-bottom: 0;
+        font-weight: 500;
+    }
+    
+    .footer-accordion-icon {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 400;
+        color: #E3C39F;
+        transition: transform 0.3s ease;
+    }
+    
+    .footer-col.active .footer-accordion-icon {
+        transform: rotate(45deg);
+    }
+    
+    .footer-col-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .footer-col.active .footer-col-content {
+        max-height: 300px;
+        padding-bottom: 16px;
+    }
+    
+    .footer-col ul {
+        padding-bottom: 8px;
+    }
+    
+    .footer-col li {
+        margin-bottom: 12px;
+    }
+    
+    .footer-col a {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+    
+    .footer-newsletter {
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255,255,255,.2);
+        margin-bottom: 0;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile accordion functionality for footer
+  const footerCols = document.querySelectorAll('.footer-col');
+  
+  footerCols.forEach(col => {
+    const header = col.querySelector('.footer-col-header');
+    if (header) {
+      header.addEventListener('click', () => {
+        // Close other accordions (optional - remove this block if you want multiple open)
+        footerCols.forEach(otherCol => {
+          if (otherCol !== col && otherCol.classList.contains('active')) {
+            otherCol.classList.remove('active');
+          }
+        });
+        
+        // Toggle current accordion
+        col.classList.toggle('active');
+      });
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    {
+      "type": "color",
+      "id": "footer_bg",
+      "label": "Footer Background",
+      "default": "#AE6D16"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Beauty begins beneath the surface."
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Input Placeholder",
+      "default": "ENTER YOUR EMAIL"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Sign up"
+    },
+    {
+      "type": "text",
+      "id": "shop_title",
+      "label": "Shop Heading",
+      "default": "SHOP"
+    },
+    {
+      "type": "link_list",
+      "id": "shop_menu",
+      "label": "Shop Menu"
+    },
+    {
+      "type": "text",
+      "id": "prana_title",
+      "label": "Prana Heading",
+      "default": "PRANA"
+    },
+    {
+      "type": "link_list",
+      "id": "prana_menu",
+      "label": "Prana Menu"
+    },
+    {
+      "type": "text",
+      "id": "help_title",
+      "label": "Help Heading",
+      "default": "HELP"
+    },
+    {
+      "type": "link_list",
+      "id": "help_menu",
+      "label": "Help Menu"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Footer"
+    }
+  ]
+}
+{% endschema %}

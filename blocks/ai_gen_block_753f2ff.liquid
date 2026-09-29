@@ -1,0 +1,367 @@
+{% doc %}
+  @prompt
+    Create a Shopify best seller badge using Liquid, HTML, and CSS. The badge should automatically appear on product pages and product cards only if the product belongs to a collection tagged or identified as “Best Seller.” The badge design should match a premium minimalist style with a light beige background, thin brown border, rounded corners, elegant serif typography, and text format like: #1 Best Seller · {{ collection.title }}. Make the badge fully responsive, lightweight, and compatible with Shopify Online Store 2.0 themes. Include hover-safe styling and ensure it dynamically pulls the collection name (example: Dinacharya Sutra).
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% liquid
+  assign is_best_seller = false
+  assign best_seller_collection = null
+  
+  for collection in product.collections
+    if collection.title contains 'Best Seller' or collection.handle contains 'best-seller' or collection.metafields.custom.best_seller == true
+      assign is_best_seller = true
+      assign best_seller_collection = collection
+      break
+    endif
+  endfor
+%}
+
+{% if is_best_seller and best_seller_collection %}
+  {% style %}
+    .ai-best-seller-badge-{{ ai_gen_id }} {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+      background-color: {{ block.settings.background_color }};
+      border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+      border-radius: {{ block.settings.border_radius }}px;
+      font-family: {{ block.settings.badge_font.family }}, {{ block.settings.badge_font.fallback_families }};
+      font-weight: {{ block.settings.badge_font.weight }};
+      font-size: {{ block.settings.font_size }}px;
+      color: {{ block.settings.text_color }};
+      letter-spacing: {{ block.settings.letter_spacing }}px;
+      line-height: 1.2;
+      width: {{ block.settings.desktop_width_percent }}%;
+      max-width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .ai-best-seller-badge-{{ ai_gen_id }}:hover {
+      background-color: {{ block.settings.hover_background_color }};
+      border-color: {{ block.settings.hover_border_color }};
+      transform: translateY({{ block.settings.hover_lift }}px);
+    }
+
+    .ai-best-seller-badge__icon-{{ ai_gen_id }} {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: {{ block.settings.icon_size }}px;
+      height: {{ block.settings.icon_size }}px;
+      flex-shrink: 0;
+    }
+
+    .ai-best-seller-badge__icon-{{ ai_gen_id }} svg {
+      width: 100%;
+      height: 100%;
+      fill: {{ block.settings.icon_color }};
+    }
+
+    .ai-best-seller-badge__text-{{ ai_gen_id }} {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .ai-best-seller-badge__rank-{{ ai_gen_id }} {
+      font-weight: {{ block.settings.rank_font_weight }};
+    }
+
+    .ai-best-seller-badge__separator-{{ ai_gen_id }} {
+      opacity: 0.5;
+    }
+
+    .ai-best-seller-badge__collection-{{ ai_gen_id }} {
+      font-style: {{ block.settings.collection_font_style }};
+    }
+
+    @media screen and (max-width: 749px) {
+      .ai-best-seller-badge-{{ ai_gen_id }} {
+        font-size: {{ block.settings.font_size | times: 0.9 }}px;
+        padding: {{ block.settings.padding_vertical | times: 0.8 }}px {{ block.settings.padding_horizontal | times: 0.8 }}px;
+      }
+
+      .ai-best-seller-badge__icon-{{ ai_gen_id }} {
+        width: {{ block.settings.icon_size | times: 0.9 }}px;
+        height: {{ block.settings.icon_size | times: 0.9 }}px;
+      }
+    }
+  {% endstyle %}
+
+  <div class="ai-best-seller-badge-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+    {% if block.settings.show_icon %}
+      <span class="ai-best-seller-badge__icon-{{ ai_gen_id }}">
+        {% if block.settings.icon_style == 'star' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        {% elsif block.settings.icon_style == 'trophy' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M6 2h12v5c0 3.31-2.69 6-6 6s-6-2.69-6-6V2zm-2 3H2v2c0 2.21 1.79 4 4 4h.5C6.19 9.85 6 8.44 6 7V5zm14 0v2c0 1.44-.19 2.85-.5 4.21.21-.07.42-.14.64-.21H20c2.21 0 4-1.79 4-4V5h-2zm-6 10c-1.66 0-3-1.34-3-3h6c0 1.66-1.34 3-3 3zm-4 2h8v2h-8v-2zm0 4h8v2H8v-2z"/>
+          </svg>
+        {% elsif block.settings.icon_style == 'medal' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="12" cy="15" r="5"/>
+            <path d="M12 10l-2-6h4l-2 6zm-5 5l-3-9 2-1 3 9-2 1zm10 0l2-1 3 9-2 1-3-9z"/>
+          </svg>
+        {% else %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        {% endif %}
+      </span>
+    {% endif %}
+
+    <span class="ai-best-seller-badge__text-{{ ai_gen_id }}">
+      <span class="ai-best-seller-badge__rank-{{ ai_gen_id }}">{{ block.settings.rank_text }}</span>
+      <span class="ai-best-seller-badge__separator-{{ ai_gen_id }}">{{ block.settings.separator }}</span>
+      <span class="ai-best-seller-badge__collection-{{ ai_gen_id }}">{{ best_seller_collection.title }}</span>
+    </span>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Best seller badge",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Badge content"
+    },
+    {
+      "type": "text",
+      "id": "rank_text",
+      "label": "Rank text",
+      "default": "#1 Best Seller"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "·"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "icon_style",
+      "label": "Icon style",
+      "options": [
+        {
+          "value": "star",
+          "label": "Star"
+        },
+        {
+          "value": "trophy",
+          "label": "Trophy"
+        },
+        {
+          "value": "medal",
+          "label": "Medal"
+        }
+      ],
+      "default": "star"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 10,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#97371e"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "badge_font",
+      "label": "Font",
+      "default": "cormorant_n5"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 2,
+      "step": 0.1,
+      "unit": "px",
+      "default": 0.3
+    },
+    {
+      "type": "select",
+      "id": "rank_font_weight",
+      "label": "Rank font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "collection_font_style",
+      "label": "Collection name style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f2eee4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#4e403c"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#97371e"
+    },
+    {
+      "type": "color",
+      "id": "hover_background_color",
+      "label": "Hover background",
+      "default": "#fdfcfb"
+    },
+    {
+      "type": "color",
+      "id": "hover_border_color",
+      "label": "Hover border",
+      "default": "#4e403c"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical padding",
+      "min": 2,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 6,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "hover_lift",
+      "label": "Hover lift",
+      "min": -2,
+      "max": 0,
+      "step": 1,
+      "unit": "px",
+      "default": -1
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best seller badge"
+    }
+  ]
+}
+{% endschema %}

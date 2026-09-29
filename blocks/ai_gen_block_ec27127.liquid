@@ -1,0 +1,368 @@
+{% doc %}
+  @prompt
+    make an section which have cards and in each card should be an image, title and content, and need color and title, and content font size adjust ment settings also a setting for desktop column and for mobile also and if in any card hs not image available then coomplete card should be disappaer, i want 5 cards
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-cards-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+    padding: 40px 0px;
+  }
+
+  .ai-cards-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.card_gap }}px;
+    margin: 0 auto;
+  }
+
+  .ai-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .ai-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-5px);
+  }
+
+  .ai-card-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.image_height }}px;
+    object-fit: cover;
+  }
+
+  .ai-card-content-{{ ai_gen_id }} {
+    padding: {{ block.settings.card_padding }}px;
+  }
+
+  .ai-card-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 12px 0;
+    font-weight: 600;
+  }
+
+  .ai-card-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.content_font_size }}px;
+    color: {{ block.settings.content_color }};
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ai-card-hidden-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-cards-container-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    }
+  }
+{% endstyle %}
+
+<cards-section-{{ ai_gen_id }} class="ai-cards-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-cards-container-{{ ai_gen_id }}">
+    {% for i in (1..5) %}
+      {% liquid
+        assign image_key = 'card_' | append: i | append: '_image'
+        assign title_key = 'card_' | append: i | append: '_title'
+        assign content_key = 'card_' | append: i | append: '_content'
+        
+        assign card_image = block.settings[image_key]
+        assign card_title = block.settings[title_key]
+        assign card_content = block.settings[content_key]
+      %}
+
+      {% if card_image != blank %}
+        <div class="ai-card-{{ ai_gen_id }}">
+          <img
+            src="{{ card_image | image_url: width: 800 }}"
+            alt="{{ card_image.alt | escape }}"
+            loading="lazy"
+            width="{{ card_image.width }}"
+            height="{{ card_image.height }}"
+            class="ai-card-image-{{ ai_gen_id }}"
+          >
+          <div class="ai-card-content-{{ ai_gen_id }}">
+            {% if card_title != blank %}
+              <h3 class="ai-card-title-{{ ai_gen_id }}">{{ card_title }}</h3>
+            {% endif %}
+            {% if card_content != blank %}
+              <div class="ai-card-text-{{ ai_gen_id }}">{{ card_content }}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</cards-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CardsSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.checkEmptyCards();
+      }
+
+      checkEmptyCards() {
+        const cards = this.querySelectorAll('.ai-card-{{ ai_gen_id }}');
+        cards.forEach(card => {
+          const image = card.querySelector('.ai-card-image-{{ ai_gen_id }}');
+          if (!image || !image.src) {
+            card.classList.add('ai-card-hidden-{{ ai_gen_id }}');
+          }
+        });
+      }
+    }
+
+    customElements.define('cards-section-{{ ai_gen_id }}', CardsSection{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Cards section",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Desktop columns",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Mobile columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Gap between cards",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#4e403c"
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content",
+      "default": "#4e403c"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title size",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_font_size",
+      "label": "Content size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Content padding",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image height",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 250
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "Card Title 1"
+    },
+    {
+      "type": "richtext",
+      "id": "card_1_content",
+      "label": "Content",
+      "default": "<p>This is the content for card 1. Add your description here.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "Card Title 2"
+    },
+    {
+      "type": "richtext",
+      "id": "card_2_content",
+      "label": "Content",
+      "default": "<p>This is the content for card 2. Add your description here.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Title",
+      "default": "Card Title 3"
+    },
+    {
+      "type": "richtext",
+      "id": "card_3_content",
+      "label": "Content",
+      "default": "<p>This is the content for card 3. Add your description here.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_4_title",
+      "label": "Title",
+      "default": "Card Title 4"
+    },
+    {
+      "type": "richtext",
+      "id": "card_4_content",
+      "label": "Content",
+      "default": "<p>This is the content for card 4. Add your description here.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_5_title",
+      "label": "Title",
+      "default": "Card Title 5"
+    },
+    {
+      "type": "richtext",
+      "id": "card_5_content",
+      "label": "Content",
+      "default": "<p>This is the content for card 5. Add your description here.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cards section"
+    }
+  ]
+}
+{% endschema %}

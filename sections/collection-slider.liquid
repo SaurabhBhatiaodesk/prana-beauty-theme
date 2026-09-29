@@ -1,0 +1,261 @@
+<section class="collection-list-slider">
+  <div class="swiper collection-list-swiper">
+    <div class="swiper-wrapper">
+
+      {% for block in section.blocks %}
+        {% assign coll = collections[block.settings.collection] %}
+
+        {% if coll %}
+          <div class="swiper-slide">
+            <a href="{{ coll.url }}" class="cls-item">
+
+              <div class="cls-image">
+                {% if coll.image %}
+                  <img src="{{ coll.image | img_url: '600x' }}" alt="{{ coll.title }}">
+                {% else %}
+                  {% if coll.products.first.featured_image %}
+                    <img src="{{ coll.products.first.featured_image | img_url: '600x' }}" alt="{{ coll.title }}">
+                  {% endif %}
+                {% endif %}
+              </div>
+
+              <h3 class="cls-title">{{ coll.title }}</h3>
+              {% if block.settings.description %}
+                <p>{{ block.settings.description }}</p>  
+              {% endif %}
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="cls-controls">
+        <div class="swiper-pagination swiper-scrollbar"></div>
+        <div class="custom-arrows">
+            <div class="custom-arrow custom-prev">
+                <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.259121 9.17002L9.11942 0.30972C9.43771 -0.0618701 9.99738 -0.105273 10.369 0.213015C10.7406 0.531304 10.784 1.09097 10.4657 1.46256C10.436 1.49759 10.404 1.52957 10.369 1.55927L3.02396 8.91341H38.1019C38.5916 8.91341 38.9883 9.31013 38.9883 9.79974C38.9883 10.2894 38.5916 10.6861 38.1019 10.6861H3.0232L10.3682 18.0311C10.7398 18.3494 10.7832 18.909 10.4649 19.2806C10.1466 19.6522 9.58695 19.6956 9.21536 19.3773C9.1811 19.3476 9.14835 19.3157 9.11866 19.2806L0.258358 10.4203C-0.0850601 10.0746 -0.0850601 9.51648 0.258358 9.17078L0.259121 9.17002Z" fill="#443531"/>
+                </svg>
+            </div>
+            <div class="custom-arrow custom-next">
+                <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M38.7292 9.17002L29.8689 0.30972C29.5506 -0.0618701 28.9909 -0.105273 28.6193 0.213015C28.2477 0.531304 28.2043 1.09097 28.5226 1.46256C28.5523 1.49759 28.5843 1.52957 28.6193 1.55927L35.9643 8.91341H0.886335C0.396718 8.91341 0 9.31013 0 9.79974C0 10.2894 0.396718 10.6861 0.886335 10.6861H35.9651L28.6201 18.0311C28.2485 18.3494 28.2051 18.909 28.5234 19.2806C28.8417 19.6522 29.4013 19.6956 29.7729 19.3773C29.8072 19.3476 29.8399 19.3157 29.8696 19.2806L38.7299 10.4203C39.0733 10.0746 39.0733 9.51648 38.7299 9.17078L38.7292 9.17002Z" fill="#443531"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection List Slider",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Collection List Slider"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.cls-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  justify-content: space-between;
+}
+.collection-list-slider .cls-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    min-height: 715px;
+        {% comment %} max-width: 500px; {% endcomment %}
+         max-width:456px;
+}
+.collection-list-slider .cls-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* crops nicely */
+  object-position: center;
+
+}
+{% comment %} .collection-list-slider a.cls-item {
+    position: relative;
+} {% endcomment %}
+.collection-list-slider .cls-title {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 46px;
+    letter-spacing: -2px;
+    border-top: 1px solid #fff;
+    margin: 0;
+    padding: 0.8rem 0;
+    max-width: 80%;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+}
+.collection-list-slider .cls-item p {
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+    color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+    width: 100%;
+    font-size: 23px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    margin: 0;
+}
+.collection-list-slider .cls-item::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background: rgba(47, 29, 25, 0.17);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    clip-path: ellipse(50% 100% at bottom);
+    top: auto;
+}
+.collection-list-slider .cls-controls .swiper-scrollbar {
+  width: 85%;
+  height: 4px;
+  background: #DCD8CD;
+  position: relative;
+}
+.swiper-scrollbar-drag {
+  background: #97371E;
+}
+.collection-list-slider.no-swiper {
+  padding-right: 0;
+}
+
+/* When slider is active → full width, no padding */
+.collection-list-slider:not(.no-swiper) {
+  padding-right: 16px;
+}
+.custom-arrows {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    max-width: 15%;
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: 16px;
+}
+.collection-list-slider {
+    padding-bottom: 1rem;
+    padding-left: 16px;
+}
+/* When Swiper is disabled */
+.collection-list-swiper.no-swiper .swiper-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.collection-list-swiper.no-swiper .swiper-wrapper {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+
+@media screen and (max-width: 767px) {
+.collection-list-slider .cls-title {
+    font-size: 36px;
+}
+.collection-list-slider .cls-image {
+    min-height: 500px;
+}
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sliders = document.querySelectorAll(".collection-list-swiper");
+
+  sliders.forEach(slider => {
+    const slides = slider.querySelectorAll(".swiper-slide");
+    const slidesCount = slides.length;
+    const controls = slider.closest(".collection-list-slider").querySelector(".cls-controls");
+
+    const isMobile = window.innerWidth < 768;
+
+    // Hide controls by default
+    if (controls) controls.style.display = "none";
+
+    /* DESKTOP RULE:
+     * - Disable slider if 3 or fewer
+     */
+    if (!isMobile && slidesCount <= 3) {
+      slider.classList.add("no-swiper");
+      return;
+    }
+
+    /* MOBILE RULE:
+     * - Disable slider only if 1 or fewer
+     */
+    if (isMobile && slidesCount <= 1) {
+      slider.classList.add("no-swiper");
+      return;
+    }
+
+    // Show controls only if slider is enabled
+    if (controls) controls.style.display = "flex";
+
+    new Swiper(slider, {
+      loop: false,
+      spaceBetween: 8,
+
+      breakpoints: {
+        0: { slidesPerView: 1.2, centeredSlides: true, loop: true },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      },
+
+      navigation: {
+        nextEl: slider.querySelector(".custom-next"),
+        prevEl: slider.querySelector(".custom-prev"),
+      },
+
+      scrollbar: {
+        el: slider.querySelector(".swiper-pagination"),
+        draggable: true
+      }
+    });
+  });
+});
+</script>

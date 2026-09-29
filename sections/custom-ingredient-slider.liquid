@@ -1,0 +1,141 @@
+<!-- ── INGREDIENT CAROUSEL ── -->
+  <div class="pdp-ing-carousel" id="pdp-ing-carousel">
+    <div class="pdp-ing-label">{{ section.settings.caption }}</div>
+    <div class="pdp-ing-subtitle" id="pdp-ing-subtitle">{{ section.settings.heading }}</div>
+
+    <div class="ingc-wrap">
+      <button class="ingc-arrow ingc-prev" onclick="ingcScroll(-1)" aria-label="Previous">&#8592;</button>
+      <div class="ingc-track-wrap">
+        <div class="ingc-track" id="ingcTrack">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'card' %}
+            <div class="ingc-card" aria-label="Kashmir Saffron">
+                <div class="ingc-img-box">
+                    <div class="ingc-img-ph">
+                        {% if block.settings.image != blank %}
+                            <img loading="lazy" src="{{ block.settings.image | img_url: "original" }}">
+                        {% else %}
+                          <div class="ingc-img-ph-icon">✦</div>
+                        <div class="ingc-img-ph-label">Image</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="ingc-card-body">
+                    <div class="ingc-num">0{{ forloop.index }}</div>
+                    <div class="ingc-name">{{ block.settings.title }}</div>
+                    <div class="ingc-latin">{{ block.settings.sub_title }}</div>
+                    <div class="ingc-benefit">{{block.settings.desc }}</div>
+                </div>
+                </div>
+            {% endcase %}
+        {% endfor %}
+            </div>
+      </div>
+      <button class="ingc-arrow ingc-next" onclick="ingcScroll(1)" aria-label="Next">&#8594;</button>
+    </div>
+
+    <!-- Expanded detail panel -->
+    <div class="ingc-detail" id="ingcDetail" style="display:none">
+    {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'card-details' %}
+                <div class="ingc-detail-inner" style="display:none;">
+                    <div class="ingc-detail-ph" id="ingcDetailPh">✦</div>
+                    <div class="ingc-detail-copy">
+                    <div class="ingc-detail-origin" id="ingcDetailOrigin">{{ block.settings.caption }}</div>
+                    <div class="ingc-detail-name" id="ingcDetailName">{{ block.settings.title }}</div>
+                    <div class="ingc-detail-latin" id="ingcDetailLatin">{{ block.settings.sub_title }}</div>
+                    <div class="ingc-detail-desc" id="ingcDetailDesc">{{ block.settings.desc }}</div>
+                    <div class="ingc-detail-benefit" id="ingcDetailBenefit">{{ block.settings.btm_desc }}</div>
+                    </div>
+                </div>
+        {% endcase %}
+    {% endfor %}
+      <button class="ingc-close" onclick="ingcClose()" aria-label="Close">&#215;</button>
+    </div>
+
+  </div>
+
+
+  {% schema %}
+  {
+    "name": "Custom ingredient slider",
+    "settings": [
+      {
+        "type": "text",
+        "id": "caption",
+        "label": "Caption"
+      },
+      {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+      "type": "card",
+      "name": "card",
+      "settings": [
+        {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title"
+        },
+        {
+        "type": "textarea",
+        "id": "desc",
+        "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "card-details",
+      "name": "card details",
+      "settings": [
+        {
+        "type": "text",
+        "id": "caption",
+        "label": "Caption"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title"
+        },
+        {
+        "type": "textarea",
+        "id": "desc",
+        "label": "Description"
+        },
+        {
+        "type": "textarea",
+        "id": "btm_desc",
+        "label": "Bottom content"
+        }
+      ]
+    },
+    ],
+    "presets": [
+    {
+      "name": "Custom ingredient slider",
+    }
+  ]
+  }
+{% endschema %}

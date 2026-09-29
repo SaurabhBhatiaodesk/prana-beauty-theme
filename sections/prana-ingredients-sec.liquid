@@ -1,0 +1,511 @@
+<style>
+  .prana-ingredients-section-{{ section.id }} {
+    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+    padding:60px 0;
+  }
+  /* Desktop section - hide on mobile */
+  .prana-ingredients-section-{{ section.id }} {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .prana-ingredients-section-{{ section.id }} {
+      display: none;  /* Mobile par hide */
+    }
+  }
+
+  /* Jump to Heading */
+  .prana-ingredients-section-{{ section.id }} .jump-to-heading {
+    font-weight: 500;
+    font-size:36px;
+    line-height: 1.1;
+    color: var(--heading-color);
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  /* Tabs Container */
+  .prana-ingredients-section-{{ section.id }} .ingredients-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gold, #ECCA6F);
+  }
+
+  /* Tab Button */
+  .prana-ingredients-section-{{ section.id }} .tab-btn {
+    background: transparent;
+    border: none;
+    padding: 5px 10px;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ink3, #4E403C);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border:1px solid var(--gold, #ECCA6F);
+    border-radius: 4px;
+  }
+
+  .prana-ingredients-section-{{ section.id }} .tab-btn:hover {
+    color:#fff;
+    background:var(--gold, #ECCA6F);
+  }
+
+  .prana-ingredients-section-{{ section.id }} .tab-btn.active {
+    background: var(--gold, #ECCA6F);
+    color: #fff;
+  }
+
+  /* Content Area */
+  .prana-ingredients-section-{{ section.id }} .ingredient-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .prana-ingredients-section-{{ section.id }} .ingredient-content.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Ingredient Title */
+  .prana-ingredients-section-{{ section.id }} .ingredient-title {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.2;
+    color: var(--heading-color, #8A5A55);
+    margin-bottom: 8px;
+  }
+
+  .prana-ingredients-section-{{ section.id }} .ingredient-subtitle {
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold, #ECCA6F);
+    margin-bottom: 15px;
+  }
+
+  /* Description */
+  .prana-ingredients-section-{{ section.id }} .ingredient-description {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink3, #4E403C);
+    margin-bottom: 30px;
+  }
+
+  .prana-ingredients-section-{{ section.id }} .ingredient-description p {
+    margin-bottom: 15px;
+  }
+
+  /* Info Grid - 5 Columns */
+  .prana-ingredients-section-{{ section.id }} .ingredient-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 30px 0;
+  }
+
+  .prana-ingredients-section-{{ section.id }} .info-card {
+    background:#E3C39F;
+    padding:27px 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .prana-ingredients-section-{{ section.id }} .info-card-title {
+    font-size:17px;
+    color: var(--gold, #ECCA6F);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .prana-ingredients-section-{{ section.id }} .info-card-text {
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--ink3, #4E403C);
+  }
+
+  /* Product Tags */
+  .prana-ingredients-section-{{ section.id }} .ingredient-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid  var(--gold, #ECCA6F);
+  }
+
+  .prana-ingredients-section-{{ section.id }} .product-tag {
+    background: transparent;
+    border: 1px solid var(--gold, #ECCA6F);
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink3, #4E403C);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .prana-ingredients-section-{{ section.id }} .product-tag:hover {
+    background: var(--gold, #ECCA6F);
+    color: #fff;
+  }
+
+  /* Tablet */
+  @media (max-width: 991px) {
+    .prana-ingredients-section-{{ section.id }} .ingredient-info-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .prana-ingredients-section-{{ section.id }} {
+      padding: 40px 0;
+    }
+
+    .prana-ingredients-section-{{ section.id }} .jump-to-heading {
+      font-size: 36px;
+    }
+
+    .prana-ingredients-section-{{ section.id }} .ingredients-tabs {
+      gap: 8px;
+    }
+
+    .prana-ingredients-section-{{ section.id }} .tab-btn {
+      padding: 6px 14px;
+      font-size: 13px;
+    }
+
+    .prana-ingredients-section-{{ section.id }} .ingredient-title {
+      font-size: 32px;
+    }
+
+    .prana-ingredients-section-{{ section.id }} .ingredient-subtitle {
+      font-size: 15px;
+    }
+
+    .prana-ingredients-section-{{ section.id }} .ingredient-description {
+      font-size: 14px;
+    }
+
+    .prana-ingredients-section-{{ section.id }} .ingredient-info-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+  }
+
+  /* Small Mobile */
+  @media (max-width: 480px) {
+    .prana-ingredients-section-{{ section.id }} .ingredient-info-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+</style>
+
+<section class="prana-ingredients-section-{{ section.id }}">
+  <div class="section">
+    
+    {% if section.settings.jump_to_heading != blank %}
+      <h2 class="jump-to-heading">
+        {{ section.settings.jump_to_heading }}
+      </h2>
+    {% endif %}
+    
+    <!-- Tabs -->
+    <div class="ingredients-tabs">
+      {% for block in section.blocks %}
+        <button class="tab-btn" data-tab="tab-{{ block.id }}">
+          {{ block.settings.tab_name }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <!-- Tab Contents -->
+    {% for block in section.blocks %}
+      <div class="ingredient-content" id="tab-{{ block.id }}" data-content>
+        <!-- Title -->
+        <h3 class="ingredient-title">{{ block.settings.ingredient_title }}</h3>
+        
+        <!-- Subtitle -->
+        {% if block.settings.ingredient_subtitle != blank %}
+          <div class="ingredient-subtitle">{{ block.settings.ingredient_subtitle }}</div>
+        {% endif %}
+        
+        <!-- Description -->
+        <div class="ingredient-description">
+          {{ block.settings.description }}
+        </div>
+        
+        <!-- Info Grid - 5 Columns -->
+        <div class="ingredient-info-grid">
+          {% if block.settings.info_1_title != blank %}
+            <div class="info-card">
+              <div class="info-card-title">{{ block.settings.info_1_title }}</div>
+              <div class="info-card-text">{{ block.settings.info_1_text }}</div>
+            </div>
+          {% endif %}
+          {% if block.settings.info_2_title != blank %}
+            <div class="info-card">
+              <div class="info-card-title">{{ block.settings.info_2_title }}</div>
+              <div class="info-card-text">{{ block.settings.info_2_text }}</div>
+            </div>
+          {% endif %}
+          {% if block.settings.info_3_title != blank %}
+            <div class="info-card">
+              <div class="info-card-title">{{ block.settings.info_3_title }}</div>
+              <div class="info-card-text">{{ block.settings.info_3_text }}</div>
+            </div>
+          {% endif %}
+          {% if block.settings.info_4_title != blank %}
+            <div class="info-card">
+              <div class="info-card-title">{{ block.settings.info_4_title }}</div>
+              <div class="info-card-text">{{ block.settings.info_4_text }}</div>
+            </div>
+          {% endif %}
+          {% if block.settings.info_5_title != blank %}
+            <div class="info-card">
+              <div class="info-card-title">{{ block.settings.info_5_title }}</div>
+              <div class="info-card-text">{{ block.settings.info_5_text }}</div>
+            </div>
+          {% endif %}
+        </div>
+        
+        <!-- Product Tags -->
+        {% if block.settings.product_tags != blank %}
+          <div class="ingredient-products">
+            {% assign tags = block.settings.product_tags | split: ',' %}
+            {% for tag in tags %}
+              <a href="#" class="product-tag">{{ tag | strip }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    
+  </div>
+</section>
+
+<script>
+(function() {
+  const sectionId = '{{ section.id }}';
+  const section = document.querySelector('.prana-ingredients-section-' + sectionId);
+  
+  if (!section) return;
+  
+  const tabs = section.querySelectorAll('.tab-btn');
+  const contents = section.querySelectorAll('[data-content]');
+  
+  function activateTab(tabId) {
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+    });
+    
+    contents.forEach(content => {
+      content.classList.remove('active');
+    });
+    
+    const activeTab = section.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+    if (activeTab) {
+      activeTab.classList.add('active');
+    }
+    
+    const activeContent = section.querySelector(`#${tabId}`);
+    if (activeContent) {
+      activeContent.classList.add('active');
+    }
+  }
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const tabId = this.getAttribute('data-tab');
+      activateTab(tabId);
+    });
+  });
+  
+  if (tabs.length > 0) {
+    const firstTabId = tabs[0].getAttribute('data-tab');
+    activateTab(firstTabId);
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Ingredients Jump To",
+  "settings": [
+    {
+      "type": "text",
+      "id": "jump_to_heading",
+      "label": "Jump To Heading",
+      "default": "Ingredients and Sourcing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_name",
+          "label": "Tab Name",
+          "default": "Saffron"
+        },
+        {
+          "type": "header",
+          "content": "Content Section"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_title",
+          "label": "Ingredient Title",
+          "default": "Kashmir Saffron"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_subtitle",
+          "label": "Ingredient Subtitle",
+          "default": "Crocus sativus flower extract"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Kashmir Saffron — Kurnkuma in Sanskrit — is the most potent brightening ingredient in Ayurvedic skincare. Crocin and crocetin, its active carotenoids, inhibit tyrosinase and reduce melanin synthesis at the cellular level.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Info Cards (5 Columns)"
+        },
+        {
+          "type": "text",
+          "id": "info_1_title",
+          "label": "Info 1 Title",
+          "default": "Antioxidant"
+        },
+        {
+          "type": "text",
+          "id": "info_1_text",
+          "label": "Info 1 Text",
+          "default": "High crocin content"
+        },
+        {
+          "type": "text",
+          "id": "info_2_title",
+          "label": "Info 2 Title",
+          "default": "Circulation"
+        },
+        {
+          "type": "text",
+          "id": "info_2_text",
+          "label": "Info 2 Text",
+          "default": "Enhances radiance"
+        },
+        {
+          "type": "text",
+          "id": "info_3_title",
+          "label": "Info 3 Title",
+          "default": "Anti-inflammatory"
+        },
+        {
+          "type": "text",
+          "id": "info_3_text",
+          "label": "Info 3 Text",
+          "default": "Soothes irritation"
+        },
+        {
+          "type": "text",
+          "id": "info_4_title",
+          "label": "Info 4 Title"
+        },
+        {
+          "type": "text",
+          "id": "info_4_text",
+          "label": "Info 4 Text"
+        },
+        {
+          "type": "text",
+          "id": "info_5_title",
+          "label": "Info 5 Title"
+        },
+        {
+          "type": "text",
+          "id": "info_5_text",
+          "label": "Info 5 Text"
+        },
+        {
+          "type": "header",
+          "content": "Product Tags"
+        },
+        {
+          "type": "text",
+          "id": "product_tags",
+          "label": "Product Tags (comma separated)",
+          "default": "Saffron Glow Face Oil, Saffron Radiance Moisturizer",
+          "info": "Enter tags separated by commas"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredients Jump To Desktop",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "tab_name": "Saffron",
+            "ingredient_title": "Kashmir Saffron"
+          }
+        },
+        { 
+          "type": "ingredient",
+          "settings": {
+            "tab_name": "Bakuchiol",
+            "ingredient_title": "Bakuchiol"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "tab_name": "Turmeric",
+            "ingredient_title": "Turmeric"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "tab_name": "Rose",
+            "ingredient_title": "Rose"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "tab_name": "Sandalwood",
+            "ingredient_title": "Sandalwood"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

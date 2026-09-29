@@ -1,0 +1,31 @@
+{% if product.metafields.custom.short_description != blank %}
+  <div class="product-short-description">
+    {{ product.metafields.custom.short_description }}
+</div>
+{% endif %}
+
+<style>
+    .product-short-description {
+        font-size: 16px;
+        text-align: center;
+        color:var(--ink3);
+    }
+
+    @media all and (max-width:575px){
+        .product-short-description{
+            font-size:15px;
+        }
+    }
+</style>
+{% schema %}
+{
+  "name": "Product Short Decription",
+  "settings": [],
+  
+  "presets": [
+    {
+      "name": "Product Short Decription"
+    }
+  ]
+}
+{% endschema %}

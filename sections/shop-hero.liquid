@@ -1,0 +1,60 @@
+<!-- HERO -->
+  <section class="shop-hero">
+    <div class="shop-hero-rule">{{ section.settings.caption }}</div>
+    <h1>{{ section.settings.title }}</h1>
+    <p class="shop-hero-sub-sanskrit">{{ section.settings.sub_title }}</p>
+    <p>{{ section.settings.desc }}</p>
+    <div class="shop-trust-row">
+        <span>{{ section.settings.trust-1 }}</span>
+        <span>·</span><span>{{ section.settings.trust-2 }}</span>
+        <span>·</span><span>{{ section.settings.trust-3 }}</span>
+    </div>
+  </section>
+
+  {% schema %}
+  {
+    "name": "shop hero",
+    "settings": [
+    {
+        "type": "text",
+        "id": "caption",
+        "label": "Caption"
+    },
+    {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+    },
+    {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title"
+    },
+    {
+        "type": "text",
+        "id": "desc",
+        "label": "Description"
+    },
+    {
+        "type": "text",
+        "id": "trust-1",
+        "label": "Trust text"
+    },
+    {
+        "type": "text",
+        "id": "trust-2",
+        "label": "Trust text"
+    },
+    {
+        "type": "text",
+        "id": "trust-3",
+        "label": "Trust text"
+    },
+    ],
+    "presets": [
+    {
+      "name": "shop hero",
+    }
+  ]
+  }
+{% endschema %}

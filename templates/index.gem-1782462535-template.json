@@ -1,0 +1,1099 @@
+{
+  "sections": {
+    "top_banner_mobile_yjKWDH": {
+      "type": "top-banner-mobile",
+      "blocks": {
+        "item_P9Pgzj": {
+          "type": "item",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/ffgmkfghkng_1.png",
+            "title": "Ancient Rituals.",
+            "title2": "Radiant Skin.",
+            "text": "5,000 years of Ayurvedic wisdom distilled into six transformative formulas. Your skin doesn't need more products — it needs a ritual.",
+            "btn": "Buy Now",
+            "link": "shopify:\/\/pages\/soundarya"
+          }
+        },
+        "item_FxBAxz": {
+          "type": "item",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/image_2_-_navigate_to_turmeric_mask.jpg",
+            "title": "Hydrated Skin",
+            "title2": "Natural Glow",
+            "text": "Infused with time-honored Ayurvedic ingredients to deeply nourish, restore moisture, and reveal naturally radiant skin.",
+            "btn": "Buy Now",
+            "link": "shopify:\/\/products\/turmeric-and-sandalwood-face-mask"
+          }
+        },
+        "item_eWzbfP": {
+          "type": "item",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/image_3_-_navigate_to_prana_saffron_serum_pdp.jpg",
+            "title": "Pure Rituals",
+            "title2": "Timeless Beauty",
+            "text": "Gentle botanical care inspired by ancient wellness traditions — crafted to purify, calm, and rejuvenate every skin type.",
+            "btn": "Buy Now",
+            "link": "shopify:\/\/products\/saffron-glow-serum"
+          }
+        },
+        "item_ed4TqG": {
+          "type": "item",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/Image_4-_navigate_to_pure_rose_water_image.jpg",
+            "title": "Saffron Secrets",
+            "title2": "Luminous Skin",
+            "text": "Powered by the richness of saffron and herbal extracts to brighten, nourish, and enhance your skin’s natural vitality.",
+            "btn": "Buy Now",
+            "link": "shopify:\/\/products\/pure-rose-water-toning-mist"
+          }
+        }
+      },
+      "block_order": [
+        "item_P9Pgzj",
+        "item_FxBAxz",
+        "item_eWzbfP",
+        "item_ed4TqG"
+      ],
+      "custom_css": [],
+      "name": "Top slider Mobile View",
+      "settings": {}
+    },
+    "custom_hero_xb3T6h": {
+      "type": "custom-hero",
+      "disabled": true,
+      "custom_css": [],
+      "name": "Custom Hero",
+      "settings": {
+        "caption": "Ayurvedic Skincare · Born in New York",
+        "heading": "Ancient Rituals.",
+        "sub_heading": "<em>Radiant Skin.<\/em>",
+        "desc": "5,000 years of Ayurvedic wisdom distilled into six transformative formulas. Your skin doesn't need more products — it needs a ritual.",
+        "hero_mantra": "Prāna — the breath that moves through all living things.<br>Skincare born from nature, pure as the soul it serves.",
+        "btn_text1": "Shop the Collection",
+        "btn_link1": "shopify:\/\/collections\/all",
+        "btn_text2": "Find My Ritual — AI Scan",
+        "btn_link2": "",
+        "btn_text3": "Not sure where to start? Take the 60-second skin quiz →",
+        "btn_link3": "",
+        "righ_image": "shopify:\/\/shop_images\/rose-jasmine-milk-cleanser-1950700.jpg",
+        "label1": "Saffron",
+        "image1": "shopify:\/\/shop_images\/turmeric-sandalwood-clay-mask-5688491.png",
+        "label2": "Rose",
+        "image2": "shopify:\/\/shop_images\/download_1.jpg",
+        "label3": "Turmeric",
+        "image3": "shopify:\/\/shop_images\/download_2_becfd787-5c18-4c94-89a0-e0d5a9b44526.jpg",
+        "label4": "Bakuchiol",
+        "image4": "shopify:\/\/shop_images\/download_3.jpg"
+      }
+    },
+    "blocks_Y9QDfD": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3a6809b_Jq7mk3": {
+          "type": "ai_gen_block_3a6809b",
+          "settings": {
+            "show_desktop": true,
+            "show_mobile": false,
+            "image_desktop": "shopify:\/\/shop_images\/ALL_PRODUCTS-3_1_2_1.webp",
+            "height_desktop": 700,
+            "height_mobile": 400,
+            "spacing_top_desktop": 0,
+            "spacing_bottom_desktop": 0,
+            "spacing_top_mobile": 0,
+            "spacing_bottom_mobile": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3a6809b_Jq7mk3"
+      ],
+      "custom_css": [],
+      "name": "Image banner",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "custom_proof_jqHQB6": {
+      "type": "custom-proof",
+      "custom_css": [],
+      "name": "Custom Proof",
+      "settings": {
+        "title": "",
+        "text_color": "#ffffff",
+        "desktop_grid": 4,
+        "number1": "4.9\/5",
+        "text1": "Verified customer reviews",
+        "number2": "30-Day",
+        "text2": "Money-back guarantee",
+        "number3": "11,000+",
+        "text3": "Women who left synthetic skincare behind",
+        "number4": "100%",
+        "text4": "Clean · Vegan · No Parabens · Cruelty-Free",
+        "last-proof": ""
+      }
+    },
+    "custom_product_slider_qajQbd": {
+      "type": "custom-product-slider",
+      "custom_css": [],
+      "name": "Custom Product Slider",
+      "settings": {
+        "caption": "The PRANA SUTRAS",
+        "title": "Six Formulations.",
+        "title2": "One Complete Ritual.",
+        "description": "Each product stands alone. Together they become a RITUAL — morning, night, weekly reset.",
+        "collection": "six-formulations",
+        "view_all_text": "View All",
+        "view_all_link": "",
+        "view_product_text": "View Product",
+        "buy_now_text": "Buy Now",
+        "btn_text": "View All Products →",
+        "btn_link": "\/checkout"
+      }
+    },
+    "founder_section_4CgtMW": {
+      "type": "founder-section",
+      "custom_css": [],
+      "name": "Founder section",
+      "settings": {
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 30,
+        "image": "shopify:\/\/shop_images\/Gemini_Generated_Image_42ydps42ydps42yd.png",
+        "name": "Prabha Iyer",
+        "role": "Founder · Prana Beauty & Wellness · New York",
+        "tag1": "South Asian Heritage",
+        "tag2": "Ayurvedic Tradition",
+        "tag3": "Immigrant Founder",
+        "moment_label": "The Moment It Started",
+        "quote": "",
+        "content": "Prabha came to New York carrying her grandmother's rituals and a deep passion and knowledge of Ayurveda— and found nothing in the beauty aisle that matched what she already knew worked. So she built it.",
+        "number1": "11,000+",
+        "label1": "Women in ritual",
+        "number2": "5,000",
+        "label2": "Years of Ayurvedic Science",
+        "number3": "100%",
+        "label3": "Woman-founded",
+        "btn_text": "Our Full Story",
+        "btn_link": "shopify:\/\/pages\/about-us",
+        "vimeo_link": "https:\/\/player.vimeo.com\/video\/1180963637",
+        "kicker": "",
+        "title": "",
+        "note": "",
+        "cap_text": "Watch the brand film — 2 minutes"
+      }
+    },
+    "custom_rituals_section_RJGTFd": {
+      "type": "custom-rituals-section",
+      "blocks": {
+        "item_fRezTL": {
+          "type": "item",
+          "settings": {
+            "bundle_image": "shopify:\/\/shop_images\/DINACHARYA_MORNING_RITUAL.jpg",
+            "bundle_label": "DINACHARYA",
+            "bundle_name": "Morning Bundle",
+            "bundle_note": "Drop your styled flatlay here",
+            "sanskrit": "DINACHARYA",
+            "ritual_name": "Morning Ritual",
+            "ritual_link": "shopify:\/\/pages\/dinacharya",
+            "meaning": "Dinacharya — the art of beginning",
+            "collection": "dinacharya",
+            "collection_link": "shopify:\/\/pages\/dinacharya",
+            "pdt_desc_1": "Lifts overnight buildup. The ritual starts here.",
+            "pdt_desc_2": "Restores pH. Primes skin for everything that follows.",
+            "pdt_desc_3": "Liquid Kashmir saffron. Carries your glow all day.",
+            "review": "\"My skin has never looked better before 8am.\""
+          }
+        },
+        "item_nNV6FV": {
+          "type": "item",
+          "settings": {
+            "bundle_image": "shopify:\/\/shop_images\/SWAPNA_-_Night_Ritual_-_BAKUCHIOL_SERUM_SAFFRON_RADIANCE_MOISRUIZER_ROSE_CLEANSER.jpg",
+            "bundle_label": "SWAPNA",
+            "bundle_name": "Nighttime Bundle",
+            "bundle_note": "Drop your styled flatlay here",
+            "sanskrit": "SWAPNA",
+            "ritual_name": "Nighttime Ritual",
+            "ritual_link": "shopify:\/\/pages\/swapna",
+            "meaning": "Swapna — the restorative dream",
+            "collection": "swapna",
+            "collection_link": "shopify:\/\/pages\/swapna",
+            "pdt_desc_1": "Release the day. Emulsifies without stripping the barrier.",
+            "pdt_desc_2": "Nature's retinol. Resurfaces and firms through the night.",
+            "pdt_desc_3": "Triple hyaluronic acid seals everything in overnight.",
+            "review": "\"Eight weeks in — I genuinely look different.\""
+          }
+        },
+        "item_kQ77m6": {
+          "type": "item",
+          "settings": {
+            "bundle_image": "shopify:\/\/shop_images\/ABHYANGA.png",
+            "bundle_label": "ABHYANGA",
+            "bundle_name": "Weekly Spa Bundle",
+            "bundle_note": "Drop your styled flatlay here",
+            "sanskrit": "ABHYANGA",
+            "ritual_name": "Weekly Spa Ritual",
+            "ritual_link": "shopify:\/\/pages\/abhyanga",
+            "meaning": "Abhyanga — sacred self-anointing",
+            "collection": "abhyanga",
+            "collection_link": "shopify:\/\/pages\/abhyanga",
+            "pdt_desc_1": "Bare, clean skin first. The clay needs direct contact.",
+            "pdt_desc_2": "12–15 minutes. Your Sunday ceremony. Three days of glow.",
+            "pdt_desc_3": "Finish with Kashmir saffron. Radiance held for three days.",
+            "review": "\"The Sunday ritual I've been doing for 6 months.\""
+          }
+        }
+      },
+      "block_order": [
+        "item_fRezTL",
+        "item_nNV6FV",
+        "item_kQ77m6"
+      ],
+      "name": "Custom Ritual",
+      "settings": {
+        "caption": "The Prana Sutras · Daily Practice",
+        "title": "Return to Your <em>True Self<\/em>",
+        "description": "These are not skincare routines. They are the ancient practices your skin has always known."
+      }
+    },
+    "find_ritual_section_XPMGpF": {
+      "type": "find-ritual-section",
+      "name": "Find ritual",
+      "settings": {
+        "caption": "Find Your Ritual",
+        "title": "Two Paths. <em>One Ritual.<\/em>",
+        "description": "Scan your face with AI in 30 seconds — or answer 3 quick questions. Either way, we'll build your perfect Prana ritual.",
+        "badge": "Fastest",
+        "scan_live": "Live · AI-Powered · Real-Time",
+        "label": "Your Skin.",
+        "highlight": "Your Ritual.",
+        "normal": "30 Seconds.",
+        "chip_1": "Hydration",
+        "chip_2": "Pigmentation",
+        "chip_3": "Texture",
+        "chip_4": "Elasticity",
+        "chip_5": "Radiance",
+        "chip_6": "Barrier",
+        "step1": "Open your camera — no app needed",
+        "step2": "AI reads 6 skin health markers in real time",
+        "step3": "Receive your personalised Prana ritual",
+        "btn_txt": "personalized PRANA ritual",
+        "btn_link": "shopify:\/\/pages\/prana-glow-quiz",
+        "note": "Free · No account required · 30 seconds",
+        "badge_quiz": "3 Questions",
+        "title_quiz": "Not Sure Where\nto Start?",
+        "desc_quiz": "Answer 3 questions and we'll build your personal Prana ritual — the exact products your skin needs, in the exact order to use them.",
+        "trust_quiz1": "47,000 rituals matched",
+        "trust_quiz2": "Free · No account needed",
+        "q1_label": "Question 1 of 3",
+        "q1_title": "What's your skin type?",
+        "q1_opt1": "Dry or Very Dry",
+        "q1_opt2": "Oily or Combo",
+        "q1_opt3": "Sensitive or Reactive",
+        "q1_opt4": "Normal \/ Not Sure",
+        "q2_label": "Question 2 of 3",
+        "q2_title": "When do you care for your skin most?",
+        "q2_opt1": "Morning — quick, protective",
+        "q2_opt2": "Night — slow, restorative",
+        "q2_opt3": "Both — full ritual",
+        "q2_opt4": "Weekly spa treatment",
+        "q3_label": "Question 3 of 3",
+        "q3_title": "Your #1 skin concern?",
+        "q3_opt1": "Dullness \/ No glow",
+        "q3_opt2": "Fine lines \/ Firmness",
+        "q3_opt3": "Dark spots \/ Pigmentation",
+        "q3_opt4": "Breakouts \/ Texture",
+        "email_title": "Where should we send your ritual?",
+        "email_placeholder": "your@email.com",
+        "email_button": "See My Ritual →",
+        "skip_text": "Skip",
+        "result_badge": "Your Prana Ritual",
+        "result_button": "Shop My Ritual →",
+        "restart_text": "Retake Quiz",
+        "or_text": "OR"
+      }
+    },
+    "custom_counter_b4J6qT": {
+      "type": "custom-counter",
+      "blocks": {
+        "item_W9PiAb": {
+          "type": "item",
+          "settings": {
+            "counter": "5,000",
+            "title": "Years of Wisdom",
+            "desc": "Every formula traced to classical Ayurvedic texts. Ancient intelligence, clinical validation."
+          }
+        },
+        "item_Vr9VVg": {
+          "type": "item",
+          "settings": {
+            "counter": "No",
+            "title": "Compromise",
+            "desc": "No parabens. No sulfates. No synthetic fragrance. No petroleum derivatives. No exceptions."
+          }
+        },
+        "item_JrpMp9": {
+          "type": "item",
+          "settings": {
+            "counter": "30",
+            "title": "Day Guarantee",
+            "desc": "If your skin doesn't transform in 30 days, full refund. No questions. No friction."
+          }
+        },
+        "item_fmMjmm": {
+          "type": "item",
+          "settings": {
+            "counter": "11K+",
+            "title": "Women in Ritual",
+            "desc": "Woman-founded. Crafted in India. Now delivering is US and UK"
+          }
+        }
+      },
+      "block_order": [
+        "item_W9PiAb",
+        "item_Vr9VVg",
+        "item_JrpMp9",
+        "item_fmMjmm"
+      ],
+      "disabled": true,
+      "name": "Custom counter",
+      "settings": {}
+    },
+    "custom_newsletter_hfhNpi": {
+      "type": "custom-newsletter",
+      "name": "Custom newsletter",
+      "settings": {
+        "caption": "Join 11,000 + Women in Ritual",
+        "heading": "Get 10% off your",
+        "highlight_heading": "first ritual.",
+        "description": "Ancient Ayurvedic wisdom, delivered weekly — plus your free 28 - page Ritual Guide.",
+        "text1": "10% off first order",
+        "text2": "Free Ritual Guide",
+        "text3": "Prabha's Sunday ritual",
+        "bg_color": "#e3c39f",
+        "padding_top_desktop": 52,
+        "padding_bottom_desktop": 52,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 14
+      }
+    },
+    "17768332015c8fec7e": {
+      "type": "_blocks",
+      "blocks": {
+        "instafeed_app_block_kLznAm": {
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_kLznAm"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-a81820a6-7aeb-4163-b47e-0e82fd29223d",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 50,
+        "padding-block-end": 60
+      }
+    },
+    "products_list_slider_rGDQ8B": {
+      "type": "products-list-slider",
+      "disabled": true,
+      "custom_css": [
+        ".loox-rating-content {display: none;}"
+      ],
+      "name": "Product List Slider",
+      "settings": {
+        "heading": "Shop Our Best Sellers",
+        "des": "Perfect if you want a wink of personality.",
+        "collection": "best-selling-products",
+        "show_price": true,
+        "button_label": "EXPLORE ALL",
+        "button_link": "shopify:\/\/collections\/all"
+      }
+    },
+    "marquee_9Vx3xY": {
+      "type": "marquee",
+      "blocks": {
+        "icon_jHEmJp": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "none",
+            "image_upload": "shopify:\/\/shop_images\/Gemini_Generated_Image_c00l3hc00l3hc00l_1.png",
+            "width": 44,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_PrcdDB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>AYURVEDIC INGREDIENTS<\/p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_tpUQHU": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "none",
+            "image_upload": "shopify:\/\/shop_images\/Vector_2678095e-67b4-4a82-8612-0a4d3a03b9fc.svg",
+            "width": 44,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_U7AwWR": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>PURE & UNSCENTED<br\/><\/p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_d8t7HH": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "none",
+            "image_upload": "shopify:\/\/shop_images\/Group_18.svg",
+            "width": 44,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_BtKcEF": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>CRUELTY FREE<\/p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_jBMYyc": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "none",
+            "image_upload": "shopify:\/\/shop_images\/Vector.svg",
+            "width": 40,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_Pb4DAc": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>PURE VEGAN<\/p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "icon_jHEmJp",
+        "text_PrcdDB",
+        "icon_tpUQHU",
+        "text_U7AwWR",
+        "icon_d8t7HH",
+        "text_BtKcEF",
+        "icon_jBMYyc",
+        "text_Pb4DAc"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "p {font-size: 24px; color: #97371e; font-weight: 400; letter-spacing: -1.5px;}"
+      ],
+      "name": "t:names.marquee_section",
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "",
+        "padding-block-start": 24,
+        "padding-block-end": 24,
+        "gap_between_elements": 24
+      }
+    },
+    "collection_slider_9mdHQf": {
+      "type": "collection-slider",
+      "blocks": {
+        "collection_block_ixRzU6": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "brightening",
+            "description": "Glow, Calm and hydration for radiant skin"
+          }
+        },
+        "collection_block_M9FAtN": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "acne-control",
+            "description": "Balance & calm breakout-prone skin."
+          }
+        },
+        "collection_block_8R8yzU": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "by-benefits",
+            "description": "Deep moisture for soft, supple skin."
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_ixRzU6",
+        "collection_block_M9FAtN",
+        "collection_block_8R8yzU"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".collection-list-slider .cls-image {margin-inline: auto;}"
+      ],
+      "name": "Collection List Slider",
+      "settings": {}
+    },
+    "video_hero_yChCHJ": {
+      "type": "video-hero",
+      "disabled": true,
+      "custom_css": [
+        "h2 {font-size: 76px; line-height: 66px; margin-bottom: 40px;}",
+        "p {font-size: 25px; font-weight: 300;}",
+        ".video-hero {padding-inline: 16px;}"
+      ],
+      "name": "Video Hero",
+      "settings": {
+        "poster": "shopify:\/\/shop_images\/Rectangle_2_copy_10.jpg",
+        "poster_mobile": "shopify:\/\/shop_images\/Rectangle_2_copy_10_22446134-fe75-4987-b01a-6088b3cd6442.jpg",
+        "video_url": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/47f5c57aa7ba45a0b44649e7e929b498.mov",
+        "heading": "Unveil Radiance with PRANA Turmeric and Sandalwood Face Mask",
+        "link": "shopify:\/\/products\/turmeric-and-sandalwood-face-mask",
+        "subtext": "An enchanting Golden ritual designed to purify,<br> soothe and rejuvenate your skin, leaving it <br>feeling refreshed and radiant."
+      }
+    },
+    "shop_by_concern_j4WhyH": {
+      "type": "shop-by-concern",
+      "blocks": {
+        "collection_block_b8gF3r": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "by-benefits",
+            "description": "Smooth, firm & restore youthful skin."
+          }
+        },
+        "collection_block_McCwcY": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "glow",
+            "description": "Smooth, firm & restore youthful skin."
+          }
+        },
+        "collection_block_PxYggQ": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "acne-control",
+            "description": "Smooth, firm & restore youthful skin."
+          }
+        },
+        "collection_block_b8Jkqc": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "brightening",
+            "description": "Glow, Calm and hydration for radiant skin"
+          }
+        },
+        "collection_block_DbKjin": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "cozy-ritual-set",
+            "description": "Smooth, firm & restore youthful skin."
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_b8gF3r",
+        "collection_block_McCwcY",
+        "collection_block_PxYggQ",
+        "collection_block_b8Jkqc",
+        "collection_block_DbKjin"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h2 {text-transform: uppercase;}"
+      ],
+      "name": "Shop by concern",
+      "settings": {
+        "title": "Shop by concern",
+        "des": "Perfect if you want a wink of personality."
+      }
+    },
+    "ugc_video_slider_Y9pfFV": {
+      "type": "ugc-video-slider",
+      "blocks": {
+        "video_item_DVPafq": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify:\/\/files\/videos\/Video.mp4",
+            "product": "saffron-glow-serum"
+          }
+        },
+        "video_item_JYfgHm": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify:\/\/files\/videos\/Video V2.mp4",
+            "product": "bakuchiol"
+          }
+        },
+        "video_item_EWG7MR": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify:\/\/files\/videos\/Video V2 - W-VO.mp4",
+            "product": "rose-jasmine-milk-cleanser"
+          }
+        },
+        "video_item_NgwQV3": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify:\/\/files\/videos\/Unboxing Saffron serum.mov",
+            "product": "saffron-glow-serum"
+          }
+        },
+        "video_item_b8E88U": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify:\/\/files\/videos\/PRANA TURMERIC SAND.mov",
+            "product": "turmeric-and-sandalwood-face-mask"
+          }
+        },
+        "video_item_DJdkF8": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify:\/\/files\/videos\/export_1739122243431.MP4",
+            "product": "cleanser-turmeric-mask-and-saffron-serum"
+          }
+        },
+        "video_item_Ka6mXE": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify:\/\/files\/videos\/prana done 1.mp4",
+            "product": "bakuchiol"
+          }
+        },
+        "video_item_4pTXwA": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify:\/\/files\/videos\/Video 2.mp4",
+            "product": "turmeric-and-sandalwood-face-mask"
+          }
+        }
+      },
+      "block_order": [
+        "video_item_DVPafq",
+        "video_item_JYfgHm",
+        "video_item_EWG7MR",
+        "video_item_NgwQV3",
+        "video_item_b8E88U",
+        "video_item_DJdkF8",
+        "video_item_Ka6mXE",
+        "video_item_4pTXwA"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "name": "UGC Video + Image Slider",
+      "settings": {
+        "heading": "SHOPPABLE UGC",
+        "subheading": "<p>Perfect if you want a wink of personality.<\/p>"
+      }
+    },
+    "bundle_cards_layout_Qi7tD6": {
+      "type": "bundle-cards-layout",
+      "blocks": {
+        "bundle_he6JK6": {
+          "type": "bundle",
+          "settings": {
+            "badge_text": "NIGHTTIME RITUAL",
+            "save_text": "SAVE $16.0",
+            "bundle_image": "shopify:\/\/shop_images\/Group_1707479485.png",
+            "title": "Saffron serum and bakuchiol serum",
+            "description": "PRANA AM + PM Serum Ritual is a two-step Ayurvedic serum duo designed to support your skin around the clock.",
+            "button_label": "Explore the Bundle",
+            "button_link": "shopify:\/\/products\/saffron-serum-and-bakuchiol-serum"
+          }
+        },
+        "bundle_wWLK84": {
+          "type": "bundle",
+          "settings": {
+            "badge_text": "DAYTIME RITUAL",
+            "save_text": "SAVE $16.0",
+            "bundle_image": "shopify:\/\/shop_images\/Group_1707479486.png",
+            "title": "Cleanser, turmeric mask and saffron serum",
+            "description": "Bring the spa home with PRANA’s Home Spa Ritual—a three-step Ayurvedic skincare bundle designed to cleanse, purify, and illuminate the skin.",
+            "button_label": "Explore the Bundle",
+            "button_link": "shopify:\/\/products\/cleanser-turmeric-mask-and-saffron-serum"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_he6JK6",
+        "bundle_wWLK84"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h2 {font-family: \"Josefin Sans\"; letter-spacing: 1px !important; margin: 0 0 15px 0; color: #4e403c; font-size: 25px;}",
+        "p {margin: 0; font-family: \"Josefin Sans\"; color: #4e403c; font-size: 21px; font-weight: 300;}"
+      ],
+      "name": "Bundle Cards Layout",
+      "settings": {
+        "main_heading": "PRANA Rituals",
+        "subtext": "Curated Routines for Visible Results"
+      }
+    },
+    "image_with_product_slider_XMd3kT": {
+      "type": "image-with-product-slider",
+      "blocks": {
+        "item_MaVtm4": {
+          "type": "item",
+          "settings": {
+            "product": "bakuchiol",
+            "left_image": "shopify:\/\/shop_images\/01d0169458e5fb10b17d4742d4ac849c-xxlarge.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "item_MaVtm4"
+      ],
+      "disabled": true,
+      "name": "Image With Product Slider",
+      "settings": {
+        "left_product": "rose-jasmine-milk-cleanser"
+      }
+    },
+    "review_slider_iLR8ih": {
+      "type": "review-slider",
+      "blocks": {
+        "review_t6NC7T": {
+          "type": "review",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/content-1909073.jpg",
+            "review_text": "I’ve tried so many clay and glow masks, but this one actually makes my skin look refreshed right after washing it off. The turmeric glow lasts all day — soft, clean, and calm.",
+            "author": "Sarah M.",
+            "tag": ""
+          }
+        },
+        "review_6BnPyN": {
+          "type": "review",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/content-1911260.jpg",
+            "review_text": "I’ve tried so many clay and glow masks, but this one actually makes my skin look refreshed right after washing it off. The turmeric glow lasts all day — soft, clean, and calm.",
+            "author": "Sarah M.",
+            "tag": ""
+          }
+        },
+        "review_BnN4Gh": {
+          "type": "review",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/content-1922611.jpg",
+            "review_text": "I’ve tried so many clay and glow masks, but this one actually makes my skin look refreshed right after washing it off. The turmeric glow lasts all day — soft, clean, and calm.",
+            "author": "Sarah M.",
+            "tag": "#"
+          }
+        },
+        "review_UERUXY": {
+          "type": "review",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/content-1986333_1.jpg",
+            "review_text": "I’ve tried so many clay and glow masks, but this one actually makes my skin look refreshed right after washing it off. The turmeric glow lasts all day — soft, clean, and calm.",
+            "author": "Sarah M.",
+            "tag": "#"
+          }
+        },
+        "review_JqL789": {
+          "type": "review",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/content-1928273_1.jpg",
+            "review_text": "I’ve tried so many clay and glow masks, but this one actually makes my skin look refreshed right after washing it off. The turmeric glow lasts all day — soft, clean, and calm.",
+            "author": "Sarah M.",
+            "tag": "#"
+          }
+        },
+        "review_cgwdkN": {
+          "type": "review",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/content-2154048_1.jpg",
+            "review_text": "I’ve tried so many clay and glow masks, but this one actually makes my skin look refreshed right after washing it off. The turmeric glow lasts all day — soft, clean, and calm.",
+            "author": "Sarah M.",
+            "tag": "#"
+          }
+        },
+        "review_hHM4PN": {
+          "type": "review",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/content-2151502_1.jpg",
+            "review_text": "I’ve tried so many clay and glow masks, but this one actually makes my skin look refreshed right after washing it off. The turmeric glow lasts all day — soft, clean, and calm.",
+            "author": "Sarah M.",
+            "tag": "#"
+          }
+        },
+        "review_nKDJ4a": {
+          "type": "review",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/content-2150948_1.jpg",
+            "review_text": "I’ve tried so many clay and glow masks, but this one actually makes my skin look refreshed right after washing it off. The turmeric glow lasts all day — soft, clean, and calm.",
+            "author": "Sarah M.",
+            "tag": "#"
+          }
+        },
+        "review_6mKTTh": {
+          "type": "review",
+          "settings": {
+            "left_image": "shopify:\/\/shop_images\/content-2153231_1.jpg",
+            "review_text": "I’ve tried so many clay and glow masks, but this one actually makes my skin look refreshed right after washing it off. The turmeric glow lasts all day — soft, clean, and calm.",
+            "author": "Sarah M.",
+            "tag": "#"
+          }
+        }
+      },
+      "block_order": [
+        "review_t6NC7T",
+        "review_6BnPyN",
+        "review_BnN4Gh",
+        "review_UERUXY",
+        "review_JqL789",
+        "review_cgwdkN",
+        "review_hHM4PN",
+        "review_nKDJ4a",
+        "review_6mKTTh"
+      ],
+      "disabled": true,
+      "name": "Review Slider",
+      "settings": {
+        "title": "LOVED BY THOUSANDS, ROOTED IN TRUST",
+        "des": "Every review tells a story of balance, brightness, and beauty — results you can see and feel."
+      }
+    },
+    "1765522360e21e4938": {
+      "type": "_blocks",
+      "blocks": {
+        "instafeed_app_block_fCUK8Y": {
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_fCUK8Y"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "custom_discount_popup_aDAJDU": {
+      "type": "custom-discount-popup",
+      "disabled": true,
+      "name": "Discount Popup",
+      "settings": {
+        "delay_time": 1,
+        "bg_image": "shopify:\/\/shop_images\/Desktop_-_15_1.jpg",
+        "top_text": "UNLOCK",
+        "main_text": "20% OFF",
+        "sub_text": "Your first one-time purchase",
+        "button_text": "CONTINUE"
+      }
+    }
+  },
+  "order": [
+    "top_banner_mobile_yjKWDH",
+    "custom_hero_xb3T6h",
+    "blocks_Y9QDfD",
+    "custom_proof_jqHQB6",
+    "custom_product_slider_qajQbd",
+    "founder_section_4CgtMW",
+    "custom_rituals_section_RJGTFd",
+    "find_ritual_section_XPMGpF",
+    "custom_counter_b4J6qT",
+    "custom_newsletter_hfhNpi",
+    "17768332015c8fec7e",
+    "products_list_slider_rGDQ8B",
+    "marquee_9Vx3xY",
+    "collection_slider_9mdHQf",
+    "video_hero_yChCHJ",
+    "shop_by_concern_j4WhyH",
+    "ugc_video_slider_Y9pfFV",
+    "bundle_cards_layout_Qi7tD6",
+    "image_with_product_slider_XMd3kT",
+    "review_slider_iLR8ih",
+    "1765522360e21e4938",
+    "custom_discount_popup_aDAJDU"
+  ]
+}

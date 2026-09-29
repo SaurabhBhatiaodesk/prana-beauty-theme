@@ -1,0 +1,583 @@
+{% comment %}
+  Section: Key Ingredients Cards (Dynamic from Product Metafield) - Swiper Carousel Version
+  - Reads product.metafields.custom.ingredients_ancient (list of metaobjects)
+  - Displays: image, title, subheading, description, pills (inline chips), tags (bullet list)
+  - Hides card if image is missing
+  - Uses Swiper for responsive slider (CDN already included)
+{% endcomment %}
+
+
+{% style %}
+  .key-ingredients-section {
+    display: block;
+    width: 100%;
+    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+    padding:50px 0px 40px;
+    overflow: hidden;
+  }
+  .key-ingredients-section .section{
+    position:relative;
+  }
+  .key-ingredients-header .inner-header {
+    font-family: var(--U);
+    font-size: 14px;
+    color: var(--ink3);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .key-ingredients-header {
+    text-align: center;
+  }
+
+  .fv-cap-line {
+    width: 70px;
+    height: 0.5px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .key-ingredients-header .header-key-ingredients h2 {
+    font-size: 41px;
+    text-align: left;
+    color: var(--ink3);
+  }
+
+  .key-ingredients-header .header-key-ingredients h2:last-child {
+    color: var(--heading-color);
+  }
+    .header-key-ingredients {
+        padding: 16px 0 30px 0;
+    }
+
+  /* Swiper Container Overrides - Equal Height Fix */
+  .key-ingredients-swiper {
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+
+  .key-ingredients-swiper .swiper-wrapper {
+    height: auto !important;
+    align-items: stretch;
+    padding-bottom:10px;
+  }
+
+  .key-ingredients-swiper .swiper-slide {
+    height: auto !important;
+    display: flex;
+  }
+
+  /* Card Styles */
+  .key-ingredients-card {
+    background-color: #F3E4CD;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid #461324;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+    .key-ingredients-image {
+        width: calc(100% - 40px); /* 20px left + 20px right */
+        margin:20px 20px 0 20px;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        object-position: top center;
+        border-radius: 5px;
+        display: block;
+    }
+  .key-ingredients-content {
+    margin: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .key-ingredients-title {
+    font-size: 24px;
+    font-weight:500;
+    color: var(--heading-color);
+    margin: 0 0 5px 0;
+  }
+
+  .key-ingredients-subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink3);
+    margin: 0 0 10px 0;
+  }
+
+  .key-ingredients-text {
+    font-size: 16px;
+    color: var(--ink3);
+    line-height: 1.5;
+  }
+
+  /* Pills (inline list) */
+  .key-ingredients-pills {
+    margin: 15px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pill-item {
+    background: var(--gold);
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    display: inline-block;
+  }
+
+  /* Tags (bullet list) */
+  .key-ingredients-tags {
+    column-gap: 25px;
+    margin: 15px 0 0 0;
+    padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .key-ingredients-tags li::marker {
+    color: var(--gold);
+  }
+
+  .key-ingredients-tags li {
+    font-size: 14px;
+    color: var(--ink3);
+    line-height: 1.5;
+  }
+
+  .key-ingredients-hidden {
+    display: none;
+  }
+
+  /* Swiper Navigation & Pagination Styling */
+  .key-ingredients-section .swiper-button-next,
+  .key-ingredients-section .swiper-button-prev {
+    color: #461324;
+    background: rgba(255, 255, 255, 0.7);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    padding: 10px;
+  }
+    .key-ingredients-section .swiper-button-next{
+        right:17px;
+    }
+    .key-ingredients-section .swiper-button-prev{
+        left:17px;
+    }
+    .key-ingredients-card .sutra-step-num {
+        padding: 2px 15px;
+        color: var(--heading-color);
+        background: #E3C39F;
+        width: fit-content;
+        position: absolute;
+        font-size: 17px;
+        top: 13px;
+        text-align: center;
+        border-radius: 0 6px 6px 0;
+        z-index: 3;
+        border: 1px solid var(--heading-color);
+        border-left: 0;
+    }
+  .key-ingredients-section .swiper-button-next:after,
+  .key-ingredients-section .swiper-button-prev:after {
+    display: none;
+  }
+
+  .key-ingredients-swiper .swiper-pagination-bullet-active {
+    background: #461324;
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 749px) {
+    .key-ingredients-header .header-key-ingredients h2 {
+      font-size: 20px;
+      line-height:normal;
+    }
+    .key-ingredients-header .inner-header p {
+      font-size: 14px;
+    }
+    .key-ingredients-card .sutra-step-num{
+      font-size: 15px;
+      padding: 2px 12px;
+    }
+    .header-key-ingredients {
+      padding: 11px 0 20px 0;
+    }
+    .key-ingredients-title{
+      margin: 0;
+      font-size: 19px;
+    }
+    .key-ingredients-subtitle {
+      font-size: 16px;
+      margin: 0 0 4px 0;
+    }
+    .pill-item {
+      padding: 4px 7px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .key-ingredients-pills {
+      margin: 13px 0 0 0;
+      gap: 4px;
+    }
+    .key-ingredients-text {
+      font-size: 15px;
+      line-height: 20px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 9;
+      -webkit-box-orient: vertical;
+    }
+    .key-ingredients-tags {
+      margin: 20px -15px 0 -15px;
+      padding: 15px 20px 15px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      background: #E3C39F;
+      width: calc(100% + 30px);
+      max-width: calc(100% + 30px);
+    }
+    .key-ingredients-image {
+      width: calc(100% - 30px);
+      margin: 15px 15px 0 15px;
+    }
+    .key-ingredients-content {
+      margin: 15px;
+    }
+    .key-action-mobile {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding-top: 17px;
+    }
+    .key-ingredients-section .swiper-button-next, 
+    .key-ingredients-section .swiper-button-prev{
+        position: static;
+        border: 1px solid var(--gold);
+        background: transparent;
+        color: var(--gold);
+    }
+  }
+{% endstyle %}
+
+{%- liquid
+  assign ingredient_list = product.metafields.custom.ingredients_ancient.value
+  if ingredient_list == blank
+    assign ingredient_list = nil
+  endif
+-%}
+{% if product.metafields.custom.ingredients_ancient != blank %}
+<key-ingredients-section class="key-ingredients-section" {{ section.shopify_attributes }}>
+  <div class="section">
+    {% if section.settings.ingredient_header != blank or section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="key-ingredients-header">
+        <div class="inner-header">
+          <p>{{ section.settings.ingredient_header }}</p>
+          <div class="fv-cap-line"></div>
+        </div>
+        <div class="header-key-ingredients">
+          <h2>{{ section.settings.heading }}</h2>
+          <h2>{{ section.settings.subheading }}</h2>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if ingredient_list != nil %}
+      <!-- Swiper Container -->
+      <div class="swiper key-ingredients-swiper">
+        <div class="swiper-wrapper">
+          {% for metaobject in ingredient_list %}
+            {%- assign card_image = metaobject.ingredients_ancient_image -%}
+            {%- assign card_title = metaobject.ingredients_ancient_title -%}
+            {%- assign card_subheading = metaobject.ingredients_ancient_sub_heading -%}
+            {%- assign card_description = metaobject.ingredients_ancient_description -%}
+            {%- assign card_pills = metaobject.ingredients_ancient_pills.value -%}
+            {%- assign card_tags = metaobject.ingredients_ancient_tags.value -%}
+
+            {% if card_image != blank %}
+              <div class="swiper-slide">
+                <div class="key-ingredients-card">
+                    <div class="sutra-step-num">
+                        {{ forloop.index }}
+                    </div>
+                  <img
+                    src="{{ card_image | image_url: width: 400 }}"
+                    alt="{{ card_image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ card_image.width }}"
+                    height="{{ card_image.height }}"
+                    class="key-ingredients-image">
+                  <div class="key-ingredients-content">
+                    {% if card_title != blank %}
+                      <h3 class="key-ingredients-title">{{ card_title | metafield_tag }}</h3>
+                    {% endif %}
+                    {% if card_subheading != blank %}
+                      <div class="key-ingredients-subtitle">{{ card_subheading | metafield_tag }}</div>
+                    {% endif %}
+                    {% if card_description != blank %}
+                      <div class="key-ingredients-text">{{ card_description | metafield_tag }}</div>
+                    {% endif %}
+
+                    {% if card_pills != blank and card_pills.size > 0 %}
+                      <div class="key-ingredients-pills">
+                        {% for pill in card_pills %}
+                          {% if pill != blank %}
+                            <span class="pill-item">{{ pill }}</span>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+
+                    {% if card_tags != blank and card_tags.size > 0 %}
+                      <ul class="key-ingredients-tags">
+                        {% for tag in card_tags %}
+                          {% if tag != blank %}
+                            <li>{{ tag }}</li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if section.settings.show_navigation %}
+        <div class="key-action-mobile">
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_pagination %}
+        <div class="swiper-pagination"></div>
+      {% endif %}
+
+      {% else %}
+        {% if section.settings.show_empty_message %}
+          <div class="key-ingredients-empty" style="text-align: center; padding: 40px;">
+            <p>{{ section.settings.empty_message_text }}</p>
+          </div>
+        {% endif %}
+     {% endif %}
+  </div>
+</key-ingredients-section>
+
+<script>
+  (function() {
+    class KeyIngredientsSection extends HTMLElement {
+      constructor() {
+        super();
+        this.swiper = null;
+      }
+
+      connectedCallback() {
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => this.initSwiper());
+        } else {
+          this.initSwiper();
+        }
+      }
+
+      initSwiper() {
+        const container = this.querySelector('.key-ingredients-swiper');
+        if (!container || typeof Swiper === 'undefined') return;
+
+        if (this.swiper) {
+          this.swiper.destroy(true, true);
+        }
+
+        const breakpoints = {
+          0: {
+            slidesPerView: {{ section.settings.columns_mobile | default: 1 }},
+            spaceBetween: 15
+          },
+          768: {
+            slidesPerView: {{ section.settings.columns_tablet | default: 2 }},
+            spaceBetween: 20
+          },
+          992: {
+            slidesPerView: {{ section.settings.columns_desktop | default: 3 }},
+            spaceBetween: {{ section.settings.card_gap | default: 20 }}
+          }
+        };
+
+        const swiperParams = {
+          loop: false,
+          grabCursor: true,
+          breakpoints: breakpoints,
+          {% if section.settings.show_navigation %}
+          navigation: {
+            nextEl: '.key-ingredients-section .swiper-button-next',
+            prevEl: '.key-ingredients-section .swiper-button-prev',
+          },
+          {% endif %}
+          {% if section.settings.show_pagination %}
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          {% endif %}
+          autoHeight: false,
+          observer: true,
+          observeParents: true
+        };
+
+        this.swiper = new Swiper(container, swiperParams);
+        this.checkEmptyCards();
+      }
+
+      checkEmptyCards() {
+        const slides = this.querySelectorAll('.swiper-slide');
+        slides.forEach(slide => {
+          const image = slide.querySelector('.key-ingredients-image');
+          if (!image || !image.src) {
+            slide.classList.add('key-ingredients-hidden');
+          }
+        });
+        if (this.swiper) this.swiper.update();
+      }
+
+      disconnectedCallback() {
+        if (this.swiper) {
+          this.swiper.destroy(true, true);
+          this.swiper = null;
+        }
+      }
+    }
+
+    customElements.define('key-ingredients-section', KeyIngredientsSection);
+  })();
+</script>
+{% endif %}
+{% schema %}
+{
+  "name": "Key Ingredients Carousel",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header Content"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_header",
+      "label": "Small header text",
+      "default": "Key Ingredients",
+      "info": "Appears above the decorative line"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main heading",
+      "default": "Powerful Actives"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Clean & Clinical Formulas"
+    },
+    {
+      "type": "header",
+      "content": "Carousel Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Desktop slides per view",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "label": "Tablet slides per view (768px+)",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Mobile slides per view",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Space between slides (desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Card Style"
+    },
+    {
+      "type": "header",
+      "content": "Swiper Navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show next/prev arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show pagination bullets",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Empty State (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_empty_message",
+      "label": "Show message when no ingredients found",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "empty_message_text",
+      "label": "Empty message text",
+      "default": "No ingredients added yet."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Key Ingredients Carousel"
+    }
+  ]
+}
+{% endschema %}
+

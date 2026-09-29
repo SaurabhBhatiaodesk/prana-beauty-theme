@@ -1,0 +1,112 @@
+<div class="pdp-htu">
+    <div class="pdp-htu-label">{{ section.settings.caption }}</div>
+    <div class="pdp-htu-headline" id="pdp-htu-headline">{{ section.settings.heading }}</div>
+    <div class="pdp-htu-grid">
+      <div class="pdp-htu-steps" id="pdp-htu-steps">
+        {% for block in section.blocks %}
+        <div class="pdp-htu-step">
+          <div class="pdp-htu-num">0{{ forloop.index }}</div>
+          <div class="pdp-htu-step-content">
+            <div class="pdp-htu-step-title">{{ block.settings.title }}</div>
+            <div class="pdp-htu-step-text">{{ block.settings.desc }}</div>
+          </div>
+        </div>
+        {%endfor %}
+    </div>
+    <div class="pdp-htu-video" id="pdp-htu-video">
+      <div class="pdp-htu-video-ph">
+        <div class="video-element" style="display:none;">
+            {% if section.settings.video != blank %}
+                {{
+                section.settings.video
+                | video_tag:
+                controls: false,
+                autoplay: false
+                }}
+            {% endif %}
+            </div>
+        <div class="pdp-htu-play">▶</div>
+        <div class="pdp-htu-video-label" id="pdp-htu-video-label">{{  section.settings.video_caption }}</div>
+        {% comment %} <div style="font-family:var(--S);font-size:13px;color:var(--ink4);margin-top:4px">Drop your Vimeo or Shopify CDN link here</div> {% endcomment %}
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+    <script>
+
+  const btn = document.querySelector('.pdp-htu-play');
+  const videoWrapper = document.querySelector('.video-element');
+  const video = videoWrapper.querySelector('video');
+  const text = document.querySelector('.pdp-htu-video-label');
+
+  function toggleVideo() {
+    btn.style.display = 'none';
+    videoWrapper.style.display = 'block';
+    text.style.display = 'none';
+
+    video.play();
+  }
+  btn.addEventListener('click', toggleVideo);
+
+  video.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
+
+</script>
+
+  {% schema %}
+  {
+    "name": "Custom how to use",
+    "settings": [
+    {
+    "type": "text",
+    "id": "caption",
+    "label": "Caption"
+    },
+    {
+    "type": "textarea",
+    "id": "heading",
+    "label": "Heading"
+    },
+    {
+    "type": "video",
+    "id": "video",
+    "label": "Video"
+    },
+    {
+    "type": "textarea",
+    "id": "video_caption",
+    "label": "Video caption"
+    }
+    ],
+    "blocks": [
+      {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "textarea",
+        "id": "desc",
+        "label": "Description"
+        },
+      ]
+    },
+    ],
+    "presets": [
+    {
+      "name": "Custom how to use",
+    }
+  ]
+  }
+{% endschema %}

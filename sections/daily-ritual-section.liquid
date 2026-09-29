@@ -1,0 +1,425 @@
+{% assign top_conversion_points = product.metafields.custom.how_to_use_product_ritual_guide.value %}
+<section class="prana-ritual-section">
+  <div class="section">
+    <div class="prana-ritual-wrap">
+      <div class="prana-ritual-left">
+        <div class="inner-header">
+            <p>{{ section.settings.ingredient_header }}</p>
+            <div class="fv-cap-line"></div>
+        </div>
+        <h2 class="prana-ritual-heading">
+          {{ section.settings.heading }}
+          <span>{{ section.settings.highlight_heading }}</span>
+        </h2>
+        <div class="prana-steps-wrap">
+          {% for point in top_conversion_points %}
+            {% assign conversion_title = point.title.value | default: point.title %}
+            {% if conversion_title != blank or point.top_conversion_points_description != blank %}
+              <div class="prana-step-box">
+                <div class="prana-step-number">
+                  {{ forloop.index | prepend: '0' }}
+                </div>
+                <div class="prana-step-content">
+
+                  {% if conversion_title != blank %}
+                    <h3>{{ conversion_title }}</h3>
+                  {% endif %}
+
+                  {% if point.description != blank %}
+                    <div>
+                      {{ point.description | metafield_tag }}
+                    </div>
+                  {% endif %}
+
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+      <div class="prana-ritual-right">
+
+        <div class="prana-video-box">
+
+          {% if section.settings.video != blank %}
+
+            {{
+              section.settings.video
+              | video_tag:
+                image_size: '1200x',
+                autoplay: section.settings.autoplay,
+                loop: section.settings.loop_video,
+                muted: section.settings.muted,
+                controls: section.settings.show_controls,
+                playsinline: true,
+                class: 'prana-video'
+            }}
+
+            <button class="prana-play-btn" type="button">
+              ▶
+            </button>
+
+          {% elsif section.settings.video_url != blank %}
+
+            <video
+              class="prana-video"
+              {% if section.settings.autoplay %}autoplay{% endif %}
+              {% if section.settings.loop_video %}loop{% endif %}
+              {% if section.settings.muted %}muted{% endif %}
+              {% if section.settings.show_controls %}controls{% endif %}
+              playsinline
+            >
+              <source src="{{ section.settings.video_url }}" type="video/mp4">
+            </video>
+
+            <button class="prana-play-btn" type="button">
+              ▶
+            </button>
+
+          {% elsif section.settings.video_image != blank %}
+
+            <img
+              src="{{ section.settings.video_image | image_url: width: 1200 }}"
+              alt="Video Thumbnail"
+              loading="lazy"
+              width="{{ section.settings.video_image.width }}"
+              height="{{ section.settings.video_image.height }}"
+            >
+
+          {% endif %}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+.prana-ritual-section{
+  background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+  padding: 50px 0;
+}
+.prana-ritual-left .inner-header {
+    font-family: var(--U);
+    font-size: 14px;
+    color: var(--ink3);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.prana-ritual-left .fv-cap-line {
+    width: 70px;
+    height: 0.5px;
+    background: var(--gold);
+    flex-shrink: 0;
+}
+.prana-ritual-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: stretch;
+}
+
+.prana-small-head{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+.prana-ritual-heading {
+    margin: 13px 0 30px 0;
+    font-weight: 400;
+    font-size: 41px;
+    text-align: left;
+    color: var(--ink3);
+}
+.prana-ritual-heading span{
+  color:var(--heading-color);
+}
+
+.prana-steps-wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.prana-step-box {
+    border: 1px solid var(--heading-color);
+    border-radius: 10px;
+    padding: 22px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: #E3C39F;
+}
+.prana-step-number {
+    font-size: 38px;
+    color: var(--ink3);
+    line-height: 1;
+    min-width: 45px;
+}
+.prana-step-content h3 {
+    font-size: 26px;
+    margin: 0 0 4px;
+    color: var(--heading-color);
+    font-weight: 500;
+}
+.prana-step-content p {
+    font-size: 16px;
+    line-height:19px;
+    color: var(--ink3);
+    margin: 0;
+}
+
+.prana-video-box{
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  height: fit-content;
+}
+.prana-video, .prana-video-box img {
+    width: 100%;
+    display: block;
+    border-radius: 14px;
+    aspect-ratio: auto;
+    max-height:590px;
+    object-fit: cover;
+    border:1px solid var(--heading-color);
+}
+
+.prana-play-btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  cursor: pointer;
+  font-size: 28px;
+  z-index: 2;
+  transition: 0.3s ease;
+}
+
+.prana-play-btn:hover{
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* TABLET */
+
+@media(max-width: 991px){
+
+  .prana-ritual-wrap{
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .prana-ritual-right{
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+  }
+
+}
+
+/* MOBILE */
+
+@media(max-width: 768px){
+
+  .prana-ritual-section{
+    padding: 45px 0;
+  }
+  .prana-steps-wrap{
+    gap:10px;
+  }
+  .prana-ritual-heading{
+    font-size:22px;
+    margin-bottom:15px;
+  }
+
+  .prana-step-box{
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .prana-step-number{
+    font-size:22px;
+    min-width:14px;
+  }
+
+  .prana-step-content h3{
+    font-size:19px;
+  }
+
+  .prana-step-content p{
+    font-size: 15px;
+    line-height: 16px;
+  }
+
+  .prana-video,
+  .prana-video-box img{
+    max-height: 320px;
+    border-radius:10px;
+  }
+
+  .prana-play-btn{
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  const videoBox = document.querySelector('.prana-video-box');
+
+  if(!videoBox) return;
+
+  const video = videoBox.querySelector('video');
+  const playBtn = videoBox.querySelector('.prana-play-btn');
+
+  if(video && playBtn){
+
+    playBtn.addEventListener('click', function(){
+
+      if(video.paused){
+
+        video.play();
+        playBtn.style.display = 'none';
+
+      } else {
+
+        video.pause();
+        playBtn.style.display = 'flex';
+
+      }
+
+    });
+
+    video.addEventListener('pause', function(){
+      playBtn.style.display = 'flex';
+    });
+
+    video.addEventListener('play', function(){
+      playBtn.style.display = 'none';
+    });
+
+  }
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Daily Ritual",
+  "settings": [
+    {
+      "type": "text",
+      "id": "ingredient_header",
+      "label": "Small header text",
+      "default": "Key Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your daily ritual."
+    },
+    {
+      "type": "text",
+      "id": "highlight_heading",
+      "label": "Highlight Heading",
+      "default": "4 steps."
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Upload Shopify Video"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "External MP4 Video URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_image",
+      "label": "Fallback Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable Autoplay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "loop_video",
+      "label": "Enable Loop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Muted Video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Show Controls",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Cleanse"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step Description",
+          "default": "Begin with the cleanser before applying actives."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Daily Ritual",
+      "blocks": [
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

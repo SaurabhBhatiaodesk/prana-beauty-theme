@@ -1,0 +1,222 @@
+<section  class="meet-founder-bg-section" id="meet-founder">
+  <div class="inner-wolt-card">
+    <div class="section">
+      <div class="meet-founder-inner">
+        <div class="founder-card">
+          {% if section.settings.title != blank %}
+            <h2 class="founder-title">{{ section.settings.title }}</h2>
+          {% endif %}
+
+          {% if section.settings.subheading != blank %}
+            <p class="founder-subheading">{{ section.settings.subheading }}</p>
+          {% endif %}
+
+          {% if section.settings.description != blank %}
+            <div class="founder-description">
+              {{ section.settings.description }}
+            </div>
+          {% endif %}
+          <div id="founder-detail" style="display: none;">
+                  <br>  I’m Prabha Iyer, founder of Prana Beauty & Wellness. As an immigrant in New York, I carried a lifelong belief in the healing power of nature—a gift from my Ayurvedic roots. Over time, I found mainstream skincare full of harsh chemicals and synthetic fragrances that didn’t align with my holistic values. I decided to create something better.
+          Prana began with a mission- use ethically sourced, all-natural ingredients from Ayurvedic tradition—like saffron, turmeric, and sandalwood—and pair them with modern, science-backed skincare. Every formula is crafted in small batches to maximize potency and maintain purity, reflecting my belief that radiant skin begins with harmony inside and out.
+          <br><br>In 2025, we took a bold next step by integrating AI-powered facial skin analysis into Prana’s experience. Our AI quiz, powered by advanced facial scanning, reads skin tone, texture, hydration levels, and more—then recommends the perfect routine personalized to each customer. It transforms skincare from guesswork into a guided, confidence-building ritual.
+          <br><br>Today, Prana Beauty stands at the intersection of Ayurvedic tradition and cutting-edge personalization. My mission is to help every customer glow naturally—through clean, targeted routines and tech that cares. We blend sincerity, science, and sustainability so Prana isn’t just beauty—it’s trust, wellness, and empowerment for your skin’s story.
+          As a woman navigating both motherhood and entrepreneurship, I’ve always believed that the most powerful beauty is the kind that doesn’t demand compromise—on health, on ingredients, or on identity. I created Prana to honor the skin we live in, the rituals we inherit, and the intelligence we now have at our fingertips. That’s why every product is designed to work with your body’s rhythms, not against them—using clean, time-tested botanicals and cutting-edge AI tools to deliver meaningful, measurable results.
+          But Prana is more than skincare—it’s a movement. We're building a wellness-forward ecosystem where self-care meets science, and where our community can access education, personalized rituals, and real transformation. Whether you're a college student discovering clean beauty for the first time, or a wellness advocate seeking deeper alignment, Prana invites you to return to yourself. This is skincare for the conscious, the curious, and the connected—and we’re just getting started.
+          With Trust, Prabha Iyer
+          Founder, PRANA Beauty
+          </div>
+          {% if section.settings.button_text != blank %}
+            <a href="javascript:void(0)" class="founder-btn" onclick="showSounder();">
+              {{ section.settings.button_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  function showSounder() {
+    const founder = document.getElementById('founder-detail');
+  founder.style.display = 'block';
+  }
+</script>
+  <style>
+    .inner-wolt-card{
+      background: url({{ section.settings.desktop_bg | img_url: 'master' }});
+      padding:130px 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .meet-founder-inner {
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  .founder-card {
+      padding: 27px 19px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #DFC8AF -8.09%, #936D43 192.35%);
+      border: 1px solid #461324;
+      width: 100%;
+      max-width: 513px;
+  }
+  .founder-title {
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 1.1;
+      color: var(--heading-color);
+      display: block;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed;
+  }
+  .founder-subheading {
+      color: var(--gold);
+      font-size: 17px;
+      line-height: normal;
+      letter-spacing: 0;
+      margin: 10px 0 5px 0;
+  }
+  .founder-description p {
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--ink3);
+      letter-spacing: 0;
+  }
+  .founder-btn {
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding:10px 20px;
+      border-radius:4px;
+      margin-top: 20px;
+      width:fit-content;
+      border:1px solid var(--heading-color);
+      font-size: 13.5px;
+      line-height: 1;
+      letter-spacing: 0;
+      color:#fff;
+      background:var(--gold);
+      transition:ease-in-out 0.5s;
+  }
+  .founder-btn:hover{
+    background:var(--heading-color);
+  }
+
+    /* MOBILE BACKGROUND */
+    @media (max-width: 768px) {
+    .inner-wolt-card {
+      background: url(//www.pranabeauty.com/cdn/shop/files/Rectangle_69_1.jpg?v=1764993758);
+      min-height: auto;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top center;
+      align-items: end;
+      padding: 50px 0;
+    }
+  
+      .founder-card {
+       width: 100%;
+      }
+      .founder-title {
+        font-size: 24px;
+        padding-bottom: 16px;
+      }
+      .founder-subheading {
+        font-size: 13px;
+      }
+      .founder-description p{
+          font-size: 18px;
+        }
+    }
+
+    @media all and (max-width:575px){
+      .founder-description p {
+          font-size: 14px;
+          line-height: 18px;
+          text-align: center;
+      }
+      .inner-wolt-card {
+        min-height: auto;
+        padding: 357px 0 24px 0;
+                background-position: center;
+      }
+      .founder-btn{
+        margin: 16px auto 0;
+        padding: 8px 20px;
+      }
+      .founder-subheading {
+        font-size: 12px;
+        text-align: center;
+      }
+      .founder-card{
+        padding:16px;
+      }
+      .founder-title {
+        font-size: 17px;
+        padding-bottom: 13px;
+        text-align: center;
+      }
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "Founder Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_bg",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Meet the Founder – Prabha Iyer"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "Blending Ayurveda & AI for Personalized, Clean Skincare."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Prabha Iyer, Founder of PRANA Beauty, blends her strong technology background with a passion for wellness and Ayurveda.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Founder Banner"
+    }
+  ]
+}
+{% endschema %}

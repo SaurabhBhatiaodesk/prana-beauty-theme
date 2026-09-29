@@ -1,0 +1,186 @@
+{% assign product_verbiage_list = product.metafields.custom.product_verbiage.value %}
+
+<style>
+.product-shiping-plocy-inline {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: linear-gradient(90deg, #813850 0%, #461324 100%);
+    border-radius: 8px;
+    padding:0 20px;
+}
+.product-shiping-plocy-inline-item {
+    list-style: none;
+    max-width: 100%;
+    padding: 16px;
+    border-right: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+}
+.product-shiping-plocy-inline-item:nth-child(2),
+.product-shiping-plocy-inline-item:nth-child(4){
+    border-right:0;
+}
+.product-shiping-plocy-inline-item:nth-child(4),
+.product-shiping-plocy-inline-item:nth-child(3){
+    border-bottom:0;
+}
+.product-shiping-plocy-inline-icon {
+    width: 70px;
+    height: 70px;
+    margin-inline: auto;
+    margin-bottom:10px;
+}
+.product-shiping-plocy-inline-icon img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+}
+.product-shiping-plocy-inline-title {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    text-transform: capitalize;
+    color: white;
+    margin: 0 auto;
+}
+
+@media(max-width:749px){
+    .product-shiping-plocy-inline-title {
+        font-size: 13px;
+        line-height: 20px;
+    }
+}
+
+@media all and (max-width:575px){
+    .product-shiping-plocy-inline {
+        margin: 0 -20px;
+        position: relative;
+        width: calc(100% + 40px);
+        border-radius:0;
+        max-width: calc(100% + 40px);
+    }
+}
+</style>
+
+<ul class="product-shiping-plocy-inline">
+    {% if product_verbiage_list != blank and product_verbiage_list.size > 0 %}
+        <!-- Dynamic data from metafield -->
+        {% for verbiage_item in product_verbiage_list limit: 4 %}
+            <li class="product-shiping-plocy-inline-item">
+                <div class="product-shiping-plocy-inline-icon">
+                    {% if verbiage_item.product_verbiage_image != blank %}
+                        <img 
+                            width="" 
+                            height="" 
+                            loading="lazy" 
+                            src="{{ verbiage_item.product_verbiage_image | image_url: width: 140 }}"
+                            alt="{{ verbiage_item.product_verbiage_title | escape }}"
+                        >
+                    {% endif %}
+                </div>
+                <h5 class="product-shiping-plocy-inline-title">
+                    {{ verbiage_item.product_verbiage_title }}
+                </h5>
+            </li>
+        {% endfor %}
+    {% else %}
+        <!-- Fallback: Static data from schema (if metafield is empty) -->
+        {% if block.settings.icon1 != blank %}
+            <li class="product-shiping-plocy-inline-item">
+                <div class="product-shiping-plocy-inline-icon">
+                    <img width="" height="" loading="lazy" src="{{ block.settings.icon1 | img_url: 'master' }}">
+                </div>
+                <h5 class="product-shiping-plocy-inline-title">
+                    {{ block.settings.title1 }}
+                </h5>
+            </li>
+        {% endif %}
+
+        {% if block.settings.icon2 != blank %}
+            <li class="product-shiping-plocy-inline-item">
+                <div class="product-shiping-plocy-inline-icon">
+                    <img width="" height="" loading="lazy" src="{{ block.settings.icon2 | img_url: 'master' }}">
+                </div>
+                <h5 class="product-shiping-plocy-inline-title">
+                    {{ block.settings.title2 }}
+                </h5>
+            </li>
+        {% endif %}
+
+        {% if block.settings.icon3 != blank %}
+            <li class="product-shiping-plocy-inline-item">
+                <div class="product-shiping-plocy-inline-icon">
+                    <img width="" height="" loading="lazy" src="{{ block.settings.icon3 | img_url: 'master' }}">
+                </div>
+                <h5 class="product-shiping-plocy-inline-title">
+                    {{ block.settings.title3 }}
+                </h5>
+            </li>
+        {% endif %}
+
+        {% if block.settings.icon4 != blank %}
+            <li class="product-shiping-plocy-inline-item">
+                <div class="product-shiping-plocy-inline-icon">
+                    <img width="" height="" loading="lazy" src="{{ block.settings.icon4 | img_url: 'master' }}">
+                </div>
+                <h5 class="product-shiping-plocy-inline-title">
+                    {{ block.settings.title4 }}
+                </h5>
+            </li>
+        {% endif %}
+    {% endif %}
+</ul>
+
+{% schema %}
+{
+  "name": "Product Info Inline",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon1",
+      "label": "Icon 1 (Fallback)"
+    },
+    {
+      "type": "text",
+      "id": "title1",
+      "label": "Title 1 (Fallback)"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon2",
+      "label": "Icon 2 (Fallback)"
+    },
+    {
+      "type": "text",
+      "id": "title2",
+      "label": "Title 2 (Fallback)"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon3",
+      "label": "Icon 3 (Fallback)"
+    },
+    {
+      "type": "text",
+      "id": "title3",
+      "label": "Title 3 (Fallback)"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon4",
+      "label": "Icon 4 (Fallback)"
+    },
+    {
+      "type": "text",
+      "id": "title4",
+      "label": "Title 4 (Fallback)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Info Inline"
+    }
+  ]
+}
+{% endschema %}

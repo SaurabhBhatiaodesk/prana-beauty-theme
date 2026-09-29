@@ -1,0 +1,57 @@
+<div id="pdp-ing-grid">
+{% for block in section.blocks %}
+  <div class="pdp-ing-card" style="break-inside:avoid">
+    <div class="pdp-ing-origin">{{ block.settings.caption }}</div>
+    <div class="pdp-ing-name">{{ block.settings.title }}</div>
+    <div class="pdp-ing-latin" style="font-style:italic;font-size:11px;color:var(--ink4);margin:2px 0 8px">{{ block.settings.sub_title }}</div>
+    <div class="pdp-ing-desc">{{ block.settings.desc }}</div>
+    <div class="pdp-ing-benefit" style="margin-top:10px;padding-top:8px;border-top:1px solid var(--canvas-dk)">{{ block.settings.benefit }}</div>
+  </div>
+{% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Custom pdp ingredients",
+    "settings": [
+    ],
+    "blocks": [
+      {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+        "type": "text",
+        "id": "caption",
+        "label": "Caption"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title"
+        },
+        {
+        "type": "textarea",
+        "id": "desc",
+        "label": "Description"
+        },
+        {
+        "type": "textarea",
+        "id": "benefit",
+        "label": "Benefit"
+        }
+      ]
+    },
+    ],
+    "presets": [
+    {
+      "name": "Custom pdp ingredients",
+    }
+  ]
+  }
+{% endschema %}

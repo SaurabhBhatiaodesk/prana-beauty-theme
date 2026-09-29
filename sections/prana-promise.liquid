@@ -1,0 +1,242 @@
+<section class="prana-promise-section">
+  <div class="section">
+    <div class="prana-promise-wrapper">
+
+        <div class="prana-promise-content">
+            {% if section.settings.subheading != blank %}
+            <div class="prana-promise-header">
+                <p class="prana-promise-subheading">
+                {{ section.settings.subheading }}
+                </p>
+                <div class="fv-cap-line"></div>
+            </div>
+            {% endif %}
+
+            {% if section.settings.heading != blank %}
+            <h2 class="prana-promise-heading">
+                {{ section.settings.heading }}
+            </h2>
+            {% endif %}
+
+            {% if section.settings.description != blank %}
+            <div class="prana-promise-description">
+                {{ section.settings.description }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="prana-promise-cards">
+        {% for block in section.blocks %}
+            <div class="prana-promise-card-item" {{ block.shopify_attributes }}>
+
+            {% if block.settings.image != blank %}
+                <div class="prana-promise-image">
+                {{
+                    block.settings.image
+                    | image_url: width: 1200
+                    | image_tag:
+                    loading: 'lazy',
+                    class: 'promise-image'
+                }}
+                </div>
+            {% endif %}
+
+            <div class="prana-promise-card-content">
+
+                <h3 class="prana-promise-card-title">
+                {{ block.settings.title }}
+                </h3>
+
+                <div class="prana-promise-card-description">
+                {{ block.settings.description }}
+                </div>
+
+            </div>
+
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.prana-promise-section{
+  background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+  padding:57px 0;
+}
+
+.prana-promise-header{
+  font-family:var(--U);
+  font-size:14px;
+  color:var(--ink3);
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.prana-promise-wrapper{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:30px;
+  align-items:center;
+}
+.prana-promise-heading {
+    margin: 13px 0 7px;
+    font-size: 38px;
+    line-height: 1.1;
+    color: var(--heading-color);
+    font-weight: 400;
+}
+.prana-promise-description {
+    font-size: 16px;
+    line-height: normal;
+    color: var(--ink3);
+}
+
+.prana-promise-card{
+  background:#e3c39f;
+  border-radius:14px;
+  overflow:hidden;
+}
+.prana-promise-image {
+    width: 100%;
+    border: 1px solid #461324;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px 0px #4613244D;
+    overflow: hidden;
+}
+.promise-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    height: 100%;
+    aspect-ratio:1/1;
+}
+.prana-promise-card-content{
+  padding:22px;
+}
+
+.prana-promise-card-title{
+  margin:0 0 5px;
+  font-size:24px;
+  font-weight:500;
+  color:var(--heading-color);
+}
+.prana-promise-card-description {
+    font-size: 15px;
+    line-height: normal;
+    color: var(--ink3);
+}
+.prana-promise-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+.prana-promise-card-item {
+    background: #E3C39F;
+    border-radius: 10px;
+}
+.prana-promise-card-description p{
+  margin:0;
+}
+
+
+@media all and (max-width:768px){
+    .prana-promise-wrapper {
+        gap: 40px;
+    }
+    .prana-promise-cards {
+        gap: 20px;
+    }
+}
+@media screen and (max-width: 749px){
+
+  .prana-promise-section{
+    padding:40px 0;
+  }
+  .prana-promise-cards{
+        grid-template-columns:1fr;
+    }
+  .prana-promise-wrapper{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .prana-promise-heading{
+    font-size:28px;
+    margin:10px 0 12px;
+  }
+
+  .prana-promise-description{
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  .prana-promise-card-content{
+    padding:20px;
+  }
+
+  .prana-promise-card-title{
+    font-size:20px;
+    margin: 0 0 5px 0;
+  }
+
+  .prana-promise-card-description{
+    font-size:14px;
+    line-height:1.6;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "PRANA Promise",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "The Prana Promise"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Prana Promise"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Left Description"
+    }
+  ],
+  "blocks": [
+  {
+    "type": "promise_card",
+    "name": "Promise Card",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Card Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Card Title"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Card Description"
+      }
+    ]
+  }
+],
+  "presets": [
+    {
+      "name": "PRANA Promise"
+    }
+  ]
+}
+{% endschema %}

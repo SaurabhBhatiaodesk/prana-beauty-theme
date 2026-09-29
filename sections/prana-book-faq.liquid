@@ -1,0 +1,286 @@
+<style>
+    .outer-section {
+        background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+        padding-top: {{ section.settings.padding_top_desktop }}px;
+        padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+
+    .faq-top-label {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        margin-bottom: 14px;
+        font-size: 14px;
+        color: var(--ink3);
+    }
+    .faq-top-label::after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 90px;
+        background-color: var(--gold);
+        flex-shrink: 0;
+    }
+
+    .faq-main-heading {
+        font-size:40px;
+        font-weight: 400;
+        color:var(--heading-color);
+        line-height: 1.15;
+        margin: 0 0 15px 0;
+        letter-spacing: -0.02em;
+    }
+
+    .pls-des {
+        color: var(--ink3);
+        font-size: 18px;
+        line-height: 1.4;
+        font-weight: 300;
+        margin: 0 0 48px 0;
+    }
+
+    .faq_container_strick {
+        max-width: 100%;
+    }
+    .single_faq {
+        border-top: 1px solid var(--gold);
+        padding:16px 0;
+        cursor: pointer;
+    }
+    .single_faq:last-child {
+        border-bottom: 1px solid var(--gold);
+    }
+    .faq_gt_title {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 1.4;
+        letter-spacing: -0.01em;
+        margin: 0;
+        color: var(--ink3);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+        user-select: none;
+    }
+    .faq_title_text { flex: 1; }
+    .faq_gt_content {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.5;
+        color: var(--ink3);
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.35s ease, margin-top 0.35s ease;
+        max-width: 100%;
+    }
+    .faq_gt_content p {
+        margin: 0 0 10px 0;
+    }
+    .faq_gt_content p:last-child {
+        margin-bottom: 0;
+    }
+    .fold_icons { width: 20px; height: 20px; flex-shrink: 0; margin-top: 3px; transition: transform 0.35s ease; }
+    .fold_icons svg { width: 100%; height: 100%; color: var(--gold); }
+    .fold_icons svg path { stroke: var(--gold); color: var(--gold); }
+    .single_faq.is-open .fold_icons { transform: rotate(180deg); }
+
+    @media screen and (min-width: 1024px) {
+        .faq-layout { display: grid; grid-template-columns: 400px 1fr; gap: 60px; align-items: start; }
+        .faq-left { position: sticky; top: 100px; }
+        .faq-main-heading { font-size: 40px; }
+    }
+
+    @media screen and (max-width: 768px) {
+        .faq-main-heading {
+            font-size: 20px;
+            padding-bottom: 30px;
+        }
+        .pls-des { font-size: 15px; line-height: 19px; margin: 0 0 28px 0; }
+        .outer-section {
+            padding-top: {{ section.settings.padding_top_mobile }}px;
+            padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+        }
+        .faq-top-label { font-size: 12px; margin-bottom: 10px; }
+        .faq_gt_title { font-size: 16px; }
+        .faq_gt_content { font-size: 14px; line-height: 1.5; }
+        .single_faq { padding:13px 0; }
+        .fold_icons { width: 16px; height: 16px; }
+    }
+</style>
+
+<div class="outer-section" {{ section.shopify_attributes }}>
+    <div class="section">
+        <div class="faq-layout">
+
+            <!-- Left column -->
+            <div class="faq-left">
+                {% if section.settings.label != blank %}
+                    <div class="faq-top-label">{{ section.settings.label }}</div>
+                {% endif %}
+                
+                {% if section.settings.heading != blank %}
+                    <h2 class="faq-main-heading">{{ section.settings.heading }}</h2>
+                {% endif %}
+                
+                {% if section.settings.subheading != blank %}
+                    <div class="pls-des">{{ section.settings.subheading }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Right column -->
+            <div class="faq_container_strick">
+                {% for block in section.blocks %}
+                    {% assign faq_title = block.settings.faq_heading %}
+                    {% assign faq_content = block.settings.faq_description %}
+
+                    {% if faq_title != blank or faq_content != blank %}
+                        <div class="single_faq">
+                            <h3 class="faq_gt_title">
+                                <span class="faq_title_text">{{ faq_title }}</span>
+                                <div class="fold_icons">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 9L12 15L18 9" stroke="#4E403C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </h3>
+                            <div class="faq_gt_content">{{ faq_content }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    var faqs = document.querySelectorAll('.single_faq');
+
+    faqs.forEach(function(faq) {
+        faq.addEventListener('click', function() {
+            var content = faq.querySelector('.faq_gt_content');
+            var isOpen = faq.classList.contains('is-open');
+
+            // Close all
+            faqs.forEach(function(f) {
+                var c = f.querySelector('.faq_gt_content');
+                f.classList.remove('is-open');
+                if (c) { c.style.maxHeight = '0'; c.style.marginTop = '0'; }
+            });
+
+            // Open clicked if it was closed
+            if (!isOpen && content) {
+                faq.classList.add('is-open');
+                content.style.marginTop = '10px';
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        });
+    });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Prana Book Faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Small label above heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Everything you need to know"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading / Description"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faq_heading",
+          "label": "FAQ Question",
+          "default": "Frequently Asked Question?"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_description",
+          "label": "FAQ Answer",
+          "default": "<p>Write your answer here...</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Prana Book Faq",
+      "blocks": [
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

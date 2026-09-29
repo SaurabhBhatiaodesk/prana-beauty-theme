@@ -1,0 +1,25 @@
+{%  if product.metafields.custom.size != blank %}
+  <div class="product-ritual-size">
+    <p>{{ product.metafields.custom.size }}</p>
+</div>
+{% endif %}
+
+<style>
+    .product-ritual-size {
+        font-size: 17px;
+        margin-top: -10px;
+        color: var(--ink3);
+    }
+</style>
+{% schema %}
+{
+  "name": "Product Ritual Size",
+  "settings": [],
+  
+  "presets": [
+    {
+      "name": "Product Ritual Size"
+    }
+  ]
+}
+{% endschema %}

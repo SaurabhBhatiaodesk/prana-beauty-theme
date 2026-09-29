@@ -1,0 +1,2176 @@
+<style>
+.layout-support{
+    max-width:800px;
+    margin:0 auto;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    color: #000;
+}
+.layout-support ul {
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+.layout-support h2{
+    font-size:22px;
+    color:var(--heading-color);
+    padding:10px 0;
+}
+{% comment %} .layout-support h3 {
+    font-size: 16px;
+    color: #000;
+    padding-bottom: 10px;
+} {% endcomment %}
+.layout-support li{
+    margin-left:30px;
+}
+.doc-header {
+    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+    text-align: center;
+}
+h1.dh-title {
+    font-size: 56px;
+    color: var(--heading-color);
+    font-weight: 500;
+    margin:10px 0 15px 0;
+}
+.rights-grid .right-card {
+    box-shadow: 2px 2px 4px 0px #4613244D;
+    border: 1px solid var(--heading-color);
+    background: #fff;
+    border-radius: 7px;
+    padding: 18px 16px 16px;
+}
+.promise-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: stretch;
+    gap:10px;
+    margin:0 0 30px 0;
+}
+.promise-box-items {
+    background: #E3C39F;
+    border: 1px solid #461324;
+    border-radius: 9px;
+    padding: 22px 20px 18px;
+    position: relative;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+    height: 100%;
+    text-align: center;
+}
+.promise-box-items:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 8px 0px #4613244D;
+}
+.pb-item-icon {
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+.pb-item-icon svg {
+    width: 40px;
+    height: 40px;
+}
+.paragraph-block h3,
+.paragraph-with-heading h5,
+.paragraph-with-heading h6,
+.paragraph-with-heading h4{
+    font-size:14px;
+    color: #020202ff;
+    font-weight:600;
+    padding:10px 0;
+}
+.paragraph-with-heading h3,
+.rc-title,
+.toc-label,
+.pb-item-title {
+    font-size:18px;
+    font-weight: 400;
+    color: var(--heading-color, #2c1f18);
+    margin: 0;
+    line-height: 1.2;
+    padding: 10px 0 5px 0;
+}
+.pb-item-body {
+    font-size: 14px;
+    color: #000;
+    line-height: 1.5;
+}
+.toc {
+    background: #F3E4CD;
+    border: 1px solid #461324;
+    border-radius: 10px;
+    padding: 20px 18px 22px;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+    margin-bottom: 40px;
+}
+.toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    row-gap:10px;
+}
+/* Contents/Table of Contents with Arrows */
+.contents-block {
+    background: #F3E4CD;
+    border: 1px solid #461324;
+    border-radius: 10px;
+    padding: 25px 30px 20px;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+    margin-bottom: 30px;
+}
+.contents-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--heading-color, #2c1f18);
+    letter-spacing: 0.5px;
+}
+.contents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+    row-gap: 8px;
+}
+.contents-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    padding:0;
+    transition: color 0.2s;
+    cursor: default;
+}
+.contents-item:hover {
+    color: #461324;
+}
+.contents-arrow {
+    color: #cb9646;
+    font-size: 16px;
+    font-weight: 400;
+    min-width: 18px;
+}
+.contents-text {
+    font-weight: 300;
+}
+.doc-wrap {
+    padding:40px 0;
+}
+.rights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 32px 0;
+}
+.warning-notice {
+    background:#F3E4CD;
+    border-left: 4px solid var(--heading-color);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+}
+/* Terms Introduction Styles */
+.terms-intro {
+    margin: 20px 0 30px 0;
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 16px 16px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+    border: 1px solid var(--heading-color);
+    color: #fff;
+}
+.terms-intro .intro-content {
+    color:#000;
+    font-size: 13px;
+    line-height:normal;
+}
+.terms-intro .intro-content p {
+    margin-bottom: 15px;
+}
+.terms-intro .intro-content p:last-child {
+    margin-bottom: 0;
+}
+.terms-intro .intro-content strong {
+    color: #461324;
+}
+/* Medical Disclaimer Styles */
+.medical-disclaimer {
+    background: #FDF6F0;
+    border: 2px solid #cb9646;
+    border-radius: 10px;
+    padding: 25px 30px;
+    margin: 25px 0;
+    box-shadow: 0 2px 8px rgba(203, 150, 70, 0.15);
+    position: relative;
+}
+.medical-disclaimer .disclaimer-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+.medical-disclaimer .disclaimer-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #461324;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.medical-disclaimer .disclaimer-content {
+    color: #6b5645;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.medical-disclaimer .disclaimer-content strong {
+    color: #461324;
+}
+/* Table Styles */
+.policy-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0 30px 0;
+}
+.policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.policy-table thead {
+    background:var(--heading-color);
+    color: #fff;
+}
+.paragraph-with-heading {
+    border-top: 1px solid #000;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.policy-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.policy-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--heading-color);
+    color:#000;
+}
+.policy-table tbody tr:hover {
+    background: #f9f4ed;
+}
+.policy-table tbody tr:last-child td {
+    border-bottom: none;
+}
+/* Contact/Footer Styles */
+.contact-footer {
+    background: #E3C39F;
+    border: 1px solid #461324;
+    border-radius: 10px;
+    padding: 20px 19px;
+    margin: 25px 0 0 0;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap:15px;
+    margin: 0px 0 9px 0;
+}
+.contact-item {
+    text-align: center;
+}
+.contact-label {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.contact-value {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--heading-color, #2c1f18);
+    word-break: break-word;
+}
+.contact-value a {
+    color: var(--heading-color, #2c1f18);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.contact-value a:hover {
+    color: var(--heading-color);
+    text-decoration: underline;
+}
+.contact-footer-note {
+    text-align: center;
+    font-size:14px;
+    color: #000;
+}
+.contact-footer-note a {
+    color: var(--heading-color);
+    text-decoration: underline;
+}
+.contact-footer-note a:hover {
+    color: #2c1f18;
+}
+.inner-policy-blocks {
+  padding-top: {{ section.settings.padding_top_desktop | default: 60 }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop | default: 60 }}px;
+  padding-inline:20px;
+}
+
+
+@media all and (max-width: 750px) {
+   .inner-policy-blocks {
+      padding-top: {{ section.settings.padding_top_mobile | default: 40 }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | default: 40 }}px;
+    }
+    .policy-table {
+      width: 800px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 15px;
+      row-gap: 8px;
+    }
+    .promise-box {
+        grid-template-columns: 1fr;
+    }
+    .rights-grid {
+        grid-template-columns: 1fr;
+    }
+    .contents-grid {
+        grid-template-columns:1fr 1fr;
+        gap: 0;
+    }
+    h1.dh-title {
+        font-size: 32px;
+    }
+    .policy-table th,
+    .policy-table td {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    .contact-value {
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--heading-color, #2c1f18);
+        word-break: break-word;
+    }
+    .contact-label {
+      font-size: 14px;
+    }
+    .contact-footer {
+        padding:20px;
+    }
+    .medical-disclaimer {
+        padding: 20px;
+    }
+    .contents-block {
+      padding: 19px 14px;
+    }
+    .terms-intro {
+        padding: 20px;
+    }
+    .contents-item{
+      gap:0;
+    }
+    .contents-arrow {
+      display: none;
+    }
+    .promise-box-items {
+        padding: 18px 15px;
+    }
+}
+</style>
+
+<div class="doc-header">
+    <div class="section layout-support">
+        {% if section.settings.brand_name != blank %}
+            <div class="dh-logo">{{ section.settings.brand_name }}</div>
+        {% endif %}
+        {% if section.settings.title %}
+        <h1 class="dh-title">{{ section.settings.title }}</h1>
+        {% endif %}
+        <div class="dh-meta">
+            {% if section.settings.effective_date != blank %}
+            <span>Effective: {{ section.settings.effective_date }}</span>
+            <span>|</span>
+            {% endif %}
+            {% if section.settings.website_url != blank %}
+            <span>{{ section.settings.website_url }}</span>
+            <span>|</span>
+            {% endif %}
+            {% if section.settings.country != blank %}
+            <span>{{ section.settings.country }}</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div class="inner-policy-blocks layout-support">
+    {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'section_heading' %}
+                <{{ block.settings.heading_level }} class="section-heading">
+                    {{ block.settings.heading }}
+                </{{ block.settings.heading_level }}>
+
+            {% when 'paragraph' %}
+                <div class="paragraph-block">
+                    {{ block.settings.content }}
+                </div>
+
+            {% when 'paragraph_with_heading' %}
+                <div class="paragraph-with-heading">
+                    {% if block.settings.subheading != blank %}
+                        <h3>{{ block.settings.subheading }}</h3>
+                    {% endif %}
+                    {{ block.settings.content }}
+                </div>
+
+            {% when 'bulleted_list' %}
+                <div class="list-block">
+                    {% if block.settings.list_title != blank %}
+                        <h3>{{ block.settings.list_title }}</h3>
+                    {% endif %}
+                    {{ block.settings.list_items }}
+                </div>
+
+            {% when 'numbered_list' %}
+                <div class="list-block">
+                    {% if block.settings.list_title != blank %}
+                        <h3>{{ block.settings.list_title }}</h3>
+                    {% endif %}
+                    {{ block.settings.list_items }}
+                </div>
+
+            {% when 'promise_box' %}
+                <div class="promise-block">
+                    {% if block.settings.title != blank %}
+                        <h2>{{ block.settings.title }}</h2>
+                    {% endif %}
+                    <div class="promise-box">
+                        <div class="promise-box-items">
+                            <div class="pb-item-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 14C13 13.4477 12.5523 13 12 13C11.4477 13 11 13.4477 11 14V16C11 16.5523 11.4477 17 12 17C12.5523 17 13 16.5523 13 16V14Z" fill="#a8681a"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 8.12037C5.3161 8.53217 4 9.95979 4 11.7692V17.3077C4 19.973 6.31545 22 9 22H15C17.6846 22 20 19.973 20 17.3077V11.7692C20 9.95979 18.6839 8.53217 17 8.12037V7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7V8.12037ZM15 7V8H9V7C9 6.64936 9.06015 6.31278 9.17071 6C9.58254 4.83481 10.6938 4 12 4C13.3062 4 14.4175 4.83481 14.8293 6C14.9398 6.31278 15 6.64936 15 7ZM6 11.7692C6 10.866 6.81856 10 8 10H16C17.1814 10 18 10.866 18 11.7692V17.3077C18 18.7208 16.7337 20 15 20H9C7.26627 20 6 18.7208 6 17.3077V11.7692Z" fill="#a8681a"/>
+                                </svg>
+                            </div>
+                            <div class="pb-item-title">{{ block.settings.promise_1_title }}</div>
+                            <div class="pb-item-body">{{ block.settings.promise_1_body }}</div>
+                        </div>
+                        <div class="promise-box-items">
+                            <div class="pb-item-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16Z" stroke="#a8681a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3 16.8V9.2C3 8.0799 3 7.51984 3.21799 7.09202C3.40973 6.71569 3.71569 6.40973 4.09202 6.21799C4.51984 6 5.0799 6 6.2 6H7.25464C7.37758 6 7.43905 6 7.49576 6.9935C7.79166 5.95961 8.05705 5.79559 8.21969 5.54609C8.25086 5.49827 8.27836 5.44328 8.33333 5.33333C8.44329 5.11342 8.49827 5.00346 8.56062 4.90782C8.8859 4.40882 9.41668 4.08078 10.0085 4.01299C10.1219 4 10.2448 4 10.4907 4H13.5093C13.7552 4 13.8781 4 13.9915 4.01299C14.5833 4.08078 15.1141 4.40882 15.4394 4.90782C15.5017 5.00345 15.5567 5.11345 15.6667 5.33333C15.7216 5.44329 15.7491 5.49827 15.7803 5.54609C15.943 5.79559 16.2083 5.95961 16.5042 5.9935C16.561 6 16.6224 6 16.7454 6H17.8C18.9201 6 19.4802 6 19.908 6.21799C20.2843 6.40973 20.5903 6.71569 20.782 7.09202C21 7.51984 21 8.0799 21 9.2V16.8C21 17.9201 21 18.4802 20.782 18.908C20.5903 19.2843 20.2843 19.5903 19.908 19.782C19.4802 20 18.9201 20 17.8 20H6.2C5.0799 20 4.51984 20 4.09202 19.782C3.71569 19.5903 3.40973 19.2843 3.21799 18.908C3 18.4802 3 17.9201 3 16.8Z" stroke="#a8681a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="pb-item-title">{{ block.settings.promise_2_title }}</div>
+                            <div class="pb-item-body">{{ block.settings.promise_2_body }}</div>
+                        </div>
+                        <div class="promise-box-items">
+                            <div class="pb-item-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="#a8681a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="#a8681a" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="pb-item-title">{{ block.settings.promise_3_title }}</div>
+                            <div class="pb-item-body">{{ block.settings.promise_3_body }}</div>
+                        </div>
+                    </div>
+                </div>
+
+            {% when 'rights_grid' %}
+                <div class="rights-block">
+                    {% if block.settings.title != blank %}
+                        <h2>{{ block.settings.title }}</h2>
+                    {% endif %}
+                    <div class="rights-grid">
+                        <div class="right-card">
+                            <div class="rc-title">{{ block.settings.right_1_title }}</div>
+                            <p>{{ block.settings.right_1_desc }}</p>
+                        </div>
+                        <div class="right-card">
+                            <div class="rc-title">{{ block.settings.right_2_title }}</div>
+                            <p>{{ block.settings.right_2_desc }}</p>
+                        </div>
+                        <div class="right-card">
+                            <div class="rc-title">{{ block.settings.right_3_title }}</div>
+                            <p>{{ block.settings.right_3_desc }}</p>
+                        </div>
+                        <div class="right-card">
+                            <div class="rc-title">{{ block.settings.right_4_title }}</div>
+                            <p>{{ block.settings.right_4_desc }}</p>
+                        </div>
+                        <div class="right-card">
+                            <div class="rc-title">{{ block.settings.right_5_title }}</div>
+                            <p>{{ block.settings.right_5_desc }}</p>
+                        </div>
+                        <div class="right-card">
+                            <div class="rc-title">{{ block.settings.right_6_title }}</div>
+                            <p>{{ block.settings.right_6_desc }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            {% when 'table_of_contents' %}
+                <div class="toc">
+                    {% if block.settings.title != blank %}
+                        <div class="toc-label">{{ block.settings.title }}</div>
+                    {% endif %}
+                    <div class="toc-grid">
+                        <span>{{ block.settings.item_1 }}</span>
+                        <span>{{ block.settings.item_2 }}</span>
+                        <span>{{ block.settings.item_3 }}</span>
+                        <span>{{ block.settings.item_4 }}</span>
+                        <span>{{ block.settings.item_5 }}</span>
+                        <span>{{ block.settings.item_6 }}</span>
+                    </div>
+                </div>
+
+            {% when 'contents' %}
+                <div class="contents-block">
+                    <div class="contents-title">{{ block.settings.title }}</div>
+                    <div class="contents-grid">
+                        {% if block.settings.item_1 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_1 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_2 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_2 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_3 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_3 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_4 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_4 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_5 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_5 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_6 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_6 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_7 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_7 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_8 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_8 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_9 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_9 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_10 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_10 }}</span>
+                          </div>
+                          {% endif %}
+
+                          {% if block.settings.item_11 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_11 }}</span>
+                          </div>
+                          {% endif %}
+
+                        {% if block.settings.item_12 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_12 }}</span>
+                          </div>
+                        {% endif %}
+
+                        {% if block.settings.item_13 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_13 }}</span>
+                          </div>
+                        {% endif %}
+
+                        {% if block.settings.item_14 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_14 }}</span>
+                          </div>
+                          {% endif %}
+
+                        {% if block.settings.item_15 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_15 }}</span>
+                          </div>
+                        {% endif %}
+
+                        {% if block.settings.item_16 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_16 }}</span>
+                          </div>
+                        {% endif %}
+
+                        {% if block.settings.item_17 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_17 }}</span>
+                          </div>
+                        {% endif %}
+
+                       {% if block.settings.item_18 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_18 }}</span>
+                          </div>
+                        {% endif %}
+
+                        {% if block.settings.item_19 != blank %}
+                          <div class="contents-item">
+                              <span class="contents-arrow">→</span>
+                              <span class="contents-text">{{ block.settings.item_19 }}</span>
+                          </div>
+                        {% endif %}
+
+                       {% if block.settings.item_20 != blank %}
+                        <div class="contents-item">
+                            <span class="contents-arrow">→</span>
+                            <span class="contents-text">{{ block.settings.item_20 }}</span>
+                        </div>
+                        {% endif %} 
+                    </div>
+                </div>
+
+            {% when 'terms_intro' %}
+                <div class="terms-intro">
+                    <div class="intro-content">
+                        {{ block.settings.content }}
+                    </div>
+                </div>
+
+            {% when 'warning_notice' %}
+                <div class="warning-notice">
+                    {{ block.settings.content }}
+                </div>
+
+            {% when 'medical_disclaimer' %}
+                <div class="medical-disclaimer">
+                    <div class="disclaimer-title">
+                        <span class="disclaimer-icon">⚕️</span>
+                        {{ block.settings.title }}
+                    </div>
+                    <div class="disclaimer-content">
+                        {{ block.settings.content }}
+                    </div>
+                </div>
+
+            {% when 'table' %}
+                <div class="table-block">
+                   
+                    {% if block.settings.table_caption != blank %}
+                        <p style="margin-bottom: 15px; color: #6b5645;">{{ block.settings.table_caption }}</p>
+                    {% endif %}
+                    <div class="policy-table-wrap">
+                        <table class="policy-table">
+                            <thead>
+                                <tr>
+                                    <th>{{ block.settings.header_1 }}</th>
+                                    <th>{{ block.settings.header_2 }}</th>
+                                    <th>{{ block.settings.header_3 }}</th>
+                                    <th>{{ block.settings.header_4 }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% assign has_rows = false %}
+                                {% if block.settings.row1_col1 != blank or block.settings.row1_col2 != blank or block.settings.row1_col3 != blank or block.settings.row1_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row1_col1 }}</td>
+                                        <td>{{ block.settings.row1_col2 }}</td>
+                                        <td>{{ block.settings.row1_col3 }}</td>
+                                        <td>{{ block.settings.row1_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row2_col1 != blank or block.settings.row2_col2 != blank or block.settings.row2_col3 != blank or block.settings.row2_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row2_col1 }}</td>
+                                        <td>{{ block.settings.row2_col2 }}</td>
+                                        <td>{{ block.settings.row2_col3 }}</td>
+                                        <td>{{ block.settings.row2_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row3_col1 != blank or block.settings.row3_col2 != blank or block.settings.row3_col3 != blank or block.settings.row3_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row3_col1 }}</td>
+                                        <td>{{ block.settings.row3_col2 }}</td>
+                                        <td>{{ block.settings.row3_col3 }}</td>
+                                        <td>{{ block.settings.row3_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row4_col1 != blank or block.settings.row4_col2 != blank or block.settings.row4_col3 != blank or block.settings.row4_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row4_col1 }}</td>
+                                        <td>{{ block.settings.row4_col2 }}</td>
+                                        <td>{{ block.settings.row4_col3 }}</td>
+                                        <td>{{ block.settings.row4_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row5_col1 != blank or block.settings.row5_col2 != blank or block.settings.row5_col3 != blank or block.settings.row5_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row5_col1 }}</td>
+                                        <td>{{ block.settings.row5_col2 }}</td>
+                                        <td>{{ block.settings.row5_col3 }}</td>
+                                        <td>{{ block.settings.row5_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row6_col1 != blank or block.settings.row6_col2 != blank or block.settings.row6_col3 != blank or block.settings.row6_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row6_col1 }}</td>
+                                        <td>{{ block.settings.row6_col2 }}</td>
+                                        <td>{{ block.settings.row6_col3 }}</td>
+                                        <td>{{ block.settings.row6_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row7_col1 != blank or block.settings.row7_col2 != blank or block.settings.row7_col3 != blank or block.settings.row7_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row7_col1 }}</td>
+                                        <td>{{ block.settings.row7_col2 }}</td>
+                                        <td>{{ block.settings.row7_col3 }}</td>
+                                        <td>{{ block.settings.row7_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row8_col1 != blank or block.settings.row8_col2 != blank or block.settings.row8_col3 != blank or block.settings.row8_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row8_col1 }}</td>
+                                        <td>{{ block.settings.row8_col2 }}</td>
+                                        <td>{{ block.settings.row8_col3 }}</td>
+                                        <td>{{ block.settings.row8_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row9_col1 != blank or block.settings.row9_col2 != blank or block.settings.row9_col3 != blank or block.settings.row9_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row9_col1 }}</td>
+                                        <td>{{ block.settings.row9_col2 }}</td>
+                                        <td>{{ block.settings.row9_col3 }}</td>
+                                        <td>{{ block.settings.row9_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row10_col1 != blank or block.settings.row10_col2 != blank or block.settings.row10_col3 != blank or block.settings.row10_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row10_col1 }}</td>
+                                        <td>{{ block.settings.row10_col2 }}</td>
+                                        <td>{{ block.settings.row10_col3 }}</td>
+                                        <td>{{ block.settings.row10_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row11_col1 != blank or block.settings.row11_col2 != blank or block.settings.row11_col3 != blank or block.settings.row11_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row11_col1 }}</td>
+                                        <td>{{ block.settings.row11_col2 }}</td>
+                                        <td>{{ block.settings.row11_col3 }}</td>
+                                        <td>{{ block.settings.row11_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row12_col1 != blank or block.settings.row12_col2 != blank or block.settings.row12_col3 != blank or block.settings.row12_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row12_col1 }}</td>
+                                        <td>{{ block.settings.row12_col2 }}</td>
+                                        <td>{{ block.settings.row12_col3 }}</td>
+                                        <td>{{ block.settings.row12_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row13_col1 != blank or block.settings.row13_col2 != blank or block.settings.row13_col3 != blank or block.settings.row13_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row13_col1 }}</td>
+                                        <td>{{ block.settings.row13_col2 }}</td>
+                                        <td>{{ block.settings.row13_col3 }}</td>
+                                        <td>{{ block.settings.row13_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row14_col1 != blank or block.settings.row14_col2 != blank or block.settings.row14_col3 != blank or block.settings.row14_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row14_col1 }}</td>
+                                        <td>{{ block.settings.row14_col2 }}</td>
+                                        <td>{{ block.settings.row14_col3 }}</td>
+                                        <td>{{ block.settings.row14_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row15_col1 != blank or block.settings.row15_col2 != blank or block.settings.row15_col3 != blank or block.settings.row15_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row15_col1 }}</td>
+                                        <td>{{ block.settings.row15_col2 }}</td>
+                                        <td>{{ block.settings.row15_col3 }}</td>
+                                        <td>{{ block.settings.row15_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row16_col1 != blank or block.settings.row16_col2 != blank or block.settings.row16_col3 != blank or block.settings.row16_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row16_col1 }}</td>
+                                        <td>{{ block.settings.row16_col2 }}</td>
+                                        <td>{{ block.settings.row16_col3 }}</td>
+                                        <td>{{ block.settings.row16_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row17_col1 != blank or block.settings.row17_col2 != blank or block.settings.row17_col3 != blank or block.settings.row17_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row17_col1 }}</td>
+                                        <td>{{ block.settings.row17_col2 }}</td>
+                                        <td>{{ block.settings.row17_col3 }}</td>
+                                        <td>{{ block.settings.row17_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row18_col1 != blank or block.settings.row18_col2 != blank or block.settings.row18_col3 != blank or block.settings.row18_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row18_col1 }}</td>
+                                        <td>{{ block.settings.row18_col2 }}</td>
+                                        <td>{{ block.settings.row18_col3 }}</td>
+                                        <td>{{ block.settings.row18_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row19_col1 != blank or block.settings.row19_col2 != blank or block.settings.row19_col3 != blank or block.settings.row19_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row19_col1 }}</td>
+                                        <td>{{ block.settings.row19_col2 }}</td>
+                                        <td>{{ block.settings.row19_col3 }}</td>
+                                        <td>{{ block.settings.row19_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% if block.settings.row20_col1 != blank or block.settings.row20_col2 != blank or block.settings.row20_col3 != blank or block.settings.row20_col4 != blank %}
+                                    <tr>
+                                        <td>{{ block.settings.row20_col1 }}</td>
+                                        <td>{{ block.settings.row20_col2 }}</td>
+                                        <td>{{ block.settings.row20_col3 }}</td>
+                                        <td>{{ block.settings.row20_col4 }}</td>
+                                    </tr>
+                                    {% assign has_rows = true %}
+                                {% endif %}
+                                {% unless has_rows %}
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; color: #999; padding: 20px;">No rows added yet. Add content in the theme editor.</td>
+                                    </tr>
+                                {% endunless %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            {% when 'contact_footer' %}
+                {% if block.settings.title != blank %}
+                    <h2 class="contact-footer-title">{{ block.settings.title }}</h2>
+                {% endif %}
+                <div class="contact-footer">
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <div class="contact-label">Brand</div>
+                            <div class="contact-value">{{ block.settings.brand_name_footer }}</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value">
+                                <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label">Website</div>
+                            <div class="contact-value">
+                                <a href="https://{{ block.settings.website }}" target="_blank">{{ block.settings.website }}</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label">Response Time</div>
+                            <div class="contact-value">{{ block.settings.response_time }}</div>
+                        </div>
+                    </div>
+                    {% if block.settings.footer_note != blank %}
+                        <div class="contact-footer-note">
+                            {{ block.settings.footer_note }}
+                        </div>
+                    {% endif %}
+                </div>
+
+        {% endcase %}
+    {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Inner Policy",
+  "class": "section-inner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "PRANA",
+      "info": "Displayed above the title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "text",
+      "id": "effective_date",
+      "label": "Effective Date",
+      "default": "January 1, 2026",
+      "info": "Displayed in the meta section"
+    },
+    {
+      "type": "text",
+      "id": "website_url",
+      "label": "Website URL",
+      "default": "www.pranabeauty.com"
+    },
+    {
+      "type": "text",
+      "id": "country",
+      "label": "Country",
+      "default": "USA"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 10,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 10,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "section_heading",
+      "name": "Section Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "2. About PRANA"
+        },
+        {
+          "type": "select",
+          "id": "heading_level",
+          "label": "Heading Level",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" }
+          ],
+          "default": "h2"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>PRANA Beauty & Wellness is a US-based direct-to-consumer Ayurvedic skincare brand. Our products are sold through our website at www.pranabeauty.com and through authorised third-party marketplaces including Amazon. Our registered correspondence address for legal purposes is available upon request by contacting admin@pranawellness.shop.</p>"
+        }
+      ]
+    },
+    {
+      "type": "paragraph_with_heading",
+      "name": "Paragraph with Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Permitted use"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>You may access and use the Website for personal, non-commercial purposes — to browse, learn about our products, make purchases, and use our personalisation tools. You agree to use the Website only for lawful purposes and in a manner that does not infringe the rights of any third party.</p>"
+        }
+      ]
+    },
+    {
+      "type": "bulleted_list",
+      "name": "Bulleted List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "list_title",
+          "label": "List Title (Optional)",
+          "default": "Key Points",
+          "info": "Leave as 'Key Points' or change as needed"
+        },
+        {
+          "type": "richtext",
+          "id": "list_items",
+          "label": "List Items",
+          "default": "<ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>"
+        }
+      ]
+    },
+    {
+      "type": "numbered_list",
+      "name": "Numbered List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "list_title",
+          "label": "List Title (Optional)",
+          "default": "Steps",
+          "info": "Leave as 'Steps' or change as needed"
+        },
+        {
+          "type": "richtext",
+          "id": "list_items",
+          "label": "List Items",
+          "default": "<ol><li>First item</li><li>Second item</li><li>Third item</li></ol>"
+        }
+      ]
+    },
+    {
+      "type": "promise_box",
+      "name": "Promise Box (3 Columns)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title",
+          "default": "Our Promise to You"
+        },
+        {
+          "type": "text",
+          "id": "promise_1_title",
+          "label": "Promise 1 Title",
+          "default": "We never sell your data"
+        },
+        {
+          "type": "textarea",
+          "id": "promise_1_body",
+          "label": "Promise 1 Description",
+          "default": "Your personal information is never sold, rented, or shared with advertisers"
+        },
+        {
+          "type": "text",
+          "id": "promise_2_title",
+          "label": "Promise 2 Title",
+          "default": "Photos are never stored"
+        },
+        {
+          "type": "textarea",
+          "id": "promise_2_body",
+          "label": "Promise 2 Description",
+          "default": "AI Skin Scanner images are analysed in real time and permanently discarded"
+        },
+        {
+          "type": "text",
+          "id": "promise_3_title",
+          "label": "Promise 3 Title",
+          "default": "Email on your terms"
+        },
+        {
+          "type": "textarea",
+          "id": "promise_3_body",
+          "label": "Promise 3 Description",
+          "default": "Marketing emails only with your explicit consent. Unsubscribe any time."
+        }
+      ]
+    },
+    {
+      "type": "rights_grid",
+      "name": "Rights Grid (2 Columns)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title",
+          "default": "Your Rights"
+        },
+        {
+          "type": "text",
+          "id": "right_1_title",
+          "label": "Right 1 Title",
+          "default": "Right to Access"
+        },
+        {
+          "type": "textarea",
+          "id": "right_1_desc",
+          "label": "Right 1 Description",
+          "default": "You can request a copy of your personal data we hold."
+        },
+        {
+          "type": "text",
+          "id": "right_2_title",
+          "label": "Right 2 Title",
+          "default": "Right to Rectification"
+        },
+        {
+          "type": "textarea",
+          "id": "right_2_desc",
+          "label": "Right 2 Description",
+          "default": "You can correct inaccurate or incomplete data."
+        },
+        {
+          "type": "text",
+          "id": "right_3_title",
+          "label": "Right 3 Title",
+          "default": "Right to Erasure"
+        },
+        {
+          "type": "textarea",
+          "id": "right_3_desc",
+          "label": "Right 3 Description",
+          "default": "You can request deletion of your personal data."
+        },
+        {
+          "type": "text",
+          "id": "right_4_title",
+          "label": "Right 4 Title",
+          "default": "Right to Opt-Out"
+        },
+        {
+          "type": "textarea",
+          "id": "right_4_desc",
+          "label": "Right 4 Description",
+          "default": "You can opt-out of marketing communications anytime."
+        },
+        {
+          "type": "text",
+          "id": "right_5_title",
+          "label": "Right 5 Title",
+          "default": "Right to Opt-Out"
+        },
+        {
+          "type": "textarea",
+          "id": "right_5_desc",
+          "label": "Right 5 Description",
+          "default": "You can opt-out of marketing communications anytime."
+        },
+        {
+          "type": "text",
+          "id": "right_6_title",
+          "label": "Right 6 Title",
+          "default": "Right to Opt-Out"
+        },
+        {
+          "type": "textarea",
+          "id": "right_6_desc",
+          "label": "Right 6 Description",
+          "default": "You can opt-out of marketing communications anytime."
+        }
+      ]
+    },
+    {
+      "type": "contents",
+      "name": "Contents (with Arrows)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "CONTENTS"
+        },
+        {
+          "type": "text",
+          "id": "item_1",
+          "label": "Item 1",
+          "default": "1. Acceptance of Terms"
+        },
+        {
+          "type": "text",
+          "id": "item_2",
+          "label": "Item 2",
+          "default": "2. About PRANA"
+        },
+        {
+          "type": "text",
+          "id": "item_3",
+          "label": "Item 3",
+          "default": "3. Use of the Website"
+        },
+        {
+          "type": "text",
+          "id": "item_4",
+          "label": "Item 4",
+          "default": "4. Products & Descriptions"
+        },
+        {
+          "type": "text",
+          "id": "item_5",
+          "label": "Item 5",
+          "default": "5. Pricing & Payment"
+        },
+        {
+          "type": "text",
+          "id": "item_6",
+          "label": "Item 6",
+          "default": "6. Orders & Contract"
+        },
+        {
+          "type": "text",
+          "id": "item_7",
+          "label": "Item 7",
+          "default": "7. Shipping & Delivery"
+        },
+        {
+          "type": "text",
+          "id": "item_8",
+          "label": "Item 8",
+          "default": "8. Returns & Refunds"
+        },
+        {
+          "type": "text",
+          "id": "item_9",
+          "label": "Item 9",
+          "default": "9. AI Skin Scanner"
+        },
+        {
+          "type": "text",
+          "id": "item_10",
+          "label": "Item 10",
+          "default": "10. Intellectual Property"
+        },
+        {
+          "type": "text",
+          "id": "item_11",
+          "label": "Item 11",
+          "default": "11. User Content"
+        },
+        {
+          "type": "text",
+          "id": "item_12",
+          "label": "Item 12",
+          "default": "12. Prohibited Conduct"
+        },
+        {
+          "type": "text",
+          "id": "item_13",
+          "label": "Item 13",
+          "default": "13. Disclaimers"
+        },
+        {
+          "type": "text",
+          "id": "item_14",
+          "label": "Item 14",
+          "default": "14. Limitation of Liability"
+        },
+        {
+          "type": "text",
+          "id": "item_15",
+          "label": "Item 15",
+          "default": "15. Indemnification"
+        },
+        {
+          "type": "text",
+          "id": "item_16",
+          "label": "Item 16",
+          "default": "16. Governing Law"
+        },
+        {
+          "type": "text",
+          "id": "item_17",
+          "label": "Item 17",
+          "default": "17. Dispute Resolution"
+        },
+        {
+          "type": "text",
+          "id": "item_18",
+          "label": "Item 18",
+          "default": "18. Changes to Terms"
+        },
+        {
+          "type": "text",
+          "id": "item_19",
+          "label": "Item 19",
+          "default": "19. Contact"
+        },
+        {
+          "type": "text",
+          "id": "item_20",
+          "label": "Item 20 (Optional)"
+        }
+      ]
+    },
+    {
+      "type": "table_of_contents",
+      "name": "Table of Contents",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Table of Contents"
+        },
+        {
+          "type": "text",
+          "id": "item_1",
+          "label": "Item 1",
+          "default": "1. Information We Collect"
+        },
+        {
+          "type": "text",
+          "id": "item_2",
+          "label": "Item 2",
+          "default": "2. How We Use Your Information"
+        },
+        {
+          "type": "text",
+          "id": "item_3",
+          "label": "Item 3",
+          "default": "3. Sharing Your Information"
+        },
+        {
+          "type": "text",
+          "id": "item_4",
+          "label": "Item 4",
+          "default": "4. Your Rights & Choices"
+        },
+        {
+          "type": "text",
+          "id": "item_5",
+          "label": "Item 5",
+          "default": "5. Data Security"
+        },
+        {
+          "type": "text",
+          "id": "item_6",
+          "label": "Item 6",
+          "default": "6. Contact Us"
+        }
+      ]
+    },
+    {
+      "type": "terms_intro",
+      "name": "Terms Introduction",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Introduction Content",
+          "default": "<p>Please read these Terms and Conditions carefully before using the PRANA Beauty & Wellness website or purchasing our products. By accessing our website at www.pranabeauty.com or placing an order, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, please do not use our website or services.</p><p>These Terms constitute a legally binding agreement between you and PRANA Beauty & Wellness. References to \"we\", \"us\", or \"PRANA\" mean PRANA Beauty & Wellness. References to \"you\" or \"the customer\" mean the person accessing our website or purchasing our products.</p>"
+        }
+      ]
+    },
+    {
+      "type": "warning_notice",
+      "name": "Warning/Notice Box",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Notice Content",
+          "default": "<p><strong>PRANA is not a medical company.</strong> Our products are cosmetics and are not intended to diagnose, treat, cure, or prevent any disease or medical condition.</p>"
+        }
+      ]
+    },
+    {
+      "type": "medical_disclaimer",
+      "name": "Medical Disclaimer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Disclaimer Title",
+          "default": "Medical Disclaimer"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Disclaimer Content",
+          "default": "<p><strong>Not medical advice.</strong> The Skin Intelligence Tools are provided for informational and personalisation purposes only. Results, dosha classifications, and product recommendations are not medical diagnoses, dermatological assessments, or health advice. You should consult a qualified healthcare professional or dermatologist for any skin health concerns.</p>"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "name": "Table",
+      "settings": [
+       
+        {
+          "type": "text",
+          "id": "table_caption",
+          "label": "Table Caption (Optional)",
+          "default": "Shipping rates and delivery times by region"
+        },
+        {
+          "type": "header",
+          "content": "Table Headers"
+        },
+        {
+          "type": "text",
+          "id": "header_1",
+          "label": "Header 1",
+          "default": "Region"
+        },
+        {
+          "type": "text",
+          "id": "header_2",
+          "label": "Header 2",
+          "default": "Standard Shipping"
+        },
+        {
+          "type": "text",
+          "id": "header_3",
+          "label": "Header 3",
+          "default": "Expedited Shipping"
+        },
+        {
+          "type": "text",
+          "id": "header_4",
+          "label": "Header 4",
+          "default": "Free Shipping Threshold"
+        },
+        {
+          "type": "header",
+          "content": "Row 1"
+        },
+        {
+          "type": "text",
+          "id": "row1_col1",
+          "label": "Row 1 - Column 1",
+          "default": "United States"
+        },
+        {
+          "type": "text",
+          "id": "row1_col2",
+          "label": "Row 1 - Column 2",
+          "default": "5–7 business days"
+        },
+        {
+          "type": "text",
+          "id": "row1_col3",
+          "label": "Row 1 - Column 3",
+          "default": "2–3 business days"
+        },
+        {
+          "type": "text",
+          "id": "row1_col4",
+          "label": "Row 1 - Column 4",
+          "default": "Orders over $100"
+        },
+        {
+          "type": "header",
+          "content": "Row 2"
+        },
+        {
+          "type": "text",
+          "id": "row2_col1",
+          "label": "Row 2 - Column 1",
+          "default": "United Kingdom"
+        },
+        {
+          "type": "text",
+          "id": "row2_col2",
+          "label": "Row 2 - Column 2",
+          "default": "7–14 business days"
+        },
+        {
+          "type": "text",
+          "id": "row2_col3",
+          "label": "Row 2 - Column 3",
+          "default": "Not available"
+        },
+        {
+          "type": "text",
+          "id": "row2_col4",
+          "label": "Row 2 - Column 4",
+          "default": "Orders over £85"
+        },
+        {
+          "type": "header",
+          "content": "Row 3"
+        },
+        {
+          "type": "text",
+          "id": "row3_col1",
+          "label": "Row 3 - Column 1",
+          "default": "Other international"
+        },
+        {
+          "type": "text",
+          "id": "row3_col2",
+          "label": "Row 3 - Column 2",
+          "default": "10–21 business days"
+        },
+        {
+          "type": "text",
+          "id": "row3_col3",
+          "label": "Row 3 - Column 3",
+          "default": "Not available"
+        },
+        {
+          "type": "text",
+          "id": "row3_col4",
+          "label": "Row 3 - Column 4",
+          "default": "See shipping page"
+        },
+        {
+          "type": "header",
+          "content": "Rows 4-20 (All Optional - Leave blank to hide)"
+        },
+        {
+          "type": "text",
+          "id": "row4_col1",
+          "label": "Row 4 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row4_col2",
+          "label": "Row 4 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row4_col3",
+          "label": "Row 4 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row4_col4",
+          "label": "Row 4 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 5"
+        },
+        {
+          "type": "text",
+          "id": "row5_col1",
+          "label": "Row 5 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row5_col2",
+          "label": "Row 5 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row5_col3",
+          "label": "Row 5 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row5_col4",
+          "label": "Row 5 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 6"
+        },
+        {
+          "type": "text",
+          "id": "row6_col1",
+          "label": "Row 6 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row6_col2",
+          "label": "Row 6 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row6_col3",
+          "label": "Row 6 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row6_col4",
+          "label": "Row 6 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 7"
+        },
+        {
+          "type": "text",
+          "id": "row7_col1",
+          "label": "Row 7 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row7_col2",
+          "label": "Row 7 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row7_col3",
+          "label": "Row 7 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row7_col4",
+          "label": "Row 7 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 8"
+        },
+        {
+          "type": "text",
+          "id": "row8_col1",
+          "label": "Row 8 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row8_col2",
+          "label": "Row 8 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row8_col3",
+          "label": "Row 8 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row8_col4",
+          "label": "Row 8 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 9"
+        },
+        {
+          "type": "text",
+          "id": "row9_col1",
+          "label": "Row 9 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row9_col2",
+          "label": "Row 9 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row9_col3",
+          "label": "Row 9 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row9_col4",
+          "label": "Row 9 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 10"
+        },
+        {
+          "type": "text",
+          "id": "row10_col1",
+          "label": "Row 10 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row10_col2",
+          "label": "Row 10 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row10_col3",
+          "label": "Row 10 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row10_col4",
+          "label": "Row 10 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 11"
+        },
+        {
+          "type": "text",
+          "id": "row11_col1",
+          "label": "Row 11 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row11_col2",
+          "label": "Row 11 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row11_col3",
+          "label": "Row 11 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row11_col4",
+          "label": "Row 11 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 12"
+        },
+        {
+          "type": "text",
+          "id": "row12_col1",
+          "label": "Row 12 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row12_col2",
+          "label": "Row 12 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row12_col3",
+          "label": "Row 12 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row12_col4",
+          "label": "Row 12 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 13"
+        },
+        {
+          "type": "text",
+          "id": "row13_col1",
+          "label": "Row 13 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row13_col2",
+          "label": "Row 13 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row13_col3",
+          "label": "Row 13 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row13_col4",
+          "label": "Row 13 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 14"
+        },
+        {
+          "type": "text",
+          "id": "row14_col1",
+          "label": "Row 14 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row14_col2",
+          "label": "Row 14 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row14_col3",
+          "label": "Row 14 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row14_col4",
+          "label": "Row 14 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 15"
+        },
+        {
+          "type": "text",
+          "id": "row15_col1",
+          "label": "Row 15 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row15_col2",
+          "label": "Row 15 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row15_col3",
+          "label": "Row 15 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row15_col4",
+          "label": "Row 15 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 16"
+        },
+        {
+          "type": "text",
+          "id": "row16_col1",
+          "label": "Row 16 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row16_col2",
+          "label": "Row 16 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row16_col3",
+          "label": "Row 16 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row16_col4",
+          "label": "Row 16 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 17"
+        },
+        {
+          "type": "text",
+          "id": "row17_col1",
+          "label": "Row 17 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row17_col2",
+          "label": "Row 17 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row17_col3",
+          "label": "Row 17 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row17_col4",
+          "label": "Row 17 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 18"
+        },
+        {
+          "type": "text",
+          "id": "row18_col1",
+          "label": "Row 18 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row18_col2",
+          "label": "Row 18 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row18_col3",
+          "label": "Row 18 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row18_col4",
+          "label": "Row 18 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 19"
+        },
+        {
+          "type": "text",
+          "id": "row19_col1",
+          "label": "Row 19 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row19_col2",
+          "label": "Row 19 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row19_col3",
+          "label": "Row 19 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row19_col4",
+          "label": "Row 19 - Column 4"
+        },
+        {
+          "type": "header",
+          "content": "Rows 20"
+        },
+        {
+          "type": "text",
+          "id": "row20_col1",
+          "label": "Row 20 - Column 1"
+        },
+        {
+          "type": "text",
+          "id": "row20_col2",
+          "label": "Row 20 - Column 2"
+        },
+        {
+          "type": "text",
+          "id": "row20_col3",
+          "label": "Row 20 - Column 3"
+        },
+        {
+          "type": "text",
+          "id": "row20_col4",
+          "label": "Row 20 - Column 4"
+        }
+      ]
+    },
+    {
+      "type": "contact_footer",
+      "name": "Contact / Footer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title",
+          "default": "19. Contact Us"
+        },
+        {
+          "type": "text",
+          "id": "brand_name_footer",
+          "label": "Brand Name",
+          "default": "PRANA Beauty & Wellness"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email Address",
+          "default": "admin@pranawellness.shop"
+        },
+        {
+          "type": "text",
+          "id": "website",
+          "label": "Website URL",
+          "default": "www.pranabeauty.com"
+        },
+        {
+          "type": "text",
+          "id": "response_time",
+          "label": "Response Time",
+          "default": "1–3 business days"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_note",
+          "label": "Footer Note",
+          "default": "<p>These Terms and Conditions were last updated in June 2026 and are effective as of that date. Questions about these Terms should be directed to <a href=\"mailto:admin@pranawellness.shop\">admin@pranawellness.shop</a>.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inner Policy",
+      "settings": {
+        "brand_name": "PRANA",
+        "title": "Privacy Policy",
+        "effective_date": "January 1, 2026",
+        "website_url": "www.pranabeauty.com",
+        "country": "USA"
+      },
+      "blocks": [
+        {
+          "type": "terms_intro",
+          "settings": {
+            "content": "<p>Please read these Terms and Conditions carefully before using the PRANA Beauty & Wellness website or purchasing our products. By accessing our website at www.pranabeauty.com or placing an order, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, please do not use our website or services.</p><p>These Terms constitute a legally binding agreement between you and PRANA Beauty & Wellness. References to \"we\", \"us\", or \"PRANA\" mean PRANA Beauty & Wellness. References to \"you\" or \"the customer\" mean the person accessing our website or purchasing our products.</p>"
+          }
+        },
+        {
+          "type": "contents",
+          "settings": {
+            "title": "CONTENTS"
+          }
+        },
+        {
+          "type": "promise_box",
+          "settings": {
+            "title": "Our Promise to You",
+            "promise_1_title": "We never sell your data",
+            "promise_1_body": "Your personal information is never sold, rented, or shared with advertisers",
+            "promise_2_title": "Photos are never stored",
+            "promise_2_body": "AI Skin Scanner images are analysed in real time and permanently discarded",
+            "promise_3_title": "Email on your terms",
+            "promise_3_body": "Marketing emails only with your explicit consent. Unsubscribe any time."
+          }
+        },
+        {
+          "type": "section_heading",
+          "settings": {
+            "heading": "1. Acceptance of Terms"
+          }
+        },
+        {
+          "type": "paragraph",
+          "settings": {
+            "content": "<p>By using our Website, you agree to these Terms and Conditions. If you do not agree, please do not use our Website.</p>"
+          }
+        },
+        {
+          "type": "section_heading",
+          "settings": {
+            "heading": "2. About PRANA"
+          }
+        },
+        {
+          "type": "paragraph",
+          "settings": {
+            "content": "<p>PRANA Beauty & Wellness is a US-based direct-to-consumer Ayurvedic skincare brand. Our products are sold through our website at www.pranabeauty.com and through authorised third-party marketplaces including Amazon. Our registered correspondence address for legal purposes is available upon request by contacting admin@pranawellness.shop.</p>"
+          }
+        },
+        {
+          "type": "warning_notice",
+          "settings": {
+            "content": "<p><strong>PRANA is not a medical company.</strong> Our products are cosmetics and are not intended to diagnose, treat, cure, or prevent any disease or medical condition. The AI Skin Scanner and Dosha Diagnostic tools on our Website are for informational and personalisation purposes only and do not constitute medical or dermatological advice.</p>"
+          }
+        },
+        {
+          "type": "medical_disclaimer",
+          "settings": {
+            "title": "Medical Disclaimer",
+            "content": "<p><strong>Not medical advice.</strong> The Skin Intelligence Tools are provided for informational and personalisation purposes only. Results, dosha classifications, and product recommendations are not medical diagnoses, dermatological assessments, or health advice. You should consult a qualified healthcare professional or dermatologist for any skin health concerns.</p>"
+          }
+        },
+        {
+          "type": "section_heading",
+          "settings": {
+            "heading": "3. Use of the Website"
+          }
+        },
+        {
+          "type": "paragraph_with_heading",
+          "settings": {
+            "subheading": "Permitted use",
+            "content": "<p>You may access and use the Website for personal, non-commercial purposes — to browse, learn about our products, make purchases, and use our personalisation tools. You agree to use the Website only for lawful purposes and in a manner that does not infringe the rights of any third party.</p>"
+          }
+        },
+        {
+          "type": "section_heading",
+          "settings": {
+            "heading": "7. Shipping & Delivery"
+          }
+        },
+        {
+          "type": "table",
+          "settings": {
+            "table_caption": "Shipping rates and delivery times by region"
+          }
+        },
+        {
+          "type": "contact_footer",
+          "settings": {
+            "title": "19. Contact Us"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,220 @@
+<div class="section">
+<section class="hero">
+    <div class="hero-left">
+      <svg class="hero-branch" viewBox="0 0 80 240" fill="none"><path d="M40,240 C40,180 20,140 40,80 C60,20 40,0 40,0" stroke="rgba(168,104,26,.4)" stroke-width="1"/><path d="M40,180 Q20,160 8,148" stroke="rgba(168,104,26,.25)" stroke-width="1"/><path d="M40,140 Q58,122 68,112" stroke="rgba(168,104,26,.25)" stroke-width="1"/><path d="M40,100 Q24,85 16,75" stroke="rgba(168,104,26,.2)" stroke-width="1"/><circle cx="8" cy="148" r="3" fill="rgba(168,104,26,.28)"/>
+        <circle cx="68" cy="112" r="3" fill="rgba(168,104,26,.28)"/><circle cx="16" cy="75" r="2" fill="rgba(168,104,26,.22)"/>
+      </svg>
+      <div class="hero-product-mobile"><img width="" height="" loading="lazy" id="heroMobileProduct" src="{{ section.settings.righ_image | img_url: "original" }}" alt="Saffron Glow Serum" style="width:100%; object-fit:cover"></div>
+      <div class="hero-kicker">
+        <div class="kicker-line"></div>
+        <div class="kicker-txt">{{ section.settings.caption }}</div>
+      </div>
+      {% if section.settings.heading != blank %}
+        <h1 class="hero-h1">{{ section.settings.heading }}</h1>
+      {% endif %}
+
+      {% if section.settings.sub_heading != blank %}
+        <h2 class="hero-h1">{{ section.settings.sub_heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.desc != blank %}
+        <p class="hero-desc">{{ section.settings.desc }}</p>
+     {% endif %}
+     {% if section.settings.desc != blank %}
+      <div class="hero-mantra">{{ section.settings.hero_mantra }}</div>
+     {% endif %}
+     
+     <div class="hero-actions">
+        {% if section.settings.btn_text1 != blank %}
+          <a href="{{ section.settings.btn_link1 }}" class="btn btn-ink">
+            {{ section.settings.btn_text1 }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.btn_text2 != blank %}
+          <a href="{{ section.settings.btn_link2 }}" class="btn-ghost-sm">
+            <span class="scan-icon"></span>
+            {{ section.settings.btn_text2 }}
+          </a>
+        {% endif %}
+      </div>
+      
+      <div class="hp-urgency">
+        <div class="hp-urgency-dot"></div>
+        <span class="hp-urgency-txt" id="heroUrgency"></span>
+      </div>
+      <div class="hero-quiz-nudge" onclick="scrollToScan()" style="margin-top:18px;opacity:0;animation:fadeUp .7s ease 1.35s forwards;cursor:pointer;display:inline-flex;align-items:center;gap:8px;">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0"><circle cx="6.5" cy="6.5" r="6" stroke="#A8681A" stroke-width="1"/><text x="6.5" y="10" text-anchor="middle" font-size="8" fill="#A8681A" font-family="Jost">?</text></svg>
+        <span style="font-family:'Jost',sans-serif;font-size:12px;font-weight:300;letter-spacing:.08em;color:var(--ink3);border-bottom:1px solid rgba(168,104,26,.3);padding-bottom:1px;transition:color .2s,border-color .2s;" onmouseover="this.style.color='#A8681A';this.style.borderColor='#A8681A'" onmouseout="this.style.color='var(--ink3)';this.style.borderColor='rgba(168,104,26,.3)'">
+          {{ section.settings.btn_text3 }}
+        </span>
+      </div>
+    </div>
+    <div class="hero-right">
+      {% if section.settings.righ_image != blank %}
+      <img width="" height="" loading="lazy" src="{{ section.settings.righ_image | img_url: "original" }}">
+      {% else %}
+      <div class="hero-orn" style="width:480px;height:480px;border-color:rgba(168,104,26,.07)"></div>
+      <div class="hero-orn" style="width:340px;height:340px;border-color:rgba(168,104,26,.1);border-style:dashed"></div>
+      <span class="leaf-lbl" style="top:18%;left:8%">{{ section.settings.label1 }}</span>
+      <span class="leaf-lbl" style="top:22%;right:10%">{{ section.settings.label2 }}</span>
+      <span class="leaf-lbl" style="bottom:22%;left:7%">{{ section.settings.label3 }}</span>
+      <span class="leaf-lbl" style="bottom:28%;right:9%">{{ section.settings.label4 }}</span>
+      <div class="pstack">
+        {% if section.settings.image1 != blank %}<div class="ps ps-left"><img width="" height="" loading="lazy" src="{{ section.settings.image1 | img_url : "original" }}" id="h-toner" style="width:112px" alt="Rose Toner"></div>{% endif %}
+        {% if section.settings.image2 != blank %}<div class="ps ps-right"><img width="" height="" loading="lazy" src="{{ section.settings.image2 | img_url : "original" }}" id="h-baku" style="width:112px" alt="Bakuchiol Serum"></div>{% endif %}
+        {% if section.settings.image3 != blank %}<div class="ps ps-top"><img width="" height="" loading="lazy" src="{{ section.settings.image3 | img_url : "original" }}" id="h-turmeric" style="width:96px" alt="Turmeric Mask"></div>{% endif %}
+        {% if section.settings.image4 != blank %}<div class="ps ps-main"><img width="" height="" loading="lazy" src="{{ section.settings.image4 | img_url : "original" }}" id="h-main" style="width:172px" alt="Saffron Serum"></div>{% endif %}
+        <div class="ps-shad"></div>
+      </div>
+    {% endif %}
+    </div>
+    {% comment %} <div class="hero-scroll">
+      <div class="scroll-tick"></div>
+      <span class="scroll-word">Scroll</span>
+    </div> {% endcomment %}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "sub_heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "desc",
+      "label": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_mantra",
+      "label": "Hero Mantra"
+    },
+
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "btn_text1",
+      "label": "Button 1 Label"
+    },
+    {
+      "type": "url",
+      "id": "btn_link1",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "btn_text2",
+      "label": "Button 2 Label"
+    },
+    {
+      "type": "url",
+      "id": "btn_link2",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "text",
+      "id": "btn_text3",
+      "label": "Quiz Button Label"
+    },
+    {
+      "type": "url",
+      "id": "btn_link3",
+      "label": "Quiz Button Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Main Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "righ_image",
+      "label": "Right Image"
+    },
+
+    {
+      "type": "header",
+      "content": "Floating Product 1"
+    },
+    {
+      "type": "text",
+      "id": "label1",
+      "label": "Label 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image1",
+      "label": "Image 1"
+    },
+
+    {
+      "type": "header",
+      "content": "Floating Product 2"
+    },
+    {
+      "type": "text",
+      "id": "label2",
+      "label": "Label 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Image 2"
+    },
+
+    {
+      "type": "header",
+      "content": "Floating Product 3"
+    },
+    {
+      "type": "text",
+      "id": "label3",
+      "label": "Label 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image3",
+      "label": "Image 3"
+    },
+
+    {
+      "type": "header",
+      "content": "Floating Product 4"
+    },
+    {
+      "type": "text",
+      "id": "label4",
+      "label": "Label 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image4",
+      "label": "Image 4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+<div class="bene-upgrade">
+{% for block in section.blocks %}
+    <div class="benu"><div class="benu-num">{{ block.settings.counter }}</div>
+    <div class="benu-title">{{ block.settings.title }}</div>
+    <div class="benu-desc">{{ block.settings.desc }}</div></div>
+{% endfor %}
+</div>
+
+
+  {% schema %}
+  {
+    "name": "Custom counter",
+    "settings": [
+    ],
+    "blocks": [
+      {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+        "type": "text",
+        "id": "counter",
+        "label": "Number"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "text",
+        "id": "desc",
+        "label": "Description"
+        },
+      ]
+    },
+    ],
+    "presets": [
+    {
+      "name": "Custom counter",
+    }
+  ]
+  }
+{% endschema %}

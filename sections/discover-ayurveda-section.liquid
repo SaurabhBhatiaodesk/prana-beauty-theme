@@ -1,0 +1,240 @@
+<section class="discover-ayurveda-section">
+  <div class="section">
+    <div class="discover-ayurveda-wrapper 
+      desktop-layout-{{ section.settings.desktop_layout }}
+      mobile-layout-{{ section.settings.mobile_layout }}">
+
+      <div class="discover-ayurveda-content">
+
+        {% if section.settings.subheading != blank %}
+          <div class="discover-ayurveda-header">
+            <p class="discover-ayurveda-subheading">
+              {{ section.settings.subheading }}
+            </p>
+            <div class="fv-cap-line"></div>
+          </div>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="discover-ayurveda-heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        <div class="discover-ayurveda-items">
+          {% for block in section.blocks %}
+            <div class="discover-ayurveda-item" {{ block.shopify_attributes }}>
+
+              {% if block.settings.title != blank %}
+                <h4>{{ block.settings.title }}</h4>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <div class="discover-ayurveda-description">
+                  {{ block.settings.description }}
+                </div>
+              {% endif %}
+
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+      <div class="discover-ayurveda-image">
+        {% if section.settings.image != blank %}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              class: 'discover-ayurveda-img'
+          }}
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.discover-ayurveda-section{
+  background:radial-gradient(
+    100.75% 105.17% at 95.4% 0%,
+    #cb964675 0%,
+    #e3c39f2e 100%
+  );
+  padding:60px 0;
+}
+
+.discover-ayurveda-header{
+  font-family:var(--U);
+  font-size:14px;
+  color:var(--ink3);
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.discover-ayurveda-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+/* Desktop Layout */
+.discover-ayurveda-wrapper.desktop-layout-image_first .discover-ayurveda-image{
+  order:1;
+}
+.discover-ayurveda-wrapper.desktop-layout-image_first .discover-ayurveda-content{
+  order:2;
+}
+
+.discover-ayurveda-wrapper.desktop-layout-content_first .discover-ayurveda-image{
+  order:2;
+}
+.discover-ayurveda-wrapper.desktop-layout-content_first .discover-ayurveda-content{
+  order:1;
+}
+
+.discover-ayurveda-heading{
+  margin:13px 0;
+  font-size:38px;
+  line-height:1.1;
+  color:var(--heading-color);
+  font-weight:400;
+  max-width:500px;
+}
+
+.discover-ayurveda-items{
+  display:flex;
+  flex-direction:column;
+}
+.discover-ayurveda-item h4 {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold);
+    padding-top: 19px;
+}
+.discover-ayurveda-description {
+    font-size: 18px;
+    line-height: normal;
+    color: var(--ink3);
+    max-width: 600px;
+}
+.discover-ayurveda-description p{
+  margin:0;
+}
+
+.discover-ayurveda-image{
+  width:100%;
+}
+
+.discover-ayurveda-img{
+  width:100%;
+  display:block;
+  border-radius:13px;
+  object-fit:cover;
+  min-height:300px;
+  box-shadow: 0px 2px 4px 0px #4613244D;
+}
+
+/* Tablet Styles */
+@media all and (max-width: 991px) {
+  .discover-ayurveda-wrapper{
+    gap: 40px;
+  }
+  .discover-ayurveda-heading{ font-size: 32px; }
+  .discover-ayurveda-item h4{ font-size: 18px; }
+  .discover-ayurveda-description{ font-size: 14px; }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .discover-ayurveda-section{ padding:40px 0; }
+
+  .discover-ayurveda-wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    border-radius:8px;
+    background:#E3C39F;
+    box-shadow:0px -3px 4px 0px #D3B18A80 inset;
+    overflow:hidden;
+  }
+
+  /* Mobile Layout Fix */
+  .discover-ayurveda-wrapper.mobile-layout-image_first > .discover-ayurveda-image {
+    order: -1;
+  }
+  .discover-ayurveda-wrapper.mobile-layout-image_first > .discover-ayurveda-content {
+    order: 0;
+    padding:0 20px 20px;
+  }
+
+  .discover-ayurveda-wrapper.mobile-layout-content_first > .discover-ayurveda-content {
+    order: -1;
+    padding:20px 20px 0;
+  }
+  .discover-ayurveda-wrapper.mobile-layout-content_first > .discover-ayurveda-image {
+    order: 0;
+  }
+
+  .discover-ayurveda-heading{ font-size:28px; margin:10px 0 12px; }
+  .discover-ayurveda-item h4{padding-top:12px; }
+  .discover-ayurveda-item h4{ font-size:16px; }
+  .discover-ayurveda-description{ font-size:14px; line-height:1.6; }
+  .discover-ayurveda-header{ font-size: 12px; }
+}
+
+/* Small Mobile */
+@media screen and (max-width: 575px) {
+  .discover-ayurveda-heading {
+    font-size: 20px;
+    margin: 10px 0 5px 0;
+    }
+  .discover-ayurveda-item h4{ font-size: 15px; }
+  .discover-ayurveda-description{ font-size: 15px;line-height: 21px; }
+  .discover-ayurveda-img{
+        border-radius: 8px;
+        border:1px solid var(--heading-color);
+    }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Discover Ayurveda",
+  "settings": [
+    { "type": "text", "id": "subheading", "label": "Sub Heading", "default": "Discover Ayurveda" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Discover Ayurveda" },
+    { "type": "image_picker", "id": "image", "label": "Right Side Image" },
+    { "type": "header", "content": "Desktop Layout Settings" },
+    { "type": "select", "id": "desktop_layout", "label": "Desktop Layout",
+      "options":[
+        { "value":"image_first", "label":"Image First (Image Left, Content Right)" },
+        { "value":"content_first", "label":"Content First (Content Left, Image Right)" }
+      ], "default":"image_first"
+    },
+    { "type": "header", "content": "Mobile Layout Settings" },
+    { "type": "select", "id": "mobile_layout", "label": "Mobile Layout",
+      "options":[
+        { "value":"image_first", "label":"Image First" },
+        { "value":"content_first", "label":"Content First" }
+      ], "default":"image_first"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"ayurveda_item","name":"Ayurveda Item",
+      "settings":[
+        { "type":"text","id":"title","label":"Title" },
+        { "type":"richtext","id":"description","label":"Description" }
+      ]
+    }
+  ],
+  "presets":[{"name":"Discover Ayurveda"}]
+}
+{% endschema %}

@@ -1,0 +1,163 @@
+<section class="collection-banner">
+  {% if section.settings.default_banner != blank %}
+    <div class="collection-banner__image">
+        <img 
+          src="{{ section.settings.default_banner | img_url: '2000x' }}" 
+          alt="{{ collection.title }} default banner" 
+          loading="lazy"
+          class="banner-desktop" width="" height=""
+        >
+        <img 
+          src="{{ section.settings.default_banner_mobile | img_url: '800x' }}" 
+          alt="{{ collection.title }} default mobile banner" 
+          loading="lazy"
+          class="banner-mobile" width="" height=""
+        >
+    </div>
+    <div class="collection-banner__content">
+      <h2>{{ section.settings.title }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p>{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+
+
+<style>
+.collection-banner {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  padding:0;
+}
+.collection-banner__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  max-width: 100%;
+}
+.collection-banner__image {
+    max-width: 100%;
+    width: 100%;
+}
+.collection-banner__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #F0E0CB;
+    max-width: 560px;
+    width: 100%;
+    max-height: 560px;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+}
+.collection-banner__content h2 {
+    font-size: 56px;
+    color:var(--heading-color);
+    font-weight: 500;
+    margin: 0;
+    line-height: 50px;
+}
+.collection-banner__content p {
+    font-size: 20px;
+    color: var(--ink3);
+    font-weight: 300;
+    margin: 2rem 0 0;
+}
+.collection-banner:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background: #F0E0CB;
+    width: 255px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+.banner-mobile {
+    display: none !important;
+}
+
+@media all and (max-width:768px){
+  .collection-banner__content {
+    max-width: 485px;
+    width: 100%;
+    max-height: 485px;
+    padding: 40px;
+  }
+}
+
+
+
+@media (max-width: 767px) {
+  .banner-desktop {
+    display: none!important;
+  }
+  .banner-mobile {
+    display: block!important;
+  }
+  .collection-banner__content {
+    max-width: 300px;
+    max-height: 300px;
+    padding: 20px;
+  }
+  .collection-banner__content p {
+      font-size: 13px;
+      margin: 10px 0;
+  }
+  .collection-banner__content h2 {
+      font-size: 32px;
+      line-height: 32px;
+  }
+  .collection-banner:before {
+    width:118px;
+  }
+  .collection-banner {
+      padding: 0;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Contact Us Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "default_banner",
+      "label": "Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "default_banner_mobile",
+      "label": "Mobile Banner",
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Us Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

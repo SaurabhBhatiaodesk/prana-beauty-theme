@@ -1,0 +1,837 @@
+<section class="fv-split" id="founderSection">
+  <div class="section">
+    <div class="inner">
+
+      <!-- LEFT: Founder -->
+      <div class="fv-left reveal">
+
+        {% if section.settings.image != blank %}
+          <img
+            width=""
+            height=""
+            loading="lazy"
+            src="{{ section.settings.image | img_url: 'original' }}"
+            class="fv-founder-img"
+            id="f-img"
+            alt="{{ section.settings.name }}">
+        {% endif %}
+
+        {% if section.settings.name != blank or section.settings.role != blank %}
+          <div class="fv-founder-plate">
+
+            {% if section.settings.name != blank %}
+              <div class="fv-name">{{ section.settings.name }}</div>
+            {% endif %}
+
+            {% if section.settings.role != blank %}
+              <div class="fv-role">{{ section.settings.role }}</div>
+            {% endif %}
+
+          </div>
+        {% endif %}
+
+        <div class="fv-copy">
+
+          {% if section.settings.tag1 != blank or section.settings.tag2 != blank or section.settings.tag3 != blank %}
+            <div class="fv-tags">
+
+              {% if section.settings.tag1 != blank %}
+                <span class="f-tag">{{ section.settings.tag1 }}</span>
+              {% endif %}
+
+              {% if section.settings.tag2 != blank %}
+                <span class="f-tag">{{ section.settings.tag2 }}</span>
+              {% endif %}
+
+              {% if section.settings.tag3 != blank %}
+                <span class="f-tag">{{ section.settings.tag3 }}</span>
+              {% endif %}
+
+            </div>
+          {% endif %}
+
+          {% if section.settings.moment_label != blank %}
+            <div class="fv-moment-label">{{ section.settings.moment_label }}</div>
+          {% endif %}
+
+          {% if section.settings.quote != blank %}
+            <div class="fv-quote">{{ section.settings.quote }}</div>
+          {% endif %}
+
+          {% if section.settings.content != blank %}
+            <p class="fv-body">{{ section.settings.content }}</p>
+          {% endif %}
+
+          {% if section.settings.number1 != blank or section.settings.number2 != blank or section.settings.number3 != blank %}
+            <div class="fv-stats">
+
+              {% if section.settings.number1 != blank or section.settings.label1 != blank %}
+                <div class="fv-stat">
+                  {% if section.settings.number1 != blank %}
+                    <div class="fv-stat-n">{{ section.settings.number1 }}</div>
+                  {% endif %}
+                  {% if section.settings.label1 != blank %}
+                    <div class="fv-stat-l">{{ section.settings.label1 }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {% if section.settings.number1 != blank and section.settings.number2 != blank %}
+                <div class="fv-stat-sep"></div>
+              {% endif %}
+
+              {% if section.settings.number2 != blank or section.settings.label2 != blank %}
+                <div class="fv-stat">
+                  {% if section.settings.number2 != blank %}
+                    <div class="fv-stat-n">{{ section.settings.number2 }}</div>
+                  {% endif %}
+                  {% if section.settings.label2 != blank %}
+                    <div class="fv-stat-l">{{ section.settings.label2 }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {% if section.settings.number2 != blank and section.settings.number3 != blank %}
+                <div class="fv-stat-sep"></div>
+              {% endif %}
+
+              {% if section.settings.number3 != blank or section.settings.label3 != blank %}
+                <div class="fv-stat">
+                  {% if section.settings.number3 != blank %}
+                    <div class="fv-stat-n">{{ section.settings.number3 }}</div>
+                  {% endif %}
+                  {% if section.settings.label3 != blank %}
+                    <div class="fv-stat-l">{{ section.settings.label3 }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+            </div>
+          {% endif %}
+
+          {% if section.settings.btn_text != blank or section.settings.instagram_link != blank %}
+            <div class="fv-actions">
+
+              {% if section.settings.btn_text != blank %}
+                <a
+                  href="{{ section.settings.btn_link }}"
+                  class="fv-cta"
+                  onclick="nav('about')">
+                  {{ section.settings.btn_text }}
+                </a>
+              {% endif %}
+
+              {% if section.settings.instagram_link != blank %}
+                <a
+                  class="fv-ig"
+                  href="{{ section.settings.instagram_link }}"
+                  target="_blank">
+                  @prabha_prana
+                </a>
+              {% endif %}
+
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <!-- RIGHT: Brand Video -->
+      <div class="fv-right reveal d1">
+        <div class="fv-video-wrap">
+          <div class="fv-video-ph" id="founderVideo">
+
+            {% if section.settings.vimeo_link != blank %}
+
+              <div class="vimeo-video">
+                <iframe
+                  src="{{ section.settings.vimeo_link }}"
+                  width="800"
+                  height="450"
+                  frameborder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
+
+            {% elsif section.settings.video != blank %}
+
+              <div class="video-element" style="display:none;">
+                {{
+                  section.settings.video
+                  | video_tag:
+                  controls: false,
+                  autoplay: false
+                }}
+              </div>
+
+            {% endif %}
+
+            {% if section.settings.kicker != blank or section.settings.title != blank or section.settings.note != blank %}
+              <div class="fv-vid-overlay">
+
+                {% if section.settings.kicker != blank %}
+                  <div class="fv-vid-kicker">{{ section.settings.kicker }}</div>
+                {% endif %}
+
+                {% if section.settings.title != blank %}
+                  <div class="fv-vid-title">{{ section.settings.title }}</div>
+                {% endif %}
+
+                {% if section.settings.note != blank %}
+                  <div class="fv-vid-note">{{ section.settings.note }}</div>
+                {% endif %}
+
+              </div>
+            {% endif %}
+
+          </div>
+        </div>
+
+        {% if section.settings.cap_text != blank %}
+          <div class="fv-video-caption">
+            <span class="fv-cap-line"></span>
+            <span class="fv-cap-text">{{ section.settings.cap_text }}</span>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+
+#founderSection{
+  padding-top: {{ section.settings.desktop_padding_top }}px;
+  padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+}
+#founderSection .vimeo-video iframe {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+}
+#founderSection .vimeo-video {
+  width: 100%;
+}
+
+#founderSection .fv-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 6rem;
+}
+
+#founderSection .fv-copy .fv-stats {
+  margin-top: auto;
+}
+
+#founderSection .inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+/* ══════════════════════════════════════════
+   FOUNDER + VIDEO SPLIT
+══════════════════════════════════════════ */
+
+.fv-split {
+  display: flex;
+  min-height: 640px;
+  background: var(--canvas);
+  border-top: 1px solid var(--gold-line);
+  border-bottom: 1px solid var(--gold-line);
+}
+
+.fv-left {
+  position: relative;
+  background: var(--ink);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.fv-founder-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: .45;
+}
+
+.fv-founder-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 18, 6, 0) 0%,
+    rgba(26, 18, 6, .3) 40%,
+    rgba(26, 18, 6, .92) 100%
+  );
+}
+
+.fv-founder-plate {
+  position: absolute;
+  top: 28px;
+  left: 36px;
+  z-index: 3;
+}
+
+.fv-name {
+  font-family: var(--D);
+  font-size: 20px;
+  font-weight: 300;
+  color:white;
+  letter-spacing: .06em;
+}
+
+.fv-role {
+  font-family: var(--S);
+  font-size: 19px;
+  color:white;
+  letter-spacing: .04em;
+}
+
+.fv-copy {
+  position: relative;
+  z-index: 2;
+  padding: 36px;
+  padding-top: 0;
+}
+
+.fv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.fv-moment-label {
+    font-size: 17px;
+    text-transform: capitalize;
+    color: var(--gold);
+    font-family: "Ponomar", sans-serif;
+    margin-bottom: 6px;
+}
+
+.fv-quote {
+  font-family: var(--D);
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 300;
+  color: rgba(248, 242, 230, .9);
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.fv-body {
+    font-family: var(--S);
+    font-size: 19px;
+    color: white;
+    line-height: normal;
+    margin-bottom: 24px;
+}
+.fv-stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 24px;
+    padding: 16px 0;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+}
+.fv-stat {
+  text-align: center;
+  flex: 1;
+}
+
+.f-tags {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.f-tag {
+    padding: 4px 11px;
+    font-size: 14px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-weight: 300;
+}
+.fv-stat-n {
+    font-family: var(--D);
+    font-size: 35px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+.fv-stat-l {
+    font-family: var(--S);
+    font-size: 18px;
+    color: white;
+    letter-spacing: .04em;
+}
+
+.fv-stat-sep {
+  width: 1px;
+  height: 32px;
+  background: rgba(200, 146, 26, .15);
+  flex-shrink: 0;
+}
+
+.fv-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.fv-cta {
+    font-family: var(--U);
+    font-size: 16px;
+    letter-spacing: normal;
+    text-transform: none;
+    background: var(--gold);
+    color: var(--canvas);
+    border: none;
+    padding: 9px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background .18s;
+}
+
+.fv-cta:hover {
+  background:var(--heading-color);
+}
+
+.fv-ig {
+  font-family: var(--S);
+  font-size: 14px;
+  color:white;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200, 146, 26, .2);
+  padding-bottom: 1px;
+  transition: color .15s;
+}
+
+.fv-ig:hover {
+  color: var(--gold);
+}
+
+/* RIGHT — Video */
+
+.fv-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.fv-video-wrap {
+  {% comment %} flex: 1; {% endcomment %}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fv-video-ph {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fv-vid-play {
+  position: relative;
+  z-index: 2;
+  width: 72px;
+  height: 72px;
+  border: 1px solid rgba(200, 146, 26, .4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color .2s, transform .2s;
+}
+
+.fv-video-ph:hover .fv-vid-play {
+  border-color: var(--gold);
+  transform: scale(1.05);
+}
+
+.fv-vid-play-icon {
+  font-size: 18px;
+  color: var(--gold);
+  margin-left: 4px;
+}
+
+.fv-vid-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 74px;
+  right: 24px;
+  z-index: 2;
+}
+
+.fv-vid-kicker {
+  font-family: var(--U);
+  font-size: 11px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(200, 146, 26, .5);
+  margin-bottom: 6px;
+}
+
+.fv-vid-title {
+  font-family: var(--D);
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 300;
+  color: rgba(248, 242, 230, .9);
+  line-height: 1.15;
+}
+
+.fv-vid-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.fv-vid-note {
+  font-family: var(--S);
+  font-size: 10px;
+  color: rgba(248, 242, 230, .25);
+  margin-top: 6px;
+}
+
+.fv-video-caption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+.fv-cap-line {
+    width: 70px;
+    height: 0.5px;
+    background: var(--gold);
+    flex-shrink: 0;
+}
+.fv-cap-text {
+  font-family: var(--S);
+  font-size: 16px;
+  color:var(--ink3);
+  font-style: italic;
+}
+
+
+@media all and (max-width:768px){
+  #founderSection .inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+   #founderSection .fv-founder-plate {
+    display:none;
+  }
+}
+@media screen and (max-width:767px) {
+
+  #founderSection{
+    padding-top: {{ section.settings.mobile_padding_top }}px;
+    padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+  }
+
+  #founderSection .inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+  }
+
+  #founderSection .fv-copy {
+    justify-content: flex-end;
+    background: linear-gradient(to top, black, transparent 250px);
+  }
+
+  #founderSection .fv-body {
+      color: #fff;
+      line-height: 17px;
+      font-size:15px;
+      margin: 0;
+  }
+  #founderSection .fv-founder-img {
+    opacity: 1;
+  }
+
+  #founderSection .fv-left {
+    min-height: 550px;
+  }
+
+  #founderSection .fv-copy .fv-tags,
+  #founderSection .fv-stats,
+  #founderSection .fv-actions,
+  #founderSection .fv-quote {
+    display: none;
+  }
+
+  #founderSection .fv-founder-plate {
+      max-width: 180px;
+      background: #00000080;
+      padding: 6px 14px;
+      border-radius: 7px;
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+      right: 10%;
+      left: unset;
+      border: 1px solid #ffffff33;
+      display:block;
+  }
+
+  #founderSection .fv-name {
+    font-size: 18px;
+    font-weight: 400;
+    color: #CB9646;
+    letter-spacing: .06em;
+  }
+
+  #founderSection .fv-role {
+    color: #fff;
+    font-size:13px;
+  }
+
+  section#founderSection {
+    display: block;
+  }
+  section#founderSection .section{
+    display:block;
+  }
+  section#founderSection .fv-right,
+  section#founderSection .fv-left {
+    width: 100%;
+  }
+  section#founderSection .fv-right{
+    padding:0 17px;
+  }
+}
+
+/* mobile */
+
+@media(max-width:900px) {
+  #founderSection .fv-copy{
+    padding: 20px;
+  }
+  .fv-split {
+    grid-template-columns: 1fr;
+    border-bottom:0;
+  }
+  .fv-moment-label {
+    font-size: 18px;
+    text-transform: capitalize;
+    margin-bottom: 0;
+  }
+  .fv-left {
+    min-height: 480px;
+  }
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Founder section",
+  "settings": [
+
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+
+    {
+      "type": "text",
+      "id": "name",
+      "label": "Founder name"
+    },
+
+    {
+      "type": "text",
+      "id": "role",
+      "label": "Founder role"
+    },
+
+    {
+      "type": "text",
+      "id": "tag1",
+      "label": "Tag"
+    },
+
+    {
+      "type": "text",
+      "id": "tag2",
+      "label": "Tag"
+    },
+
+    {
+      "type": "text",
+      "id": "tag3",
+      "label": "Tag"
+    },
+
+    {
+      "type": "text",
+      "id": "moment_label",
+      "label": "Moment label"
+    },
+
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote"
+    },
+
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Content"
+    },
+
+    {
+      "type": "text",
+      "id": "number1",
+      "label": "Number"
+    },
+
+    {
+      "type": "text",
+      "id": "label1",
+      "label": "Label"
+    },
+
+    {
+      "type": "text",
+      "id": "number2",
+      "label": "Number"
+    },
+
+    {
+      "type": "text",
+      "id": "label2",
+      "label": "Label"
+    },
+
+    {
+      "type": "text",
+      "id": "number3",
+      "label": "Number"
+    },
+
+    {
+      "type": "text",
+      "id": "label3",
+      "label": "Label"
+    },
+
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Label"
+    },
+
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button link"
+    },
+
+    {
+      "type": "url",
+      "id": "vimeo_link",
+      "label": "Vimeo video link"
+    },
+
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker"
+    },
+
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note"
+    },
+
+    {
+      "type": "text",
+      "id": "cap_text",
+      "label": "Cap text"
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Founder section"
+    }
+  ]
+}
+{% endschema %}

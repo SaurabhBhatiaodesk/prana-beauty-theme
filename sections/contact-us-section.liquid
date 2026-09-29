@@ -1,0 +1,335 @@
+<div class="contact-main">
+  <div class="section">
+    <div class="inner-contact">
+
+      <div class="contact-info">
+
+        {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="contact-description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <h4>{{ section.settings.subheading }}</h4>
+        {% endif %}
+
+        
+
+        <div class="contact-social-media">
+          {% if section.settings.direction_text != blank %}
+            <div class="boxed-socialed">
+              <a
+                href="{{ section.settings.direction_link }}"
+                class="direction-link">
+                <div class="icon">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.36328 12.0523C4.01081 11.5711 3.33457 11.3304 3.13309 10.9655C2.95849 10.6492 2.95032 10.2673 3.11124 9.94388C3.29694 9.57063 3.96228 9.30132 5.29295 8.76272L17.8356 3.68594C19.1461 3.15547 19.8014 2.89024 20.2154 3.02623C20.5747 3.14427 20.8565 3.42608 20.9746 3.7854C21.1106 4.19937 20.8453 4.85465 20.3149 6.16521L15.2381 18.7078C14.6995 20.0385 14.4302 20.7039 14.0569 20.8896C13.7335 21.0505 13.3516 21.0423 13.0353 20.8677C12.6704 20.6662 12.4297 19.99 11.9485 18.6375L10.4751 14.4967C10.3815 14.2336 10.3347 14.102 10.2582 13.9922C10.1905 13.8948 10.106 13.8103 10.0086 13.7426C9.89876 13.6661 9.76719 13.6193 9.50407 13.5257L5.36328 12.0523Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                {{ section.settings.direction_text }}
+              </a>
+            </div>
+          {% endif %}
+          {% if section.settings.email != blank %}
+            <div class="ct-social boxed-socialed">
+              <a href="mailto:{{ section.settings.email }}">
+                <div class="icon">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span>{{ section.settings.email }}</span>
+              </a>
+            </div>
+          {% endif %}
+
+          {% if section.settings.phone != blank %}
+            <div class="ct-social boxed-socialed">
+              <a href="tel:{{ section.settings.phone_url }}">
+                <div class="icon">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M17.3545 22.2323C15.3344 21.7262 11.1989 20.2993 7.44976 16.5502C3.70065 12.8011 2.2738 8.66559 1.76767 6.6455C1.47681 5.48459 2.00058 4.36434 2.88869 3.72997L5.21694 2.06693C6.57922 1.09388 8.47432 1.42407 9.42724 2.80051L10.893 4.91776C11.5152 5.8165 11.3006 7.0483 10.4111 7.68365L9.24234 8.51849C9.41923 9.1951 9.96939 10.5846 11.6924 12.3076C13.4154 14.0306 14.8049 14.5807 15.4815 14.7576L16.3163 13.5888C16.9517 12.6994 18.1835 12.4847 19.0822 13.1069L21.1995 14.5727C22.5759 15.5257 22.9061 17.4207 21.933 18.783L20.27 21.1113C19.6356 21.9994 18.5154 22.5232 17.3545 22.2323ZM8.86397 15.136C12.2734 18.5454 16.0358 19.8401 17.8405 20.2923C18.1043 20.3583 18.4232 20.2558 18.6425 19.9488L20.3056 17.6205C20.6299 17.1665 20.5199 16.5348 20.061 16.2171L17.9438 14.7513L17.0479 16.0056C16.6818 16.5182 16.0047 16.9202 15.2163 16.7501C14.2323 16.5378 12.4133 15.8569 10.2782 13.7218C8.1431 11.5867 7.46219 9.7677 7.24987 8.7837C7.07977 7.9953 7.48181 7.31821 7.99439 6.95208L9.24864 6.05618L7.78285 3.93893C7.46521 3.48011 6.83351 3.37005 6.37942 3.6944L4.05117 5.35744C3.74413 5.57675 3.64162 5.89565 3.70771 6.15943C4.15989 7.96418 5.45459 11.7266 8.86397 15.136Z" fill="#0F0F0F"/>
+                  </svg>
+                </div>
+                {{ section.settings.phone }}
+              </a>
+            </div>
+          {% endif %}
+
+        </div>
+
+      </div>
+
+      <div class="contact-form-wrapper">
+       {% if section.settings.contact_form != blank %}
+        <h2>{{ section.settings.contact_form }}</h2>
+      {% endif %}
+        {% content_for 'blocks' %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+.contact-main{
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  background: radial-gradient(
+    100.75% 105.17% at 95.4% 0%,
+    #cb964675 0%,
+    #e3c39f2e 100%
+  );
+}
+.inner-contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+.boxed-socialed {
+    background: #e3c39f;
+    padding: 30px;
+    border-radius: 10px;
+    height: 100%;
+     border: 1px solid #461324;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+}
+.boxed-socialed a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--heading-color);
+    gap: 9px;
+}
+
+.boxed-socialed a span {
+    word-break: break-all;
+    text-align: center;
+    line-height: 19px;
+}
+.boxed-socialed svg rect,
+.boxed-socialed svg path{
+  stroke:var(--gold);
+  fill:none;
+}
+.contact-form-wrapper {
+    background: #E3C39F;
+    padding: 40px;
+    border-radius: 8px;
+    height: 100%;
+    border: 1px solid #461324;
+    box-shadow: 2px 2px 4px 0px #4613244D;
+}
+.contact-info h2 {
+    margin: 0 0 9px;
+    font-weight: 400;
+    color: var(--heading-color);
+    line-height: 1.15;
+    font-size: 40px;
+}
+.contact-form-wrapper .contact-form{
+    width: 100%;
+}
+.contact-description {
+    margin-bottom: 22px;
+    font-size: 18px;
+    color:var(--ink3);
+}
+.contact-info h4 {
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: var(--gold);
+}
+.direction-link{
+  display:inline-block;
+}
+.contact-social-media {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    align-items: center;
+}
+.contact-form-wrapper h2 {
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--heading-color);
+    line-height: 1.15;
+    margin: 0 0 15px 0;
+    letter-spacing: -0.02em;
+}
+.ct-social a{
+  text-decoration:none;
+}
+
+@media all and (max-width:768px){
+  .inner-contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 37px;
+    align-items: center;
+  }
+  .contact-info h2 {
+    font-size: 22px;
+  }
+  .contact-description {
+    margin-bottom: 18px;
+    font-size: 16px;
+  }
+  .contact-social-media {
+    gap: 10px;
+  }
+  .contact-info h4 {
+    margin-bottom: 13px;
+    font-size: 16px;
+  }
+  .contact-form-wrapper {
+    padding: 20px;
+  }
+  .submit-button {
+    border-radius: 5px;
+    padding: 9px 27px;
+    font-size: 15px;
+  }
+  .contact-form-wrapper h2 {
+    font-size: 22px;
+    line-height: 1.15;
+    margin: 0 0 11px 0;
+  }
+}
+@media screen and (max-width:749px){
+  .contact-social-media{
+    grid-template-columns:1fr;
+  }
+  .contact-main{
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  .boxed-socialed a svg{
+    width:40px;
+    height:40px;
+  }
+  .inner-contact{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Contact Main",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Reach Out to The Prana"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "MANHATTAN, NYC"
+    },
+    {
+      "type": "text",
+      "id": "direction_text",
+      "label": "Direction Text",
+      "default": "Directions"
+    },
+    {
+      "type": "url",
+      "id": "direction_link",
+      "label": "Direction Link"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "email",
+      "label": "Email",
+      "default": "admin@pranawellness.shop"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "8622395019"
+    },
+    {
+      "type": "url",
+      "id": "phone_url",
+      "label": "Phone Url",
+    },
+    {
+      "type": "text",
+      "id": "contact_form",
+      "label": "Contact Form Heading",
+      "default": "Send Us A Message"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop Top Padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop Bottom Padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Main"
+    }
+  ]
+}
+{% endschema %}

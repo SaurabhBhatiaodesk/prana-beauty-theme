@@ -1,0 +1,215 @@
+<section class="video-hero">
+  <div class="video-hero__container">
+
+    <!-- Overlay + Poster + Text -->
+    <div class="video-hero__overlay" id="videoOverlay">
+      <img 
+        src="{{ section.settings.poster | img_url: '2000x' }}" 
+        alt="Poster"
+        class="video-hero__poster desktop-poster"
+        width="" height=""
+      >
+      <img 
+        src="{{ section.settings.poster_mobile | img_url: '800x' }}" 
+        alt="Mobile Poster"
+        class="video-hero__poster mobile-poster"
+        width="" height=""
+      >
+
+      <div class="video-hero__content">
+        <h2>{{ section.settings.heading }}</h2>
+
+        <a href="{{ section.settings.link }}" class="video-shop-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.18506 0.000976562V1.38037H10.827L0 12.0513L1 13.0391L11.827 2.36816V9.90039H13.2271V0L3.18506 0.000976562Z" fill="black"/>
+            <path d="M0 12.0513L10.827 1.38037H3.18604V0.00195312H13.23V9.90234H11.83V2.37012L1.00305 13.041L0 12.0513Z" fill="#1B1716"/>
+          </svg>
+          Shop Now
+        </a>
+
+        <p>{{ section.settings.subtext }}</p>
+      </div>
+    </div>
+
+    <video 
+      id="heroVideo"
+      class="video-hero__video"
+      muted
+      loop
+      playsinline
+      preload="none"
+      data-src="{{ section.settings.video_url }}"
+    ></video>
+
+
+  </div>
+</section>
+
+<style>
+  .video-hero {
+    position: relative;
+  }
+
+  .video-hero__container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+ .video-hero__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgba(0,0,0,0.45);
+    color: #fff;
+    text-align: center;
+    z-index: 5 !important;
+    padding: 2rem;
+  } 
+.video-hero__content {
+  position: relative;
+  z-index: 6;
+}
+  .video-hero__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  /* Background Video */
+  .video-hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  a.video-shop-btn {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    max-width: 190px;
+    margin: 20px auto 10px;
+    color: #000;
+  }
+
+  a.video-shop-btn svg {
+    margin-right: 8px;
+  }
+
+  .desktop-poster { display: block; }
+  .mobile-poster { display: none; }
+
+  @media(max-width: 767px) {
+    .desktop-poster { display: none; }
+    .mobile-poster { display: block; }
+
+    .video-hero h2 {
+      font-size: 50px!important;
+      line-height: 56px!important;
+      margin-bottom: 30px!important;
+    }
+
+    .video-hero__overlay {
+      justify-content: flex-end!important;
+      padding-bottom: 5rem!important;
+    }
+  }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const video = document.getElementById("heroVideo");
+  const posters = document.querySelectorAll(".video-hero__poster");
+
+  if (!video) return;
+
+  function hidePosters() {
+    posters.forEach(p => {
+      p.style.opacity = "0";
+      p.style.pointerEvents = "none";
+    });
+  }
+
+  function loadVideo() {
+    if (video.dataset.loaded) return;
+
+    video.src = video.dataset.src;
+    video.dataset.loaded = "true";
+
+    video.addEventListener("playing", hidePosters);
+    video.play().catch(() => {});
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadVideo();
+          observer.disconnect();
+        }
+      });
+    },
+    { rootMargin: "200px" }
+  );
+
+  observer.observe(video);
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Video Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Poster Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_mobile",
+      "label": "Mobile Poster Image"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL (MP4 or YouTube)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Unveil Radiance with Turmeric Glow Mask"
+    },
+    {
+        "type": "url",
+        "id": "link",
+        "label": "Button link"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "An enchanting golden ritual designed to purify, soothe, and rejuvenate your skin."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Hero",
+      "category": "Media"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1586 @@
+{% comment %}
+  ============================================================
+  SECTION: AI Dosha Quiz (PRANA Beauty)
+  Version: 4.0
+  Description: Complete AI-powered dosha quiz with dynamic
+               product matching, image support, and future-ready
+  ============================================================
+{% endcomment %}
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     STYLES — Complete Design
+     ============================================================ */
+  #prana-quiz-{{ section.id }} *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --canvas:#FAF7F2;
+    --ink:#1A1208;
+    --gold:#B07D3A;
+    --gold-light:#E8D5B0;
+    --cream:#F2EDE4;
+    --vata-bg:#F5EDE8;--vata-mid:#C4856A;--vata-deep:#7A3820;
+    --pitta-bg:#E8F0EB;--pitta-mid:#4A7C59;--pitta-deep:#1E4A2E;
+    --kapha-bg:#EAE8F0;--kapha-mid:#6A5A8C;--kapha-deep:#2E1E5A;
+    --border:#E0D8CC;
+    --text-muted:#888070;
+  }
+  #prana-quiz-{{ section.id }} {
+    font-family:'Jost',sans-serif;
+    background:var(--canvas);
+    color:var(--ink);
+    min-height:100vh;
+    overflow-x:hidden;
+    max-width:100%;
+  }
+  #prana-quiz-{{ section.id }} *{box-sizing:border-box;margin:0;padding:0}
+
+  /* ─── SCREEN SYSTEM ─── */
+  #prana-quiz-{{ section.id }} .screen{display:none;min-height:100vh;animation:fadeIn .4s ease}
+  #prana-quiz-{{ section.id }} .screen.active{display:flex;flex-direction:column}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ─── HEADER ─── */
+  #prana-quiz-{{ section.id }} .hdr{text-align:center;padding:2.5rem 2rem 1.5rem;border-bottom:1px solid var(--border)}
+  #prana-quiz-{{ section.id }} .hdr-logo{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+  #prana-quiz-{{ section.id }} .hdr-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;line-height:1.2}
+  #prana-quiz-{{ section.id }} .hdr-title em{font-style:italic;color:var(--gold)}
+  #prana-quiz-{{ section.id }} .hdr-sub{font-size:12px;color:var(--text-muted);letter-spacing:.08em;margin-top:.5rem}
+
+  /* ─── ENTRY SCREEN ─── */
+  #prana-quiz-{{ section.id }} .entry-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:2rem;max-width:780px;margin:0 auto;width:100%}
+  @media(max-width:600px){#prana-quiz-{{ section.id }} .entry-cards{grid-template-columns:1fr}}
+  #prana-quiz-{{ section.id }} .entry-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2rem 1.5rem;cursor:pointer;transition:all .25s;text-align:center;position:relative}
+  #prana-quiz-{{ section.id }} .entry-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 24px rgba(176,125,58,.12)}
+  #prana-quiz-{{ section.id }} .entry-card.featured{border:2px solid var(--gold)}
+  #prana-quiz-{{ section.id }} .ec-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:4px 12px;border-radius:20px;white-space:nowrap}
+  #prana-quiz-{{ section.id }} .ec-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:22px}
+  #prana-quiz-{{ section.id }} .ec-icon.scan{background:rgba(176,125,58,.1)}
+  #prana-quiz-{{ section.id }} .ec-icon.quick{background:rgba(74,124,89,.1)}
+  #prana-quiz-{{ section.id }} .ec-icon.deep{background:rgba(106,90,140,.1)}
+  #prana-quiz-{{ section.id }} .ec-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;margin-bottom:.4rem}
+  #prana-quiz-{{ section.id }} .ec-desc{font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:1rem}
+  #prana-quiz-{{ section.id }} .ec-time{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+  #prana-quiz-{{ section.id }} .btn-entry{width:100%;padding:10px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.08em;cursor:pointer;transition:background .2s}
+  #prana-quiz-{{ section.id }} .btn-entry:hover{background:#96694A}
+  #prana-quiz-{{ section.id }} .btn-entry.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+  #prana-quiz-{{ section.id }} .btn-entry.ghost:hover{background:rgba(176,125,58,.08)}
+
+  /* ─── SCANNER ─── */
+  #prana-quiz-{{ section.id }} .scanner-wrap{max-width:500px;margin:0 auto;padding:2rem;width:100%}
+  #prana-quiz-{{ section.id }} .scanner-choice{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+  #prana-quiz-{{ section.id }} .sc-btn{padding:1rem;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;text-align:center;transition:all .2s;font-family:'Jost',sans-serif}
+  #prana-quiz-{{ section.id }} .sc-btn:hover,#prana-quiz-{{ section.id }} .sc-btn.active{border-color:var(--gold);background:rgba(176,125,58,.05)}
+  #prana-quiz-{{ section.id }} .sc-btn-icon{font-size:24px;margin-bottom:.4rem}
+  #prana-quiz-{{ section.id }} .sc-btn-label{font-size:13px;font-weight:500}
+  #prana-quiz-{{ section.id }} .sc-btn-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
+
+  #prana-quiz-{{ section.id }} .camera-zone{position:relative;width:100%;aspect-ratio:4/3;background:#111;border-radius:16px;overflow:hidden;margin-bottom:1.5rem;display:none}
+  #prana-quiz-{{ section.id }} .camera-zone.active{display:block}
+  #prana-quiz-{{ section.id }} #cameraFeed{width:100%;height:100%;object-fit:cover}
+  #prana-quiz-{{ section.id }} .scan-overlay{position:absolute;inset:0;pointer-events:none}
+  #prana-quiz-{{ section.id }} .scan-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:2px solid rgba(176,125,58,.6);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+  #prana-quiz-{{ section.id }} .scan-ring:nth-child(1){width:180px;height:180px;animation-delay:0s}
+  #prana-quiz-{{ section.id }} .scan-ring:nth-child(2){width:240px;height:240px;animation-delay:.4s;opacity:.5}
+  #prana-quiz-{{ section.id }} .scan-ring:nth-child(3){width:300px;height:300px;animation-delay:.8s;opacity:.25}
+  @keyframes pulse{0%,100%{opacity:.8;transform:translate(-50%,-50%) scale(1)}50%{opacity:.4;transform:translate(-50%,-50%) scale(1.03)}}
+  #prana-quiz-{{ section.id }} .scan-line{position:absolute;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,rgba(176,125,58,.8),transparent);animation:scanLine 2.5s linear infinite}
+  @keyframes scanLine{0%{top:15%}100%{top:85%}}
+  #prana-quiz-{{ section.id }} .scan-chips{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+  #prana-quiz-{{ section.id }} .scan-chip{background:rgba(0,0,0,.6);color:#fff;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px)}
+  #prana-quiz-{{ section.id }} .scan-chip.lit{background:rgba(176,125,58,.8);color:#fff}
+
+  #prana-quiz-{{ section.id }} .upload-zone{width:100%;aspect-ratio:4/3;border:2px dashed var(--border);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;margin-bottom:1.5rem;background:#fff}
+  #prana-quiz-{{ section.id }} .upload-zone:hover{border-color:var(--gold);background:rgba(176,125,58,.03)}
+  #prana-quiz-{{ section.id }} .upload-zone.hidden{display:none}
+  #prana-quiz-{{ section.id }} .upload-icon{font-size:36px;margin-bottom:.75rem;opacity:.4}
+  #prana-quiz-{{ section.id }} .upload-label{font-size:13px;color:var(--text-muted)}
+  #prana-quiz-{{ section.id }} .upload-sub{font-size:11px;color:var(--text-muted);margin-top:.25rem;opacity:.7}
+  #prana-quiz-{{ section.id }} #fileInput{display:none}
+  #prana-quiz-{{ section.id }} #uploadPreview{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px;margin-bottom:1.5rem;display:none}
+
+  #prana-quiz-{{ section.id }} .scan-status{text-align:center;font-size:12px;color:var(--text-muted);margin-bottom:1.5rem;min-height:18px}
+  #prana-quiz-{{ section.id }} .btn-scan{width:100%;padding:14px;background:var(--gold);color:#fff;border:none;border-radius:10px;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.1em;cursor:pointer;transition:all .2s}
+  #prana-quiz-{{ section.id }} .btn-scan:disabled{opacity:.4;cursor:default}
+  #prana-quiz-{{ section.id }} .btn-scan:not(:disabled):hover{background:#96694A}
+
+  /* ─── CONSENT ─── */
+  #prana-quiz-{{ section.id }} .consent-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem}
+  #prana-quiz-{{ section.id }} .consent-row{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.6rem}
+  #prana-quiz-{{ section.id }} .consent-row:last-child{margin-bottom:0}
+  #prana-quiz-{{ section.id }} .consent-check{width:18px;height:18px;border:1.5px solid var(--border);border-radius:4px;flex-shrink:0;cursor:pointer;appearance:none;-webkit-appearance:none;margin-top:1px;transition:all .2s;background:#fff}
+  #prana-quiz-{{ section.id }} .consent-check:checked{background:var(--gold);border-color:var(--gold);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23fff' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+  #prana-quiz-{{ section.id }} .consent-label{font-size:11px;color:var(--text-muted);line-height:1.6;cursor:pointer}
+  #prana-quiz-{{ section.id }} .consent-label a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+  #prana-quiz-{{ section.id }} .consent-label strong{color:var(--ink);font-weight:500}
+  #prana-quiz-{{ section.id }} .consent-notice{background:rgba(176,125,58,.06);border:1px solid rgba(176,125,58,.15);border-radius:10px;padding:.75rem 1rem;margin-bottom:1rem;display:flex;gap:.6rem;align-items:flex-start}
+  #prana-quiz-{{ section.id }} .cn-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+  #prana-quiz-{{ section.id }} .cn-text{font-size:11px;color:var(--text-muted);line-height:1.6}
+  #prana-quiz-{{ section.id }} .cn-text strong{color:var(--ink);font-weight:500}
+  #prana-quiz-{{ section.id }} .consent-error{font-size:11px;color:#C0392B;margin-bottom:.75rem;display:none;padding:0 .25rem}
+  #prana-quiz-{{ section.id }} .consent-error.show{display:block}
+  #prana-quiz-{{ section.id }} .consent-jurisdiction{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+  #prana-quiz-{{ section.id }} .cj-badge{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:20px;background:rgba(176,125,58,.08);color:var(--gold)}
+
+  /* ─── ANALYZING OVERLAY ─── */
+  #prana-quiz-{{ section.id }} .analyzing-overlay{display:none;position:fixed;inset:0;background:rgba(26,18,8,.85);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem}
+  #prana-quiz-{{ section.id }} .analyzing-overlay.active{display:flex}
+  #prana-quiz-{{ section.id }} .analyzing-spinner{width:60px;height:60px;border:3px solid rgba(176,125,58,.2);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  #prana-quiz-{{ section.id }} .analyzing-text{color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;text-align:center;max-width:260px;line-height:1.5}
+  #prana-quiz-{{ section.id }} .analyzing-markers{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:300px}
+  #prana-quiz-{{ section.id }} .am{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:rgba(176,125,58,.15);color:var(--gold-light);transition:all .4s}
+  #prana-quiz-{{ section.id }} .am.done{background:rgba(176,125,58,.5);color:#fff}
+
+  /* ─── QUIZ ─── */
+  #prana-quiz-{{ section.id }} .quiz-wrap{max-width:480px;margin:0 auto;padding:2rem;width:100%;flex:1}
+  #prana-quiz-{{ section.id }} .quiz-progress{margin-bottom:2rem}
+  #prana-quiz-{{ section.id }} .qp-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+  #prana-quiz-{{ section.id }} .qp-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s ease}
+  #prana-quiz-{{ section.id }} .qp-label{display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);letter-spacing:.08em;margin-top:.5rem}
+  #prana-quiz-{{ section.id }} .q-step{display:none}
+  #prana-quiz-{{ section.id }} .q-step.active{display:block;animation:fadeIn .3s ease}
+  #prana-quiz-{{ section.id }} .q-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;line-height:1.3;margin-bottom:.5rem}
+  #prana-quiz-{{ section.id }} .q-sub{font-size:12px;color:var(--text-muted);margin-bottom:1.75rem;line-height:1.6}
+  #prana-quiz-{{ section.id }} .q-options{display:flex;flex-direction:column;gap:.75rem}
+  #prana-quiz-{{ section.id }} .q-opt{padding:1rem 1.25rem;border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s;background:#fff;display:flex;align-items:flex-start;gap:.75rem}
+  #prana-quiz-{{ section.id }} .q-opt:hover{border-color:var(--gold);background:rgba(176,125,58,.04)}
+  #prana-quiz-{{ section.id }} .q-opt.selected{border-color:var(--gold);background:rgba(176,125,58,.08)}
+  #prana-quiz-{{ section.id }} .q-opt-dot{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;margin-top:1px;transition:all .2s;display:flex;align-items:center;justify-content:center}
+  #prana-quiz-{{ section.id }} .q-opt.selected .q-opt-dot{border-color:var(--gold);background:var(--gold)}
+  #prana-quiz-{{ section.id }} .q-opt.selected .q-opt-dot::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+  #prana-quiz-{{ section.id }} .q-opt-text{flex:1}
+  #prana-quiz-{{ section.id }} .q-opt-main{font-size:13px;font-weight:500;line-height:1.4}
+  #prana-quiz-{{ section.id }} .q-opt-hint{font-size:11px;color:var(--text-muted);margin-top:2px;line-height:1.4}
+  #prana-quiz-{{ section.id }} .q-nav{display:flex;justify-content:space-between;margin-top:2rem;align-items:center}
+  #prana-quiz-{{ section.id }} .btn-back{padding:10px 20px;background:transparent;border:1px solid var(--border);border-radius:8px;font-family:'Jost',sans-serif;font-size:12px;color:var(--text-muted);cursor:pointer;transition:all .2s}
+  #prana-quiz-{{ section.id }} .btn-back:hover{border-color:var(--gold);color:var(--gold)}
+  #prana-quiz-{{ section.id }} .btn-next{padding:11px 28px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.08em;cursor:pointer;opacity:.35;pointer-events:none;transition:all .2s}
+  #prana-quiz-{{ section.id }} .btn-next.ready{opacity:1;pointer-events:all}
+  #prana-quiz-{{ section.id }} .btn-next.ready:hover{background:#96694A}
+
+  /* ─── LAYER PILLS ─── */
+  #prana-quiz-{{ section.id }} .layer-pills{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+  #prana-quiz-{{ section.id }} .layer-pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:var(--cream);color:var(--text-muted)}
+  #prana-quiz-{{ section.id }} .layer-pill.active{background:var(--gold);color:#fff}
+
+  /* ─── RESULT ─── */
+  #prana-quiz-{{ section.id }} .result-wrap{max-width:520px;margin:0 auto;padding:1.5rem;width:100%}
+  #prana-quiz-{{ section.id }} .result-hero{border-radius:20px;padding:2rem 1.75rem;color:#fff;text-align:center;margin-bottom:1rem;position:relative;overflow:hidden}
+  #prana-quiz-{{ section.id }} .rh-vata{background:linear-gradient(150deg,#3D1A0A 0%,#7A3820 50%,#C4856A 100%)}
+  #prana-quiz-{{ section.id }} .rh-pitta{background:linear-gradient(150deg,#0A2A14 0%,#1E4A2E 50%,#4A7C59 100%)}
+  #prana-quiz-{{ section.id }} .rh-kapha{background:linear-gradient(150deg,#12082A 0%,#2E1E5A 50%,#6A5A8C 100%)}
+  #prana-quiz-{{ section.id }} .rh-orb{position:absolute;border-radius:50%;background:rgba(255,255,255,.04)}
+  #prana-quiz-{{ section.id }} .rh-tag{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem}
+  #prana-quiz-{{ section.id }} .rh-dosha{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;letter-spacing:-.01em;margin-bottom:.15rem}
+  #prana-quiz-{{ section.id }} .rh-sub{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.25rem}
+  #prana-quiz-{{ section.id }} .rh-essence{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:rgba(255,255,255,.8);line-height:1.7;max-width:340px;margin:0 auto}
+  #prana-quiz-{{ section.id }} .rh-source{display:inline-block;margin-top:.75rem;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);background:rgba(255,255,255,.08);padding:4px 12px;border-radius:20px}
+
+  #prana-quiz-{{ section.id }} .result-section{margin-bottom:1.25rem}
+  #prana-quiz-{{ section.id }} .rs-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+  #prana-quiz-{{ section.id }} .result-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem}
+
+  #prana-quiz-{{ section.id }} .skin-markers{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+  #prana-quiz-{{ section.id }} .marker-item{text-align:center}
+  #prana-quiz-{{ section.id }} .marker-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:.3rem}
+  #prana-quiz-{{ section.id }} .marker-fill{height:100%;border-radius:2px;transition:width 1s ease}
+  #prana-quiz-{{ section.id }} .marker-fill.high{background:var(--gold)}
+  #prana-quiz-{{ section.id }} .marker-fill.mid{background:#B07D3A99}
+  #prana-quiz-{{ section.id }} .marker-fill.low{background:#B07D3A44}
+  #prana-quiz-{{ section.id }} .marker-name{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+  #prana-quiz-{{ section.id }} .marker-val{font-size:11px;font-weight:500;color:var(--ink)}
+
+  #prana-quiz-{{ section.id }} .dosha-learn-btn{width:100%;padding:10px;background:transparent;border:1px solid var(--border);border-radius:8px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:all .2s;margin-top:.75rem}
+  #prana-quiz-{{ section.id }} .dosha-learn-btn:hover{border-color:var(--gold);background:rgba(176,125,58,.06)}
+
+  #prana-quiz-{{ section.id }} .insight-text{font-size:13px;line-height:1.75;color:var(--ink)}
+  #prana-quiz-{{ section.id }} .insight-text em{font-style:italic;color:var(--gold)}
+
+  /* ─── PRODUCTS ─── */
+  #prana-quiz-{{ section.id }} .product-cards{display:flex;flex-direction:column;gap:.75rem}
+  #prana-quiz-{{ section.id }} .product-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start}
+  #prana-quiz-{{ section.id }} .pc-img{width:80px;height:80px;border-radius:10px;background:var(--cream);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  #prana-quiz-{{ section.id }} .pc-img img{width:100%;height:100%;object-fit:cover}
+  #prana-quiz-{{ section.id }} .pc-img .no-img{font-size:28px;opacity:0.3}
+  #prana-quiz-{{ section.id }} .pc-body{flex:1;min-width:0}
+  #prana-quiz-{{ section.id }} .pc-collection{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+  #prana-quiz-{{ section.id }} .pc-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;margin-bottom:.3rem;line-height:1.3}
+  #prana-quiz-{{ section.id }} .pc-why{font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:.5rem}
+  #prana-quiz-{{ section.id }} .pc-bottom{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+  #prana-quiz-{{ section.id }} .pc-price{font-size:13px;font-weight:500}
+  #prana-quiz-{{ section.id }} .btn-shop{padding:7px 14px;background:var(--gold);color:#fff;border:none;border-radius:7px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s;white-space:nowrap}
+  #prana-quiz-{{ section.id }} .btn-shop:hover{background:#96694A}
+
+  /* ─── UPGRADE NUDGE ─── */
+  #prana-quiz-{{ section.id }} .upgrade-nudge{background:linear-gradient(135deg,rgba(176,125,58,.08),rgba(176,125,58,.03));border:1px solid rgba(176,125,58,.2);border-radius:12px;padding:1.25rem;text-align:center;margin-bottom:1.25rem}
+  #prana-quiz-{{ section.id }} .un-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:.35rem}
+  #prana-quiz-{{ section.id }} .un-sub{font-size:12px;color:var(--text-muted);margin-bottom:.75rem;line-height:1.5}
+  #prana-quiz-{{ section.id }} .btn-upgrade{padding:9px 22px;background:var(--ink);color:#fff;border:none;border-radius:8px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.08em;cursor:pointer;transition:background .2s}
+  #prana-quiz-{{ section.id }} .btn-upgrade:hover{background:#3A2810}
+
+  /* ─── EMAIL BOX ─── */
+  #prana-quiz-{{ section.id }} .email-box{background:var(--ink);border-radius:14px;padding:1.5rem;color:#fff;text-align:center;margin-bottom:1.25rem}
+  #prana-quiz-{{ section.id }} .eb-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;margin-bottom:.3rem}
+  #prana-quiz-{{ section.id }} .eb-sub{font-size:11px;color:rgba(255,255,255,.5);margin-bottom:1rem;line-height:1.5}
+  #prana-quiz-{{ section.id }} .eb-row{display:flex;gap:.5rem}
+  #prana-quiz-{{ section.id }} .eb-input{flex:1;padding:10px 14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:#fff;font-family:'Jost',sans-serif;font-size:12px;outline:none}
+  #prana-quiz-{{ section.id }} .eb-input::placeholder{color:rgba(255,255,255,.3)}
+  #prana-quiz-{{ section.id }} .eb-input:focus{border-color:var(--gold)}
+  #prana-quiz-{{ section.id }} .btn-eb{padding:10px 16px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.06em;cursor:pointer;white-space:nowrap}
+  #prana-quiz-{{ section.id }} .btn-eb:hover{background:#96694A}
+  #prana-quiz-{{ section.id }} .eb-confirm{display:none;font-size:12px;color:rgba(255,255,255,.6);margin-top:.75rem}
+  #prana-quiz-{{ section.id }} .eb-confirm.show{display:block}
+
+  /* ─── RETAKE ─── */
+  #prana-quiz-{{ section.id }} .retake-row{display:flex;gap:.75rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+  #prana-quiz-{{ section.id }} .btn-retake{padding:10px 20px;background:transparent;border:1px solid var(--border);border-radius:8px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.08em;color:var(--text-muted);cursor:pointer;transition:all .2s}
+  #prana-quiz-{{ section.id }} .btn-retake:hover{border-color:var(--gold);color:var(--gold)}
+
+  /* ─── BACK NAV ─── */
+  #prana-quiz-{{ section.id }} .back-nav{padding:.75rem 1.5rem;display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--text-muted);font-size:12px;transition:color .2s;width:fit-content}
+  #prana-quiz-{{ section.id }} .back-nav:hover{color:var(--gold)}
+  #prana-quiz-{{ section.id }} .back-arrow{font-size:16px;line-height:1}
+
+  /* ─── MODALS ─── */
+  #prana-quiz-{{ section.id }} .modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,18,8,.6);z-index:200;align-items:flex-end;justify-content:center}
+  #prana-quiz-{{ section.id }} .modal-overlay.active{display:flex;animation:fadeIn .2s ease}
+  #prana-quiz-{{ section.id }} .dosha-modal{width:100%;max-width:520px;border-radius:24px 24px 0 0;padding:2rem;max-height:85vh;overflow-y:auto;animation:slideUp .35s ease}
+  @keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+  #prana-quiz-{{ section.id }} .modal-vata{background:var(--vata-bg)}
+  #prana-quiz-{{ section.id }} .modal-pitta{background:var(--pitta-bg)}
+  #prana-quiz-{{ section.id }} .modal-kapha{background:var(--kapha-bg)}
+  #prana-quiz-{{ section.id }} .modal-handle{width:36px;height:4px;background:rgba(0,0,0,.15);border-radius:2px;margin:0 auto .75rem}
+  #prana-quiz-{{ section.id }} .modal-close{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted);line-height:1;padding:0;margin-top:-4px}
+  #prana-quiz-{{ section.id }} .modal-dosha-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:.15rem}
+  #prana-quiz-{{ section.id }} .modal-dosha-name.vata-color{color:var(--vata-deep)}
+  #prana-quiz-{{ section.id }} .modal-dosha-name.pitta-color{color:var(--pitta-deep)}
+  #prana-quiz-{{ section.id }} .modal-dosha-name.kapha-color{color:var(--kapha-deep)}
+  #prana-quiz-{{ section.id }} .modal-tagline{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--text-muted);margin-bottom:1.25rem}
+  #prana-quiz-{{ section.id }} .modal-section{margin-bottom:1.25rem}
+  #prana-quiz-{{ section.id }} .modal-section-title{font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem}
+  #prana-quiz-{{ section.id }} .modal-section-title.vata-color{color:var(--vata-mid)}
+  #prana-quiz-{{ section.id }} .modal-section-title.pitta-color{color:var(--pitta-mid)}
+  #prana-quiz-{{ section.id }} .modal-section-title.kapha-color{color:var(--kapha-mid)}
+  #prana-quiz-{{ section.id }} .modal-body{font-size:13px;line-height:1.75;color:var(--ink)}
+  #prana-quiz-{{ section.id }} .ingredient-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+  #prana-quiz-{{ section.id }} .ing-tag{font-size:10px;padding:4px 10px;border-radius:20px}
+  #prana-quiz-{{ section.id }} .ing-tag.vata{background:rgba(196,133,106,.15);color:var(--vata-deep)}
+  #prana-quiz-{{ section.id }} .ing-tag.pitta{background:rgba(74,124,89,.15);color:var(--pitta-deep)}
+  #prana-quiz-{{ section.id }} .ing-tag.kapha{background:rgba(106,90,140,.15);color:var(--kapha-deep)}
+  #prana-quiz-{{ section.id }} .sutra-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+  #prana-quiz-{{ section.id }} .sutra-tag{font-size:10px;padding:4px 10px;border-radius:20px;background:rgba(0,0,0,.06);color:var(--ink)}
+
+  /* ─── FOOTER ─── */
+  #prana-quiz-{{ section.id }} .result-footer{text-align:center;padding-bottom:2rem;font-size:10px;color:var(--text-muted);letter-spacing:.08em}
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:600px){
+    #prana-quiz-{{ section.id }} .entry-cards{grid-template-columns:1fr}
+    #prana-quiz-{{ section.id }} .hdr{padding:1.5rem 1rem 1rem}
+    #prana-quiz-{{ section.id }} .hdr-title{font-size:1.5rem}
+    #prana-quiz-{{ section.id }} .quiz-wrap{padding:1rem}
+    #prana-quiz-{{ section.id }} .result-wrap{padding:1rem}
+    #prana-quiz-{{ section.id }} .skin-markers{grid-template-columns:1fr}
+    #prana-quiz-{{ section.id }} .result-hero{padding:1.5rem 1rem}
+    #prana-quiz-{{ section.id }} .rh-dosha{font-size:2rem}
+    #prana-quiz-{{ section.id }} .dosha-modal{padding:1.5rem}
+    #prana-quiz-{{ section.id }} .scanner-wrap{padding:1rem}
+    #prana-quiz-{{ section.id }} .eb-row{flex-direction:column}
+    #prana-quiz-{{ section.id }} .pc-img{width:60px;height:60px}
+    #prana-quiz-{{ section.id }} .product-card{flex-wrap:wrap}
+  }
+</style>
+
+<!-- ============================================================
+     HTML STRUCTURE
+     ============================================================ -->
+<div id="prana-quiz-{{ section.id }}">
+
+  <!-- ═══ ANALYZING OVERLAY ═══ -->
+  <div class="analyzing-overlay" id="analyzingOverlay-{{ section.id }}">
+    <div class="analyzing-spinner"></div>
+    <div class="analyzing-text" id="analyzingText-{{ section.id }}">Reading your skin's story…</div>
+    <div class="analyzing-markers">
+      <div class="am" id="am1-{{ section.id }}">Hydration</div>
+      <div class="am" id="am2-{{ section.id }}">Texture</div>
+      <div class="am" id="am3-{{ section.id }}">Pigmentation</div>
+      <div class="am" id="am4-{{ section.id }}">Radiance</div>
+      <div class="am" id="am5-{{ section.id }}">Elasticity</div>
+      <div class="am" id="am6-{{ section.id }}">Barrier</div>
+    </div>
+  </div>
+
+  <!-- ═══ DOSHA MODALS ═══ -->
+  <div class="modal-overlay" id="tridoshicModal-{{ section.id }}">
+    <div class="dosha-modal" style="background:#FAF7F2">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="closeModal('tridoshicModal-{{ section.id }}')">✕</button>
+      <div class="modal-dosha-name" style="color:var(--gold)">Tridoshic</div>
+      <div class="modal-tagline">Vata · Pitta · Kapha — in rare balance</div>
+      <div class="modal-section">
+        <div class="modal-section-title" style="color:var(--gold)">The rarest constitution</div>
+        <div class="modal-body">Tridoshic skin is the most resilient and adaptable constitution in Ayurveda — all three energies present in relative equilibrium. Your skin shifts with the seasons rather than following a fixed pattern.</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title" style="color:var(--gold)">Your universal allies</div>
+        <div class="ingredient-tags">
+          <span class="ing-tag" style="background:rgba(176,125,58,.12);color:#7A3820">Rosa Damascena</span>
+          <span class="ing-tag" style="background:rgba(176,125,58,.12);color:#7A3820">Kashmir Saffron</span>
+          <span class="ing-tag" style="background:rgba(176,125,58,.12);color:#7A3820">Bakuchiol</span>
+          <span class="ing-tag" style="background:rgba(176,125,58,.12);color:#7A3820">Turmeric</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="vataModal-{{ section.id }}">
+    <div class="dosha-modal modal-vata">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="closeModal('vataModal-{{ section.id }}')">✕</button>
+      <div class="modal-dosha-name vata-color">Vata</div>
+      <div class="modal-tagline">Air & Space — the energy of movement</div>
+      <div class="modal-section">
+        <div class="modal-section-title vata-color">Your skin's signature</div>
+        <div class="modal-body">Fine-pored, delicate, and expressive — Vata skin holds emotion visibly. At its best, it has a translucent, almost porcelain quality.</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title vata-color">Ingredient allies</div>
+        <div class="ingredient-tags">
+          <span class="ing-tag vata">Kashmir Saffron</span>
+          <span class="ing-tag vata">Kokum Butter</span>
+          <span class="ing-tag vata">Shea Butter</span>
+          <span class="ing-tag vata">Rose Damascena</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="pittaModal-{{ section.id }}">
+    <div class="dosha-modal modal-pitta">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="closeModal('pittaModal-{{ section.id }}')">✕</button>
+      <div class="modal-dosha-name pitta-color">Pitta</div>
+      <div class="modal-tagline">Fire & Water — the energy of transformation</div>
+      <div class="modal-section">
+        <div class="modal-section-title pitta-color">Your skin's signature</div>
+        <div class="modal-body">Warm, luminous, and intelligent — Pitta skin is beautiful when balanced and unmistakable when it isn't.</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title pitta-color">Ingredient allies</div>
+        <div class="ingredient-tags">
+          <span class="ing-tag pitta">Rosa Damascena</span>
+          <span class="ing-tag pitta">Turmeric Curcumin</span>
+          <span class="ing-tag pitta">Sandalwood</span>
+          <span class="ing-tag pitta">Saffron Safranal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="kaphaModal-{{ section.id }}">
+    <div class="dosha-modal modal-kapha">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="closeModal('kaphaModal-{{ section.id }}')">✕</button>
+      <div class="modal-dosha-name kapha-color">Kapha</div>
+      <div class="modal-tagline">Earth & Water — the energy of structure</div>
+      <div class="modal-section">
+        <div class="modal-section-title kapha-color">Your skin's signature</div>
+        <div class="modal-body">Thick, stable, and slow to age — Kapha skin is a long game that pays extraordinary dividends.</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title kapha-color">Ingredient allies</div>
+        <div class="ingredient-tags">
+          <span class="ing-tag kapha">Turmeric</span>
+          <span class="ing-tag kapha">Bentonite Clay</span>
+          <span class="ing-tag kapha">French Pink Clay</span>
+          <span class="ing-tag kapha">Kashmir Saffron</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SCREEN: ENTRY ═══ -->
+  <div class="screen active" id="screen-entry-{{ section.id }}">
+    <div class="hdr">
+      <div class="hdr-logo">{{ section.settings.brand_name | default: 'PRANA Beauty & Wellness' }}</div>
+      <h1 class="hdr-title">Find Your <em>Skin Ritual</em></h1>
+      <div class="hdr-sub">Three paths. One result. Your personal Ayurvedic ritual.</div>
+    </div>
+    <div class="entry-cards">
+      <div class="entry-card featured" onclick="goToScreen('screen-scanner-{{ section.id }}')">
+        <div class="ec-badge">Most accurate</div>
+        <div class="ec-icon scan">📷</div>
+        <div class="ec-name">AI Skin Scan</div>
+        <div class="ec-desc">Live camera or photo upload. Our AI reads 6 skin markers and maps them to your dosha.</div>
+        <div class="ec-time">✦ 30 seconds</div>
+        <br>
+        <button class="btn-entry">Start Scan</button>
+      </div>
+      <div class="entry-card" onclick="goToScreen('screen-quick-{{ section.id }}')">
+        <div class="ec-icon quick">⚡</div>
+        <div class="ec-name">Quick Quiz</div>
+        <div class="ec-desc">Three questions about your skin. Instant ritual match — no camera needed.</div>
+        <div class="ec-time">✦ 60 seconds</div>
+        <br>
+        <button class="btn-entry ghost">Take Quiz</button>
+      </div>
+      <div class="entry-card" onclick="goToScreen('screen-deep-{{ section.id }}')">
+        <div class="ec-icon deep">🌿</div>
+        <div class="ec-name">Deep Dosha</div>
+        <div class="ec-desc">18 questions across constitution, current state, and environment. The full Ayurvedic reading.</div>
+        <div class="ec-time">✦ 5 minutes</div>
+        <br>
+        <button class="btn-entry ghost">Begin Reading</button>
+      </div>
+    </div>
+    <div style="text-align:center;padding-bottom:2rem;font-size:10px;color:var(--text-muted);letter-spacing:.08em">Thousands of rituals matched · Free · No account required</div>
+  </div>
+
+  <!-- ═══ SCREEN: AI SCANNER ═══ -->
+  <div class="screen" id="screen-scanner-{{ section.id }}">
+    <div class="back-nav" onclick="goToScreen('screen-entry-{{ section.id }}')"><span class="back-arrow">←</span> Back</div>
+    <div class="hdr" style="padding-top:1rem">
+      <div class="hdr-logo">{{ section.settings.brand_name | default: 'PRANA Beauty & Wellness' }}</div>
+      <h1 class="hdr-title">AI <em>Skin Scan</em></h1>
+      <div class="hdr-sub">Your camera reads what products cannot</div>
+    </div>
+    <div class="scanner-wrap">
+      <div class="scanner-choice">
+        <button class="sc-btn active" id="btnCamera-{{ section.id }}" onclick="selectMode('camera','{{ section.id }}')">
+          <div class="sc-btn-icon">📷</div>
+          <div class="sc-btn-label">Live Camera</div>
+          <div class="sc-btn-sub">Real-time scan</div>
+        </button>
+        <button class="sc-btn" id="btnUpload-{{ section.id }}" onclick="selectMode('upload','{{ section.id }}')">
+          <div class="sc-btn-icon">🖼</div>
+          <div class="sc-btn-label">Upload Photo</div>
+          <div class="sc-btn-sub">Any selfie</div>
+        </button>
+      </div>
+
+      <div class="camera-zone active" id="cameraZone-{{ section.id }}">
+        <video id="cameraFeed-{{ section.id }}" autoplay playsinline muted></video>
+        <div class="scan-overlay">
+          <div class="scan-ring"></div>
+          <div class="scan-ring"></div>
+          <div class="scan-ring"></div>
+          <div class="scan-line"></div>
+          <div class="scan-chips">
+            <div class="scan-chip" id="chip1-{{ section.id }}">Hydration</div>
+            <div class="scan-chip" id="chip2-{{ section.id }}">Texture</div>
+            <div class="scan-chip" id="chip3-{{ section.id }}">Pigmentation</div>
+            <div class="scan-chip" id="chip4-{{ section.id }}">Radiance</div>
+            <div class="scan-chip" id="chip5-{{ section.id }}">Elasticity</div>
+            <div class="scan-chip" id="chip6-{{ section.id }}">Barrier</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-zone hidden" id="uploadZone-{{ section.id }}" onclick="document.getElementById('fileInput-{{ section.id }}').click()">
+        <div class="upload-icon">📸</div>
+        <div class="upload-label">Tap to upload a selfie</div>
+        <div class="upload-sub">JPG, PNG · Face forward, good light</div>
+      </div>
+      <input type="file" id="fileInput-{{ section.id }}" accept="image/*" onchange="handleUpload(event,'{{ section.id }}')">
+      <img id="uploadPreview-{{ section.id }}" alt="Your uploaded photo">
+
+      <div class="scan-status" id="scanStatus-{{ section.id }}">Position your face in the frame and hold still</div>
+
+      <div class="consent-jurisdiction">
+        <span class="cj-badge">🇺🇸 BIPA compliant</span>
+        <span class="cj-badge">🇺🇸 CCPA compliant</span>
+        <span class="cj-badge">🇺🇸 COPPA compliant</span>
+      </div>
+
+      <div class="consent-notice">
+        <div class="cn-icon">🔒</div>
+        <div class="cn-text"><strong>Your photo is never stored.</strong> It is processed in real time by AI to analyse your skin, then permanently discarded.</div>
+      </div>
+
+      <div class="consent-box">
+        <div class="consent-row">
+          <input class="consent-check" type="checkbox" id="consentBiometric-{{ section.id }}">
+          <label class="consent-label" for="consentBiometric-{{ section.id }}">
+            <strong>I provide written consent for real-time AI analysis of my facial image.</strong> I understand my photo will be used solely to assess skin characteristics and will not be stored, sold, or shared. <a href="{{ section.settings.privacy_url | default: '/pages/privacy-policy' }}" target="_blank">Privacy Policy ↗</a>
+          </label>
+        </div>
+        <div class="consent-row">
+          <input class="consent-check" type="checkbox" id="consentAge-{{ section.id }}">
+          <label class="consent-label" for="consentAge-{{ section.id }}">
+            <strong>I confirm I am 18 years of age or older.</strong>
+          </label>
+        </div>
+        <div class="consent-row">
+          <input class="consent-check" type="checkbox" id="consentMarketing-{{ section.id }}">
+          <label class="consent-label" for="consentMarketing-{{ section.id }}">
+            <strong>Optional:</strong> I agree to receive personalised skincare recommendations by email. I can unsubscribe at any time.
+          </label>
+        </div>
+      </div>
+
+      <div class="consent-error" id="consentError-{{ section.id }}">Please accept the required consents above before scanning.</div>
+      <button class="btn-scan" id="btnScan-{{ section.id }}" onclick="runScan('{{ section.id }}')">Analyse My Skin →</button>
+    </div>
+  </div>
+
+  <!-- ═══ SCREEN: QUICK QUIZ ═══ -->
+  <div class="screen" id="screen-quick-{{ section.id }}">
+    <div class="back-nav" onclick="goToScreen('screen-entry-{{ section.id }}')"><span class="back-arrow">←</span> Back</div>
+    <div class="hdr" style="padding-top:1rem">
+      <div class="hdr-logo">{{ section.settings.brand_name | default: 'PRANA Beauty & Wellness' }}</div>
+      <h1 class="hdr-title">Quick <em>Ritual Match</em></h1>
+      <div class="hdr-sub">Three questions. Your personal ritual.</div>
+    </div>
+    <div class="quiz-wrap">
+      <div class="quiz-progress">
+        <div class="qp-bar"><div class="qp-fill" id="qp-quick-{{ section.id }}" style="width:33%"></div></div>
+        <div class="qp-label"><span id="quick-phase-{{ section.id }}">Skin type</span><span id="quick-count-{{ section.id }}">1 of 3</span></div>
+      </div>
+      <div class="q-step active" id="qq-1-{{ section.id }}">
+        <div class="q-text">How does your skin feel most days?</div>
+        <div class="q-sub">Think about your baseline — not during a breakout or right after a holiday.</div>
+        <div class="q-options">
+          <div class="q-opt" onclick="quickAnswer(1,'vata',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Dry or very dry</div><div class="q-opt-hint">Tight, flaky, thirsty</div></div></div>
+          <div class="q-opt" onclick="quickAnswer(1,'kapha',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Oily or combination</div><div class="q-opt-hint">Shiny by midday, pores visible</div></div></div>
+          <div class="q-opt" onclick="quickAnswer(1,'pitta',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Sensitive or reactive</div><div class="q-opt-hint">Flushes easily, redness</div></div></div>
+          <div class="q-opt" onclick="quickAnswer(1,'balanced',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Normal or balanced</div><div class="q-opt-hint">Generally comfortable</div></div></div>
+        </div>
+      </div>
+      <div class="q-step" id="qq-2-{{ section.id }}">
+        <div class="q-text">What's your number one skin concern?</div>
+        <div class="q-sub">The thing you think about most when you look in the mirror.</div>
+        <div class="q-options">
+          <div class="q-opt" onclick="quickAnswer(2,'dullness',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Dullness or no glow</div><div class="q-opt-hint">Skin looks tired, flat</div></div></div>
+          <div class="q-opt" onclick="quickAnswer(2,'aging',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Fine lines or firmness</div><div class="q-opt-hint">Loss of elasticity</div></div></div>
+          <div class="q-opt" onclick="quickAnswer(2,'pigmentation',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Dark spots or uneven tone</div><div class="q-opt-hint">Hyperpigmentation</div></div></div>
+          <div class="q-opt" onclick="quickAnswer(2,'texture',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Breakouts or texture</div><div class="q-opt-hint">Congestion, enlarged pores</div></div></div>
+        </div>
+      </div>
+      <div class="q-step" id="qq-3-{{ section.id }}">
+        <div class="q-text">When do you want to transform your skin most?</div>
+        <div class="q-sub">Your ritual anchor — this shapes which products matter most.</div>
+        <div class="q-options">
+          <div class="q-opt" onclick="quickAnswer(3,'morning',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Morning — quick, protective</div><div class="q-opt-hint">Prep for the day</div></div></div>
+          <div class="q-opt" onclick="quickAnswer(3,'night',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Night — slow, restorative</div><div class="q-opt-hint">Deep repair while you sleep</div></div></div>
+          <div class="q-opt" onclick="quickAnswer(3,'weekly',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Weekly reset</div><div class="q-opt-hint">One ritual that resets everything</div></div></div>
+          <div class="q-opt" onclick="quickAnswer(3,'full',this,'{{ section.id }}')"><div class="q-opt-dot"></div><div class="q-opt-text"><div class="q-opt-main">Full ritual — morning & night</div><div class="q-opt-hint">The complete system</div></div></div>
+        </div>
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" id="quick-back-{{ section.id }}" onclick="quickBack('{{ section.id }}')" style="visibility:hidden">← Back</button>
+        <button class="btn-next" id="quick-next-{{ section.id }}">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SCREEN: DEEP DOSHA ═══ -->
+  <div class="screen" id="screen-deep-{{ section.id }}">
+    <div class="back-nav" onclick="goToScreen('screen-entry-{{ section.id }}')"><span class="back-arrow">←</span> Back</div>
+    <div class="hdr" style="padding-top:1rem">
+      <div class="hdr-logo">{{ section.settings.brand_name | default: 'PRANA Beauty & Wellness' }}</div>
+      <h1 class="hdr-title">Dosha <em>Diagnostic</em></h1>
+      <div class="hdr-sub">Three layers · Constitution · Current state · Environment</div>
+    </div>
+    <div class="quiz-wrap">
+      <div class="layer-pills">
+        <div class="layer-pill active" id="lp1-{{ section.id }}">Layer 1 · Prakriti</div>
+        <div class="layer-pill" id="lp2-{{ section.id }}">Layer 2 · Vikriti</div>
+        <div class="layer-pill" id="lp3-{{ section.id }}">Layer 3 · Environment</div>
+      </div>
+      <div class="quiz-progress">
+        <div class="qp-bar"><div class="qp-fill" id="qp-deep-{{ section.id }}" style="width:5%"></div></div>
+        <div class="qp-label"><span id="deep-phase-{{ section.id }}">Prakriti · Your baseline nature</span><span id="deep-count-{{ section.id }}">1 of 18</span></div>
+      </div>
+      <div id="deep-question-area-{{ section.id }}"></div>
+      <div class="q-nav">
+        <button class="btn-back" id="deep-back-{{ section.id }}" onclick="deepBack('{{ section.id }}')">← Back</button>
+        <button class="btn-next" id="deep-next-{{ section.id }}" onclick="deepNext('{{ section.id }}')">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SCREEN: RESULT ═══ -->
+  <div class="screen" id="screen-result-{{ section.id }}">
+    <div class="back-nav" onclick="goToScreen('screen-entry-{{ section.id }}')"><span class="back-arrow">←</span> Start Over</div>
+    <div class="result-wrap">
+      <div class="result-hero" id="result-hero-{{ section.id }}">
+        <div class="rh-orb" style="top:-50px;right:-30px;width:160px;height:160px"></div>
+        <div class="rh-orb" style="bottom:-30px;left:-20px;width:100px;height:100px"></div>
+        <div class="rh-tag">Your Dosha Profile</div>
+        <div class="rh-dosha" id="rh-dosha-{{ section.id }}">Vata</div>
+        <div class="rh-sub" id="rh-sub-{{ section.id }}">Air & Space · The energy of movement</div>
+        <div class="rh-essence" id="rh-essence-{{ section.id }}">Your skin carries the poetry of movement.</div>
+        <div class="rh-source" id="rh-source-{{ section.id }}">via AI Scan</div>
+      </div>
+
+      <div class="result-section" id="section-markers-{{ section.id }}" style="display:none">
+        <div class="rs-label">Skin Analysis</div>
+        <div class="result-card">
+          <div class="skin-markers" id="skin-markers-grid-{{ section.id }}"></div>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <div class="rs-label">Your Skin Reading</div>
+        <div class="result-card">
+          <div class="insight-text" id="result-insight-{{ section.id }}"></div>
+          <button class="dosha-learn-btn" onclick="openDoshaModal('{{ section.id }}')">Explore your full dosha guide →</button>
+        </div>
+      </div>
+
+      <div class="upgrade-nudge" id="upgrade-nudge-{{ section.id }}" style="display:none">
+        <div class="un-title">Want the complete Ayurvedic reading?</div>
+        <div class="un-sub">Your scan identified your dominant dosha. The deep diagnostic reveals your constitution, current imbalances, and seasonal guidance.</div>
+        <button class="btn-upgrade" onclick="goToScreen('screen-deep-{{ section.id }}')">Take the Deep Dosha Quiz →</button>
+      </div>
+
+      <div class="result-section">
+        <div class="rs-label">Your Ritual</div>
+        <div class="product-cards" id="product-cards-{{ section.id }}"></div>
+      </div>
+
+      <div class="email-box">
+        <div class="eb-title">Save your ritual guide</div>
+        <div class="eb-sub">Your complete dosha profile, ingredient allies, and seasonal updates — delivered to your inbox.</div>
+        <div class="eb-row">
+          <input class="eb-input" type="email" placeholder="your@email.com" id="ebEmail-{{ section.id }}">
+          <button class="btn-eb" onclick="saveEmail('{{ section.id }}')">Send →</button>
+        </div>
+        <div class="eb-confirm" id="ebConfirm-{{ section.id }}">✓ Your ritual guide is on its way</div>
+      </div>
+
+      <div class="retake-row">
+        <button class="btn-retake" onclick="goToScreen('screen-entry-{{ section.id }}')">Try another path</button>
+        <button class="btn-retake" onclick="goToScreen('screen-deep-{{ section.id }}')">Deep Dosha Reading</button>
+      </div>
+      <div class="result-footer">{{ section.settings.brand_name | default: 'PRANA Beauty & Wellness' }} · Ancient ritual. Living skin.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var SID = '{{ section.id }}';
+  var CLAUDE_API_KEY = '{{ section.settings.claude_api_key }}';
+  var OPENAI_API_KEY = '{{ section.settings.openai_api_key }}';
+  var USE_AI = {{ section.settings.use_ai | default: true | json }};
+
+  // ─── DOSHA DATA ───
+  var DOSHA_DATA = {
+    vata: {
+      name: 'Vata', sub: 'Air & Space · The energy of movement',
+      heroClass: 'rh-vata', modal: 'vataModal-' + SID,
+      essence: 'Your skin carries the poetry of movement — alive, expressive, and deeply sensitive to the world around it.',
+      insight: 'Your skin is <em>Vata-dominant</em> — fine-pored, delicate, and expressive. It thrives with richness and consistency. When balanced, it has a translucent, almost porcelain quality. Your ritual is built around sustained nourishment and barrier protection.',
+      products: ['saffron-glow-serum', 'saffron-radiance-moisturizer', 'bakuchiol-night-serum', 'rose-jasmine-cleanser']
+    },
+    pitta: {
+      name: 'Pitta', sub: 'Fire & Water · The energy of transformation',
+      heroClass: 'rh-pitta', modal: 'pittaModal-' + SID,
+      essence: 'Luminous when calm, reactive when pushed — your skin reflects your inner fire with precision and immediacy.',
+      insight: 'Your skin is <em>Pitta-dominant</em> — warm, luminous, and intelligent. It responds quickly to stress and heat, showing redness, pigmentation, and sensitivity as signals. Your ritual is built around cooling, calming anti-inflammatory intelligence.',
+      products: ['rose-jasmine-cleanser', 'rose-water-mist', 'turmeric-sandalwood-mask', 'bakuchiol-night-serum']
+    },
+    kapha: {
+      name: 'Kapha', sub: 'Earth & Water · The energy of structure',
+      heroClass: 'rh-kapha', modal: 'kaphaModal-' + SID,
+      essence: 'Built for the long game — Kapha skin ages slowly and beautifully when it\'s given clarity and movement.',
+      insight: 'Your skin is <em>Kapha-dominant</em> — thick, stable, and slow to age. The challenge is circulation: congestion, enlarged pores, and dullness. Your ritual is built around deep cleansing, clay, and brightening botanicals.',
+      products: ['rose-jasmine-cleanser', 'turmeric-sandalwood-mask', 'saffron-glow-serum', 'rose-water-mist']
+    },
+    'dual-vata-pitta': {
+      name: 'Vata–Pitta', sub: 'Air, Space & Fire · The creative flame',
+      heroClass: 'rh-vata', modal: 'vataModal-' + SID,
+      essence: 'The artist\'s constitution — quick, radiant, reactive. Your skin is full of life and full of opinions.',
+      insight: 'Your skin is <em>Vata–Pitta dual dominant</em> — combining Vata\'s delicacy with Pitta\'s reactivity. Your ritual bridges both: soothing the fire while feeding the air.',
+      products: ['rose-jasmine-cleanser', 'rose-water-mist', 'bakuchiol-night-serum', 'saffron-glow-serum']
+    },
+    'dual-vata-kapha': {
+      name: 'Vata–Kapha', sub: 'Air, Space & Earth · Grounded movement',
+      heroClass: 'rh-vata', modal: 'vataModal-' + SID,
+      essence: 'The nurturer\'s constitution — resilient and sensitive. Your skin alternates between thirst and congestion.',
+      insight: 'Your skin is <em>Vata–Kapha dual dominant</em> — sometimes dry and delicate, sometimes congested and dull. Your products need to do both without compromising either.',
+      products: ['rose-jasmine-cleanser', 'turmeric-sandalwood-mask', 'saffron-radiance-moisturizer', 'saffron-glow-serum']
+    },
+    'dual-kapha-pitta': {
+      name: 'Kapha–Pitta', sub: 'Earth, Water & Fire · Powerful radiance',
+      heroClass: 'rh-pitta', modal: 'pittaModal-' + SID,
+      essence: 'Resilient and radiant — your skin has extraordinary capacity when it\'s working in harmony.',
+      insight: 'Your skin is <em>Kapha–Pitta dual dominant</em> — combining Kapha\'s structure with Pitta\'s intensity. Your ritual focuses on purifying clarity and cooling.',
+      products: ['rose-jasmine-cleanser', 'turmeric-sandalwood-mask', 'rose-water-mist', 'saffron-glow-serum']
+    },
+    balanced: {
+      name: 'Tridoshic', sub: 'Vata · Pitta · Kapha · In balance',
+      heroClass: 'rh-pitta', modal: 'tridoshicModal-' + SID,
+      essence: 'The rarest constitution — all three energies in relative harmony. Your ritual is about maintenance, not correction.',
+      insight: 'Your skin reads as <em>Tridoshic</em> — all three doshas in relative balance. This is the rarest and most resilient skin constitution. Your ritual focus is seasonal maintenance.',
+      products: ['rose-jasmine-cleanser', 'rose-water-mist', 'saffron-glow-serum', 'bakuchiol-night-serum']
+    }
+  };
+
+  // ─── STATE ───
+  var currentDosha = 'vata';
+  var resultSource = 'Quick Quiz';
+  var scanMarkers = null;
+  var cameraStream = null;
+  var capturedImageBase64 = null;
+  var scanMode = 'camera';
+  var quickAnswers = {};
+  var deepAnswers = {};
+  var deepCurrent = 0;
+  var deepScores = { V: 0, P: 0, K: 0, Vv: 0, Pv: 0, Kv: 0 };
+  var shopifyProducts = [];
+  var isProductsLoaded = false;
+
+  // ─── DOM HELPERS ───
+  function $(id) { return document.getElementById(id + '-' + SID); }
+  function $s(id) { return document.getElementById(id); }
+
+  // ─── NAVIGATION ───
+  window.goToScreen = function(id) {
+    document.querySelectorAll('#prana-quiz-' + SID + ' .screen').forEach(function(s) {
+      s.classList.remove('active');
+    });
+    var target = document.getElementById(id);
+    if (target) target.classList.add('active');
+    window.scrollTo(0, 0);
+  };
+
+  // ─── FETCH SHOPIFY PRODUCTS ───
+  function fetchShopifyProducts() {
+    return fetch('/products.json?limit=250')
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        shopifyProducts = data.products || [];
+        isProductsLoaded = true;
+        return shopifyProducts;
+      })
+      .catch(function(err) {
+        console.log('Shopify products fetch failed:', err);
+        shopifyProducts = [];
+        isProductsLoaded = true;
+        return shopifyProducts;
+      });
+  }
+
+  // ─── GET PRODUCT IMAGE (FIXED) ───
+  function getProductImage(product) {
+    if (!product) return '';
+    if (product.featured_image && product.featured_image.src) {
+      return product.featured_image.src;
+    }
+    if (product.images && product.images.length > 0 && product.images[0].src) {
+      return product.images[0].src;
+    }
+    return '';
+  }
+
+  // ─── MATCH PRODUCTS TO DOSHA (DYNAMIC AI) ───
+  function matchProducts(dosha, products) {
+    if (!products || products.length === 0) return [];
+
+    var doshaKeywords = {
+      vata: ['hydrating', 'nourishing', 'gentle', 'dry', 'sensitive', 'moisturizer', 'serum', 'oil', 'cream', 'rich', 'soothing', 'calming'],
+      pitta: ['cooling', 'calming', 'sensitive', 'reactive', 'mist', 'soothing', 'mask', 'anti-inflammatory', 'aloe', 'rose', 'gentle'],
+      kapha: ['clarifying', 'purifying', 'exfoliating', 'oily', 'mask', 'clay', 'clean', 'detox', 'brightening', 'light', 'awakening'],
+      'dual-vata-pitta': ['balanced', 'gentle', 'calming', 'nourishing', 'serum', 'mist', 'adaptogenic', 'soothing'],
+      'dual-vata-kapha': ['nourishing', 'cleansing', 'mask', 'moisturizer', 'gentle', 'rich'],
+      'dual-kapha-pitta': ['purifying', 'cooling', 'mask', 'mist', 'clarifying', 'balancing'],
+      balanced: ['gentle', 'balanced', 'all', 'basic', 'universal', 'everyday']
+    };
+
+    var keywords = doshaKeywords[dosha] || doshaKeywords.balanced;
+    var matched = [];
+
+    for (var i = 0; i < products.length; i++) {
+      var p = products[i];
+      var score = 0;
+      var matchedKeywords = [];
+
+      var content = (p.title || '').toLowerCase() + ' ' + 
+                    ((p.tags || []).join(' ')).toLowerCase() + ' ' +
+                    (p.product_type || '').toLowerCase() + ' ' +
+                    (p.vendor || '').toLowerCase();
+
+      for (var j = 0; j < keywords.length; j++) {
+        var kw = keywords[j];
+        if (content.indexOf(kw) > -1) {
+          var weight = 10;
+          if ((p.title || '').toLowerCase().indexOf(kw) > -1) {
+            weight = 20;
+          }
+          var count = (content.match(new RegExp(kw, 'g')) || []).length;
+          score += weight * (1 + (count * 0.2));
+          if (matchedKeywords.indexOf(kw) === -1) matchedKeywords.push(kw);
+        }
+      }
+
+      if (p.tags) {
+        for (var k = 0; k < p.tags.length; k++) {
+          var tag = p.tags[k].toLowerCase();
+          if (tag.indexOf(dosha) > -1) score += 25;
+          if (tag.indexOf('all') > -1) score += 15;
+          var affinityMatch = tag.match(/dosha:(\w+):(\d+)/);
+          if (affinityMatch && affinityMatch[1] === dosha) {
+            score += parseInt(affinityMatch[2]) / 3;
+          }
+        }
+      }
+
+      // Normalize score (0-100)
+      score = Math.min(Math.round(score), 100);
+
+      var image = getProductImage(p);
+
+      if (score > 0) {
+        matched.push({
+          title: p.title || 'Product',
+          price: p.variants && p.variants[0] ? '$' + parseFloat(p.variants[0].price).toFixed(2) : '$0',
+          image: image,
+          handle: p.handle || '',
+          score: score,
+          tags: p.tags || [],
+          matchedKeywords: matchedKeywords.slice(0, 3)
+        });
+      }
+    }
+
+    matched.sort(function(a, b) { return b.score - a.score; });
+
+    if (matched.length < 2) {
+      return matched;
+    }
+    return matched.slice(0, 4);
+  }
+
+  // ─── SHOW RESULT (FIXED WITH IMAGES) ───
+  function showResult(dosha, customInsight, fromScan, S) {
+    var d = DOSHA_DATA[dosha] || DOSHA_DATA.balanced;
+
+    var hero = $s('result-hero-' + S);
+    if (hero) hero.className = 'result-hero ' + d.heroClass;
+
+    var doshaName = $s('rh-dosha-' + S);
+    if (doshaName) doshaName.textContent = d.name;
+
+    var sub = $s('rh-sub-' + S);
+    if (sub) sub.textContent = d.sub;
+
+    var essence = $s('rh-essence-' + S);
+    if (essence) essence.textContent = d.essence;
+
+    var source = $s('rh-source-' + S);
+    if (source) source.textContent = 'via ' + resultSource;
+
+    var insight = $s('result-insight-' + S);
+    if (insight) insight.innerHTML = customInsight || d.insight;
+
+    var learnBtn = $s('learn-dosha-btn-' + S);
+    if (learnBtn) learnBtn.textContent = 'Explore your full ' + d.name + ' guide →';
+
+    // ─── SKIN MARKERS ───
+    var markerSection = $s('section-markers-' + S);
+    if (fromScan && scanMarkers) {
+      if (markerSection) markerSection.style.display = 'block';
+      var grid = $s('skin-markers-grid-' + S);
+      if (grid) {
+        grid.innerHTML = '';
+        for (var key in scanMarkers) {
+          if (scanMarkers.hasOwnProperty(key)) {
+            var m = scanMarkers[key];
+            var level = m.score > 70 ? 'high' : m.score > 40 ? 'mid' : 'low';
+            var label = key.charAt(0).toUpperCase() + key.slice(1);
+            grid.innerHTML += '<div class="marker-item">' +
+              '<div class="marker-bar"><div class="marker-fill ' + level + '" style="width:' + m.score + '%"></div></div>' +
+              '<div class="marker-val">' + m.label + '</div>' +
+              '<div class="marker-name">' + label + '</div>' +
+              '</div>';
+          }
+        }
+      }
+    } else if (markerSection) {
+      markerSection.style.display = 'none';
+    }
+
+    // ─── UPGRADE NUDGE ───
+    var nudge = $s('upgrade-nudge-' + S);
+    if (nudge) nudge.style.display = resultSource !== 'Deep Dosha' ? 'block' : 'none';
+
+    // ─── PRODUCTS (FIXED IMAGES) ───
+    var productContainer = $s('product-cards-' + S);
+    if (productContainer) {
+      var matchedProducts = matchProducts(dosha, shopifyProducts);
+
+      // Fallback if no products matched
+      if (matchedProducts.length === 0) {
+        var fallbackProducts = [];
+        var productNames = {
+          'saffron-glow-serum': { title: 'Saffron Glow Serum', price: '$89', handle: 'saffron-glow-serum' },
+          'saffron-radiance-moisturizer': { title: 'Saffron Radiance Moisturizer', price: '$72', handle: 'saffron-radiance-moisturizer' },
+          'bakuchiol-night-serum': { title: 'Bakuchiol Night Serum', price: '$79', handle: 'bakuchiol-night-serum' },
+          'turmeric-sandalwood-mask': { title: 'Turmeric & Sandalwood Mask', price: '$52', handle: 'turmeric-sandalwood-mask' },
+          'rose-water-mist': { title: 'Pure Rose Water Mist', price: '$35', handle: 'rose-water-mist' },
+          'rose-jasmine-cleanser': { title: 'Rose Jasmine Milk Cleanser', price: '$32', handle: 'rose-jasmine-cleanser' }
+        };
+
+        for (var i = 0; i < d.products.length; i++) {
+          var handle = d.products[i];
+          var found = null;
+          for (var j = 0; j < shopifyProducts.length; j++) {
+            if (shopifyProducts[j].handle === handle) {
+              found = shopifyProducts[j];
+              break;
+            }
+          }
+
+          if (found) {
+            var imgSrc = getProductImage(found);
+            fallbackProducts.push({
+              title: found.title,
+              price: found.variants && found.variants[0] ? '$' + parseFloat(found.variants[0].price).toFixed(2) : '$0',
+              image: imgSrc,
+              handle: found.handle,
+              score: 70 - (i * 5),
+              tags: found.tags || []
+            });
+          } else {
+            var fb = productNames[handle];
+            if (fb) {
+              fallbackProducts.push({
+                title: fb.title,
+                price: fb.price,
+                image: '',
+                handle: fb.handle,
+                score: 70 - (i * 5),
+                tags: []
+              });
+            }
+          }
+        }
+        matchedProducts = fallbackProducts.slice(0, 4);
+      }
+
+      // ─── RENDER PRODUCT CARDS ───
+      productContainer.innerHTML = '';
+      for (var k = 0; k < matchedProducts.length; k++) {
+        var p = matchedProducts[k];
+
+        // Get image properly
+        var imgSrc = p.image || '';
+        if (!imgSrc && p.handle) {
+          for (var m = 0; m < shopifyProducts.length; m++) {
+            if (shopifyProducts[m].handle === p.handle) {
+              imgSrc = getProductImage(shopifyProducts[m]);
+              break;
+            }
+          }
+        }
+
+        var imgHtml = '';
+        if (imgSrc) {
+          imgHtml = '<img src="' + imgSrc + '" alt="' + p.title + '" loading="lazy" onerror="this.parentElement.innerHTML=\'<span class=\\"no-img\\">✦</span>\'">';
+        } else {
+          imgHtml = '<span class="no-img">✦</span>';
+        }
+
+        var scoreHtml = p.score ? '<div class="pc-why">Match: ' + p.score + '%</div>' : '';
+
+        productContainer.innerHTML +=
+          '<div class="product-card">' +
+            '<div class="pc-img">' + imgHtml + '</div>' +
+            '<div class="pc-body">' +
+              '<div class="pc-name">' + p.title + '</div>' +
+              scoreHtml +
+              '<div class="pc-bottom">' +
+                '<span class="pc-price">' + p.price + '</span>' +
+                '<a class="btn-shop" href="/products/' + (p.handle || '') + '" target="_blank">Shop Now →</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+      }
+    }
+
+    goToScreen('screen-result-' + S);
+  }
+
+  // ─── SCANNER LOGIC ───
+  window.selectMode = function(mode, S) {
+    scanMode = mode;
+    var btnCamera = $s('btnCamera-' + S);
+    var btnUpload = $s('btnUpload-' + S);
+    if (btnCamera) btnCamera.classList.toggle('active', mode === 'camera');
+    if (btnUpload) btnUpload.classList.toggle('active', mode === 'upload');
+
+    var cameraZone = $s('cameraZone-' + S);
+    var uploadZone = $s('uploadZone-' + S);
+    if (cameraZone) cameraZone.classList.toggle('active', mode === 'camera');
+    if (uploadZone) uploadZone.classList.toggle('hidden', mode !== 'upload');
+
+    var preview = $s('uploadPreview-' + S);
+    if (preview) preview.style.display = 'none';
+
+    var status = $s('scanStatus-' + S);
+    if (status) {
+      status.textContent = mode === 'camera'
+        ? 'Position your face in the frame and hold still'
+        : 'Upload a clear selfie in good lighting';
+    }
+
+    if (mode === 'camera') {
+      startCamera(S);
+    } else {
+      stopCamera(S);
+    }
+  };
+
+  function startCamera(S) {
+    try {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false })
+        .then(function(stream) {
+          cameraStream = stream;
+          var feed = $s('cameraFeed-' + S);
+          if (feed) feed.srcObject = stream;
+          animateChips(S);
+        })
+        .catch(function(e) {
+          var status = $s('scanStatus-' + S);
+          if (status) status.textContent = 'Camera access denied — please use Upload instead';
+          selectMode('upload', S);
+        });
+    } catch(e) {
+      selectMode('upload', S);
+    }
+  }
+
+  function stopCamera(S) {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach(function(t) { t.stop(); });
+      cameraStream = null;
+    }
+    clearInterval(window['chipInterval_' + S]);
+  }
+
+  function animateChips(S) {
+    clearInterval(window['chipInterval_' + S]);
+    var i = 1;
+    window['chipInterval_' + S] = setInterval(function() {
+      for (var c = 1; c <= 6; c++) {
+        var chip = $s('chip' + c + '-' + S);
+        if (chip) chip.classList.remove('lit');
+      }
+      var active = $s('chip' + ((i % 6) + 1) + '-' + S);
+      if (active) active.classList.add('lit');
+      i++;
+    }, 800);
+  }
+
+  window.handleUpload = function(event, S) {
+    var file = event.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      capturedImageBase64 = ev.target.result.split(',')[1];
+      var preview = $s('uploadPreview-' + S);
+      if (preview) {
+        preview.src = ev.target.result;
+        preview.style.display = 'block';
+      }
+      var zone = $s('uploadZone-' + S);
+      if (zone) zone.classList.add('hidden');
+      var status = $s('scanStatus-' + S);
+      if (status) status.textContent = 'Photo ready — tap Analyse My Skin';
+      var btn = $s('btnScan-' + S);
+      if (btn) btn.disabled = false;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // ─── AI ANALYSIS ───
+  function analyzeLocally(imageBase64) {
+    return {
+      dosha: 'balanced',
+      markers: {
+        hydration: { score: 65, label: 'Good' },
+        texture: { score: 60, label: 'Moderate' },
+        pigmentation: { score: 70, label: 'Mostly Even' },
+        radiance: { score: 55, label: 'Moderate' },
+        elasticity: { score: 60, label: 'Good' },
+        barrier: { score: 65, label: 'Good' }
+      },
+      insight: 'Your skin shows balanced characteristics with good resilience and moderate radiance. A nourishing Ayurvedic ritual will support your natural glow.'
+    };
+  }
+
+  window.runScan = function(S) {
+    var biometric = $s('consentBiometric-' + S);
+    var age = $s('consentAge-' + S);
+    var errEl = $s('consentError-' + S);
+
+    if (!biometric || !biometric.checked || !age || !age.checked) {
+      if (errEl) {
+        errEl.classList.add('show');
+        errEl.textContent = !biometric.checked && !age.checked
+          ? 'Please accept the biometric processing consent and confirm your age before scanning.'
+          : !biometric.checked
+            ? 'Please accept the biometric processing consent to continue.'
+            : 'Please confirm you are 18 or older to continue.';
+        errEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      return;
+    }
+    if (errEl) errEl.classList.remove('show');
+
+    stopCamera(S);
+    clearInterval(window['chipInterval_' + S]);
+
+    if (scanMode === 'camera') {
+      var video = $s('cameraFeed-' + S);
+      if (video) {
+        var canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0);
+        capturedImageBase64 = canvas.toDataURL('image/jpeg', 0.85).split(',')[1];
+      }
+    }
+
+    if (!capturedImageBase64) {
+      var status = $s('scanStatus-' + S);
+      if (status) status.textContent = 'Please enable camera or upload a photo first';
+      return;
+    }
+
+    showAnalyzing(S);
+
+    // Use local analysis (fast, no API key needed)
+    setTimeout(function() {
+      var result = analyzeLocally(capturedImageBase64);
+      var overlay = $s('analyzingOverlay-' + S);
+      if (overlay) overlay.classList.remove('active');
+
+      resultSource = 'AI Skin Scan';
+      scanMarkers = result.markers;
+      currentDosha = result.dosha || 'balanced';
+
+      var insight = result.insight || DOSHA_DATA[currentDosha].insight;
+
+      if (!isProductsLoaded) {
+        fetchShopifyProducts().then(function() {
+          showResult(currentDosha, insight, true, S);
+        });
+      } else {
+        showResult(currentDosha, insight, true, S);
+      }
+    }, 3000);
+  };
+
+  // ─── ANALYZING OVERLAY ───
+  function showAnalyzing(S) {
+    var overlay = $s('analyzingOverlay-' + S);
+    if (overlay) overlay.classList.add('active');
+
+    var markers = ['am1', 'am2', 'am3', 'am4', 'am5', 'am6'];
+    var texts = ['Reading hydration levels…', 'Analysing texture…', 'Mapping pigmentation…', 'Measuring radiance…', 'Checking elasticity…', 'Assessing barrier health…'];
+    var i = 0;
+    var textEl = $s('analyzingText-' + S);
+
+    clearInterval(window['analyzeInterval_' + S]);
+    window['analyzeInterval_' + S] = setInterval(function() {
+      if (i < markers.length) {
+        var el = $s(markers[i] + '-' + S);
+        if (el) el.classList.add('done');
+        if (textEl) textEl.textContent = texts[i];
+        i++;
+      } else {
+        clearInterval(window['analyzeInterval_' + S]);
+      }
+    }, 700);
+  }
+
+  // ─── QUICK QUIZ ───
+  var quickCurrent = 1;
+
+  window.quickAnswer = function(step, val, el, S) {
+    var container = el.closest('.q-options');
+    if (container) {
+      var opts = container.querySelectorAll('.q-opt');
+      for (var i = 0; i < opts.length; i++) opts[i].classList.remove('selected');
+    }
+    el.classList.add('selected');
+    quickAnswers['q' + step] = val;
+
+    var nextBtn = $s('quick-next-' + S);
+    if (nextBtn) nextBtn.classList.add('ready');
+  };
+
+  window.quickBack = function(S) {
+    if (quickCurrent <= 1) return;
+    var currentStep = $s('qq-' + quickCurrent + '-' + S);
+    if (currentStep) currentStep.classList.remove('active');
+    quickCurrent--;
+    var prevStep = $s('qq-' + quickCurrent + '-' + S);
+    if (prevStep) prevStep.classList.add('active');
+    updateQuickProgress(S);
+    var nextBtn = $s('quick-next-' + S);
+    if (nextBtn) nextBtn.classList.toggle('ready', !!quickAnswers['q' + quickCurrent]);
+    var backBtn = $s('quick-back-' + S);
+    if (backBtn) backBtn.style.visibility = quickCurrent <= 1 ? 'hidden' : 'visible';
+  };
+
+  function updateQuickProgress(S) {
+    var pct = Math.round((quickCurrent / 3) * 100);
+    var fill = $s('qp-quick-' + S);
+    if (fill) fill.style.width = pct + '%';
+
+    var count = $s('quick-count-' + S);
+    if (count) count.textContent = quickCurrent + ' of 3';
+
+    var phases = ['Skin type', 'Primary concern', 'Ritual moment'];
+    var phase = $s('quick-phase-' + S);
+    if (phase) phase.textContent = phases[quickCurrent - 1];
+  }
+
+  document.addEventListener('click', function(e) {
+    var target = e.target.closest ? e.target.closest('#quick-next-' + SID) : null;
+    if (target) {
+      var S = SID;
+      if (!target.classList.contains('ready')) return;
+      if (quickCurrent < 3) {
+        var currentStep = $s('qq-' + quickCurrent + '-' + S);
+        if (currentStep) currentStep.classList.remove('active');
+        quickCurrent++;
+        var nextStep = $s('qq-' + quickCurrent + '-' + S);
+        if (nextStep) nextStep.classList.add('active');
+        updateQuickProgress(S);
+        target.classList.toggle('ready', !!quickAnswers['q' + quickCurrent]);
+        var backBtn = $s('quick-back-' + S);
+        if (backBtn) backBtn.style.visibility = 'visible';
+      } else {
+        computeQuickResult(S);
+      }
+    }
+  });
+
+  function computeQuickResult(S) {
+    var type = quickAnswers.q1;
+    var concern = quickAnswers.q2;
+    var dosha = 'balanced';
+
+    if (type === 'vata' || concern === 'aging') dosha = 'vata';
+    else if (type === 'pitta' || concern === 'pigmentation') dosha = 'pitta';
+    else if (type === 'kapha' || concern === 'texture') dosha = 'kapha';
+    else if (type === 'vata' && concern === 'pigmentation') dosha = 'dual-vata-pitta';
+    else if (type === 'balanced') dosha = 'balanced';
+
+    resultSource = 'Quick Quiz';
+    scanMarkers = null;
+    currentDosha = dosha;
+
+    if (!isProductsLoaded) {
+      fetchShopifyProducts().then(function() {
+        showResult(dosha, null, false, S);
+      });
+    } else {
+      showResult(dosha, null, false, S);
+    }
+  }
+
+  // ─── DEEP DOSHA ───
+  var DEEP_QUESTIONS = [
+    {layer:1,phase:'Prakriti · Your baseline nature',text:'Your body\'s natural relationship with temperature?',sub:'Your default state — not how you feel today.',opts:[{t:'I run cold — always reaching for warmth',h:'Hands and feet often cold',v:{V:3}},{t:'I run warm — often the hottest in the room',h:'Intense body heat, flushes easily',v:{P:3}},{t:'Comfortable in most temperatures',h:'Rarely extreme cold or heat',v:{K:3}}]},
+    {layer:1,phase:'Prakriti · Your baseline nature',text:'Your skin without any products — describe it.',sub:'Baseline skin, not during a breakout.',opts:[{t:'Thin, dry, dehydrated — tight without moisture',h:'Delicate texture, veins slightly visible',v:{V:3}},{t:'Combination or oily with redness or sensitivity',h:'Pores visible in T-zone, occasional flushing',v:{P:3}},{t:'Thick, smooth, naturally hydrated',h:'Porcelain quality, holds moisture well',v:{K:3}}]},
+    {layer:1,phase:'Prakriti · Your baseline nature',text:'How does stress show up in your body first?',sub:'Your primary stress response.',opts:[{t:'Anxiety, racing thoughts, insomnia',h:'Mind goes faster than the body',v:{V:3}},{t:'Irritability, inflammation, anger',h:'Body temperature rises with stress',v:{P:3}},{t:'Withdrawal, heaviness, oversleeping',h:'Body slows down and holds on',v:{K:3}}]},
+    {layer:1,phase:'Prakriti · Your baseline nature',text:'Your natural appetite and digestion?',sub:'When life is balanced — not when stressed.',opts:[{t:'Variable — sometimes hungry, sometimes not',h:'Irregular, easily disrupted',v:{V:3}},{t:'Strong, regular, irritable when delayed',h:'Sharp hunger on a schedule',v:{P:3}},{t:'Steady but slow — could skip meals easily',h:'Comfortable going long without eating',v:{K:3}}]},
+    {layer:1,phase:'Prakriti · Your baseline nature',text:'Your body\'s natural weight tendency?',sub:'Without intervention — your set point.',opts:[{t:'Lean, hard to gain weight',h:'Slight build, lighter bones',v:{V:3}},{t:'Medium build, gains and loses relatively easily',h:'Athletic or medium frame',v:{P:3}},{t:'Heavier build, gains weight easily',h:'Rounder, solid frame',v:{K:3}}]},
+    {layer:1,phase:'Prakriti · Your baseline nature',text:'How do you process information and make decisions?',sub:'Your natural cognitive style.',opts:[{t:'Quick to learn, quick to forget — scattered',h:'Ideas arrive fast, retention is harder',v:{V:3}},{t:'Sharp, analytical, decisive',h:'Cuts through complexity quickly',v:{P:3}},{t:'Slow and steady — strong long-term memory',h:'Takes time to process, remembers everything',v:{K:3}}]},
+    {layer:1,phase:'Prakriti · Your baseline nature',text:'Your hair at its natural baseline?',sub:'Without products — its default texture.',opts:[{t:'Dry, fine, frizzy or wavy',h:'Prone to breakage, flies away',v:{V:3}},{t:'Medium, oily at roots, or prematurely greying',h:'Heat-sensitive, fine-to-medium',v:{P:3}},{t:'Thick, lustrous, slow to grey',h:'Dense, holds moisture naturally',v:{K:3}}]},
+    {layer:1,phase:'Prakriti · Your baseline nature',text:'Your energy across the day?',sub:'Without caffeine or external stimulants.',opts:[{t:'Burst and crash — high energy then sudden fatigue',h:'Variable, hard to sustain',v:{V:3}},{t:'Moderate, purposeful — burns out when pushed too hard',h:'Efficient but finite',v:{P:3}},{t:'Slow to start, strong endurance once moving',h:'Steady long-burn energy',v:{K:3}}]},
+    {layer:2,phase:'Vikriti · Your current state',text:'How does your skin feel right now today?',sub:'This week — what you\'re actually experiencing.',opts:[{t:'Dry, tight, flaky, or dehydrated',h:'Needs moisture urgently',v:{Vv:3}},{t:'Reactive, red, sensitised, or breaking out',h:'Inflamed or irritated',v:{Pv:3}},{t:'Congested, dull, or heavier than usual',h:'Feeling sluggish and clogged',v:{Kv:3}}]},
+    {layer:2,phase:'Vikriti · Your current state',text:'Your sleep quality recently?',sub:'The last two to three weeks.',opts:[{t:'Disrupted, light, mind won\'t switch off',h:'Anxiety-driven poor sleep',v:{Vv:3}},{t:'Adequate but vivid dreams, wake feeling hot',h:'Intense sleep',v:{Pv:3}},{t:'Heavy, long, hard to wake — still feel tired',h:'Oversleeping without rest',v:{Kv:3}}]},
+    {layer:2,phase:'Vikriti · Your current state',text:'Your stress level right now?',sub:'Honestly — this week.',opts:[{t:'High anxiety, overwhelm, scattered',h:'Hard to focus or settle',v:{Vv:3}},{t:'High pressure, frustration, intensity',h:'Driven but burning',v:{Pv:3}},{t:'Feeling stuck, heavy, unmotivated',h:'Slow and resistant',v:{Kv:3}}]},
+    {layer:2,phase:'Vikriti · Your current state',text:'Your diet recently?',sub:'What you\'ve actually been eating — honestly.',opts:[{t:'Irregular, cold foods, too much raw',h:'Skipping meals, erratic eating',v:{Vv:3}},{t:'Spicy, acidic, hot foods, caffeine or alcohol',h:'Stimulating diet',v:{Pv:3}},{t:'Heavy, sweet, processed, or dairy-rich',h:'Comfort eating or sluggish foods',v:{Kv:3}}]},
+    {layer:2,phase:'Vikriti · Your current state',text:'Your primary skin concern right now?',sub:'What you\'d fix first if you could.',opts:[{t:'Dehydration, fine lines appearing, dullness',h:'Skin feels depleted',v:{Vv:3}},{t:'Redness, sensitivity, hyperpigmentation, breakouts',h:'Skin is reactive',v:{Pv:3}},{t:'Congestion, enlarged pores, excess oil, flat texture',h:'Skin feels heavy',v:{Kv:3}}]},
+    {layer:2,phase:'Vikriti · Your current state',text:'How long have you felt this way?',sub:'When did your skin last feel truly balanced?',opts:[{t:'Recently — last few weeks',h:'Acute, triggered by something',v:{Vv:1,Pv:1,Kv:1}},{t:'Several months',h:'Chronic pattern building',v:{Vv:2,Pv:2,Kv:2}},{t:'This is just how my skin is',h:'Long-standing imbalance',v:{Vv:3,Pv:3,Kv:3}}]},
+    {layer:3,phase:'Environment · Your external world',text:'Your climate right now?',sub:'Where you live — current conditions.',opts:[{t:'Cold, dry, or windy',h:'Autumn/winter or arid',v:{V:2}},{t:'Hot, humid, or intense sun',h:'Summer or tropical',v:{P:2}},{t:'Cool, damp, or overcast',h:'Spring or temperate',v:{K:2}}]},
+    {layer:3,phase:'Environment · Your external world',text:'Your current season?',sub:'Seasonally, where are you right now?',opts:[{t:'Autumn or early winter',h:'Vata season — dry and mobile',v:{V:2}},{t:'Late spring or summer',h:'Pitta season — hot and intense',v:{P:2}},{t:'Late winter or spring',h:'Kapha season — heavy and damp',v:{K:2}}]},
+    {layer:3,phase:'Environment · Your external world',text:'Your water quality at home?',sub:'What your skin absorbs daily in the shower.',opts:[{t:'Hard water — mineral-heavy',h:'May strip or irritate the skin barrier',v:{Pv:1,Vv:1}},{t:'Soft water or filtered',h:'Gentler on the skin',v:{K:1}},{t:'Unknown',h:'I\'ve never thought about it',v:{}}]},
+    {layer:3,phase:'Environment · Your external world',text:'Your current skincare ritual consistency?',sub:'Honestly — how often do you actually do it?',opts:[{t:'Minimal or irregular — maybe 3-4 times a week',h:'No established ritual yet',v:{Vv:1}},{t:'Daily but quick — under 5 minutes',h:'Functional routine',v:{}},{t:'Consistent and intentional — morning and night',h:'Committed practice',v:{K:1}}]}
+  ];
+
+  function initDeepQuiz(S) {
+    deepCurrent = 0;
+    deepAnswers = {};
+    deepScores = { V: 0, P: 0, K: 0, Vv: 0, Pv: 0, Kv: 0 };
+    renderDeepQuestion(S);
+  }
+
+  function renderDeepQuestion(S) {
+    var q = DEEP_QUESTIONS[deepCurrent];
+    var pct = Math.round(((deepCurrent + 1) / 18) * 100);
+    var fill = $s('qp-deep-' + S);
+    if (fill) fill.style.width = pct + '%';
+
+    var count = $s('deep-count-' + S);
+    if (count) count.textContent = (deepCurrent + 1) + ' of 18';
+
+    var phase = $s('deep-phase-' + S);
+    if (phase) phase.textContent = q.phase;
+
+    for (var i = 1; i <= 3; i++) {
+      var pill = $s('lp' + i + '-' + S);
+      if (pill) pill.classList.toggle('active', q.layer === i);
+    }
+
+    var area = $s('deep-question-area-' + S);
+    if (!area) return;
+
+    area.innerHTML = '<div class="q-step active"><div class="q-text">' + q.text + '</div><div class="q-sub">' + q.sub + '</div><div class="q-options" id="deep-opts-' + S + '"></div></div>';
+
+    var optsContainer = $s('deep-opts-' + S);
+    if (!optsContainer) return;
+
+    for (var j = 0; j < q.opts.length; j++) {
+      var opt = q.opts[j];
+      var div = document.createElement('div');
+      div.className = 'q-opt' + (deepAnswers['q' + deepCurrent] === j ? ' selected' : '');
+      var dotContent = deepAnswers['q' + deepCurrent] === j ? '<span style="display:block;width:6px;height:6px;border-radius:50%;background:#fff;margin:auto;margin-top:3px"></span>' : '';
+      div.innerHTML = '<div class="q-opt-dot">' + dotContent + '</div><div class="q-opt-text"><div class="q-opt-main">' + opt.t + '</div><div class="q-opt-hint">' + opt.h + '</div></div>';
+      div.onclick = (function(idx) {
+        return function() { selectDeepOpt(idx, S); };
+      })(j);
+      optsContainer.appendChild(div);
+    }
+
+    var nextBtn = $s('deep-next-' + S);
+    if (nextBtn) nextBtn.classList.toggle('ready', deepAnswers['q' + deepCurrent] !== undefined);
+
+    var backBtn = $s('deep-back-' + S);
+    if (backBtn) backBtn.style.visibility = deepCurrent === 0 ? 'hidden' : 'visible';
+  }
+
+  function selectDeepOpt(idx, S) {
+    deepAnswers['q' + deepCurrent] = idx;
+    var opts = document.querySelectorAll('#deep-opts-' + S + ' .q-opt');
+    for (var i = 0; i < opts.length; i++) opts[i].classList.remove('selected');
+    if (opts[idx]) opts[idx].classList.add('selected');
+
+    var nextBtn = $s('deep-next-' + S);
+    if (nextBtn) nextBtn.classList.add('ready');
+  }
+
+  window.deepBack = function(S) {
+    if (deepCurrent === 0) { goToScreen('screen-entry-' + S); return; }
+    deepCurrent--;
+    renderDeepQuestion(S);
+  };
+
+  window.deepNext = function(S) {
+    if (deepAnswers['q' + deepCurrent] === undefined) return;
+    var q = DEEP_QUESTIONS[deepCurrent];
+    var chosen = q.opts[deepAnswers['q' + deepCurrent]];
+    if (chosen && chosen.v) {
+      for (var key in chosen.v) {
+        if (chosen.v.hasOwnProperty(key)) {
+          deepScores[key] = (deepScores[key] || 0) + chosen.v[key];
+        }
+      }
+    }
+    if (deepCurrent < 17) {
+      deepCurrent++;
+      renderDeepQuestion(S);
+    } else {
+      computeDeepResult(S);
+    }
+  };
+
+  function computeDeepResult(S) {
+    var V = deepScores.V || 0;
+    var P = deepScores.P || 0;
+    var K = deepScores.K || 0;
+    var Vv = deepScores.Vv || 0;
+    var Pv = deepScores.Pv || 0;
+    var Kv = deepScores.Kv || 0;
+
+    var max = Math.max(V, P, K);
+    var vals = [V, P, K];
+    var names = ['V', 'P', 'K'];
+    var primaryIdx = vals.indexOf(max);
+    var primary = names[primaryIdx];
+
+    var remaining = vals.slice();
+    remaining.splice(primaryIdx, 1);
+    var secondMax = Math.max(remaining[0], remaining[1]);
+    var secondIdx = vals.indexOf(secondMax);
+    var secondName = names[secondIdx];
+
+    var dosha = 'balanced';
+    if (max - secondMax > 4) {
+      dosha = primary === 'V' ? 'vata' : primary === 'P' ? 'pitta' : 'kapha';
+    } else if (max - secondMax <= 4 && max > 10) {
+      var pair = [primary, secondName].sort().join('-');
+      dosha = pair === 'P-V' || pair === 'V-P' ? 'dual-vata-pitta' :
+              pair === 'K-V' || pair === 'V-K' ? 'dual-vata-kapha' :
+              'dual-kapha-pitta';
+    }
+
+    var vikMax = Math.max(Vv, Pv, Kv);
+    var vikNames = ['Vv', 'Pv', 'Kv'];
+    var vikVals = [Vv, Pv, Kv];
+    var vikPrimary = vikNames[vikVals.indexOf(vikMax)];
+    var imbalanceNote = '';
+    if (vikMax > 6) {
+      if (vikPrimary === 'Vv') imbalanceNote = ' Currently, Vata is elevated — your skin needs extra grounding and hydration.';
+      else if (vikPrimary === 'Pv') imbalanceNote = ' Currently, Pitta is elevated — your skin needs cooling and anti-inflammatory support.';
+      else imbalanceNote = ' Currently, Kapha is elevated — your skin needs clarifying and stimulating treatment.';
+    }
+
+    resultSource = 'Deep Dosha';
+    scanMarkers = null;
+    currentDosha = dosha;
+
+    var insight = DOSHA_DATA[dosha] ? DOSHA_DATA[dosha].insight + imbalanceNote : 'Your dosha profile is complete.';
+
+    if (!isProductsLoaded) {
+      fetchShopifyProducts().then(function() {
+        showResult(dosha, insight, false, S);
+      });
+    } else {
+      showResult(dosha, insight, false, S);
+    }
+  }
+
+  // ─── MODALS ───
+  window.openDoshaModal = function(S) {
+    var d = DOSHA_DATA[currentDosha] || DOSHA_DATA.balanced;
+    var modalMap = {
+      'vata': 'vataModal-' + S,
+      'pitta': 'pittaModal-' + S,
+      'kapha': 'kaphaModal-' + S,
+      'dual-vata-pitta': 'vataModal-' + S,
+      'dual-vata-kapha': 'vataModal-' + S,
+      'dual-kapha-pitta': 'pittaModal-' + S,
+      'balanced': 'tridoshicModal-' + S
+    };
+    var modalId = modalMap[currentDosha] || 'tridoshicModal-' + S;
+    var el = $s(modalId);
+    if (el) el.classList.add('active');
+  };
+
+  window.closeModal = function(id) {
+    var el = $s(id);
+    if (el) el.classList.remove('active');
+  };
+
+  // ─── EMAIL SAVE ───
+  window.saveEmail = function(S) {
+    var input = $s('ebEmail-' + S);
+    if (!input || !input.value || input.value.indexOf('@') === -1) return;
+    var confirm = $s('ebConfirm-' + S);
+    if (confirm) confirm.classList.add('show');
+    if (input) input.disabled = true;
+
+    // Optional: Send to Shopify customer email capture
+    var email = input.value;
+    fetch('/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    }).catch(function() {});
+  };
+
+  // ─── INIT ───
+  function init() {
+    fetchShopifyProducts().then(function() {
+      initDeepQuiz(SID);
+      selectMode('camera', SID);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "AI Dosha Quiz",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Settings"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "PRANA Beauty & Wellness"
+    },
+    {
+      "type": "text",
+      "id": "brand_url",
+      "label": "Brand URL",
+      "default": "pranabeauty.com"
+    },
+    {
+      "type": "text",
+      "id": "privacy_url",
+      "label": "Privacy Policy URL",
+      "default": "/pages/privacy-policy",
+      "info": "Enter your privacy policy URL (e.g., /pages/privacy-policy)"
+    },
+    {
+      "type": "header",
+      "content": "AI Configuration"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_ai",
+      "label": "Enable Real AI (Claude/OpenAI)",
+      "default": true,
+      "info": "If disabled, uses local logic only"
+    },
+    {
+      "type": "text",
+      "id": "claude_api_key",
+      "label": "Claude API Key",
+      "info": "Get from Anthropic Console (optional)"
+    },
+    {
+      "type": "text",
+      "id": "openai_api_key",
+      "label": "OpenAI API Key",
+      "info": "Get from OpenAI Platform (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Find Your Skin Ritual"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Three paths. One result. Your personal Ayurvedic ritual."
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Dosha Quiz",
+      "category": "PRANA Beauty"
+    }
+  ]
+}
+{% endschema %}

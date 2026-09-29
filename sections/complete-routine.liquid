@@ -1,0 +1,781 @@
+{% assign step = 0 %}
+{% assign bundle_variant_ids = '' %}
+{% assign bundle_items_json = '' %}
+{% assign bundle_total_price = 0 %}
+{% assign bundle_discounted_price = 0 %}
+{% assign bundle_total_discount = 0 %}
+
+<!-- Get products from metafield -->
+{% assign ritual_products = product.metafields.custom.complete_your_ritual.value %}
+
+{% if ritual_products != blank and ritual_products.size > 0 %}
+
+<section class="complete-routine">
+  <div class="section">
+
+    <div class="inner-header">
+      <p>{{ section.settings.ingredient_header }}</p>
+      <div class="fv-cap-line"></div>
+    </div>
+
+    <div class="routine-head">
+      <h2>{{ section.settings.heading }}</h2>
+      <h2>{{ section.settings.heading_2 }}</h2>
+    </div>
+
+    <div class="routine-wrapper">
+      {% assign step = 0 %}
+
+      {% for ritual_product in ritual_products %}
+        {% assign step = step | plus: 1 %}
+        {% assign first_variant = ritual_product.selected_or_first_available_variant %}
+
+        {% if first_variant != blank %}
+          {% assign product_original_price = first_variant.price %}
+          {% assign product_discounted_price = first_variant.price %}
+          {% assign product_discount_amount = 0 %}
+          {% assign product_selling_plan_id = '' %}
+          {% assign product_selling_plan_allocation = first_variant.selling_plan_allocations | first %}
+
+          {% if product_selling_plan_allocation != blank %}
+            {% if product_selling_plan_allocation.compare_at_price != blank %}
+              {% assign product_original_price = product_selling_plan_allocation.compare_at_price %}
+            {% endif %}
+
+            {% if product_selling_plan_allocation.price != blank %}
+              {% assign product_discounted_price = product_selling_plan_allocation.price %}
+            {% endif %}
+
+            {% if product_selling_plan_allocation.selling_plan != blank %}
+              {% assign product_selling_plan_id = product_selling_plan_allocation.selling_plan.id %}
+            {% endif %}
+          {% endif %}
+
+          {% if product_original_price > product_discounted_price %}
+            {% assign product_discount_amount = product_original_price | minus: product_discounted_price %}
+          {% endif %}
+        {% endif %}
+        
+        {% if step <= section.settings.products_limit and first_variant != blank %}
+          {% assign bundle_variant_ids = bundle_variant_ids | append: first_variant.id | append: ',' %}
+          {% assign bundle_total_price = bundle_total_price | plus: product_original_price %}
+          {% assign bundle_discounted_price = bundle_discounted_price | plus: product_discounted_price %}
+          {% assign bundle_total_discount = bundle_total_discount | plus: product_discount_amount %}
+
+          {% capture bundle_item_json %}
+            {"id":{{ first_variant.id }}{% if product_selling_plan_id != blank %},"selling_plan":{{ product_selling_plan_id }}{% endif %}}
+          {% endcapture %}
+
+          {% if bundle_items_json != blank %}
+            {% assign bundle_items_json = bundle_items_json | append: ',' %}
+          {% endif %}
+
+          {% assign bundle_items_json = bundle_items_json | append: bundle_item_json %}
+
+          <a href="{{ ritual_product.url }}" class="routine-card-link">
+            <div class="routine-card">
+              <span class="step-badge">
+                Step {{ step | prepend: '0' }}
+              </span>
+
+              <div class="routine-content">
+                <h3>{{ ritual_product.title }}</h3>
+                <p>{{ ritual_product.description | strip_html | truncate: 90 }}</p>
+
+                <div class="routine-bottom">
+                  <span class="price">
+                    {% if product_discount_amount > 0 %}
+                      <span class="routine-original-price">{{ product_original_price | money | split: '.' | first }}</span>
+                      <span class="routine-discounted-price">{{ product_discounted_price | money | split: '.' | first }}</span>
+                    {% else %}
+                      {{ product_original_price | money | split: '.' | first }}
+                    {% endif %}
+                  </span>
+
+                  <button
+                    type="button"
+                    class="complete-cart-button"
+                    data-variant-id="{{ first_variant.id }}"
+                    data-selling-plan-id="{{ product_selling_plan_id }}"
+                  >
+                    {{ section.settings.buy_now_text }}
+                  </button>
+                </div>
+              </div>
+
+              <div class="routine-image">
+                {% if ritual_product.featured_image != blank %}
+                  <img
+                    src="{{ ritual_product.featured_image | image_url: width: 500 }}"
+                    alt="{{ ritual_product.title | escape }}"
+                    loading="lazy"
+                    width="{{ ritual_product.featured_image.width }}"
+                    height="{{ ritual_product.featured_image.height }}"
+                  >
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Complete Set Bar -->
+    {% if bundle_items_json != blank %}
+      <div class="complete-set-bar">
+        <div class="complete-set-content">
+          <div class="complete-set-top">
+            <span>{{ section.settings.complete_set_label }}</span>
+            <div class="fv-cap-line"></div>
+          </div>
+
+          <div class="complete-set-price">
+            {% if bundle_total_discount > 0 %}
+              <span class="complete-set-original-price">{{ bundle_total_price | money | split: '.' | first }}</span>
+              <span class="complete-set-discounted-price">{{ bundle_discounted_price | money | split: '.' | first }}</span>
+              complete set
+            {% else %}
+              {{ bundle_total_price | money | split: '.' | first }} complete set
+            {% endif %}
+          </div>
+
+          <div class="complete-set-text">
+            {% if bundle_total_discount > 0 %}
+              Save up to {{ bundle_total_discount | money | split: '.' | first }}
+            {% else %}
+              {{ section.settings.complete_set_text }}
+            {% endif %}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="complete-set-button"
+          data-bundle-ids="{{ bundle_variant_ids | remove_last: ',' }}"
+          data-bundle-items='[{{ bundle_items_json | escape }}]'
+        >
+          {{ section.settings.complete_set_button_text }}
+        </button>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endif %}
+
+<style>
+.complete-routine {
+  padding: 50px 0;
+  background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+}
+
+.complete-routine .inner-header {
+  font-family: var(--U);
+  font-size: 14px;
+  color: var(--ink3);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.routine-head {
+  padding: 16px 0 30px;
+}
+
+.routine-head h2 {
+  font-size: 41px;
+  text-align: left;
+  color: var(--ink3);
+  margin: 0;
+}
+
+.routine-head h2:last-child {
+  color: var(--heading-color);
+}
+
+.routine-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.routine-card-link {
+  text-decoration: none;
+  display: block;
+}
+
+.routine-card {
+  background: #E3C39F;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 24px 0 0;
+  overflow: hidden;
+  position: relative;
+  min-height: 100%;
+  box-shadow: 0px -3px 4px 0px #D3B18A80 inset;
+  cursor: pointer;
+}
+
+.routine-content {
+  width: 75%;
+  padding: 79px 20px 20px;
+}
+
+.step-badge {
+  background: var(--heading-color);
+  color: #fff;
+  font-size: 17px;
+  padding: 6px 18px;
+  border-radius: 0 6px 6px 0;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 20px;
+}
+
+.routine-content h3 {
+  font-size: 17px;
+  line-height: normal;
+  margin: 0 0 3px;
+  color: var(--heading-color);
+}
+
+.routine-content p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink3);
+  margin-bottom: 25px;
+}
+
+.routine-bottom {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.price {
+  font-size: 28px;
+  color: #000;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.routine-original-price {
+  text-decoration: line-through;
+  opacity: 0.6;
+  font-size: 20px;
+  display:none;
+}
+
+.routine-discounted-price {
+  color: #000;
+}
+
+.complete-cart-button {
+  background: var(--gold);
+  border: 0;
+  color: white;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.complete-cart-button:hover {
+  background: var(--heading-color);
+  color: white;
+}
+
+.routine-image {
+  width: 28%;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 2px 4px 0px #4613244D;
+  border: 1px solid var(--heading-color);
+}
+
+.routine-image img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  display: block;
+  margin: auto;
+  background: #f3e4cd;
+}
+
+/* Complete Set Bar */
+.complete-set-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 35px;
+  padding: 18px 22px;
+  border-radius: 0;
+}
+
+.complete-set-content {
+  flex: 1;
+}
+
+.complete-set-top {
+  font-family: var(--U);
+  font-size: 13px;
+  color: var(--ink3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.complete-set-price {
+  font-size: 31px;
+  line-height: 1;
+  color: var(--heading-color);
+  margin-bottom: 6px;
+}
+
+.complete-set-original-price {
+  text-decoration: line-through;
+  color: var(--gold);
+  margin-right: 10px;
+}
+
+.complete-set-discounted-price {
+  color: var(--heading-color);
+}
+
+.complete-set-text {
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--gold);
+  background: #fff;
+  width: fit-content;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.complete-set-button {
+  background: var(--gold);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 28px;
+  border-radius: 5px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.complete-set-button:hover {
+  background: var(--heading-color);
+  color: #fff;
+}
+
+/* TABLET */
+@media screen and (max-width: 991px) {
+  .routine-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE */
+@media screen and (max-width: 768px) {
+  .complete-routine {
+    padding: 40px 0;
+  }
+
+  .routine-head {
+    padding: 8px 0 21px;
+  }
+
+  .routine-head h2 {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .routine-wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .routine-card {
+    padding: 15px;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .routine-content {
+    width: 70%;
+    padding: 43px 0 0;
+  }
+
+  .routine-image {
+    width: 30%;
+  }
+
+  .routine-image img {
+    max-width: 150px;
+  }
+
+  .routine-content h3 {
+    font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .routine-content p {
+    font-size: 15px;
+    margin-bottom: 13px;
+    line-height: 17px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+  .complete-cart-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .routine-content .price {
+    font-size: 19px;
+  }
+
+  .routine-original-price {
+    font-size: 15px;
+  }
+
+  .step-badge {
+    font-size: 13px;
+    padding: 6px 7px;
+    top: 15px;
+  }
+
+  .complete-set-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 25px;
+    padding: 0px;
+  }
+
+  .complete-set-price {
+    font-size: 22px;
+  }
+
+  .complete-set-button {
+    width: fit-content;
+    padding: 7px 18px;
+    font-size: 15px;
+  }
+}
+</style>
+
+<script>
+(function() {
+  function rootPath() {
+    if (window.Shopify && Shopify.routes && Shopify.routes.root) {
+      return Shopify.routes.root;
+    }
+
+    return '/';
+  }
+
+  function refreshCartUI() {
+    fetch(rootPath() + 'cart.js', {
+      credentials: 'same-origin',
+      cache: 'no-store'
+    })
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(cart) {
+        var cartCountElements = document.querySelectorAll('[data-cart-count], .cart-count, .cart__count, .header__cart-count');
+
+        cartCountElements.forEach(function(el) {
+          el.textContent = cart.item_count;
+        });
+
+        document.dispatchEvent(
+          new CustomEvent('cart:update', {
+            bubbles: true,
+            detail: {
+              data: {
+                itemCount: cart.item_count,
+                source: 'complete-routine-section'
+              },
+              cart: cart
+            }
+          })
+        );
+      })
+      .catch(function(err) {
+        console.log('Cart refresh error:', err);
+      });
+  }
+
+  function addToCart(variantId, sellingPlanId, btn) {
+    var originalText = btn.textContent;
+
+    btn.textContent = 'Adding...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+
+    var body = {
+      id: parseInt(variantId, 10),
+      quantity: 1
+    };
+
+    if (sellingPlanId) {
+      body.selling_plan = parseInt(sellingPlanId, 10);
+    }
+
+    fetch(rootPath() + 'cart/add.js', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      return response.json();
+    })
+    .then(function(data) {
+      btn.textContent = 'Added ✓';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      refreshCartUI();
+
+      setTimeout(function() {
+        btn.textContent = originalText;
+      }, 2000);
+    })
+    .catch(function(error) {
+      console.error('Error:', error);
+      btn.textContent = 'Error!';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+
+      setTimeout(function() {
+        btn.textContent = originalText;
+      }, 2000);
+    });
+  }
+
+  function addBundleToCart(bundleItems, fallbackVariantIds, btn) {
+    var originalText = btn.textContent;
+
+    var items = [];
+
+    if (Array.isArray(bundleItems) && bundleItems.length > 0) {
+      items = bundleItems.map(function(item) {
+        var cleanItem = {
+          id: parseInt(item.id, 10),
+          quantity: 1
+        };
+
+        if (item.selling_plan) {
+          cleanItem.selling_plan = parseInt(item.selling_plan, 10);
+        }
+
+        return cleanItem;
+      }).filter(function(item) {
+        return item.id;
+      });
+    }
+
+    if ((!items || items.length === 0) && fallbackVariantIds && fallbackVariantIds.length > 0) {
+      items = fallbackVariantIds.map(function(id) {
+        return {
+          id: parseInt(id, 10),
+          quantity: 1
+        };
+      }).filter(function(item) {
+        return item.id;
+      });
+    }
+
+    if (!items || items.length === 0) {
+      return;
+    }
+
+    btn.textContent = 'Adding...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+
+    fetch(rootPath() + 'cart/add.js', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        items: items
+      })
+    })
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      return response.json();
+    })
+    .then(function(data) {
+      btn.textContent = 'Set Added ✓';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      refreshCartUI();
+
+      setTimeout(function() {
+        btn.textContent = originalText;
+      }, 2000);
+    })
+    .catch(function(error) {
+      console.error('Bundle Error:', error);
+      btn.textContent = 'Error!';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+
+      setTimeout(function() {
+        btn.textContent = originalText;
+      }, 2000);
+    });
+  }
+
+  var atcButtons = document.querySelectorAll('.complete-cart-button');
+
+  atcButtons.forEach(function(btn) {
+    var variantId = btn.getAttribute('data-variant-id');
+    var sellingPlanId = btn.getAttribute('data-selling-plan-id');
+
+    if (variantId) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart(variantId, sellingPlanId, this);
+      });
+    }
+  });
+
+  var bundleButton = document.querySelector('.complete-set-button');
+
+  if (bundleButton) {
+    bundleButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      var bundleItemsRaw = this.getAttribute('data-bundle-items');
+      var ids = this.getAttribute('data-bundle-ids');
+      var bundleItems = [];
+
+      if (bundleItemsRaw) {
+        try {
+          bundleItems = JSON.parse(bundleItemsRaw);
+        } catch (error) {
+          console.error('Bundle items parse error:', error);
+        }
+      }
+
+      var fallbackVariantIds = [];
+
+      if (ids) {
+        fallbackVariantIds = ids.split(',').filter(function(id) {
+          return id.trim() !== '';
+        });
+      }
+
+      addBundleToCart(bundleItems, fallbackVariantIds, this);
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Complete Your Ritual",
+  "tag": "section",
+  "class": "complete-routine-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "complete_set_label",
+      "label": "Complete set small text",
+      "default": "DINACHARYA · Morning Ritual"
+    },
+    {
+      "type": "text",
+      "id": "complete_set_text",
+      "label": "Complete set description",
+      "default": "Save by ordering the complete ritual set"
+    },
+    {
+      "type": "text",
+      "id": "complete_set_button_text",
+      "label": "Complete set button text",
+      "default": "Shop the Ritual Now →"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_header",
+      "label": "Small header text",
+      "default": "Key Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "DINACHARYA - The Morning Ritual."
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Second Heading",
+      "default": "Three steps to all-day radiance."
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products Show",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "buy_now_text",
+      "label": "Buy Button Text",
+      "default": "+ Add to Bag"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Complete Your Ritual"
+    }
+  ]
+}
+{% endschema %}

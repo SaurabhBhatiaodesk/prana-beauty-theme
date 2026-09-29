@@ -1,0 +1,189 @@
+<style>
+  .breadcrumbs {
+      background: {% if section.settings.bg_color != blank %}{{ section.settings.bg_color }}{% else %}radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e6cea8ed 100%){% endif %};
+      padding: 10px 0;
+  }
+  .breadcrumbs a.breadcrumbs__link.home{
+    color: {% if section.settings.home_link_color != blank %}{{ section.settings.home_link_color }}{% else %}var(--gold){% endif %};
+  }
+  
+  .breadcrumbs__link {
+    color: {% if section.settings.link_color != blank %}{{ section.settings.link_color }}{% else %}inherit{% endif %};
+    text-decoration: underline;
+  }
+  
+  .breadcrumbs__link[aria-current="page"] {
+    color: {% if section.settings.active_color != blank %}{{ section.settings.active_color }}{% else %}inherit{% endif %};
+    font-weight: normal;
+    text-decoration: none;
+  }
+  
+  .breadcrumbs__separator {
+    color: {% if section.settings.separator_color != blank %}{{ section.settings.separator_color }}{% else %}inherit{% endif %};
+  }
+  
+  .breadcrumbs__list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 5px;
+  }
+  .breadcrumbs__item {
+    display: inline-block;
+  }
+
+  .breadcrumbs__link[aria-current="page"]:hover,
+  .breadcrumbs__link[aria-current="page"]:focus {
+    text-decoration: underline;
+  }
+
+  @media all and (max-width:768px){
+    .breadcrumbs {
+      background: {% if section.settings.bg_color_mobile != blank %}{{ section.settings.bg_color_mobile }}{% else %}radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39fd9 100%){% endif %};
+    }
+    .breadcrumbs__list {
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
+{%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
+{%- assign t = template | split: '.' | first -%}
+
+<div class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
+  <div class="section">
+    <ol class="breadcrumbs__list">
+      <li class="breadcrumbs__item">
+        <a class="breadcrumbs__link home" href="/">Home</a>
+        <span class="breadcrumbs__separator">/</span>
+      </li>
+      {%- case t -%}
+        {%- when 'page' -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+          </li>
+        {%- when 'product' -%}
+          {%- if collection.url -%}
+            <li class="breadcrumbs__item">
+              {{ collection.title | link_to: collection.url }}
+              <span class="breadcrumbs__separator">/</span>
+            </li>
+          {%- endif -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
+          </li>
+        {%- when 'collection' -%}
+          {%- if current_tags -%}
+            <li class="breadcrumbs__item">
+              {{ collection.title | link_to: collection.url }}
+              <span class="breadcrumbs__separator">/</span>
+            </li>
+            <li class="breadcrumbs__item">
+              {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+              <a class="breadcrumbs__link" href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + "}}</a>
+            </li>
+          {%- else -%}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+            </li>
+          {%- endif -%}
+        {%- when 'blog' -%}
+          {%- if current_tags -%}
+            <li class="breadcrumbs__item">
+              {{ blog.title | link_to: blog.url }}
+              <span class="breadcrumbs__separator">/</span>
+            </li>
+            <li class="breadcrumbs__item">
+              {%- capture tag_url -%}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
+              <a class="breadcrumbs__link" href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + " }}</a>
+            </li>
+          {%- else -%}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+            </li>
+          {%- endif -%}
+        {%- when 'article' -%}
+          <li class="breadcrumbs__item">
+            {{ blog.title | link_to: blog.url }}
+            <span class="breadcrumbs__separator">/</span>
+          </li>
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
+          </li>
+        {%- else -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ request.path }}" aria-current="page">{{ page_title }}</a>
+          </li>
+      {%- endcase -%}
+    </ol>
+  </div>
+</div>
+{%- endunless -%}
+
+{% schema %}
+  {
+    "name": "Custom breadcrumbs",
+    "settings": [
+        {
+          "type": "header",
+          "content": "Background Colors"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Desktop Background Color",
+          "default": "#cb964675"
+        },
+        {
+          "type": "color",
+          "id": "bg_color_mobile",
+          "label": "Mobile Background Color",
+          "default": "#cb964675"
+        },
+        {
+          "type": "header",
+          "content": "Link Colors"
+        },
+        {
+          "type": "color",
+          "id": "home_link_color",
+          "label": "Home Link Color",
+          "default": "#B8860B"
+        },
+        {
+          "type": "color",
+          "id": "link_color",
+          "label": "Other Links Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "active_color",
+          "label": "Active/Current Page Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "separator_color",
+          "label": "Separator (/) Color",
+          "default": "#000000"
+        }
+    ],
+    "presets": [
+      {
+        "name": "Custom breadcrumbs"
+      }
+    ]
+  }
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- when 'collection' and collection.handle -%}"
+  to: "{%- when 'collection' -%}"
+  position: 2856..2881
+{%- endcomment -%}

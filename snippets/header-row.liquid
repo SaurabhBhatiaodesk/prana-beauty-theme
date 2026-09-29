@@ -1,0 +1,102 @@
+{%- liquid
+  assign order = order | split: ','
+  assign left = ''
+  assign center = ''
+  assign right = ''
+
+  if first != blank
+    assign left = 'first '
+  endif
+
+  for item in order
+    assign column_key = item | append: '_position'
+    assign row_key = item | append: '_row'
+    assign item_row = settings[row_key] | default: 'top'
+    assign item_column = settings[column_key] | default: 'left'
+
+    case item
+      when 'actions'
+        assign item_column = 'right'
+    endcase
+
+    if item_row == row
+      case item_column
+        when 'left'
+          assign left = left | append: item | append: ' '
+        when 'center'
+          assign center = center | append: item | append: ' '
+        else
+          assign right = right | append: item | append: ' '
+      endcase
+    endif
+  endfor
+
+  assign columns = 'left,center,right' | split: ','
+-%}
+
+{%- for column in columns -%}
+  {%- capture items_for_column -%}
+    {% case column %}
+      {% when 'left' %}
+        {{ left }}
+      {% when 'center' %}
+        {{ center }}
+      {% else %}
+        {{ right }}
+    {% endcase %}
+  {%- endcapture -%}
+
+  {%- assign items_array = items_for_column | strip | split: ' ' | compact -%}
+
+  {%- if items_array.size > 0 -%}
+    <div
+      class="header__column header__column--{{ column }}"
+      data-testid="header-{{ row }}-{{ column }}"
+    >
+      
+      {% for key in items_array %}
+        {% unless key == blank %}
+          {% case key %}
+            {% when 'first' %}
+              {{ first }}
+            {% when 'logo' %}
+              {{ logo }}
+            {% when 'menu' %}
+              {{ menu }}
+              
+            {% when 'localization' %}
+              {{ localization }}
+              
+            {% when 'search' %}       
+                <nav class="m-none" role="navigation">
+                  <ul>
+                    {%- for link in linklists.rightsidemenu.links -%}
+                      <li>
+                        <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+                          {{ link.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </nav>
+                {% if section.settings.headerBtn %}
+                <a class="h-btn" href="{{ section.settings.headerBtn }}">
+                  <svg width="22" height="27" viewBox="0 0 22 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.44082 5.13727L9.19699 7.24511C10.0382 9.58925 11.8814 11.423 14.2256 12.2737L16.3334 13.0299C16.5224 13.096 16.5224 13.3701 16.3334 13.4363L14.2256 14.1925C11.8814 15.0337 10.0477 16.8769 9.19699 19.221L8.44082 21.3289C8.37465 21.5179 8.10054 21.5179 8.03437 21.3289L7.27819 19.221C6.43695 16.8769 4.59377 15.0432 2.24962 14.1925L0.141783 13.4363C-0.047261 13.3701 -0.047261 13.096 0.141783 13.0299L2.24962 12.2737C4.59377 11.4324 6.4275 9.58925 7.27819 7.24511L8.03437 5.13727C8.10054 4.94822 8.37465 4.94822 8.44082 5.13727Z" fill="#97371E"/>
+                    <path d="M17.9314 0.0708915L18.319 1.13899C18.7443 2.32052 19.6801 3.25628 20.8616 3.68163L21.9297 4.06917C22.0242 4.10698 22.0242 4.23931 21.9297 4.27712L20.8616 4.66466C19.6801 5.09001 18.7443 6.02578 18.319 7.2073L17.9314 8.2754C17.8936 8.36993 17.7613 8.36993 17.7235 8.2754L17.3359 7.2073C16.9106 6.02578 15.9748 5.09001 14.7933 4.66466L13.7252 4.27712C13.6307 4.23931 13.6307 4.10698 13.7252 4.06917L14.7933 3.68163C15.9748 3.25628 16.9106 2.32052 17.3359 1.13899L17.7235 0.0708915C17.7613 -0.0236305 17.8936 -0.0236305 17.9314 0.0708915Z" fill="#97371E"/>
+                    <path d="M17.9314 18.1908L18.319 19.2589C18.7443 20.4404 19.6801 21.3762 20.8616 21.8015L21.9297 22.189C22.0242 22.2269 22.0242 22.3592 21.9297 22.397L20.8616 22.7845C19.6801 23.2099 18.7443 24.1457 18.319 25.3272L17.9314 26.3953C17.8936 26.4898 17.7613 26.4898 17.7235 26.3953L17.3359 25.3272C16.9106 24.1457 15.9748 23.2099 14.7933 22.7845L13.7252 22.397C13.6307 22.3592 13.6307 22.2269 13.7252 22.189L14.7933 21.8015C15.9748 21.3762 16.9106 20.4404 17.3359 19.2589L17.7235 18.1908C17.7613 18.0962 17.8936 18.0962 17.9314 18.1908Z" fill="#97371E"/>
+                  </svg>
+                  TRY PRANA AI Skin Scan
+                </a>  
+              {% endif %}
+              {{ search }}
+            {% when 'mobile_search' %}
+              {{ mobile_search }}
+            {% when 'actions' %}
+              {{ actions }}
+          {% endcase %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  {%- endif -%}
+{%- endfor -%}

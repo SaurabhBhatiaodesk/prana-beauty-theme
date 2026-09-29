@@ -1,0 +1,207 @@
+<style>
+  .clinic-data-section {
+    background: linear-gradient(90deg, #813850 0%, #461324 100%);
+    color: {{ section.settings.text_color }};
+  }
+
+  .clinic-data-header h3 {
+    font-size: 34px;
+    color: var(--ink3);
+    text-align: center;
+    padding: 30px 0 15px;
+  }
+
+  .clinic-data-header {
+    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+  }
+
+  p.clinic-data-last {
+    text-align: center;
+    font-size: 20px;
+    padding: 10px 0;
+  }
+
+  .clinic-data-grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.desktop_grid }}, 1fr);
+    align-items: center;
+  }
+
+  .clinic-data-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 19px;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .clinic-data-number {
+      font-family: Ponomar;
+      font-weight: 400;
+      font-size: 29px;
+      line-height: 24px;
+      letter-spacing: 0%;
+      text-align: center;
+      padding-bottom: 13px;
+  }
+
+  .clinic-data-label {
+    font-size: 21px;
+    opacity: 1;
+    text-align: center;
+  }
+
+  @media(max-width: 768px) {
+    .clinic-data-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 12px 0px;
+    }
+
+    .clinic-data-item:nth-child(3),
+    .clinic-data-item:nth-child(4) {
+      border-bottom: 0;
+    }
+
+    .clinic-data-item:nth-child(2),
+    .clinic-data-item:nth-child(4),
+    .clinic-data-item:nth-child(6){
+      border-right: 0;
+    }
+    .clinic-data-item.clinic-fixed{
+      border-bottom: 1px solid #CB9646;
+    }
+    .clinic-data-item {
+      border-right: 1px solid #CB9646;
+      border-bottom: 1px solid #CB9646;
+      padding: 10px;
+    }
+     .clinic-data-item.clinic-fixed:nth-child(5),
+     .clinic-data-item.clinic-fixed:nth-child(6){
+      border-bottom:0;
+    }
+    .clinic-data-number {
+      font-size: 22px;
+    }
+
+    .clinic-data-label {
+      font-size: 20px;
+    }
+  }
+
+  @media(max-width: 575px) {
+    .clinic-data-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    p.clinic-data-last {
+      font-size: 15px;
+      line-height: 18px;
+    }
+
+    .clinic-data-number {
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .clinic-data-header h3 {
+      font-size: 19px;
+      line-height: normal;
+    }
+
+    .clinic-data-label {
+      font-size: 14px;
+    }
+  }
+</style>
+
+{% assign clinical_data = product.metafields.custom.clinical_data.value %}
+
+{% if clinical_data != blank %}
+
+  {% if section.settings.title != blank %}
+    <div class="clinic-data-header">
+      <div class="section">
+        <h3>{{ section.settings.title }}</h3>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="clinic-data-section">
+    <div class="section">
+
+      <div class="clinic-data-grid">
+        {% assign total_items = clinical_data | size %}
+
+      {% for item in clinical_data %}
+
+        {% assign clinical_data_heading = item.clinical_data_heading.value | default: item.clinical_data_heading %}
+        {% assign clinical_data_description = item.clinical_data_description.value | default: item.clinical_data_description %}
+
+        {% if clinical_data_heading != blank or clinical_data_description != blank %}
+          <div class="clinic-data-item{% if total_items > 4 %} clinic-fixed{% endif %}">
+            <div>
+              {% if clinical_data_heading != blank %}
+                <div class="clinic-data-number">
+                  {{ clinical_data_heading }}
+                </div>
+              {% endif %}
+
+              {% if clinical_data_description != blank %}
+                <div class="clinic-data-label">
+                  {{ clinical_data_description }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+      {% endfor %}
+      </div>
+
+      {% if section.settings.last-proof != blank %}
+        <p class="clinic-data-last">{{ section.settings.last-proof }}</p>
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Custom Proof",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Proof Text"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "desktop_grid",
+      "label": "Desktop Columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "last-proof",
+      "label": "Last Proof Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Clinic Data"
+    }
+  ]
+}
+{% endschema %}

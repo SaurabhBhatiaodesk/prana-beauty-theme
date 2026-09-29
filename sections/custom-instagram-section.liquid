@@ -1,0 +1,65 @@
+  <section class="hp-ugc">
+  <div class="hp-ugc-head">
+    <div>
+      <div class="rule reveal" style="margin-bottom:12px">@pranabeautywellness</div>
+      <h2 class="sec-h2 reveal d1">{{ section.settings.heading }}</h2>
+    </div>
+    <a href="https://instagram.com/pranabeautywellness" target="_blank" class="hp-ugc-follow reveal d1">Follow on Instagram ↗</a>
+  </div>
+  <div class="hp-ugc-grid">
+    <div class="hp-ugc-item reveal" onclick="window.open('https://instagram.com/pranabeautywellness','_blank')">
+      <div class="hp-ugc-ph" style="background:linear-gradient(135deg,#C8881E22,#A8681A11)">
+        <div class="hp-ugc-ph-inner"><div class="hp-ugc-icon">◈</div></div>
+      </div>
+      <div class="hp-ugc-overlay"><span class="hp-ugc-handle">@priya.rituals</span></div>
+    </div>
+    <div class="hp-ugc-item reveal d1" onclick="window.open('https://instagram.com/pranabeautywellness','_blank')">
+      <div class="hp-ugc-ph" style="background:linear-gradient(135deg,#8B2A3A22,#C8503A11)">
+        <div class="hp-ugc-ph-inner"><div class="hp-ugc-icon">✿</div></div>
+      </div>
+      <div class="hp-ugc-overlay"><span class="hp-ugc-handle">@mornings.with.maya</span></div>
+    </div>
+    <div class="hp-ugc-item reveal d2" onclick="window.open('https://instagram.com/pranabeautywellness','_blank')">
+      <div class="hp-ugc-ph" style="background:linear-gradient(135deg,#2A5C3A22,#4A8C5A11)">
+        <div class="hp-ugc-ph-inner"><div class="hp-ugc-icon">⬡</div></div>
+      </div>
+      <div class="hp-ugc-overlay"><span class="hp-ugc-handle">@sarah.glows</span></div>
+    </div>
+    <div class="hp-ugc-item reveal d3" onclick="window.open('https://instagram.com/pranabeautywellness','_blank')">
+      <div class="hp-ugc-ph" style="background:linear-gradient(135deg,#5C3A2A22,#8C6A4A11)">
+        <div class="hp-ugc-ph-inner"><div class="hp-ugc-icon">✦</div></div>
+      </div>
+      <div class="hp-ugc-overlay"><span class="hp-ugc-handle">@anjali.ayurveda</span></div>
+    </div>
+    <div class="hp-ugc-item reveal d1" onclick="window.open('https://instagram.com/pranabeautywellness','_blank')">
+      <div class="hp-ugc-ph" style="background:linear-gradient(135deg,#3A2A5C22,#6A4A8C11)">
+        <div class="hp-ugc-ph-inner"><div class="hp-ugc-icon">◈</div></div>
+      </div>
+      <div class="hp-ugc-overlay"><span class="hp-ugc-handle">@ritualskincare</span></div>
+    </div>
+    <div class="hp-ugc-item reveal d2" onclick="window.open('https://instagram.com/pranabeautywellness','_blank')">
+      <div class="hp-ugc-ph" style="background:linear-gradient(135deg,#2A3A5C22,#4A5A8C11)">
+        <div class="hp-ugc-ph-inner"><div class="hp-ugc-icon">✿</div></div>
+      </div>
+      <div class="hp-ugc-overlay"><span class="hp-ugc-handle">@riya.wellness</span></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Custom instagram",
+    "settings": [
+        {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+        }
+    ],
+    "presets": [
+    {
+      "name": "Custom instagram",
+    }
+  ]
+  }
+{% endschema %}

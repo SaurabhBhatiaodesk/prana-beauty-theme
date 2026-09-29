@@ -1,0 +1,100 @@
+
+
+<div class="blog-post-content rte">
+  <rte-formatter>
+    {{ article.content }}
+  </rte-formatter>
+</div>
+
+{% stylesheet %}
+  .blog-post-content {
+    /* max-width: var(--normal-content-width); */
+    margin: 0 auto;
+  }
+  .blog-post-content img {
+    margin:20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 2px 2px 4px #4613244d;
+    border: 1px solid var(--heading-color);
+  }
+  body .blog-content p {
+    margin-bottom: 0;
+    line-height: normal;
+  }
+  .blog-content p:empty{
+    display:none;
+  }
+
+  .blog-content .cta-links{
+    margin-top:15px;
+  }
+  .blog-content .cta-links p {
+    color: var(--gold);
+    font-style: italic;
+    margin: 0;
+    cursor: pointer;
+  }
+  .blog-post-content .highlight-box {
+    background-color: #e3c39f;
+    border-left: 4px solid var(--heading-color);
+    padding: 20px;
+    font-style: italic;
+    margin: 27px 0;
+  }
+  .blog-post-details>span{
+    color:#000;
+  }
+  .blog-content h1{
+    margin-bottom: 8px;
+  }
+  .blog-post-content h2 b span,
+  .blog-post-content h1 b,
+  .blog-post-content h1 b span,
+  .blog-post-content h1,
+  .blog-post-content h2,
+  .blog-post-content h3,
+  .blog-post-content h4{
+    color:var(--heading-color) !important;
+    font-size: 21px !important;
+    line-height: normal;
+    margin:10px 0 !important;
+  }
+
+
+  @media all and (max-width:600px){
+    .blog-post-content h2 b span,
+    .blog-post-content h1 b,
+    .blog-post-content h1 b span,
+    .blog-post-content h1,
+    .blog-post-content h2,
+    .blog-post-content h3,
+    .blog-post-content h4{
+      font-size: 18px !important;
+      line-height: normal;
+      margin: 6px 0;
+    }
+  }
+  
+{% endstylesheet %}
+
+<script>
+  document.querySelectorAll(".blog-content p").forEach((p) => {
+  const content = p.innerHTML.replace(/&nbsp;/g, "").trim();
+
+  if (content === "" || p.textContent.trim() === "") {
+    p.style.display = "none";
+  }
+});
+</script>
+{% schema %}
+{
+  "name": "t:names.content",
+  "settings": [],
+  "presets": [
+    {
+      "name": "t:names.content"
+    }
+  ]
+}
+{% endschema %}

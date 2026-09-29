@@ -1,0 +1,49 @@
+
+
+
+<style>
+  .list-of-type{
+    padding:0 15px;
+    margin: 0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:start;
+    align-items:center;
+    gap:5px;
+  }
+
+ .value-of-type {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      border-radius: 4px;
+      position:static;
+      text-align: center;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: 0.01rem;
+      color: white;
+      background: var(--gold);
+  } 
+</style>
+
+<ul class="list-of-type">
+{% for values in closest.product.metafields.shopify.suitable-for-skin-type.value limit:1 %}
+  <li class="value-of-type">{{ values.label }}</li>
+{% endfor %}
+</ul>
+
+
+
+{% schema %}
+{
+  "name": "product Category types",
+  "presets": [
+    {
+      "name": "product Category types",
+    }
+  ]
+}
+{% endschema %}

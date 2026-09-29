@@ -1,0 +1,480 @@
+<section 
+  class="why-its-different-section why-its-different-section-{{ section.id }}" 
+>
+  <div class="why-different-inner-container">
+    <div class="section">
+        <div class="inner">
+            <div class="top-content">
+                {% if section.settings.title != blank %}
+                    <h2 class="why-different-main-title">{{ section.settings.title }}</h2>
+                    {% endif %}
+                    {% if section.settings.description != blank %}
+                        <div class="why-different-description">
+                            {{ section.settings.description }}
+                        </div>
+                {% endif %}
+            </div>
+
+            <div class="why-different-content-wrapper">
+            <div class="why-different-main-card">
+
+                <!-- ✅ FEATURES BLOCKS SECTION - YEH ADD KIYA HAI -->
+                {% if section.blocks.size > 0 %}
+                <div class="why-different-features-container">
+                    {% if section.settings.title_block != blank %}
+                    <h3 class="why-different-features-heading">{{ section.settings.title_block }}</h3>
+                    {% endif %}
+                    
+                    <div class="why-different-features-grid">
+                    {% for block in section.blocks %}
+                        <div class="why-different-feature-item" {{ block.shopify_attributes }}>
+                        {% if block.settings.icon != blank %}
+                            <div class="why-different-feature-icon">
+                            <img width="auto" height="auto" src="{{ block.settings.icon | img_url: 'master' }}" alt="{{ block.settings.title }}" loading="lazy">
+                            </div>
+                        {% endif %}
+                        {% if block.settings.title != blank %}
+                            <div class="why-different-feature-title">{{ block.settings.title }}</div>
+                        {% endif %}
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                <!-- ✅ FEATURES BLOCKS SECTION END -->
+
+                {% if section.settings.description2 != blank %}
+                <div class="why-different-description-secondary">
+                    {{ section.settings.description2 }}
+                </div>
+                {% endif %}
+                
+                {% if section.settings.button_text != blank or section.settings.button_text2 != blank %}
+                <div class="why-different-button-group">
+                    {% if section.settings.button_text != blank %}
+                    <a href="{{ section.settings.button_link }}" class="why-different-btn why-different-btn-primary">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.185 0.000976562V1.37988H10.827L0 12.051L1 13.0388L11.827 2.36792V9.8999H13.227V0L3.185 0.000976562Z" fill="black"/>
+                        <path d="M0 12.051L10.827 1.37988H3.186V0H13.23V9.8999H11.83V2.36792L1.00299 13.0388L0 12.051Z" fill="#1B1716"/>
+                        </svg>
+                        {{ section.settings.button_text }}
+                    </a>
+                    {% endif %}
+                    {% if section.settings.button_text2 != blank %}
+                    <a href="{{ section.settings.button_link2 }}" class="why-different-btn why-different-btn-secondary">
+                        {{ section.settings.button_text2 }}
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <style>
+    .why-different-inner-container .inner {
+        max-width: 670px;
+        margin: 0 auto;
+    }
+    .why-different-features-heading {
+        text-align: center;
+        margin: 0 auto 27px;
+        font-size: 27px;
+        line-height: 1.1;
+        color: var(--heading-color);
+        font-weight: 400;
+    }
+
+    .why-different-features-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .why-different-feature-item {
+      text-align: center;
+      max-width: 166px;
+      flex: 1;
+      min-width: 120px;
+    }
+    .why-different-feature-icon {
+        margin-inline: auto;
+        width: 69px;
+        height: 69px;
+        object-fit: contain;
+        margin-bottom: 12px;
+    }
+
+    .why-different-feature-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .why-different-feature-title {
+        color: white;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.3;
+        text-transform: capitalize;
+        text-align: center;
+    }
+    .why-different-star-icon {
+      margin: 0 auto;
+    }
+    .why-different-description-secondary p {
+        font-size: 16px;
+        line-height: 20px;
+        color: #fff;
+        letter-spacing: 0;
+        text-align: center;
+        padding: 17px 0 0;
+    }
+    .why-different-button-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: 29px 0 0 0;
+    }
+    
+    .why-different-inner-container {
+      background: url({{ section.settings.desktop_bg | img_url: 'master' }});
+      padding:60px 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+    }
+    .why-different-content-wrapper {
+        width: max-content;
+        margin: 0;
+        padding: 25px 40px;
+        display: flex;
+        background: #D3B18A33;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 16px;
+        border: 1px solid #7f7f7f80;
+    }
+    
+    .why-different-main-title {
+      color: #fff;
+      padding-bottom: 2px;
+      font-weight: 500;
+      font-size: 46px;
+      line-height: normal;
+      text-align: center;
+      margin: 0 auto;
+    }
+    
+    .why-different-main-title span {
+      font-style: italic;
+    }
+    .why-different-description p {
+        font-size: 16px;
+        line-height: 20px;
+        color: #fff;
+        letter-spacing: 0;
+        text-align: center;
+        padding: 7px 0 26px 0;
+    }
+    .why-different-btn {
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 50px;
+      line-height: 1;
+      letter-spacing: 0;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--gold);
+      text-align: center;
+      gap: 7px;
+      margin: 0;
+      border-radius: 8px;
+      transition: ease-in-out 0.5s;
+    }
+    
+    a.why-different-btn.why-different-btn-secondary {
+      background: #fff;
+      color: var(--gold);
+    }
+    
+    a.why-different-btn.why-different-btn-secondary:hover {
+      background: var(--gold);
+      color: #fff;
+    }
+    
+    .why-different-btn svg path {
+      fill: #fff;
+    }
+    
+    .why-different-btn:hover {
+      background: var(--heading-color);
+      color: #ffff;
+    }
+
+    /* MOBILE BACKGROUND */
+    @media (max-width: 768px) {
+      .why-different-inner-container {
+        background: url({{ section.settings.mobile_bg | img_url: 'master' }});
+        min-height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom center;
+        padding: 40px 0;
+        {% if section.settings.mobile_content_align == 'start' %}
+          justify-content: start;
+        {% elsif section.settings.mobile_content_align == 'center' %}
+          justify-content: center;
+        {% else %}
+          justify-content: end;
+        {% endif %}
+      }
+      
+      .why-different-features-grid {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap:16px;
+      }
+      
+      .why-different-features-heading {
+        font-size: 18px;
+        line-height: 20px;
+      }
+      
+      .why-different-feature-icon {
+        width: 53px;
+        height: 53px;
+        margin-bottom: 6px;
+      }
+      
+      .why-different-feature-title {
+        font-size: 14px;
+      }
+      
+      .why-different-content-wrapper {
+        padding: 0;
+        width: 100%;
+      }
+      
+      .why-different-main-card {
+        width: 100%;
+        padding: 20px 28px;
+      }
+      
+      .why-different-main-title {
+        font-size: 38px;
+        padding-bottom: 3px;
+        max-width: 500px;
+        line-height: 50px;
+      }
+      
+      .why-different-description p {
+        font-size: 15px;
+        line-height: 1.3;
+        max-width: 400px;
+        margin-inline: auto;
+      }
+      
+      .why-different-button-group {
+        margin: 24px auto 0;
+        flex-wrap: wrap;
+      }
+      
+      .why-different-btn {
+        width: auto;
+        height: auto;
+        margin-top: 0;
+        font-size: 12px;
+        padding: 12px 17px;
+        border-radius: 5px;
+      }
+      
+      .why-different-btn svg {
+        width: 11px;
+        height: 11px;
+      }
+      
+      .why-different-feature-item {
+        min-width: 100px;
+        max-width: 130px;
+      }
+    }
+    
+    /* Small Mobile */
+    @media (max-width: 575px) {
+      .why-different-feature-item {
+        min-width: 80px;
+      }
+      .why-different-description-secondary p{
+            font-size: 14px;
+            line-height: 19px;
+        }
+      .why-different-feature-title {
+        font-size: 12px;
+      }
+      
+      .why-different-feature-icon {
+        width: 45px;
+        height: 45px;
+      }
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "Why It's Different",
+  "settings": [
+    {
+      "type": "select",
+      "id": "desktop_content_align",
+      "label": "Desktop Content Align",
+      "options": [
+        {
+          "value": "start",
+          "label": "Start"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "End"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_align",
+      "label": "Mobile Content Align",
+      "options": [
+        {
+          "value": "start",
+          "label": "Start"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "End"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_bg",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Why It's Different"
+    },
+    {
+      "type": "text",
+      "id": "title_block",
+      "label": "Features Block Heading",
+      "default": "What Makes Us Different"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "description2",
+      "label": "Description 2"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_text2",
+      "label": "Button 2 Text",
+      "default": "Take the Skin Quiz"
+    },
+    {
+      "type": "url",
+      "id": "button_link2",
+      "label": "Button 2 Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "AI-Powered Precision"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Why It's Different",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "AI-Powered Precision"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Ayurvedic Wisdom"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Personalized Rituals"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

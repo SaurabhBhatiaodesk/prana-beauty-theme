@@ -1,0 +1,1759 @@
+<div class="sutra-page" id="page-sutra">
+  <div class="section">
+    <a href="{{ section.settings.bread_link }}" class="sutra-back">{{ section.settings.bread_text }}</a>
+
+    <div class="sutra-nav-cards" id="sutra-sibling-nav">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'sutra-tabs' %}
+            <a href="{{ block.settings.link }}" id="{{ block.settings.id }}" class="sutra-nav-card {% if request.path == block.settings.link %}active{% endif %}">
+              {{- block.settings.title -}}
+            </a>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="surtas-details">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'tab-details' %}
+          <div class="sutra-detail">
+            <div class="sutra-banner" id="sutra-banner">
+              {% if block.settings.banner_image != blank %}
+                <img
+                  width=""
+                  height=""
+                  loading="lazy"
+                  id="sutra-banner-img"
+                  class="sutra-banner-img"
+                  src="{{ block.settings.banner_image | img_url: 'master' }}"
+                  alt=""
+                >
+              {% endif %}
+            </div>
+
+            {% if block.settings.sp_number1 != blank or block.settings.sp_label1 != blank
+              or block.settings.sp_number2 != blank or block.settings.sp_label2 != blank
+              or block.settings.sp_number3 != blank or block.settings.sp_label3 != blank
+              or block.settings.sp_number4 != blank or block.settings.sp_label4 != blank
+            %}
+              <div class="sutra-proof-bar-main" id="sutra-proof">
+                <div class="section">
+                  <div class="sutra-proof-bar">
+                    {% if block.settings.sp_number1 != blank or block.settings.sp_label1 != blank %}
+                      <div class="sp-item">
+                        <div class="sp-num">{{ block.settings.sp_number1 }}</div>
+                        <div class="sp-lbl">{{ block.settings.sp_label1 }}</div>
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.sp_number2 != blank or block.settings.sp_label2 != blank %}
+                      <div class="sp-item">
+                        <div class="sp-num">{{ block.settings.sp_number2 }}</div>
+                        <div class="sp-lbl">{{ block.settings.sp_label2 }}</div>
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.sp_number3 != blank or block.settings.sp_label3 != blank %}
+                      <div class="sp-item">
+                        <div class="sp-num">{{ block.settings.sp_number3 }}</div>
+                        <div class="sp-lbl">{{ block.settings.sp_label3 }}</div>
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.sp_number4 != blank or block.settings.sp_label4 != blank %}
+                      <div class="sp-item">
+                        <div class="sp-num">{{ block.settings.sp_number4 }}</div>
+                        <div class="sp-lbl">{{ block.settings.sp_label4 }}</div>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+
+            <div class="section">
+              <div class="sutra-intro">
+                <div class="sutra-intro-copy reveal vis">
+                  <a href="{{ section.settings.btn-link }}" class="sutra-breadcrumb">
+                    {{- section.settings['btn-text'] -}}
+                    <div class="fv-cap-line"></div>
+                  </a>
+
+                  <div class="sutra-sanskrit-big" id="sutra-sanskrit">{{ block.settings.title }}</div>
+                  <div class="sutra-pronounce" id="sutra-pronounce">{{ block.settings.sub_title }}</div>
+                  <div class="sutra-meaning" id="sutra-meaning">{{ block.settings.caption }}</div>
+
+                  {% if block.settings.sutra_pill1 != blank
+                    or block.settings.sutra_pill2 != blank
+                    or block.settings.sutra_pill3 != blank
+                  %}
+                    <div class="sutra-meta-pills" id="sutra-meta">
+                      {% if block.settings.sutra_pill1 != blank %}
+                        <span class="s-pill">
+                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_161_2092)">
+                              <path d="M14.0462 3.30996L12.4718 1.73555C12.2429 1.50671 11.872 1.50671 11.6431 1.73555C11.4143 1.96438 11.4143 2.33537 11.6431 2.56418L12.016 2.93707L11.2513 3.70178C10.2559 2.87133 9.04551 2.37 7.75439 2.25331V1.17188H8.28174C8.60535 1.17188 8.86767 0.909551 8.86767 0.585938C8.86767 0.262324 8.60535 0 8.28174 0H6.05518C5.73156 0 5.46924 0.262324 5.46924 0.585938C5.46924 0.909551 5.73156 1.17188 6.05518 1.17188H6.58252V2.25331C3.36795 2.54382 0.781738 5.2432 0.781738 8.61328C0.781738 12.143 3.63821 15 7.16846 15C10.6982 15 13.5552 12.1435 13.5552 8.61328C13.5552 7.10417 13.035 5.67521 12.08 4.53041L12.8447 3.7657L13.2176 4.13859C13.4464 4.3674 13.8174 4.36743 14.0462 4.13859C14.275 3.90979 14.275 3.5388 14.0462 3.30996ZM7.16846 13.8281C4.293 13.8281 1.95361 11.4887 1.95361 8.61328C1.95361 5.73782 4.293 3.39844 7.16846 3.39844C10.0439 3.39844 12.3833 5.73782 12.3833 8.61328C12.3833 11.4887 10.0439 13.8281 7.16846 13.8281ZM10.2131 8.61328C10.2131 8.93689 9.95075 9.19922 9.62714 9.19922H7.16849C6.84487 9.19922 6.58255 8.93689 6.58255 8.61328V5.16577C6.58255 4.84216 6.84487 4.57983 7.16849 4.57983C7.4921 4.57983 7.75442 4.84216 7.75442 5.16577V8.02734H9.62714C9.95075 8.02734 10.2131 8.28967 10.2131 8.61328Z" fill="#A8681A"/>
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_161_2092">
+                                <rect width="15" height="15" fill="white"/>
+                              </clipPath>
+                            </defs>
+                          </svg>
+                          {{ block.settings.sutra_pill1 }}
+                        </span>
+                      {% endif %}
+
+                      {% if block.settings.sutra_pill2 != blank %}
+                        <span class="s-pill">
+                          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 0L6.35045 3.64955L10 5L6.35045 6.35045L5 10L3.64955 6.35045L0 5L3.64955 3.64955L5 0Z" fill="#A8681A"/>
+                          </svg>
+                          {{ block.settings.sutra_pill2 }}
+                        </span>
+                      {% endif %}
+
+                      {% if block.settings.sutra_pill3 != blank %}
+                        <span class="s-pill">
+                          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 0L6.35045 3.64955L10 5L6.35045 6.35045L5 10L3.64955 6.35045L0 5L3.64955 3.64955L5 0Z" fill="#A8681A"/>
+                          </svg>
+                          {{ block.settings.sutra_pill3 }}
+                        </span>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+
+                  <div class="sutra-body-text" id="sutra-desc">{{ block.settings.sutra_body_text }}</div>
+
+                  <div class="sutra-ayurveda-block">
+                    <div class="sutra-ayurveda-label">{{ block.settings.sutra_ayurveda_label }}</div>
+                    <div class="sutra-ayurveda-text" id="sutra-ayurveda">{{ block.settings.sutra_ayurveda_text }}</div>
+                  </div>
+                </div>
+
+                {% assign sutra_products = blank %}
+                {% assign total_original_price = 0 %}
+                {% assign total_selling_price = 0 %}
+                {% assign total_save_price = 0 %}
+                {% assign count = 0 %}
+                {% assign bundle_items_json = '' %}
+
+                {% for sutra_product in sutra_products %}
+                  {% assign count = count | plus: 1 %}
+                  {% assign sutra_variant = sutra_product.selected_or_first_available_variant %}
+                  {% assign sutra_plan = sutra_variant.selling_plan_allocations.first %}
+
+                  {% assign item_original_price = sutra_variant.price %}
+                  {% assign item_selling_price = sutra_variant.price %}
+
+                  {% if sutra_plan != blank %}
+                    {% if sutra_plan.compare_at_price != blank and sutra_plan.compare_at_price > 0 %}
+                      {% assign item_original_price = sutra_plan.compare_at_price %}
+                    {% else %}
+                      {% assign item_original_price = sutra_variant.price %}
+                    {% endif %}
+
+                    {% if sutra_plan.price != blank and sutra_plan.price > 0 %}
+                      {% assign item_selling_price = sutra_plan.price %}
+                    {% endif %}
+                  {% endif %}
+
+                  {% assign total_original_price = total_original_price | plus: item_original_price %}
+                  {% assign total_selling_price = total_selling_price | plus: item_selling_price %}
+
+                  {% capture bundle_item_json %}
+{"id":{{ sutra_variant.id }},"quantity":1}
+                  {% endcapture %}
+
+                  {% if bundle_items_json != blank %}
+                    {% assign bundle_items_json = bundle_items_json | append: ',' %}
+                  {% endif %}
+
+                  {% assign bundle_items_json = bundle_items_json | append: bundle_item_json %}
+                {% endfor %}
+
+                {% assign total_save_price = total_original_price | minus: total_selling_price %}
+
+                <div class="sutra-intro-aside reveal d1 vis">
+                  <div class="sutra-aside-label">
+                    <div class="sutra-aside-header">
+                      <span>({{ count }} {{ section.settings.products_label }})</span>
+                      <div class="fv-cap-line"></div>
+                    </div>
+                    <h3>{{ section.settings.whats_included_label }}</h3>
+                  </div>
+
+                  <div class="sutra-aside-products">
+                    {% for sutra_product in sutra_products %}
+                      {% assign sutra_variant = sutra_product.selected_or_first_available_variant %}
+                      {% assign sutra_plan = sutra_variant.selling_plan_allocations.first %}
+
+                      {% assign item_original_price = sutra_variant.price %}
+                      {% assign item_selling_price = sutra_variant.price %}
+
+                      {% if sutra_plan != blank %}
+                        {% if sutra_plan.compare_at_price != blank and sutra_plan.compare_at_price > 0 %}
+                          {% assign item_original_price = sutra_plan.compare_at_price %}
+                        {% else %}
+                          {% assign item_original_price = sutra_variant.price %}
+                        {% endif %}
+
+                        {% if sutra_plan.price != blank and sutra_plan.price > 0 %}
+                          {% assign item_selling_price = sutra_plan.price %}
+                        {% endif %}
+                      {% endif %}
+
+                      <input
+                        type="hidden"
+                        class="variant-id"
+                        value="{{ sutra_variant.id }}"
+                      >
+
+                      <a class="sutra-product-row" href="{{ sutra_product.url }}">
+                        <div class="sutra-product-name">{{ sutra_product.title }}</div>
+                        <div class="sutra-product-price">
+                          {% if item_original_price > item_selling_price %}
+                            <span class="sutra-product-original-price">{{ item_original_price | money | split: '.' | first }}</span>
+                            <span class="sutra-product-selling-price">{{ item_selling_price | money | split: '.' | first }}</span>
+                          {% else %}
+                            <span class="sutra-product-selling-price">{{ item_selling_price | money | split: '.' | first }}</span>
+                          {% endif %}
+                        </div>
+                      </a>
+                    {% endfor %}
+                  </div>
+
+                  <div class="sutra-image-with-action">
+                    <div class="sutra-imgs">
+                      {% for sutra_product in sutra_products %}
+                        <div class="sutra-img-box">
+                          <img
+                            width="auto"
+                            height="auto"
+                            loading="lazy"
+                            class="sutra-product-img"
+                            src="{{ sutra_product.featured_image | img_url: 'original' }}"
+                            alt="{{ sutra_product.title | escape }}"
+                          >
+                        </div>
+                      {% endfor %}
+                    </div>
+
+                    <div class="content-right">
+                      <div class="sutra-pricing-row">
+                        <div class="sutra-was" id="sutra-was">
+                          {{ section.settings.individually_label }}
+                          {% if total_original_price > total_selling_price %}
+                            <s>{{ total_original_price | money | split: '.' | first }}</s>
+                          {% else %}
+                            {{ total_original_price | money | split: '.' | first }}
+                          {% endif %}
+                        </div>
+
+                        <div class="sutra-set-price" id="sutra-price">
+                          {{ total_selling_price | money | split: '.' | first }}
+                        </div>
+                      </div>
+
+                      {% if total_save_price > 0 %}
+                        <div class="sutra-save-badge" id="sutra-save">
+                          {{ section.settings.save_label }}
+                          <span class="save-price">{{ total_save_price | money | split: '.' | first }}</span>
+                          {{ section.settings.save_as_label }}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="sutra-atc-btn"
+                    id="sutra-atc-btn"
+                    data-sutra-bundle-atc
+                    data-bundle-items='[{{ bundle_items_json | strip_newlines | escape }}]'
+                  >
+                    ADD FULL SET
+                  </button>
+
+                  <div class="sutra-or-row">
+                    <span>{{ section.settings.sutra_or_row }}</span>
+                  </div>
+
+                  <a class="sutra-view-all" href="{{ section.settings.sutra_link }}">{{ section.settings.view_sutra }}</a>
+
+                  {% if block.settings.sutra_trust1 != blank
+                    or block.settings.sutra_trust2 != blank
+                    or block.settings.sutra_trust3 != blank
+                  %}
+                    <div class="sutra-trust">
+                      {% if block.settings.sutra_trust1 != blank %}
+                        <li class="sutra-trust-item">{{ block.settings.sutra_trust1 }}</li>
+                      {% endif %}
+
+                      {% if block.settings.sutra_trust2 != blank %}
+                        <li class="sutra-trust-item">{{ block.settings.sutra_trust2 }}</li>
+                      {% endif %}
+
+                      {% if block.settings.sutra_trust3 != blank %}
+                        <li class="sutra-trust-item">{{ block.settings.sutra_trust3 }}</li>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <div class="sutra-ritual">
+              <div class="section">
+                <div class="sutra-ritual-label">
+                  {{ section.settings.ritual_label }}
+                  <div class="fv-cap-line"></div>
+                </div>
+
+                <div class="sutra-steps" id="sutra-steps"></div>
+              </div>
+            </div>
+
+                        <div class="sutra-also-section">
+              <div class="section">
+                <div class="sutra-also-label">
+                  <p>{{ section.settings.explore_other_label }}</p>
+                  <div class="fv-cap-line"></div>
+                </div>
+
+                <div class="sutra-also-grid" id="sutra-also" data-bundler-dynamic-explore></div>
+              </div>
+            </div>
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "prana sutra",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bread_text",
+      "label": "Back Button Text",
+      "default": "← Back"
+    },
+    {
+      "type": "url",
+      "id": "bread_link",
+      "label": "Back Link",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "btn-text",
+      "label": "Breadcrumb Button Text",
+      "default": "PRANA SUTRA"
+    },
+    {
+      "type": "url",
+      "id": "btn-link",
+      "label": "Breadcrumb Button Link",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "whats_included_label",
+      "label": "What's Included Heading",
+      "default": "What's Included"
+    },
+    {
+      "type": "text",
+      "id": "products_label",
+      "label": "Products Label (plural)",
+      "default": "products"
+    },
+    {
+      "type": "text",
+      "id": "individually_label",
+      "label": "Individually Text",
+      "default": "Individually"
+    },
+    {
+      "type": "text",
+      "id": "save_label",
+      "label": "Save Text",
+      "default": "Save"
+    },
+    {
+      "type": "text",
+      "id": "save_as_label",
+      "label": "Save As Text",
+      "default": "as a curated set"
+    },
+    {
+      "type": "text",
+      "id": "bundler_bundle_name",
+      "label": "Bundler bundle name",
+      "info": "Optional. Leave blank to auto-match from current page handle/title, for example /pages/abhyanga will find ABHYANGA BUNDLE. Enter exact Bundler name only if auto-match is not correct."
+    },
+    {
+      "type": "text",
+      "id": "sutra_or_row",
+      "label": "Or Divider Text",
+      "default": "or"
+    },
+    {
+      "type": "text",
+      "id": "view_sutra",
+      "label": "View All Link Text",
+      "default": "View All Products →"
+    },
+    {
+      "type": "url",
+      "id": "sutra_link",
+      "label": "View All Link URL",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "ritual_label",
+      "label": "Ritual Section Heading",
+      "default": "The Ritual · Step by Step"
+    },
+    {
+      "type": "text",
+      "id": "how_to_use_label",
+      "label": "How To Use Label",
+      "default": "How to use"
+    },
+    {
+      "type": "text",
+      "id": "why_this_step_label",
+      "label": "Why This Step Label",
+      "default": "Why this step"
+    },
+    {
+      "type": "text",
+      "id": "view_product_label",
+      "label": "View Product Link Text",
+      "default": "View Product"
+    },
+    {
+      "type": "text",
+      "id": "add_to_bag_label",
+      "label": "Add To Bag Button Text",
+      "default": "Add to Bag"
+    },
+    {
+      "type": "text",
+      "id": "explore_other_label",
+      "label": "Explore Other Sutras Heading",
+      "default": "Explore Other Sutras"
+    },
+    {
+      "type": "text",
+      "id": "explore_arrow_label",
+      "label": "Explore Arrow Text",
+      "default": "Explore"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sutra-tabs",
+      "name": "sutra tabs",
+      "settings": [
+        {
+          "type": "text",
+          "id": "id",
+          "label": "Id",
+          "default": "sutra-tab-1"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "The Ritual"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "default": "/"
+        }
+      ]
+    },
+    {
+      "type": "tab-details",
+      "name": "tab details",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Banner image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sp_number1",
+          "label": "Social Proof Number 1",
+          "default": "50K+"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sp_label1",
+          "label": "Social Proof Label 1",
+          "default": "Happy Customers"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sp_number2",
+          "label": "Social Proof Number 2",
+          "default": "4.9"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sp_label2",
+          "label": "Social Proof Label 2",
+          "default": "Star Rating"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sp_number3",
+          "label": "Social Proof Number 3",
+          "default": "100%"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sp_label3",
+          "label": "Social Proof Label 3",
+          "default": "Natural"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sp_number4",
+          "label": "Social Proof Number 4",
+          "default": "30 Days"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sp_label4",
+          "label": "Social Proof Label 4",
+          "default": "Return Policy"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Sanskrit Title",
+          "default": "Śuddhi"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sub_title",
+          "label": "Pronunciation",
+          "default": "shudd-hee"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "caption",
+          "label": "Caption",
+          "default": "Purification · Cleansing"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sutra_pill1",
+          "label": "Meta Pill 1",
+          "default": "15 mins"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sutra_pill2",
+          "label": "Meta Pill 2",
+          "default": "Daily Ritual"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sutra_pill3",
+          "label": "Meta Pill 3",
+          "default": "Beginner Friendly"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sutra_body_text",
+          "label": "Body Text",
+          "default": "Śuddhi is the ancient Ayurvedic practice of internal and external purification. This ritual cleanses your energy channels and prepares you for deeper practices."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sutra_ayurveda_label",
+          "label": "Ayurveda Label",
+          "default": "Ayurveda Perspective"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sutra_ayurveda_text",
+          "label": "Ayurveda Text",
+          "default": "According to Ayurveda, śuddhi removes āma (toxins) from the body and mind, restoring your natural state of balance and vitality."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sutra_trust1",
+          "label": "Trust Badge 1",
+          "default": "✓ Ayurveda Certified"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sutra_trust2",
+          "label": "Trust Badge 2",
+          "default": "✓ Free Shipping"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sutra_trust3",
+          "label": "Trust Badge 3",
+          "default": "✓ 30-Day Guarantee"
+        },
+        {
+          "type": "header",
+          "content": "Step 1 - Content"
+        },
+        {
+          "type": "text",
+          "id": "sutra_step1",
+          "label": "Step Tag 1",
+          "default": "Step 01"
+        },
+        {
+          "type": "text",
+          "id": "sutra_benefit1",
+          "label": "Benefit Text 1",
+          "default": "Removes surface impurities"
+        },
+        {
+          "type": "text",
+          "id": "sutra_instruction1",
+          "label": "Instruction Text 1",
+          "default": "Apply to damp face, massage gently for 60 seconds, then rinse."
+        },
+        {
+          "type": "text",
+          "id": "sutra_why1",
+          "label": "Why Text 1",
+          "default": "This step prepares your skin by removing daily buildup, allowing deeper absorption of subsequent products."
+        },
+        {
+          "type": "header",
+          "content": "Step 2 - Content"
+        },
+        {
+          "type": "text",
+          "id": "sutra_step2",
+          "label": "Step Tag 2",
+          "default": "Step 02"
+        },
+        {
+          "type": "text",
+          "id": "sutra_benefit2",
+          "label": "Benefit Text 2",
+          "default": "Balances and tones"
+        },
+        {
+          "type": "text",
+          "id": "sutra_instruction2",
+          "label": "Instruction Text 2",
+          "default": "Spritz onto face after cleansing, before serums or moisturizer."
+        },
+        {
+          "type": "text",
+          "id": "sutra_why2",
+          "label": "Why Text 2",
+          "default": "Toning restores your skin's natural pH balance and prepares it to receive maximum benefits."
+        },
+        {
+          "type": "header",
+          "content": "Step 3 - Content"
+        },
+        {
+          "type": "text",
+          "id": "sutra_step3",
+          "label": "Step Tag 3",
+          "default": "Step 03"
+        },
+        {
+          "type": "text",
+          "id": "sutra_benefit3",
+          "label": "Benefit Text 3",
+          "default": "Locks in hydration"
+        },
+        {
+          "type": "text",
+          "id": "sutra_instruction3",
+          "label": "Instruction Text 3",
+          "default": "Apply to face and neck, morning and night."
+        },
+        {
+          "type": "text",
+          "id": "sutra_why3",
+          "label": "Why Text 3",
+          "default": "This final step seals in all the previous layers, providing lasting hydration and protection."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "prana sutra"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.sutra-product-original-price,
+.sutra-step-original-price {
+  text-decoration: line-through;
+  margin-right: 8px;
+  color: var(--gold);
+}
+
+.sutra-product-selling-price,
+.sutra-step-selling-price {
+  color: inherit;
+}
+
+.sutra-was {
+  color: var(--gold);
+}
+
+.sutra-was s {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
+}
+
+.sutra-set-price {
+  color: inherit;
+}
+
+.sutra-save-badge .save-price {
+  color: inherit;
+}
+
+/* Accordion Styles */
+.accordion-trigger {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-trigger.active .accordion-icon svg {
+  transform: rotate(180deg);
+}
+
+.accordion-icon svg {
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  transition: max-height 0.3s ease;
+}
+</style>
+
+<script type="application/json" id="sutra-bundle-source-{{ section.id }}">
+{
+  "money_format": {{ shop.money_format | json }},
+  "individually_label": {{ section.settings.individually_label | json }},
+  "save_label": {{ section.settings.save_label | json }},
+  "save_as_label": {{ section.settings.save_as_label | json }},
+  "products_label": {{ section.settings.products_label | json }},
+  "bundler_bundle_name": {{ section.settings.bundler_bundle_name | json }},
+  "page_handle": {{ page.handle | default: request.path | split: '/' | last | json }},
+  "page_title": {{ page.title | json }},
+  "request_path": {{ request.path | json }},
+  "view_product_label": {{ section.settings.view_product_label | json }},
+  "add_to_bag_label": {{ section.settings.add_to_bag_label | json }},
+  "how_to_use_label": {{ section.settings.how_to_use_label | json }},
+  "why_this_step_label": {{ section.settings.why_this_step_label | json }},
+  "step_content": [
+    {% for block in section.blocks %}
+      {% if block.type == 'tab-details' %}
+        {
+          "tag": {{ block.settings.sutra_step1 | json }},
+          "benefit": {{ block.settings.sutra_benefit1 | json }},
+          "instruction": {{ block.settings.sutra_instruction1 | json }},
+          "why": {{ block.settings.sutra_why1 | json }}
+        },
+        {
+          "tag": {{ block.settings.sutra_step2 | json }},
+          "benefit": {{ block.settings.sutra_benefit2 | json }},
+          "instruction": {{ block.settings.sutra_instruction2 | json }},
+          "why": {{ block.settings.sutra_why2 | json }}
+        },
+        {
+          "tag": {{ block.settings.sutra_step3 | json }},
+          "benefit": {{ block.settings.sutra_benefit3 | json }},
+          "instruction": {{ block.settings.sutra_instruction3 | json }},
+          "why": {{ block.settings.sutra_why3 | json }}
+        }
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  ],
+  "fallback_products": [
+    {% for block in section.blocks %}
+      {% if block.type == 'tab-details' %}
+        {% assign sutra_products_for_json = block.settings.collection.products %}
+        {% for sutra_product in sutra_products_for_json %}
+          {% assign sutra_variant = sutra_product.selected_or_first_available_variant %}
+          {
+            "product_id": "{{ sutra_product.id }}",
+            "variant_id": "{{ sutra_variant.id }}",
+            "title": {{ sutra_product.title | json }},
+            "handle": {{ sutra_product.handle | json }},
+            "price": {{ sutra_variant.price }},
+            "quantity": 1
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+  var sourceEl = document.getElementById('sutra-bundle-source-' + sectionId);
+  var sourceData = {};
+
+  try {
+    sourceData = sourceEl ? JSON.parse(sourceEl.textContent || '{}') : {};
+  } catch (error) {
+    console.error('Sutra bundle source JSON error:', error);
+    sourceData = {};
+  }
+
+  function loadBundlerEarly() {
+    if (window.bndlr) return;
+
+    var existingBundlerScript = document.querySelector('script[src*="cdn-bundler.nice-team.net/app/js/bundler.js"]');
+
+    if (existingBundlerScript) return;
+
+    var bundlerScript = document.createElement('script');
+    bundlerScript.type = 'text/javascript';
+    bundlerScript.async = true;
+    bundlerScript.defer = true;
+    bundlerScript.src = 'https://cdn-bundler.nice-team.net/app/js/bundler.js?shop={{ shop.permanent_domain | escape }}';
+
+    (document.head || document.documentElement).appendChild(bundlerScript);
+  }
+
+  loadBundlerEarly();
+
+  function rootPath() {
+    if (window.Shopify && Shopify.routes && Shopify.routes.root) {
+      return Shopify.routes.root;
+    }
+
+    return '/';
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function escapeAttr(value) {
+    return escapeHtml(value).replace(/`/g, '&#096;');
+  }
+
+  function formatMoney(cents, moneyFormat) {
+    cents = Math.round(Number(cents) || 0);
+
+    if (window.Shopify && typeof Shopify.formatMoney === 'function') {
+      var fallbackFormat = '${' + '{amount}}';
+      var formattedMoney = Shopify.formatMoney(cents, moneyFormat || fallbackFormat);
+      return formattedMoney.replace(/\.\d{1,2}/g, '');
+    }
+
+    return '$' + Math.floor(cents / 100);
+  }
+
+  function moneyValueToCents(value) {
+    var number = parseFloat(String(value || '0').replace(/[^0-9.]/g, ''));
+    return Math.round(number * 100);
+  }
+
+  function getDynamicSetLabel(bundleName) {
+    var name = String(bundleName || '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    if (!name) {
+      name = 'BUNDLE';
+    }
+
+    return 'ADD FULL ' + name.toUpperCase() + ' SET';
+  }
+
+  function refreshCartUI() {
+    fetch(rootPath() + 'cart.js', {
+      credentials: 'same-origin',
+      cache: 'no-store'
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(cart) {
+        document.querySelectorAll('[data-cart-count], .cart-count, .cart__count, .header__cart-count').forEach(function(el) {
+          el.textContent = cart.item_count;
+        });
+
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: {
+            cart: cart,
+            data: {
+              itemCount: cart.item_count,
+              source: 'sutra-section'
+            }
+          }
+        }));
+      })
+      .catch(function(error) {
+        console.log('Cart refresh error:', error);
+      });
+  }
+
+  function setButtonLoading(button, loadingText) {
+    button.dataset.originalText = button.dataset.originalText || button.textContent;
+    button.textContent = loadingText || 'Adding...';
+    button.disabled = true;
+    button.style.opacity = '0.7';
+  }
+
+  function resetButton(button, successText) {
+    var originalText = button.dataset.originalText || button.textContent;
+
+    button.textContent = successText || 'Added ✓';
+    button.disabled = false;
+    button.style.opacity = '1';
+
+    setTimeout(function() {
+      button.textContent = originalText;
+    }, 2000);
+  }
+
+  function errorButton(button) {
+    var originalText = button.dataset.originalText || button.textContent;
+
+    button.textContent = 'Error!';
+    button.disabled = false;
+    button.style.opacity = '1';
+
+    setTimeout(function() {
+      button.textContent = originalText;
+    }, 2000);
+  }
+
+  function addItemsToCart(items, button, successText) {
+    if (!items || !items.length || !button) return;
+
+    setButtonLoading(button, 'Adding...');
+
+    fetch(rootPath() + 'cart/add.js', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        items: items
+      })
+    })
+      .then(function(response) {
+        if (!response.ok) throw new Error('Add to cart failed');
+        return response.json();
+      })
+      .then(function() {
+        resetButton(button, successText || 'Added ✓');
+        refreshCartUI();
+
+        if (window.bndlr && typeof window.bndlr.updateCartDiscounts === 'function') {
+          window.bndlr.updateCartDiscounts();
+        }
+
+        if (window.bndlr && typeof window.bndlr.refresh === 'function') {
+          window.bndlr.refresh();
+        }
+      })
+      .catch(function(error) {
+        console.error('Sutra add error:', error);
+        errorButton(button);
+      });
+  }
+
+  function getBundleProductVariantIds(bundle) {
+    var ids = [];
+
+    if (!bundle || !bundle.products) return ids;
+
+    Object.keys(bundle.products).forEach(function(productId) {
+      var product = bundle.products[productId];
+
+      if (product.variants) {
+        Object.keys(product.variants).forEach(function(variantId) {
+          ids.push(String(variantId));
+        });
+      }
+    });
+
+    return ids;
+  }
+
+  function getFallbackMatchingBundle(bundles) {
+    var fallbackProducts = sourceData.fallback_products || [];
+
+    if (!Array.isArray(bundles) || !fallbackProducts.length) return null;
+
+    var sourceVariantIds = fallbackProducts.map(function(product) {
+      return String(product.variant_id);
+    });
+
+    return bundles.find(function(bundle) {
+      if (!bundle || bundle.status !== 'enabled') return false;
+
+      var bundleVariantIds = getBundleProductVariantIds(bundle);
+
+      return sourceVariantIds.every(function(variantId) {
+        return bundleVariantIds.includes(String(variantId));
+      });
+    }) || null;
+  }
+
+  function normalizeText(value) {
+    return String(value || '')
+      .trim()
+      .toLowerCase()
+      .replace(/&/g, 'and')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+
+  function compactText(value) {
+    return normalizeText(value).replace(/\s+/g, '');
+  }
+
+  function getAutoPageKeys() {
+    var keys = [];
+    var pageHandle = normalizeText(sourceData.page_handle);
+    var pageTitle = normalizeText(sourceData.page_title);
+    var pathHandle = normalizeText(String(sourceData.request_path || '').split('/').filter(Boolean).pop());
+
+    [pageHandle, pageTitle, pathHandle].forEach(function(key) {
+      if (key && !keys.includes(key)) keys.push(key);
+    });
+
+    return keys;
+  }
+
+  function findBundleByName(bundles, expectedName) {
+    var expected = normalizeText(expectedName);
+    var expectedCompact = compactText(expectedName);
+
+    if (!expected) return null;
+
+    return bundles.find(function(bundle) {
+      if (!bundle || bundle.status !== 'enabled') return false;
+
+      var bundleName = normalizeText(bundle.name);
+      var bundleNameCompact = compactText(bundle.name);
+
+      return bundleName === expected || bundleNameCompact === expectedCompact;
+    }) || null;
+  }
+
+  function findBundlerBundle() {
+    if (!window.bndlr || typeof window.bndlr.getBundles !== 'function') return null;
+
+    var bundles = window.bndlr.getBundles();
+
+    if (!Array.isArray(bundles) || !bundles.length) return null;
+
+    var pageKeys = getAutoPageKeys();
+
+    for (var i = 0; i < pageKeys.length; i++) {
+      var key = pageKeys[i];
+      var exactBundle = findBundleByName(bundles, key + ' bundle') || findBundleByName(bundles, key);
+      if (exactBundle) return exactBundle;
+    }
+
+    var containsBundle = bundles.find(function(bundle) {
+      if (!bundle || bundle.status !== 'enabled') return false;
+
+      var bundleNameCompact = compactText(bundle.name);
+
+      return pageKeys.some(function(key) {
+        return key && bundleNameCompact.indexOf(compactText(key)) !== -1 && bundleNameCompact.indexOf('bundle') !== -1;
+      });
+    });
+
+    if (containsBundle) return containsBundle;
+
+    var selectedName = sourceData.bundler_bundle_name;
+
+    if (String(selectedName || '').trim()) {
+      var namedBundle = findBundleByName(bundles, selectedName);
+      if (namedBundle) return namedBundle;
+    }
+
+    return getFallbackMatchingBundle(bundles);
+  }
+
+  function getBundleProducts(bundle) {
+    if (!bundle || !bundle.products) return [];
+
+    return Object.keys(bundle.products).map(function(productId) {
+      var bundleProduct = bundle.products[productId] || {};
+      var variantIds = Object.keys(bundleProduct.variants || {});
+      var activeVariantId = variantIds.find(function(variantId) {
+        return String((bundleProduct.variants[variantId] || {}).was_deleted) !== '1';
+      }) || variantIds[0];
+      var variantConfig = (bundleProduct.variants || {})[activeVariantId] || {};
+      var quantity = parseInt(variantConfig.quantity || bundleProduct.quantity || 1, 10);
+      var sequence = parseInt(variantConfig.sequence || bundleProduct.sequence || 9999, 10);
+
+      return {
+        product_id: String(productId),
+        variant_id: String(activeVariantId || ''),
+        title: bundleProduct.title || '',
+        handle: bundleProduct.handle || '',
+        quantity: isNaN(quantity) || quantity < 1 ? 1 : quantity,
+        sequence: isNaN(sequence) ? 9999 : sequence
+      };
+    }).filter(function(item) {
+      return item.handle && item.variant_id;
+    }).sort(function(a, b) {
+      return a.sequence - b.sequence;
+    });
+  }
+
+  function fetchProductByHandle(handle) {
+    return fetch(rootPath() + 'products/' + handle + '.js', {
+      credentials: 'same-origin',
+      cache: 'force-cache'
+    })
+      .then(function(response) {
+        if (!response.ok) throw new Error('Product fetch failed: ' + handle);
+        return response.json();
+      })
+      .catch(function(error) {
+        console.error(error);
+        return null;
+      });
+  }
+
+  function getDiscountedTotal(bundle, originalTotal) {
+    if (!bundle || !originalTotal) return originalTotal;
+
+    var discountType = bundle.discount_type;
+
+    if (discountType === 'fixed_price') {
+      return moneyValueToCents(bundle.fixed_price_value);
+    }
+
+    if (discountType === 'percentage') {
+      var percentage = parseFloat(bundle.percentage_value || '0');
+      return Math.round(originalTotal - (originalTotal * percentage / 100));
+    }
+
+    if (discountType === 'fixed_amount') {
+      var fixedAmount = moneyValueToCents(bundle.fixed_amount_value);
+      return Math.max(0, originalTotal - fixedAmount);
+    }
+
+    return originalTotal;
+  }
+
+  function distributeDiscount(items, discountedTotal, originalTotal) {
+    var runningDiscountedTotal = 0;
+
+    return items.map(function(item, index) {
+      var itemOriginalTotal = Math.round((Number(item.price) || 0) * (Number(item.quantity) || 1));
+      var itemDiscountedTotal;
+
+      if (index === items.length - 1) {
+        itemDiscountedTotal = discountedTotal - runningDiscountedTotal;
+      } else {
+        itemDiscountedTotal = originalTotal > 0 ? Math.round(itemOriginalTotal * discountedTotal / originalTotal) : itemOriginalTotal;
+        runningDiscountedTotal += itemDiscountedTotal;
+      }
+
+      item.original_total = itemOriginalTotal;
+      item.discounted_total = Math.max(0, itemDiscountedTotal);
+
+      return item;
+    });
+  }
+
+
+  function twoDigit(number) {
+    number = Number(number) || 0;
+    return number < 10 ? '0' + number : String(number);
+  }
+
+  function updateDynamicProofBar(productsCount, saveAmount, moneyFormat) {
+    var proofItems = document.querySelectorAll('.sutra-proof-bar .sp-item');
+
+    proofItems.forEach(function(item) {
+      var numEl = item.querySelector('.sp-num');
+      var labelEl = item.querySelector('.sp-lbl');
+      var labelText = labelEl ? compactText(labelEl.textContent || '') : '';
+
+      if (!numEl) return;
+
+      if (labelText.indexOf('product') !== -1) {
+        numEl.textContent = productsCount;
+      }
+
+      if (labelText.indexOf('buyingseparately') !== -1 || labelText.indexOf('vsbuying') !== -1) {
+        numEl.textContent = saveAmount > 0 ? ('Save ' + formatMoney(saveAmount, moneyFormat)) : '';
+      }
+    });
+  }
+
+  function renderDynamicSteps(pricedItems, moneyFormat) {
+    var stepsEl = document.querySelector('#sutra-steps');
+
+    if (!stepsEl || !Array.isArray(pricedItems) || !pricedItems.length) return;
+
+    var stepContent = sourceData.step_content || [];
+    var viewProductLabel = sourceData.view_product_label || 'View Product';
+    var addToBagLabel = sourceData.add_to_bag_label || 'Add to Bag';
+    var howToUseLabel = sourceData.how_to_use_label || 'How to use';
+    var whyThisStepLabel = sourceData.why_this_step_label || 'Why this step';
+
+    stepsEl.innerHTML = pricedItems.map(function(item, index) {
+      var number = twoDigit(index + 1);
+      var content = stepContent[index] || {};
+      var tag = content.tag || ('Step ' + number);
+      var benefit = content.benefit || '';
+      var instruction = content.instruction || '';
+      var why = content.why || '';
+      var productUrl = rootPath() + 'products/' + item.handle;
+      var originalMoney = formatMoney(item.original_total, moneyFormat);
+      var discountedMoney = formatMoney(item.discounted_total, moneyFormat);
+
+      return '' +
+        '<div class="sutra-step reveal vis">' +
+          '<div class="sutra-step-body">' +
+            '<a href="' + escapeAttr(productUrl) + '" class="sutra-step-img-wrap">' +
+              '<div class="sutra-step-num">' + number + '</div>' +
+              '<img width="" height="" loading="lazy" src="' + escapeAttr(item.image || '') + '" alt="' + escapeAttr(item.title) + '">' +
+            '</a>' +
+            '<div class="sutra-step-content">' +
+              '<div class="sutra-step-tag">' + escapeHtml(tag) + '</div>' +
+              '<a href="' + escapeAttr(productUrl) + '" class="sutra-step-name">' + escapeHtml(item.title) + '</a>' +
+              (benefit ? '<div class="sutra-step-benefit">' + escapeHtml(benefit) + '</div>' : '') +
+              '<div class="sutra-step-instruction-label accordion-trigger" style="cursor: pointer;">' +
+                escapeHtml(howToUseLabel) +
+                '<span class="accordion-icon" style="display: inline-block; margin-left: 8px; transition: transform 0.3s ease;">' +
+                  '<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                    '<path d="M0.708496 0.708252L4.9585 4.95825L9.2085 0.708252" stroke="#A8681A" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>' +
+                  '</svg>' +
+                '</span>' +
+              '</div>' +
+              '<div class="sutra-step-instruction accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">' + escapeHtml(instruction) + '</div>' +
+              '<div class="sutra-step-why-label accordion-trigger" style="cursor: pointer;">' +
+                escapeHtml(whyThisStepLabel) +
+                '<span class="accordion-icon" style="display: inline-block; margin-left: 8px; transition: transform 0.3s ease;">' +
+                  '<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                    '<path d="M0.708496 0.708252L4.9585 4.95825L9.2085 0.708252" stroke="#A8681A" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>' +
+                  '</svg>' +
+                '</span>' +
+              '</div>' +
+              '<div class="sutra-step-why accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">' + escapeHtml(why) + '</div>' +
+              '<div class="sutra-step-aside">' +
+                '<div class="sutra-action">' +
+                  '<div class="sutra-step-price">' +
+                    (item.original_total > item.discounted_total ? '<span class="sutra-step-original-price">' + originalMoney + '</span>' : '') +
+                    '<span class="sutra-step-selling-price">' + discountedMoney + '</span>' +
+                  '</div>' +
+                  '<a href="' + escapeAttr(productUrl) + '" class="sutra-step-view">' + escapeHtml(viewProductLabel) + ' →</a>' +
+                '</div>' +
+                '<button type="button" pid="' + escapeAttr(item.variant_id) + '" data-sutra-step-atc data-variant-id="' + escapeAttr(item.variant_id) + '" data-quantity="' + escapeAttr(item.quantity || 1) + '" class="sutra-step-atc">' +
+                  '+ ' + escapeHtml(addToBagLabel) +
+                '</button>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+  }
+
+
+  function getBundleBaseName(bundleName) {
+    return String(bundleName || '')
+      .replace(/\s+BUNDLE$/i, '')
+      .replace(/\s+SET$/i, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function toTitleCase(value) {
+    return String(value || '').toLowerCase().replace(/\b\w/g, function(letter) {
+      return letter.toUpperCase();
+    });
+  }
+
+  function bundleNameToPageUrl(bundleName) {
+    var handle = getBundleBaseName(bundleName)
+      .toLowerCase()
+      .replace(/&/g, 'and')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+
+    return handle ? (rootPath() + 'pages/' + handle) : rootPath();
+  }
+
+  function getBundleOriginalTotalFromItems(items) {
+    return items.reduce(function(total, item) {
+      return total + (Number(item.price) || 0) * (Number(item.quantity) || 1);
+    }, 0);
+  }
+
+  function fetchPricedItemsForBundle(bundle) {
+    var bundleProducts = getBundleProducts(bundle);
+
+    if (!bundleProducts.length) return Promise.resolve([]);
+
+    return Promise.all(bundleProducts.map(function(bundleProduct) {
+      return fetchProductByHandle(bundleProduct.handle).then(function(productData) {
+        if (!productData) return null;
+
+        var variant = (productData.variants || []).find(function(productVariant) {
+          return String(productVariant.id) === String(bundleProduct.variant_id);
+        }) || (productData.variants || [])[0];
+
+        if (!variant) return null;
+
+        return {
+          product_id: String(productData.id || bundleProduct.product_id),
+          variant_id: String(variant.id || bundleProduct.variant_id),
+          title: productData.title || bundleProduct.title,
+          handle: productData.handle || bundleProduct.handle,
+          quantity: bundleProduct.quantity,
+          price: Number(variant.price) || 0,
+          sequence: bundleProduct.sequence
+        };
+      });
+    })).then(function(items) {
+      return items.filter(Boolean).sort(function(a, b) {
+        return a.sequence - b.sequence;
+      });
+    });
+  }
+
+  function getEnabledBundlesInSequence(bundles) {
+    if (!Array.isArray(bundles)) return [];
+
+    return bundles.filter(function(bundle) {
+      return bundle &&
+        bundle.status === 'enabled' &&
+        bundle.products &&
+        Object.keys(bundle.products).length;
+    }).sort(function(a, b) {
+      var aPriority = Number(a.priority);
+      var bPriority = Number(b.priority);
+
+      if (isNaN(aPriority)) aPriority = 9999;
+      if (isNaN(bPriority)) bPriority = 9999;
+
+      if (aPriority !== bPriority) return aPriority - bPriority;
+      return (Number(a.id) || 0) - (Number(b.id) || 0);
+    });
+  }
+
+  function getCurrentBundleIndex(bundles, currentBundle) {
+    if (!currentBundle || !bundles.length) return -1;
+
+    var currentId = currentBundle.id ? String(currentBundle.id) : '';
+    var currentName = currentBundle.name ? compactText(currentBundle.name) : '';
+
+    return bundles.findIndex(function(bundle) {
+      if (currentId && String(bundle.id) === currentId) return true;
+      if (currentName && compactText(bundle.name) === currentName) return true;
+      return false;
+    });
+  }
+
+  function getNextBundlesInSequence(bundles, currentBundle, limit) {
+    var enabledBundles = getEnabledBundlesInSequence(bundles);
+
+    if (!enabledBundles.length) return [];
+
+    var currentIndex = getCurrentBundleIndex(enabledBundles, currentBundle);
+    var startIndex = currentIndex >= 0 ? currentIndex + 1 : 0;
+    var cards = [];
+
+    for (var i = 0; i < enabledBundles.length && cards.length < limit; i++) {
+      var bundle = enabledBundles[(startIndex + i) % enabledBundles.length];
+
+      if (currentBundle) {
+        if (String(bundle.id) === String(currentBundle.id)) continue;
+        if (compactText(bundle.name) === compactText(currentBundle.name)) continue;
+      }
+
+      cards.push(bundle);
+    }
+
+    return cards;
+  }
+
+  function getFastExplorePrice(bundle) {
+    if (!bundle) return '';
+
+    if (bundle.discount_type === 'fixed_price' && String(bundle.fixed_price_value || '').trim()) {
+      return formatMoney(moneyValueToCents(bundle.fixed_price_value), sourceData.money_format);
+    }
+
+    return '';
+  }
+
+  function buildExploreCard(bundle, price) {
+    var baseName = getBundleBaseName(bundle.name);
+    var productCount = Object.keys(bundle.products || {}).length || 0;
+
+    return {
+      bundle: bundle,
+      title: toTitleCase(baseName || bundle.name || 'Bundle'),
+      subtitle: productCount + ' Product Ritual',
+      price: price || getFastExplorePrice(bundle),
+      url: bundleNameToPageUrl(bundle.name)
+    };
+  }
+
+  function renderExploreCards(cards) {
+    var gridEl = document.querySelector('#sutra-also');
+
+    if (!gridEl) return;
+
+    if (!cards || !cards.length) {
+      gridEl.innerHTML = '';
+      return;
+    }
+
+    gridEl.innerHTML = cards.map(function(card) {
+      return '' +
+        '<a href="' + escapeAttr(card.url) + '" class="s-also-card">' +
+          '<div class="box-inner">' +
+            '<div class="s-also-name">' + escapeHtml(card.title) + '</div>' +
+            '<div class="s-also-sub">' + escapeHtml(card.subtitle) + '</div>' +
+          '</div>' +
+          '<div class="box-innered">' +
+            '<div class="s-also-price">' + escapeHtml(card.price) + '</div>' +
+            '<div class="s-also-arrow">Explore →</div>' +
+          '</div>' +
+        '</a>';
+    }).join('');
+  }
+
+  function renderDynamicExploreBundles(currentBundle) {
+    var gridEl = document.querySelector('#sutra-also');
+
+    if (!gridEl || !window.bndlr || typeof window.bndlr.getBundles !== 'function') return;
+
+    var bundles = window.bndlr.getBundles();
+
+    if (!Array.isArray(bundles) || !bundles.length) return;
+
+    var nextBundles = getNextBundlesInSequence(bundles, currentBundle, 3);
+
+    if (!nextBundles.length) {
+      gridEl.innerHTML = '';
+      return;
+    }
+
+    var instantCards = nextBundles.map(function(bundle) {
+      return buildExploreCard(bundle, getFastExplorePrice(bundle));
+    });
+
+    renderExploreCards(instantCards);
+
+    var needsAsyncPrice = nextBundles.some(function(bundle) {
+      return !getFastExplorePrice(bundle);
+    });
+
+    if (!needsAsyncPrice) return;
+
+    Promise.all(nextBundles.map(function(bundle) {
+      var fastPrice = getFastExplorePrice(bundle);
+
+      if (fastPrice) {
+        return Promise.resolve(buildExploreCard(bundle, fastPrice));
+      }
+
+      return fetchPricedItemsForBundle(bundle).then(function(items) {
+        var originalTotal = getBundleOriginalTotalFromItems(items);
+        var discountedTotal = Math.min(originalTotal, getDiscountedTotal(bundle, originalTotal));
+
+        return buildExploreCard(bundle, discountedTotal > 0 ? formatMoney(discountedTotal, sourceData.money_format) : '');
+      });
+    })).then(function(cards) {
+      renderExploreCards(cards);
+    }).catch(function(error) {
+      console.error('Dynamic explore bundles error:', error);
+    });
+  }
+
+  function renderDynamicBundle(bundle, items) {
+    var productsListEl = document.querySelector('.sutra-aside-products');
+    var imagesEl = document.querySelector('.sutra-imgs');
+    var countEl = document.querySelector('.sutra-aside-header span');
+    var wasEl = document.querySelector('#sutra-was');
+    var priceEl = document.querySelector('#sutra-price');
+    var saveEl = document.querySelector('#sutra-save');
+    var buttonEl = document.querySelector('[data-sutra-bundle-atc]');
+
+    var originalTotal = items.reduce(function(total, item) {
+      return total + (Number(item.price) || 0) * (Number(item.quantity) || 1);
+    }, 0);
+
+    var discountedTotal = Math.min(originalTotal, getDiscountedTotal(bundle, originalTotal));
+    var saveAmount = Math.max(0, originalTotal - discountedTotal);
+    var pricedItems = distributeDiscount(items, discountedTotal, originalTotal);
+    var moneyFormat = sourceData.money_format;
+
+    if (countEl) {
+      countEl.textContent = '(' + pricedItems.length + ' ' + (sourceData.products_label || 'products') + ')';
+    }
+
+    updateDynamicProofBar(pricedItems.length, saveAmount, moneyFormat);
+
+    if (productsListEl) {
+      productsListEl.innerHTML = pricedItems.map(function(item) {
+        var productUrl = rootPath() + 'products/' + item.handle;
+        var originalMoney = formatMoney(item.original_total, moneyFormat);
+        var discountedMoney = formatMoney(item.discounted_total, moneyFormat);
+
+        return '' +
+          '<a class="sutra-product-row" href="' + escapeAttr(productUrl) + '">' +
+            '<div class="sutra-product-name">' + escapeHtml(item.title) + '</div>' +
+            '<div class="sutra-product-price">' +
+              (item.original_total > item.discounted_total ? '<span class="sutra-product-original-price">' + originalMoney + '</span>' : '') +
+              '<span class="sutra-product-selling-price">' + discountedMoney + '</span>' +
+            '</div>' +
+          '</a>';
+      }).join('');
+    }
+
+    if (imagesEl) {
+      imagesEl.innerHTML = pricedItems.map(function(item) {
+        return '' +
+          '<div class="sutra-img-box">' +
+            '<img width="auto" height="auto" loading="lazy" class="sutra-product-img" src="' + escapeAttr(item.image || '') + '" alt="' + escapeAttr(item.title) + '">' +
+          '</div>';
+      }).join('');
+    }
+
+    if (wasEl) {
+      if (originalTotal > discountedTotal) {
+        wasEl.innerHTML = escapeHtml(sourceData.individually_label || 'Individually') + ' <s>' + formatMoney(originalTotal, moneyFormat) + '</s>';
+      } else {
+        wasEl.innerHTML = escapeHtml(sourceData.individually_label || 'Individually') + ' ' + formatMoney(originalTotal, moneyFormat);
+      }
+    }
+
+    if (priceEl) {
+      priceEl.textContent = formatMoney(discountedTotal, moneyFormat);
+    }
+
+    if (saveEl) {
+      if (saveAmount > 0) {
+        saveEl.innerHTML = escapeHtml(sourceData.save_label || 'Save') + ' <span class="save-price">' + formatMoney(saveAmount, moneyFormat) + '</span> ' + escapeHtml(sourceData.save_as_label || 'as a curated set');
+        saveEl.style.display = '';
+      } else {
+        saveEl.style.display = 'none';
+      }
+    }
+
+    if (buttonEl) {
+      buttonEl.innerHTML = escapeHtml(getDynamicSetLabel(bundle.name)) + ' — ' + formatMoney(discountedTotal, moneyFormat);
+      buttonEl.setAttribute('data-bundle-items', JSON.stringify(pricedItems.map(function(item) {
+        return {
+          id: Number(item.variant_id),
+          quantity: Number(item.quantity) || 1
+        };
+      })));
+      buttonEl.dataset.originalText = buttonEl.textContent;
+    }
+
+    renderDynamicSteps(pricedItems, moneyFormat);
+
+    console.log('Matched Bundler bundle for Sutra:', bundle.name, bundle);
+    console.log('Dynamic Bundler products:', pricedItems);
+    console.log('Original:', originalTotal, 'Discounted:', discountedTotal, 'Save:', saveAmount);
+  }
+
+  function updateSutraFromBundler() {
+    var bundle = findBundlerBundle();
+
+    if (!bundle) {
+      console.log('No matching Bundler bundle found. Page:', sourceData.page_handle, sourceData.page_title, 'Manual setting:', sourceData.bundler_bundle_name);
+      return;
+    }
+
+    var bundleProducts = getBundleProducts(bundle);
+
+    if (!bundleProducts.length) {
+      console.log('Bundler bundle has no active products:', bundle.name);
+      return;
+    }
+
+    renderDynamicExploreBundles(bundle);
+
+    Promise.all(bundleProducts.map(function(bundleProduct) {
+      return fetchProductByHandle(bundleProduct.handle).then(function(productData) {
+        if (!productData) return null;
+
+        var variant = (productData.variants || []).find(function(productVariant) {
+          return String(productVariant.id) === String(bundleProduct.variant_id);
+        }) || (productData.variants || [])[0];
+
+        if (!variant) return null;
+
+        var image = '';
+
+        if (variant.featured_image && variant.featured_image.src) {
+          image = variant.featured_image.src;
+        } else if (productData.featured_image) {
+          image = productData.featured_image;
+        } else if (productData.images && productData.images.length) {
+          image = productData.images[0];
+        }
+
+        return {
+          product_id: String(productData.id || bundleProduct.product_id),
+          variant_id: String(variant.id || bundleProduct.variant_id),
+          title: productData.title || bundleProduct.title,
+          handle: productData.handle || bundleProduct.handle,
+          quantity: bundleProduct.quantity,
+          price: Number(variant.price) || 0,
+          image: image,
+          sequence: bundleProduct.sequence
+        };
+      });
+    })).then(function(items) {
+      items = items.filter(Boolean).sort(function(a, b) {
+        return a.sequence - b.sequence;
+      });
+
+      if (!items.length) return;
+
+      renderDynamicBundle(bundle, items);
+    });
+  }
+
+  function waitForBundlerAndUpdate() {
+    var tries = 0;
+
+    var timer = setInterval(function() {
+      tries++;
+
+      if (window.bndlr && typeof window.bndlr.getBundles === 'function') {
+        clearInterval(timer);
+        updateSutraFromBundler();
+      }
+
+      if (tries > 200) {
+        clearInterval(timer);
+        console.log('Bundler not found after waiting.');
+      }
+    }, 50);
+  }
+
+  document.addEventListener('click', function(event) {
+    var bundleButton = event.target.closest('[data-sutra-bundle-atc]');
+
+    if (bundleButton) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var rawItems = bundleButton.getAttribute('data-bundle-items');
+      var items = [];
+
+      if (rawItems) {
+        try {
+          items = JSON.parse(rawItems);
+        } catch (error) {
+          console.error('Bundle items JSON parse error:', error);
+        }
+      }
+
+      addItemsToCart(items, bundleButton, 'Set Added ✓');
+      return;
+    }
+
+    var stepButton = event.target.closest('[data-sutra-step-atc]');
+
+    if (stepButton) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var variantId = stepButton.getAttribute('data-variant-id') || stepButton.getAttribute('pid');
+
+      if (!variantId) return;
+
+      var quantity = parseInt(stepButton.getAttribute('data-quantity') || '1', 10);
+
+      var item = {
+        id: parseInt(variantId, 10),
+        quantity: isNaN(quantity) || quantity < 1 ? 1 : quantity
+      };
+
+      addItemsToCart([item], stepButton, 'Added ✓');
+    }
+  }, true);
+
+  document.addEventListener('click', function(event) {
+    var trigger = event.target.closest('.accordion-trigger');
+
+    if (!trigger || !trigger.closest('#sutra-steps')) return;
+
+    var content = trigger.nextElementSibling;
+    var iconSvg = trigger.querySelector('.accordion-icon svg');
+
+    if (!content || !content.classList.contains('accordion-content')) return;
+
+    if (content.classList.contains('open')) {
+      content.classList.remove('open');
+      content.style.maxHeight = '0';
+
+      if (iconSvg) {
+        iconSvg.style.transform = 'rotate(0deg)';
+      }
+    } else {
+      content.classList.add('open');
+      content.style.maxHeight = content.scrollHeight + 'px';
+
+      if (iconSvg) {
+        iconSvg.style.transform = 'rotate(180deg)';
+      }
+    }
+  });
+
+  waitForBundlerAndUpdate();
+
+  document.addEventListener('bundler:loaded', function() {
+    updateSutraFromBundler();
+  });
+})();
+</script>
+

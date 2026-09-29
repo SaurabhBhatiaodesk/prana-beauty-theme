@@ -1,0 +1,155 @@
+<!-- ── Toner Single-Ingredient Spotlight ── -->
+  <div class="pdp-ing-single" id="pdp-ing-single">
+    <div class="pdp-ing-single-inner">
+      <!-- LEFT: botanical illustration / ornament -->
+      <div class="pdp-ing-single-img">
+        <div class="pdp-ing-single-img-ornament">
+          <div class="pdp-ing-single-petal-ring"></div>
+          <div class="pdp-ing-single-petals">
+            <span class="pdp-ing-single-petal" style="top:12%;left:46%;animation-delay:0s">✾</span>
+            <span class="pdp-ing-single-petal" style="top:22%;left:18%;animation-delay:.6s">✿</span>
+            <span class="pdp-ing-single-petal" style="top:22%;right:18%;animation-delay:1.2s">✾</span>
+            <span class="pdp-ing-single-petal" style="top:45%;left:8%;animation-delay:1.8s">✿</span>
+            <span class="pdp-ing-single-petal" style="top:45%;right:8%;animation-delay:2.4s">✾</span>
+            <span class="pdp-ing-single-petal" style="bottom:22%;left:18%;animation-delay:3s">✿</span>
+            <span class="pdp-ing-single-petal" style="bottom:22%;right:18%;animation-delay:3.6s">✾</span>
+            <span class="pdp-ing-single-petal" style="bottom:12%;left:46%;animation-delay:4.2s">✿</span>
+          </div>
+        </div>
+        <div class="pdp-ing-single-label">{{ section.settings.label }}</div>
+      </div>
+      <!-- RIGHT: copy -->
+      <div class="pdp-ing-single-body">
+        <div class="pdp-ing-single-kicker">{{ section.settings.caption }}</div>
+        <div class="pdp-ing-single-name">{{ section.settings.title }}</div>
+        <div class="pdp-ing-single-latin">{{ section.settings.sub_title }}</div>
+        <div class="pdp-ing-single-origin">{{ section.settings.origin }}</div>
+        <div class="pdp-ing-single-divider"></div>
+        <div class="pdp-ing-single-desc">{{ section.settings.description }}</div>
+        <div class="pdp-ing-single-facts">
+          <div class="pdp-ing-single-fact">
+            <div class="pdp-ing-single-fact-label">{{ section.settings.fact-label-1 }}</div>
+            <div class="pdp-ing-single-fact-val">{{ section.settings.fact-value-1 }}</div>
+          </div>
+          <div class="pdp-ing-single-fact">
+            <div class="pdp-ing-single-fact-label">{{ section.settings.fact-label-2 }}</div>
+            <div class="pdp-ing-single-fact-val">{{ section.settings.fact-value-2 }}</div>
+          </div>
+          <div class="pdp-ing-single-fact">
+            <div class="pdp-ing-single-fact-label">{{ section.settings.fact-label-3 }}</div>
+            <div class="pdp-ing-single-fact-val">{{ section.settings.fact-value-3 }}</div>
+          </div>
+          <div class="pdp-ing-single-fact">
+            <div class="pdp-ing-single-fact-label">{{ section.settings.fact-label-4 }}</div>
+            <div class="pdp-ing-single-fact-val">{{ section.settings.fact-value-4 }}</div>
+          </div>
+        </div>
+        <div class="pdp-ing-single-benefit">
+        {% for block in section.blocks %}
+          <span>{{ block.settings.benefit }}</span>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Ingredient Spotlight",
+    "settings": [
+    {
+        "type": "text",
+        "id": "label",
+        "label": "Label"
+    },
+    {
+        "type": "text",
+        "id": "caption",
+        "label": "Caption"
+    },
+    {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+    },
+    {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title"
+    },
+    {
+        "type": "text",
+        "id": "origin",
+        "label": "Origin"
+    },
+    {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+    },
+    {
+        "type": "collection",
+        "id": "collection",
+        "label": "Choose Collection"
+    },
+    {
+        "type": "text",
+        "id": "fact-label-1",
+        "label": "Fact labl"
+    },
+    {
+        "type": "text",
+        "id": "fact-value-1",
+        "label": "Fact value"
+    },
+    {
+        "type": "text",
+        "id": "fact-label-2",
+        "label": "Fact labl"
+    },
+    {
+        "type": "text",
+        "id": "fact-value-2",
+        "label": "Fact value"
+    },
+    {
+        "type": "text",
+        "id": "fact-label-3",
+        "label": "Fact labl"
+    },
+    {
+        "type": "text",
+        "id": "fact-value-3",
+        "label": "Fact value"
+    },
+    {
+        "type": "text",
+        "id": "fact-label-4",
+        "label": "Fact labl"
+    },
+    {
+        "type": "text",
+        "id": "fact-value-4",
+        "label": "Fact value"
+    }
+    ],
+    "blocks": [
+      {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+        "type": "text",
+        "id": "benefit",
+        "label": "Benefit"
+        }
+      ]
+    },
+    ],
+    "presets": [
+    {
+      "name": "Ingredient Spotlight",
+    }
+  ]
+  }
+{% endschema %}

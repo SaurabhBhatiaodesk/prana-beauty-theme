@@ -1,0 +1,258 @@
+{%- liquid
+  assign block_settings = block.settings
+  assign product_resource = closest.product
+  assign selected_variant = product_resource.selected_or_first_available_variant
+-%}
+
+{% liquid
+  if block_settings.type_preset == 'rte' or block_settings.type_preset == 'paragraph'
+    assign is_rte = true
+  endif
+
+  capture text_block_classes
+    if block_settings.width == '100%'
+      echo 'text-block--align-' | append: block_settings.alignment
+      if block_settings.max_width == 'none'
+        echo ' text-block--full-width'
+      endif
+    endif
+
+    if block_settings.type_preset == 'custom'
+      echo ' custom-typography'
+
+      if block_settings.font_size != ''
+        echo ' custom-font-size'
+      endif
+
+      if block_settings.color != ''
+        echo ' custom-color'
+      endif
+    endif
+
+    if block_settings.background
+      echo ' text-block--background'
+    endif
+
+    if is_rte
+      echo ' rte'
+    endif
+  endcapture
+%}
+<div class="product-title_with_price">
+    <div class="main_product-title">
+
+    {% if block.settings.main_product_title != blank %}
+        <h1>{{ block.settings.main_product_title }}</h1>
+    {% endif %}
+
+    {% if product.metafields.custom.expert != blank %}
+        <p>{{ product.metafields.custom.expert }}</p>
+    {% endif %}
+
+    </div>
+
+    <product-price
+    class="text-block main-product-custom-price {{ text_block_classes }} text-{{ block_settings.alignment }} {{ block_settings.type_preset | default: 'paragraph' }} spacing-style"
+    data-block-id="{{ block.id }}"
+    data-product-id="{{ product_resource.id }}"
+    style="
+        {% render 'typography-style', settings: block_settings %}
+        {% render 'spacing-style', settings: block_settings %}
+        --width: {{ block_settings.width }};
+    "
+    {{ block.shopify_attributes }}>
+    {% render 'price',
+        show_unit_price: true,
+        product_resource: product_resource,
+        show_sale_price_first: block_settings.show_sale_price_first
+    %}
+
+    {% if block_settings.show_tax_info %}
+        <div class="tax-note">
+        {%- if cart.duties_included and cart.taxes_included -%}
+            {{ 'content.duties_and_taxes_included' | t }}
+        {%- elsif cart.taxes_included -%}
+            {{ 'content.taxes_included' | t }}
+        {%- elsif cart.duties_included -%}
+            {{ 'content.duties_included' | t }}
+        {%- endif -%}
+
+        {%- if shop.shipping_policy.body != blank -%}
+            {{ 'content.shipping_policy' | t }}
+        {%- endif -%}
+        </div>
+    {% endif %}
+
+    {%- if selected_variant != blank and block_settings.show_installments -%}
+        <div class="installments">
+        {%- assign product_form_installment_id = 'product-form-installment-' | append: block.id -%}
+
+        {%- form 'product', product_resource, id: product_form_installment_id, class: 'payment-terms' -%}
+            <input
+            type="hidden"
+            name="id"
+            value="{{ selected_variant.id }}"
+            >
+
+            {{ form | payment_terms }}
+        {%- endform -%}
+        </div>
+    {%- endif -%}
+
+    </product-price>
+</div>
+{% # theme-check-disable %}
+{% stylesheet %}
+.main_product-title h1{
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--heading-color);
+    margin: 0;
+    line-height: 1.2;
+}
+.product-title_with_price {
+    display: flex;
+    gap: 20px;
+}
+.main_product-title p{
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--text-color);
+    margin: 0;
+}
+.main-product-custom-price .price {
+    font-size: 20px;
+    color: #fff;
+    padding: 1px 20px;
+    background: #a8681a;
+    border-radius: 6px;
+    display: block;
+}
+.tax-note:empty {
+  display: none;
+}
+
+form.payment-terms {
+  padding-top: 0.5em;
+  font-size: min(0.85em, var(--font-paragraph--size));
+  font-weight: var(--font-paragraph--weight);
+  color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+}
+
+.installments:not(:has(shopify-payment-terms)) {
+  display: none;
+}
+
+@media screen and (max-width:749px){
+
+  .main_product-title h1{
+      font-size:23px;
+  }
+    .main-product-custom-price .price {
+        font-size: 18px;
+        padding: 1px 20px;
+        padding: 4px 20px;
+    }
+  .main_product-title p{
+      font-size: 15px;
+  }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Main Product with Price",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_product_title",
+      "label": "Main Product Title",
+      "default": "Your Product Title"
+    },
+
+    {
+      "type": "paragraph",
+      "content": "t:content.resource_reference_product_price"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:content.edit_price_in_theme_settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sale_price_first",
+      "label": "t:settings.show_sale_price_first",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_installments",
+      "label": "t:settings.installments",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tax_info",
+      "label": "t:settings.show_tax_info",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "t:settings.preset",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "paragraph",
+          "label": "t:options.paragraph"
+        },
+        {
+          "value": "h1",
+          "label": "t:options.h1"
+        },
+        {
+          "value": "h2",
+          "label": "t:options.h2"
+        },
+        {
+          "value": "h3",
+          "label": "t:options.h3"
+        },
+        {
+          "value": "h4",
+          "label": "t:options.h4"
+        },
+        {
+          "value": "h5",
+          "label": "t:options.h5"
+        },
+        {
+          "value": "h6",
+          "label": "t:options.h6"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
+        }
+      ],
+      "info": "t:info.edit_presets_in_theme_settings"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Product with Price",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}
+{% # theme-check-enable %}

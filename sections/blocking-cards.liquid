@@ -1,0 +1,316 @@
+<style>
+  .why-choose-prana-{{ section.id }} {
+    text-align: center;
+    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+    padding: 60px 0;
+  }
+  
+  .why-choose-prana-{{ section.id }} .why-choose-prana-main {
+    background: linear-gradient(90deg, #813850 0%, #461324 100%);
+  }
+  
+  .why-choose-prana-{{ section.id }} .why-choose-prana-heading {
+    font-size: 38px;
+    line-height: 1.1;
+    color: var(--heading-color);
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .why-choose-prana-{{ section.id }} .why-choose-prana-heading span {
+    font-style: italic;
+  }
+  
+  .why-choose-prana-{{ section.id }} .why-choose-prana-description {
+    letter-spacing: 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: normal;
+    color: var(--ink3);
+    max-width: 600px;
+    margin: 13px auto 23px;
+  }
+  
+  .why-choose-prana-{{ section.id }} .why-choose-prana-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat({{ section.settings.desktop_column_count }}, 1fr);
+  }
+  
+  .why-choose-prana-{{ section.id }} .why-choose-prana-card {
+    border-bottom: 1px solid var(--gold);
+    padding: 40px 40px 35px 40px;
+    border-right: 1px solid var(--gold);
+  }
+  
+  /* Right border removal for last column on desktop */
+  .why-choose-prana-{{ section.id }} .why-choose-prana-card:nth-child({{ section.settings.desktop_column_count }}n) {
+    border-right: 0;
+  }
+  
+  .why-choose-prana-{{ section.id }} .why-choose-prana-icon {
+    width: 78px;
+    height: 78px;
+    margin-bottom: 30px;
+    margin-inline: auto;
+  }
+
+  .why-choose-prana-{{ section.id }} .why-choose-prana-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .why-choose-prana-{{ section.id }} .why-choose-prana-title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: normal;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    margin: 0 auto 10px;
+    color: #fff;
+    max-width: 259px;
+    margin-inline: auto;
+  }
+  
+  .why-choose-prana-{{ section.id }} .why-choose-prana-content {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #fff;
+    max-width: 259px;
+    margin-inline: auto;
+  }
+
+  /* Tablet Styles */
+  @media (max-width: 880px) {
+    .why-choose-prana-{{ section.id }} .why-choose-prana-grid {
+      grid-template-columns: repeat({{ section.settings.tablet_column_count }}, 1fr);
+    }
+    
+    .why-choose-prana-{{ section.id }} .why-choose-prana-card {
+      border-right: 1px solid var(--gold);
+    }
+    
+    /* Right border removal for last column on tablet */
+    .why-choose-prana-{{ section.id }} .why-choose-prana-card:nth-child({{ section.settings.tablet_column_count }}n) {
+      border-right: 0;
+    }
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 749px) {
+    .why-choose-prana-{{ section.id }} {
+      padding: 40px 0;
+    }
+    
+    .why-choose-prana-{{ section.id }} .why-choose-prana-heading {
+      font-size: 28px;
+      line-height: normal;
+    }
+    
+    .why-choose-prana-{{ section.id }} .why-choose-prana-grid {
+      grid-template-columns: repeat({{ section.settings.mobile_column_count }}, 1fr);
+    }
+    
+    .why-choose-prana-{{ section.id }} .why-choose-prana-card {
+      border-right: 1px solid var(--gold);
+      padding: 16px;
+    }
+    
+    /* Right border removal for last column on mobile */
+    .why-choose-prana-{{ section.id }} .why-choose-prana-card:nth-child({{ section.settings.mobile_column_count }}n) {
+      border-right: 0;
+    }
+    
+    /* Bottom border removal for last row on mobile */
+    .why-choose-prana-{{ section.id }} .why-choose-prana-card:nth-last-child(-n+{{ section.settings.mobile_column_count }}) {
+      border-bottom: 0;
+    }
+    
+    .why-choose-prana-{{ section.id }} .why-choose-prana-description {
+      font-size: 16px;
+      line-height: 20px;
+      margin: 8px auto 23px;
+    }
+    
+    .why-choose-prana-{{ section.id }} .why-choose-prana-main {
+      padding: 16px 0;
+    }
+    
+    .why-choose-prana-{{ section.id }} .why-choose-prana-icon {
+      width: 46px;
+      height: 46px;
+      margin-bottom: 18px;
+    }
+    
+    .why-choose-prana-{{ section.id }} .why-choose-prana-title {
+      font-size: 15px;
+      margin-bottom: 7px;
+      max-width: 100%;
+    }
+    
+    .why-choose-prana-{{ section.id }} .why-choose-prana-content {
+      font-size: 13px;
+      line-height: 16px;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<section class="why-choose-prana-{{ section.id }}">
+  <div class="section">
+    {% if section.settings.header_text != blank %}
+      <h2 class="why-choose-prana-heading">{{ section.settings.header_text }}</h2>
+    {% endif %}
+
+    {% if section.settings.main_content != blank %}
+      <div class="why-choose-prana-description rte">
+        {{ section.settings.main_content }}
+      </div>
+    {% endif %}
+  </div>
+  
+  <div class="why-choose-prana-main">
+    <div class="section">
+      {% if section.blocks.size > 0 %}
+        <div class="why-choose-prana-grid">
+          {% for block in section.blocks %}
+            <div class="why-choose-prana-card" {{ block.shopify_attributes }}>
+              {% if block.settings.Icon != blank %}
+                <div class="why-choose-prana-icon">
+                  <img
+                    width="auto"
+                    height="auto"
+                    src="{{ block.settings.Icon | img_url: 'master' }}"
+                    alt="{{ block.settings.title }}"
+                    loading="lazy"
+                  >
+                </div>
+              {% endif %}
+              <div class="why-choose-prana-text-wrapper">
+                {% if block.settings.title != blank %}
+                  <h3 class="why-choose-prana-title">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.content != blank %}
+                  <div class="why-choose-prana-content">
+                    {{ block.settings.content }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Choose Prana",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_text",
+      "label": "Header Title",
+      "default": "Why Choose Prana?"
+    },
+    {
+      "type": "richtext",
+      "id": "main_content",
+      "label": "Main Content / Description",
+      "default": "<p>Experience the perfect blend of ancient Ayurvedic wisdom and modern skincare science</p>"
+    },
+    {
+      "type": "header",
+      "content": "Column Settings"
+    },
+    {
+      "type": "select",
+      "id": "desktop_column_count",
+      "label": "Desktop Column Count",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 Columns"
+        },
+        {
+          "value": "3",
+          "label": "3 Columns"
+        },
+        {
+          "value": "4",
+          "label": "4 Columns"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "tablet_column_count",
+      "label": "Tablet Column Count",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 Columns"
+        },
+        {
+          "value": "3",
+          "label": "3 Columns"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "mobile_column_count",
+      "label": "Mobile Column Count",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 Column"
+        },
+        {
+          "value": "2",
+          "label": "2 Columns"
+        }
+      ],
+      "default": "2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "items",
+      "name": "Card",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "Icon",
+          "label": "Card Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Card Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Prana",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

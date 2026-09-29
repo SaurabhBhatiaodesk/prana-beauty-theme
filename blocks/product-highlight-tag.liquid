@@ -1,0 +1,43 @@
+<div class="product-highlight-tags">
+  {% for tag in product.tags %}
+    <button class="product-tag-btn" data-tag="{{ tag | escape }}">
+      {{ tag }}
+    </button>
+  {% endfor %}
+</div>
+
+<style>
+    .product-highlight-tags button.product-tag-btn {
+        background: #E3C39F;
+        border: 0;
+        padding: 4px 10px;
+        border-radius: 4px;
+        color: var(--heading-color);
+        text-transform: capitalize;
+        font-size: 14px;
+    }
+    .product-highlight-tags {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    @media all and (max-width:575px){
+        .product-highlight-tags button.product-tag-btn{
+            font-size: 13px;
+        }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Product HighLihgt Tag",
+  "settings": [],
+  
+  "presets": [
+    {
+      "name": "Product HighLihgt Tag"
+    }
+  ]
+}
+{% endschema %}

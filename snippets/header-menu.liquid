@@ -1,0 +1,316 @@
+{% liquid
+  assign block_settings = block.settings
+  assign menu_content_type = block_settings.menu_style | default: 'text'
+  assign image_border_radius = block_settings.image_border_radius
+  assign color_scheme_classes = ''
+  assign color_scheme_setting_id = 'color_scheme_' | append: section.settings.menu_row
+  assign current_color_scheme = block_settings.color_scheme
+  assign parent_color_scheme = section.settings[color_scheme_setting_id]
+
+  if parent_color_scheme.id != current_color_scheme.id
+    assign color_scheme_classes = ' color-' | append: current_color_scheme
+  endif
+
+  # Check if header and menu colors match. This is used to apply different padding styles in css
+  if parent_color_scheme.settings.background.rgb == current_color_scheme.settings.background.rgb
+    assign color_scheme_classes = color_scheme_classes | append: ' color-scheme-matches-parent'
+  endif
+
+  if block_settings.menu_style == 'featured_collections'
+    assign ratio = block_settings.featured_collections_aspect_ratio
+  elsif block_settings.menu_style == 'featured_products'
+    assign ratio = block_settings.featured_products_aspect_ratio
+  endif
+%}
+
+{% capture children %}
+  {% for link in block_settings.menu.links %}
+    <li
+      role="presentation"
+      class="menu-list__list-item"
+      on:focus="/activate"
+      on:blur="/deactivate"
+      on:pointerenter="/activate"
+      on:pointerleave="/deactivate"
+    >
+      <a
+        href="{{ link.url }}"
+        data-skip-node-update="true"
+        class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
+        {%- if link.links != blank -%}
+          aria-controls="submenu-{{ forloop.index }}"
+          aria-haspopup="true"
+          aria-expanded="false"
+        {%- endif -%}
+        ref="menuitem"
+      >
+        <span class="menu-list__link-title">{{- link.title -}}</span>
+      </a>
+      {%- if link.links != blank -%}
+        <div class="menu-list__submenu{{ color_scheme_classes }}" ref="submenu[]">
+          <div
+            id="submenu-{{ forloop.index }}"
+            class="menu-list__submenu-inner"
+            style="{% render 'submenu-font-styles', settings: block_settings %};"
+          >
+            {% assign list_id = 'MegaMenuList-' | append: forloop.index %}
+            {% render 'mega-menu',
+              section: section,
+              parent_link: link,
+              id: list_id,
+              menu_content_type: menu_content_type,
+              content_aspect_ratio: ratio,
+              image_border_radius: image_border_radius
+            %}
+          </div>
+
+            <div class="mega-menu-bottom-wrap">
+              <div class="mega-menu-products">
+                {% assign best_collection = section.settings.best_seller_collection %}
+                {% if best_collection != blank %}
+                  <h3 class="mega-menu-heading">Best Seller</h3>
+                  {% assign collection_obj = collections[best_collection] %}
+                  <div class="mega-menu-products-grid">
+                    {% for product in collection_obj.products limit: 3 %}
+                      <div class="mega-menu-product-card">
+                        <a href="{{ product.url }}" class="product-image">
+                          {{ product.featured_image | image_url: width: 300 | image_tag }}
+                        </a>
+                        <svg class="svv" width="93" height="13" viewBox="0 0 93 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M77.6235 7.55598V7.54438L82.2751 1.67473H82.2867V6.69757H83.2727V7.55598H82.2867V9.40039H81.1615V7.55598H77.6235ZM81.2311 4.21515L79.2707 6.75557L79.0967 6.69757H81.1615V4.00635L81.2311 4.21515ZM84.0749 8.78559C84.0749 8.61545 84.1368 8.47238 84.2605 8.35638C84.392 8.23265 84.5351 8.17078 84.6897 8.17078C84.8289 8.17078 84.9604 8.23265 85.0841 8.35638C85.2156 8.47238 85.2813 8.61545 85.2813 8.78559C85.2813 8.97119 85.2156 9.12199 85.0841 9.23799C84.9604 9.34626 84.8289 9.40039 84.6897 9.40039C84.5351 9.40039 84.392 9.34626 84.2605 9.23799C84.1368 9.12199 84.0749 8.97119 84.0749 8.78559ZM85.9538 6.99917C85.9538 6.60477 86.0272 6.2645 86.1742 5.97836C86.3288 5.69223 86.5183 5.45249 86.7426 5.25916C86.9746 5.05809 87.2105 4.90729 87.4502 4.80675C87.2182 4.65982 87.0249 4.47808 86.8702 4.26155C86.7232 4.04501 86.6498 3.76661 86.6498 3.42634C86.6498 3.08607 86.7348 2.78447 86.905 2.52153C87.0829 2.2586 87.3226 2.05366 87.6242 1.90673C87.9258 1.75206 88.2699 1.67473 88.6566 1.67473C89.0355 1.67473 89.3758 1.75206 89.6774 1.90673C89.979 2.05366 90.2187 2.25473 90.3966 2.50993C90.5745 2.76514 90.6634 3.05514 90.6634 3.37994C90.6634 3.74341 90.5861 4.03341 90.4314 4.24995C90.2845 4.46648 90.095 4.65208 89.863 4.80675C90.1027 4.91502 90.3386 5.06969 90.5706 5.27076C90.8026 5.46409 90.9921 5.70383 91.139 5.98996C91.2937 6.2761 91.371 6.6125 91.371 6.99917C91.371 7.43997 91.2473 7.84984 90.9998 8.22878C90.7601 8.60772 90.4353 8.91319 90.0254 9.14519C89.6233 9.37719 89.1631 9.49319 88.645 9.49319C88.1269 9.49319 87.6667 9.37719 87.2646 9.14519C86.8625 8.91319 86.5415 8.60772 86.3018 8.22878C86.0698 7.84984 85.9538 7.43997 85.9538 6.99917ZM87.1022 6.94117C87.1022 7.23504 87.1718 7.50184 87.311 7.74158C87.4502 7.98131 87.6358 8.17465 87.8678 8.32158C88.0998 8.46852 88.3589 8.54198 88.645 8.54198C88.9389 8.54198 89.2057 8.46852 89.4454 8.32158C89.6929 8.17465 89.8862 7.98131 90.0254 7.74158C90.1723 7.50184 90.2458 7.23891 90.2458 6.95277C90.2458 6.6589 90.1762 6.39597 90.037 6.16396C89.8978 5.92423 89.7083 5.73089 89.4686 5.58396C89.2366 5.43702 88.9775 5.36356 88.6914 5.36356C88.4053 5.35582 88.1423 5.42542 87.9026 5.57236C87.6629 5.71156 87.4695 5.90103 87.3226 6.14076C87.1757 6.3805 87.1022 6.6473 87.1022 6.94117ZM87.7402 3.56554C87.7402 3.80528 87.833 4.01021 88.0186 4.18035C88.2119 4.34275 88.4323 4.42395 88.6798 4.42395C88.9273 4.42395 89.1399 4.34275 89.3178 4.18035C89.5034 4.01021 89.5962 3.80528 89.5962 3.56554C89.5962 3.28714 89.5034 3.059 89.3178 2.88114C89.1399 2.70327 88.9273 2.61433 88.6798 2.61433C88.4246 2.61433 88.2042 2.70327 88.0186 2.88114C87.833 3.059 87.7402 3.28714 87.7402 3.56554Z" fill="#4E403C"/>
+                        <path d="M11.3417 4.17008L7.2206 3.89916L5.66865 0L4.11669 3.89916L0 4.17008L3.1573 6.85089L2.12126 10.9177L5.66865 8.67553L9.21603 10.9177L8.17977 6.85089L11.3417 4.17008Z" fill="#97371E"/>
+                        <path d="M27.0351 4.17008L22.914 3.89916L21.362 0L19.8101 3.89916L15.6934 4.17008L18.8507 6.85089L17.8146 10.9177L21.362 8.67553L24.9094 10.9177L23.8731 6.85089L27.0351 4.17008Z" fill="#97371E"/>
+                        <path d="M42.7304 4.17008L38.6093 3.89916L37.0573 0L35.5054 3.89916L31.3887 4.17008L34.546 6.85089L33.5099 10.9177L37.0573 8.67553L40.6047 10.9177L39.5684 6.85089L42.7304 4.17008Z" fill="#97371E"/>
+                        <path d="M58.4238 4.17008L54.3026 3.89916L52.7507 0L51.1987 3.89916L47.082 4.17008L50.2393 6.85089L49.2033 10.9177L52.7507 8.67553L56.2981 10.9177L55.2618 6.85089L58.4238 4.17008Z" fill="#97371E"/>
+                        <path d="M74.1171 4.17008L69.996 3.89916L68.444 0L66.8921 3.89916L62.7754 4.17008L65.9327 6.85089L64.8966 10.9177L68.444 8.67553L71.9914 10.9177L70.9552 6.85089L74.1171 4.17008Z" fill="#97371E"/>
+                        </svg>
+                        <h4 class="product-title">{{ product.title }}</h4>
+                        <div class="product-price">
+                          {% render 'price', product: product %}
+                        </div>
+                        <div class="add-btn" onclick="document.querySelector('.m{{ section.id }}-{{ product.id }} .quick-add__button').click()">
+                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.47406 0H5.29688V11.7719H6.47406V0Z" fill="#97371E"/>
+                              <path d="M11.7719 5.29724H0V6.47443H11.7719V5.29724Z" fill="#97371E"/>
+                              </svg>
+                            Add to Cart
+                        </div>
+                        {%- assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id -%}
+                          <product-form-component 
+            
+                            data-section-id="{{ section.id }}"
+                            data-product-id="{{ product.id }}"
+                            data-product-url="{{ product.url }}"
+                            on:submit="/handleSubmit"
+                            style="opacity: 0;visibility: hidden;"
+                            class="m{{ section.id }}-{{ product.id }}"
+                            data-quantity-default="{% if product.selected_or_first_available_variant.quantity_rule.min %}{{ product.selected_or_first_available_variant.quantity_rule.min }}{% else %}1{% endif %}"
+                            data-quantity-error-max="{{ 'products.product.quantity_error_max' | t }}">
+                            <div
+                              class="visually-hidden"
+                              aria-live="assertive"
+                              role="status"
+                              aria-atomic="true"
+                              ref="liveRegion"
+                            ></div>
+                            {%- form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' -%}
+                              <input
+                                type="hidden"
+                                name="id"
+                                ref="variantId"
+                                value="{{ product.selected_or_first_available_variant.id }}"
+                              >
+                              <div
+                                class="product-form-buttons spacing-style{% if block_settings.stacking %} product-form-buttons--stacked{% endif %}"
+                                
+                                ref="productFormButtons"
+                              >
+                                {%- liquid
+                                  assign has_quantity_rules = false
+                                  if variant.quantity_rule.min > 1 or variant.quantity_rule.increment > 1 or variant.quantity_rule.max != null
+                                    assign has_quantity_rules = true
+                                  endif
+                                -%}
+                                  <button class="quick-add__button" type="sumbit">aaaaa</button>
+                              </div>
+                            {%- endform -%}
+                          </product-form-component>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="mega-menu-products">
+                {% assign best_collection = section.settings.best_seller_collection2 %}
+                {% if best_collection != blank %}
+                  <h3 class="mega-menu-heading">On Sale</h3>
+                  {% assign collection_obj = collections[best_collection] %}
+                  <div class="mega-menu-products-grid">
+                    {% for product in collection_obj.products limit: 3 %}
+                      <div class="mega-menu-product-card">
+                        <a href="{{ product.url }}" class="product-image">
+                          {{ product.featured_image | image_url: width: 300 | image_tag }}
+                        </a>
+                        <svg class="svv" width="93" height="13" viewBox="0 0 93 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M77.6235 7.55598V7.54438L82.2751 1.67473H82.2867V6.69757H83.2727V7.55598H82.2867V9.40039H81.1615V7.55598H77.6235ZM81.2311 4.21515L79.2707 6.75557L79.0967 6.69757H81.1615V4.00635L81.2311 4.21515ZM84.0749 8.78559C84.0749 8.61545 84.1368 8.47238 84.2605 8.35638C84.392 8.23265 84.5351 8.17078 84.6897 8.17078C84.8289 8.17078 84.9604 8.23265 85.0841 8.35638C85.2156 8.47238 85.2813 8.61545 85.2813 8.78559C85.2813 8.97119 85.2156 9.12199 85.0841 9.23799C84.9604 9.34626 84.8289 9.40039 84.6897 9.40039C84.5351 9.40039 84.392 9.34626 84.2605 9.23799C84.1368 9.12199 84.0749 8.97119 84.0749 8.78559ZM85.9538 6.99917C85.9538 6.60477 86.0272 6.2645 86.1742 5.97836C86.3288 5.69223 86.5183 5.45249 86.7426 5.25916C86.9746 5.05809 87.2105 4.90729 87.4502 4.80675C87.2182 4.65982 87.0249 4.47808 86.8702 4.26155C86.7232 4.04501 86.6498 3.76661 86.6498 3.42634C86.6498 3.08607 86.7348 2.78447 86.905 2.52153C87.0829 2.2586 87.3226 2.05366 87.6242 1.90673C87.9258 1.75206 88.2699 1.67473 88.6566 1.67473C89.0355 1.67473 89.3758 1.75206 89.6774 1.90673C89.979 2.05366 90.2187 2.25473 90.3966 2.50993C90.5745 2.76514 90.6634 3.05514 90.6634 3.37994C90.6634 3.74341 90.5861 4.03341 90.4314 4.24995C90.2845 4.46648 90.095 4.65208 89.863 4.80675C90.1027 4.91502 90.3386 5.06969 90.5706 5.27076C90.8026 5.46409 90.9921 5.70383 91.139 5.98996C91.2937 6.2761 91.371 6.6125 91.371 6.99917C91.371 7.43997 91.2473 7.84984 90.9998 8.22878C90.7601 8.60772 90.4353 8.91319 90.0254 9.14519C89.6233 9.37719 89.1631 9.49319 88.645 9.49319C88.1269 9.49319 87.6667 9.37719 87.2646 9.14519C86.8625 8.91319 86.5415 8.60772 86.3018 8.22878C86.0698 7.84984 85.9538 7.43997 85.9538 6.99917ZM87.1022 6.94117C87.1022 7.23504 87.1718 7.50184 87.311 7.74158C87.4502 7.98131 87.6358 8.17465 87.8678 8.32158C88.0998 8.46852 88.3589 8.54198 88.645 8.54198C88.9389 8.54198 89.2057 8.46852 89.4454 8.32158C89.6929 8.17465 89.8862 7.98131 90.0254 7.74158C90.1723 7.50184 90.2458 7.23891 90.2458 6.95277C90.2458 6.6589 90.1762 6.39597 90.037 6.16396C89.8978 5.92423 89.7083 5.73089 89.4686 5.58396C89.2366 5.43702 88.9775 5.36356 88.6914 5.36356C88.4053 5.35582 88.1423 5.42542 87.9026 5.57236C87.6629 5.71156 87.4695 5.90103 87.3226 6.14076C87.1757 6.3805 87.1022 6.6473 87.1022 6.94117ZM87.7402 3.56554C87.7402 3.80528 87.833 4.01021 88.0186 4.18035C88.2119 4.34275 88.4323 4.42395 88.6798 4.42395C88.9273 4.42395 89.1399 4.34275 89.3178 4.18035C89.5034 4.01021 89.5962 3.80528 89.5962 3.56554C89.5962 3.28714 89.5034 3.059 89.3178 2.88114C89.1399 2.70327 88.9273 2.61433 88.6798 2.61433C88.4246 2.61433 88.2042 2.70327 88.0186 2.88114C87.833 3.059 87.7402 3.28714 87.7402 3.56554Z" fill="#4E403C"/>
+                        <path d="M11.3417 4.17008L7.2206 3.89916L5.66865 0L4.11669 3.89916L0 4.17008L3.1573 6.85089L2.12126 10.9177L5.66865 8.67553L9.21603 10.9177L8.17977 6.85089L11.3417 4.17008Z" fill="#97371E"/>
+                        <path d="M27.0351 4.17008L22.914 3.89916L21.362 0L19.8101 3.89916L15.6934 4.17008L18.8507 6.85089L17.8146 10.9177L21.362 8.67553L24.9094 10.9177L23.8731 6.85089L27.0351 4.17008Z" fill="#97371E"/>
+                        <path d="M42.7304 4.17008L38.6093 3.89916L37.0573 0L35.5054 3.89916L31.3887 4.17008L34.546 6.85089L33.5099 10.9177L37.0573 8.67553L40.6047 10.9177L39.5684 6.85089L42.7304 4.17008Z" fill="#97371E"/>
+                        <path d="M58.4238 4.17008L54.3026 3.89916L52.7507 0L51.1987 3.89916L47.082 4.17008L50.2393 6.85089L49.2033 10.9177L52.7507 8.67553L56.2981 10.9177L55.2618 6.85089L58.4238 4.17008Z" fill="#97371E"/>
+                        <path d="M74.1171 4.17008L69.996 3.89916L68.444 0L66.8921 3.89916L62.7754 4.17008L65.9327 6.85089L64.8966 10.9177L68.444 8.67553L71.9914 10.9177L70.9552 6.85089L74.1171 4.17008Z" fill="#97371E"/>
+                        </svg>
+
+                        <h4 class="product-title"><a href="{{ product.url }}">{{ product.title }}</a></h4>
+                        <div class="product-price">
+                          {% render 'price', product: product %}
+                        </div>
+                        
+                        <div class="add-btn" onclick="document.querySelector('.m{{ section.id }}-{{ product.id }} .quick-add__button').click()">
+                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.47406 0H5.29688V11.7719H6.47406V0Z" fill="#97371E"/>
+                              <path d="M11.7719 5.29724H0V6.47443H11.7719V5.29724Z" fill="#97371E"/>
+                              </svg>
+                            Add to Cart
+                        </div>
+                         {%- assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id -%}
+                          <product-form-component 
+            
+                            data-section-id="{{ section.id }}"
+                            data-product-id="{{ product.id }}"
+                            data-product-url="{{ product.url }}"
+                            on:submit="/handleSubmit"
+                            style="opacity: 0;visibility: hidden;"
+                            class="m{{ section.id }}-{{ product.id }}"
+                            data-quantity-default="{% if product.selected_or_first_available_variant.quantity_rule.min %}{{ product.selected_or_first_available_variant.quantity_rule.min }}{% else %}1{% endif %}"
+                            data-quantity-error-max="{{ 'products.product.quantity_error_max' | t }}">
+                            <div
+                              class="visually-hidden"
+                              aria-live="assertive"
+                              role="status"
+                              aria-atomic="true"
+                              ref="liveRegion"
+                            ></div>
+                            {%- form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' -%}
+                              <input
+                                type="hidden"
+                                name="id"
+                                ref="variantId"
+                                value="{{ product.selected_or_first_available_variant.id }}"
+                              >
+                              <div
+                                class="product-form-buttons spacing-style{% if block_settings.stacking %} product-form-buttons--stacked{% endif %}"
+                                
+                                ref="productFormButtons"
+                              >
+                                {%- liquid
+                                  assign has_quantity_rules = false
+                                  if variant.quantity_rule.min > 1 or variant.quantity_rule.increment > 1 or variant.quantity_rule.max != null
+                                    assign has_quantity_rules = true
+                                  endif
+                                -%}
+                                  <button class="quick-add__button" type="sumbit">aaaaa</button>
+                              </div>
+                            {%- endform -%}
+                          </product-form-component>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+        </div>
+      {%- endif -%}
+    
+
+    </li>
+  {% endfor %}
+  <li
+    class="menu-list__list-item"
+    role="presentation"
+    slot="more"
+    on:focus="/activate"
+    on:blur="/deactivate"
+    on:pointerenter="/activate"
+    on:pointerleave="/deactivate"
+  >
+    <button role="menuitem" class="button menu-list__link button-unstyled">
+      <span class="menu-list__link-title">{{ 'actions.more' | t }}</span>
+    </button>
+  </li>
+{% endcapture %}
+
+
+
+<nav header-menu>
+  <div
+    class="menu-list"
+    style="{% render 'menu-font-styles', settings: block_settings %}"
+  >
+    {% assign class = 'overflow-menu' | append: color_scheme_classes %}
+    {% render 'overflow-list', class: class, ref: 'overflowMenu', children: children, minimum-items: 2, defer: true %}
+  </div>
+</nav>
+
+
+<style>
+.mega-menu__list a.mega-menu__link {
+    position: relative;
+    border: 2px solid #4E403C;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+}
+.mega-menu__list .mega-menu__link-image {
+    aspect-ratio: auto;
+    max-width: 100%;
+    min-height: 230px;
+    max-height: 230px;
+    padding: 0;
+    margin: 0;
+}
+.mega-menu__list span.mega-menu__link-title.wrap-text {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ECCA6F;
+    color: #443531;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Josefin Sans';
+    border-radius: 25px;
+    padding: 8px 15px 6px;
+    max-width: max-content;
+    width: 100%;
+    text-transform: uppercase;
+}
+h3.mega-menu-heading {
+    color: #97371E;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: -1px;
+    margin: 0 0 15px 0;
+}
+.mega-menu-products {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 36px;
+    overflow-x: hidden;
+}
+.mega-menu-products-grid {
+    display: flex;
+    justify-content: space-between;
+}
+.mega-menu-product-card {
+    max-width: 210px;
+    background: #FAF8F4;
+    padding: 15px;
+    text-align: center;
+    min-width: 210px;
+}
+.mega-menu-product-card img {
+  max-height: 130px;
+  object-fit: contain;
+}
+</style>

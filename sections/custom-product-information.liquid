@@ -1,0 +1,390 @@
+{% liquid
+  if request.visual_preview_mode and product == blank
+    assign product = collections.all.products.first
+  endif
+
+  assign variant = closest.product.selected_or_first_available_variant
+  assign inventory_quantity = variant.inventory_quantity
+  assign inventory_policy = variant.inventory_policy
+
+  if variant.inventory_management == 'shopify'
+    assign inventory_managed = true
+  endif
+
+  if variant.quantity_rule.min > variant.inventory_quantity and inventory_managed and inventory_policy == 'deny'
+    assign quantity_rule_soldout = true
+  endif
+
+  if inventory_managed
+    if inventory_quantity <= 0 and inventory_policy == 'deny' or quantity_rule_soldout
+      assign can_add_to_cart = false
+      assign add_to_cart_text = 'products.product.sold_out' | t
+    else
+      assign can_add_to_cart = true
+      assign add_to_cart_text = 'products.product.add_to_cart' | t
+    endif
+  else
+    if closest.product.selected_or_first_available_variant != null
+      assign can_add_to_cart = true
+      assign add_to_cart_text = 'products.product.add_to_cart' | t
+    else
+      assign can_add_to_cart = false
+      assign add_to_cart_text = 'products.product.unavailable' | t
+    endif
+  endif
+%}
+
+<!-- ── HERO ── -->
+  <div class="pdp-hero">
+
+    <!-- Gallery left -->
+    <div class="pdp-gallery">
+      <div class="pdp-main-img" id="pdp-main-img-wrap">
+        <div class="product-thumnbail-main">
+          <div class="product-thumnbail-slider">
+            {% for image in product.images %}
+              <div class="image"><img loading="lazy" style="margin: 3px 0; width:80px;" id="pdp-thumbnail-img" src="{{ image  | img_url: 'original' }}" alt="Product"></div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="product-image-main">
+          <div class="product-image-slider">
+            {% for image in product.images %}
+              <div class="image"><img loading="lazy" id="pdp-main-img" src="{{ image  | img_url: 'original' }}" alt="Product"></div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% comment %}<div class="pdp-thumbs" id="pdp-thumbs"></div>{% endcomment %}
+      <div class="pdp-img-label" id="pdp-img-label" style="padding:8px 24px;font-family:var(--U);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink5)">{{ product.title }} · Product Image</div>
+    </div>
+
+    <!-- Info right -->
+    <div class="pdp-info">
+      <div class="pdp-badge"><span class="pip"></span><span id="pdp-badge">{{ product.metafields.custom.badge }}</span></div>
+      <h1 class="pdp-name" id="pdp-name">{{ product.title }}</h1>
+      <!-- Standalone price + subscribe save -->
+      <div class="pdp-price-row" id="pdp-price-row" style="display:flex;align-items:baseline;gap:10px;margin:8px 0 4px">
+        <span class="pdp-price-main" id="pdp-price" style="font-family:var(--D);font-size:28px;color:var(--ink1)">{{ product.price | money }}</span>
+      </div>
+      <p class="pdp-tagline" id="pdp-tagline">{{ section.settings.tagline }}</p>
+
+      <div class="pdp-stars">
+        
+       <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}" data-pattern="[rating] / 5" ></div>
+        {% comment %} <span class="pdp-s" id="pdp-star-display">★★★★★</span>{% endcomment %}
+        {%if product.metafields.loox.num_reviews > 0 %}
+        <span class="pdp-sr">
+        {% comment %} <strong id="pdp-star-num">4.8</strong> / 5 ·  {% endcomment %}
+          <span id="pdp-review-count">{{ product.metafields.loox.num_reviews }} reviews</span></span> 
+          <a href="#looxReviews" style="font-size:17px;color:var(--gold);margin-left:8px;font-family:var(--S)">Read reviews ↓</a>
+        {%endif %}
+      </div>
+      <div class="pdp-review-bar" style="margin-bottom:20px">
+        <div style="flex:1;height:3px;background:var(--canvas-dk);border-radius:2px;overflow:hidden">
+          <div class="pdp-rb-fill" id="pdp-rb-fill" style="width:96%"></div>
+        </div>
+      </div>
+      {% if product.metafields.custom.size != blank %}
+        <div class="pdp-size" id="pdp-size">{{ product.metafields.custom.size }}</div>
+      {% endif %}
+      {% assign rituals = product.metafields.custom.choose_ritual.value %}
+      {% assign total_price = 0 %}
+      {% assign total_compare_price = 0 %}
+
+        {% for product_item in rituals.products %}
+          {% assign item_variant = product_item.selected_or_first_available_variant %}
+          {% assign total_price = total_price | plus: item_variant.price %}
+
+          {% if item_variant.compare_at_price > item_variant.price %}
+            {% assign total_compare_price = total_compare_price | plus: item_variant.compare_at_price %}
+          {% else %}
+            {% assign total_compare_price = total_compare_price | plus: item_variant.price %}
+          {% endif %}
+
+        {% endfor %}
+
+      {% comment %}{% assign total_saving = total_compare_price | minus: total_price %}
+
+      <!-- Complete Your Ritual — top conversion strip -->
+       <div class="pdp-ritual-cta" id="pdp-ritual-cta-top" onclick="document.getElementById('pdp-complete-section').scrollIntoView({behavior:'smooth'})">
+        <div class="pdp-ritual-cta-label">✦ Complete Your Ritual · Save up to {{ total_saving | money }}</div>
+       <div class="pdp-ritual-cta-products" id="pdp-ritual-cta-imgs">
+            {% for product_item in rituals.products %}
+            <div class="pdp-rcp-img" {% if forloop.last %}style="border:2px solid var(--gold)"{% endif %}>
+              <img src="{{ product_item.featured_image | img_url: 'original' }}" alt="Saffron Radiance Moisturizer">
+            </div>
+            {% unless forloop.last %}
+              <span class="pdp-rcp-arrow">+</span>
+            {% endunless %}
+            {% endfor %}
+          <div style="margin-left:auto;text-align:right">
+            <div class="pdp-rcp-total">SWAPNA · {{ rituals.title }}</div>
+            <div class="pdp-rcp-save">Save {{ total_saving | money }} as a set →</div>
+          </div>
+        </div>
+
+      </div> {% endcomment %}
+
+      <ul class="bottom-icons-lefter">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'product-info-inline' %}
+            
+              {% if block.settings.image != blank %}
+                  <li class="list-view-blocks">
+                  <div class="img--icon-box">
+                      <img loading="lazy" src="{{ block.settings.image | img_url: 'master' }}">
+                  </div>
+                  <h5 class="block-in-title">{{ block.settings.title }}</h5>
+                  </li>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </ul>
+
+      <div class="pdp-sub-save" id="pdp-sub-save" style="font-family:var(--S);font-size:12px;color:var(--gold);letter-spacing:.04em;margin-bottom:12px;display:none">
+        Subscribe &amp; Save — $15 per order
+      </div>
+
+       {% content_for 'blocks' %}
+      {% comment %} <!-- Purchase toggle -->
+      <div class="sub-toggle">
+        <div class="sub-opt on" onclick="selectPurchase(this,'one-time')">
+          <div class="sub-opt-label">One-Time Purchase</div>
+          <div class="sub-opt-price" id="pdp-one-time-price">$89</div>
+        </div>
+        <div class="sub-opt" onclick="selectPurchase(this,'subscribe')">
+          <div class="sub-opt-label">Subscribe & Save 15%</div>
+          <div class="sub-opt-price" id="pdp-sub-price">$83/mo</div>
+        </div>
+      </div> {% endcomment %}
+
+
+    {%- if product != blank -%}
+    {%- assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id -%}
+    <product-form-component
+      data-section-id="{{ section.id }}"
+      data-product-id="{{ product.id }}"
+      data-product-url="{{ product.url }}"
+      on:submit="/handleSubmit"
+      data-quantity-default="{% if product.selected_or_first_available_variant.quantity_rule.min %}{{ product.selected_or_first_available_variant.quantity_rule.min }}{% else %}1{% endif %}"
+      data-quantity-error-max="{{ 'products.product.quantity_error_max' | t }}"
+    >
+      <div
+        class="visually-hidden"
+        aria-live="assertive"
+        role="status"
+        aria-atomic="true"
+        ref="liveRegion"
+      ></div>
+
+      {%- form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' -%}
+        <input
+          type="hidden"
+          name="id"
+          ref="variantId"
+          value="{{ product.selected_or_first_available_variant.id }}"
+        >
+        <div
+          class="product-form-buttons" ref="productFormButtons">
+          {%- liquid
+            assign has_quantity_rules = false
+            if variant.quantity_rule.min > 1 or variant.quantity_rule.increment > 1 or variant.quantity_rule.max != null
+              assign has_quantity_rules = true
+            endif
+          -%}
+
+          {%- if has_quantity_rules -%}
+            {%- assign cart_quantity = cart | item_count_for_variant: variant.id -%}
+            <div class="quantity-label">
+              <span
+                class="quantity-label__cart-count{% if cart_quantity == 0 %} hidden{% endif %}"
+                ref="quantityLabelCartCount"
+                >({{ cart_quantity }}
+                {{ 'products.product.in_cart' | t }})</span
+              >
+            </div>
+          {%- endif -%}
+
+          {% render 'quantity-selector', product: closest.product %}
+
+          {%- if has_quantity_rules -%}
+            <div
+              class="quantity-rules"
+              ref="quantityRules"
+            >
+              {%- if variant.quantity_rule.increment > 1 -%}
+                <span class="quantity-rules__item">
+                  {{ 'products.product.quantity_increments' | t: increment: variant.quantity_rule.increment }}
+                </span>
+              {%- endif -%}
+              {%- if variant.quantity_rule.min > 1 -%}
+                <span class="quantity-rules__item">
+                  {{ 'products.product.quantity_minimum' | t: minimum: variant.quantity_rule.min }}
+                </span>
+              {%- endif -%}
+              {%- if variant.quantity_rule.max != null -%}
+                <span class="quantity-rules__item">
+                  {{ 'products.product.quantity_maximum' | t: maximum: variant.quantity_rule.max }}
+                </span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+
+           {% render 'add-to-cart-button',
+            can_add_to_cart: can_add_to_cart,
+            product: product,
+            add_to_cart_text: add_to_cart_text
+          %}
+
+          {{ form | payment_button }}
+
+        </div>
+      {%- endform -%}
+    </product-form-component>
+    {%- else -%}
+      <div class="product-form-buttons">
+        <button
+          type="submit"
+          name="add"
+          class="button"
+          disabled
+        >
+          {{ 'blocks.sold_out' | t }}
+        </button>
+      </div>
+    {%- endif -%}
+      
+      {% comment %} <!-- Qty + ATC -->
+      <div class="pdp-qty-row">
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span id="qty">1</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+        <button class="pdp-atc" id="pdp-atc-btn" onclick="addCart()">Add to Ritual — $<span id="pdp-cart-price">98</span></button>
+        <button id="pdp-buy-now" onclick="addCart();openCheckout()" style="width:100%;margin-top:8px;padding:14px;background:var(--jungle,#243322);color:#f5e8c8;border:none;font-family:var(--U);font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:2px">Buy Now</button>
+      </div> {% endcomment %}
+
+      <!-- Trust strip -->
+      <div class="pdp-trust">
+        {% for block in section.blocks %}
+           {% case block.type %}
+              {% when 'icon' %}
+              <div class="pdp-trust-item">
+                {% if block.settings.icon != blank %}
+                  <img loading="lazy" src="{{ block.settings.icon | img_url : 'original' }}">
+                {% else %}
+                <span class="pdp-trust-icon">{{ block.settings.icon_text }}</span>
+                {%endif %}
+                <span class="pdp-trust-label">{{ block.settings.title }}</span>
+              </div>
+            {% endcase %}
+        {% endfor %}
+        </div>
+      <!-- Urgency signal -->
+      <div id="pdpUrgencyBar" style="margin:12px 0;padding:8px 14px;background:linear-gradient(90deg,#1c2b1a,#243322);border-radius:3px;font-family:var(--S);font-size:16px;color:#c8d8c0;letter-spacing:.04em;display:flex;align-items:center;gap:8px">
+        <span style="font-size:16px">🌿</span>
+        <span id="pdpUrgencyMsg">{{ section.settings.pdpurgencymsg }}</span>
+      </div>
+
+      <!-- Accordions -->
+      <div class="pdp-acc">
+          {% for block in section.blocks %}
+           {% case block.type %}
+              {% when 'accordian' %}
+                <div class="pdp-acc-item">
+                  <div class="pdp-acc-head">
+                    <span class="pdp-acc-title">{{ block.settings.title }}</span>
+                    <span class="pdp-acc-icon">+</span>
+                  </div>
+                  <div class="pdp-acc-body" id="pdp-ritual-body">{{ block.settings.desc }}</div>
+                </div>
+            {% endcase %}
+          {% endfor %}
+      </div>
+ </div>
+
+</div>
+{% schema %}
+{
+  "name": "Custom product info",
+  "settings": [
+    {
+    "type": "text",
+    "id": "pdpurgencymsg",
+    "label": "Message"
+    },
+    {
+    "type": "text",
+    "id": "tagline",
+    "label": "Tagline"
+    },
+  ],
+    "blocks": [
+      {
+      "type": "@app"
+      },
+      {
+      "type": "icon",
+      "name": "icon",
+      "settings": [
+        {
+        "type": "image_picker",
+        "id": "icon",
+        "label": "Icon"
+        },
+        {
+        "type": "text",
+        "id": "icon_text",
+        "label": "Icon text"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        }
+      ]
+      },
+      {
+      "type": "accordian",
+      "name": "accordian",
+      "settings": [
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+        }
+      ]
+      },
+      {
+      "type": "product-info-inline",
+      "name": "product info inline",
+      "settings": [
+        {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+        }
+      ]
+      },
+    ],
+  "presets": [
+    {
+      "name": "Custom product info"
+    }
+  ]
+}
+{% endschema %}

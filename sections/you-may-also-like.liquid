@@ -1,0 +1,100 @@
+<div class="pdp-also">
+    <div class="pdp-also-label">{{ section.settings.caption }}</div>
+    <div class="pdp-also-heading" style="font-family:var(--D);font-size:40px;font-weight:300;color:var(--ink);margin-bottom:48px;line-height:1.05">{{ section.settings.heading }}</div>
+    <div class="pdp-also-grid" id="pdp-also-grid">
+        {% for block in section.blocks %}
+            <a class="pdp-also-card" href="{{ block.settings.link }}">
+                <div class="pdp-also-img">
+                    {% if block.settings.image1 != blank %}<img loading="lazy" src="{{ block.settings.image1 | img_url : "original" }}" alt="DINACHARYA">{% endif %}
+                    {% if block.settings.image2 != blank %}<img loading="lazy" src="{{ block.settings.image2 | img_url : "original" }}" alt="DINACHARYA">{% endif %}
+                </div>
+                <div class="pdp-also-body">
+                    <div class="pdp-also-sutra-eyebrow">{{ block.settings.caption }}</div>
+                    <div class="pdp-also-name">{{ block.settings.title }}</div>
+                    <div class="pdp-also-sub">{{ block.settings.sub_title }}</div>
+                    <div class="pdp-also-meaning">{{ block.settings.desc }}</div>
+                    <div class="pdp-also-footer">
+                        <div class="pdp-also-price">{{ block.settings.price }}</div>
+                        <button class="pdp-also-atc" onclick="event.stopPropagation();loadSutra(4)">Explore Ritual →</button>
+                    </div>
+                </div>
+              </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "You may also like",
+    "settings": [
+    {
+    "type": "text",
+    "id": "caption",
+    "label": "Caption"
+    },
+    {
+    "type": "textarea",
+    "id": "heading",
+    "label": "Heading"
+    },
+    {
+    "type": "url",
+    "id": "link",
+    "label": "Link"
+    }
+    ],
+    "blocks": [
+      {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+        },
+        {
+        "type": "image_picker",
+        "id": "image1",
+        "label": "Image"
+        },
+        {
+        "type": "image_picker",
+        "id": "image2",
+        "label": "Image"
+        },
+        {
+        "type": "text",
+        "id": "caption",
+        "label": "Caption"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title"
+        },
+        {
+        "type": "text",
+        "id": "desc",
+        "label": "Description"
+        },
+        {
+        "type": "text",
+        "id": "price",
+        "label": "Price"
+        }
+      ]
+    },
+    ],
+    "presets": [
+    {
+      "name": "You may also like",
+    }
+  ]
+  }
+{% endschema %}

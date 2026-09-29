@@ -1,0 +1,34 @@
+{% if product.metafields.custom.badge != blank %}
+  <div class="product-ritual-badge">
+    <p>{{ product.metafields.custom.badge }}</p>
+</div>
+{% endif %}
+<style>
+    .product-ritual-badge {
+        background: #F3E4CD;
+        width: fit-content;
+        border: 1px solid var(--gold);
+        padding: 4px 10px;
+        border-radius: 8px;
+        color: var(--heading-color);
+        font-size: 18px;
+    }
+
+    @media all and (max-width:575px){
+        .product-ritual-badge{
+            font-size:14px;
+        }
+    }
+</style>
+{% schema %}
+{
+  "name": "Product Ritual Badge",
+  "settings": [],
+  
+  "presets": [
+    {
+      "name": "Product Ritual Badge"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,120 @@
+<section class="self-care-section">
+  <div class="self-care-bg-wrapper">
+    {% if section.settings.background_image != blank %}
+      {{
+        section.settings.background_image
+        | image_url: width: 2000
+        | image_tag:
+          loading: 'lazy',
+          class: 'self-care-bg-img'
+      }}
+    {% endif %}
+    <div class="self-care-content">
+      {% if section.settings.heading != blank %}
+        <h2 class="self-care-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <div class="self-care-description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+.self-care-section{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.self-care-bg-wrapper{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  background: #000;
+}
+
+.self-care-bg-img{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+.self-care-content {
+    position: relative;
+    z-index: 1;
+    max-width:700px;
+    background: #00000080;
+    padding: 40px;
+    border-radius: 19px;
+    color: #fff;
+    text-align: center;
+    border: 1px solid #ffffff33;
+}
+.self-care-heading {
+    font-size: 32px;
+    margin-bottom: 14px;
+    color: #D3B18A;
+}
+.self-care-description{
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Tablet */
+@media screen and (max-width:991px){
+  .self-care-content{
+    padding:30px;
+  }
+  .self-care-heading{
+    font-size:28px;
+  }
+  .self-care-description{
+    font-size:15px;
+  }
+}
+
+/* tab */
+@media screen and (max-width:768px){
+  .self-care-content{
+    padding:20px;
+  }
+  .self-care-heading{
+    font-size:24px;
+  }
+  .self-care-description{
+    font-size:14px;
+  }
+}
+
+@media all and (max-width:575px){
+    .self-care-heading {
+        font-size: 19px;
+        line-height: normal;
+    }
+    .self-care-bg-wrapper {
+        padding: 60px 16px 35px;
+    }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Ayurveda Self-Care",
+  "settings": [
+    { "type": "image_picker", "id": "background_image", "label": "Background Image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Ayurveda and Beauty: The Ritual of Self-Care" },
+    { "type": "richtext", "id": "description", "label": "Description" }
+  ],
+  "presets": [
+    { "name": "Ayurveda Self-Care" }
+  ]
+}
+{% endschema %}

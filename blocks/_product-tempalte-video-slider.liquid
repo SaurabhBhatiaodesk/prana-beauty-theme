@@ -1,0 +1,301 @@
+
+<style>
+   .container-slider-productctivity{
+         max-width: 43vw;
+         width: 100%;  
+    }  
+    .slider-productctivity{
+        width:100%;
+        max-width: 100%;
+    }  
+    .slider-productctivity .swiper-slide{
+        width:169px !important;
+    } 
+  .slider-productctivity .swiper-slide .inter-video-block{
+        width:100%;
+        overflow:hidden;
+    } 
+    .slider-productctivity .swiper-slide .inter-video-block video{
+        object-fit: cover;
+        aspect-ratio: 9 / 12;
+        height: 250px;
+    }
+    .heade-accorss-part{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin: 0 auto 16px;
+    }
+    .title-anima{
+        font-family: 'Josefin Sans';
+        margin:0;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: -2%;
+        color:#4E403C;
+    }
+    .heade-accorss-part .custom-arrows{
+        width:max-content !important;
+        gap:5px;
+        margin: 0;
+    }
+    .heade-accorss-part .custom-arrow{
+        width:clamp(20px, 20px ,20px) !important;
+        height:20px !important;
+        border-radius:50%;
+        border: 0.74px solid #4E403C;
+        padding: 5px 6px;
+    }
+    .inter-video-block{
+        position:relative;
+    }
+    .play-pause-btn{
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        backdrop-filter: blur(16.062137603759766px);
+        background: #0003;
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        margin: 0 auto;
+        top: 48%;
+    }
+    .inter-video-block .play-pause-btn.hidden{
+        display: none !important;
+    }
+    {% comment %} .conainer-of-slide-swiper{
+      width:100%;
+      max-width: 100%;
+    } {% endcomment %}
+
+@media screen and (max-width: 990px) {
+    .container-slider-productctivity {
+      max-width: 100vw;
+      width: 100%;
+    }
+  }    
+@media screen and (max-width: 767px) {
+    .container-slider-productctivity {
+      max-width: 100vw;
+      width: 100%;
+    }
+  }
+</style>
+
+{% if product.metafields.custom.recommanded_videos %}
+<div class="container-slider-productctivity">
+    <div class="heade-accorss-part">
+        <h4 class="title-anima">See In Action</h4>
+        <div class="custom-arrows custom-product-btns">
+            <div class="custom-arrow custom-prev">
+                <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.71777 0.370361L0.369947 4.71819L4.71777 9.06601" stroke="#4E403C" stroke-width="0.740741" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="custom-arrow custom-next">
+                <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.370117 9.06601L4.71794 4.71818L0.370117 0.370357" stroke="#4E403C" stroke-width="0.740741" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="conainer-of-slide-swiper">
+      <div class="swiper product-list-swiper slider-productctivity">
+          <div class="swiper-wrapper">
+              {% for video_file in product.metafields.custom.recommanded_videos.value %}
+                  {% assign video = video_file %}
+                  <div class="swiper-slide">
+                      <div class="inter-video-block">
+                          {% if video.media_type == 'video' %}
+                              <video 
+                              controls:false 
+                              playsinline 
+                              preload="metadata"
+                              poster="{{ video.preview_image | img_url: 'master' }}"
+                              >
+                              {% for source in video.sources %}
+                                  <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                              {% endfor %}
+                              </video>
+                          {% endif %}
+                          <span class="play-pause-btn">
+                              <svg class="playsvg" width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M0 0L7.66392 4.47059L0 8.94118V0Z" fill="#FDFCFA"/>
+                              </svg>
+                          </span>
+                      </div>
+                  </div>
+              {% endfor %}
+          </div>
+      </div>
+    </div>
+</div>
+{% endif %}
+
+{% comment %} <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const containers = document.querySelectorAll(".container-slider-productctivity");
+
+  containers.forEach(container => {
+    const slider = container.querySelector(".slider-productctivity");
+
+    new Swiper(slider, {
+      slidesPerView: 'auto',
+      spaceBetween: 8,
+      loop: true,
+      navigation: {
+        nextEl: container.querySelector(".custom-next"),
+        prevEl: container.querySelector(".custom-prev"),
+      },
+    });
+  });
+});
+
+</script> {% endcomment %}
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const containers = document.querySelectorAll(".container-slider-productctivity");
+
+  containers.forEach(container => {
+    const sliderEl = container.querySelector(".slider-productctivity");
+
+    // Init Swiper for this container
+    const swiper = new Swiper(sliderEl, {
+      slidesPerView: 'auto',
+      spaceBetween: 8,
+      loop: true,
+      navigation: {
+        nextEl: container.querySelector(".custom-next"),
+        prevEl: container.querySelector(".custom-prev"),
+      },
+      on: {
+        slideChange: () => {
+          // pause all videos when slide changes
+          pauseAllVideos(container);
+        }
+      }
+    });
+
+    // helper to get all videos and buttons inside this container
+    function getVideos() {
+      return Array.from(container.querySelectorAll(".inter-video-block video"));
+    }
+    function getButtons() {
+      return Array.from(container.querySelectorAll(".inter-video-block .play-pause-btn"));
+    }
+
+    // Pause all videos in this container
+    function pauseAllVideos(exceptVideo = null, resetTime = false) {
+      const videos = getVideos();
+      videos.forEach(v => {
+        if (v !== exceptVideo) {
+          try {
+            v.pause();
+            if (resetTime) v.currentTime = 0;
+          } catch(e){}
+        }
+      });
+    }
+
+    // Update UI for play/pause buttons according to video state
+    function updateButtonStateForVideo(video) {
+      const wrapper = video.closest(".inter-video-block");
+      if (!wrapper) return;
+      const btn = wrapper.querySelector(".play-pause-btn");
+      if (!btn) return;
+      if (!video.paused && !video.ended && video.currentTime > 0) {
+        btn.classList.add("hidden");
+      } else {
+        btn.classList.remove("hidden");
+      }
+    }
+
+    // Set initial state
+    getVideos().forEach(v => updateButtonStateForVideo(v));
+
+    // Listen for play/pause/ended events to update buttons
+    getVideos().forEach(video => {
+      video.addEventListener("play", () => {
+        // Pause others
+        pauseAllVideos(video, /*resetTime=*/false);
+        updateButtonStateForVideo(video);
+
+        // hide all other buttons
+        getButtons().forEach(b => {
+          const parent = b.closest(".inter-video-block");
+          if (parent && parent.querySelector("video") !== video) b.classList.remove("hidden"); // ensure visible for others
+        });
+      });
+
+      video.addEventListener("pause", () => {
+        updateButtonStateForVideo(video);
+      });
+
+      video.addEventListener("ended", () => {
+        // show button when ended
+        updateButtonStateForVideo(video);
+        // optionally reset to start (comment out if not desired)
+        // video.currentTime = 0;
+      });
+
+      // Ensure if user drags timeline, button state updates
+      video.addEventListener("timeupdate", () => updateButtonStateForVideo(video));
+    });
+
+    // Click handler (delegated) — click on video or play button toggles play/pause
+    container.addEventListener("click", (evt) => {
+      const clickedBtn = evt.target.closest(".play-pause-btn");
+      const clickedVideo = evt.target.closest("video");
+
+      // if clicked on play button or video element (or their children)
+      if (!clickedBtn && !clickedVideo) return;
+
+      const targetVideo = clickedVideo || clickedBtn.closest(".inter-video-block").querySelector("video");
+      if (!targetVideo) return;
+
+      // toggle play/pause
+      if (targetVideo.paused || targetVideo.ended) {
+        // pause others
+        pauseAllVideos(targetVideo, /*resetTime=*/false);
+        // play this (ensure promise handling for browsers that require user gesture)
+        const p = targetVideo.play();
+        if (p && typeof p.then === "function") {
+          p.catch(() => {
+            // play failed (autoplay policy) — nothing else to do, user clicked so should work though
+          });
+        }
+      } else {
+        targetVideo.pause();
+      }
+    });
+
+    // Also pause all videos if user navigates away from page or you want when container removed
+    // window.addEventListener("pagehide", () => pauseAllVideos());
+
+  }); // end containers.forEach
+
+}); // DOMContentLoaded
+</script>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Select videos",
+  "presets": [
+    { 
+        "name": "Select videos"
+    }
+  ]
+}
+{% endschema %}
+

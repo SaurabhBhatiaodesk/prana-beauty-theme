@@ -1,0 +1,2323 @@
+{%- comment -%}
+  Market-safe navigation:
+
+  product links are rendered only when Shopify resolves the linked product
+
+  in the current storefront/market. This prevents UK visitors from seeing
+
+  product menu links that resolve to a 404 in the UK catalog.
+{%- endcomment -%}
+
+<announcement-bar-component class="announcement-bar-mobile">
+  <p class="announcement-bar__text">{{ section.settings.anno_btn }}</p>
+</announcement-bar-component>
+
+<header id="hdr" class="scrolled">
+  <div class="section">
+    <div class="header-inner">
+      <!-- LEFT: SKIN dropdown + RITUAL SETS -->
+
+      <div class="nav-left">
+        <nav>
+          {% if section.settings.main_menu_left != blank %}
+            <ul>
+              {% for link in linklists[section.settings.main_menu_left].links %}
+                <li class="has-drop main-menu">
+                  <a href="{{ link.url }}" style="cursor:pointer;">
+                    {{- link.title -}}
+
+                    {%- if link.links != blank -%}
+                      <span class="nav-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="currentColor"/>
+                        </svg>
+                      </span>
+                    {%- endif -%}
+                  </a>
+
+                  {% if link.links != blank %}
+                    <div class="drop">
+                      {% for child_link in link.links %}
+                        {% if child_link.links != blank %}
+                          <div class="sub-menu">
+                            <div class="drop-head">{{ child_link.title }}</div>
+
+                            {% for grandchild_link in child_link.links %}
+                              <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                            {% endfor %}
+
+                            {% if child_link.title == 'The Collection' %}
+                              <a class="drop-link" id="shop_all" href="{{ collections['all'].url }}">Shop All →</a>
+                            {% endif %}
+                          </div>
+
+                        {% else %}
+                          <a href="{{ child_link.url }}" class="">{{ child_link.title }}</a>
+                        {% endif %}
+                      {% endfor %}
+
+                      <div class="drop-feat">
+                        {% for block in section.blocks %}
+                          {% if block.settings.menu_name == link.title %}
+                            {% if block.settings.caption != blank %}
+                              <div class="drop-feat-head">
+                                {{ block.settings.caption }}
+                              </div>
+                            {% endif %}
+
+                            {% if block.settings.title != blank %}
+                              <p class="drop-feat-title">
+                                {{ block.settings.title }}
+                              </p>
+                            {% endif %}
+
+                            {% if block.settings.description != blank %}
+                              <p class="drop-feat-desc">
+                                {{ block.settings.description }}
+                              </p>
+                            {% endif %}
+
+                            {% if block.settings['btn-link'] != blank %}
+                              <a
+                                id="shop_all"
+
+                                class="drop-link drop-feat-link"
+
+                                href="{{ block.settings.btn-link }}"
+
+                                onclick="nav('shop');setTimeout(()=&gt;shopTabById('sets'),100)"
+                              >
+                                {{ block.settings['btn-text'] }}
+                              </a>
+
+                            {% else %}
+                              <button
+                                class="btn btn-gold drop-feat-btn"
+
+                                onclick="scrollToScan()"
+                              >
+                                <span class="pip"></span>
+
+                                {{ block.settings['btn-text'] }}
+                              </button>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </nav>
+      </div>
+
+      <div class="mobile_leftside_menus">
+        <button
+          class="nav-hamburger"
+
+          id="navHamburger"
+
+          onclick="toggleMobileNav()"
+
+          style="display:none;background:none;border:none;padding:0;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center"
+        >
+          <span id="hbLine1"></span>
+
+          <span id="hbLine2"></span>
+
+          <span id="hbLine3"></span>
+        </button>
+
+        <button class="nav-icon" title="Search" on:click="#search-modal/showDialog">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16666C15.8333 5.48476 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48476 2.5 9.16666C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <path d="M17.5 17.5L13.875 13.875" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- CENTER: Logo -->
+
+      <a href="/" class="logo">
+        {% if settings.logo != blank %}
+          <img width="" height="" loading="lazy" src="{{ settings.logo | img_url : "original" }}">
+
+        {% else %}
+          <span class="logo-main">Prana</span>
+
+          <span class="logo-sub">Beauty &amp; Wellness</span>
+        {% endif %}
+      </a>
+
+      <!-- RIGHT: About Us | AI Skin Scan | Search | Account | Cart -->
+
+      <div class="nav-right">
+        {% if section.settings.main_menu_right != blank %}
+          <nav>
+            <ul style="margin:0">
+              {% for link in linklists[section.settings.main_menu_right].links %}
+                <li class="has-drop">
+                  <a onclick="nav('about')" href="{{ link.url }}">
+                    {{- link.title -}}
+
+                    {%- if link.links != blank -%}
+                      <span class="nav-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="currentColor"/>
+                        </svg>
+                      </span>
+                    {%- endif -%}
+                  </a>
+
+                  {% if link.links != blank %}
+                    <div class="drop">
+                      {% for child_link in link.links %}
+                        <div class="sub-menu">
+                          <div class="drop-head">{{ child_link.title }}</div>
+
+                          {% if child_link.links != blank %}
+                            {% for grandchild_link in child_link.links %}
+                              <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                            {% endfor %}
+                          {% endif %}
+
+                          {% if child_link.title == 'The Collection' %}
+                            <a class="drop-link" id="shop_all" href="/pages/shop-all/">Shop All →</a>
+                          {% endif %}
+                        </div>
+                      {% endfor %}
+
+                      <div class="right-submenu">
+                        {% for block in section.blocks %}
+                          {% if block.settings.menu_name == link.title %}
+                            {% if block.settings.caption != blank %}
+                              <div class="right-submenu-caption">{{ block.settings.caption }}</div>
+                            {% endif %}
+
+                            {% if block.settings.title != blank %}
+                              <div class="right-submenu-title">{{ block.settings.title }}</div>
+                            {% endif %}
+
+                            {% if block.settings.description != blank %}
+                              <div class="right-submenu-description">{{ block.settings.description }}</div>
+                            {% endif %}
+
+                            {% if block.settings['btn-link'] != blank %}
+                              <a
+                                class="drop-link"
+
+                                id="shop_all"
+
+                                href="{{ block.settings.btn-link }}"
+
+                                class="right-submenu-btn"
+                              >
+                                {{- block.settings['btn-text'] -}}
+                              </a>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+
+          {% if section.settings.scan_btn != blank %}
+            <a href="{{ section.settings.scan_link }}" class="nav-scan-btn">{{ section.settings.scan_btn }}</a>
+          {% endif %}
+        {% endif %}
+
+        {% liquid
+          assign show_country = section.settings.show_country
+
+          if localization.available_countries.size <= 1
+            assign show_country = false
+          endif
+
+          assign show_language = section.settings.show_language
+
+          if localization.available_languages.size <= 1
+            assign show_language = false
+          endif
+        %}
+
+        {% if show_country or show_language %}
+          <div class="custom-header-localization" style="font-size: {{ section.settings.localization_size }};">
+            {% render 'dropdown-localization',
+              show_country: show_country,
+              show_language: show_language,
+              country_style: section.settings.country_selector_style,
+              localization_position: 'right'
+            %}
+          </div>
+        {% endif %}
+
+        <button class="nav-icon" title="Search" on:click="#search-modal/showDialog">
+          <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="22" y2="22"></line>
+          </svg>
+        </button>
+
+        <header-actions {{- block.shopify_attributes -}}>
+          {% if shop.customer_accounts_enabled %}
+            {% render 'account-popover' %}
+
+            {% render 'account-drawer' %}
+          {% endif %}
+        </header-actions>
+
+        {% render 'cart-drawer' %}
+
+        <!-- Hamburger — mobile only -->
+
+        <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()">
+          <span class="hb-line hb-line1" id="hbLine1"></span>
+
+          <span class="hb-line hb-line2" id="hbLine2"></span>
+
+          <span class="hb-line hb-line3" id="hbLine3"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav Menu -->
+
+<div id="mobileNavMenu" class="mobile-nav-menu">
+  <button
+    type="button"
+
+    class="mobile-offcanvas-close"
+
+    aria-label="Close menu"
+
+    onclick="closeMobileNav()"
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <div class="mobile-nav-inner mobile-smart-menu__main">
+    {% if section.settings.main_menu_mobile != blank %}
+      {% for link in linklists[section.settings.main_menu_mobile].links %}
+        {% if link.links != blank %}
+          <button
+            type="button"
+
+            class="mobile-nav-title mobile-smart-menu__trigger"
+
+            onclick="openMobileSmartPanel('MobileMenuPanel-{{ forloop.index }}')"
+
+            aria-controls="MobileMenuPanel-{{ forloop.index }}"
+          >
+            <span>{{ link.title }}</span>
+
+            <svg
+              class="mobile-smart-menu__arrow"
+
+              width="18"
+
+              height="18"
+
+              viewBox="0 0 24 24"
+
+              fill="none"
+
+              aria-hidden="true"
+            >
+              <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+        {% else %}
+          <a href="{{ link.url }}" class="mobile-nav-title" onclick="closeMobileNav()">
+            {{ link.title }}
+          </a>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if show_country or show_language %}
+      <button
+        type="button"
+
+        class="mobile-nav-title mobile-smart-menu__trigger"
+
+        onclick="openMobileSmartPanel('MobileLocalizationPanel')"
+
+        aria-controls="MobileLocalizationPanel"
+      >
+        <span>
+          {% if show_country and show_language %}
+            Country / Language
+
+          {% elsif show_country %}
+            Country / Region
+
+          {% else %}
+            Language
+          {% endif %}
+        </span>
+
+        <svg
+          class="mobile-smart-menu__arrow"
+
+          width="18"
+
+          height="18"
+
+          viewBox="0 0 24 24"
+
+          fill="none"
+
+          aria-hidden="true"
+        >
+          <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    {% endif %}
+
+    <div class="mobile-nav-btn-wrap">
+      <a href="{{ section.settings.mobile_scan_link }}" class="btn-gold mobile-nav-btn">
+        <span class="pip"></span>
+
+        {{ section.settings.mobile_scan_btn }}
+      </a>
+    </div>
+  </div>
+
+  {% if section.settings.main_menu_mobile != blank %}
+    {% for link in linklists[section.settings.main_menu_mobile].links %}
+      {% liquid
+        assign show_nav_link = true
+
+        if link.type == 'product_link'
+          assign nav_product = link.object
+
+          if nav_product == blank or nav_product.url == blank
+            assign show_nav_link = false
+          endif
+        endif
+      %}
+
+      {% if show_nav_link %}
+        {% if link.links != blank %}
+          <div
+            id="MobileMenuPanel-{{ forloop.index }}"
+
+            class="mobile-smart-menu__panel"
+
+            aria-hidden="true"
+          >
+            <button
+              type="button"
+
+              class="mobile-smart-menu__back"
+
+              onclick="closeMobileSmartPanel(this)"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+
+              <span>{{ link.title }}</span>
+            </button>
+
+            {% for child_link in link.links %}
+              {% if child_link.links != blank %}
+                <button
+                  type="button"
+
+                  class="mob-nav-link mobile-smart-menu__trigger"
+
+                  onclick="openMobileSmartPanel('MobileMenuPanel-{{ forloop.parentloop.index }}-{{ forloop.index }}')"
+
+                  aria-controls="MobileMenuPanel-{{ forloop.parentloop.index }}-{{ forloop.index }}"
+                >
+                  <span>{{ child_link.title }}</span>
+
+                  <svg
+                    class="mobile-smart-menu__arrow"
+
+                    width="18"
+
+                    height="18"
+
+                    viewBox="0 0 24 24"
+
+                    fill="none"
+
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+
+              {% else %}
+                <a
+                  class="mob-nav-link"
+
+                  href="{{ child_link.url }}"
+
+                  onclick="closeMobileNav()"
+                >
+                  {{ child_link.title }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          {% for child_link in link.links %}
+            {% if child_link.links != blank %}
+              <div
+                id="MobileMenuPanel-{{ forloop.parentloop.index }}-{{ forloop.index }}"
+
+                class="mobile-smart-menu__panel"
+
+                aria-hidden="true"
+              >
+                <button
+                  type="button"
+
+                  class="mobile-smart-menu__back"
+
+                  onclick="closeMobileSmartPanel(this)"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+
+                  <span>{{ child_link.title }}</span>
+                </button>
+
+                {% for grandchild_link in child_link.links %}
+                  <a
+                    class="mob-nav-link"
+
+                    href="{{ grandchild_link.url }}"
+
+                    onclick="closeMobileNav()"
+                  >
+                    {{ grandchild_link.title }}
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if show_country or show_language %}
+    <div
+      id="MobileLocalizationPanel"
+
+      class="mobile-smart-menu__panel"
+
+      aria-hidden="true"
+    >
+      <button
+        type="button"
+
+        class="mobile-smart-menu__back"
+
+        onclick="closeMobileSmartPanel(this)"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span>
+          {% if show_country and show_language %}
+            Country / Language
+
+          {% elsif show_country %}
+            Country / Region
+
+          {% else %}
+            Language
+          {% endif %}
+        </span>
+      </button>
+
+      {% form 'localization', id: 'MobileHeaderLocalizationForm', class: 'mobile-smart-menu__localization-form' %}
+        {% if show_country %}
+          <div class="mobile-smart-menu__section-title">Country / Region</div>
+
+          {% for country in localization.available_countries %}
+            <button
+              type="submit"
+
+              name="country_code"
+
+              value="{{ country.iso_code }}"
+
+              class="mob-nav-link mobile-smart-menu__localization-option{% if country.iso_code == localization.country.iso_code %} is-active{% endif %}"
+            >
+              <span class="mobile-smart-menu__option-left">
+                {% if section.settings.country_selector_style %}
+                  <span
+                    class="mobile-smart-menu__flag"
+
+                    style="background-image: url({{ country | image_url: width: 32 }});"
+
+                    aria-hidden="true"
+                  ></span>
+                {% endif %}
+
+                <span>{{ country.name }}</span>
+              </span>
+
+              <span class="mobile-smart-menu__option-right">
+                <span>{{ country.currency.iso_code }}</span>
+
+                {% if country.iso_code == localization.country.iso_code %}
+                  <span aria-hidden="true">✓</span>
+                {% endif %}
+              </span>
+            </button>
+          {% endfor %}
+        {% endif %}
+
+        {% if show_language %}
+          <div class="mobile-smart-menu__section-title">Language</div>
+
+          {% for language in localization.available_languages %}
+            <button
+              type="submit"
+
+              name="language_code"
+
+              value="{{ language.iso_code }}"
+
+              lang="{{ language.iso_code }}"
+
+              class="mob-nav-link mobile-smart-menu__localization-option{% if language.iso_code == localization.language.iso_code %} is-active{% endif %}"
+            >
+              <span>{{ language.endonym_name | capitalize }}</span>
+
+              {% if language.iso_code == localization.language.iso_code %}
+                <span aria-hidden="true">✓</span>
+              {% endif %}
+            </button>
+          {% endfor %}
+        {% endif %}
+      {% endform %}
+    </div>
+  {% endif %}
+</div>
+
+<style>
+  .custom-header-localization {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    display: flex;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    align-items: center;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    flex: 0 0 auto;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .custom-header-localization .dropdown-localization,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .custom-header-localization .dropdown-localization__button {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font-size: inherit;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .custom-header-localization .icon-flag {
+
+
+
+
+
+
+
+    display: inline-block;
+
+
+
+
+
+
+
+    width: 18px;
+
+
+
+
+
+
+
+    height: 18px;
+
+
+
+
+
+
+
+    min-width: 18px;
+
+
+
+
+
+
+
+    margin-inline-end: 6px;
+
+
+
+
+
+
+
+    border-radius: 50%;
+
+
+
+
+
+
+
+    background-position: center;
+
+
+
+
+
+
+
+    background-size: cover;
+
+
+
+
+
+
+
+    background-repeat: no-repeat;
+
+
+
+
+
+
+
+    vertical-align: middle;
+
+
+
+
+
+
+
+    flex: 0 0 auto;
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .custom-header-localization .dropdown-localization__button,
+
+
+
+
+
+
+
+  .custom-header-localization .localization-button,
+
+
+
+
+
+
+
+  .custom-header-localization summary {
+
+
+
+
+
+
+
+    display: inline-flex;
+
+
+
+
+
+
+
+    align-items: center;
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .mobile-smart-menu__panel {
+
+
+
+    display: none;
+
+
+
+  }
+
+
+
+
+
+
+
+  @media screen and (max-width: 989px) {
+
+
+
+    #mobileNavMenu {
+
+
+
+      position: relative;
+
+
+
+      overflow: hidden;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__main {
+
+
+
+      position: relative;
+
+
+
+      width: 100%;
+
+
+
+      min-height: 100%;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__trigger {
+
+
+
+      width: 100%;
+
+
+
+      display: flex;
+
+
+
+      align-items: center;
+
+
+
+      justify-content: space-between;
+
+
+
+      gap: 16px;
+
+
+
+      color: inherit;
+
+
+
+      background: transparent;
+
+
+
+      border: 0;
+
+
+
+      text-align: left;
+
+
+
+      cursor: pointer;
+
+
+
+      font: inherit;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__arrow {
+
+
+
+      flex: 0 0 auto;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__panel {
+
+
+
+      display: block;
+
+
+
+      position: absolute;
+
+
+
+      inset: 0;
+
+
+
+      width: 100%;
+
+
+
+      min-height: 100%;
+
+
+
+      z-index: 20;
+
+
+
+      overflow-y: auto;
+
+
+
+      background: inherit;
+
+
+
+      color: inherit;
+
+
+
+      transform: translateX(100%);
+
+
+
+      visibility: hidden;
+
+
+
+      pointer-events: none;
+
+
+
+      transition: transform 0.28s ease, visibility 0s linear 0.28s;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__panel.is-open {
+
+
+
+      transform: translateX(0);
+
+
+
+      visibility: visible;
+
+
+
+      pointer-events: auto;
+
+
+
+      transition: transform 0.28s ease;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__back {
+
+
+
+      width: 100%;
+
+
+
+      min-height: 64px;
+
+
+
+      display: flex;
+
+
+
+      align-items: center;
+
+
+
+      gap: 12px;
+
+
+
+      padding: 0 20px;
+
+
+
+      border: 0;
+
+
+
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+
+
+      background: transparent;
+
+
+
+      color: inherit;
+
+
+
+      text-align: left;
+
+
+
+      cursor: pointer;
+
+
+
+      font: inherit;
+
+
+
+      font-size: inherit;
+
+
+
+      font-weight: 600;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__panel .mob-nav-link {
+
+
+
+      width: 100%;
+
+
+
+      box-sizing: border-box;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__section-title {
+
+
+
+      padding: 18px 20px 10px;
+
+
+
+      font-size: 12px;
+
+
+
+      opacity: 0.7;
+
+
+
+      text-transform: uppercase;
+
+
+
+      letter-spacing: 0.04em;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__localization-option {
+
+
+
+      display: flex;
+
+
+
+      align-items: center;
+
+
+
+      justify-content: space-between;
+
+
+
+      gap: 16px;
+
+
+
+      border: 0;
+
+
+
+      background: transparent;
+
+
+
+      color: inherit;
+
+
+
+      text-align: left;
+
+
+
+      cursor: pointer;
+
+
+
+      font: inherit;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__localization-option.is-active {
+
+
+
+      background: rgba(0, 0, 0, 0.04);
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__option-left,
+
+
+
+    .mobile-smart-menu__option-right {
+
+
+
+      display: flex;
+
+
+
+      align-items: center;
+
+
+
+      gap: 10px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-smart-menu__flag {
+
+
+
+      display: inline-block;
+
+
+
+      width: 18px;
+
+
+
+      height: 18px;
+
+
+
+      min-width: 18px;
+
+
+
+      border-radius: 50%;
+
+
+
+      background-position: center;
+
+
+
+      background-size: cover;
+
+
+
+      background-repeat: no-repeat;
+
+
+
+      flex: 0 0 auto;
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .custom-header-localization {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      display: none;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+</style>
+
+<script>
+  function openMobileSmartPanel(panelId) {
+    var panel = document.getElementById(panelId);
+
+    var drawer = document.getElementById('mobileNavMenu');
+
+    if (!panel) return;
+
+    panel.classList.add('is-open');
+
+    panel.setAttribute('aria-hidden', 'false');
+
+    if (drawer) {
+      drawer.classList.add('has-open-panel');
+    }
+  }
+
+  function closeMobileSmartPanel(button) {
+    var panel = button ? button.closest('.mobile-smart-menu__panel') : null;
+
+    var drawer = document.getElementById('mobileNavMenu');
+
+    if (!panel) return;
+
+    panel.classList.remove('is-open');
+
+    panel.setAttribute('aria-hidden', 'true');
+
+    if (drawer && !drawer.querySelector('.mobile-smart-menu__panel.is-open')) {
+      drawer.classList.remove('has-open-panel');
+    }
+  }
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape') return;
+
+    var openPanels = document.querySelectorAll('.mobile-smart-menu__panel.is-open');
+
+    if (openPanels.length) {
+      var lastPanel = openPanels[openPanels.length - 1];
+
+      var drawer = document.getElementById('mobileNavMenu');
+
+      lastPanel.classList.remove('is-open');
+
+      lastPanel.setAttribute('aria-hidden', 'true');
+
+      if (drawer && !drawer.querySelector('.mobile-smart-menu__panel.is-open')) {
+        drawer.classList.remove('has-open-panel');
+      }
+    }
+  });
+</script>
+
+<style>
+  @media screen and (max-width: 989px) {
+
+
+
+    /* Keep the mobile navigation as an off-canvas drawer */
+
+
+
+    #mobileNavMenu {
+
+
+
+      position: fixed !important;
+
+
+
+      top: 0 !important;
+
+
+
+      left: 0 !important;
+
+
+
+      bottom: 0 !important;
+
+
+
+      width: min(430px, 88vw) !important;
+
+
+
+      max-width: 88vw !important;
+
+
+
+      height: 100dvh !important;
+
+
+
+      overflow: hidden !important;
+
+
+
+      z-index: 9999 !important;
+
+
+
+    }
+
+
+
+
+
+
+
+    #mobileNavMenu .mobile-nav-inner,
+
+
+
+    #mobileNavMenu .mobile-smart-menu__panel {
+
+
+
+      width: 100% !important;
+
+
+
+      max-width: 100% !important;
+
+
+
+    }
+
+
+
+
+
+
+
+    #mobileNavMenu .mobile-smart-menu__panel {
+
+
+
+      min-height: 100% !important;
+
+
+
+    }
+
+
+
+  }
+</style>
+
+<style>
+  @media screen and (max-width: 989px) {
+
+
+
+    #mobileNavMenu {
+
+
+
+      padding-top: 58px !important;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-offcanvas-close {
+
+
+
+      position: absolute;
+
+
+
+      top: 18px;
+
+
+
+      left: 20px;
+
+
+
+      z-index: 50;
+
+
+
+      width: 34px;
+
+
+
+      height: 34px;
+
+
+
+      display: inline-flex;
+
+
+
+      align-items: center;
+
+
+
+      justify-content: center;
+
+
+
+      padding: 0;
+
+
+
+      border: 0;
+
+
+
+      background: transparent;
+
+
+
+      color: inherit;
+
+
+
+      cursor: pointer;
+
+
+
+    }
+
+
+
+
+
+
+
+    .mobile-offcanvas-close svg {
+
+
+
+      width: 24px;
+
+
+
+      height: 24px;
+
+
+
+      display: block;
+
+
+
+    }
+
+
+
+  }
+</style>
+
+<style>
+  @media screen and (max-width: 989px) {
+
+
+
+    #mobileNavMenu.has-open-panel .mobile-offcanvas-close {
+
+
+
+      opacity: 0;
+
+
+
+      visibility: hidden;
+
+
+
+      pointer-events: none;
+
+
+
+    }
+
+
+
+
+
+
+
+    #mobileNavMenu .mobile-smart-menu__panel {
+
+
+
+      top: 0 !important;
+
+
+
+      right: 0 !important;
+
+
+
+      bottom: 0 !important;
+
+
+
+      left: 0 !important;
+
+
+
+      width: 100% !important;
+
+
+
+      max-width: 100% !important;
+
+
+
+      height: 100% !important;
+
+
+
+      box-sizing: border-box !important;
+
+
+
+    }
+
+
+
+
+
+
+
+    #mobileNavMenu .mobile-smart-menu__back {
+
+
+
+      position: relative;
+
+
+
+      z-index: 2;
+
+
+
+    }
+
+
+
+  }
+</style>
+
+<script>
+  (function () {
+    var STORAGE_PREFIX = 'prana-menu-link-status:';
+    var CURRENT_MARKET = {{ localization.country.iso_code | json }};
+
+    function isProductUrl(url) {
+      try {
+        var parsed = new URL(url, window.location.origin);
+        return parsed.origin === window.location.origin &&
+          parsed.pathname.indexOf('/products/') !== -1;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function getCacheKey(url) {
+      return STORAGE_PREFIX + window.location.host + ':' + CURRENT_MARKET + ':' + url;
+    }
+
+    function hideDeadMenuAnchor(anchor) {
+      if (!anchor || anchor.dataset.deadLinkHidden === 'true') return;
+
+      anchor.dataset.deadLinkHidden = 'true';
+      anchor.style.display = 'none';
+      anchor.setAttribute('aria-hidden', 'true');
+
+      /*
+       * Desktop menu:
+       * If this is the only visible link inside a small sub-menu block,
+       * keep the heading only when another visible actionable link remains.
+       */
+      var subMenu = anchor.closest('.sub-menu');
+
+      if (subMenu) {
+        var visibleLinks = Array.prototype.filter.call(
+          subMenu.querySelectorAll('a[href]'),
+          function (item) {
+            return item.style.display !== 'none' &&
+              item.getAttribute('aria-hidden') !== 'true';
+          }
+        );
+
+        if (!visibleLinks.length) {
+          subMenu.style.display = 'none';
+          subMenu.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      /*
+       * Mobile smart menu:
+       * If a product child disappears, keep the panel.
+       * If a panel ends up with no visible child links/triggers,
+       * hide the parent trigger that opens that empty panel.
+       */
+      var panel = anchor.closest('.mobile-smart-menu__panel');
+
+      if (panel) {
+        updateMobilePanelTrigger(panel);
+      }
+    }
+
+    function updateMobilePanelTrigger(panel) {
+      if (!panel || !panel.id) return;
+
+      var visibleItems = Array.prototype.filter.call(
+        panel.querySelectorAll(':scope > a.mob-nav-link, :scope > button.mobile-smart-menu__trigger'),
+        function (item) {
+          return item.style.display !== 'none' &&
+            item.getAttribute('aria-hidden') !== 'true';
+        }
+      );
+
+      if (visibleItems.length) return;
+
+      var trigger = document.querySelector(
+        '[aria-controls="' + CSS.escape(panel.id) + '"]'
+      );
+
+      if (trigger) {
+        trigger.style.display = 'none';
+        trigger.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    function applyCachedStatus(anchor, url) {
+      try {
+        var cached = sessionStorage.getItem(getCacheKey(url));
+
+        if (cached === 'dead') {
+          hideDeadMenuAnchor(anchor);
+          return true;
+        }
+
+        if (cached === 'live') {
+          return true;
+        }
+      } catch (error) {
+        // Ignore storage failures.
+      }
+
+      return false;
+    }
+
+    function cacheStatus(url, status) {
+      try {
+        sessionStorage.setItem(getCacheKey(url), status);
+      } catch (error) {
+        // Ignore storage failures.
+      }
+    }
+
+    function verifyProductUrl(url, anchors) {
+      var checkUrl = url + (url.indexOf('?') === -1 ? '?' : '&') + '_market_check=' + encodeURIComponent(CURRENT_MARKET);
+
+      fetch(checkUrl, {
+        method: 'GET',
+        credentials: 'same-origin',
+        redirect: 'follow',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+        .then(function (response) {
+          if (response.status === 404 || !response.ok) {
+            cacheStatus(url, 'dead');
+
+            anchors.forEach(function (anchor) {
+              hideDeadMenuAnchor(anchor);
+            });
+
+            return;
+          }
+
+          cacheStatus(url, 'live');
+        })
+        .catch(function () {
+          /*
+           * Network failure is NOT treated as a dead link.
+           * We only hide links when the current storefront actually
+           * responds with a non-success / 404 response.
+           */
+        });
+    }
+
+    function removeDeadProductMenuLinks() {
+      var selector = [
+        '#hdr a[href*="/products/"]',
+        '#mobileNavMenu a[href*="/products/"]'
+      ].join(',');
+
+      var anchors = Array.prototype.slice.call(
+        document.querySelectorAll(selector)
+      );
+
+      var grouped = {};
+
+      anchors.forEach(function (anchor) {
+        if (!isProductUrl(anchor.href)) return;
+
+        var url;
+
+        try {
+          var parsed = new URL(anchor.href, window.location.origin);
+
+          /*
+           * Always test the link against the CURRENT storefront host.
+           * This is important for Shopify Markets / regional domains.
+           */
+          url = window.location.origin + parsed.pathname + parsed.search;
+        } catch (error) {
+          return;
+        }
+
+        if (applyCachedStatus(anchor, url)) return;
+
+        if (!grouped[url]) {
+          grouped[url] = [];
+        }
+
+        grouped[url].push(anchor);
+      });
+
+      Object.keys(grouped).forEach(function (url) {
+        verifyProductUrl(url, grouped[url]);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', removeDeadProductMenuLinks);
+    } else {
+      removeDeadProductMenuLinks();
+    }
+
+    /*
+     * Theme editor / section reload support.
+     */
+    document.addEventListener('shopify:section:load', function () {
+      removeDeadProductMenuLinks();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Header",
+
+  "settings": [
+    {
+      "type": "inline_richtext",
+
+      "id": "anno_btn",
+
+      "label": "Announcement Bar Text"
+    },
+
+    {
+      "type": "header",
+
+      "content": "Localization"
+    },
+
+    {
+      "type": "checkbox",
+
+      "id": "show_country",
+
+      "label": "Country/Region",
+
+      "default": true
+    },
+
+    {
+      "type": "checkbox",
+
+      "id": "country_selector_style",
+
+      "label": "Show country flag",
+
+      "default": true
+    },
+
+    {
+      "type": "checkbox",
+
+      "id": "show_language",
+
+      "label": "Language selector",
+
+      "default": false
+    },
+
+    {
+      "type": "select",
+
+      "id": "localization_size",
+
+      "label": "Size",
+
+      "options": [
+        {
+          "value": "12px",
+
+          "label": "12px"
+        },
+
+        {
+          "value": "14px",
+
+          "label": "14px"
+        },
+
+        {
+          "value": "16px",
+
+          "label": "16px"
+        },
+
+        {
+          "value": "18px",
+
+          "label": "18px"
+        }
+      ],
+
+      "default": "14px"
+    },
+
+    {
+      "type": "link_list",
+
+      "id": "main_menu_left",
+
+      "label": "Left Menu"
+    },
+
+    {
+      "type": "link_list",
+
+      "id": "main_menu_right",
+
+      "label": "Right Menu"
+    },
+
+    {
+      "type": "link_list",
+
+      "id": "main_menu_mobile",
+
+      "label": "Mobile Menu"
+    },
+
+    {
+      "type": "text",
+
+      "id": "scan_btn",
+
+      "label": "Skin scan button"
+    },
+
+    {
+      "type": "url",
+
+      "id": "scan_link",
+
+      "label": "Skin scan Link"
+    },
+
+    {
+      "type": "text",
+
+      "id": "mobile_scan_btn",
+
+      "label": "Mobile Skin scan button"
+    },
+
+    {
+      "type": "url",
+
+      "id": "mobile_scan_link",
+
+      "label": "Skin scan Link"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "item",
+
+      "name": "item",
+
+      "settings": [
+        {
+          "type": "text",
+
+          "id": "menu_name",
+
+          "label": "Menu name"
+        },
+
+        {
+          "type": "text",
+
+          "id": "caption",
+
+          "label": "caption"
+        },
+
+        {
+          "type": "textarea",
+
+          "id": "title",
+
+          "label": "Title"
+        },
+
+        {
+          "type": "textarea",
+
+          "id": "description",
+
+          "label": "Content"
+        },
+
+        {
+          "type": "text",
+
+          "id": "btn-text",
+
+          "label": "Button text"
+        },
+
+        {
+          "type": "url",
+
+          "id": "btn-link",
+
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %}

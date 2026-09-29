@@ -1,0 +1,351 @@
+<section 
+  class="become-partner-banner meet-custom-content-section-{{ section.id }}" 
+>
+  <div class="inner-content-div-section">
+    <div class="mid-content-card-block-inner">
+
+      <div class="banner-intnce-card">
+        {% if section.settings.title != blank %}
+          <h2 class="main-content-title">{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="main-content-content">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+          <div class="tech-container">
+            <div class="first-div">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.4114 22.2019H7.58113C4.33206 22.2019 2.16602 20.5774 2.16602 16.7868V9.20564C2.16602 5.41506 4.33206 3.79053 7.58113 3.79053H18.4114C21.6604 3.79053 23.8265 5.41506 23.8265 9.20564V16.7868C23.8265 20.5774 21.6604 22.2019 18.4114 22.2019Z" fill="white"/>
+              <path d="M18.4113 9.74731L15.0214 12.4549C13.9059 13.3429 12.0756 13.3429 10.9601 12.4549L7.58105 9.74731" fill="white"/>
+              <path d="M18.4113 9.74731L15.0214 12.4549C13.9059 13.3429 12.0756 13.3429 10.9601 12.4549L7.58105 9.74731" stroke="black" stroke-width="2.16604" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              USA-based | Ships globally
+            </div>
+            <div class="first-div sec">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.794 19.8518C23.794 20.2417 23.7073 20.6424 23.5232 21.0323C23.3391 21.4222 23.1008 21.7904 22.7868 22.1369C22.2561 22.7218 21.6712 23.1442 21.0106 23.4149C20.3608 23.6857 19.6568 23.8265 18.8987 23.8265C17.794 23.8265 16.6135 23.5665 15.3681 23.0359C14.1226 22.5052 12.8771 21.7904 11.6425 20.8915C10.397 19.9817 9.21649 18.9745 8.09015 17.859C6.97463 16.7327 5.96742 15.5522 5.06852 14.3175C4.18044 13.0829 3.46564 11.8482 2.94579 10.6244C2.42594 9.38978 2.16602 8.20928 2.16602 7.08294C2.16602 6.34648 2.29598 5.64252 2.5559 4.9927C2.81583 4.33206 3.22738 3.72557 3.80138 3.18406C4.49451 2.50175 5.25263 2.16602 6.05407 2.16602C6.35731 2.16602 6.66056 2.231 6.93131 2.36096C7.2129 2.49092 7.46199 2.68587 7.65694 2.96745L10.1695 6.50894C10.3645 6.77969 10.5053 7.02879 10.6028 7.26705C10.7002 7.49449 10.7544 7.72192 10.7544 7.92769C10.7544 8.18762 10.6786 8.44755 10.5269 8.69664C10.3862 8.94574 10.1804 9.20566 9.92045 9.46559L9.09736 10.3212C8.97823 10.4403 8.92407 10.5811 8.92407 10.7544C8.92407 10.841 8.93491 10.9168 8.95657 11.0035C8.98906 11.0901 9.02155 11.1551 9.04321 11.2201C9.23815 11.5775 9.57389 12.0432 10.0504 12.6064C10.5378 13.1695 11.0576 13.7435 11.6208 14.3175C12.2056 14.8915 12.7688 15.4222 13.3428 15.9096C13.906 16.3861 14.3717 16.711 14.7399 16.9059C14.7941 16.9276 14.859 16.9601 14.9348 16.9926C15.0215 17.0251 15.1081 17.0359 15.2056 17.0359C15.3897 17.0359 15.5305 16.9709 15.6496 16.8518L16.4727 16.0395C16.7435 15.7688 17.0034 15.563 17.2525 15.433C17.5016 15.2814 17.7507 15.2056 18.0215 15.2056C18.2272 15.2056 18.4438 15.2489 18.6821 15.3464C18.9204 15.4439 19.1695 15.5847 19.4402 15.7688L23.025 18.3139C23.3066 18.5088 23.5016 18.7363 23.6207 19.007C23.729 19.2778 23.794 19.5485 23.794 19.8518Z" fill="white"/>
+              </svg>
+              admin@pranawellness.shop
+            </div>
+          </div>
+        {% if section.settings.button_text != blank or section.settings.button_text2 != blank %}
+          <div class="inlin-btn-flex">
+            {% if section.settings.button_text != blank %}
+              <a href="{{ section.settings.button_link }}" class="content-card-btn">
+                {{ section.settings.button_text }}
+              </a>
+            {% endif %}
+            {% if section.settings.button_text2 != blank %}
+              <a href="{{ section.settings.button_link2 }}" class="content-card-btn second-btn-srs">
+                {{ section.settings.button_text2 }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+  </div>
+  </div>
+
+  <style>
+    .tech-container{
+      margin: 24px auto 0;
+      display: flex;
+      align-items: center;
+    }
+    .first-div {
+        display: flex;
+        align-items: center;
+        font-family: 'Josefin Sans' !important;
+      font-weight: 300;
+      font-size: 18px;
+      color: #fff;
+    }
+    .first-div svg{ 
+      margin-right: 8px;
+    }
+    .first-div.sec {
+      position: relative;
+      padding-left: 30px;
+    }
+    .first-div.sec:before {
+      position: absolute;
+      content: "";
+      background: #fff;
+      width: 6px;
+      height: 6px;
+      left: 10px;
+      left: 12px;
+      top: 10px;
+      border-radius: 50%;
+    }
+    section.become-partner-banner {
+        padding: 30px 16px;
+    }
+    .inlin-btn-flex{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px auto 0;
+    }
+    .meet-custom-content-section {
+      margin:0 auto 20px;
+      padding:0 14px;
+    }
+    .meet-custom-content-section-{{ section.id }} .inner-content-div-section{
+      background: url({{ section.settings.desktop_bg | img_url: 'master' }});
+      padding: 80px 42px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      {% if section.settings.desktop_content_align == 'start' %}
+        justify-content: start;
+      {% elsif section.settings.desktop_content_align == 'center' %}
+        justify-content: center;
+      {% else %}
+        justify-content: end;
+      {% endif %}
+    }
+
+    .mid-content-card-block-inner {
+      width: max-content;
+      margin: 0;
+      padding: 0 20px;
+      display: flex;
+    }
+
+    .banner-intnce-card {
+        width: 100%;
+        max-width: 580px;
+    }
+
+    .main-content-title {
+        color: #fff;
+        padding-bottom: 19px;
+        font-family: Cormorant Garamond;
+        font-weight: 500;
+        font-size: 76px;
+        line-height: 1;
+        letter-spacing: -2px !important;
+        text-align: left;
+        margin: 0; 
+    }
+    .main-content-title span{
+      font-style: italic;
+    }
+    .main-content-content p{
+      font-family: 'Josefin Sans' !important;
+      font-weight: 300 !important;
+      font-size: 25px;
+      line-height: 31px;
+      color: #fff;
+      letter-spacing: 0;
+      text-align: left;
+    }
+
+    .content-card-btn {
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 260px;
+      height: 58px;
+      margin-top: 48px;
+      font-family: 'Josefin Sans';
+      font-weight: 600;
+      font-size: 17px;
+      line-height: 1;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      color: #4E403C;
+      background: #ECCA6F;
+      text-align: center;
+      gap: 7px;
+      margin: 0;
+    }   
+    .second-btn-srs{
+      background: #fff;
+      color: #1B1716;
+    }
+    /* MOBILE BACKGROUND */
+    @media (max-width: 768px) {
+      .meet-custom-content-section-{{ section.id }} .inner-content-div-section {
+        background: url({{ section.settings.mobile_bg | img_url: 'master' }});
+        min-height: 700px;
+        background-repeat: no-repeat !important;
+        background-size: cover;
+        background-position: center;
+        padding: 27px 0;
+        {% if section.settings.mobile_content_align == 'start' %}
+          justify-content: start;
+        {% elsif section.settings.mobile_content_align == 'center' %}
+          justify-content: center;
+        {% else %}
+          justify-content: end;
+        {% endif %}
+      }
+      .tech-features {
+          flex-wrap: wrap;
+          justify-content: center;
+          padding-inline:12px;
+      }
+      .tech-heading {
+        font-size: 18px;
+        line-height: 20px;
+      }
+      .tech-icon {
+          width: 53px;
+          height: 53px;
+          margin-bottom: 6px;
+      }
+      .tech-title {
+        font-size: 15px;
+      }
+      .mid-content-card-block-inner {
+        padding: 0;
+      }
+      .banner-intnce-card {
+       width: 100%;
+      }
+      .main-content-title {
+        font-size: 48px;
+        padding-bottom: 3px;
+        max-width: 500px;
+      }
+      .main-content-content p{
+         font-size: 17px;
+        line-height: 1.3;
+        max-width: 400px;
+        margin-inline: auto;
+      }
+      .inlin-btn-flex {
+          margin: 24px auto 0;
+          flex-wrap: wrap;
+      }
+      .content-card-btn {
+        width: max-content;
+        height: 47px;
+        margin-top: 0;
+        font-size: 12px;
+        padding: 0 20px;
+      }
+      .inner-content-div-section {
+        padding: 20px 8px!important;
+        align-items: end!important;
+    }
+    .first-div {
+      font-size: 12px;
+    }
+    .first-div.sec:before {
+      width: 4px;
+      height: 4px;
+      left: 8px;
+      top: 11px;
+    }
+    .first-div.sec {
+        padding-left: 20px;
+    }
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "Become Partner Banner",
+  "settings": [
+      {
+        "type": "select",
+        "id": "desktop_content_align",
+        "label": "Desktop Content Align",
+        "options": [
+          {
+            "value": "start",
+            "label": "Start"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "end",
+            "label": "End"
+          }
+        ],
+        "default": "center"
+    },
+    {
+        "type": "select",
+        "id": "mobile_content_align",
+        "label": "Mobile Content Align",
+        "options": [
+          {
+            "value": "start",
+            "label": "Start"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "end",
+            "label": "End"
+          }
+        ],
+        "default": "center"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_bg",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_text2",
+      "label": "Button 2 Text",
+      "default": "Take the Skin Quiz"
+    },
+    {
+      "type": "url",
+      "id": "button_link2",
+      "label": "Button 2 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Become Partner Banner"
+    }
+  ]
+}
+{% endschema %}

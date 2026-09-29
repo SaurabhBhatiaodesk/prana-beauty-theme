@@ -1,0 +1,142 @@
+{{ 'overflow-list.css' | asset_url | preload_tag: as: 'style' }}
+{{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'style.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'custom-work.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'responsive.css' | asset_url | stylesheet_tag: preload: true }}
+
+{% comment %} style for header for different pages. {% endcomment %}
+
+<style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+
+  .header__columns{
+      padding-top: 10px;
+      margin-top: 8px;
+      align-items: flex-start;
+      padding-right: 16px;
+      padding-left: 16px;
+      padding-bottom: 20px;
+      height: 100%;
+      z-index:2;
+  }
+  .header__columns::before,
+  .header__columns::after{
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      margin-inline: auto;
+      backdrop-filter: blur(29.299999237060547px)
+  }
+  .header__columns::before{
+      width: calc(100% - 47px);
+      top: 8px;
+      height: 70px;
+  }
+  .header__columns::after{
+      width: 288px;
+      height: 65px;
+      bottom: 0px;
+      clip-path: path("M0 0 H288 C270 0 220 65 144 65 C68 65 18 0 0 0 Z");
+  }
+  header-menu {
+      width: auto !important;
+  }
+
+
+  @media(max-width:749px){
+      .header__columns {
+         
+          height: 108px;
+          align-items: start !important;
+          padding: 0 10px;
+          max-width: 96%;
+          margin: 10px auto;
+          width: 100%;
+          background-position: center;
+      }
+      .header__columns::before {
+          width: calc(100% - 18px);
+          top: 8px;
+          height: 51px;
+      }
+      .header__columns::after {
+          width: 170px;
+          height: 44px;
+          bottom: 35px;
+          clip-path: path("M0 0 H170 C160 0 130 44 85 44 C40 44 10 0 0 0 Z");
+      }
+  }
+
+  .h-btn{
+      width: 225px;
+      min-width: 225px;
+      height: 44px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0;
+      font-family: Josefin Sans;
+      font-weight: 700;
+      font-size: 14.67px;
+      line-height: 1;
+      letter-spacing: -0.04rem;
+      text-transform: uppercase;
+      gap: 7px;
+      padding-top:3px;
+  }
+  .header__column--right{
+      margin-top:-6px;
+  }
+  #shopify-block-ASUFvaWlKaFJJbjlkS__page-content h2{
+      font-family: Josefin Sans;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 1.1;
+      color:#4E403C;
+  }
+  @media(max-width:1150px){
+ 
+      .header__icon--menu span,
+      .header__icon--menu svg{
+          width: 100% !important;
+          height: 100% !important;
+      }
+      .header__drawer{
+          display:flex !important;
+      }
+      .h-btn,
+      .m-none,
+      .header-menu__inner{
+          display:none !important;
+      }
+      .header__column--left{
+          padding-top: 3px;
+      }
+  }
+
+  @media(max-width:767px){
+      #shopify-block-ASUFvaWlKaFJJbjlkS__page-content h2{
+          font-size: 25px;
+      }
+      .account-popover{
+          display:none !important;
+      }
+
+
+          .header__column--left,
+          .header__column--right{
+              margin-top: 0 !important;
+              padding: 0 !important;
+          }
+     
+            .cart-drawer {
+                margin-left: 5px;
+            }
+  }
+</style>
