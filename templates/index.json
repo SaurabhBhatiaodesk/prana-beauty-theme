@@ -136,6 +136,57 @@
         "last-proof": ""
       }
     },
+    "custom_product_slider_qajQbd": {
+      "type": "custom-product-slider",
+      "custom_css": [],
+      "name": "Custom Product Slider",
+      "settings": {
+        "caption": "The PRANA SUTRAS",
+        "title": "Six Formulations.",
+        "title2": "One Complete Ritual.",
+        "description": "Each product stands alone. Together they become a RITUAL — morning, night, weekly reset.",
+        "collection": "six-formulations",
+        "view_all_text": "View All",
+        "view_all_link": "",
+        "view_product_text": "View Product",
+        "buy_now_text": "Buy Now",
+        "btn_text": "View All Products →",
+        "btn_link": "/checkout"
+      }
+    },
+    "founder_section_4CgtMW": {
+      "type": "founder-section",
+      "custom_css": [],
+      "name": "Founder section",
+      "settings": {
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 30,
+        "image": "shopify://shop_images/Gemini_Generated_Image_42ydps42ydps42yd.png",
+        "name": "Prabha Iyer",
+        "role": "Founder · Prana Beauty & Wellness · New York",
+        "tag1": "South Asian Heritage",
+        "tag2": "Ayurvedic Tradition",
+        "tag3": "Immigrant Founder",
+        "moment_label": "The Moment It Started",
+        "quote": "",
+        "content": "Prabha came to New York carrying her grandmother's rituals and a deep passion and knowledge of Ayurveda— and found nothing in the beauty aisle that matched what she already knew worked. So she built it.",
+        "number1": "11,000+",
+        "label1": "Women in ritual",
+        "number2": "5,000",
+        "label2": "Years of Ayurvedic Science",
+        "number3": "100%",
+        "label3": "Woman-founded",
+        "btn_text": "Our Full Story",
+        "btn_link": "shopify://pages/about-us",
+        "vimeo_link": "https://player.vimeo.com/video/1180963637",
+        "kicker": "",
+        "title": "",
+        "note": "",
+        "cap_text": "Watch the brand film — 2 minutes"
+      }
+    },
     "prana_bestseller_banner": {
       "type": "prana-bestseller-banner",
       "blocks": {
@@ -187,57 +238,6 @@
         "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
         "height": 600,
         "overlay": 0
-      }
-    },
-    "custom_product_slider_qajQbd": {
-      "type": "custom-product-slider",
-      "custom_css": [],
-      "name": "Custom Product Slider",
-      "settings": {
-        "caption": "The PRANA SUTRAS",
-        "title": "Six Formulations.",
-        "title2": "One Complete Ritual.",
-        "description": "Each product stands alone. Together they become a RITUAL — morning, night, weekly reset.",
-        "collection": "six-formulations",
-        "view_all_text": "View All",
-        "view_all_link": "",
-        "view_product_text": "View Product",
-        "buy_now_text": "Buy Now",
-        "btn_text": "View All Products →",
-        "btn_link": "/checkout"
-      }
-    },
-    "founder_section_4CgtMW": {
-      "type": "founder-section",
-      "custom_css": [],
-      "name": "Founder section",
-      "settings": {
-        "desktop_padding_top": 60,
-        "desktop_padding_bottom": 60,
-        "mobile_padding_top": 0,
-        "mobile_padding_bottom": 30,
-        "image": "shopify://shop_images/Gemini_Generated_Image_42ydps42ydps42yd.png",
-        "name": "Prabha Iyer",
-        "role": "Founder · Prana Beauty & Wellness · New York",
-        "tag1": "South Asian Heritage",
-        "tag2": "Ayurvedic Tradition",
-        "tag3": "Immigrant Founder",
-        "moment_label": "The Moment It Started",
-        "quote": "",
-        "content": "Prabha came to New York carrying her grandmother's rituals and a deep passion and knowledge of Ayurveda— and found nothing in the beauty aisle that matched what she already knew worked. So she built it.",
-        "number1": "11,000+",
-        "label1": "Women in ritual",
-        "number2": "5,000",
-        "label2": "Years of Ayurvedic Science",
-        "number3": "100%",
-        "label3": "Woman-founded",
-        "btn_text": "Our Full Story",
-        "btn_link": "shopify://pages/about-us",
-        "vimeo_link": "https://player.vimeo.com/video/1180963637",
-        "kicker": "",
-        "title": "",
-        "note": "",
-        "cap_text": "Watch the brand film — 2 minutes"
       }
     },
     "custom_rituals_section_RJGTFd": {
@@ -1105,9 +1105,9 @@
     "top_banner_mobile_yjKWDH",
     "hero_banner_jxwpbW",
     "custom_proof_jqHQB6",
-    "prana_bestseller_banner",
     "custom_product_slider_qajQbd",
     "founder_section_4CgtMW",
+    "prana_bestseller_banner",
     "custom_rituals_section_RJGTFd",
     "find_ritual_section_XPMGpF",
     "custom_counter_b4J6qT",
