@@ -15,6 +15,8 @@
     class="prana-ugc"
 
     style="
+      background: {{ section.settings.background_color }} !important;
+
       --ugc-desktop-count: {{ section.settings.desktop_videos }};
 
 
@@ -174,6 +176,10 @@
 
 
 
+  .prana-ugc > .section {
+    background: transparent !important;
+  }
+
   .prana-ugc__inner {
 
 
@@ -242,7 +248,7 @@
 
 
 
-    color: var(--ugc-eyebrow);
+    color: var(--ugc-eyebrow) !important;
 
 
 
@@ -298,7 +304,7 @@
 
 
 
-    color: var(--ugc-nav-icon);
+    color: var(--ugc-heading) !important;
 
 
 
@@ -324,7 +330,7 @@
 
     margin: 0;
 
-    color: var(--ugc-text);
+    color: var(--ugc-text) !important;
 
 
 
@@ -490,7 +496,7 @@
 
 
 
-    border: 1px solid var(--ugc-nav-border);
+    border: 1px solid var(--ugc-nav-border) !important;
 
 
 
@@ -498,11 +504,11 @@
 
 
 
-    background: var(--ugc-nav-bg);
+    background: var(--ugc-nav-bg) !important;
 
 
 
-    color: var(--ugc-nav-icon);
+    color: var(--ugc-nav-icon) !important;
 
 
 
