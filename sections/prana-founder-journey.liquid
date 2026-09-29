@@ -3,6 +3,7 @@
       <div class="pf-tl-head">{{ section.settings.journey_label | escape }}</div>
       <h2 class="pf-tl-title">{{ section.settings.journey_heading | escape }}</h2>
 
+<prana-journey-reveal>
 <ol class="pf-timeline">
 {% for block in section.blocks %}
 {% if block.type == 'milestone' %}
@@ -13,7 +14,8 @@
 </li>
 {% endif %}
 {% endfor %}
-</ol></div></div></div></section>
+</ol>
+</prana-journey-reveal></div></div></div></section>
 {% stylesheet %}
 .prana-journey-about {
     background:var(--canvas);
@@ -60,7 +62,37 @@
 }
 
 .prana-journey-about .pf-timeline-section { margin-top:0; padding-top:0; border-top:0; }
+prana-journey-reveal { display:block; }
+@media (prefers-reduced-motion: no-preference) {
+  .prana-journey-about .pf-milestone.pf-revealed {
+    animation: prana-journey-enter 650ms ease-out both;
+  }
+}
+@keyframes prana-journey-enter {
+  from { opacity:0; transform:translateY(24px); }
+  to { opacity:1; transform:translateY(0); }
+}
 {% endstylesheet %}
+{% javascript %}
+if (!customElements.get('prana-journey-reveal')) {
+  customElements.define('prana-journey-reveal', class extends HTMLElement {
+    connectedCallback() {
+      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('pf-revealed');
+          this.observer.unobserve(entry.target);
+        });
+      }, { threshold:0.1 });
+      this.querySelectorAll('.pf-milestone').forEach((item) => this.observer.observe(item));
+    }
+    disconnectedCallback() {
+      this.observer?.disconnect();
+    }
+  });
+}
+{% endjavascript %}
 {% schema %}
 {
   "name": "PRANA Founder Journey",

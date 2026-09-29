@@ -14,7 +14,7 @@
 <figure>{{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '360, 540, 750, 1000, 1200', sizes: '(min-width: 901px) 40vw, 100vw', class: 'pf-photo' }}<figcaption class="pf-media-caption">{{ section.settings.location | escape }}</figcaption></figure>
 {% endif %}
 {% if section.settings.video != blank %}
-<figure>{{ section.settings.video | video_tag: controls: true, autoplay: false, preload: 'metadata', image_size: '1000x', class: 'pf-video' }}<figcaption class="pf-media-caption">{{ section.settings.film_caption | escape }}</figcaption></figure>
+<figure>{{ section.settings.video | video_tag: controls: true, autoplay: section.settings.video_autoplay, muted: section.settings.video_autoplay, playsinline: true, preload: 'metadata', image_size: '1000x', class: 'pf-video' }}<figcaption class="pf-media-caption">{{ section.settings.film_caption | escape }}</figcaption></figure>
 {% endif %}
 </div>
 {% endif %}
@@ -190,6 +190,13 @@
       "type": "video",
       "id": "video",
       "label": "Brand film"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay video",
+      "default": false,
+      "info": "Autoplay starts muted. Viewers can unmute using the video controls."
     },
     {
       "type": "text",
