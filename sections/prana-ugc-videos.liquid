@@ -4,28 +4,17 @@
 
 {% assign desktop_width_total = section.settings.desktop_videos | times: 300 | plus: desktop_gap_total %}
 
-
-
 {% for block in section.blocks %}
-
   {% if block.settings.video_file != blank %}
-
     {% assign video_count = video_count | plus: 1 %}
-
   {% endif %}
-
 {% endfor %}
 
-
-
 {% if video_count > 0 or request.design_mode %}
-
   <section
-
     class="prana-ugc"
 
     style="
-
       --ugc-desktop-count: {{ section.settings.desktop_videos }};
 
       --ugc-mobile-count: {{ section.settings.mobile_videos }};
@@ -45,57 +34,32 @@
       --ugc-nav-icon: {{ section.settings.nav_button_icon_color }};
       --ugc-scrollbar-thumb: {{ section.settings.scrollbar_thumb_color }};
       --ugc-scrollbar-track: {{ section.settings.scrollbar_track_color }};
-
     "
-
   >
-
     <div class="section">
-
       <div class="prana-ugc__inner">
-
-
-
         <div class="prana-ugc__header">
-
           {% if section.settings.eyebrow != blank %}
-
             <p class="prana-ugc__eyebrow">{{ section.settings.eyebrow | escape }}</p>
-
           {% endif %}
-
-
 
           {% if section.settings.heading != blank %}
-
             <h2 class="prana-ugc__heading">{{ section.settings.heading | escape }}</h2>
-
           {% endif %}
-
-
 
           {% if section.settings.subheading != blank %}
-
             <div class="prana-ugc__intro">{{ section.settings.subheading }}</div>
-
           {% endif %}
-
         </div>
 
-
-
         <prana-ugc-videos
-
           data-autoplay="{{ section.settings.autoplay }}"
 
           data-slider-autoplay="{{ section.settings.slider_autoplay }}"
 
           data-slider-speed="{{ section.settings.slider_autoplay_speed }}"
-
         >
-
           <div
-
             class="prana-ugc__track"
 
             id="UgcTrack-{{ section.id }}"
@@ -105,63 +69,36 @@
             role="region"
 
             aria-label="{{ section.settings.heading | escape }}"
-
           >
-
             {% for block in section.blocks %}
-
               {% if block.settings.video_file != blank or request.design_mode %}
-
                 <article class="prana-ugc__card" {{ block.shopify_attributes }}>
-
                   {% if block.settings.video_file != blank %}
-
                     {% assign video_poster = block.settings.video_file.preview_image | image_url: width: 700 %}
 
                     {{
-
                       block.settings.video_file
-
                       | video_tag:
-
                         autoplay: section.settings.autoplay,
-
                         loop: true,
-
                         muted: true,
-
                         controls: false,
-
                         playsinline: true,
-
                         preload: 'auto',
-
                         poster: video_poster,
-
                         class: 'prana-ugc__video'
-
                     }}
 
                   {% else %}
-
                     <div class="prana-ugc__placeholder">Select a video in this block.</div>
-
                   {% endif %}
-
                 </article>
-
               {% endif %}
-
             {% endfor %}
-
           </div>
 
-
-
           <div class="prana-ugc__navigation" hidden>
-
             <button
-
               type="button"
 
               data-step="-1"
@@ -169,17 +106,11 @@
               aria-label="Previous videos"
 
               aria-controls="UgcTrack-{{ section.id }}"
-
             >
-
               &#8592;
-
             </button>
 
-
-
             <button
-
               type="button"
 
               data-step="1"
@@ -187,302 +118,88 @@
               aria-label="Next videos"
 
               aria-controls="UgcTrack-{{ section.id }}"
-
             >
-
               &#8594;
-
             </button>
-
           </div>
-
         </prana-ugc-videos>
-
-
-
       </div>
-
     </div>
-
   </section>
-
 {% endif %}
 
-
-
 {% stylesheet %}
-
-.prana-ugc {
-
-  padding: 60px 0;
-
-  background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
-
-  color: var(--ugc-text);
-
-  font-family: var(--U);
-
-  position: relative;
-
-  z-index: 1;
-
-}
-
-
-
-.prana-ugc__inner {
-
-  width: 100%;
-
-  min-width: 0;
-
-}
-
-
-
-.prana-ugc__header {
-
-  max-width: 700px;
-
-  margin: 0 auto 32px;
-
-  text-align: center;
-
-}
-
-
-
-.prana-ugc .prana-ugc__eyebrow {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 14px;
-
-  margin: 0 0 12px;
-
-  color: var(--ugc-eyebrow);
-
-  font: 400 14px/1.5 var(--U);
-
-}
-
-
-
-.prana-ugc__eyebrow::before,
-
-.prana-ugc__eyebrow::after {
-
-  content: '';
-
-  width: 40px;
-
-  height: 1px;
-
-  background: var(--ugc-line);
-
-}
-
-
-
-.prana-ugc .prana-ugc__heading {
-
-  margin: 0 0 12px;
-
-  color: var(--ugc-heading);
-
-  font: 400 38px/1.15 var(--D);
-
-}
-
-
-
-.prana-ugc__intro,
-
-.prana-ugc__intro p {
-
-  margin: 0;
-  color: var(--ugc-text);
-
-  font: 400 17px/1.5 var(--U);
-
-}
-
-
-
-prana-ugc-videos {
-
-  display: block;
-
-}
-
-
-
-.prana-ugc__track {
-
-  display: flex;
-
-  gap: 20px;
-
-  width: 100%;
-
-  max-width: min(100%, var(--ugc-desktop-max));
-
-  margin: 0 auto;
-
-  padding: 4px 2px 18px;
-
-  overflow-x: auto;
-
-  scroll-snap-type: x mandatory;
-
-  scrollbar-width: thin;
-
-  scrollbar-color: var(--ugc-scrollbar-thumb) var(--ugc-scrollbar-track);
-
-  box-sizing: border-box;
-
-}
-
-
-
-.prana-ugc__card {
-
-  flex: 0 0 calc(
-
-    (100% - ((var(--ugc-desktop-count) - 1) * 20px))
-
-    / var(--ugc-desktop-count)
-
-  );
-
-  min-width: 0;
-
-  max-width: 300px;
-
-  overflow: hidden;
-
-  scroll-snap-align: start;
-
-  border: 1px solid var(--ugc-card-border);
-
-  border-radius: 12px;
-
-  background: var(--ugc-card-bg);
-
-}
-
-
-
-.prana-ugc__video {
-
-  display: block;
-
-  width: 100%;
-
-  aspect-ratio: 9 / 16;
-
-  object-fit: cover;
-
-  object-position: center;
-
-  background: var(--ugc-video-bg);
-
-}
-
-
-
-.prana-ugc__placeholder {
-
-  display: grid;
-
-  place-items: center;
-
-  aspect-ratio: 9 / 16;
-
-  padding: 24px;
-  color: var(--ugc-placeholder-text);
-
-  text-align: center;
-
-}
-
-
-
-.prana-ugc__navigation {
-
-  display: flex;
-
-  justify-content: center;
-
-  gap: 12px;
-
-  margin-top: 20px;
-
-}
-
-
-
-.prana-ugc__navigation[hidden] {
-
-  display: none;
-
-}
-
-
-
-.prana-ugc__navigation button {
-
-  width: 44px;
-
-  height: 44px;
-
-  border: 1px solid var(--ugc-nav-border);
-
-  border-radius: 50%;
-
-  background: transparent;
-
-  color: var(--ugc-heading);
-
-  font-size: 24px;
-
-  cursor: pointer;
-
-}
-
-
-
-.prana-ugc__navigation button:disabled {
-
-  opacity: 0.35;
-
-  cursor: default;
-
-}
-
-
-
-.prana-ugc__navigation button:focus-visible,
-
-.prana-ugc__track:focus-visible {
-
-  outline: 2px solid var(--ugc-nav-border);
-
-  outline-offset: 3px;
-
-}
-
-
-
-@media (max-width: 749px) {
-
   .prana-ugc {
 
-    padding: 40px 0;
+    padding: 60px 0;
+
+    background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+
+    color: var(--ugc-text);
+
+    font-family: var(--U);
+
+    position: relative;
+
+    z-index: 1;
+
+  }
+
+
+
+  .prana-ugc__inner {
+
+    width: 100%;
+
+    min-width: 0;
+
+  }
+
+
+
+  .prana-ugc__header {
+
+    max-width: 700px;
+
+    margin: 0 auto 32px;
+
+    text-align: center;
+
+  }
+
+
+
+  .prana-ugc .prana-ugc__eyebrow {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    margin: 0 0 12px;
+
+    color: var(--ugc-eyebrow);
+
+    font: 400 14px/1.5 var(--U);
+
+  }
+
+
+
+  .prana-ugc__eyebrow::before,
+
+  .prana-ugc__eyebrow::after {
+
+    content: '';
+
+    width: 40px;
+
+    height: 1px;
+
+    background: var(--ugc-line);
 
   }
 
@@ -490,7 +207,11 @@ prana-ugc-videos {
 
   .prana-ugc .prana-ugc__heading {
 
-    font-size: 24px;
+    margin: 0 0 12px;
+
+    color: var(--ugc-heading);
+
+    font: 400 38px/1.15 var(--D);
 
   }
 
@@ -500,15 +221,18 @@ prana-ugc-videos {
 
   .prana-ugc__intro p {
 
-    font-size: 15px;
+    margin: 0;
+    color: var(--ugc-text);
+
+    font: 400 17px/1.5 var(--U);
 
   }
 
 
 
-  .prana-ugc__header {
+  prana-ugc-videos {
 
-    margin-bottom: 24px;
+    display: block;
 
   }
 
@@ -516,11 +240,27 @@ prana-ugc-videos {
 
   .prana-ugc__track {
 
-    gap: 14px;
+    display: flex;
 
-    max-width: 100%;
+    gap: 20px;
 
-    margin: 0;
+    width: 100%;
+
+    max-width: min(100%, var(--ugc-desktop-max));
+
+    margin: 0 auto;
+
+    padding: 4px 2px 18px;
+
+    overflow-x: auto;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: thin;
+
+    scrollbar-color: var(--ugc-scrollbar-thumb) var(--ugc-scrollbar-track);
+
+    box-sizing: border-box;
 
   }
 
@@ -530,452 +270,442 @@ prana-ugc-videos {
 
     flex: 0 0 calc(
 
-      (100% - ((var(--ugc-mobile-count) - 1) * 14px))
+      (100% - ((var(--ugc-desktop-count) - 1) * 20px))
 
-      / var(--ugc-mobile-count)
+      / var(--ugc-desktop-count)
 
     );
 
-    max-width: none;
+    min-width: 0;
+
+    max-width: 300px;
+
+    overflow: hidden;
+
+    scroll-snap-align: start;
+
+    border: 1px solid var(--ugc-card-border);
+
+    border-radius: 12px;
+
+    background: var(--ugc-card-bg);
 
   }
 
-}
 
-{% endstylesheet %}
 
+  .prana-ugc__video {
 
+    display: block;
 
-{% javascript %}
+    width: 100%;
 
-if (!customElements.get('prana-ugc-videos')) {
+    aspect-ratio: 9 / 16;
 
-  customElements.define(
+    object-fit: cover;
 
-    'prana-ugc-videos',
+    object-position: center;
 
-    class extends HTMLElement {
+    background: var(--ugc-video-bg);
 
-      connectedCallback() {
+  }
 
-        this.track = this.querySelector('.prana-ugc__track');
 
-        this.nav = this.querySelector('.prana-ugc__navigation');
 
+  .prana-ugc__placeholder {
 
+    display: grid;
 
-        if (!this.track || !this.nav) return;
+    place-items: center;
 
+    aspect-ratio: 9 / 16;
 
+    padding: 24px;
+    color: var(--ugc-placeholder-text);
 
-        this.controller = new AbortController();
+    text-align: center;
 
-        const signal = this.controller.signal;
+  }
 
 
 
-        const autoplay = this.dataset.autoplay === 'true';
+  .prana-ugc__navigation {
 
-        const sliderAutoplay = this.dataset.sliderAutoplay === 'true';
+    display: flex;
 
-        const sliderSpeed = Math.max(1000, Number(this.dataset.sliderSpeed || 3000));
+    justify-content: center;
 
+    gap: 12px;
 
+    margin-top: 20px;
 
-        const shouldAutoplay = () => autoplay;
+  }
 
 
 
-        const updateNavigation = () => {
+  .prana-ugc__navigation[hidden] {
 
-          const max = this.track.scrollWidth - this.track.clientWidth;
+    display: none;
 
-          this.nav.hidden = max < 2;
+  }
 
 
 
-          const previousButton = this.querySelector('[data-step="-1"]');
+  .prana-ugc__navigation button {
 
-          const nextButton = this.querySelector('[data-step="1"]');
+    width: 44px;
 
+    height: 44px;
 
+    border: 1px solid var(--ugc-nav-border);
 
-          if (previousButton) {
+    border-radius: 50%;
 
-            previousButton.disabled = this.track.scrollLeft < 2;
+    background: transparent;
 
-          }
+    color: var(--ugc-heading);
 
+    font-size: 24px;
 
+    cursor: pointer;
 
-          if (nextButton) {
+  }
 
-            nextButton.disabled = this.track.scrollLeft >= max - 2;
 
-          }
 
-        };
+  .prana-ugc__navigation button:disabled {
 
+    opacity: 0.35;
 
+    cursor: default;
 
-        const getSlideDistance = () => {
+  }
 
-          const card = this.track.querySelector('.prana-ugc__card');
 
-          if (!card) return 0;
 
+  .prana-ugc__navigation button:focus-visible,
 
+  .prana-ugc__track:focus-visible {
 
-          const gap = parseFloat(getComputedStyle(this.track).gap) || 0;
+    outline: 2px solid var(--ugc-nav-border);
 
-          return card.getBoundingClientRect().width + gap;
+    outline-offset: 3px;
 
-        };
+  }
 
 
 
-        const moveSlider = (step = 1) => {
+  @media (max-width: 749px) {
 
-          const distance = getSlideDistance();
+    .prana-ugc {
 
-          if (!distance) return;
-
-
-
-          const max = this.track.scrollWidth - this.track.clientWidth;
-
-          const nextLeft = this.track.scrollLeft + (step * distance);
-
-
-
-          if (step > 0 && nextLeft >= max - 2) {
-
-            this.track.scrollTo({
-
-              left: 0,
-
-              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-                ? 'auto'
-
-                : 'smooth'
-
-            });
-
-          } else if (step < 0 && nextLeft <= 0) {
-
-            this.track.scrollTo({
-
-              left: max,
-
-              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-                ? 'auto'
-
-                : 'smooth'
-
-            });
-
-          } else {
-
-            this.track.scrollBy({
-
-              left: step * distance,
-
-              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-                ? 'auto'
-
-                : 'smooth'
-
-            });
-
-          }
-
-        };
-
-
-
-        this.nav.addEventListener(
-
-          'click',
-
-          (event) => {
-
-            const button = event.target.closest('button[data-step]');
-
-            if (!button) return;
-
-
-
-            moveSlider(Number(button.dataset.step));
-
-          },
-
-          { signal }
-
-        );
-
-
-
-        this.track.addEventListener('scroll', updateNavigation, {
-
-          passive: true,
-
-          signal
-
-        });
-
-
-
-        this.addEventListener(
-
-          'shopify:block:select',
-
-          (event) => {
-
-            event.target.scrollIntoView({
-
-              block: 'nearest',
-
-              inline: 'nearest'
-
-            });
-
-          },
-
-          { signal }
-
-        );
-
-
-
-        this.querySelectorAll('video').forEach((video) => {
-
-          video.muted = true;
-
-          video.loop = true;
-
-          video.playsInline = true;
-
-        });
-
-
-
-        if ('IntersectionObserver' in window) {
-
-          this.visibilityObserver = new IntersectionObserver(
-
-            (entries) => {
-
-              entries.forEach((entry) => {
-
-                const video = entry.target;
-
-
-
-                if (
-
-                  !entry.isIntersecting ||
-
-                  entry.intersectionRatio < 0.25 ||
-
-                  !shouldAutoplay()
-
-                ) {
-
-                  video.pause();
-
-                  return;
-
-                }
-
-
-
-                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-
-                  video.muted = true;
-
-                  video.play().catch(() => {});
-
-                }
-
-              });
-
-            },
-
-            { threshold: [0, 0.25] }
-
-          );
-
-
-
-          this.querySelectorAll('video').forEach((video) => {
-
-            this.visibilityObserver.observe(video);
-
-          });
-
-        }
-
-
-
-        if ('ResizeObserver' in window) {
-
-          this.resizeObserver = new ResizeObserver(updateNavigation);
-
-          this.resizeObserver.observe(this.track);
-
-        }
-
-
-
-        window.addEventListener(
-
-          'resize',
-
-          () => {
-
-            this.querySelectorAll('video').forEach((video) => {
-
-              if (!shouldAutoplay()) {
-
-                video.pause();
-
-              }
-
-            });
-
-
-
-            updateNavigation();
-
-          },
-
-          { signal }
-
-        );
-
-
-
-        let sliderTimer = null;
-
-
-
-        const startSliderAutoplay = () => {
-
-          if (
-
-            !sliderAutoplay ||
-
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-
-            this.track.scrollWidth <= this.track.clientWidth + 2
-
-          ) {
-
-            return;
-
-          }
-
-
-
-          stopSliderAutoplay();
-
-
-
-          sliderTimer = window.setInterval(() => {
-
-            moveSlider(1);
-
-          }, sliderSpeed);
-
-        };
-
-
-
-        const stopSliderAutoplay = () => {
-
-          if (sliderTimer) {
-
-            window.clearInterval(sliderTimer);
-
-            sliderTimer = null;
-
-          }
-
-        };
-
-
-
-        this.addEventListener('mouseenter', stopSliderAutoplay, { signal });
-
-        this.addEventListener('mouseleave', startSliderAutoplay, { signal });
-
-        this.addEventListener('touchstart', stopSliderAutoplay, { passive: true, signal });
-
-        this.addEventListener('touchend', startSliderAutoplay, { passive: true, signal });
-
-        this.addEventListener('focusin', stopSliderAutoplay, { signal });
-
-        this.addEventListener('focusout', startSliderAutoplay, { signal });
-
-
-
-        this.stopSliderAutoplay = stopSliderAutoplay;
-
-
-
-        updateNavigation();
-
-        startSliderAutoplay();
-
-      }
-
-
-
-      disconnectedCallback() {
-
-        this.controller?.abort();
-
-        this.resizeObserver?.disconnect();
-
-        this.visibilityObserver?.disconnect();
-
-        this.stopSliderAutoplay?.();
-
-
-
-        this.querySelectorAll('video').forEach((video) => {
-
-          video.pause();
-
-        });
-
-      }
+      padding: 40px 0;
 
     }
 
-  );
 
-}
 
+    .prana-ugc .prana-ugc__heading {
+
+      font-size: 24px;
+
+    }
+
+
+
+    .prana-ugc__intro,
+
+    .prana-ugc__intro p {
+
+      font-size: 15px;
+
+    }
+
+
+
+    .prana-ugc__header {
+
+      margin-bottom: 24px;
+
+    }
+
+
+
+    .prana-ugc__track {
+
+      gap: 14px;
+
+      max-width: 100%;
+
+      margin: 0;
+
+    }
+
+
+
+    .prana-ugc__card {
+
+      flex: 0 0 calc(
+
+        (100% - ((var(--ugc-mobile-count) - 1) * 14px))
+
+        / var(--ugc-mobile-count)
+
+      );
+
+      max-width: none;
+
+    }
+
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  if (!customElements.get('prana-ugc-videos')) {
+    customElements.define(
+      'prana-ugc-videos',
+
+      class extends HTMLElement {
+        connectedCallback() {
+          this.track = this.querySelector('.prana-ugc__track');
+
+          this.nav = this.querySelector('.prana-ugc__navigation');
+
+          if (!this.track || !this.nav) return;
+
+          this.controller = new AbortController();
+
+          const signal = this.controller.signal;
+
+          const autoplay = this.dataset.autoplay === 'true';
+
+          const sliderAutoplay = this.dataset.sliderAutoplay === 'true';
+
+          const sliderSpeed = Math.max(1000, Number(this.dataset.sliderSpeed || 3000));
+
+          const shouldAutoplay = () => autoplay;
+
+          const updateNavigation = () => {
+            const max = this.track.scrollWidth - this.track.clientWidth;
+
+            this.nav.hidden = max < 2;
+
+            const previousButton = this.querySelector('[data-step="-1"]');
+
+            const nextButton = this.querySelector('[data-step="1"]');
+
+            if (previousButton) {
+              previousButton.disabled = this.track.scrollLeft < 2;
+            }
+
+            if (nextButton) {
+              nextButton.disabled = this.track.scrollLeft >= max - 2;
+            }
+          };
+
+          const getSlideDistance = () => {
+            const card = this.track.querySelector('.prana-ugc__card');
+
+            if (!card) return 0;
+
+            const gap = parseFloat(getComputedStyle(this.track).gap) || 0;
+
+            return card.getBoundingClientRect().width + gap;
+          };
+
+          const moveSlider = (step = 1) => {
+            const distance = getSlideDistance();
+
+            if (!distance) return;
+
+            const max = this.track.scrollWidth - this.track.clientWidth;
+
+            const nextLeft = this.track.scrollLeft + step * distance;
+
+            if (step > 0 && nextLeft >= max - 2) {
+              this.track.scrollTo({
+                left: 0,
+
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+              });
+            } else if (step < 0 && nextLeft <= 0) {
+              this.track.scrollTo({
+                left: max,
+
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+              });
+            } else {
+              this.track.scrollBy({
+                left: step * distance,
+
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+              });
+            }
+          };
+
+          this.nav.addEventListener(
+            'click',
+
+            (event) => {
+              const button = event.target.closest('button[data-step]');
+
+              if (!button) return;
+
+              moveSlider(Number(button.dataset.step));
+            },
+
+            { signal }
+          );
+
+          this.track.addEventListener('scroll', updateNavigation, {
+            passive: true,
+
+            signal,
+          });
+
+          this.addEventListener(
+            'shopify:block:select',
+
+            (event) => {
+              event.target.scrollIntoView({
+                block: 'nearest',
+
+                inline: 'nearest',
+              });
+            },
+
+            { signal }
+          );
+
+          this.querySelectorAll('video').forEach((video) => {
+            video.muted = true;
+
+            video.loop = true;
+
+            video.playsInline = true;
+          });
+
+          if ('IntersectionObserver' in window) {
+            this.visibilityObserver = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  const video = entry.target;
+
+                  if (!entry.isIntersecting || entry.intersectionRatio < 0.25 || !shouldAutoplay()) {
+                    video.pause();
+
+                    return;
+                  }
+
+                  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    video.muted = true;
+
+                    video.play().catch(() => {});
+                  }
+                });
+              },
+
+              { threshold: [0, 0.25] }
+            );
+
+            this.querySelectorAll('video').forEach((video) => {
+              this.visibilityObserver.observe(video);
+            });
+          }
+
+          if ('ResizeObserver' in window) {
+            this.resizeObserver = new ResizeObserver(updateNavigation);
+
+            this.resizeObserver.observe(this.track);
+          }
+
+          window.addEventListener(
+            'resize',
+
+            () => {
+              this.querySelectorAll('video').forEach((video) => {
+                if (!shouldAutoplay()) {
+                  video.pause();
+                }
+              });
+
+              updateNavigation();
+            },
+
+            { signal }
+          );
+
+          let sliderTimer = null;
+
+          const startSliderAutoplay = () => {
+            if (
+              !sliderAutoplay ||
+              window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+              this.track.scrollWidth <= this.track.clientWidth + 2
+            ) {
+              return;
+            }
+
+            stopSliderAutoplay();
+
+            sliderTimer = window.setInterval(() => {
+              moveSlider(1);
+            }, sliderSpeed);
+          };
+
+          const stopSliderAutoplay = () => {
+            if (sliderTimer) {
+              window.clearInterval(sliderTimer);
+
+              sliderTimer = null;
+            }
+          };
+
+          this.addEventListener('mouseenter', stopSliderAutoplay, { signal });
+
+          this.addEventListener('mouseleave', startSliderAutoplay, { signal });
+
+          this.addEventListener('touchstart', stopSliderAutoplay, { passive: true, signal });
+
+          this.addEventListener('touchend', startSliderAutoplay, { passive: true, signal });
+
+          this.addEventListener('focusin', stopSliderAutoplay, { signal });
+
+          this.addEventListener('focusout', startSliderAutoplay, { signal });
+
+          this.stopSliderAutoplay = stopSliderAutoplay;
+
+          updateNavigation();
+
+          startSliderAutoplay();
+        }
+
+        disconnectedCallback() {
+          this.controller?.abort();
+
+          this.resizeObserver?.disconnect();
+
+          this.visibilityObserver?.disconnect();
+
+          this.stopSliderAutoplay?.();
+
+          this.querySelectorAll('video').forEach((video) => {
+            video.pause();
+          });
+        }
+      }
+    );
+  }
 {% endjavascript %}
 
-
-
 {% schema %}
-
 {
-
   "name": "PRANA UGC Videos",
 
   "max_blocks": 50,
 
   "settings": [
-
     {
-
       "type": "text",
 
       "id": "eyebrow",
@@ -983,11 +713,9 @@ if (!customElements.get('prana-ugc-videos')) {
       "label": "Eyebrow",
 
       "default": "The PRANA community"
-
     },
 
     {
-
       "type": "text",
 
       "id": "heading",
@@ -995,11 +723,9 @@ if (!customElements.get('prana-ugc-videos')) {
       "label": "Heading",
 
       "default": "Real rituals. Real stories."
-
     },
 
     {
-
       "type": "richtext",
 
       "id": "subheading",
@@ -1007,10 +733,9 @@ if (!customElements.get('prana-ugc-videos')) {
       "label": "Description",
 
       "default": "<p>Discover PRANA through the rituals of our community.</p>"
-
     },
 
-        {
+    {
       "type": "header",
       "content": "Colors"
     },
@@ -1102,8 +827,7 @@ if (!customElements.get('prana-ugc-videos')) {
       "type": "header",
       "content": "Layout & autoplay"
     },
-{
-
+    {
       "type": "range",
 
       "id": "desktop_videos",
@@ -1117,11 +841,9 @@ if (!customElements.get('prana-ugc-videos')) {
       "step": 1,
 
       "default": 4
-
     },
 
     {
-
       "type": "select",
 
       "id": "mobile_videos",
@@ -1129,31 +851,23 @@ if (!customElements.get('prana-ugc-videos')) {
       "label": "Videos visible on mobile",
 
       "options": [
-
         {
-
           "value": "1",
 
           "label": "1"
-
         },
 
         {
-
           "value": "2",
 
           "label": "2"
-
         }
-
       ],
 
       "default": "1"
-
     },
 
     {
-
       "type": "checkbox",
 
       "id": "autoplay",
@@ -1163,11 +877,9 @@ if (!customElements.get('prana-ugc-videos')) {
       "default": true,
 
       "info": "When enabled, all visible videos autoplay muted and loop continuously."
-
     },
 
     {
-
       "type": "checkbox",
 
       "id": "slider_autoplay",
@@ -1175,11 +887,9 @@ if (!customElements.get('prana-ugc-videos')) {
       "label": "Autoplay slider",
 
       "default": true
-
     },
 
     {
-
       "type": "range",
 
       "id": "slider_autoplay_speed",
@@ -1195,57 +905,33 @@ if (!customElements.get('prana-ugc-videos')) {
       "unit": "ms",
 
       "default": 3000
-
     }
-
   ],
 
   "blocks": [
-
     {
-
       "type": "video_item",
 
       "name": "UGC video",
 
       "settings": [
-
         {
-
           "type": "video",
 
           "id": "video_file",
 
           "label": "Video"
-
         }
-
       ]
-
     }
-
   ],
 
   "presets": [
-
     {
-
       "name": "PRANA UGC Videos",
 
-      "blocks": [
-
-        { "type": "video_item" },
-
-        { "type": "video_item" },
-
-        { "type": "video_item" }
-
-      ]
-
+      "blocks": [{ "type": "video_item" }, { "type": "video_item" }, { "type": "video_item" }]
     }
-
   ]
-
 }
-
 {% endschema %}
