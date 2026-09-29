@@ -10,6 +10,7 @@
 
     --pb-overlay: {{ section.settings.overlay | divided_by: 100.0 }};
     --pb-mobile-overlay: {{ section.settings.mobile_overlay | divided_by: 100.0 }};
+    --pb-mobile-overlay-color: {{ section.settings.mobile_overlay_color }};
 
 
 
@@ -893,14 +894,9 @@
     .prana-bestseller__shade {
     display: block;
     z-index: -1;
-    background: linear-gradient(
-      180deg,
-      rgba(248, 242, 230, var(--pb-mobile-overlay)) 0%,
-      rgba(248, 242, 230, calc(var(--pb-mobile-overlay) * 0.82)) 55%,
-      rgba(248, 242, 230, var(--pb-mobile-overlay)) 100%
-    );
-
-    }
+    background: var(--pb-mobile-overlay-color);
+    opacity: var(--pb-mobile-overlay);
+  }
 
 
 
@@ -1502,6 +1498,12 @@
       "unit": "%",
 
       "default": 65
+    },
+    {
+      "type": "color",
+      "id": "mobile_overlay_color",
+      "label": "Mobile overlay color",
+      "default": "#F8F2E6"
     },
     {
       "type": "range",
