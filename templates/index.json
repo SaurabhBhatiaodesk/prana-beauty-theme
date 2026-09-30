@@ -535,59 +535,6 @@
         "padding_bottom_mobile": 14
       }
     },
-    "17768332015c8fec7e": {
-      "type": "_blocks",
-      "blocks": {
-        "instafeed_app_block_kLznAm": {
-          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
-          "settings": {
-            "title": "",
-            "title_color": "",
-            "title_size_v2": 0,
-            "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
-            "instafeed_margin_sides": 0,
-            "show_instagram_link": false,
-            "link_alignment": "left",
-            "link_color": "#000000",
-            "background_color": "",
-            "feed_id": "",
-            "html_area": ""
-          }
-        }
-      },
-      "block_order": [
-        "instafeed_app_block_kLznAm"
-      ],
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-a81820a6-7aeb-4163-b47e-0e82fd29223d",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 50,
-        "padding-block-end": 60
-      }
-    },
     "products_list_slider_rGDQ8B": {
       "type": "products-list-slider",
       "disabled": true,
@@ -1139,7 +1086,6 @@
     "custom_counter_b4J6qT",
     "ugc_video_slider_Y9pfFV",
     "custom_newsletter_hfhNpi",
-    "17768332015c8fec7e",
     "products_list_slider_rGDQ8B",
     "marquee_9Vx3xY",
     "collection_slider_9mdHQf",
