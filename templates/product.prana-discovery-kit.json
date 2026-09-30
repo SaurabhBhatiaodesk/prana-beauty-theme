@@ -599,6 +599,7 @@
         "step_L3WXJA",
         "step_zk4Cbp"
       ],
+      "disabled": true,
       "name": "Daily Ritual",
       "settings": {
         "ingredient_header": "Key Conversion Points",
