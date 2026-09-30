@@ -564,6 +564,34 @@
     },
     "prana_duo_benefits_section_iVfdqQ": {
       "type": "prana-duo-benefits-section",
+      "blocks": {
+        "product_pdyRGW": {
+          "type": "product",
+          "settings": {
+            "product": "pure-rose-water-toning-mist",
+            "custom_heading": "",
+            "custom_description": "",
+            "bullet_1": "",
+            "bullet_2": "",
+            "bullet_3": ""
+          }
+        },
+        "product_QTPxtm": {
+          "type": "product",
+          "settings": {
+            "product": "turmeric-and-sandalwood-face-mask",
+            "custom_heading": "",
+            "custom_description": "",
+            "bullet_1": "",
+            "bullet_2": "",
+            "bullet_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_pdyRGW",
+        "product_QTPxtm"
+      ],
       "name": "PRANA Duo Benefits",
       "settings": {
         "bundle_id": "873923",
