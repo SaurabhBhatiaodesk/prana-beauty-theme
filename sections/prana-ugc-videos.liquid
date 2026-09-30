@@ -19,37 +19,75 @@
 
 
 
+
+
+
+
       --ugc-mobile-count: {{ section.settings.mobile_videos }};
+      --ugc-video-height-desktop: {{ section.settings.video_height_desktop }}px;
+      --ugc-video-height-mobile: {{ section.settings.video_height_mobile }}px;
+
+
+
+
 
 
 
       --ugc-desktop-max: {{ desktop_width_total }}px;
 
+
+
       --ugc-bg: {{ section.settings.background_color }};
+
+
 
       --ugc-eyebrow: {{ section.settings.eyebrow_color }};
 
+
+
       --ugc-line: {{ section.settings.eyebrow_line_color }};
+
+
 
       --ugc-heading: {{ section.settings.heading_color }};
 
+
+
       --ugc-text: {{ section.settings.text_color }};
+
+
 
       --ugc-card-bg: {{ section.settings.card_background_color }};
 
+
+
       --ugc-card-border: {{ section.settings.card_border_color }};
+
+
 
       --ugc-video-bg: {{ section.settings.video_background_color }};
 
+
+
       --ugc-placeholder-text: {{ section.settings.placeholder_text_color }};
+
+
 
       --ugc-nav-bg: {{ section.settings.nav_button_background_color }};
 
+
+
       --ugc-nav-border: {{ section.settings.nav_button_border_color }};
+
+
 
       --ugc-nav-icon: {{ section.settings.nav_button_icon_color }};
 
+
+
       --ugc-scrollbar-thumb: {{ section.settings.scrollbar_thumb_color }};
+
+
 
       --ugc-scrollbar-track: {{ section.settings.scrollbar_track_color }};
     "
@@ -72,15 +110,22 @@
 
         <prana-ugc-videos
           data-autoplay="{{ section.settings.autoplay }}"
+
           data-slider-autoplay="{{ section.settings.slider_autoplay }}"
+
           data-slider-speed="{{ section.settings.slider_autoplay_speed }}"
+
           data-desktop-videos="{{ section.settings.desktop_videos }}"
+
           data-mobile-videos="{{ section.settings.mobile_videos }}"
         >
           <div
             class="swiper prana-ugc__swiper"
+
             id="UgcSwiper-{{ section.id }}"
+
             role="region"
+
             aria-label="{{ section.settings.heading | escape }}"
           >
             <div class="swiper-wrapper">
@@ -93,12 +138,12 @@
                       {{
                         block.settings.video_file
                         | video_tag:
-                          autoplay: section.settings.autoplay,
+                          autoplay: false,
                           loop: true,
                           muted: true,
                           controls: false,
                           playsinline: true,
-                          preload: 'auto',
+                          preload: 'none',
                           poster: video_poster,
                           class: 'prana-ugc__video'
                       }}
@@ -115,8 +160,11 @@
           <div class="prana-ugc__navigation">
             <button
               type="button"
+
               class="prana-ugc__prev"
+
               aria-label="Previous videos"
+
               aria-controls="UgcSwiper-{{ section.id }}"
             >
               &#8592;
@@ -124,8 +172,11 @@
 
             <button
               type="button"
+
               class="prana-ugc__next"
+
               aria-label="Next videos"
+
               aria-controls="UgcSwiper-{{ section.id }}"
             >
               &#8594;
@@ -139,144 +190,269 @@
 
 {% stylesheet %}
   .prana-ugc {
+
     padding: 60px 0;
+
     background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+
     color: var(--ugc-text);
+
     font-family: var(--U);
+
     position: relative;
+
     z-index: 1;
+
   }
+
   .prana-ugc > .section {
+
     background: transparent !important;
+
   }
+
   .prana-ugc__inner {
+
     width: 100%;
+
     min-width: 0;
+
   }
+
   .prana-ugc__header {
+
     max-width: 700px;
+
     margin: 0 auto 32px;
+
     text-align: center;
+
   }
+
   .prana-ugc .prana-ugc__eyebrow {
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 14px;
+
     margin: 0 0 12px;
+
     color: var(--ugc-eyebrow) !important;
+
     font: 400 14px/1.5 var(--U);
+
   }
+
   .prana-ugc__eyebrow::before,
+
   .prana-ugc__eyebrow::after {
+
     content: '';
+
     width: 40px;
+
     height: 1px;
+
     background: var(--ugc-line);
+
   }
+
   .prana-ugc .prana-ugc__heading {
+
     margin: 0 0 12px;
+
     color: var(--ugc-heading) !important;
+
     font: 400 38px/1.15 var(--D);
+
   }
+
+
 
   .prana-ugc__intro,
+
   .prana-ugc__intro p {
+
     margin: 0;
+
     color: var(--ugc-text) !important;
+
     font: 400 17px/1.5 var(--U);
+
   }
 
+
+
   prana-ugc-videos {
+
     display: block;
+
   }
+
   .prana-ugc__swiper {
+
     width: 100%;
+
     max-width: min(100%, var(--ugc-desktop-max));
+
     margin: 0 auto;
+
     overflow: hidden;
+
   }
+    .prana-ugc__video,
+    .prana-ugc__placeholder {
+      height: var(--ugc-video-height-mobile);
+    }
+
+
+
   .prana-ugc__card {
+
     max-width: none;
+
   }
+
   .prana-ugc__video {
     display: block;
     width: 100%;
-    aspect-ratio: 9 / 16;
+    height: var(--ugc-video-height-desktop);
     object-fit: cover;
     object-position: center;
     background: var(--ugc-video-bg);
+
   }
+
   .prana-ugc__placeholder {
     display: grid;
     place-items: center;
-    aspect-ratio: 9 / 16;
+    height: var(--ugc-video-height-desktop);
     padding: 24px;
     color: var(--ugc-placeholder-text);
     text-align: center;
-  }
-  .prana-ugc__navigation {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
-  }
-  .prana-ugc__navigation button {
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--ugc-nav-border) !important;
-    border-radius: 50%;
-    background: var(--ugc-nav-bg) !important;
-    color: var(--ugc-nav-icon) !important;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  .prana-ugc__navigation button:disabled {
-    opacity: 0.35;
-    cursor: default;
-  }
-  .prana-ugc__navigation button:focus-visible,
-  .prana-ugc__swiper:focus-visible {
-    outline: 2px solid var(--ugc-nav-border);
-    outline-offset: 3px;
+    box-sizing: border-box;
+
   }
 
+  .prana-ugc__navigation {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+  }
+
+  .prana-ugc__navigation button {
+
+    width: 44px;
+
+    height: 44px;
+
+    border: 1px solid var(--ugc-nav-border) !important;
+
+    border-radius: 50%;
+
+    background: var(--ugc-nav-bg) !important;
+
+    color: var(--ugc-nav-icon) !important;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+  }
+
+  .prana-ugc__navigation button:disabled {
+
+    opacity: 0.35;
+
+    cursor: default;
+
+  }
+
+  .prana-ugc__navigation button:focus-visible,
+
+  .prana-ugc__swiper:focus-visible {
+
+    outline: 2px solid var(--ugc-nav-border);
+
+    outline-offset: 3px;
+
+  }
+
+
+
   @media (max-width: 749px) {
+
     .prana-ugc {
+
       padding: 40px 0;
+
     }
+
     .prana-ugc .prana-ugc__heading {
+
       font-size: 24px;
+
     }
+
     .prana-ugc__intro,
+
     .prana-ugc__intro p {
+
       font-size: 15px;
+
     }
+
     .prana-ugc__header {
+
       margin-bottom: 24px;
+
     }
+
     .prana-ugc__swiper {
+
       max-width: 100%;
+
       margin: 0 auto;
+
     }
+
     .prana-ugc__card {
+
       flex: 0 0 calc((100% - ((var(--ugc-mobile-count) - 1) * 14px))/ var(--ugc-mobile-count));
+
       max-width: none;
+
     }
+
   }
 {% endstylesheet %}
 
 {% javascript %}
   (function () {
     const SWIPER_CSS = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css';
+
     const SWIPER_JS = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
 
     function loadSwiperAssets() {
       if (!document.querySelector('link[data-prana-swiper-css]')) {
         const link = document.createElement('link');
+
         link.rel = 'stylesheet';
+
         link.href = SWIPER_CSS;
+
         link.setAttribute('data-prana-swiper-css', '');
+
         document.head.appendChild(link);
       }
 
@@ -289,16 +465,24 @@
 
         if (existing) {
           existing.addEventListener('load', resolve, { once: true });
+
           existing.addEventListener('error', reject, { once: true });
+
           return;
         }
 
         const script = document.createElement('script');
+
         script.src = SWIPER_JS;
+
         script.defer = true;
+
         script.setAttribute('data-prana-swiper-js', '');
+
         script.onload = resolve;
+
         script.onerror = reject;
+
         document.head.appendChild(script);
       });
 
@@ -308,35 +492,48 @@
     if (!customElements.get('prana-ugc-videos')) {
       customElements.define(
         'prana-ugc-videos',
+
         class extends HTMLElement {
           connectedCallback() {
             this.controller = new AbortController();
+
             const signal = this.controller.signal;
 
             this.autoplayVideos = this.dataset.autoplay === 'true';
+
             this.sliderAutoplay = this.dataset.sliderAutoplay === 'true';
+
             this.sliderSpeed = Math.max(1000, Number(this.dataset.sliderSpeed || 3000));
+
             this.desktopVideos = Math.max(1, Number(this.dataset.desktopVideos || 4));
+
             this.mobileVideos = Math.max(1, Number(this.dataset.mobileVideos || 1));
 
             this.querySelectorAll('video').forEach((video) => {
               video.muted = true;
+
               video.loop = true;
+
               video.playsInline = true;
             });
 
             this.setupVideoAutoplay();
+
             this.initSwiper();
 
             this.addEventListener(
               'shopify:block:select',
+
               (event) => {
                 const slide = event.target.closest('.swiper-slide');
+
                 if (!slide || !this.swiper) return;
 
                 const index = Array.from(this.querySelectorAll('.swiper-slide')).indexOf(slide);
+
                 if (index >= 0) this.swiper.slideTo(index);
               },
+
               { signal }
             );
           }
@@ -348,7 +545,9 @@
               if (!this.isConnected || this.swiper) return;
 
               const swiperEl = this.querySelector('.prana-ugc__swiper');
+
               const prevEl = this.querySelector('.prana-ugc__prev');
+
               const nextEl = this.querySelector('.prana-ugc__next');
 
               if (!swiperEl) return;
@@ -357,28 +556,42 @@
 
               this.swiper = new window.Swiper(swiperEl, {
                 slidesPerView: this.mobileVideos,
+
                 spaceBetween: 14,
+
                 speed: 600,
+
                 grabCursor: true,
+
                 watchOverflow: true,
+
                 loop: true,
+
                 observer: true,
+
                 observeParents: true,
+
                 navigation: {
                   prevEl,
+
                   nextEl,
                 },
+
                 autoplay:
                   this.sliderAutoplay && slideCount > 1
                     ? {
                         delay: this.sliderSpeed,
+
                         disableOnInteraction: false,
+
                         pauseOnMouseEnter: true,
                       }
                     : false,
+
                 breakpoints: {
                   750: {
                     slidesPerView: this.desktopVideos,
+
                     spaceBetween: 20,
                   },
                 },
@@ -399,15 +612,18 @@
 
                     if (!entry.isIntersecting || entry.intersectionRatio < 0.25) {
                       video.pause();
+
                       return;
                     }
 
                     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                       video.muted = true;
+
                       video.play().catch(() => {});
                     }
                   });
                 },
+
                 { threshold: [0, 0.25] }
               );
 
@@ -423,7 +639,9 @@
 
           disconnectedCallback() {
             this.controller?.abort();
+
             this.visibilityObserver?.disconnect();
+
             this.swiper?.destroy(true, true);
 
             this.querySelectorAll('video').forEach((video) => {
@@ -663,6 +881,26 @@
       ],
 
       "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "video_height_desktop",
+      "label": "Video height desktop",
+      "min": 300,
+      "max": 700,
+      "step": 20,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "video_height_mobile",
+      "label": "Video height mobile",
+      "min": 280,
+      "max": 650,
+      "step": 10,
+      "unit": "px",
+      "default": 420
     },
 
     {
