@@ -1006,6 +1006,19 @@
         "des": "Every review tells a story of balance, brightness, and beauty — results you can see and feel."
       }
     },
+    "custom_discount_popup_aDAJDU": {
+      "type": "custom-discount-popup",
+      "disabled": true,
+      "name": "Discount Popup",
+      "settings": {
+        "delay_time": 1,
+        "bg_image": "shopify://shop_images/Desktop_-_15_1.jpg",
+        "top_text": "UNLOCK",
+        "main_text": "20% OFF",
+        "sub_text": "Your first one-time purchase",
+        "button_text": "CONTINUE"
+      }
+    },
     "1765522360e21e4938": {
       "type": "_blocks",
       "blocks": {
@@ -1031,7 +1044,6 @@
       "block_order": [
         "instafeed_app_block_fCUK8Y"
       ],
-      "disabled": true,
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1056,21 +1068,8 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
-    "custom_discount_popup_aDAJDU": {
-      "type": "custom-discount-popup",
-      "disabled": true,
-      "name": "Discount Popup",
-      "settings": {
-        "delay_time": 1,
-        "bg_image": "shopify://shop_images/Desktop_-_15_1.jpg",
-        "top_text": "UNLOCK",
-        "main_text": "20% OFF",
-        "sub_text": "Your first one-time purchase",
-        "button_text": "CONTINUE"
+        "padding-block-start": 60,
+        "padding-block-end": 60
       }
     }
   },
@@ -1094,7 +1093,7 @@
     "bundle_cards_layout_Qi7tD6",
     "image_with_product_slider_XMd3kT",
     "review_slider_iLR8ih",
-    "1765522360e21e4938",
-    "custom_discount_popup_aDAJDU"
+    "custom_discount_popup_aDAJDU",
+    "1765522360e21e4938"
   ]
 }
