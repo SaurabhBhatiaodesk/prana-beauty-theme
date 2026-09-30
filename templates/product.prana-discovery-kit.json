@@ -596,6 +596,9 @@
       "settings": {
         "bundle_id": "873923",
         "bundle_name": "Discovery Kit Bundle",
+        "add_to_cart_text": "Add Bundle to Cart",
+        "add_to_cart_bg": "#b56a0c",
+        "add_to_cart_color": "#ffffff",
         "background_color": "#f7f1e8",
         "heading_color": "#2e2925",
         "text_color": "#5c554f",
@@ -604,8 +607,8 @@
         "divider_color": "#ded5ca",
         "plus_background": "#e9c7b2",
         "plus_color": "#6e3b2e",
-        "padding_top": 28,
-        "padding_bottom": 28
+        "padding_top": 52,
+        "padding_bottom": 52
       }
     },
     "daily_ritual_section_qz6Am8": {
