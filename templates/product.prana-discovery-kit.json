@@ -564,42 +564,18 @@
     },
     "prana_duo_benefits_section_iVfdqQ": {
       "type": "prana-duo-benefits-section",
-      "blocks": {
-        "product_feature_mkzaXg": {
-          "type": "product_feature",
-          "settings": {
-            "heading": "PRANA Turmeric Mask (60ml)",
-            "description": "<p>A clarifying, glow-boosting mask powered by turmeric and Ayurvedic botanicals to purify, brighten and renew your skin.</p>",
-            "bullet_1": "Helps reduce dullness",
-            "bullet_2": "Clarifies and cleanses",
-            "bullet_3": "Supports a healthy, radiant complexion"
-          }
-        },
-        "product_feature_yXUe4X": {
-          "type": "product_feature",
-          "settings": {
-            "heading": "PRANA Rose Water Toning Mist",
-            "description": "<p>A refreshing, hydrating mist that tones, soothes and balances the skin, leaving you feeling calm and radiant.</p>",
-            "bullet_1": "Instant hydration",
-            "bullet_2": "Soothes and refreshes",
-            "bullet_3": "Helps balance and tone"
-          }
-        }
-      },
-      "block_order": [
-        "product_feature_mkzaXg",
-        "product_feature_yXUe4X"
-      ],
       "name": "PRANA Duo Benefits",
       "settings": {
-        "background_color": "#F7F1E8",
-        "heading_color": "#2E2925",
-        "text_color": "#5C554F",
-        "check_background": "#A4773D",
-        "check_color": "#FFFFFF",
-        "divider_color": "#DED5CA",
-        "plus_background": "#E9C7B2",
-        "plus_color": "#6E3B2E",
+        "bundle_id": "873923",
+        "bundle_name": "Discovery Kit Bundle",
+        "background_color": "#f7f1e8",
+        "heading_color": "#2e2925",
+        "text_color": "#5c554f",
+        "check_background": "#a4773d",
+        "check_color": "#ffffff",
+        "divider_color": "#ded5ca",
+        "plus_background": "#e9c7b2",
+        "plus_color": "#6e3b2e",
         "padding_top": 28,
         "padding_bottom": 28
       }
