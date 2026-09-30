@@ -242,7 +242,6 @@
             "product_short_description_jmyh6B": {
               "type": "product-short-description",
               "name": "Product Short Decription",
-              "disabled": true,
               "settings": {},
               "blocks": {}
             },
