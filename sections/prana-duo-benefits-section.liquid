@@ -1,11 +1,13 @@
 <section
-  id="PranaDynamicBundle-{{ section.id }}"
   class="prana-duo-section"
   data-bundle-id="{{ section.settings.bundle_id | escape }}"
+  data-bundle-name="{{ section.settings.bundle_name | escape }}"
   style="
     --section-bg: {{ section.settings.background_color }};
     --heading-color: {{ section.settings.heading_color }};
     --text-color: {{ section.settings.text_color }};
+    --check-bg: {{ section.settings.check_background }};
+    --check-color: {{ section.settings.check_color }};
     --divider-color: {{ section.settings.divider_color }};
     --plus-bg: {{ section.settings.plus_background }};
     --plus-color: {{ section.settings.plus_color }};
@@ -21,57 +23,73 @@
       </div>
     {% endif %}
 
-    <div class="prana-duo-section__grid" id="PranaBundleCards-{{ section.id }}">
-      <article class="prana-duo-card" data-card="0" hidden>
-        <a class="prana-duo-card__image-wrap" href="#">
-          <img class="prana-duo-card__image" alt="" loading="lazy">
-        </a>
+    <div class="prana-duo-section__grid">
+      {% for block in section.blocks %}
+        {% assign selected_product = block.settings.product %}
 
-        <div class="prana-duo-card__content">
-          <h3 class="prana-duo-card__heading">
-            <a href="#"></a>
-          </h3>
+        {% if selected_product != blank %}
+          {% assign display_image = selected_product.featured_image %}
+          {% assign display_heading = block.settings.custom_heading | default: selected_product.title %}
 
-          <div class="prana-duo-card__price"></div>
-        </div>
-      </article>
+          <article class="prana-duo-card" {{ block.shopify_attributes }}>
+            <a
+              class="prana-duo-card__image-wrap"
+              href="{{ selected_product.url }}"
+              aria-label="{{ selected_product.title | escape }}"
+            >
+              {% if display_image != blank %}
+                {{
+                  display_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(max-width: 749px) 100vw, 50vw',
+                    class: 'prana-duo-card__image',
+                    alt: selected_product.title
+                }}
+              {% endif %}
+            </a>
 
-      <div class="prana-duo-section__plus" aria-hidden="true" hidden>+</div>
+            <div class="prana-duo-card__content">
+              <h3 class="prana-duo-card__heading">
+                <a href="{{ selected_product.url }}">{{ display_heading }}</a>
+              </h3>
 
-      <article class="prana-duo-card" data-card="1" hidden>
-        <a class="prana-duo-card__image-wrap" href="#">
-          <img class="prana-duo-card__image" alt="" loading="lazy">
-        </a>
+              <div class="prana-duo-card__description rte">
+                {% if block.settings.custom_description != blank %}
+                  {{ block.settings.custom_description }}
+                {% else %}
+                  {{ selected_product.description | strip_html | truncatewords: 28 }}
+                {% endif %}
+              </div>
 
-        <div class="prana-duo-card__content">
-          <h3 class="prana-duo-card__heading">
-            <a href="#"></a>
-          </h3>
+              {% if block.settings.bullet_1 != blank or block.settings.bullet_2 != blank or block.settings.bullet_3 != blank %}
+                <ul class="prana-duo-card__list">
+                  {% if block.settings.bullet_1 != blank %}
+                    <li><span class="prana-duo-card__check">✓</span><span>{{ block.settings.bullet_1 }}</span></li>
+                  {% endif %}
+                  {% if block.settings.bullet_2 != blank %}
+                    <li><span class="prana-duo-card__check">✓</span><span>{{ block.settings.bullet_2 }}</span></li>
+                  {% endif %}
+                  {% if block.settings.bullet_3 != blank %}
+                    <li><span class="prana-duo-card__check">✓</span><span>{{ block.settings.bullet_3 }}</span></li>
+                  {% endif %}
+                </ul>
+              {% endif %}
+            </div>
+          </article>
 
-          <div class="prana-duo-card__price"></div>
-        </div>
-      </article>
-    </div>
-
-    <div class="prana-bundler-source" id="PranaBundlerSource-{{ section.id }}">
-      {% if section.settings.bundle_shortcode != blank %}
-        {{ section.settings.bundle_shortcode }}
-      {% elsif request.design_mode %}
-        <div class="prana-bundle-section__empty">
-          Paste the Discovery Kit bundle shortcode in this section setting.
-        </div>
-      {% endif %}
+          {% if forloop.first and section.blocks.size > 1 %}
+            <div class="prana-duo-section__plus" aria-hidden="true">+</div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </section>
 
 {% stylesheet %}
-.prana-duo-section {
-  background: var(--section-bg);
-  padding-top: var(--padding-top);
-  padding-bottom: var(--padding-bottom);
-}
-
 .prana-bundler-editor-helper {
   margin: 0 0 20px;
   padding: 16px 18px;
@@ -83,8 +101,13 @@
   line-height: 1.6;
 }
 
-.prana-bundler-editor-helper__list {
-  margin-top: 8px;
+.prana-bundler-editor-helper__list { margin-top: 8px; }
+.prana-bundler-editor-helper__item + .prana-bundler-editor-helper__item { margin-top: 3px; }
+
+.prana-duo-section {
+  background: var(--section-bg);
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
 }
 
 .prana-duo-section__grid {
@@ -106,11 +129,7 @@
   border-right: 1px solid var(--divider-color);
 }
 
-.prana-duo-card__image-wrap {
-  display: block;
-  min-width: 0;
-  overflow: hidden;
-}
+.prana-duo-card__image-wrap { display: block; min-width: 0; overflow: hidden; }
 
 .prana-duo-card__image {
   display: block;
@@ -136,16 +155,50 @@
   line-height: .98;
 }
 
-.prana-duo-card__heading a {
-  color: inherit;
-  text-decoration: none;
-}
+.prana-duo-card__heading a { color: inherit; text-decoration: none; }
 
-.prana-duo-card__price {
+.prana-duo-card__description,
+.prana-duo-card__description p {
+  margin: 0;
   color: var(--text-color);
   font-family: var(--S);
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.55;
+}
+
+.prana-duo-card__description { margin-bottom: 18px; }
+
+.prana-duo-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.prana-duo-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-color);
+  font-family: var(--S);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.prana-duo-card__check {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--check-bg);
+  color: var(--check-color);
+  font-size: 12px;
+  line-height: 1;
 }
 
 .prana-duo-section__plus {
@@ -167,239 +220,114 @@
   line-height: 1;
 }
 
-.prana-bundler-source {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  clip: rect(0 0 0 0) !important;
-  clip-path: inset(50%) !important;
-  white-space: nowrap !important;
-}
-
-.prana-bundle-section__empty {
-  position: static !important;
-  width: auto !important;
-  height: auto !important;
-  clip: auto !important;
-  clip-path: none !important;
-  white-space: normal !important;
-  padding: 14px;
-  border: 1px dashed #c8a978;
-  color: #5c554f;
-}
-
 @media (max-width: 1100px) {
-  .prana-duo-section__grid {
-    gap: 24px;
-  }
-
-  .prana-duo-card {
-    grid-template-columns: 1fr;
-  }
-
-  .prana-duo-card__content {
-    padding: 22px 0 0;
-  }
-
-  .prana-duo-card:first-of-type {
-    padding-right: 12px;
-  }
-
-  .prana-duo-card__heading {
-    font-size: 26px;
-  }
+  .prana-duo-section__grid { gap: 24px; }
+  .prana-duo-card { grid-template-columns: 1fr; }
+  .prana-duo-card__content { padding: 22px 0 0; }
+  .prana-duo-card:first-of-type { padding-right: 12px; }
+  .prana-duo-card__heading { font-size: 26px; }
 }
 
 @media (max-width: 749px) {
-  .prana-duo-section__grid {
-    grid-template-columns: 1fr;
-    gap: 38px;
-  }
-
-  .prana-duo-card {
-    grid-template-columns: 1fr;
-  }
-
+  .prana-duo-section__grid { grid-template-columns: 1fr; gap: 38px; }
+  .prana-duo-card { grid-template-columns: 1fr; }
   .prana-duo-card:first-of-type {
     padding-right: 0;
     padding-bottom: 32px;
     border-right: 0;
     border-bottom: 1px solid var(--divider-color);
   }
-
-  .prana-duo-card__image {
-    min-height: 280px;
-    max-height: 420px;
-  }
-
-  .prana-duo-card__content {
-    padding: 20px 0 0;
-  }
-
-  .prana-duo-card__heading {
-    font-size: 26px;
-  }
-
-  .prana-duo-section__plus {
-    display: none !important;
-  }
+  .prana-duo-card__image { min-height: 280px; max-height: 420px; }
+  .prana-duo-card__content { padding: 20px 0 0; }
+  .prana-duo-card__heading { font-size: 26px; }
+  .prana-duo-section__plus { display: none; }
 }
 {% endstylesheet %}
 
+{% if request.design_mode %}
 <script>
-(function () {
-  const section = document.getElementById('PranaDynamicBundle-{{ section.id }}');
-  if (!section) return;
+  (function () {
+    const root = document.getElementById('PranaBundlerHelper-{{ section.id }}');
+    if (!root) return;
 
-  const source = document.getElementById('PranaBundlerSource-{{ section.id }}');
-  const selectedBundleId = String(section.dataset.bundleId || '').trim();
+    const listEl = root.querySelector('.prana-bundler-editor-helper__list');
 
-  function getBundleId(bundle) {
-    return String(
-      bundle?.id ??
-      bundle?.bundle_id ??
-      bundle?.bundleId ??
-      ''
-    );
-  }
+    function readBundles() {
+      if (!window.bndlr || typeof window.bndlr.getBundles !== 'function') return false;
 
-  function getBundleName(bundle) {
-    return (
-      bundle?.name ||
-      bundle?.title ||
-      bundle?.bundle_name ||
-      bundle?.bundleName ||
-      'Unnamed bundle'
-    );
-  }
+      try {
+        let bundles = window.bndlr.getBundles();
 
-  function normalizeBundles(raw) {
-    if (Array.isArray(raw)) return raw;
-    if (raw && Array.isArray(raw.bundles)) return raw.bundles;
-    if (raw && typeof raw === 'object') return Object.values(raw);
-    return [];
-  }
+        if (bundles && Array.isArray(bundles.bundles)) {
+          bundles = bundles.bundles;
+        } else if (!Array.isArray(bundles) && bundles && typeof bundles === 'object') {
+          bundles = Object.values(bundles);
+        }
 
-  function renderEditorList() {
-    {% if request.design_mode %}
-      const helper = document.getElementById('PranaBundlerHelper-{{ section.id }}');
-      const list = helper ? helper.querySelector('.prana-bundler-editor-helper__list') : null;
-      if (!list || !window.bndlr || typeof window.bndlr.getBundles !== 'function') return;
+        if (!Array.isArray(bundles) || !bundles.length) {
+          listEl.textContent = 'No bundles found.';
+          return true;
+        }
 
-      const bundles = normalizeBundles(window.bndlr.getBundles());
-      list.innerHTML = '';
+        listEl.innerHTML = '';
 
-      bundles.forEach(function (bundle) {
-        const row = document.createElement('div');
-        row.textContent = getBundleName(bundle) + ' = ' + getBundleId(bundle);
-        list.appendChild(row);
-      });
-    {% endif %}
-  }
+        bundles.forEach(function (bundle) {
+          const name = bundle.name || bundle.title || bundle.bundle_name || bundle.bundleName || 'Unnamed bundle';
+          const id = bundle.id ?? bundle.bundle_id ?? bundle.bundleId ?? 'ID not exposed';
 
-  function cleanText(value) {
-    return String(value || '').replace(/\s+/g, ' ').trim();
-  }
+          const enabledRaw = bundle.enabled ?? bundle.is_enabled ?? bundle.active ?? bundle.isActive;
+          let status = '';
 
-  function cardDataFromElement(el) {
-    const img = el.querySelector('img');
-    const link = el.querySelector('a[href]');
-    const titleEl =
-      el.querySelector('.bndlr-product-title') ||
-      el.querySelector('.bndlr-product-name') ||
-      el.querySelector('[class*="title"]') ||
-      link;
+          if (enabledRaw !== undefined && enabledRaw !== null) {
+            const enabled = enabledRaw === true || enabledRaw === 1 || enabledRaw === '1' || enabledRaw === 'true';
+            status = enabled ? ' (enabled)' : ' (disabled)';
+          }
 
-    const priceEl =
-      el.querySelector('.bndlr-product-price') ||
-      el.querySelector('[class*="price"]');
+          const row = document.createElement('div');
+          row.className = 'prana-bundler-editor-helper__item';
+          row.textContent = name + ' = ' + id + status;
+          listEl.appendChild(row);
+        });
 
-    return {
-      title: cleanText(titleEl ? titleEl.textContent : ''),
-      url: link ? link.href : '#',
-      image: img ? (img.currentSrc || img.src) : '',
-      price: cleanText(priceEl ? priceEl.textContent : '')
-    };
-  }
+        return true;
+      } catch (error) {
+        console.error('Bundler bundle list error:', error);
+        listEl.textContent = 'Could not read bundle IDs.';
+        return true;
+      }
+    }
 
-  function populateCards(products) {
-    if (!products.length) return;
+    function loadBundler() {
+      if (readBundles()) return;
 
-    products.slice(0, 2).forEach(function (product, index) {
-      const card = section.querySelector('[data-card="' + index + '"]');
-      if (!card) return;
-
-      const imageLink = card.querySelector('.prana-duo-card__image-wrap');
-      const img = card.querySelector('.prana-duo-card__image');
-      const titleLink = card.querySelector('.prana-duo-card__heading a');
-      const price = card.querySelector('.prana-duo-card__price');
-
-      titleLink.textContent = product.title || 'Bundle product';
-      titleLink.href = product.url || '#';
-      imageLink.href = product.url || '#';
-
-      if (product.image) {
-        img.src = product.image;
-        img.alt = product.title || '';
+      if (!document.querySelector('script[src*="cdn-bundler.nice-team.net/app/js/bundler.js"]')) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://cdn-bundler.nice-team.net/app/js/bundler.js?shop={{ shop.permanent_domain | escape }}';
+        document.head.appendChild(script);
       }
 
-      price.textContent = product.price || '';
-      card.hidden = false;
-    });
-
-    const visibleCards = section.querySelectorAll('.prana-duo-card:not([hidden])');
-    const plus = section.querySelector('.prana-duo-section__plus');
-
-    if (plus) {
-      plus.hidden = visibleCards.length < 2;
-    }
-  }
-
-  function readRenderedBundlerProducts() {
-    if (!source) return false;
-
-    const productEls = source.querySelectorAll('.bndlr-product');
-    if (!productEls.length) return false;
-
-    const products = Array.from(productEls).map(cardDataFromElement);
-    populateCards(products);
-    return true;
-  }
-
-  function refreshBundler() {
-    renderEditorList();
-
-    if (
-      window.bndlr &&
-      typeof window.bndlr.refresh === 'function'
-    ) {
-      window.bndlr.refresh();
+      let tries = 0;
+      const timer = setInterval(function () {
+        tries += 1;
+        if (readBundles() || tries >= 40) {
+          clearInterval(timer);
+          if (tries >= 40 && (!window.bndlr || typeof window.bndlr.getBundles !== 'function')) {
+            listEl.textContent = 'Bundler loaded slowly or bundle data is not exposed yet.';
+          }
+        }
+      }, 250);
     }
 
-    setTimeout(readRenderedBundlerProducts, 100);
-    setTimeout(readRenderedBundlerProducts, 500);
-    setTimeout(readRenderedBundlerProducts, 1200);
-  }
-
-  document.addEventListener('bundler:loaded', refreshBundler);
-
-  document.addEventListener('bundler:bundle_widget_created', function () {
-    readRenderedBundlerProducts();
-  });
-
-  if (
-    window.bndlr &&
-    typeof window.bndlr.refresh === 'function'
-  ) {
-    refreshBundler();
-  }
-})();
+    loadBundler();
+  })();
 </script>
+{% endif %}
 
 {% schema %}
 {
-  "name": "PRANA Duo Benefits",
+  "name": "PRANA Duo Products",
+  "max_blocks": 2,
   "settings": [
     {
       "type": "header",
@@ -409,74 +337,46 @@
       "type": "text",
       "id": "bundle_id",
       "label": "Bundle ID",
-      "info": "Use the ID shown in the live bundle list."
+      "info": "Copy the ID from the live bundle list shown in Theme Editor."
     },
     {
-      "type": "liquid",
-      "id": "bundle_shortcode",
-      "label": "Bundle shortcode",
-      "info": "Paste the shortcode from Bundler for this exact bundle."
+      "type": "text",
+      "id": "bundle_name",
+      "label": "Bundle name",
+      "info": "Optional label for this bundle."
     },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#F7F1E8" },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#2E2925" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#5C554F" },
+    { "type": "color", "id": "check_background", "label": "Check background", "default": "#A4773D" },
+    { "type": "color", "id": "check_color", "label": "Check icon color", "default": "#FFFFFF" },
+    { "type": "color", "id": "divider_color", "label": "Divider color", "default": "#DED5CA" },
+    { "type": "color", "id": "plus_background", "label": "Plus background", "default": "#E9C7B2" },
+    { "type": "color", "id": "plus_color", "label": "Plus icon color", "default": "#6E3B2E" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 28 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 28 }
+  ],
+  "blocks": [
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background",
-      "default": "#F7F1E8"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading color",
-      "default": "#2E2925"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#5C554F"
-    },
-    {
-      "type": "color",
-      "id": "divider_color",
-      "label": "Divider color",
-      "default": "#DED5CA"
-    },
-    {
-      "type": "color",
-      "id": "plus_background",
-      "label": "Plus background",
-      "default": "#E9C7B2"
-    },
-    {
-      "type": "color",
-      "id": "plus_color",
-      "label": "Plus icon color",
-      "default": "#6E3B2E"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Padding top",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Padding bottom",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "default": 28
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Select product" },
+        { "type": "text", "id": "custom_heading", "label": "Custom heading", "info": "Leave blank to use product title." },
+        { "type": "richtext", "id": "custom_description", "label": "Custom description", "info": "Leave blank to use the product description." },
+        { "type": "text", "id": "bullet_1", "label": "Bullet 1" },
+        { "type": "text", "id": "bullet_2", "label": "Bullet 2" },
+        { "type": "text", "id": "bullet_3", "label": "Bullet 3" }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "PRANA Duo Benefits"
+      "name": "PRANA Duo Products",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" }
+      ]
     }
   ]
 }
