@@ -97,37 +97,39 @@
             >
           </div>
 
-          <input
-            type="email"
+          <div class="ec-name-row">
+            <input
+              type="email"
 
-            id="ContactForm-email-{{ section.id }}"
+              id="ContactForm-email-{{ section.id }}"
 
-            class="ec-input ec-email"
+              class="ec-input ec-email"
 
-            autocomplete="email"
+              autocomplete="email"
 
-            name="email"
+              name="email"
 
-            spellcheck="false"
+              spellcheck="false"
 
-            autocapitalize="off"
+              autocapitalize="off"
 
-            aria-required="true"
+              aria-required="true"
 
-            required
+              required
 
-            placeholder="Email"
-          >
+              placeholder="Email"
+            >
 
-          <input
-            type="tel"
-            id="ContactForm-phone-{{ section.id }}"
-            class="ec-input"
-            autocomplete="tel"
-            name="phone"
-            inputmode="tel"
-            placeholder="Phone number"
-          >
+            <input
+              type="tel"
+              id="ContactForm-phone-{{ section.id }}"
+              class="ec-input"
+              autocomplete="tel"
+              name="phone"
+              inputmode="tel"
+              placeholder="Phone number"
+            >
+          </div>
 
           <button
             type="submit"
