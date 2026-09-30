@@ -562,6 +562,48 @@
         "padding-block-end": 30
       }
     },
+    "prana_duo_benefits_section_iVfdqQ": {
+      "type": "prana-duo-benefits-section",
+      "blocks": {
+        "product_feature_mkzaXg": {
+          "type": "product_feature",
+          "settings": {
+            "heading": "PRANA Turmeric Mask (60ml)",
+            "description": "<p>A clarifying, glow-boosting mask powered by turmeric and Ayurvedic botanicals to purify, brighten and renew your skin.</p>",
+            "bullet_1": "Helps reduce dullness",
+            "bullet_2": "Clarifies and cleanses",
+            "bullet_3": "Supports a healthy, radiant complexion"
+          }
+        },
+        "product_feature_yXUe4X": {
+          "type": "product_feature",
+          "settings": {
+            "heading": "PRANA Rose Water Toning Mist",
+            "description": "<p>A refreshing, hydrating mist that tones, soothes and balances the skin, leaving you feeling calm and radiant.</p>",
+            "bullet_1": "Instant hydration",
+            "bullet_2": "Soothes and refreshes",
+            "bullet_3": "Helps balance and tone"
+          }
+        }
+      },
+      "block_order": [
+        "product_feature_mkzaXg",
+        "product_feature_yXUe4X"
+      ],
+      "name": "PRANA Duo Benefits",
+      "settings": {
+        "background_color": "#F7F1E8",
+        "heading_color": "#2E2925",
+        "text_color": "#5C554F",
+        "check_background": "#A4773D",
+        "check_color": "#FFFFFF",
+        "divider_color": "#DED5CA",
+        "plus_background": "#E9C7B2",
+        "plus_color": "#6E3B2E",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
     "daily_ritual_section_qz6Am8": {
       "type": "daily-ritual-section",
       "blocks": {
@@ -796,6 +838,7 @@
   },
   "order": [
     "main",
+    "prana_duo_benefits_section_iVfdqQ",
     "daily_ritual_section_qz6Am8",
     "complete_routine_BwPUHL",
     "key_ingredients_sec_R9mPEk",
