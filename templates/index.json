@@ -512,6 +512,8 @@
         "scrollbar_track_color": "#ede6dd",
         "desktop_videos": 5,
         "mobile_videos": "2",
+        "video_height_desktop": 400,
+        "video_height_mobile": 420,
         "autoplay": true,
         "slider_autoplay": true,
         "slider_autoplay_speed": 3000
