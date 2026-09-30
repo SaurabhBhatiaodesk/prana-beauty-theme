@@ -1,80 +1,270 @@
-{% if request.design_mode %}
-  <div
-    id="BundlerLiveIds-{{ section.id }}"
-    class="bundler-live-ids"
-    data-shop="{{ shop.permanent_domain | escape }}"
-  >
-    <strong>Bundle IDs (live from Bundler — only visible while editing):</strong>
-    <div class="bundler-live-ids__list">Loading bundles from Bundler...</div>
+<section
+  class="prana-duo-section"
+  data-bundle-id="{{ section.settings.bundle_id | escape }}"
+  data-bundle-name="{{ section.settings.bundle_name | escape }}"
+  style="
+    --section-bg: {{ section.settings.background_color }};
+    --heading-color: {{ section.settings.heading_color }};
+    --text-color: {{ section.settings.text_color }};
+    --check-bg: {{ section.settings.check_background }};
+    --check-color: {{ section.settings.check_color }};
+    --divider-color: {{ section.settings.divider_color }};
+    --plus-bg: {{ section.settings.plus_background }};
+    --plus-color: {{ section.settings.plus_color }};
+    --padding-top: {{ section.settings.padding_top }}px;
+    --padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="section">
+    {% if request.design_mode %}
+      <div class="prana-bundler-editor-helper" id="PranaBundlerHelper-{{ section.id }}">
+        <strong>Bundle IDs (live from Bundler — only visible while editing):</strong>
+        <div class="prana-bundler-editor-helper__list">Loading bundles...</div>
+      </div>
+    {% endif %}
+
+    <div class="prana-duo-section__grid">
+      {% for block in section.blocks %}
+        {% assign selected_product = block.settings.product %}
+
+        {% if selected_product != blank %}
+          {% assign display_image = selected_product.featured_image %}
+          {% assign display_heading = block.settings.custom_heading | default: selected_product.title %}
+
+          <article class="prana-duo-card" {{ block.shopify_attributes }}>
+            <a
+              class="prana-duo-card__image-wrap"
+              href="{{ selected_product.url }}"
+              aria-label="{{ selected_product.title | escape }}"
+            >
+              {% if display_image != blank %}
+                {{
+                  display_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(max-width: 749px) 100vw, 50vw',
+                    class: 'prana-duo-card__image',
+                    alt: selected_product.title
+                }}
+              {% endif %}
+            </a>
+
+            <div class="prana-duo-card__content">
+              <h3 class="prana-duo-card__heading">
+                <a href="{{ selected_product.url }}">{{ display_heading }}</a>
+              </h3>
+
+              <div class="prana-duo-card__description rte">
+                {% if block.settings.custom_description != blank %}
+                  {{ block.settings.custom_description }}
+                {% else %}
+                  {{ selected_product.description | strip_html | truncatewords: 28 }}
+                {% endif %}
+              </div>
+
+              {% if block.settings.bullet_1 != blank or block.settings.bullet_2 != blank or block.settings.bullet_3 != blank %}
+                <ul class="prana-duo-card__list">
+                  {% if block.settings.bullet_1 != blank %}
+                    <li><span class="prana-duo-card__check">✓</span><span>{{ block.settings.bullet_1 }}</span></li>
+                  {% endif %}
+                  {% if block.settings.bullet_2 != blank %}
+                    <li><span class="prana-duo-card__check">✓</span><span>{{ block.settings.bullet_2 }}</span></li>
+                  {% endif %}
+                  {% if block.settings.bullet_3 != blank %}
+                    <li><span class="prana-duo-card__check">✓</span><span>{{ block.settings.bullet_3 }}</span></li>
+                  {% endif %}
+                </ul>
+              {% endif %}
+            </div>
+          </article>
+
+          {% if forloop.first and section.blocks.size > 1 %}
+            <div class="prana-duo-section__plus" aria-hidden="true">+</div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
+</section>
 
-  <style>
-    #BundlerLiveIds-{{ section.id }} {
-      margin: 16px 0;
-      padding: 18px 20px;
-      border: 1px dashed #c8a978;
-      background: #fbfaf3;
-      color: #40372f;
-      font-family: monospace;
-      font-size: 14px;
-      line-height: 1.6;
-    }
+{% stylesheet %}
+.prana-bundler-editor-helper {
+  margin: 0 0 20px;
+  padding: 16px 18px;
+  border: 1px dashed #c8a978;
+  background: #fbfaf3;
+  color: #40372f;
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
 
-    #BundlerLiveIds-{{ section.id }} .bundler-live-ids__list {
-      margin-top: 10px;
-    }
+.prana-bundler-editor-helper__list { margin-top: 8px; }
+.prana-bundler-editor-helper__item + .prana-bundler-editor-helper__item { margin-top: 3px; }
 
-    #BundlerLiveIds-{{ section.id }} .bundler-live-ids__item + .bundler-live-ids__item {
-      margin-top: 4px;
-    }
-  </style>
+.prana-duo-section {
+  background: var(--section-bg);
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
+}
 
-  <script>
-    (function () {
-      const root = document.getElementById('BundlerLiveIds-{{ section.id }}');
-      if (!root) return;
+.prana-duo-section__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
 
-      const listEl = root.querySelector('.bundler-live-ids__list');
-      const shop = root.dataset.shop;
+.prana-duo-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  min-width: 0;
+}
 
-      function getValue(obj, keys) {
-        for (const key of keys) {
-          if (obj && obj[key] !== undefined && obj[key] !== null) {
-            return obj[key];
-          }
+.prana-duo-card:first-of-type {
+  padding-right: 20px;
+  border-right: 1px solid var(--divider-color);
+}
+
+.prana-duo-card__image-wrap { display: block; min-width: 0; overflow: hidden; }
+
+.prana-duo-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+}
+
+.prana-duo-card__content {
+  padding: 20px 0 20px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.prana-duo-card__heading {
+  margin: 0 0 14px;
+  color: var(--heading-color);
+  font-family: var(--D);
+  font-size: 31px;
+  font-weight: 400;
+  line-height: .98;
+}
+
+.prana-duo-card__heading a { color: inherit; text-decoration: none; }
+
+.prana-duo-card__description,
+.prana-duo-card__description p {
+  margin: 0;
+  color: var(--text-color);
+  font-family: var(--S);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.prana-duo-card__description { margin-bottom: 18px; }
+
+.prana-duo-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.prana-duo-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-color);
+  font-family: var(--S);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.prana-duo-card__check {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--check-bg);
+  color: var(--check-color);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.prana-duo-section__plus {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--plus-bg);
+  color: var(--plus-color);
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+@media (max-width: 1100px) {
+  .prana-duo-section__grid { gap: 24px; }
+  .prana-duo-card { grid-template-columns: 1fr; }
+  .prana-duo-card__content { padding: 22px 0 0; }
+  .prana-duo-card:first-of-type { padding-right: 12px; }
+  .prana-duo-card__heading { font-size: 26px; }
+}
+
+@media (max-width: 749px) {
+  .prana-duo-section__grid { grid-template-columns: 1fr; gap: 38px; }
+  .prana-duo-card { grid-template-columns: 1fr; }
+  .prana-duo-card:first-of-type {
+    padding-right: 0;
+    padding-bottom: 32px;
+    border-right: 0;
+    border-bottom: 1px solid var(--divider-color);
+  }
+  .prana-duo-card__image { min-height: 280px; max-height: 420px; }
+  .prana-duo-card__content { padding: 20px 0 0; }
+  .prana-duo-card__heading { font-size: 26px; }
+  .prana-duo-section__plus { display: none; }
+}
+{% endstylesheet %}
+
+{% if request.design_mode %}
+<script>
+  (function () {
+    const root = document.getElementById('PranaBundlerHelper-{{ section.id }}');
+    if (!root) return;
+
+    const listEl = root.querySelector('.prana-bundler-editor-helper__list');
+
+    function readBundles() {
+      if (!window.bndlr || typeof window.bndlr.getBundles !== 'function') return false;
+
+      try {
+        let bundles = window.bndlr.getBundles();
+
+        if (bundles && Array.isArray(bundles.bundles)) {
+          bundles = bundles.bundles;
+        } else if (!Array.isArray(bundles) && bundles && typeof bundles === 'object') {
+          bundles = Object.values(bundles);
         }
-        return '';
-      }
 
-      function renderBundles() {
-        if (
-          typeof window.bndlr === 'undefined' ||
-          typeof window.bndlr.getBundles !== 'function'
-        ) {
-          return false;
-        }
-
-        let bundles;
-
-        try {
-          bundles = window.bndlr.getBundles();
-        } catch (error) {
-          console.error('Bundler getBundles error:', error);
-          listEl.textContent = 'Unable to read bundles from Bundler.';
-          return true;
-        }
-
-        if (!Array.isArray(bundles)) {
-          if (bundles && Array.isArray(bundles.bundles)) {
-            bundles = bundles.bundles;
-          } else if (bundles && typeof bundles === 'object') {
-            bundles = Object.values(bundles);
-          } else {
-            bundles = [];
-          }
-        }
-
-        if (!bundles.length) {
+        if (!Array.isArray(bundles) || !bundles.length) {
           listEl.textContent = 'No bundles found.';
           return true;
         }
@@ -82,95 +272,112 @@
         listEl.innerHTML = '';
 
         bundles.forEach(function (bundle) {
-          const name = getValue(bundle, [
-            'name',
-            'title',
-            'bundle_name',
-            'bundleName'
-          ]) || 'Unnamed bundle';
+          const name = bundle.name || bundle.title || bundle.bundle_name || bundle.bundleName || 'Unnamed bundle';
+          const id = bundle.id ?? bundle.bundle_id ?? bundle.bundleId ?? 'ID not exposed';
 
-          const id = getValue(bundle, [
-            'id',
-            'bundle_id',
-            'bundleId'
-          ]);
-
-          const enabledValue = getValue(bundle, [
-            'enabled',
-            'is_enabled',
-            'active',
-            'isActive'
-          ]);
-
+          const enabledRaw = bundle.enabled ?? bundle.is_enabled ?? bundle.active ?? bundle.isActive;
           let status = '';
 
-          if (enabledValue !== '') {
-            const isEnabled =
-              enabledValue === true ||
-              enabledValue === 1 ||
-              enabledValue === '1' ||
-              enabledValue === 'true';
-
-            status = isEnabled ? ' (enabled)' : ' (disabled)';
+          if (enabledRaw !== undefined && enabledRaw !== null) {
+            const enabled = enabledRaw === true || enabledRaw === 1 || enabledRaw === '1' || enabledRaw === 'true';
+            status = enabled ? ' (enabled)' : ' (disabled)';
           }
 
           const row = document.createElement('div');
-          row.className = 'bundler-live-ids__item';
-          row.textContent =
-            name +
-            ' = ' +
-            (id !== '' ? id : 'ID not exposed') +
-            status;
-
+          row.className = 'prana-bundler-editor-helper__item';
+          row.textContent = name + ' = ' + id + status;
           listEl.appendChild(row);
         });
 
         return true;
+      } catch (error) {
+        console.error('Bundler bundle list error:', error);
+        listEl.textContent = 'Could not read bundle IDs.';
+        return true;
+      }
+    }
+
+    function loadBundler() {
+      if (readBundles()) return;
+
+      if (!document.querySelector('script[src*="cdn-bundler.nice-team.net/app/js/bundler.js"]')) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://cdn-bundler.nice-team.net/app/js/bundler.js?shop={{ shop.permanent_domain | escape }}';
+        document.head.appendChild(script);
       }
 
-      function ensureBundlerScript() {
-        if (renderBundles()) return;
-
-        const existingScript = document.querySelector(
-          'script[src*="cdn-bundler.nice-team.net/app/js/bundler.js"]'
-        );
-
-        if (!existingScript) {
-          const script = document.createElement('script');
-          script.type = 'text/javascript';
-          script.async = true;
-          script.src =
-            'https://cdn-bundler.nice-team.net/app/js/bundler.js?shop=' +
-            encodeURIComponent(shop);
-
-          document.head.appendChild(script);
-        }
-
-        document.addEventListener(
-          'bundler:loaded',
-          function () {
-            renderBundles();
-          },
-          { once: true }
-        );
-
-        let tries = 0;
-
-        const timer = setInterval(function () {
-          tries += 1;
-
-          if (renderBundles() || tries >= 40) {
-            clearInterval(timer);
-
-            if (tries >= 40 && !renderBundles()) {
-              listEl.textContent =
-                'Bundler loaded slowly or did not expose bundle data.';
-            }
+      let tries = 0;
+      const timer = setInterval(function () {
+        tries += 1;
+        if (readBundles() || tries >= 40) {
+          clearInterval(timer);
+          if (tries >= 40 && (!window.bndlr || typeof window.bndlr.getBundles !== 'function')) {
+            listEl.textContent = 'Bundler loaded slowly or bundle data is not exposed yet.';
           }
-        }, 250);
-      }
+        }
+      }, 250);
+    }
 
-      ensureBundlerScript();
-    })();
-  </script>
+    loadBundler();
+  })();
+</script>
 {% endif %}
+
+{% schema %}
+{
+  "name": "PRANA Duo Products",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Bundler"
+    },
+    {
+      "type": "text",
+      "id": "bundle_id",
+      "label": "Bundle ID",
+      "info": "Copy the ID from the live bundle list shown in Theme Editor."
+    },
+    {
+      "type": "text",
+      "id": "bundle_name",
+      "label": "Bundle name",
+      "info": "Optional label for this bundle."
+    },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#F7F1E8" },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#2E2925" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#5C554F" },
+    { "type": "color", "id": "check_background", "label": "Check background", "default": "#A4773D" },
+    { "type": "color", "id": "check_color", "label": "Check icon color", "default": "#FFFFFF" },
+    { "type": "color", "id": "divider_color", "label": "Divider color", "default": "#DED5CA" },
+    { "type": "color", "id": "plus_background", "label": "Plus background", "default": "#E9C7B2" },
+    { "type": "color", "id": "plus_color", "label": "Plus icon color", "default": "#6E3B2E" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 28 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 28 }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Select product" },
+        { "type": "text", "id": "custom_heading", "label": "Custom heading", "info": "Leave blank to use product title." },
+        { "type": "richtext", "id": "custom_description", "label": "Custom description", "info": "Leave blank to use the product description." },
+        { "type": "text", "id": "bullet_1", "label": "Bullet 1" },
+        { "type": "text", "id": "bullet_2", "label": "Bullet 2" },
+        { "type": "text", "id": "bullet_3", "label": "Bullet 3" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PRANA Duo Products",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}
