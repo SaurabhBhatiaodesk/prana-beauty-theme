@@ -187,6 +187,85 @@
         "cap_text": "Watch the brand film — 2 minutes"
       }
     },
+    "prana_bestseller_banner": {
+      "type": "prana-bestseller-banner",
+      "blocks": {
+        "benefit_0": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "label": "Brightens\nDull Skin"
+          }
+        },
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "waves",
+            "label": "Calms\nRedness"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "drop",
+            "label": "Purifies\nPores"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "flower",
+            "label": "Supports\nRadiant Skin"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_0",
+        "benefit_1",
+        "benefit_2",
+        "benefit_3"
+      ],
+      "name": "PRANA Bestseller Banner",
+      "settings": {
+        "image": "shopify://shop_images/turmeric_sandalwood_product_visual_9fcd272e-e1bd-4020-b5ab-6261930a79c1.png",
+        "mobile_image": "shopify://shop_images/turmeric-sandalwood-mobile_0b535b8b-cd33-44ac-a8b1-70bf8aed65aa.png",
+        "show_content": true,
+        "eyebrow": "Best seller",
+        "heading": "Turmeric &\nSandalwood Face Mask",
+        "subtitle": "Brighten. Calm. Restore.",
+        "description": "<p>A golden ritual to visibly brighten skin, calm inflammation and reveal a healthy, radiant glow.</p>",
+        "button_label": "Shop now",
+        "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
+        "background_color": "#f8f2e6",
+        "eyebrow_color": "#a4773d",
+        "heading_color": "#561a24",
+        "subtitle_color": "#323232",
+        "description_color": "#323232",
+        "benefit_color": "#323232",
+        "icon_color": "#a8681a",
+        "button_background": "#a8681a",
+        "button_text_color": "#ffffff",
+        "button_hover_background": "#561a24",
+        "button_hover_text_color": "#ffffff",
+        "eyebrow_size_desktop": 12,
+        "heading_size_desktop": 40,
+        "subtitle_size_desktop": 28,
+        "description_size_desktop": 17,
+        "benefit_size_desktop": 13,
+        "button_size_desktop": 12,
+        "eyebrow_size_mobile": 11,
+        "heading_size_mobile": 30,
+        "subtitle_size_mobile": 22,
+        "description_size_mobile": 15,
+        "benefit_size_mobile": 14,
+        "button_size_mobile": 12,
+        "height": 600,
+        "mobile_height": 620,
+        "overlay": 0,
+        "mobile_overlay_color": "#e3c39f",
+        "mobile_overlay": 0
+      }
+    },
     "custom_rituals_section_RJGTFd": {
       "type": "custom-rituals-section",
       "blocks": {
@@ -287,7 +366,7 @@
         "badge_quiz": "3 Questions",
         "title_quiz": "Not Sure Where\nto Start?",
         "desc_quiz": "Answer 3 questions and we'll build your personal Prana ritual — the exact products your skin needs, in the exact order to use them.",
-        "trust_quiz1": "47,000 rituals matched",
+        "trust_quiz1": "&nbsp;11,000 rituals matched",
         "trust_quiz2": "Free · No account needed",
         "q1_label": "Question 1 of 3",
         "q1_title": "What's your skin type?",
@@ -433,6 +512,8 @@
         "scrollbar_track_color": "#ede6dd",
         "desktop_videos": 5,
         "mobile_videos": "2",
+        "video_height_desktop": 400,
+        "video_height_mobile": 420,
         "autoplay": true,
         "slider_autoplay": true,
         "slider_autoplay_speed": 3000
@@ -454,59 +535,6 @@
         "padding_bottom_desktop": 52,
         "padding_top_mobile": 16,
         "padding_bottom_mobile": 14
-      }
-    },
-    "17768332015c8fec7e": {
-      "type": "_blocks",
-      "blocks": {
-        "instafeed_app_block_kLznAm": {
-          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
-          "settings": {
-            "title": "",
-            "title_color": "",
-            "title_size_v2": 0,
-            "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
-            "instafeed_margin_sides": 0,
-            "show_instagram_link": false,
-            "link_alignment": "left",
-            "link_color": "#000000",
-            "background_color": "",
-            "feed_id": "",
-            "html_area": ""
-          }
-        }
-      },
-      "block_order": [
-        "instafeed_app_block_kLznAm"
-      ],
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-a81820a6-7aeb-4163-b47e-0e82fd29223d",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 50,
-        "padding-block-end": 60
       }
     },
     "products_list_slider_rGDQ8B": {
@@ -980,6 +1008,19 @@
         "des": "Every review tells a story of balance, brightness, and beauty — results you can see and feel."
       }
     },
+    "custom_discount_popup_aDAJDU": {
+      "type": "custom-discount-popup",
+      "disabled": true,
+      "name": "Discount Popup",
+      "settings": {
+        "delay_time": 1,
+        "bg_image": "shopify://shop_images/Desktop_-_15_1.jpg",
+        "top_text": "UNLOCK",
+        "main_text": "20% OFF",
+        "sub_text": "Your first one-time purchase",
+        "button_text": "CONTINUE"
+      }
+    },
     "1765522360e21e4938": {
       "type": "_blocks",
       "blocks": {
@@ -1005,7 +1046,6 @@
       "block_order": [
         "instafeed_app_block_fCUK8Y"
       ],
-      "disabled": true,
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1018,7 +1058,7 @@
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
-        "color_scheme": "",
+        "color_scheme": "scheme-8ae00a1a-8edc-4b72-bb01-a4bdce810986",
         "background_media": "none",
         "video_position": "cover",
         "background_image_position": "cover",
@@ -1030,74 +1070,9 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 60,
+        "padding-block-end": 60
       }
-    },
-    "custom_discount_popup_aDAJDU": {
-      "type": "custom-discount-popup",
-      "disabled": true,
-      "name": "Discount Popup",
-      "settings": {
-        "delay_time": 1,
-        "bg_image": "shopify://shop_images/Desktop_-_15_1.jpg",
-        "top_text": "UNLOCK",
-        "main_text": "20% OFF",
-        "sub_text": "Your first one-time purchase",
-        "button_text": "CONTINUE"
-      }
-    },
-    "prana_bestseller_banner": {
-      "type": "prana-bestseller-banner",
-      "name": "PRANA Bestseller Banner",
-      "disabled": false,
-      "settings": {
-        "show_content": true,
-        "eyebrow": "Best seller",
-        "heading": "Turmeric &\nSandalwood\nFace Mask",
-        "subtitle": "Brighten. Calm. Restore.",
-        "description": "<p>A golden ritual to visibly brighten skin, calm inflammation and reveal a healthy, radiant glow.</p>",
-        "button_label": "Shop now",
-        "height": 600,
-        "overlay": 65,
-        "button_link": "shopify://products/turmeric-and-sandalwood-face-mask"
-      },
-      "blocks": {
-        "benefit_0": {
-          "type": "benefit",
-          "settings": {
-            "icon": "leaf",
-            "label": "Brightens\nDull Skin"
-          }
-        },
-        "benefit_1": {
-          "type": "benefit",
-          "settings": {
-            "icon": "waves",
-            "label": "Calms\nRedness"
-          }
-        },
-        "benefit_2": {
-          "type": "benefit",
-          "settings": {
-            "icon": "drop",
-            "label": "Purifies\nPores"
-          }
-        },
-        "benefit_3": {
-          "type": "benefit",
-          "settings": {
-            "icon": "flower",
-            "label": "Supports\nRadiant Skin"
-          }
-        }
-      },
-      "block_order": [
-        "benefit_0",
-        "benefit_1",
-        "benefit_2",
-        "benefit_3"
-      ]
     }
   },
   "order": [
@@ -1105,14 +1080,13 @@
     "hero_banner_jxwpbW",
     "custom_proof_jqHQB6",
     "custom_product_slider_qajQbd",
-    "prana_bestseller_banner",
     "founder_section_4CgtMW",
+    "prana_bestseller_banner",
     "custom_rituals_section_RJGTFd",
     "find_ritual_section_XPMGpF",
     "custom_counter_b4J6qT",
     "ugc_video_slider_Y9pfFV",
     "custom_newsletter_hfhNpi",
-    "17768332015c8fec7e",
     "products_list_slider_rGDQ8B",
     "marquee_9Vx3xY",
     "collection_slider_9mdHQf",
@@ -1121,7 +1095,7 @@
     "bundle_cards_layout_Qi7tD6",
     "image_with_product_slider_XMd3kT",
     "review_slider_iLR8ih",
-    "1765522360e21e4938",
-    "custom_discount_popup_aDAJDU"
+    "custom_discount_popup_aDAJDU",
+    "1765522360e21e4938"
   ]
 }

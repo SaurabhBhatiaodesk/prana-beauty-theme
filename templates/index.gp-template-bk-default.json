@@ -15,7 +15,7 @@
         "item_P9Pgzj": {
           "type": "item",
           "settings": {
-            "left_image": "shopify://shop_images/ehance.png",
+            "left_image": "shopify://shop_images/ffgmkfghkng_1.png",
             "title": "Ancient Rituals.",
             "title2": "Radiant Skin.",
             "text": "5,000 years of Ayurvedic wisdom distilled into six transformative formulas. Your skin doesn't need more products — it needs a ritual.",
@@ -63,32 +63,58 @@
         "item_eWzbfP",
         "item_ed4TqG"
       ],
+      "disabled": true,
       "custom_css": [],
       "name": "Top slider Mobile View",
       "settings": {}
     },
-    "custom_hero_xb3T6h": {
-      "type": "custom-hero",
-      "custom_css": [],
-      "name": "Custom Hero",
+    "hero_banner_jxwpbW": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
       "settings": {
-        "caption": "Ayurvedic Skincare · Born in New York",
-        "heading": "Ancient Rituals.",
-        "sub_heading": "<em>Radiant Skin.</em>",
-        "desc": "5,000 years of Ayurvedic wisdom distilled into six transformative formulas. Your skin doesn't need more products — it needs a ritual.",
-        "hero_mantra": "Prāna — the breath that moves through all living things.<br>Skincare born from nature, pure as the soul it serves.",
-        "btn_text1": "Shop the Collection",
-        "btn_text2": "Find My Ritual — AI Scan",
-        "btn_text3": "Not sure where to start? Take the 60-second skin quiz →",
-        "righ_image": "shopify://shop_images/SOUNDARYA.jpg",
-        "label1": "Saffron",
-        "image1": "shopify://shop_images/turmeric-sandalwood-clay-mask-5688491.png",
-        "label2": "Rose",
-        "image2": "shopify://shop_images/download_1.jpg",
-        "label3": "Turmeric",
-        "image3": "shopify://shop_images/download_2_becfd787-5c18-4c94-89a0-e0d5a9b44526.jpg",
-        "label4": "Bakuchiol",
-        "image4": "shopify://shop_images/download_3.jpg"
+        "desktop_image": "shopify://shop_images/bb5449b6-7256-47ac-b35b-36f5cba87aa4_1.png",
+        "mobile_image": "shopify://shop_images/ChatGPT_Image_Jun_26_2026_04_43_56_PM_1.png",
+        "desktop_image_position": "right center",
+        "mobile_image_position": "center center",
+        "eyebrow": "",
+        "heading": "Ayurveda.\nSix Formulas.\nSeven Days to Glow.",
+        "description": "Clinically proven Ayurvedic skincare that transforms your skin from within.",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/all",
+        "section_background": "#ffffff",
+        "desktop_height": 620,
+        "tablet_height": 560,
+        "desktop_spacing_top": 0,
+        "desktop_spacing_bottom": 0,
+        "enable_shadow": false,
+        "content_width": 700,
+        "heading_width": 720,
+        "description_width": 520,
+        "mobile_height": 600,
+        "mobile_spacing_top": 0,
+        "mobile_spacing_bottom": 0,
+        "mobile_content_padding_top": 40,
+        "mobile_content_padding_bottom": 40,
+        "mobile_content_padding_horizontal": 15,
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "eyebrow_color": "#a8681a",
+        "heading_color": "#461324",
+        "description_color": "#000000",
+        "eyebrow_size": 18,
+        "heading_size": 50,
+        "tablet_heading_size": 56,
+        "description_size": 18,
+        "mobile_eyebrow_size": 13,
+        "mobile_heading_size": 25,
+        "mobile_description_size": 14,
+        "button_background": "#a8681a",
+        "button_text_color": "#ffffff",
+        "button_hover_background": "#461324",
+        "button_hover_text_color": "#ffffff",
+        "button_radius": 4,
+        "button_font_size": 16,
+        "mobile_button_font_size": 13
       }
     },
     "custom_proof_jqHQB6": {
@@ -96,6 +122,7 @@
       "custom_css": [],
       "name": "Custom Proof",
       "settings": {
+        "title": "",
         "text_color": "#ffffff",
         "desktop_grid": 4,
         "number1": "4.9/5",
@@ -105,7 +132,8 @@
         "number3": "11,000+",
         "text3": "Women who left synthetic skincare behind",
         "number4": "100%",
-        "text4": "Clean · Vegan · No Parabens · Cruelty-Free"
+        "text4": "Clean · Vegan · No Parabens · Cruelty-Free",
+        "last-proof": ""
       }
     },
     "custom_product_slider_qajQbd": {
@@ -135,7 +163,7 @@
         "desktop_padding_bottom": 60,
         "mobile_padding_top": 0,
         "mobile_padding_bottom": 30,
-        "image": "shopify://shop_images/930be9aa0b5d59457b4a7efd3d4d88bedbe4095d.png",
+        "image": "shopify://shop_images/Gemini_Generated_Image_42ydps42ydps42yd.png",
         "name": "Prabha Iyer",
         "role": "Founder · Prana Beauty & Wellness · New York",
         "tag1": "South Asian Heritage",
@@ -159,6 +187,85 @@
         "cap_text": "Watch the brand film — 2 minutes"
       }
     },
+    "prana_bestseller_banner": {
+      "type": "prana-bestseller-banner",
+      "blocks": {
+        "benefit_0": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "label": "Brightens\nDull Skin"
+          }
+        },
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "waves",
+            "label": "Calms\nRedness"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "drop",
+            "label": "Purifies\nPores"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "flower",
+            "label": "Supports\nRadiant Skin"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_0",
+        "benefit_1",
+        "benefit_2",
+        "benefit_3"
+      ],
+      "name": "PRANA Bestseller Banner",
+      "settings": {
+        "image": "shopify://shop_images/turmeric_sandalwood_product_visual_9fcd272e-e1bd-4020-b5ab-6261930a79c1.png",
+        "mobile_image": "shopify://shop_images/turmeric-sandalwood-mobile_0b535b8b-cd33-44ac-a8b1-70bf8aed65aa.png",
+        "show_content": true,
+        "eyebrow": "Best seller",
+        "heading": "Turmeric &\nSandalwood Face Mask",
+        "subtitle": "Brighten. Calm. Restore.",
+        "description": "<p>A golden ritual to visibly brighten skin, calm inflammation and reveal a healthy, radiant glow.</p>",
+        "button_label": "Shop now",
+        "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
+        "background_color": "#f8f2e6",
+        "eyebrow_color": "#a4773d",
+        "heading_color": "#561a24",
+        "subtitle_color": "#323232",
+        "description_color": "#323232",
+        "benefit_color": "#323232",
+        "icon_color": "#a8681a",
+        "button_background": "#a8681a",
+        "button_text_color": "#ffffff",
+        "button_hover_background": "#561a24",
+        "button_hover_text_color": "#ffffff",
+        "eyebrow_size_desktop": 12,
+        "heading_size_desktop": 40,
+        "subtitle_size_desktop": 28,
+        "description_size_desktop": 17,
+        "benefit_size_desktop": 13,
+        "button_size_desktop": 12,
+        "eyebrow_size_mobile": 11,
+        "heading_size_mobile": 30,
+        "subtitle_size_mobile": 22,
+        "description_size_mobile": 15,
+        "benefit_size_mobile": 14,
+        "button_size_mobile": 12,
+        "height": 600,
+        "mobile_height": 620,
+        "overlay": 0,
+        "mobile_overlay_color": "#e3c39f",
+        "mobile_overlay": 0
+      }
+    },
     "custom_rituals_section_RJGTFd": {
       "type": "custom-rituals-section",
       "blocks": {
@@ -174,7 +281,6 @@
             "ritual_link": "shopify://pages/dinacharya",
             "meaning": "Dinacharya — the art of beginning",
             "collection": "dinacharya",
-            "bundle_discount": 15,
             "collection_link": "shopify://pages/dinacharya",
             "pdt_desc_1": "Lifts overnight buildup. The ritual starts here.",
             "pdt_desc_2": "Restores pH. Primes skin for everything that follows.",
@@ -194,7 +300,6 @@
             "ritual_link": "shopify://pages/swapna",
             "meaning": "Swapna — the restorative dream",
             "collection": "swapna",
-            "bundle_discount": 15,
             "collection_link": "shopify://pages/swapna",
             "pdt_desc_1": "Release the day. Emulsifies without stripping the barrier.",
             "pdt_desc_2": "Nature's retinol. Resurfaces and firms through the night.",
@@ -214,7 +319,6 @@
             "ritual_link": "shopify://pages/abhyanga",
             "meaning": "Abhyanga — sacred self-anointing",
             "collection": "abhyanga",
-            "bundle_discount": 16,
             "collection_link": "shopify://pages/abhyanga",
             "pdt_desc_1": "Bare, clean skin first. The clay needs direct contact.",
             "pdt_desc_2": "12–15 minutes. Your Sunday ceremony. Three days of glow.",
@@ -262,7 +366,7 @@
         "badge_quiz": "3 Questions",
         "title_quiz": "Not Sure Where\nto Start?",
         "desc_quiz": "Answer 3 questions and we'll build your personal Prana ritual — the exact products your skin needs, in the exact order to use them.",
-        "trust_quiz1": "47,000 rituals matched",
+        "trust_quiz1": "&nbsp;11,000 rituals matched",
         "trust_quiz2": "Free · No account needed",
         "q1_label": "Question 1 of 3",
         "q1_title": "What's your skin type?",
@@ -338,6 +442,83 @@
       "name": "Custom counter",
       "settings": {}
     },
+    "ugc_video_slider_Y9pfFV": {
+      "type": "prana-ugc-videos",
+      "blocks": {
+        "video_item_DVPafq": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/3ebe3a108b8f49219933a97b3583bc1c.MP4"
+          }
+        },
+        "video_item_JYfgHm": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/93bfcddd5b644185b8c6b705ac6bcf71.MOV"
+          }
+        },
+        "video_item_EWG7MR": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/Christina Blaskey_Prana Beauty UGC.MOV"
+          }
+        },
+        "video_item_NgwQV3": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/copy_8C574949-418B-41DF-A467-4C4839836748.MP4"
+          }
+        },
+        "video_item_b8E88U": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/copy_467E966B-868D-4C83-81D8-B0C104654F84_20e09f6d-9bad-4efb-b496-3167252f6395.mov"
+          }
+        },
+        "video_item_DJdkF8": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/Unboxing PRANA skincare with text & title.mov"
+          }
+        }
+      },
+      "block_order": [
+        "video_item_DVPafq",
+        "video_item_JYfgHm",
+        "video_item_EWG7MR",
+        "video_item_NgwQV3",
+        "video_item_b8E88U",
+        "video_item_DJdkF8"
+      ],
+      "custom_css": [],
+      "name": "PRANA UGC Videos",
+      "settings": {
+        "eyebrow": "The PRANA community",
+        "heading": "Real rituals. Real stories.",
+        "subheading": "<p>Discover PRANA through the rituals of our community.</p>",
+        "background_color": "#f7f3ee",
+        "eyebrow_color": "#a4773d",
+        "eyebrow_line_color": "#c9b28f",
+        "heading_color": "#561a24",
+        "text_color": "#5c554f",
+        "card_background_color": "#ffffff",
+        "card_border_color": "#ded5ca",
+        "video_background_color": "#111111",
+        "placeholder_text_color": "#5c554f",
+        "nav_button_background_color": "#ffffff",
+        "nav_button_border_color": "#a4773d",
+        "nav_button_icon_color": "#2e2925",
+        "scrollbar_thumb_color": "#a4773d",
+        "scrollbar_track_color": "#ede6dd",
+        "desktop_videos": 5,
+        "mobile_videos": "2",
+        "video_height_desktop": 400,
+        "video_height_mobile": 420,
+        "autoplay": true,
+        "slider_autoplay": true,
+        "slider_autoplay_speed": 3000
+      }
+    },
     "custom_newsletter_hfhNpi": {
       "type": "custom-newsletter",
       "name": "Custom newsletter",
@@ -355,101 +536,6 @@
         "padding_top_mobile": 16,
         "padding_bottom_mobile": 14
       }
-    },
-    "custom_instagram_section_xeiTAA": {
-      "type": "custom-instagram-section",
-      "disabled": true,
-      "name": "Custom instagram",
-      "settings": {
-        "heading": "The Community <em>in Ritual</em>"
-      }
-    },
-    "17768332015c8fec7e": {
-      "type": "_blocks",
-      "blocks": {
-        "instafeed_app_block_kLznAm": {
-          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
-          "settings": {
-            "title": "",
-            "title_color": "",
-            "title_size_v2": 0,
-            "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
-            "instafeed_margin_sides": 0,
-            "show_instagram_link": false,
-            "link_alignment": "left",
-            "link_color": "#000000",
-            "background_color": "",
-            "feed_id": "",
-            "html_area": ""
-          }
-        }
-      },
-      "block_order": [
-        "instafeed_app_block_kLznAm"
-      ],
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-a81820a6-7aeb-4163-b47e-0e82fd29223d",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 50,
-        "padding-block-end": 60
-      }
-    },
-    "top_banner_mobile_i6nYaX": {
-      "type": "top-banner-mobile",
-      "blocks": {
-        "item_ExEmeJ": {
-          "type": "item",
-          "settings": {
-            "left_image": "shopify://shop_images/Rectangle_34624472.png",
-            "title": "Timeless Beauty,",
-            "title2": "Naturally Restored",
-            "text": "Pure, safe, and effective skincare designed for real results without compromise.",
-            "btn": "Shop Now",
-            "link": "#"
-          }
-        },
-        "item_ykGVaf": {
-          "type": "item",
-          "settings": {
-            "left_image": "shopify://shop_images/Rectangle_34624472.png",
-            "title": "Timeless Beauty,",
-            "title2": "Naturally Restored",
-            "text": "Pure, safe, and effective skincare designed <br>for real results without compromise.",
-            "btn": "Shop Now",
-            "link": "#"
-          }
-        }
-      },
-      "block_order": [
-        "item_ExEmeJ",
-        "item_ykGVaf"
-      ],
-      "disabled": true,
-      "name": "Top slider Mobile View",
-      "settings": {}
     },
     "products_list_slider_rGDQ8B": {
       "type": "products-list-slider",
@@ -682,794 +768,6 @@
       "name": "Collection List Slider",
       "settings": {}
     },
-    "section_btPk9y": {
-      "type": "section",
-      "blocks": {
-        "image_R4JtFz": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Rectangle_34624481.jpg",
-            "link": "",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fill",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "video_dLJMjA": {
-          "type": "video",
-          "name": "t:names.video",
-          "settings": {
-            "source": "uploaded",
-            "video": "shopify://files/videos/1027 (1).mp4",
-            "video_url": "",
-            "video_autoplay": true,
-            "video_loop": true,
-            "alt": "",
-            "custom_width": 100,
-            "custom_width_mobile": 100,
-            "aspect_ratio": "auto",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "group_Rddzgr": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "custom",
-            "custom_width": 75,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": true,
-            "overlay_color": "#ffffff",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 30,
-            "padding-block-end": 30,
-            "padding-inline-start": 25,
-            "padding-inline-end": 25
-          },
-          "blocks": {
-            "text_RJrqjh": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>Nature’s Finest, </h2><h2>Crafted Through Ayurveda.</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h2",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_9KjqxD": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<h6>YOUR RITUAL. REDEFINED.</h6>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h6",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_bzkWjV": {
-              "type": "text",
-              "settings": {
-                "text": "<p>From nature’s roots to your daily glow, <strong>PRANA</strong> blends timeless Ayurvedic wisdom with conscious beauty innovation—creating skincare that heals, restores, and radiates.Pure ingredients. Powerful results.<br/><br/></p>",
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "group_dXM3TJ": {
-              "type": "group",
-              "name": "t:names.group",
-              "settings": {
-                "content_direction": "row",
-                "vertical_on_mobile": false,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "flex-start",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "group_dNT88R": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "content_direction": "column",
-                    "vertical_on_mobile": true,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "custom",
-                    "custom_width": 30,
-                    "width_mobile": "custom",
-                    "custom_width_mobile": 25,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "inherit_color_scheme": true,
-                    "color_scheme": "",
-                    "background_media": "none",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 0,
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "text_XjK8m7": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<h5>98%</h5>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "h5",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground-heading)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "text_pbNBaP": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<h4>Loved by Customers</h4>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "h4",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_XjK8m7",
-                    "text_pbNBaP"
-                  ]
-                },
-                "group_ycTzyb": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "content_direction": "column",
-                    "vertical_on_mobile": true,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fill",
-                    "custom_width": 0,
-                    "width_mobile": "custom",
-                    "custom_width_mobile": 29,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "inherit_color_scheme": true,
-                    "color_scheme": "",
-                    "background_media": "none",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 0,
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "text_XMdXDV": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<h5>8,000+</h5>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "h5",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground-heading)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "text_7pV7kF": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<h4>Women Trust PRANA<br/><br/></h4>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "h4",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_XMdXDV",
-                    "text_7pV7kF"
-                  ]
-                },
-                "group_VV4fqC": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "content_direction": "column",
-                    "vertical_on_mobile": true,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "custom",
-                    "custom_width": 30,
-                    "width_mobile": "custom",
-                    "custom_width_mobile": 25,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "inherit_color_scheme": true,
-                    "color_scheme": "",
-                    "background_media": "none",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 0,
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "text_xmTn6w": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<h5>4.83</h5>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "h5",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "text_kXq9cm": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<h4>Average Rating<br/><br/></h4>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "h4",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground-heading)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_xmTn6w",
-                    "text_kXq9cm"
-                  ]
-                }
-              },
-              "block_order": [
-                "group_dNT88R",
-                "group_ycTzyb",
-                "group_VV4fqC"
-              ]
-            },
-            "button_G3MngK": {
-              "type": "button",
-              "name": "t:names.button",
-              "settings": {
-                "label": "Shop Now",
-                "link": "shopify://collections/all",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_RJrqjh",
-            "text_9KjqxD",
-            "text_bzkWjV",
-            "group_dXM3TJ",
-            "button_G3MngK"
-          ]
-        }
-      },
-      "block_order": [
-        "image_R4JtFz",
-        "video_dLJMjA",
-        "group_Rddzgr"
-      ],
-      "disabled": true,
-      "custom_css": [
-        "h2:last-child {margin-top: -20px; margin-bottom: 14rem;}",
-        "h6 {font-size: 19px; font-weight: 400; color: #443531; letter-spacing: 3px;}",
-        "p {font-size: 21px; font-weight: 300; font-family: Inter;}",
-        "h5 {font-size: 32px; color: #c39415; font-weight: 500; font-family: Canela Trial;}",
-        "h4 {font-size: 14px; font-weight: 500; color: #4e403c; font-family: \"Josefin Sans\"; margin-top: -5px;}",
-        "a {font-size: 14px; font-weight: 600; display: flex; align-items: center; line-height: 14px; padding: 18px 37px; margin-top: 20px;}",
-        "svg {margin-right: 8px;}"
-      ],
-      "name": "t:names.image_with_text",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "flex-start",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 10,
-        "section_width": "full-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-4",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#ffffff",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 20,
-        "padding-block-end": 20
-      }
-    },
-    "section_yLbzTR": {
-      "type": "section",
-      "blocks": {
-        "group_yHyDU3": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "custom",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fill",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": true,
-            "overlay_color": "#ffffff",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 40,
-            "padding-block-end": 100,
-            "padding-inline-start": 25,
-            "padding-inline-end": 25
-          },
-          "blocks": {
-            "custom_liquid_deYfFj": {
-              "type": "custom-liquid",
-              "name": "t:names.custom_liquid",
-              "settings": {
-                "custom_liquid": "<a style=\"    font-size: 14px;\n    border: 2px solid #000;\n    font-weight: 500;\n    border-radius: 30px;\n    padding: 10px 20px 6px;\n    line-height: 14px;\n    margin-bottom: 30px;\" href=\"/pages/prana-glow-quiz\">Start My Skin Scan</a>"
-              },
-              "blocks": {}
-            },
-            "image_VdgR8e": {
-              "type": "image",
-              "name": "t:names.image",
-              "settings": {
-                "image": "shopify://shop_images/AI.svg",
-                "link": "",
-                "image_ratio": "adapt",
-                "width": "custom",
-                "custom_width": 5,
-                "width_mobile": "custom",
-                "custom_width_mobile": 15,
-                "height": "fit",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_KEEYbD": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>Beauty, Backed by AI</h2>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h2",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground-heading)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 20,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_QXEKjn": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Our <strong>PRANA AI Skin Scan</strong> reveals your skin’s needs in seconds—so you get personalized product recommendations with confidence.</p>",
-                "width": "100%",
-                "max_width": "narrow",
-                "alignment": "center",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "button_AMwpUf": {
-              "type": "button",
-              "settings": {
-                "label": "Shop now",
-                "link": "shopify://collections/all",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "custom_liquid_deYfFj",
-            "image_VdgR8e",
-            "text_KEEYbD",
-            "text_QXEKjn",
-            "button_AMwpUf"
-          ]
-        },
-        "image_XX9Tia": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Group_1707479447.jpg",
-            "link": "",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fill",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "group_yHyDU3",
-        "image_XX9Tia"
-      ],
-      "disabled": true,
-      "custom_css": [
-        "h2:last-child {margin-top: -20px !important;}",
-        "h2 {font-size: 72px;}",
-        ".group-block-content {align-items: center;}",
-        "p {font-size: 24px; font-weight: 300;}",
-        "a {font-size: 17px; font-weight: 600; display: flex; align-items: center; text-transform: uppercase; line-height: 17px; padding: 20px 40px; margin-top: 20px;}",
-        "svg {margin-right: 8px;}"
-      ],
-      "name": "t:names.image_with_text",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-end",
-        "vertical_alignment": "flex-start",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 10,
-        "section_width": "full-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-4",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 20,
-        "padding-block-end": 16
-      }
-    },
     "video_hero_yChCHJ": {
       "type": "video-hero",
       "disabled": true,
@@ -1542,84 +840,6 @@
       "settings": {
         "title": "Shop by concern",
         "des": "Perfect if you want a wink of personality."
-      }
-    },
-    "ugc_video_slider_Y9pfFV": {
-      "type": "ugc-video-slider",
-      "blocks": {
-        "video_item_DVPafq": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Video.mp4",
-            "product": "saffron-glow-serum"
-          }
-        },
-        "video_item_JYfgHm": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Video V2.mp4",
-            "product": "bakuchiol"
-          }
-        },
-        "video_item_EWG7MR": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Video V2 - W-VO.mp4",
-            "product": "rose-jasmine-milk-cleanser"
-          }
-        },
-        "video_item_NgwQV3": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Unboxing Saffron serum.mov",
-            "product": "saffron-glow-serum"
-          }
-        },
-        "video_item_b8E88U": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/PRANA TURMERIC SAND.mov",
-            "product": "turmeric-and-sandalwood-face-mask"
-          }
-        },
-        "video_item_DJdkF8": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/export_1739122243431.MP4",
-            "product": "cleanser-turmeric-mask-and-saffron-serum"
-          }
-        },
-        "video_item_Ka6mXE": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/prana done 1.mp4",
-            "product": "bakuchiol"
-          }
-        },
-        "video_item_4pTXwA": {
-          "type": "video_item",
-          "settings": {
-            "video_file": "shopify://files/videos/Video 2.mp4",
-            "product": "turmeric-and-sandalwood-face-mask"
-          }
-        }
-      },
-      "block_order": [
-        "video_item_DVPafq",
-        "video_item_JYfgHm",
-        "video_item_EWG7MR",
-        "video_item_NgwQV3",
-        "video_item_b8E88U",
-        "video_item_DJdkF8",
-        "video_item_Ka6mXE",
-        "video_item_4pTXwA"
-      ],
-      "disabled": true,
-      "custom_css": [],
-      "name": "UGC Video + Image Slider",
-      "settings": {
-        "heading": "SHOPPABLE UGC",
-        "subheading": "<p>Perfect if you want a wink of personality.</p>"
       }
     },
     "bundle_cards_layout_Qi7tD6": {
@@ -1788,6 +1008,19 @@
         "des": "Every review tells a story of balance, brightness, and beauty — results you can see and feel."
       }
     },
+    "custom_discount_popup_aDAJDU": {
+      "type": "custom-discount-popup",
+      "disabled": true,
+      "name": "Discount Popup",
+      "settings": {
+        "delay_time": 1,
+        "bg_image": "shopify://shop_images/Desktop_-_15_1.jpg",
+        "top_text": "UNLOCK",
+        "main_text": "20% OFF",
+        "sub_text": "Your first one-time purchase",
+        "button_text": "CONTINUE"
+      }
+    },
     "1765522360e21e4938": {
       "type": "_blocks",
       "blocks": {
@@ -1813,7 +1046,6 @@
       "block_order": [
         "instafeed_app_block_fCUK8Y"
       ],
-      "disabled": true,
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1826,7 +1058,7 @@
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
-        "color_scheme": "",
+        "color_scheme": "scheme-8ae00a1a-8edc-4b72-bb01-a4bdce810986",
         "background_media": "none",
         "video_position": "cover",
         "background_image_position": "cover",
@@ -1838,49 +1070,32 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
-    "custom_discount_popup_aDAJDU": {
-      "type": "custom-discount-popup",
-      "disabled": true,
-      "name": "Discount Popup",
-      "settings": {
-        "delay_time": 1,
-        "bg_image": "shopify://shop_images/Desktop_-_15_1.jpg",
-        "top_text": "UNLOCK",
-        "main_text": "20% OFF",
-        "sub_text": "Your first one-time purchase",
-        "button_text": "CONTINUE"
+        "padding-block-start": 60,
+        "padding-block-end": 60
       }
     }
   },
   "order": [
     "top_banner_mobile_yjKWDH",
-    "custom_hero_xb3T6h",
+    "hero_banner_jxwpbW",
     "custom_proof_jqHQB6",
     "custom_product_slider_qajQbd",
     "founder_section_4CgtMW",
+    "prana_bestseller_banner",
     "custom_rituals_section_RJGTFd",
     "find_ritual_section_XPMGpF",
     "custom_counter_b4J6qT",
+    "ugc_video_slider_Y9pfFV",
     "custom_newsletter_hfhNpi",
-    "custom_instagram_section_xeiTAA",
-    "17768332015c8fec7e",
-    "top_banner_mobile_i6nYaX",
     "products_list_slider_rGDQ8B",
     "marquee_9Vx3xY",
     "collection_slider_9mdHQf",
-    "section_btPk9y",
-    "section_yLbzTR",
     "video_hero_yChCHJ",
     "shop_by_concern_j4WhyH",
-    "ugc_video_slider_Y9pfFV",
     "bundle_cards_layout_Qi7tD6",
     "image_with_product_slider_XMd3kT",
     "review_slider_iLR8ih",
-    "1765522360e21e4938",
-    "custom_discount_popup_aDAJDU"
+    "custom_discount_popup_aDAJDU",
+    "1765522360e21e4938"
   ]
 }

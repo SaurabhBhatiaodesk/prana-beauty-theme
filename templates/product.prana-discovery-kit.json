@@ -1,0 +1,860 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "carousel",
+            "media_columns": "two",
+            "image_gap": 4,
+            "large_first_image": false,
+            "icons_style": "none",
+            "slideshow_controls_style": "thumbnails",
+            "slideshow_mobile_controls_style": "counter",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 72,
+            "aspect_ratio": "1",
+            "constrain_to_viewport": false,
+            "media_fit": "contain",
+            "media_radius": 11,
+            "extend_media": false,
+            "zoom": false,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 20,
+            "sticky_details_desktop": true,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-1",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_highlight_tag_VYiwKr": {
+              "type": "product-highlight-tag",
+              "name": "Product HighLihgt Tag",
+              "settings": {},
+              "blocks": {}
+            },
+            "product_ritual_badge_PidxaC": {
+              "type": "product-ritual-badge",
+              "name": "Product Ritual Badge",
+              "settings": {},
+              "blocks": {}
+            },
+            "review_g7HaXX": {
+              "type": "review",
+              "name": "t:names.product_review_stars",
+              "settings": {
+                "stars_style": "shaded",
+                "show_number": true,
+                "rating_color": "primary",
+                "type_preset": "paragraph",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "group_icgrde": {
+              "type": "group",
+              "name": "Header",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 5,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "main_product_title_KYXbhK": {
+                  "type": "main-product-title",
+                  "name": "Main Product Title",
+                  "settings": {
+                    "main_product_title": "{{ closest.product.title }}",
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": ""
+                  },
+                  "blocks": {}
+                },
+                "loox_reviews_loox_rating_J3Qr6p": {
+                  "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+                  "disabled": true,
+                  "settings": {
+                    "contentSize": 16,
+                    "pattern": "",
+                    "hideText": false,
+                    "alignment": "",
+                    "layout": "",
+                    "textColor": "",
+                    "starColor": "",
+                    "showAllReviews": false,
+                    "looxOpenFloatingWidget": false,
+                    "emptyRatingWidget": false
+                  }
+                }
+              },
+              "block_order": [
+                "main_product_title_KYXbhK",
+                "loox_reviews_loox_rating_J3Qr6p"
+              ]
+            },
+            "divider_8E9czi": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "single_product_size_EHMjkp": {
+              "type": "single-product-size",
+              "name": "Product Ritual Size",
+              "disabled": true,
+              "settings": {},
+              "blocks": {}
+            },
+            "variant_picker_R3rGDr": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": true,
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "recharge_widget_n3Y3kf": {
+              "type": "recharge-widget",
+              "name": "Recharge Subscription",
+              "disabled": true,
+              "settings": {},
+              "blocks": {}
+            },
+            "buy_buttons_eYQEYi": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": false,
+                "show_pickup_availability": false,
+                "gift_card_form": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "product_short_description_jmyh6B": {
+              "type": "product-short-description",
+              "name": "Product Short Decription",
+              "settings": {},
+              "blocks": {}
+            },
+            "real_result_GFWVYn": {
+              "type": "real-result",
+              "name": "Real Results",
+              "settings": {
+                "tag": "Customer Results",
+                "title": "Real Results. 8 Weeks.",
+                "description": "Verified customer. No filters — just consistent ritual.",
+                "before_image": "{{ closest.product.metafields.custom.after_and_befor_image.value.before_image.value }}",
+                "before_week": "WEEK 0",
+                "after_image": "{{ closest.product.metafields.custom.after_and_befor_image.value.after_image.value }}",
+                "after_week": "WEEK 8",
+                "banner_without_before": "{{ closest.product.metafields.custom.after_and_before_image_instead_banner.value.instead_banner_one.value }}",
+                "banner_without": "{{ closest.product.metafields.custom.after_and_before_image_instead_banner.value.instead_banner_two.value }}"
+              },
+              "blocks": {}
+            },
+            "top_conversion_points_VVaTMF": {
+              "type": "top-conversion-points",
+              "name": "Top Conversion Point",
+              "settings": {
+                "title": "{{ closest.product.metafields.custom.after_and_befor_image.value.name_after_and_before.value }}",
+                "description": "{{ closest.product.metafields.custom.after_and_befor_image.value.name_after_and_description.value }}"
+              },
+              "blocks": {}
+            },
+            "product_icons_line_D8KjDc": {
+              "type": "product-icons-line",
+              "name": "Product Info Inline",
+              "settings": {
+                "icon1": "shopify://shop_images/fi_3046894.svg",
+                "title1": "Boosts Natural Radiance & Brightness",
+                "icon2": "shopify://shop_images/fi_4383086.svg",
+                "title2": "Fades Dark Spots & Uneven Pigmentation",
+                "icon3": "shopify://shop_images/fi_11847164.svg",
+                "title3": "Hydrates and Nourishes for a Smooth Texture",
+                "icon4": "shopify://shop_images/fi_8023926.svg",
+                "title4": "Powerful Antioxidant Protection"
+              },
+              "blocks": {}
+            },
+            "product_tempalte_video_slider_T7Fh6y": {
+              "type": "_product-tempalte-video-slider",
+              "name": "Select videos",
+              "settings": {},
+              "blocks": {}
+            },
+            "accordion_ce3PWy": {
+              "type": "accordion",
+              "name": "t:names.accordion",
+              "settings": {
+                "icon": "caret",
+                "dividers": true,
+                "type_preset": "h6",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "accordion_row_Lte94w": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Key Benefits",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_nKtpxz": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>{{ closest.product.metafields.custom.benefits | metafield_tag }}</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_nKtpxz"
+                  ]
+                },
+                "accordion_row_FPWzgf": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "INCI - Ingredients",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_9ajbqh": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>{{ closest.product.metafields.custom.ingredients | metafield_tag }}</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_9ajbqh"
+                  ]
+                },
+                "accordion_row_kK6peY": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Description",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_WVfXdT": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.description }}",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_WVfXdT"
+                  ]
+                },
+                "accordion_row_XHVfJY": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Key Ingredients",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_78YGnn": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>{{ closest.product.metafields.custom.ingredients_description | metafield_tag }}</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_78YGnn"
+                  ]
+                },
+                "accordion_row_Cz6JHg": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Benefits",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_rcq9rh": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.metafields.custom.good_for_not_for | metafield_tag }}",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_rcq9rh"
+                  ]
+                }
+              },
+              "block_order": [
+                "accordion_row_Lte94w",
+                "accordion_row_FPWzgf",
+                "accordion_row_kK6peY",
+                "accordion_row_XHVfJY",
+                "accordion_row_Cz6JHg"
+              ]
+            },
+            "small_details_GDqdMD": {
+              "type": "_small-details",
+              "name": "Product Small Details",
+              "settings": {
+                "icon1": "shopify://shop_images/eco-friendly-fabric_1_1.png",
+                "title1": "Certified Vegan",
+                "icon2": "shopify://shop_images/herbal-treatment_1.svg",
+                "title2": "All-Natural Botanical Blend",
+                "icon3": "shopify://shop_images/Group_82fe7d54-6ee5-4936-819e-ab110a772d86.png",
+                "title3": "No Synthetic Additives",
+                "icon4": "shopify://shop_images/Vector.png",
+                "title4": "Eco-Conscious Beauty"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_highlight_tag_VYiwKr",
+            "product_ritual_badge_PidxaC",
+            "review_g7HaXX",
+            "group_icgrde",
+            "divider_8E9czi",
+            "single_product_size_EHMjkp",
+            "variant_picker_R3rGDr",
+            "recharge_widget_n3Y3kf",
+            "buy_buttons_eYQEYi",
+            "product_short_description_jmyh6B",
+            "real_result_GFWVYn",
+            "top_conversion_points_VVaTMF",
+            "product_icons_line_D8KjDc",
+            "product_tempalte_video_slider_T7Fh6y",
+            "accordion_ce3PWy",
+            "small_details_GDqdMD"
+          ]
+        }
+      },
+      "custom_css": [],
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": true,
+        "limit_details_width": false,
+        "gap": 48,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 30,
+        "padding-block-end": 30
+      }
+    },
+    "prana_duo_benefits_section_iVfdqQ": {
+      "type": "prana-duo-benefits-section",
+      "blocks": {
+        "product_pdyRGW": {
+          "type": "product",
+          "settings": {
+            "product": "pure-rose-water-toning-mist",
+            "custom_heading": "",
+            "custom_description": "",
+            "bullet_1": "",
+            "bullet_2": "",
+            "bullet_3": ""
+          }
+        },
+        "product_QTPxtm": {
+          "type": "product",
+          "settings": {
+            "product": "turmeric-and-sandalwood-face-mask",
+            "custom_heading": "",
+            "custom_description": "",
+            "bullet_1": "",
+            "bullet_2": "",
+            "bullet_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_pdyRGW",
+        "product_QTPxtm"
+      ],
+      "name": "PRANA Duo Benefits",
+      "settings": {
+        "bundle_id": "873923",
+        "bundle_name": "Discovery Kit Bundle",
+        "add_to_cart_text": "Add Bundle to Cart",
+        "add_to_cart_bg": "#b56a0c",
+        "add_to_cart_color": "#ffffff",
+        "background_color": "#f7f1e8",
+        "heading_color": "#561a24",
+        "text_color": "#323232",
+        "check_background": "#a4773d",
+        "check_color": "#ffffff",
+        "divider_color": "#ded5ca",
+        "plus_background": "#561A24",
+        "plus_color": "#F1E9D7",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "daily_ritual_section_qz6Am8": {
+      "type": "daily-ritual-section",
+      "blocks": {
+        "step_qRdHKQ": {
+          "type": "step",
+          "settings": {
+            "title": "Cleanse",
+            "description": "Begin with the PRANA Rose Cleanser. Cleanse thoroughly before applying the mask."
+          }
+        },
+        "step_CaqW3d": {
+          "type": "step",
+          "settings": {
+            "title": "Detox & Nourish",
+            "description": "Apply a generous layer to clean skin. Leave for 12–15 minutes. Rinse with warm water. Use weekly — the glow typically lasts 48–72 hours."
+          }
+        },
+        "step_L3WXJA": {
+          "type": "step",
+          "settings": {
+            "title": "Saffron Glow Serum",
+            "description": "Dispense 3-5 drops of the Saffron Glow Serum into your palm. Press- do not rub- into the skin from center outward, then upward. Give it 60 seconds."
+          }
+        },
+        "step_zk4Cbp": {
+          "type": "step",
+          "settings": {
+            "title": "Moisturize",
+            "description": "Follow with saffron Radiance Moisturizer to lock in the saffron actives."
+          }
+        }
+      },
+      "block_order": [
+        "step_qRdHKQ",
+        "step_CaqW3d",
+        "step_L3WXJA",
+        "step_zk4Cbp"
+      ],
+      "disabled": true,
+      "name": "Daily Ritual",
+      "settings": {
+        "ingredient_header": "Key Conversion Points",
+        "heading": "Your daily ritual.",
+        "highlight_heading": "4 steps.",
+        "video": "{{ product.metafields.custom.product_video.value }}",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/f2619d3d70144da9b32c014af3faa43d.mp4",
+        "video_image": "shopify://shop_images/Rectangle_51.png",
+        "autoplay": true,
+        "loop_video": true,
+        "muted": true,
+        "show_controls": false
+      }
+    },
+    "complete_routine_BwPUHL": {
+      "type": "complete-routine",
+      "name": "Complete Your Ritual",
+      "settings": {
+        "complete_set_label": "{{ product.metafields.custom.complete_your_ritual_heading.value }}",
+        "complete_set_text": "Save by ordering the complete ritual set",
+        "complete_set_button_text": "Shop the Ritual Now →",
+        "ingredient_header": "Complete Your Ritual",
+        "heading": "{{ product.metafields.custom.complete_your_ritual_heading.value }}",
+        "heading_2": "Three steps to all-day radiance.",
+        "products_limit": 10,
+        "buy_now_text": "+ Add to Bag"
+      }
+    },
+    "key_ingredients_sec_R9mPEk": {
+      "type": "key-ingredients-sec",
+      "name": "Key Ingredients",
+      "settings": {
+        "ingredient_header": "What's Inside",
+        "heading": "Ingredients Ancient botanicals.",
+        "subheading": "Modern science.",
+        "columns_desktop": 3,
+        "columns_tablet": 2,
+        "columns_mobile": "1",
+        "card_gap": 20,
+        "show_navigation": true,
+        "show_pagination": false,
+        "show_empty_message": false,
+        "empty_message_text": "No ingredients added yet."
+      }
+    },
+    "custom_proof_giBmYt": {
+      "type": "custom-proof",
+      "disabled": true,
+      "name": "Custom Proof",
+      "settings": {
+        "title": "Clinical Results · 8-Week Independent Study",
+        "text_color": "#ffffff",
+        "desktop_grid": 4,
+        "number1": "94 %",
+        "text1": "Reported visibly brighter skin after 4 weeks",
+        "number2": "89 %",
+        "text2": "Saw reduction in dark spots within 8 weeks",
+        "number3": "96 %",
+        "text3": "Said skin felt more hydrated within 7 days",
+        "number4": "7 days",
+        "text4": "Average time to first visible radiance results",
+        "last-proof": "*Results from independent 8-week consumer study. Individual results may vary."
+      }
+    },
+    "clinic_data_pdp_dp8qWg": {
+      "type": "clinic-data-pdp",
+      "name": "Clinic Data",
+      "settings": {
+        "title": "Clinical Data — 4 & 8 Week Study",
+        "text_color": "#ffffff",
+        "desktop_grid": 4,
+        "last-proof": ""
+      }
+    },
+    "1765535430ded7c91a": {
+      "type": "_blocks",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "custom_faq_center_Et6tRx": {
+      "type": "custom-faq-center",
+      "name": "Custom Faq Section",
+      "settings": {
+        "label": "Frequently Asked Questions",
+        "heading": "Everything you need to know",
+        "subheading": "",
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 50
+      }
+    },
+    "custom_liquid_xqWARh": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<div id=\"looxReviews\" data-product-id=\"{{ product.id }}\"></div>",
+        "color_scheme": "scheme-a81820a6-7aeb-4163-b47e-0e82fd29223d",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "sacred_rituals_section_pWWRLx": {
+      "type": "sacred-rituals-section",
+      "name": "Sacred Rituals",
+      "settings": {
+        "small_heading": "You May Also Like",
+        "heading": "Sacred Rituals",
+        "highlight_heading": "Built for your skin.",
+        "button_text": "Add To Cart",
+        "products_limit": 4
+      }
+    },
+    "17654505427fb1d7ab": {
+      "type": "_blocks",
+      "blocks": {
+        "instafeed_app_block_aGMDVr": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_aGMDVr"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-a81820a6-7aeb-4163-b47e-0e82fd29223d",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 50,
+        "padding-block-end": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "prana_duo_benefits_section_iVfdqQ",
+    "daily_ritual_section_qz6Am8",
+    "complete_routine_BwPUHL",
+    "key_ingredients_sec_R9mPEk",
+    "custom_proof_giBmYt",
+    "clinic_data_pdp_dp8qWg",
+    "1765535430ded7c91a",
+    "custom_faq_center_Et6tRx",
+    "custom_liquid_xqWARh",
+    "sacred_rituals_section_pWWRLx",
+    "17654505427fb1d7ab"
+  ]
+}
