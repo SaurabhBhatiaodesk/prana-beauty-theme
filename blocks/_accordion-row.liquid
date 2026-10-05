@@ -1,7 +1,19 @@
 
 {% assign block_settings = block.settings %}
 
-{% if block_settings.heading != blank %}
+{% capture accordion_content %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+{% liquid
+  assign accordion_text = accordion_content | strip_html | replace: '&nbsp;', '' | replace: '&#160;', '' | replace: ' ', '' | strip
+  assign has_content = false
+  if accordion_text != blank
+    assign has_content = true
+  elsif accordion_content contains '<img' or accordion_content contains '<video' or accordion_content contains '<iframe' or accordion_content contains '<audio' or accordion_content contains '<svg'
+    assign has_content = true
+  endif
+%}
+{% if block_settings.heading != blank and has_content %}
 <accordion-custom
   {% if block_settings.open_by_default %}
     open-by-default-on-desktop
@@ -30,7 +42,7 @@
     </summary>
 
     <div class="details-content">
-      {% content_for 'blocks' %}
+      {{ accordion_content }}
     </div>
   </details>
 </accordion-custom>
