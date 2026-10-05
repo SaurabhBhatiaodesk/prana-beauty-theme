@@ -666,22 +666,30 @@
       if (message) message.textContent = '';
 
       try {
-        const response = await fetch('/cart/add.js', {
+        const { CartAddEvent } = await import('@theme/events');
+        const sectionIds = [...new Set(Array.from(document.querySelectorAll('cart-items-component')).map((element) => element.dataset.sectionId).filter(Boolean))].slice(0, 5);
+        const response = await fetch(window.Shopify.routes.root + 'cart/add.js', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
           },
-          body: JSON.stringify({ items: items }),
+          body: JSON.stringify({ items: items, sections: sectionIds, sections_url: window.location.pathname }),
         });
 
-        if (!response.ok) throw new Error('Add to cart failed');
+        const result = await response.json();
+        if (!response.ok || result.status) throw new Error(result.description || 'Add to cart failed');
 
         textEl.textContent = 'Added to cart';
         if (message) message.textContent = 'Bundle added to cart.';
 
-        document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
-        document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+        button.dispatchEvent(new CartAddEvent(result, button.id, {
+          source: 'product-form-component',
+          itemCount: items.reduce((total, item) => total + item.quantity, 0),
+          sections: result.sections,
+        }));
+        const drawer = document.querySelector('cart-drawer-component');
+        if (drawer && typeof drawer.open === 'function') drawer.open();
 
         setTimeout(function () {
           textEl.textContent = originalText;
