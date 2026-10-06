@@ -26,10 +26,10 @@
 }
 
 .custom-popup-content h2 {
-    font-size: 26px;
-letter-spacing: 2px!important;
-margin-bottom: 0;
-font-family: 'Josefin Sans';
+  font-size: 26px;
+  letter-spacing: 2px!important;
+  margin-bottom: 0;
+  font-family: 'Josefin Sans';
 }
 
 .custom-popup-content h1 {
@@ -38,36 +38,45 @@ font-family: 'Josefin Sans';
 }
 
 .custom-popup-content p {
-      font-size: 20px;
-    margin-bottom: 25px;
-    font-family: 'Josefin Sans';
-    margin-top: 0;
+  font-size: 20px;
+  margin-bottom: 25px;
+  font-family: 'Josefin Sans';
+  margin-top: 0;
 }
 
-.custom-popup-content input {
-      width: 100%;
-    padding: 15px 22px;
-    border-radius: 30px;
-    border: none;
-    margin-bottom: 12px;
-    background: #ffffff8f;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 400;
-    font-family: 'Josefin Sans';
+.custom-popup-content input[type="text"],
+.custom-popup-content input[type="email"],
+.custom-popup-content input[type="tel"] {
+  width: 100%;
+  padding: 15px 22px;
+  border-radius: 30px;
+  border: none;
+  margin-bottom: 12px;
+  background: #ffffff8f;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Josefin Sans';
+  box-sizing: border-box;
 }
-.custom-popup-content button {
-    width: 100%;
-    padding: 20px 0 17px;
-    border-radius: 30px;
-    background: #fff;
-    border: none;
-    line-height: 18px;
-    cursor: pointer;
-    font-size: 18px;
-    font-family: 'Josefin Sans';
-    font-weight: 400;
+
+.custom-popup-content input::placeholder {
+  color: rgba(255,255,255,.95);
 }
+
+.custom-popup-content button[type="submit"] {
+  width: 100%;
+  padding: 20px 0 17px;
+  border-radius: 30px;
+  background: #fff;
+  border: none;
+  line-height: 18px;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: 'Josefin Sans';
+  font-weight: 400;
+}
+
 .custom-popup-close {
   position: absolute;
   top: 20px;
@@ -79,75 +88,302 @@ font-family: 'Josefin Sans';
   border: none;
   cursor: pointer;
 }
+
+.custom-popup-sms-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  margin: 2px 0 14px;
+  font-family: 'Josefin Sans';
+  font-size: 11px;
+  line-height: 1.45;
+  color: #fff;
+}
+
+.custom-popup-sms-consent input {
+  width: 16px !important;
+  height: 16px;
+  margin: 1px 0 0 !important;
+  flex: 0 0 auto;
+  accent-color: #a8681a;
+}
+
+.custom-popup-error {
+  display: none;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.92);
+  color: #8a1c1c;
+  font-family: 'Josefin Sans';
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.custom-popup-success {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.92);
+  color: #237a3b;
+  font-family: 'Josefin Sans';
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+@media screen and (max-width: 749px) {
+  .custom-popup-content {
+    max-width: 92%;
+    padding: 16px;
+  }
+
+  .custom-popup-content h1 {
+    font-size: 56px;
+  }
+
+  .custom-popup-content h2 {
+    font-size: 22px;
+  }
+
+  .custom-popup-content p {
+    font-size: 17px;
+  }
+}
 {% endstyle %}
 
 <div class="custom-popup-overlay" id="discountPopup">
   <div class="custom-popup" style="background-image:url('{{ section.settings.bg_image | img_url: 'master' }}');">
-    
-    <button class="custom-popup-close" id="popupClose">✕</button>
-    
+    <button class="custom-popup-close" id="popupClose" type="button" aria-label="Close popup">✕</button>
+
     <div class="custom-popup-content">
       <h2>{{ section.settings.top_text }}</h2>
       <h1>{{ section.settings.main_text }}</h1>
       <p>{{ section.settings.sub_text }}</p>
-      {% form 'customer', id: 'PopupNewsletterForm' %}
-  <input type="hidden" name="contact[tags]" value="newsletter">
 
-  <input 
-    type="email" 
-    name="contact[email]" 
-    placeholder="Enter your email"
-    required
-  >
+      <form id="PopupNewsletterForm" novalidate>
+        <div id="PopupNewsletterError" class="custom-popup-error" role="alert" aria-live="polite"></div>
 
-  <button type="submit">
-    {{ section.settings.button_text }}
-  </button>
+        <input
+          type="text"
+          id="PopupFirstName"
+          name="first_name"
+          autocomplete="given-name"
+          placeholder="First name"
+        >
 
-  {% if form.errors %}
-    <div style="color:red; margin-top:10px;">
-      {{ form.errors | default_errors }}
-    </div>
-  {% endif %}
+        <input
+          type="email"
+          id="PopupEmail"
+          name="email"
+          autocomplete="email"
+          placeholder="Enter your email"
+          required
+        >
 
-  {% if form.posted_successfully? %}
-    <div style="margin-top:10px;">
-      ✅ Thanks for subscribing!
-    </div>
-  {% endif %}
-{% endform %}
+        <input
+          type="tel"
+          id="PopupPhone"
+          name="phone"
+          autocomplete="tel"
+          inputmode="tel"
+          placeholder="Phone number (US/Canada +1)"
+        >
 
+        <label class="custom-popup-sms-consent" for="PopupSmsConsent">
+          <input type="checkbox" id="PopupSmsConsent">
+          <span>
+            I agree to receive recurring automated marketing text messages from PRANA Beauty and Wellness.
+            Message and data rates may apply. Consent is not a condition of purchase. Reply STOP to opt out.
+          </span>
+        </label>
+
+        <button type="submit" id="PopupSubmitButton">
+          <span id="PopupSubmitText">{{ section.settings.button_text }}</span>
+        </button>
+
+        <div id="PopupNewsletterSuccess" class="custom-popup-success" role="status" aria-live="polite">
+          ✅ Thanks for subscribing!
+        </div>
+      </form>
     </div>
   </div>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  var delayMinutes = {{ section.settings.delay_time | default: 1 }};
-  var delay = delayMinutes * 1000;
+  var popup = document.getElementById("discountPopup");
+  var closeButton = document.getElementById("popupClose");
+
+  if (!popup || !closeButton) return;
+
+  var delaySeconds = {{ section.settings.delay_time | default: 1 }};
+  var delay = delaySeconds * 1000;
 
   if (!localStorage.getItem("discountPopupClosed")) {
     setTimeout(function () {
-      document.getElementById("discountPopup").style.display = "block";
+      popup.style.display = "block";
     }, delay);
   }
 
-  document.getElementById("popupClose").addEventListener("click", function () {
-    document.getElementById("discountPopup").style.display = "none";
+  closeButton.addEventListener("click", function () {
+    popup.style.display = "none";
     localStorage.setItem("discountPopupClosed", "true");
   });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  var form = document.getElementById('PopupNewsletterForm');
+  var form = document.getElementById("PopupNewsletterForm");
+  if (!form || form.dataset.klaviyoConnected === "true") return;
 
-  if(form){
-    form.addEventListener('submit', function(){
-      localStorage.setItem("discountPopupClosed", "true");
-    });
+  form.dataset.klaviyoConnected = "true";
+
+  var firstNameInput = document.getElementById("PopupFirstName");
+  var emailInput = document.getElementById("PopupEmail");
+  var phoneInput = document.getElementById("PopupPhone");
+  var smsConsentInput = document.getElementById("PopupSmsConsent");
+  var submitButton = document.getElementById("PopupSubmitButton");
+  var submitText = document.getElementById("PopupSubmitText");
+  var errorMessage = document.getElementById("PopupNewsletterError");
+  var successMessage = document.getElementById("PopupNewsletterSuccess");
+  var originalButtonText = submitText ? submitText.textContent : "CONTINUE";
+
+  function normalizePhoneNumber(value) {
+    if (!value) return "";
+    var digits = value.replace(/\D/g, "");
+    if (digits.length === 10) return "+1" + digits;
+    if (digits.length === 11 && digits.charAt(0) === "1") return "+" + digits;
+    return "";
   }
-});
 
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    errorMessage.style.display = "none";
+    errorMessage.textContent = "";
+    successMessage.style.display = "none";
+
+    var firstName = firstNameInput ? firstNameInput.value.trim() : "";
+    var email = emailInput ? emailInput.value.trim() : "";
+    var phoneRaw = phoneInput ? phoneInput.value.trim() : "";
+    var phone = normalizePhoneNumber(phoneRaw);
+    var smsConsent = smsConsentInput ? smsConsentInput.checked : false;
+
+    if (!email || !emailInput.checkValidity()) {
+      errorMessage.textContent = "Please enter a valid email address.";
+      errorMessage.style.display = "block";
+      emailInput.focus();
+      return;
+    }
+
+    if (phoneRaw && !phone) {
+      errorMessage.textContent = "SMS signup is currently available for US and Canada numbers only. Please enter a valid +1 phone number.";
+      errorMessage.style.display = "block";
+      phoneInput.focus();
+      return;
+    }
+
+    if (phone && !smsConsent) {
+      errorMessage.textContent = "Please check the SMS consent box to subscribe by text.";
+      errorMessage.style.display = "block";
+      smsConsentInput.focus();
+      return;
+    }
+
+    submitButton.disabled = true;
+    if (submitText) submitText.textContent = "Joining...";
+
+    var profileAttributes = {
+      email: email,
+      subscriptions: {
+        email: {
+          marketing: {
+            consent: "SUBSCRIBED"
+          }
+        }
+      }
+    };
+
+    if (firstName) {
+      profileAttributes.first_name = firstName;
+    }
+
+    if (phone && smsConsent) {
+      profileAttributes.phone_number = phone;
+      profileAttributes.subscriptions.sms = {
+        marketing: {
+          consent: "SUBSCRIBED"
+        }
+      };
+    }
+
+    var requestBody = {
+      data: {
+        type: "subscription",
+        attributes: {
+          custom_source: "Discount popup website form",
+          profile: {
+            data: {
+              type: "profile",
+              attributes: profileAttributes
+            }
+          }
+        },
+        relationships: {
+          list: {
+            data: {
+              type: "list",
+              id: "UKs9eH"
+            }
+          }
+        }
+      }
+    };
+
+    try {
+      var response = await fetch(
+        "https://a.klaviyo.com/client/subscriptions?company_id=XGnUFs",
+        {
+          method: "POST",
+          headers: {
+            accept: "application/vnd.api+json",
+            "content-type": "application/vnd.api+json",
+            revision: "2026-07-15"
+          },
+          body: JSON.stringify(requestBody)
+        }
+      );
+
+      if (!response.ok) {
+        var errorText = "Unable to subscribe right now. Please try again.";
+        try {
+          var errorData = await response.json();
+          if (errorData.errors && errorData.errors[0] && errorData.errors[0].detail) {
+            errorText = errorData.errors[0].detail;
+          }
+        } catch (parseError) {
+          console.error(parseError);
+        }
+        throw new Error(errorText);
+      }
+
+      form.reset();
+      successMessage.style.display = "block";
+      localStorage.setItem("discountPopupClosed", "true");
+
+      submitButton.disabled = false;
+      if (submitText) submitText.textContent = originalButtonText;
+    } catch (error) {
+      console.error("Klaviyo popup subscription error:", error);
+      errorMessage.textContent = error.message || "Unable to subscribe right now. Please try again.";
+      errorMessage.style.display = "block";
+      submitButton.disabled = false;
+      if (submitText) submitText.textContent = originalButtonText;
+    }
+  });
+});
 </script>
 
 {% schema %}
