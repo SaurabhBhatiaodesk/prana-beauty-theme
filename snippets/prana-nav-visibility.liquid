@@ -1,0 +1,34 @@
+{% doc %}
+  Checks whether a navigation product resolves in the current storefront context.
+  @param {link} nav_link - Navigation link to check.
+{% enddoc %}
+{%- liquid
+  assign hide_link = false
+  if nav_link.type == 'product_link'
+    if nav_link.object == blank or nav_link.object.url == blank
+      assign hide_link = true
+    endif
+  elsif nav_link.type == 'http_link' and nav_link.url contains '/products/'
+    assign is_local = false
+    assign first_character = nav_link.url | slice: 0, 1
+    assign first_two = nav_link.url | slice: 0, 2
+    if first_character == '/' and first_two != '//'
+      assign is_local = true
+    else
+      assign link_host = nav_link.url | split: '://' | last | remove_first: '//' | split: '/' | first
+      if link_host == request.host or link_host == shop.domain or link_host == shop.permanent_domain
+        assign is_local = true
+      endif
+    endif
+    if is_local
+      assign product_handle = nav_link.url | split: '/products/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+      assign linked_product = all_products[product_handle]
+      if linked_product == blank or linked_product.url == blank
+        assign hide_link = true
+      endif
+    endif
+  endif
+  if hide_link
+    echo 'hidden'
+  endif
+-%}
