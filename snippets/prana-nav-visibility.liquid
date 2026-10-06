@@ -4,6 +4,16 @@
 {% enddoc %}
 {%- liquid
   assign hide_link = false
+  assign menu_product_handle = ''
+  if nav_link.type == 'product_link'
+    assign menu_product_handle = nav_link.object.handle
+  endif
+  if menu_product_handle == blank and nav_link.url contains '/products/'
+    assign menu_product_handle = nav_link.url | split: '/products/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+  endif
+  if localization.country.iso_code == 'GB' and menu_product_handle == 'prana-discovery-kit'
+    assign hide_link = true
+  endif
   if nav_link.type == 'product_link'
     if nav_link.object == blank or nav_link.object.url == blank
       assign hide_link = true
