@@ -64,6 +64,8 @@
             <div class="footer-col-content">
               <ul>
                 {% for link in linklists[section.settings.shop_menu].links %}
+{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: link %}{% endcapture %}
+{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                   <li>
                     <a href="{{ link.url }}">{{ link.title }}</a>
                   </li>
@@ -85,6 +87,8 @@
             <div class="footer-col-content">
               <ul>
                 {% for link in linklists[section.settings.prana_menu].links %}
+{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: link %}{% endcapture %}
+{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                   <li>
                     <a href="{{ link.url }}">{{ link.title }}</a>
                   </li>
@@ -106,6 +110,8 @@
             <div class="footer-col-content">
               <ul>
                 {% for link in linklists[section.settings.help_menu].links %}
+{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: link %}{% endcapture %}
+{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                   <li>
                     <a href="{{ link.url }}">{{ link.title }}</a>
                   </li>

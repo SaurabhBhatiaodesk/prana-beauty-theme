@@ -22,8 +22,6 @@
           {% if section.settings.main_menu_left != blank %}
             <ul>
               {% for link in linklists[section.settings.main_menu_left].links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                 <li class="has-drop main-menu">
                   <a href="{{ link.url }}" style="cursor:pointer;">
                     {{- link.title -}}
@@ -40,15 +38,11 @@
                   {% if link.links != blank %}
                     <div class="drop">
                       {% for child_link in link.links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: child_link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                         {% if child_link.links != blank %}
                           <div class="sub-menu">
                             <div class="drop-head">{{ child_link.title }}</div>
 
                             {% for grandchild_link in child_link.links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: grandchild_link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                               <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
                             {% endfor %}
 
@@ -195,8 +189,6 @@
           <nav>
             <ul style="margin:0">
               {% for link in linklists[section.settings.main_menu_right].links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                 <li class="has-drop">
                   <a onclick="nav('about')" href="{{ link.url }}">
                     {{- link.title -}}
@@ -213,15 +205,11 @@
                   {% if link.links != blank %}
                     <div class="drop">
                       {% for child_link in link.links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: child_link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                         <div class="sub-menu">
                           <div class="drop-head">{{ child_link.title }}</div>
 
                           {% if child_link.links != blank %}
                             {% for grandchild_link in child_link.links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: grandchild_link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                               <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
                             {% endfor %}
                           {% endif %}
@@ -350,8 +338,6 @@
   <div class="mobile-nav-inner mobile-smart-menu__main">
     {% if section.settings.main_menu_mobile != blank %}
       {% for link in linklists[section.settings.main_menu_mobile].links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
         {% if link.links != blank %}
           <button
             type="button"
@@ -440,8 +426,6 @@
 
   {% if section.settings.main_menu_mobile != blank %}
     {% for link in linklists[section.settings.main_menu_mobile].links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
       {% liquid
         assign show_nav_link = true
 
@@ -478,8 +462,6 @@
             </button>
 
             {% for child_link in link.links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: child_link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
               {% if child_link.links != blank %}
                 <button
                   type="button"
@@ -524,8 +506,6 @@
           </div>
 
           {% for child_link in link.links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: child_link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
             {% if child_link.links != blank %}
               <div
                 id="MobileMenuPanel-{{ forloop.parentloop.index }}-{{ forloop.index }}"
@@ -549,8 +529,6 @@
                 </button>
 
                 {% for grandchild_link in child_link.links %}
-{% capture nav_visibility %}{% render 'prana-nav-visibility', nav_link: grandchild_link %}{% endcapture %}
-{% if nav_visibility contains 'hidden' %}{% continue %}{% endif %}
                   <a
                     class="mob-nav-link"
 
