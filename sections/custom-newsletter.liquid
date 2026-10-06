@@ -137,10 +137,22 @@
 
               inputmode="tel"
 
-              placeholder="Phone number"
+              placeholder="Phone number (include country code)"
               aria-label="Phone number"
             >
           </div>
+
+          <label class="ec-sms-consent" for="ContactForm-sms-consent-{{ section.id }}">
+            <input
+              type="checkbox"
+              id="ContactForm-sms-consent-{{ section.id }}"
+              class="ec-sms-consent__checkbox"
+            >
+            <span>
+              I agree to receive recurring automated marketing text messages from PRANA Beauty and Wellness. Message and
+              data rates may apply. Consent is not a condition of purchase. Reply STOP to opt out.
+            </span>
+          </label>
 
           <button
             type="submit"
@@ -583,6 +595,27 @@
 
 
 
+
+
+  .ec-sms-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-top: 2px;
+    font-family: var(--S);
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink3);
+    cursor: pointer;
+  }
+
+  .ec-sms-consent__checkbox {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    margin: 1px 0 0;
+    accent-color: var(--gold);
+  }
 
   .ec-btn {
 
@@ -1037,6 +1070,8 @@
 
     const phoneInput = document.getElementById('ContactForm-phone-{{ section.id }}');
 
+    const smsConsentInput = document.getElementById('ContactForm-sms-consent-{{ section.id }}');
+
     const submitButton = document.getElementById('emailCaptureBtn-{{ section.id }}');
 
     const buttonText = submitButton.querySelector('.ec-btn-text');
@@ -1062,7 +1097,28 @@
 
       const lastName = lastNameInput.value.trim();
 
-      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const phoneRaw = phoneInput ? phoneInput.value.trim() : '';
+      const smsConsent = smsConsentInput ? smsConsentInput.checked : false;
+
+      function normalizePhoneNumber(value) {
+        if (!value) return '';
+
+        const trimmed = value.trim();
+
+        if (trimmed.startsWith('+')) {
+          return '+' + trimmed.slice(1).replace(/\D/g, '');
+        }
+
+        const digits = trimmed.replace(/\D/g, '');
+
+        // US / Canada: add +1 when a 10-digit local number is entered.
+        if (digits.length === 10) return '+1' + digits;
+        if (digits.length === 11 && digits.startsWith('1')) return '+' + digits;
+
+        return '';
+      }
+
+      const phone = normalizePhoneNumber(phoneRaw);
 
       if (!email || !emailInput.checkValidity()) {
         errorMessage.textContent = 'Please enter a valid email address.';
@@ -1071,6 +1127,20 @@
 
         emailInput.focus();
 
+        return;
+      }
+
+      if (phoneRaw && !phone) {
+        errorMessage.textContent = 'Please enter a valid US or Canada phone number with country code.';
+        errorMessage.style.display = 'block';
+        phoneInput.focus();
+        return;
+      }
+
+      if (phone && !smsConsent) {
+        errorMessage.textContent = 'Please check the SMS consent box to subscribe by text.';
+        errorMessage.style.display = 'block';
+        smsConsentInput.focus();
         return;
       }
 
@@ -1096,6 +1166,15 @@
 
       if (lastName) {
         profileAttributes.last_name = lastName;
+      }
+
+      if (phone && smsConsent) {
+        profileAttributes.phone_number = phone;
+        profileAttributes.subscriptions.sms = {
+          marketing: {
+            consent: 'SUBSCRIBED',
+          },
+        };
       }
 
       const requestBody = {
@@ -1138,7 +1217,7 @@
 
               'content-type': 'application/vnd.api+json',
 
-              revision: '2026-04-15',
+              revision: '2026-07-15',
             },
 
             body: JSON.stringify(requestBody),
