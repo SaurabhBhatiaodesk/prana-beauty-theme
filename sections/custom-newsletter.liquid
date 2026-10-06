@@ -1104,14 +1104,11 @@
         if (!value) return '';
 
         const trimmed = value.trim();
-
-        if (trimmed.startsWith('+')) {
-          return '+' + trimmed.slice(1).replace(/\D/g, '');
-        }
-
         const digits = trimmed.replace(/\D/g, '');
 
-        // US / Canada: add +1 when a 10-digit local number is entered.
+        // Klaviyo SMS is currently active on this account for US + Canada.
+        // Accept 10-digit NANP numbers, 11-digit numbers beginning with 1,
+        // or +1 formatted numbers only.
         if (digits.length === 10) return '+1' + digits;
         if (digits.length === 11 && digits.startsWith('1')) return '+' + digits;
 
@@ -1131,7 +1128,8 @@
       }
 
       if (phoneRaw && !phone) {
-        errorMessage.textContent = 'Please enter a valid US or Canada phone number with country code.';
+        errorMessage.textContent =
+          'SMS signup is currently available for US and Canada numbers only. Please enter a valid +1 phone number.';
         errorMessage.style.display = 'block';
         phoneInput.focus();
         return;
