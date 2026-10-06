@@ -8,7 +8,11 @@
       style="
         background: {{ section.settings.bg_color }};
 
+
+
         padding-top: {{ section.settings.padding_top_desktop }}px;
+
+
 
         padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
       "
@@ -122,12 +126,19 @@
 
             <input
               type="tel"
+
               id="ContactForm-phone-{{ section.id }}"
+
               class="ec-input"
+
               autocomplete="tel"
+
               name="phone"
+
               inputmode="tel"
+
               placeholder="Phone number"
+              aria-label="Phone number"
             >
           </div>
 
@@ -165,425 +176,845 @@
 </div>
 
 <style>
-  /* ── EMAIL CAPTURE BAR ──────────────────────────── */
+  /\* ── EMAIL CAPTURE BAR ──────────────────────────── \*/
+
+
 
   .ec-bar {
 
+
+
     display: grid;
+
+
 
     grid-template-columns: 1fr 1fr;
 
+
+
     gap: 0;
+
+
 
     padding:0 40px;
 
+
+
     align-items: center;
+
+
 
     position: relative;
 
+
+
     overflow: hidden;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-left {
 
+
+
     position: relative;
+
+
 
     z-index: 1;
 
+
+
     padding-right: 60px;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-right {
 
+
+
     position: relative;
+
+
 
     z-index: 1;
 
+
+
     height: 100%;
+
+
 
     background: var(--canvas2);
 
+
+
     padding:40px;
+
+
 
     border-radius: 8px;
 
+
+
     box-sizing: border-box;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-eyebrow {
 
+
+
     font-size: 17px;
+
+
 
     color: var(--ink3);
 
+
+
     margin-bottom: 11px;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-headline {
 
+
+
     font-size: 30px;
+
+
 
     font-weight: 300;
 
+
+
     line-height: 1.1;
+
+
 
     color: var(--ink3);
 
+
+
     padding-bottom: 9px;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-highlight-heading {
 
+
+
     color: var(--heading-color);
+
+
 
     font-size: 30px;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-sub {
 
+
+
     font-family: var(--S);
+
+
 
     font-size: 18px;
 
+
+
     line-height: 1.7;
+
+
 
     color: var(--ink3);
 
+
+
     margin-bottom: 11px;
+
+
 
     max-width: 380px;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-perks {
 
+
+
     display: flex;
+
+
 
     flex-direction: column;
 
+
+
     gap: 8px;
+
+
 
     padding-left: 17px;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-perk {
 
+
+
     font-size: 17px;
+
+
 
     letter-spacing: .06em;
 
+
+
     color: var(--ink3);
+
+
 
     list-style: disc;
 
+
+
   }
+
+
+
+
 
 
 
   .section.main-newsletter-form {
 
+
+
     background:#f4e9d9;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-form {
 
+
+
     display: flex;
+
+
 
     flex-direction: column;
 
+
+
     gap: 12px;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-name-row {
 
+
+
     display: grid;
+
+
 
     grid-template-columns: 1fr 1fr;
 
+
+
     gap: 12px;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-input {
 
+
+
     width: 100%;
+
+
 
     border: 1px solid rgba(168, 104, 26, .35);
 
+
+
     color: var(--canvas);
+
+
 
     font-family: var(--S);
 
+
+
     font-size: 15px;
+
+
 
     padding: 14px 18px;
 
+
+
     outline: none;
+
+
 
     transition: border-color .2s;
 
+
+
     box-sizing: border-box;
+
+
 
     background:#F1E2CF;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-input::placeholder {
 
+
+
     color:var(--ink3);
 
+
+
   }
+
+
+
+
 
 
 
   .ec-btn {
 
+
+
     width: 100%;
+
+
 
     display: flex;
 
+
+
     align-items: center;
+
+
 
     justify-content: center;
 
+
+
     gap: 10px;
+
+
 
     padding: 10px 28px;
 
+
+
     background: var(--gold);
+
+
 
     color: var(--canvas);
 
+
+
     border: none;
+
+
 
     font-size: 17px;
 
+
+
     cursor: pointer;
+
+
 
     transition: background .2s;
 
+
+
     margin-top: 4px;
+
+
 
     border-radius: 5px;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-btn:hover {
 
+
+
     background:var(--heading-color);
 
+
+
   }
+
+
+
+
 
 
 
   .ec-btn:disabled {
 
+
+
     cursor: not-allowed;
+
+
 
     opacity: .7;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-btn-arrow {
 
+
+
     font-size: 14px;
+
+
 
     letter-spacing: 0;
 
+
+
   }
 
 
 
-  /* Success message inside right white box */
+
+
+
+
+  /\* Success message inside right white box \*/
+
+
 
   .ec-success-message {
 
+
+
       width: 100%;
+
+
 
       box-sizing: border-box;
 
+
+
       margin-top: 14px;
+
+
 
       padding: 10px 15px;
 
+
+
       align-items: center;
+
+
 
       justify-content: center;
 
+
+
       gap: 9px;
+
+
 
       background: #f0e8d6;
 
+
+
       border: 1px solid #a8681a;
+
+
 
       border-radius: 6px;
 
+
+
       color: #a8681a !important;
+
+
 
       font-size: 14px;
 
+
+
       font-weight: 600;
+
+
 
       line-height: 1.45;
 
+
+
       text-align: left;
 
+
+
   }
+
+
+
+
 
 
 
   .ec-success-check {
 
+
+
     flex: 0 0 22px;
+
+
 
     width: 22px;
 
+
+
     height: 22px;
+
+
 
     display: inline-flex;
 
+
+
     align-items: center;
+
+
 
     justify-content: center;
 
+
+
     background: #237a3b;
+
+
 
     color: #ffffff;
 
+
+
     border-radius: 50%;
+
+
 
     font-size: 13px;
 
+
+
     line-height: 1;
 
+
+
   }
+
+
+
+
 
 
 
   @media (max-width: 768px) {
 
+
+
     .ec-bar {
+
+
 
       grid-template-columns: 1fr;
 
+
+
       padding: 60px 17px;
+
+
 
       gap: 20px;
 
+
+
     }
+
+
+
+
 
 
 
     .ec-highlight-heading {
 
+
+
       font-size:20px;
+
+
 
       padding-bottom: 5px;
 
+
+
     }
+
+
+
+
 
 
 
     .ec-left {
 
+
+
       padding-right: 0;
 
+
+
     }
+
+
+
+
 
 
 
     .ec-name-row {
 
+
+
       grid-template-columns: 1fr;
 
+
+
     }
+
+
 
   }
 
 
 
+
+
+
+
   @media screen and (max-width: 767px) {
+
+
 
     .ec-bar {
 
+
+
       padding-top: {{ section.settings.padding_top_mobile }}px !important;
+
+
 
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px !important;
 
+
+
     }
+
+
+
+
 
 
 
     .ec-right {
 
+
+
       background: transparent;
+
+
 
       padding: 0;
 
+
+
     }
+
+
+
+
 
 
 
     .ec-perks {
 
+
+
       gap: 3px;
 
+
+
     }
+
+
+
+
 
 
 
     .ec-perk {
 
+
+
       font-size:15px;
 
+
+
     }
+
+
+
+
 
 
 
     .ec-success-message {
 
+
+
       align-items: flex-start;
+
+
 
       font-size: 13px;
 
+
+
     }
+
+
 
   }
 </style>
@@ -603,6 +1034,8 @@
     const lastNameInput = document.getElementById('ContactForm-last-name-{{ section.id }}');
 
     const emailInput = document.getElementById('ContactForm-email-{{ section.id }}');
+
+    const phoneInput = document.getElementById('ContactForm-phone-{{ section.id }}');
 
     const submitButton = document.getElementById('emailCaptureBtn-{{ section.id }}');
 
@@ -628,6 +1061,8 @@
       const firstName = firstNameInput.value.trim();
 
       const lastName = lastNameInput.value.trim();
+
+      const phone = phoneInput ? phoneInput.value.trim() : '';
 
       if (!email || !emailInput.checkValidity()) {
         errorMessage.textContent = 'Please enter a valid email address.';
@@ -726,11 +1161,11 @@
           throw new Error(errorText);
         }
 
-        /* Form visible rahega */
+        /\* Form visible rahega \*/;
 
         form.reset();
 
-        /* Green success message right box ke andar show hoga */
+        /\* Green success message right box ke andar show hoga \*/;
 
         successMessage.style.display = 'flex';
 
