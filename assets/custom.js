@@ -423,7 +423,7 @@ $(document).ready(function() {
   }
 
   // ATC product
-  $('.pcaro-atc, .custom-atc, .complete-cart-button, .sutra-step-atc').click(function(e) {
+  $('.pcaro-atc, .custom-atc, .complete-cart-button, .sutra-step-atc').not('.hp-sticky-atc').click(function(e) {
     var selectedVariant = $(this).attr('pid');
 
     var success_btn = $(this).parents(".card-footer").find(".success-btn");

@@ -142,7 +142,13 @@
               </div>
 
               <button
+                type="button"
+                id="PranaStickyAddToCart"
                 class="pcaro-atc hp-sticky-atc"
+                data-product-id="{{ sticky_pdt.id }}"
+                data-adding-text="{{ 'products.product.adding_to_cart' | t | escape }}"
+                data-error-text="{{ 'products.product.add_to_cart_error' | t | escape }}"
+                aria-describedby="PranaStickyCartError"
                 data-variant-id="{{ sticky_pdt.selected_or_first_available_variant.id }}">
                 Add to Cart
               </button>
@@ -155,7 +161,9 @@
             </div>
 
           </div>
+          <p id="PranaStickyCartError" role="alert" hidden></p>
         </div>
+        <script type="module" src="{{ 'prana-sticky-cart.js' | asset_url }}"></script>
       {% endif %}
     {% endif %}
 
