@@ -601,7 +601,7 @@
       ],
       "name": "Daily Ritual",
       "settings": {
-        "ingredient_header": "Key Conversion Points",
+        "ingredient_header": "",
         "heading": "Your daily ritual.",
         "highlight_heading": "4 steps.",
         "video": "{{ product.metafields.custom.product_video.value }}",
