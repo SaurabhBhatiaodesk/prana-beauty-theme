@@ -566,6 +566,7 @@
       "blocks": {
         "step_qRdHKQ": {
           "type": "step",
+          "disabled": true,
           "settings": {
             "title": "Cleanse",
             "description": "Begin with the PRANA Rose Cleanser. Cleanse thoroughly before applying the serum."
