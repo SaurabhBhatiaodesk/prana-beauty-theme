@@ -150,7 +150,7 @@
       },
       "8385100285611313441": {
         "type": "shopify://apps/skin-scan-and-quiz/blocks/scan-assistant/01a12f69-60f6-72e8-bb59-ea0bdabda925",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "quiz_code": ""
         }
