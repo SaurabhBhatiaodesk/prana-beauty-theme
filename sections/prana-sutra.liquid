@@ -762,6 +762,8 @@
 <script type="application/json" id="sutra-bundle-source-{{ section.id }}">
 {
   "money_format": {{ shop.money_format | json }},
+  "currency_code": {{ localization.country.currency.iso_code | json }},
+  "locale": {{ request.locale.iso_code | json }},
   "individually_label": {{ section.settings.individually_label | json }},
   "save_label": {{ section.settings.save_label | json }},
   "save_as_label": {{ section.settings.save_as_label | json }},
@@ -875,6 +877,24 @@
 
   function formatMoney(cents, moneyFormat) {
     cents = Math.round(Number(cents) || 0);
+
+    // `shop.money_format` is the store base format (USD here), while the
+    // product prices above are returned for the active Shopify Market. Format
+    // with the active market currency so domain/country changes show GBP, USD,
+    // EUR, etc. correctly rather than always displaying a dollar sign.
+    if (sourceData.currency_code && window.Intl && typeof Intl.NumberFormat === 'function') {
+      try {
+        var fractionDigits = cents % 100 === 0 ? 0 : 2;
+        return new Intl.NumberFormat(sourceData.locale || undefined, {
+          style: 'currency',
+          currency: sourceData.currency_code,
+          minimumFractionDigits: fractionDigits,
+          maximumFractionDigits: fractionDigits
+        }).format(cents / 100);
+      } catch (error) {
+        // Use Shopify's legacy formatter below only if the locale/currency is invalid.
+      }
+    }
 
     if (window.Shopify && typeof Shopify.formatMoney === 'function') {
       var fallbackFormat = '${' + '{amount}}';
