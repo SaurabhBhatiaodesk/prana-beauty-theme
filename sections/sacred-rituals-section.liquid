@@ -254,12 +254,8 @@
   var sectionId      = '{{ section.id }}';
   var grid           = document.getElementById('sacred-grid-' + sectionId);
   var template       = document.getElementById('sacred-card-template-' + sectionId);
-  var moneyFormat    = {{ shop.money_format | json }};
-
-  function formatNumberWithDelimiter(number, delimiter) {
-    delimiter = delimiter || ',';
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, delimiter);
-  }
+  var currencyCode   = {{ localization.country.currency.iso_code | json }};
+  var locale          = {{ request.locale.iso_code | json }};
 
   function formatMoney(cents) {
     var value = parseFloat(cents);
@@ -268,15 +264,19 @@
       return '';
     }
 
-    var amountNoDecimals = Math.floor(value / 100);
-    var amountNoDecimalsWithComma = formatNumberWithDelimiter(amountNoDecimals, ',');
-    var amountNoDecimalsWithPeriod = formatNumberWithDelimiter(amountNoDecimals, '.');
+    if (currencyCode && window.Intl && typeof Intl.NumberFormat === 'function') {
+      try {
+        var fractionDigits = value % 100 === 0 ? 0 : 2;
+        return new Intl.NumberFormat(locale || undefined, {
+          style: 'currency',
+          currency: currencyCode,
+          minimumFractionDigits: fractionDigits,
+          maximumFractionDigits: fractionDigits
+        }).format(value / 100);
+      } catch (error) {}
+    }
 
-    return moneyFormat
-      .replace(/\{\{\s*amount\s*\}\}/g, amountNoDecimalsWithComma)
-      .replace(/\{\{\s*amount_no_decimals\s*\}\}/g, amountNoDecimalsWithComma)
-      .replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, amountNoDecimalsWithPeriod)
-      .replace(/\{\{\s*amount_no_decimals_with_comma_separator\s*\}\}/g, amountNoDecimalsWithPeriod);
+    return (value / 100).toFixed(2);
   }
 
   // Clean description function - HTML tags hatao aur text do

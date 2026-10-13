@@ -734,6 +734,8 @@
   var deepScores = { V: 0, P: 0, K: 0, Vv: 0, Pv: 0, Kv: 0 };
   var shopifyProducts = [];
   var isProductsLoaded = false;
+  var currencyCode = {{ localization.country.currency.iso_code | json }};
+  var locale = {{ request.locale.iso_code | json }};
 
   // ─── DOM HELPERS ───
   function $(id) { return document.getElementById(id + '-' + SID); }
@@ -776,6 +778,24 @@
       return product.images[0].src;
     }
     return '';
+  }
+
+  function formatProductPrice(amount) {
+    var value = Number(amount);
+    if (!isFinite(value)) return '';
+
+    if (currencyCode && window.Intl && typeof Intl.NumberFormat === 'function') {
+      try {
+        return new Intl.NumberFormat(locale || undefined, {
+          style: 'currency',
+          currency: currencyCode,
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(value);
+      } catch (error) {}
+    }
+
+    return value.toFixed(2);
   }
 
   // ─── MATCH PRODUCTS TO DOSHA (DYNAMIC AI) ───
@@ -838,7 +858,7 @@
       if (score > 0) {
         matched.push({
           title: p.title || 'Product',
-          price: p.variants && p.variants[0] ? '$' + parseFloat(p.variants[0].price).toFixed(2) : '$0',
+          price: p.variants && p.variants[0] ? formatProductPrice(p.variants[0].price) : '',
           image: image,
           handle: p.handle || '',
           score: score,
@@ -918,12 +938,12 @@
       if (matchedProducts.length === 0) {
         var fallbackProducts = [];
         var productNames = {
-          'saffron-glow-serum': { title: 'Saffron Glow Serum', price: '$89', handle: 'saffron-glow-serum' },
-          'saffron-radiance-moisturizer': { title: 'Saffron Radiance Moisturizer', price: '$72', handle: 'saffron-radiance-moisturizer' },
-          'bakuchiol-night-serum': { title: 'Bakuchiol Night Serum', price: '$79', handle: 'bakuchiol-night-serum' },
-          'turmeric-sandalwood-mask': { title: 'Turmeric & Sandalwood Mask', price: '$52', handle: 'turmeric-sandalwood-mask' },
-          'rose-water-mist': { title: 'Pure Rose Water Mist', price: '$35', handle: 'rose-water-mist' },
-          'rose-jasmine-cleanser': { title: 'Rose Jasmine Milk Cleanser', price: '$32', handle: 'rose-jasmine-cleanser' }
+          'saffron-glow-serum': { title: 'Saffron Glow Serum', handle: 'saffron-glow-serum' },
+          'saffron-radiance-moisturizer': { title: 'Saffron Radiance Moisturizer', handle: 'saffron-radiance-moisturizer' },
+          'bakuchiol-night-serum': { title: 'Bakuchiol Night Serum', handle: 'bakuchiol-night-serum' },
+          'turmeric-sandalwood-mask': { title: 'Turmeric & Sandalwood Mask', handle: 'turmeric-sandalwood-mask' },
+          'rose-water-mist': { title: 'Pure Rose Water Mist', handle: 'rose-water-mist' },
+          'rose-jasmine-cleanser': { title: 'Rose Jasmine Milk Cleanser', handle: 'rose-jasmine-cleanser' }
         };
 
         for (var i = 0; i < d.products.length; i++) {
@@ -940,7 +960,7 @@
             var imgSrc = getProductImage(found);
             fallbackProducts.push({
               title: found.title,
-              price: found.variants && found.variants[0] ? '$' + parseFloat(found.variants[0].price).toFixed(2) : '$0',
+              price: found.variants && found.variants[0] ? formatProductPrice(found.variants[0].price) : '',
               image: imgSrc,
               handle: found.handle,
               score: 70 - (i * 5),
@@ -951,7 +971,7 @@
             if (fb) {
               fallbackProducts.push({
                 title: fb.title,
-                price: fb.price,
+                price: '',
                 image: '',
                 handle: fb.handle,
                 score: 70 - (i * 5),
@@ -995,7 +1015,7 @@
               '<div class="pc-name">' + p.title + '</div>' +
               scoreHtml +
               '<div class="pc-bottom">' +
-                '<span class="pc-price">' + p.price + '</span>' +
+                (p.price ? '<span class="pc-price">' + p.price + '</span>' : '') +
                 '<a class="btn-shop" href="/products/' + (p.handle || '') + '" target="_blank">Shop Now →</a>' +
               '</div>' +
             '</div>' +

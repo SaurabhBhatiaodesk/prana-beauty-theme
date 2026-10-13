@@ -237,6 +237,8 @@
     };
 
     var state = window.__heCartRecsZeroLoad;
+    var currencyCode = {{ localization.country.currency.iso_code | json }};
+    var locale = {{ request.locale.iso_code | json }};
 
     function rootPath() {
       if (window.Shopify && Shopify.routes && Shopify.routes.root) return Shopify.routes.root;
@@ -252,13 +254,24 @@
     function formatMoney(cents) {
       var value = Number(cents || 0);
 
+      if (currencyCode && window.Intl && typeof Intl.NumberFormat === 'function') {
+        try {
+          return new Intl.NumberFormat(locale || undefined, {
+            style: 'currency',
+            currency: currencyCode,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          }).format(value / 100);
+        } catch (error) {}
+      }
+
       if (window.Shopify && typeof Shopify.formatMoney === 'function') {
         try {
           return Shopify.formatMoney(value, window.theme && window.theme.moneyFormat ? window.theme.moneyFormat : undefined);
         } catch (error) {}
       }
 
-      return '$' + (value / 100).toFixed(2);
+      return (value / 100).toFixed(2);
     }
 
     function productImage(product) {
