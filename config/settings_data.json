@@ -131,13 +131,6 @@
           "cards_border_color": "rgba(0,0,0,0)"
         }
       },
-      "1800380026717425155": {
-        "type": "shopify://apps/tangent-quiz/blocks/tangent-chatbot/51b4f65b-1bd1-4373-a212-7af0ce5a9774",
-        "disabled": false,
-        "settings": {
-          "form_id": ""
-        }
-      },
       "5918445685253060206": {
         "type": "shopify://apps/bundler/blocks/bundler-script-append/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
         "disabled": false,
@@ -150,9 +143,16 @@
       },
       "8385100285611313441": {
         "type": "shopify://apps/skin-scan-and-quiz/blocks/scan-assistant/01a12f69-60f6-72e8-bb59-ea0bdabda925",
-        "disabled": true,
+        "disabled": false,
         "settings": {
           "quiz_code": ""
+        }
+      },
+      "1800380026717425155": {
+        "type": "shopify://apps/tangent-quiz/blocks/tangent-chatbot/51b4f65b-1bd1-4373-a212-7af0ce5a9774",
+        "disabled": true,
+        "settings": {
+          "form_id": ""
         }
       }
     },
