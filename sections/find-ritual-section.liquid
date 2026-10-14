@@ -191,7 +191,7 @@
 
           data-skip="{{ section.settings.skip_text | default: 'Skip' | escape }}"
 
-          data-email-placeholder="{{ section.settings.email_placeholder | default: 'your\@email.com' | escape }}"
+          data-email-placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' | escape }}"
 
           data-loading="{{ 'prana_quiz.loading' | t | escape }}"
 
@@ -215,1482 +215,744 @@
 </section>
 
 <style>
-  /\* Compact product recommendations. Card display only; quiz logic unchanged. \*/
-
+  /* Compact product recommendations. Card display only; quiz logic unchanged. */
   .fyr-product-grid {
-
-    display: grid;
-
-    grid-template-columns: repeat(2, minmax(0, 190px));
-
-    gap: 10px;
-
-    margin: 12px 0 16px;
-
-    justify-content: start;
-
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 190px));
+    gap: 10px;
+    margin: 12px 0 16px;
+    justify-content: start;
   }
-
   .fyr-quiz-opt.selected {
-
-    background: #7d3438;
-
-    border-color: #b67824;
-
-    color: #ffffff;
-
+    background: #7d3438;
+    border-color: #b67824;
+    color: #ffffff;
   }
-
   .fyr-product-card {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-
-    min-width: 0;
-
-    padding: 7px;
-
-    background: var(--canvas2);
-
-    color: var(--ink3);
-
-    border: 1px solid rgba(200, 146, 26, 0.3);
-
-    border-radius: 8px;
-
-    text-decoration: none;
-
-    overflow: hidden;
-
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+    padding: 7px;
+    background: var(--canvas2);
+    color: var(--ink3);
+    border: 1px solid rgba(200, 146, 26, 0.3);
+    border-radius: 8px;
+    text-decoration: none;
+    overflow: hidden;
   }
-
   .fyr-product-card img {
-
-    display: block;
-
-    width: 100%;
-
-    height: 150px;
-
-    object-fit: contain;
-
-    border-radius: 4px;
-
+    display: block;
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 4px;
   }
-
   .fyr-product-title {
-
-    font-size: 13px;
-
-    line-height: 1.3;
-
-    overflow-wrap: anywhere;
-
+    font-size: 13px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
   }
-
   .fyr-product-price {
-
-    margin-top: auto;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
+    margin-top: auto;
+    font-size: 13px;
+    font-weight: 600;
   }
-
   .fyr-product-card:focus-visible {
-
-    outline: 2px solid var(--gold);
-
-    outline-offset: 3px;
-
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
   }
-
   @media (max-width: 600px) {
-
-    .fyr-product-grid {
-
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-
-      gap: 8px;
-
-    }
-
-    .fyr-product-card {
-
-      padding: 7px;
-
-    }
-
-    .fyr-product-card img {
-
-      height: 120px;
-
-    }
-
-    .fyr-product-title,
-
-    .fyr-product-price {
-
-      font-size: 12px;
-
-    }
-
+    .fyr-product-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .fyr-product-card {
+      padding: 7px;
+    }
+    .fyr-product-card img {
+      height: 120px;
+    }
+    .fyr-product-title,
+    .fyr-product-price {
+      font-size: 12px;
+    }
   }
-
-
 
   prana-ritual-quiz {
-
-    display: block;
-
+    display: block;
   }
-
-
 
   .fyr-email-input {
-
-    width: 100%;
-
-    padding: 14px;
-
-    margin-bottom: 16px;
-
-    background: var(--canvas2);
-
-    color: var(--ink3);
-
-    border: 1px solid var(--gold);
-
-    border-radius: 4px;
-
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 16px;
+    background: var(--canvas2);
+    color: var(--ink3);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
   }
 
-
-
-  /\* ── FIND YOUR RITUAL COMBINED ── \*/
-
-
+  /* ── FIND YOUR RITUAL COMBINED ── */
 
   .fyr-section {
+    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
 
-    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
-
-
-
-    padding: 58px 0px;
-
+    padding: 58px 0px;
   }
-
-
 
   .fyr-header {
+    text-align: center;
 
-    text-align: center;
-
-
-
-    margin-bottom: 39px;
-
+    margin-bottom: 39px;
   }
-
-
 
   .fyr-header h2 {
+    font-size: 41px;
 
-    font-size: 41px;
+    color: var(--heading-color);
 
+    padding: 10px 0 0 0;
 
-
-    color: var(--heading-color);
-
-
-
-    padding: 10px 0 0 0;
-
-
-
-    margin: 0;
-
+    margin: 0;
   }
-
-
 
   .fyr-sub {
+    font-family: var(--S);
 
-    font-family: var(--S);
+    font-size: 17px;
 
+    color: var(--ink3);
 
+    max-width: 560px;
 
-    font-size: 17px;
+    margin: 5px auto 0;
 
-
-
-    color: var(--ink3);
-
-
-
-    max-width: 560px;
-
-
-
-    margin: 5px auto 0;
-
-
-
-    line-height: normal;
-
+    line-height: normal;
   }
-
-
 
   .fyr-grid {
+    display: grid;
 
-    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
 
+    gap: 0;
 
-
-    grid-template-columns: 1fr 80px 1fr;
-
-
-
-    gap: 0;
-
-
-
-    align-items: stretch;
-
+    align-items: stretch;
   }
-
-
 
   .fyr-panel {
-
-    position: relative;
-
+    position: relative;
   }
-
-
 
   .fyr-panel-badge {
+    position: static;
 
-    position: static;
+    font-size: 11px;
 
+    letter-spacing: 0.28em;
 
+    text-transform: uppercase;
 
-    font-size: 11px;
+    background: var(--gold);
 
+    padding: 5px 12px;
 
+    z-index: 2;
 
-    letter-spacing: 0.28em;
+    border-radius: 4px;
 
+    width: fit-content;
 
+    color: #fff;
 
-    text-transform: uppercase;
-
-
-
-    background: var(--gold);
-
-
-
-    padding: 5px 12px;
-
-
-
-    z-index: 2;
-
-
-
-    border-radius: 4px;
-
-
-
-    width: fit-content;
-
-
-
-    color: #fff;
-
-
-
-    margin: 22px;
-
+    margin: 22px;
   }
-
-
 
   .fyr-badge-quiz {
-
-    margin: 0;
-
+    margin: 0;
   }
 
-
-
-  /\* Left panel — scan (canvas bg) \*/
-
-
+  /* Left panel — scan (canvas bg) */
 
   .fyr-scan {
+    background: var(--canvas2);
 
-    background: var(--canvas2);
+    display: grid;
 
+    grid-template-rows: 1fr auto;
 
-
-    display: grid;
-
-
-
-    grid-template-rows: 1fr auto;
-
-
-
-    min-height: 600px;
-
+    min-height: 600px;
   }
-
-
 
   .fyr-vis {
+    padding: 40px;
 
-    padding: 40px;
+    display: flex;
 
+    align-items: center;
 
+    justify-content: center;
 
-    display: flex;
-
-
-
-    align-items: center;
-
-
-
-    justify-content: center;
-
-
-
-    min-height: 280px;
-
+    min-height: 280px;
   }
-
-
 
   .fyr-copy {
+    padding: 32px 40px 48px;
 
-    padding: 32px 40px 48px;
-
-
-
-    border-top: 1px solid var(--gold-line);
-
+    border-top: 1px solid var(--gold-line);
   }
-
-
 
   .fyr-panel-h {
+    color: var(--ink);
 
-    color: var(--ink);
+    line-height: 1.05;
 
-
-
-    line-height: 1.05;
-
-
-
-    margin: 0;
-
+    margin: 0;
   }
-
-
 
   .fyr-copy h3 {
+    color: var(--ink3);
 
-    color: var(--ink3);
+    font-size: 30px;
 
-
-
-    font-size: 30px;
-
-
-
-    font-weight: 300;
-
+    font-weight: 300;
   }
-
-
 
   h3.fyr-panel-h-highlight {
+    color: var(--heading-color);
 
-    color: var(--heading-color);
-
-
-
-    padding: 12px 0;
-
+    padding: 12px 0;
   }
-
-
 
   .fyr-steps {
+    display: flex;
 
-    display: flex;
+    flex-direction: column;
 
+    gap: 0px;
 
-
-    flex-direction: column;
-
-
-
-    gap: 0px;
-
-
-
-    margin: 10px 0 24px 0;
-
+    margin: 10px 0 24px 0;
   }
-
-
 
   .fyr-step {
+    display: flex;
 
-    display: flex;
+    align-items: flex-start;
 
+    gap: 14px;
 
+    font-family: var(--S);
 
-    align-items: flex-start;
+    font-size: 21px;
 
+    color: var(--ink3);
 
-
-    gap: 14px;
-
-
-
-    font-family: var(--S);
-
-
-
-    font-size: 21px;
-
-
-
-    color: var(--ink3);
-
-
-
-    line-height: 1.6;
-
+    line-height: 1.6;
   }
-
-
 
   .fyr-sn {
+    font-family: var(--U);
 
-    font-family: var(--U);
+    font-size: 21px;
 
+    letter-spacing: 0.14em;
 
+    color: var(--gold);
 
-    font-size: 21px;
+    padding-top: 2px;
 
+    flex-shrink: 0;
 
-
-    letter-spacing: 0.14em;
-
-
-
-    color: var(--gold);
-
-
-
-    padding-top: 2px;
-
-
-
-    flex-shrink: 0;
-
-
-
-    width: 20px;
-
+    width: 20px;
   }
-
-
 
   .fyr-cta-scan {
+    width: 100%;
 
-    width: 100%;
+    justify-content: center;
 
-
-
-    justify-content: center;
-
-
-
-    margin-bottom: 10px;
-
+    margin-bottom: 10px;
   }
-
-
 
   .fyr-note {
+    font-family: var(--S);
 
-    font-family: var(--S);
+    font-size: 16px;
 
-
-
-    font-size: 16px;
-
-
-
-    color: var(--ink3);
-
+    color: var(--ink3);
   }
 
-
-
-  /\* OR divider \*/
-
-
+  /* OR divider */
 
   .fyr-or {
+    display: flex;
 
-    display: flex;
+    flex-direction: column;
 
+    align-items: center;
 
+    justify-content: center;
 
-    flex-direction: column;
+    background: var(--canvas-dk);
 
-
-
-    align-items: center;
-
-
-
-    justify-content: center;
-
-
-
-    background: var(--canvas-dk);
-
-
-
-    gap: 0;
-
+    gap: 0;
   }
-
-
 
   .fyr-or-line {
+    flex: 1;
 
-    flex: 1;
+    width: 1px;
 
-
-
-    width: 1px;
-
-
-
-    background: rgba(200, 146, 26, 0.15);
-
+    background: rgba(200, 146, 26, 0.15);
   }
-
-
 
   .fyr-or-badge {
+    font-family: var(--U);
 
-    font-family: var(--U);
+    font-size: 10px;
 
+    letter-spacing: 0.24em;
 
+    color: var(--ink4);
 
-    font-size: 10px;
+    padding: 16px 0;
 
+    writing-mode: vertical-lr;
 
-
-    letter-spacing: 0.24em;
-
-
-
-    color: var(--ink4);
-
-
-
-    padding: 16px 0;
-
-
-
-    writing-mode: vertical-lr;
-
-
-
-    text-orientation: mixed;
-
+    text-orientation: mixed;
   }
-
-
 
   p.where-should-we-send {
+    color: white;
 
-    color: white;
+    font-size: 15px;
 
-
-
-    font-size: 15px;
-
-
-
-    padding-bottom: 10px;
-
+    padding-bottom: 10px;
   }
 
-
-
-  /\* Right panel — quiz (dark bg) \*/
-
-
+  /* Right panel — quiz (dark bg) */
 
   .fyr-quiz-panel {
+    background: linear-gradient(-90deg, #461324, #813850);
 
-    background: linear-gradient(-90deg, #461324, #813850);
+    padding: 48px 40px;
 
+    display: flex;
 
+    flex-direction: column;
 
-    padding: 48px 40px;
-
-
-
-    display: flex;
-
-
-
-    flex-direction: column;
-
-
-
-    justify-content: flex-start;
-
+    justify-content: flex-start;
   }
-
-
 
   .fyr-quiz-panel .fyr-panel-h {
-
-    padding: 20px 0 10px 0;
-
+    padding: 20px 0 10px 0;
   }
-
-
 
   .fyr-quiz-desc {
+    font-family: var(--S);
 
-    font-family: var(--S);
+    font-size: 15px;
 
+    color: white;
 
+    line-height: normal;
 
-    font-size: 15px;
-
-
-
-    color: white;
-
-
-
-    line-height: normal;
-
-
-
-    margin-bottom: 16px;
-
+    margin-bottom: 16px;
   }
-
-
 
   .fyr-quiz-trust {
+    display: flex;
 
-    display: flex;
+    flex-direction: column;
 
+    gap: 5px;
 
-
-    flex-direction: column;
-
-
-
-    gap: 5px;
-
-
-
-    margin: 0 0 28px 13px;
-
+    margin: 0 0 28px 13px;
   }
-
-
 
   .fyr-quiz-trust li {
+    font-family: var(--S);
 
-    font-family: var(--S);
+    font-size: 15px;
 
-
-
-    font-size: 15px;
-
-
-
-    color: white;
-
+    color: white;
   }
-
-
 
   .fyr-quiz-widget {
-
-    flex: 1;
-
+    flex: 1;
   }
-
-
 
   .fyr-quiz-step-label {
+    font-family: var(--U);
 
-    font-family: var(--U);
+    font-size: 16px;
 
+    color: white;
 
-
-    font-size: 16px;
-
-
-
-    color: white;
-
-
-
-    margin-bottom: 11px;
-
+    margin-bottom: 11px;
   }
-
-
 
   .fyr-quiz-q {
+    font-family: var(--D);
 
-    font-family: var(--D);
+    font-size: clamp(22px, 2.5vw, 28px);
 
+    font-weight: 300;
 
+    color: white;
 
-    font-size: clamp(22px, 2.5vw, 28px);
+    line-height: 1.2;
 
-
-
-    font-weight: 300;
-
-
-
-    color: white;
-
-
-
-    line-height: 1.2;
-
-
-
-    margin-bottom: 20px;
-
+    margin-bottom: 20px;
   }
-
-
 
   .fyr-quiz-opts {
+    display: flex;
 
-    display: flex;
+    flex-direction: column;
 
-
-
-    flex-direction: column;
-
-
-
-    gap: 8px;
-
+    gap: 8px;
   }
-
-
 
   .fyr-quiz-opt {
+    background: var(--canvas2);
 
-    background: var(--canvas2);
+    border: 1px solid rgba(248, 242, 230, 0.1);
 
+    color: var(--ink3);
+    border-radius: 4px;
+    font-size: 16px;
 
+    padding:6px 18px;
 
-    border: 1px solid rgba(248, 242, 230, 0.1);
+    text-align: left;
 
+    cursor: pointer;
 
-
-    color: var(--ink3);
-
-    border-radius: 4px;
-
-    font-size: 16px;
-
-
-
-    padding:6px 18px;
-
-
-
-    text-align: left;
-
-
-
-    cursor: pointer;
-
-
-
-    transition: all 0.18s;
-
+    transition: all 0.18s;
   }
-
-
 
   .fyr-quiz-opt.selected {
+    background: rgba(200, 146, 26, 0.12);
 
-    background: rgba(200, 146, 26, 0.12);
+    border-color: rgba(200, 146, 26, 0.4);
 
-
-
-    border-color: rgba(200, 146, 26, 0.4);
-
-
-
-    color: var(--canvas);
-
+    color: var(--canvas);
   }
-
-
 
   .fyr-result-badge {
+    font-family: var(--U);
 
-    font-family: var(--U);
+    font-size: 16px;
 
+    text-transform: capitalize;
 
+    color: white;
 
-    font-size: 16px;
-
-
-
-    text-transform: capitalize;
-
-
-
-    color: white;
-
-
-
-    margin-bottom: 4px;
-
+    margin-bottom: 4px;
   }
-
-
 
   .fyr-result-name {
+    font-family: var(--D);
 
-    font-family: var(--D);
+    font-size: 26px;
 
+    font-weight: 300;
 
+    color: var(--canvas);
 
-    font-size: 26px;
-
-
-
-    font-weight: 300;
-
-
-
-    color: var(--canvas);
-
-
-
-    margin-bottom: 8px;
-
+    margin-bottom: 8px;
   }
-
-
 
   .fyr-result-desc {
+    font-family: var(--S);
 
-    font-family: var(--S);
+    font-size: 15px;
 
+    color: white;
 
+    line-height: 1.7;
 
-    font-size: 15px;
-
-
-
-    color: white;
-
-
-
-    line-height: 1.7;
-
-
-
-    margin-bottom: 16px;
-
+    margin-bottom: 16px;
   }
-
-
 
   .fyr-result-price {
+    font-family: var(--D);
 
-    font-family: var(--D);
+    font-size: 28px;
 
+    color: white;
 
-
-    font-size: 28px;
-
-
-
-    color: white;
-
-
-
-    margin-bottom: 16px;
-
+    margin-bottom: 16px;
   }
-
-
 
   .fyr-result-cta {
+    width: 100%;
 
-    width: 100%;
+    background: var(--gold);
 
+    color: var(--canvas);
 
+    border: none;
 
-    background: var(--gold);
+    padding: 11px 24px;
 
+    font-size: 17px;
 
+    letter-spacing: unset;
 
-    color: var(--canvas);
+    text-transform: capitalize;
 
+    cursor: pointer;
 
+    transition: background 0.2s;
 
-    border: none;
+    margin-bottom: 8px;
 
-
-
-    padding: 11px 24px;
-
-
-
-    font-size: 17px;
-
-
-
-    letter-spacing: unset;
-
-
-
-    text-transform: capitalize;
-
-
-
-    cursor: pointer;
-
-
-
-    transition: background 0.2s;
-
-
-
-    margin-bottom: 8px;
-
-
-
-    border-radius: 5px;
-
+    border-radius: 5px;
   }
-
-
 
   .fyr-result-cta:hover {
-
-    background: #c8881e;
-
+    background: #c8881e;
   }
 
-
-
-  /\* ── MOBILE ── \*/
-
-
+  /* ── MOBILE ── */
 
   @media (max-width: 768px) {
+    .fyr-section {
+      padding: 29px 0 48px 0px;
+    }
 
-    .fyr-section {
+    .fyr-section .section {
+      display: block;
+    }
 
-      padding: 29px 0 48px 0px;
+    .fyr-grid {
+      grid-template-columns: 1fr;
 
-    }
+      grid-template-rows: auto auto auto;
+    }
 
+    .fyr-or {
+      flex-direction: row;
 
+      background: transparent;
 
-    .fyr-section .section {
+      padding: 16px 0;
 
-      display: block;
+      border-top: 1px solid var(--canvas-dk);
 
-    }
+      border-bottom: 1px solid var(--canvas-dk);
 
+      display: none;
+    }
 
+    .fyr-quiz-opts {
+      display: grid;
 
-    .fyr-grid {
+      grid-template-columns: 1fr 1fr;
 
-      grid-template-columns: 1fr;
+      gap: 8px;
+    }
 
+    .fyr-or-line {
+      flex: 1;
 
+      height: 1px;
 
-      grid-template-rows: auto auto auto;
+      width: auto;
+    }
 
-    }
+    .fyr-quiz-opt {
+      font-size: 14px;
 
+      padding: 5px 10px;
+    }
 
+    .fyr-or-badge {
+      writing-mode: horizontal-tb;
 
-    .fyr-or {
+      padding: 0 16px;
 
-      flex-direction: row;
+      font-size: 11px;
+    }
 
+    .fyr-panel-badge {
+      display: none;
+    }
 
+    .fyr-scan {
+      min-height: auto;
 
-      background: transparent;
+      background: transparent;
+    }
 
+    .fyr-vis {
+      padding: 28px 24px;
 
+      min-height: 220px;
+    }
 
-      padding: 16px 0;
+    .fyr-result-badge {
+      font-size: 13px;
 
+      margin-bottom: 4px;
+    }
 
+    .fyr-copy {
+      padding: 24px;
 
-      border-top: 1px solid var(--canvas-dk);
+      background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+    }
 
+    .fyr-panel-h {
+      font-size: 19px;
+    }
 
+    .fyr-quiz-panel {
+      padding: 24px 16px;
+    }
 
-      border-bottom: 1px solid var(--canvas-dk);
+    .fyr-quiz-q {
+      font-size: 15px;
+    }
 
+    .hp-video-section .vid-placeholder {
+      height: 280px;
+    }
 
+    .fyr-quiz-desc {
+      font-size: 16px;
 
-      display: none;
+      margin-bottom: 8px;
 
-    }
+      line-height: 21px;
+    }
 
+    .fyr-quiz-trust li {
+      font-size: 14px;
+    }
 
+    .fyr-quiz-panel .fyr-panel-h {
+      padding: 0px 0 10px 0;
+    }
 
-    .fyr-quiz-opts {
+    .hp-video-section [style*='bottom:36px'] {
+      left: 20px;
 
-      display: grid;
+      right: 20px;
 
+      bottom: 20px;
+    }
 
+    .fyr-quiz-step-label {
+      font-size: 14px;
 
-      grid-template-columns: 1fr 1fr;
+      margin-bottom: 7px;
+    }
 
+    .fyr-result-name {
+      font-size: 17px;
 
+      margin-bottom: 0;
+    }
 
-      gap: 8px;
+    .fyr-result-desc {
+      font-size: 13px;
 
-    }
+      line-height: normal;
 
+      margin: 4px 0 13px;
+    }
 
+    .hp-quiz-restart {
+      font-size: 13px;
 
-    .fyr-or-line {
+      padding: 5px;
+    }
 
-      flex: 1;
+    .fyr-result-cta {
+      padding: 5px 24px;
 
+      font-size: 13px;
+    }
 
+    .fyr-header h2 {
+      font-size: 20px;
 
-      height: 1px;
+      padding: 0;
+    }
 
+    .fyr-copy h3 {
+      font-size: 18px;
+    }
 
+    .fyr-sn {
+      font-size: 14px;
 
-      width: auto;
+      line-height: 17px;
+    }
 
-    }
+    .fyr-step {
+      font-size: 13px;
 
+      line-height: 17px;
 
+      gap: 1px;
+    }
 
-    .fyr-quiz-opt {
+    .fyr-result-price {
+      margin-bottom: 7px;
 
-      font-size: 14px;
+      font-size: 20px;
+    }
 
+    .fyr-header {
+      margin-bottom: 3px;
+    }
 
-
-      padding: 5px 10px;
-
-    }
-
-
-
-    .fyr-or-badge {
-
-      writing-mode: horizontal-tb;
-
-
-
-      padding: 0 16px;
-
-
-
-      font-size: 11px;
-
-    }
-
-
-
-    .fyr-panel-badge {
-
-      display: none;
-
-    }
-
-
-
-    .fyr-scan {
-
-      min-height: auto;
-
-
-
-      background: transparent;
-
-    }
-
-
-
-    .fyr-vis {
-
-      padding: 28px 24px;
-
-
-
-      min-height: 220px;
-
-    }
-
-
-
-    .fyr-result-badge {
-
-      font-size: 13px;
-
-
-
-      margin-bottom: 4px;
-
-    }
-
-
-
-    .fyr-copy {
-
-      padding: 24px;
-
-
-
-      background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
-
-    }
-
-
-
-    .fyr-panel-h {
-
-      font-size: 19px;
-
-    }
-
-
-
-    .fyr-quiz-panel {
-
-      padding: 24px 16px;
-
-    }
-
-
-
-    .fyr-quiz-q {
-
-      font-size: 15px;
-
-    }
-
-
-
-    .hp-video-section .vid-placeholder {
-
-      height: 280px;
-
-    }
-
-
-
-    .fyr-quiz-desc {
-
-      font-size: 16px;
-
-
-
-      margin-bottom: 8px;
-
-
-
-      line-height: 21px;
-
-    }
-
-
-
-    .fyr-quiz-trust li {
-
-      font-size: 14px;
-
-    }
-
-
-
-    .fyr-quiz-panel .fyr-panel-h {
-
-      padding: 0px 0 10px 0;
-
-    }
-
-
-
-    .hp-video-section [style\*='bottom:36px'] {
-
-      left: 20px;
-
-
-
-      right: 20px;
-
-
-
-      bottom: 20px;
-
-    }
-
-
-
-    .fyr-quiz-step-label {
-
-      font-size: 14px;
-
-
-
-      margin-bottom: 7px;
-
-    }
-
-
-
-    .fyr-result-name {
-
-      font-size: 17px;
-
-
-
-      margin-bottom: 0;
-
-    }
-
-
-
-    .fyr-result-desc {
-
-      font-size: 13px;
-
-
-
-      line-height: normal;
-
-
-
-      margin: 4px 0 13px;
-
-    }
-
-
-
-    .hp-quiz-restart {
-
-      font-size: 13px;
-
-
-
-      padding: 5px;
-
-    }
-
-
-
-    .fyr-result-cta {
-
-      padding: 5px 24px;
-
-
-
-      font-size: 13px;
-
-    }
-
-
-
-    .fyr-header h2 {
-
-      font-size: 20px;
-
-
-
-      padding: 0;
-
-    }
-
-
-
-    .fyr-copy h3 {
-
-      font-size: 18px;
-
-    }
-
-
-
-    .fyr-sn {
-
-      font-size: 14px;
-
-
-
-      line-height: 17px;
-
-    }
-
-
-
-    .fyr-step {
-
-      font-size: 13px;
-
-
-
-      line-height: 17px;
-
-
-
-      gap: 1px;
-
-    }
-
-
-
-    .fyr-result-price {
-
-      margin-bottom: 7px;
-
-
-
-      font-size: 20px;
-
-    }
-
-
-
-    .fyr-header {
-
-      margin-bottom: 3px;
-
-    }
-
-
-
-    .fyr-steps {
-
-      margin: 10px 0 14px 0;
-
-    }
-
+    .fyr-steps {
+      margin: 10px 0 14px 0;
+    }
   }
 
-
-
   @media all and (max-width: 480px) {
+    .fyr-step {
+      font-size: 14px;
 
-    .fyr-step {
+      line-height: 20px;
 
-      font-size: 14px;
+      gap: 1px;
+    }
 
+    .content-fyr-main {
+      gap: 10px;
 
+      display: flex;
 
-      line-height: 20px;
+      margin-bottom: 11px;
 
+      align-items: end;
+    }
 
+    .fyr-copy h3 {
+      font-size: 14px;
 
-      gap: 1px;
+      line-height: 21px;
+    }
 
-    }
+    .fyr-copy h3.fyr-panel-h-highlight {
+      color: var(--heading-color);
 
+      padding: 0;
 
+      line-height: 21px;
+    }
 
-    .content-fyr-main {
-
-      gap: 10px;
-
-
-
-      display: flex;
-
-
-
-      margin-bottom: 11px;
-
-
-
-      align-items: end;
-
-    }
-
-
-
-    .fyr-copy h3 {
-
-      font-size: 14px;
-
-
-
-      line-height: 21px;
-
-    }
-
-
-
-    .fyr-copy h3.fyr-panel-h-highlight {
-
-      color: var(--heading-color);
-
-
-
-      padding: 0;
-
-
-
-      line-height: 21px;
-
-    }
-
-
-
-    .fyr-steps {
-
-      margin: 0;
-
-    }
-
+    .fyr-steps {
+      margin: 0;
+    }
   }
 </style>
 
@@ -1701,11 +963,8 @@
   "settings": [
     {
       "type": "text",
-
       "id": "quiz_api_url",
-
       "label": "Quiz data API URL",
-
       "default": "/apps/dosha-quiz/quiz?code=1791954993424"
     },
 
@@ -2196,7 +1455,7 @@
 
       "label": "Email Placeholder",
 
-      "default": "your\@email.com"
+      "default": "your@email.com"
     },
 
     {
