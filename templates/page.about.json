@@ -460,8 +460,8 @@
       "name": "Three Doshas Philosophy",
       "settings": {
         "heading": "The Philosophy of the Three Doshas",
-        "subheading": "According to Ayurveda, all living beings are made up of five elementsair, fire, water, earth, and ether which combine to form three life energiesknown as Doshas:",
-        "description": "Understanding your dosha is the foundation of personalized beauty. At Prana Beauty, our AI-powered skin quiz draws inspiration from theseAyurvedic principles — interpreting your skin’s signals to recommendrituals that restore your unique balance."
+        "subheading": "According to Ayurveda, all living beings are made up of five elements - air, fire, water, earth, and ether which combine to form three life energiesknown as Doshas:",
+        "description": "Understanding your dosha is the foundation of personalized beauty. At Prana Beauty, our AI-powered skin quiz draws inspiration from these Ayurvedic principles — interpreting your skin’s signals to recommend rituals that restore your unique balance."
       }
     },
     "self_care_section_rcW6qF": {
@@ -596,7 +596,7 @@
       "custom_css": [],
       "name": "PRANA Block Cards",
       "settings": {
-        "header_text": "Why Choose Prana Beauty’sAyurvedic Skincare",
+        "header_text": "Why Choose Prana Beauty’s Ayurvedic Skincare",
         "main_content": "<p>Because Ayurveda is not a trend — it is a timeless practice of reverence. Each Prana Beauty formula embodies:</p>",
         "desktop_column_count": "4",
         "tablet_column_count": "2",
@@ -1078,7 +1078,7 @@
             "tab_name": "Rose Water",
             "ingredient_title": "Pure Rose Water",
             "ingredient_subtitle": "Rosa Damascena Flower Water",
-            "description": "<p>Pure Rose Water — <em>Gulab Jal</em> — is the hydrosol produced by steam distillation of Damask rose petals. It is distinct from rose-scented water (water with synthetic fragrance) and from rose oil (the concentrated lipid extract). The true hydrosol contains <strong>water-soluble phenylethanol, geraniol, and linalool</strong> at therapeutic concentrations. Its pH of 5.0–5.5 precisely matches the skin's acid mantle — making it the ideal toning medium in the PRANA ritual.</p>",
+            "description": "<p>Pure Rose Water —&nbsp;<em>Gulab Jal</em>&nbsp;— is the hydrosol produced by steam distillation of Damask rose petals. It is distinct from rose-scented water (water with synthetic fragrance) and from rose oil (the concentrated lipid extract). The true hydrosol contains&nbsp;<strong>water-soluble phenylethanol, geraniol, and linalool</strong>&nbsp;at therapeutic concentrations. Its pH of 5.0–5.5 precisely matches the skin's acid mantle — making it the ideal toning medium in the PRANA ritual.</p>",
             "info_1_title": "pH Restoration",
             "info_1_text": "Cleansing disrupts the skin's acid mantle (pH 4.5–5.5). Rose water immediately restores the optimal pH environment for barrier function and microbiome balance.",
             "info_2_title": "Absorption Priming",
@@ -1099,7 +1099,7 @@
             "tab_name": "Kaolin Clay",
             "ingredient_title": "Kaolin Clay",
             "ingredient_subtitle": "Kaolin / Illite",
-            "description": "<p>Kaolin is a white aluminosilicate clay — the gentlest of the cosmetic clays, appropriate for all skin types including sensitive and dry. Its <strong>adsorptive and absorptive dual action</strong> draws excess sebum and surface impurities to the clay matrix while simultaneously delivering trace minerals including silica, zinc, and magnesium. In PRANA's purifying mask, kaolin and French green illite create a dual-clay base that clarifies without stripping — preserving the skin's natural lipid balance.</p>",
+            "description": "<p>Kaolin is a white aluminosilicate clay — the gentlest of the cosmetic clays, appropriate for all skin types including sensitive and dry. Its&nbsp;<strong>adsorptive and absorptive dual action</strong>&nbsp;draws excess sebum and surface impurities to the clay matrix while simultaneously delivering trace minerals including silica, zinc, and magnesium. In PRANA's purifying mask, kaolin and French green illite create a dual-clay base that clarifies without stripping — preserving the skin's natural lipid balance.</p>",
             "info_1_title": "Adsorption",
             "info_1_text": "Kaolin's highly charged platelet structure adsorbs sebum, environmental particulate matter, and dead skin cells from the surface — providing a deep physical cleanse without aggressive surfactants.",
             "info_2_title": "Mineral Delivery",
@@ -1120,7 +1120,7 @@
             "tab_name": "Squalane",
             "ingredient_title": "Plant-Derived Squalane",
             "ingredient_subtitle": "Squalane (Sugarcane-derived)",
-            "description": "<p>Squalane is a <strong>skin-identical lipid</strong> — a molecule that the skin itself produces as a component of sebum, declining significantly after age 30. Derived from sugarcane in PRANA's formulas (never shark liver), plant-derived squalane absorbs completely within 30 seconds, leaving no residue. It is the base carrier in the Bakuchiol Night Restorative Serum — chosen because its skin-identical chemistry maximises penetration of bakuchiol and supporting actives without competition from a heavier carrier oil.</p>",
+            "description": "<p>Squalane is a&nbsp;<strong>skin-identical lipid</strong>&nbsp;— a molecule that the skin itself produces as a component of sebum, declining significantly after age 30. Derived from sugarcane in PRANA's formulas (never shark liver), plant-derived squalane absorbs completely within 30 seconds, leaving no residue. It is the base carrier in the Bakuchiol Night Restorative Serum — chosen because its skin-identical chemistry maximises penetration of bakuchiol and supporting actives without competition from a heavier carrier oil.</p>",
             "info_1_title": "Skin-Identical Hydration",
             "info_1_text": "Because squalane is structurally identical to a component of human sebum, absorption is immediate and complete across all skin types — no adaptation required.",
             "info_2_title": "Barrier Occlusion",
