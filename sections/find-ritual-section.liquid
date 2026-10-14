@@ -183,6 +183,14 @@
 
 
 <style>
+.fyr-product-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 20px 0 24px; }
+.fyr-product-card { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 12px; background: var(--canvas2); color: var(--ink3); border: 1px solid rgba(200,146,26,.3); border-radius: 8px; text-decoration: none; overflow: hidden; }
+.fyr-product-card img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; border-radius: 4px; }
+.fyr-product-title { font-size: 17px; line-height: 1.4; overflow-wrap: anywhere; }
+.fyr-product-price { margin-top: auto; font-size: 16px; font-weight: 600; }
+.fyr-product-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+@media (max-width: 480px) { .fyr-product-grid { gap: 10px; } .fyr-product-card { padding: 8px; } .fyr-product-title, .fyr-product-price { font-size: 14px; } }
+
 prana-ritual-quiz { display: block; }
 .fyr-email-input { width: 100%; padding: 14px; margin-bottom: 16px; background: var(--canvas2); color: var(--ink3); border: 1px solid var(--gold); border-radius: 4px; }
   

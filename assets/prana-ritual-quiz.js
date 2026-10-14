@@ -104,6 +104,7 @@
       const result = payload.result;
       this.replaceChildren(this.element('h4', 'fyr-result-name', result.profile?.name || ''), this.element('p', 'fyr-result-desc', result.profile?.essence || result.profile?.sub || result.insight || ''));
       if (!result.products?.length) this.append(this.element('p', 'fyr-result-desc', this.dataset.empty || ''));
+      const grid = this.element('div', 'fyr-product-grid', '');
       for (const product of result.products || []) {
         const title = product.title || product.name || '';
         const path = product.url || (product.handle ? `/products/${product.handle}` : '');
@@ -111,11 +112,25 @@
         const url = new URL(path, location.origin);
         if (!['https:', 'http:'].includes(url.protocol)) continue;
         const link = document.createElement('a');
-        link.className = 'fyr-result-cta';
+        link.className = 'fyr-product-card';
         link.href = url.href;
-        link.textContent = title;
-        this.append(link);
+        if (product.image) {
+          const imageUrl = new URL(product.image, location.origin);
+          if (['https:', 'http:'].includes(imageUrl.protocol)) {
+            const image = document.createElement('img');
+            image.src = imageUrl.href;
+            image.alt = title;
+            image.loading = 'lazy';
+            image.width = 400;
+            image.height = 400;
+            link.append(image);
+          }
+        }
+        link.append(this.element('span', 'fyr-product-title', title));
+        if (product.price) link.append(this.element('span', 'fyr-product-price', String(product.price)));
+        grid.append(link);
       }
+      if (grid.children.length) this.append(grid);
       this.append(this.button(this.dataset.restart || 'Retake Quiz', () => { this.answers = []; this.question(); }));
     } catch {
       this.status(this.dataset.error || '');
