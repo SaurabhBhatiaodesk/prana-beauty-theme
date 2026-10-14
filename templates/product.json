@@ -604,7 +604,7 @@
       "settings": {
         "ingredient_header": "",
         "heading": "Your daily ritual.",
-        "highlight_heading": "3 steps.",
+        "highlight_heading": "4 steps.",
         "video": "{{ product.metafields.custom.product_video.value }}",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/f2619d3d70144da9b32c014af3faa43d.mp4",
         "video_image": "shopify://shop_images/Rectangle_51.png",
