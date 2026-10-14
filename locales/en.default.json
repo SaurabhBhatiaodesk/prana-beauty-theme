@@ -8,6 +8,7 @@
  * ------------------------------------------------------------
  */
 {
+  "prana_quiz": {"loading":"Loading your ritual?","error":"We could not load your ritual. Please try again.","empty":"No product recommendations are available for these answers yet.","retry":"Try again","progress":"Question [current] of [total]"},
   "accessibility": {
     "account": "Account",
     "cart": "Cart",

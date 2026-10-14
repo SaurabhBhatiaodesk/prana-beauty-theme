@@ -162,162 +162,17 @@
           <li>{{ section.settings.trust_quiz2 }}</li>
         </div>
 
-        <div class="fyr-quiz-widget" id="quizWidget">
-
-          <!-- STEP 1 -->
-          <div class="hp-quiz-step" id="qStep1">
-
-            <p class="fyr-quiz-step-label">
-              {{ section.settings.q1_label | default: 'Question 1 of 3' }}
-          </p>
-
-            <div class="fyr-quiz-q">
-              {{ section.settings.q1_title | default: "What's your skin type?" }}
-            </div>
-
-            <div class="fyr-quiz-opts">
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(1,'dry')">
-                {{ section.settings.q1_opt1 | default: 'Dry or Very Dry' }}
-              </button>
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(1,'oily')">
-                {{ section.settings.q1_opt2 | default: 'Oily or Combo' }}
-              </button>
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(1,'sensitive')">
-                {{ section.settings.q1_opt3 | default: 'Sensitive or Reactive' }}
-              </button>
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(1,'normal')">
-                {{ section.settings.q1_opt4 | default: 'Normal / Not Sure' }}
-              </button>
-
-            </div>
-          </div>
-
-          <!-- STEP 2 -->
-          <div class="hp-quiz-step" id="qStep2" style="display:none">
-
-            <p class="fyr-quiz-step-label">
-              {{ section.settings.q2_label | default: 'Question 2 of 3' }}
-          </p>
-
-            <div class="fyr-quiz-q">
-              {{ section.settings.q2_title | default: 'When do you care for your skin most?' }}
-            </div>
-
-            <div class="fyr-quiz-opts">
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(2,'morning')">
-                {{ section.settings.q2_opt1 | default: 'Morning — quick, protective' }}
-              </button>
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(2,'night')">
-                {{ section.settings.q2_opt2 | default: 'Night — slow, restorative' }}
-              </button>
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(2,'both')">
-                {{ section.settings.q2_opt3 | default: 'Both — full ritual' }}
-              </button>
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(2,'weekly')">
-                {{ section.settings.q2_opt4 | default: 'Weekly spa treatment' }}
-              </button>
-
-            </div>
-          </div>
-
-          <!-- STEP 3 -->
-          <div class="hp-quiz-step" id="qStep3" style="display:none">
-
-            <p class="fyr-quiz-step-label">
-              {{ section.settings.q3_label | default: 'Question 3 of 3' }}
-          </p>
-
-            <div class="fyr-quiz-q">
-              {{ section.settings.q3_title | default: 'Your #1 skin concern?' }}
-            </div>
-
-            <div class="fyr-quiz-opts">
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(3,'glow')">
-                {{ section.settings.q3_opt1 | default: 'Dullness / No glow' }}
-              </button>
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(3,'aging')">
-                {{ section.settings.q3_opt2 | default: 'Fine lines / Firmness' }}
-              </button>
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(3,'pigment')">
-                {{ section.settings.q3_opt3 | default: 'Dark spots / Pigmentation' }}
-              </button>
-
-              <button class="fyr-quiz-opt" onclick="quizAnswer(3,'acne')">
-                {{ section.settings.q3_opt4 | default: 'Breakouts / Texture' }}
-              </button>
-
-            </div>
-          </div>
-
-          <!-- EMAIL -->
-          <div class="hp-quiz-step" id="qStep4" style="display:none">
-
-            <form method="post" action="/contact#qEmailGate">
-
-              <input type="hidden" name="form_type" value="contact">
-              <input type="hidden" name="utf8" value="✓">
-
-              <p class="where-should-we-send">
-                {{ section.settings.email_title | default: 'Where should we send your ritual?' }}
-              </p>
-
-              <input
-                type="email"
-                name="contact[email]"
-                id="quizEmail"
-                placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}"
-                required
-              >
-
-              <button type="submit">
-                {{ section.settings.email_button | default: 'See My Ritual →' }}
-              </button>
-
-            </form>
-
-            <button onclick="showQuizResult()" class="skip-link">
-              {{ section.settings.skip_text | default: 'Skip' }}
-            </button>
-
-          </div>
-
-          <!-- RESULT -->
-          <div class="hp-quiz-step" id="qResult" style="display:none">
-
-            <p class="fyr-result-badge">
-              {{ section.settings.result_badge | default: 'Your Prana Ritual' }}
-            </p>
-
-            <div class="fyr-result-name" id="qResultName"></div>
-
-            <div class="fyr-result-desc" id="qResultDesc"></div>
-
-            <div class="hp-quiz-result-products" id="qResultProducts"></div>
-
-            <div class="fyr-result-price" id="qResultPrice"></div>
-
-            <button class="fyr-result-cta" id="qResultCTA">
-              {{ section.settings.result_button | default: 'Shop My Ritual →' }}
-            </button>
-
-            <button class="hp-quiz-restart" onclick="quizRestart()">
-              {{ section.settings.restart_text | default: 'Retake Quiz' }}
-            </button>
-
-          </div>
-
-        </div>
+        <prana-ritual-quiz class="fyr-quiz-widget"
+          data-api-url="{{ section.settings.quiz_api_url | default: '/apps/dosha-quiz/quiz?code=1791954993424' | escape }}"
+          data-loading="{{ 'prana_quiz.loading' | t | escape }}"
+          data-error="{{ 'prana_quiz.error' | t | escape }}"
+          data-empty="{{ 'prana_quiz.empty' | t | escape }}"
+          data-retry="{{ 'prana_quiz.retry' | t | escape }}"
+          data-progress="{{ 'prana_quiz.progress' | t | escape }}"
+          data-restart="{{ section.settings.restart_text | escape }}">
+          <p class="fyr-quiz-step-label" role="status">{{ 'prana_quiz.loading' | t }}</p>
+        </prana-ritual-quiz>
+        <script src="{{ 'prana-ritual-quiz.js' | asset_url }}" defer></script>
       </div>
 
     </div>
@@ -770,6 +625,7 @@ p.where-should-we-send {
 {
   "name": "Find ritual",
   "settings": [
+    {"type":"text","id":"quiz_api_url","label":"Quiz data API URL","default":"/apps/dosha-quiz/quiz?code=1791954993424"},
 
     {
       "type": "header",
