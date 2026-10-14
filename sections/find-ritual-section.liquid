@@ -1,1529 +1,3060 @@
 <section class="fyr-section" id="findYourRitual">
-  <div class="section">
-    <div class="fyr-header">
-      {% if section.settings.caption != blank %}
-        <p class="rule rule-c reveal">
-          {{ section.settings.caption }}
-        </p>
-      {% endif %}
 
-      {% if section.settings.title != blank %}
-        <h2 class="sec-h2 reveal d1">
-          {{ section.settings.title }}
-        </h2>
-      {% endif %}
+  <div class="section">
 
-      {% if section.settings.description != blank %}
-        <p class="fyr-sub reveal d2">
-          {{ section.settings.description }}
-        </p>
-      {% endif %}
-    </div>
+    <div class="fyr-header">
 
-    <div class="fyr-grid">
-      <!-- LEFT -->
+      {% if section.settings.caption != blank %}
 
-      <div class="fyr-panel fyr-scan">
-        {% if section.settings.badge != blank %}
-          <div class="fyr-panel-badge">
-            {{ section.settings.badge }}
-          </div>
-        {% endif %}
+        <p class="rule rule-c reveal">
 
-        <div class="scan-vis fyr-vis">
-          <div class="sfc">
-            <div class="sr4"></div>
+          {{ section.settings.caption }}
 
-            <div class="sr sr1"></div>
+        </p>
 
-            <div class="sr sr2"></div>
+      {% endif %}
 
-            <div class="sr sr3"></div>
 
-            <div class="scan-sweep"></div>
 
-            <div class="ldot" style="top:27%;left:30%"></div>
+      {% if section.settings.title != blank %}
 
-            <div class="ldot" style="top:27%;right:26%;animation-delay:.7s"></div>
+        <h2 class="sec-h2 reveal d1">
 
-            <div class="ldot" style="top:47%;left:50%;transform:translateX(-50%);animation-delay:1.4s"></div>
+          {{ section.settings.title }}
 
-            <div class="ldot" style="top:63%;left:36%;animation-delay:.35s"></div>
+        </h2>
 
-            <div class="ldot" style="top:63%;right:32%;animation-delay:1.1s"></div>
+      {% endif %}
 
-            <div class="dchips l">
-              <div class="dc">
-                {{ section.settings.chip_1 | default: 'Hydration' }}
-              </div>
 
-              <div class="dc">
-                {{ section.settings.chip_2 | default: 'Pigmentation' }}
-              </div>
 
-              <div class="dc">
-                {{ section.settings.chip_3 | default: 'Texture' }}
-              </div>
-            </div>
+      {% if section.settings.description != blank %}
 
-            <div class="dchips r">
-              <div class="dc">
-                {{ section.settings.chip_4 | default: 'Elasticity' }}
-              </div>
+        <p class="fyr-sub reveal d2">
 
-              <div class="dc">
-                {{ section.settings.chip_5 | default: 'Radiance' }}
-              </div>
+          {{ section.settings.description }}
 
-              <div class="dc">
-                {{ section.settings.chip_6 | default: 'Barrier' }}
-              </div>
-            </div>
+        </p>
 
-            <div class="face-sil"></div>
-          </div>
-        </div>
+      {% endif %}
 
-        <div class="fyr-copy">
-          <div class="scan-live">
-            <span class="sl-dot"></span>
+    </div>
 
-            <span class="sl-txt">
-              {{ section.settings.scan_live }}
-            </span>
-          </div>
 
-          <div class="content-fyr-main">
-            <div class="content-fyr-top">
-              <h3 class="fyr-panel-h">
-                {{ section.settings.label }}
-              </h3>
 
-              <h3 class="fyr-panel-h-highlight">
-                {{ section.settings.highlight }}
-              </h3>
+    <div class="fyr-grid">
 
-              <h3 class="fyr-panel-h-normal">
-                {{ section.settings.normal }}
-              </h3>
-            </div>
+      *<!-- LEFT -->*
 
-            <div class="fyr-steps">
-              <div class="fyr-step">
-                <span class="fyr-sn">01</span>
 
-                <span>{{ section.settings.step1 }}</span>
-              </div>
 
-              <div class="fyr-step">
-                <span class="fyr-sn">02</span>
+      <div class="fyr-panel fyr-scan">
 
-                <span>{{ section.settings.step2 }}</span>
-              </div>
+        {% if section.settings.badge != blank %}
 
-              <div class="fyr-step">
-                <span class="fyr-sn">03</span>
+          <div class="fyr-panel-badge">
 
-                <span>{{ section.settings.step3 }}</span>
-              </div>
-            </div>
-          </div>
+            {{ section.settings.badge }}
 
-          {% if section.settings.btn_txt != blank %}
-            <a
-              href="{{ section.settings.btn_link }}"
+          </div>
 
-              class="fyr-cta-scan btn btn-gold"
-            >
-              <span class="scan-icon"></span>
+        {% endif %}
 
-              {{ section.settings.btn_txt }}
-            </a>
-          {% endif %}
 
-          {% if section.settings.note != blank %}
-            <div class="fyr-note">
-              {{ section.settings.note }}
-            </div>
-          {% endif %}
-        </div>
-      </div>
 
-      <!-- OR -->
+        <div class="scan-vis fyr-vis">
 
-      <div class="fyr-or">
-        <div class="fyr-or-line"></div>
+          <div class="sfc">
 
-        <div class="fyr-or-badge">
-          {{ section.settings.or_text | default: 'OR' }}
-        </div>
+            <div class="sr4"></div>
 
-        <div class="fyr-or-line"></div>
-      </div>
 
-      <!-- RIGHT -->
 
-      <div class="fyr-panel fyr-quiz-panel">
-        {% if section.settings.badge_quiz != blank %}
-          <div class="fyr-panel-badge fyr-badge-quiz">
-            {{ section.settings.badge_quiz }}
-          </div>
-        {% endif %}
+            <div class="sr sr1"></div>
 
-        <h3 class="fyr-panel-h" style="color:var(--canvas)">
-          {{ section.settings.title_quiz }}
-        </h3>
 
-        <p class="fyr-quiz-desc">
-          {{ section.settings.desc_quiz }}
-        </p>
 
-        <div class="fyr-quiz-trust">
-          <li>{{ section.settings.trust_quiz1 }}</li>
+            <div class="sr sr2"></div>
 
-          <li>{{ section.settings.trust_quiz2 }}</li>
-        </div>
 
-        <prana-ritual-quiz
-          class="fyr-quiz-widget"
 
-          data-api-url="{{ section.settings.quiz_api_url | default: '/apps/dosha-quiz/quiz?code=1791954993424' | escape }}"
+            <div class="sr sr3"></div>
 
-          data-skip="{{ section.settings.skip_text | default: 'Skip' | escape }}"
 
-          data-email-placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' | escape }}"
 
-          data-loading="{{ 'prana_quiz.loading' | t | escape }}"
+            <div class="scan-sweep"></div>
 
-          data-error="{{ 'prana_quiz.error' | t | escape }}"
 
-          data-empty="{{ 'prana_quiz.empty' | t | escape }}"
 
-          data-retry="{{ 'prana_quiz.retry' | t | escape }}"
+            <div class="ldot" style="top:27%;left:30%"></div>
 
-          data-progress="{{ 'prana_quiz.progress' | t | escape }}"
 
-          data-restart="{{ section.settings.restart_text | escape }}"
-        >
-          <p class="fyr-quiz-step-label" role="status">{{ 'prana_quiz.loading' | t }}</p>
-        </prana-ritual-quiz>
 
-        <script src="{{ 'prana-ritual-quiz.js' | asset_url }}" defer></script>
-      </div>
-    </div>
-  </div>
+            <div class="ldot" style="top:27%;right:26%;animation-delay:.7s"></div>
+
+
+
+            <div class="ldot" style="top:47%;left:50%;transform:translateX(-50%);animation-delay:1.4s"></div>
+
+
+
+            <div class="ldot" style="top:63%;left:36%;animation-delay:.35s"></div>
+
+
+
+            <div class="ldot" style="top:63%;right:32%;animation-delay:1.1s"></div>
+
+
+
+            <div class="dchips l">
+
+              <div class="dc">
+
+                {{ section.settings.chip_1 | default: 'Hydration' }}
+
+              </div>
+
+
+
+              <div class="dc">
+
+                {{ section.settings.chip_2 | default: 'Pigmentation' }}
+
+              </div>
+
+
+
+              <div class="dc">
+
+                {{ section.settings.chip_3 | default: 'Texture' }}
+
+              </div>
+
+            </div>
+
+
+
+            <div class="dchips r">
+
+              <div class="dc">
+
+                {{ section.settings.chip_4 | default: 'Elasticity' }}
+
+              </div>
+
+
+
+              <div class="dc">
+
+                {{ section.settings.chip_5 | default: 'Radiance' }}
+
+              </div>
+
+
+
+              <div class="dc">
+
+                {{ section.settings.chip_6 | default: 'Barrier' }}
+
+              </div>
+
+            </div>
+
+
+
+            <div class="face-sil"></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="fyr-copy">
+
+          <div class="scan-live">
+
+            <span class="sl-dot"></span>
+
+
+
+            <span class="sl-txt">
+
+              {{ section.settings.scan_live }}
+
+            </span>
+
+          </div>
+
+
+
+          <div class="content-fyr-main">
+
+            <div class="content-fyr-top">
+
+              <h3 class="fyr-panel-h">
+
+                {{ section.settings.label }}
+
+              </h3>
+
+
+
+              <h3 class="fyr-panel-h-highlight">
+
+                {{ section.settings.highlight }}
+
+              </h3>
+
+
+
+              <h3 class="fyr-panel-h-normal">
+
+                {{ section.settings.normal }}
+
+              </h3>
+
+            </div>
+
+
+
+            <div class="fyr-steps">
+
+              <div class="fyr-step">
+
+                <span class="fyr-sn">01</span>
+
+
+
+                <span>{{ section.settings.step1 }}</span>
+
+              </div>
+
+
+
+              <div class="fyr-step">
+
+                <span class="fyr-sn">02</span>
+
+
+
+                <span>{{ section.settings.step2 }}</span>
+
+              </div>
+
+
+
+              <div class="fyr-step">
+
+                <span class="fyr-sn">03</span>
+
+
+
+                <span>{{ section.settings.step3 }}</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          {% if section.settings.btn_txt != blank %}
+
+            <a
+
+              href="{{ section.settings.btn_link }}"
+
+
+
+              class="fyr-cta-scan btn btn-gold"
+
+            >
+
+              <span class="scan-icon"></span>
+
+
+
+              {{ section.settings.btn_txt }}
+
+            </a>
+
+          {% endif %}
+
+
+
+          {% if section.settings.note != blank %}
+
+            <div class="fyr-note">
+
+              {{ section.settings.note }}
+
+            </div>
+
+          {% endif %}
+
+        </div>
+
+      </div>
+
+
+
+      *<!-- OR -->*
+
+
+
+      <div class="fyr-or">
+
+        <div class="fyr-or-line"></div>
+
+
+
+        <div class="fyr-or-badge">
+
+          {{ section.settings.or_text | default: 'OR' }}
+
+        </div>
+
+
+
+        <div class="fyr-or-line"></div>
+
+      </div>
+
+
+
+      *<!-- RIGHT -->*
+
+
+
+      <div class="fyr-panel fyr-quiz-panel">
+
+        {% if section.settings.badge_quiz != blank %}
+
+          <div class="fyr-panel-badge fyr-badge-quiz">
+
+            {{ section.settings.badge_quiz }}
+
+          </div>
+
+        {% endif %}
+
+
+
+        <h3 class="fyr-panel-h" style="color:var(--canvas)">
+
+          {{ section.settings.title_quiz }}
+
+        </h3>
+
+
+
+        <p class="fyr-quiz-desc">
+
+          {{ section.settings.desc_quiz }}
+
+        </p>
+
+
+
+        <div class="fyr-quiz-trust">
+
+          <li>{{ section.settings.trust_quiz1 }}</li>
+
+
+
+          <li>{{ section.settings.trust_quiz2 }}</li>
+
+        </div>
+
+
+
+        <prana-ritual-quiz
+
+          class="fyr-quiz-widget"
+
+
+
+          data-api-url="{{ section.settings.quiz_api_url | default: '/apps/dosha-quiz/quiz?code=1791954993424' | escape }}"
+
+
+
+          data-skip="{{ section.settings.skip_text | default: 'Skip' | escape }}"
+
+
+
+          data-email-placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' | escape }}"
+
+
+
+          data-loading="{{ 'prana_quiz.loading' | t | escape }}"
+
+
+
+          data-error="{{ 'prana_quiz.error' | t | escape }}"
+
+
+
+          data-empty="{{ 'prana_quiz.empty' | t | escape }}"
+
+
+
+          data-retry="{{ 'prana_quiz.retry' | t | escape }}"
+
+
+
+          data-progress="{{ 'prana_quiz.progress' | t | escape }}"
+
+
+
+          data-restart="{{ section.settings.restart_text | escape }}"
+
+        >
+
+          <p class="fyr-quiz-step-label" role="status">{{ 'prana_quiz.loading' | t }}</p>
+
+        </prana-ritual-quiz>
+
+
+
+        <script src="{{ 'prana-ritual-quiz.js' | asset_url }}" defer></script>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
+
+
 <style>
-  /* Compact product recommendations. Card display only; quiz logic unchanged. */
-  .fyr-product-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 190px));
-    gap: 10px;
-    margin: 12px 0 16px;
-    justify-content: start;
-  }
-  .fyr-product-card {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    min-width: 0;
-    padding: 7px;
-    background: var(--canvas2);
-    color: var(--ink3);
-    border: 1px solid rgba(200, 146, 26, 0.3);
-    border-radius: 8px;
-    text-decoration: none;
-    overflow: hidden;
-  }
-  .fyr-product-card img {
-    display: block;
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    border-radius: 4px;
-  }
-  .fyr-product-title {
-    font-size: 13px;
-    line-height: 1.3;
-    overflow-wrap: anywhere;
-  }
-  .fyr-product-price {
-    margin-top: auto;
-    font-size: 13px;
-    font-weight: 600;
-  }
-  .fyr-product-card:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
-  }
-  @media (max-width: 600px) {
-    .fyr-product-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-    .fyr-product-card {
-      padding: 7px;
-    }
-    .fyr-product-card img {
-      height: 120px;
-    }
-    .fyr-product-title,
-    .fyr-product-price {
-      font-size: 12px;
-    }
-  }
-
-  prana-ritual-quiz {
-    display: block;
-  }
-
-  .fyr-email-input {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 16px;
-    background: var(--canvas2);
-    color: var(--ink3);
-    border: 1px solid var(--gold);
-    border-radius: 4px;
-  }
 
-  /* ── FIND YOUR RITUAL COMBINED ── */
+  */* Compact product recommendations. Card display only; quiz logic unchanged. */*
 
-  .fyr-section {
-    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+  .fyr-product-grid {
 
-    padding: 58px 0px;
-  }
+    display: grid;
 
-  .fyr-header {
-    text-align: center;
+    grid-template-columns: repeat(2, minmax(0, 190px));
 
-    margin-bottom: 39px;
-  }
+    gap: 10px;
 
-  .fyr-header h2 {
-    font-size: 41px;
+    margin: 12px 0 16px;
 
-    color: var(--heading-color);
+    justify-content: start;
 
-    padding: 10px 0 0 0;
+  }
 
-    margin: 0;
-  }
+  .fyr-product-card {
 
-  .fyr-sub {
-    font-family: var(--S);
+    display: flex;
 
-    font-size: 17px;
+    flex-direction: column;
 
-    color: var(--ink3);
+    gap: 5px;
 
-    max-width: 560px;
+    min-width: 0;
 
-    margin: 5px auto 0;
+    padding: 7px;
 
-    line-height: normal;
-  }
+    background: var(--canvas2);
 
-  .fyr-grid {
-    display: grid;
+    color: var(--ink3);
 
-    grid-template-columns: 1fr 80px 1fr;
+    border: 1px solid rgba(200, 146, 26, 0.3);
 
-    gap: 0;
+    border-radius: 8px;
 
-    align-items: stretch;
-  }
+    text-decoration: none;
 
-  .fyr-panel {
-    position: relative;
-  }
+    overflow: hidden;
 
-  .fyr-panel-badge {
-    position: static;
+  }
 
-    font-size: 11px;
+  .fyr-product-card img {
 
-    letter-spacing: 0.28em;
+    display: block;
 
-    text-transform: uppercase;
+    width: 100%;
 
-    background: var(--gold);
+    height: 150px;
 
-    padding: 5px 12px;
+    object-fit: contain;
 
-    z-index: 2;
+    border-radius: 4px;
 
-    border-radius: 4px;
+  }
 
-    width: fit-content;
+  .fyr-product-title {
 
-    color: #fff;
+    font-size: 13px;
 
-    margin: 22px;
-  }
+    line-height: 1.3;
 
-  .fyr-badge-quiz {
-    margin: 0;
-  }
+    overflow-wrap: anywhere;
 
-  /* Left panel — scan (canvas bg) */
+  }
 
-  .fyr-scan {
-    background: var(--canvas2);
+  .fyr-product-price {
 
-    display: grid;
+    margin-top: auto;
 
-    grid-template-rows: 1fr auto;
+    font-size: 13px;
 
-    min-height: 600px;
-  }
+    font-weight: 600;
 
-  .fyr-vis {
-    padding: 40px;
+  }
 
-    display: flex;
+  .fyr-product-card:focus-visible {
 
-    align-items: center;
+    outline: 2px solid var(--gold);
 
-    justify-content: center;
+    outline-offset: 3px;
 
-    min-height: 280px;
-  }
+  }
 
-  .fyr-copy {
-    padding: 32px 40px 48px;
+  @media (max-width: 600px) {
 
-    border-top: 1px solid var(--gold-line);
-  }
+    .fyr-product-grid {
 
-  .fyr-panel-h {
-    color: var(--ink);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    line-height: 1.05;
+      gap: 8px;
 
-    margin: 0;
-  }
+    }
 
-  .fyr-copy h3 {
-    color: var(--ink3);
+    .fyr-product-card {
 
-    font-size: 30px;
+      padding: 7px;
 
-    font-weight: 300;
-  }
+    }
 
-  h3.fyr-panel-h-highlight {
-    color: var(--heading-color);
+    .fyr-product-card img {
 
-    padding: 12px 0;
-  }
+      height: 120px;
 
-  .fyr-steps {
-    display: flex;
+    }
 
-    flex-direction: column;
+    .fyr-product-title,
 
-    gap: 0px;
+    .fyr-product-price {
 
-    margin: 10px 0 24px 0;
-  }
+      font-size: 12px;
 
-  .fyr-step {
-    display: flex;
+    }
 
-    align-items: flex-start;
+  }
 
-    gap: 14px;
 
-    font-family: var(--S);
 
-    font-size: 21px;
+  prana-ritual-quiz {
 
-    color: var(--ink3);
+    display: block;
 
-    line-height: 1.6;
-  }
+  }
 
-  .fyr-sn {
-    font-family: var(--U);
 
-    font-size: 21px;
 
-    letter-spacing: 0.14em;
+  .fyr-email-input {
 
-    color: var(--gold);
+    width: 100%;
 
-    padding-top: 2px;
+    padding: 14px;
 
-    flex-shrink: 0;
+    margin-bottom: 16px;
 
-    width: 20px;
-  }
+    background: var(--canvas2);
 
-  .fyr-cta-scan {
-    width: 100%;
+    color: var(--ink3);
 
-    justify-content: center;
+    border: 1px solid var(--gold);
 
-    margin-bottom: 10px;
-  }
+    border-radius: 4px;
 
-  .fyr-note {
-    font-family: var(--S);
+  }
 
-    font-size: 16px;
 
-    color: var(--ink3);
-  }
 
-  /* OR divider */
+  */* ── FIND YOUR RITUAL COMBINED ── */*
 
-  .fyr-or {
-    display: flex;
 
-    flex-direction: column;
 
-    align-items: center;
+  .fyr-section {
 
-    justify-content: center;
+    background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
 
-    background: var(--canvas-dk);
 
-    gap: 0;
-  }
 
-  .fyr-or-line {
-    flex: 1;
+    padding: 58px 0px;
 
-    width: 1px;
+  }
 
-    background: rgba(200, 146, 26, 0.15);
-  }
 
-  .fyr-or-badge {
-    font-family: var(--U);
 
-    font-size: 10px;
+  .fyr-header {
 
-    letter-spacing: 0.24em;
+    text-align: center;
 
-    color: var(--ink4);
 
-    padding: 16px 0;
 
-    writing-mode: vertical-lr;
+    margin-bottom: 39px;
 
-    text-orientation: mixed;
-  }
+  }
 
-  p.where-should-we-send {
-    color: white;
 
-    font-size: 15px;
 
-    padding-bottom: 10px;
-  }
+  .fyr-header h2 {
 
-  /* Right panel — quiz (dark bg) */
+    font-size: 41px;
 
-  .fyr-quiz-panel {
-    background: linear-gradient(-90deg, #461324, #813850);
 
-    padding: 48px 40px;
 
-    display: flex;
+    color: var(--heading-color);
 
-    flex-direction: column;
 
-    justify-content: flex-start;
-  }
 
-  .fyr-quiz-panel .fyr-panel-h {
-    padding: 20px 0 10px 0;
-  }
+    padding: 10px 0 0 0;
 
-  .fyr-quiz-desc {
-    font-family: var(--S);
 
-    font-size: 15px;
 
-    color: white;
+    margin: 0;
 
-    line-height: normal;
+  }
 
-    margin-bottom: 16px;
-  }
 
-  .fyr-quiz-trust {
-    display: flex;
 
-    flex-direction: column;
+  .fyr-sub {
 
-    gap: 5px;
+    font-family: var(--S);
 
-    margin: 0 0 28px 13px;
-  }
 
-  .fyr-quiz-trust li {
-    font-family: var(--S);
 
-    font-size: 15px;
+    font-size: 17px;
 
-    color: white;
-  }
 
-  .fyr-quiz-widget {
-    flex: 1;
-  }
 
-  .fyr-quiz-step-label {
-    font-family: var(--U);
+    color: var(--ink3);
 
-    font-size: 16px;
 
-    color: white;
 
-    margin-bottom: 11px;
-  }
+    max-width: 560px;
 
-  .fyr-quiz-q {
-    font-family: var(--D);
 
-    font-size: clamp(22px, 2.5vw, 28px);
 
-    font-weight: 300;
+    margin: 5px auto 0;
 
-    color: white;
 
-    line-height: 1.2;
 
-    margin-bottom: 20px;
-  }
+    line-height: normal;
 
-  .fyr-quiz-opts {
-    display: flex;
+  }
 
-    flex-direction: column;
 
-    gap: 8px;
-  }
 
-  .fyr-quiz-opt {
-    background: var(--canvas2);
+  .fyr-grid {
 
-    border: 1px solid rgba(248, 242, 230, 0.1);
+    display: grid;
 
-    color: var(--ink3);
-    border-radius: 4px;
-    font-size: 16px;
 
-    padding:6px 18px;
 
-    text-align: left;
+    grid-template-columns: 1fr 80px 1fr;
 
-    cursor: pointer;
 
-    transition: all 0.18s;
-  }
 
-  .fyr-quiz-opt.selected {
-    background: rgba(200, 146, 26, 0.12);
+    gap: 0;
 
-    border-color: rgba(200, 146, 26, 0.4);
 
-    color: var(--canvas);
-  }
 
-  .fyr-result-badge {
-    font-family: var(--U);
+    align-items: stretch;
 
-    font-size: 16px;
+  }
 
-    text-transform: capitalize;
 
-    color: white;
 
-    margin-bottom: 4px;
-  }
+  .fyr-panel {
 
-  .fyr-result-name {
-    font-family: var(--D);
+    position: relative;
 
-    font-size: 26px;
+  }
 
-    font-weight: 300;
 
-    color: var(--canvas);
 
-    margin-bottom: 8px;
-  }
+  .fyr-panel-badge {
 
-  .fyr-result-desc {
-    font-family: var(--S);
+    position: static;
 
-    font-size: 15px;
 
-    color: white;
 
-    line-height: 1.7;
+    font-size: 11px;
 
-    margin-bottom: 16px;
-  }
 
-  .fyr-result-price {
-    font-family: var(--D);
 
-    font-size: 28px;
+    letter-spacing: 0.28em;
 
-    color: white;
 
-    margin-bottom: 16px;
-  }
 
-  .fyr-result-cta {
-    width: 100%;
+    text-transform: uppercase;
 
-    background: var(--gold);
 
-    color: var(--canvas);
 
-    border: none;
+    background: var(--gold);
 
-    padding: 11px 24px;
 
-    font-size: 17px;
 
-    letter-spacing: unset;
+    padding: 5px 12px;
 
-    text-transform: capitalize;
 
-    cursor: pointer;
 
-    transition: background 0.2s;
+    z-index: 2;
 
-    margin-bottom: 8px;
 
-    border-radius: 5px;
-  }
 
-  .fyr-result-cta:hover {
-    background: #c8881e;
-  }
+    border-radius: 4px;
 
-  /* ── MOBILE ── */
 
-  @media (max-width: 768px) {
-    .fyr-section {
-      padding: 29px 0 48px 0px;
-    }
 
-    .fyr-section .section {
-      display: block;
-    }
+    width: fit-content;
 
-    .fyr-grid {
-      grid-template-columns: 1fr;
 
-      grid-template-rows: auto auto auto;
-    }
 
-    .fyr-or {
-      flex-direction: row;
+    color: #fff;
 
-      background: transparent;
 
-      padding: 16px 0;
 
-      border-top: 1px solid var(--canvas-dk);
+    margin: 22px;
 
-      border-bottom: 1px solid var(--canvas-dk);
+  }
 
-      display: none;
-    }
 
-    .fyr-quiz-opts {
-      display: grid;
 
-      grid-template-columns: 1fr 1fr;
+  .fyr-badge-quiz {
 
-      gap: 8px;
-    }
+    margin: 0;
 
-    .fyr-or-line {
-      flex: 1;
+  }
 
-      height: 1px;
 
-      width: auto;
-    }
 
-    .fyr-quiz-opt {
-      font-size: 14px;
+  */* Left panel — scan (canvas bg) */*
 
-      padding: 5px 10px;
-    }
 
-    .fyr-or-badge {
-      writing-mode: horizontal-tb;
 
-      padding: 0 16px;
+  .fyr-scan {
 
-      font-size: 11px;
-    }
+    background: var(--canvas2);
 
-    .fyr-panel-badge {
-      display: none;
-    }
 
-    .fyr-scan {
-      min-height: auto;
 
-      background: transparent;
-    }
+    display: grid;
 
-    .fyr-vis {
-      padding: 28px 24px;
 
-      min-height: 220px;
-    }
 
-    .fyr-result-badge {
-      font-size: 13px;
+    grid-template-rows: 1fr auto;
 
-      margin-bottom: 4px;
-    }
 
-    .fyr-copy {
-      padding: 24px;
 
-      background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
-    }
+    min-height: 600px;
 
-    .fyr-panel-h {
-      font-size: 19px;
-    }
+  }
 
-    .fyr-quiz-panel {
-      padding: 24px 16px;
-    }
 
-    .fyr-quiz-q {
-      font-size: 15px;
-    }
 
-    .hp-video-section .vid-placeholder {
-      height: 280px;
-    }
+  .fyr-vis {
 
-    .fyr-quiz-desc {
-      font-size: 16px;
+    padding: 40px;
 
-      margin-bottom: 8px;
 
-      line-height: 21px;
-    }
 
-    .fyr-quiz-trust li {
-      font-size: 14px;
-    }
+    display: flex;
 
-    .fyr-quiz-panel .fyr-panel-h {
-      padding: 0px 0 10px 0;
-    }
 
-    .hp-video-section [style*='bottom:36px'] {
-      left: 20px;
 
-      right: 20px;
+    align-items: center;
 
-      bottom: 20px;
-    }
 
-    .fyr-quiz-step-label {
-      font-size: 14px;
 
-      margin-bottom: 7px;
-    }
+    justify-content: center;
 
-    .fyr-result-name {
-      font-size: 17px;
 
-      margin-bottom: 0;
-    }
 
-    .fyr-result-desc {
-      font-size: 13px;
+    min-height: 280px;
 
-      line-height: normal;
+  }
 
-      margin: 4px 0 13px;
-    }
 
-    .hp-quiz-restart {
-      font-size: 13px;
 
-      padding: 5px;
-    }
+  .fyr-copy {
 
-    .fyr-result-cta {
-      padding: 5px 24px;
+    padding: 32px 40px 48px;
 
-      font-size: 13px;
-    }
 
-    .fyr-header h2 {
-      font-size: 20px;
 
-      padding: 0;
-    }
+    border-top: 1px solid var(--gold-line);
 
-    .fyr-copy h3 {
-      font-size: 18px;
-    }
+  }
 
-    .fyr-sn {
-      font-size: 14px;
 
-      line-height: 17px;
-    }
 
-    .fyr-step {
-      font-size: 13px;
+  .fyr-panel-h {
 
-      line-height: 17px;
+    color: var(--ink);
 
-      gap: 1px;
-    }
 
-    .fyr-result-price {
-      margin-bottom: 7px;
 
-      font-size: 20px;
-    }
+    line-height: 1.05;
 
-    .fyr-header {
-      margin-bottom: 3px;
-    }
 
-    .fyr-steps {
-      margin: 10px 0 14px 0;
-    }
-  }
 
-  @media all and (max-width: 480px) {
-    .fyr-step {
-      font-size: 14px;
+    margin: 0;
 
-      line-height: 20px;
+  }
 
-      gap: 1px;
-    }
 
-    .content-fyr-main {
-      gap: 10px;
 
-      display: flex;
+  .fyr-copy h3 {
 
-      margin-bottom: 11px;
+    color: var(--ink3);
 
-      align-items: end;
-    }
 
-    .fyr-copy h3 {
-      font-size: 14px;
 
-      line-height: 21px;
-    }
+    font-size: 30px;
 
-    .fyr-copy h3.fyr-panel-h-highlight {
-      color: var(--heading-color);
 
-      padding: 0;
 
-      line-height: 21px;
-    }
+    font-weight: 300;
 
-    .fyr-steps {
-      margin: 0;
-    }
-  }
+  }
+
+
+
+  h3.fyr-panel-h-highlight {
+
+    color: var(--heading-color);
+
+
+
+    padding: 12px 0;
+
+  }
+
+
+
+  .fyr-steps {
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    gap: 0px;
+
+
+
+    margin: 10px 0 24px 0;
+
+  }
+
+
+
+  .fyr-step {
+
+    display: flex;
+
+
+
+    align-items: flex-start;
+
+
+
+    gap: 14px;
+
+
+
+    font-family: var(--S);
+
+
+
+    font-size: 21px;
+
+
+
+    color: var(--ink3);
+
+
+
+    line-height: 1.6;
+
+  }
+
+
+
+  .fyr-sn {
+
+    font-family: var(--U);
+
+
+
+    font-size: 21px;
+
+
+
+    letter-spacing: 0.14em;
+
+
+
+    color: var(--gold);
+
+
+
+    padding-top: 2px;
+
+
+
+    flex-shrink: 0;
+
+
+
+    width: 20px;
+
+  }
+
+
+
+  .fyr-cta-scan {
+
+    width: 100%;
+
+
+
+    justify-content: center;
+
+
+
+    margin-bottom: 10px;
+
+  }
+
+
+
+  .fyr-note {
+
+    font-family: var(--S);
+
+
+
+    font-size: 16px;
+
+
+
+    color: var(--ink3);
+
+  }
+
+
+
+  */* OR divider */*
+
+
+
+  .fyr-or {
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+    background: var(--canvas-dk);
+
+
+
+    gap: 0;
+
+  }
+
+
+
+  .fyr-or-line {
+
+    flex: 1;
+
+
+
+    width: 1px;
+
+
+
+    background: rgba(200, 146, 26, 0.15);
+
+  }
+
+
+
+  .fyr-or-badge {
+
+    font-family: var(--U);
+
+
+
+    font-size: 10px;
+
+
+
+    letter-spacing: 0.24em;
+
+
+
+    color: var(--ink4);
+
+
+
+    padding: 16px 0;
+
+
+
+    writing-mode: vertical-lr;
+
+
+
+    text-orientation: mixed;
+
+  }
+
+
+
+  p.where-should-we-send {
+
+    color: white;
+
+
+
+    font-size: 15px;
+
+
+
+    padding-bottom: 10px;
+
+  }
+
+
+
+  */* Right panel — quiz (dark bg) */*
+
+
+
+  .fyr-quiz-panel {
+
+    background: linear-gradient(-90deg, #461324, #813850);
+
+
+
+    padding: 48px 40px;
+
+
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    justify-content: flex-start;
+
+  }
+
+
+
+  .fyr-quiz-panel .fyr-panel-h {
+
+    padding: 20px 0 10px 0;
+
+  }
+
+
+
+  .fyr-quiz-desc {
+
+    font-family: var(--S);
+
+
+
+    font-size: 15px;
+
+
+
+    color: white;
+
+
+
+    line-height: normal;
+
+
+
+    margin-bottom: 16px;
+
+  }
+
+
+
+  .fyr-quiz-trust {
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    gap: 5px;
+
+
+
+    margin: 0 0 28px 13px;
+
+  }
+
+
+
+  .fyr-quiz-trust li {
+
+    font-family: var(--S);
+
+
+
+    font-size: 15px;
+
+
+
+    color: white;
+
+  }
+
+
+
+  .fyr-quiz-widget {
+
+    flex: 1;
+
+  }
+
+
+
+  .fyr-quiz-step-label {
+
+    font-family: var(--U);
+
+
+
+    font-size: 16px;
+
+
+
+    color: white;
+
+
+
+    margin-bottom: 11px;
+
+  }
+
+
+
+  .fyr-quiz-q {
+
+    font-family: var(--D);
+
+
+
+    font-size: clamp(22px, 2.5vw, 28px);
+
+
+
+    font-weight: 300;
+
+
+
+    color: white;
+
+
+
+    line-height: 1.2;
+
+
+
+    margin-bottom: 20px;
+
+  }
+
+
+
+  .fyr-quiz-opts {
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    gap: 8px;
+
+  }
+
+
+
+  .fyr-quiz-opt {
+
+    background: var(--canvas2);
+
+
+
+    border: 1px solid rgba(248, 242, 230, 0.1);
+
+
+
+    color: var(--ink3);
+
+    border-radius: 4px;
+
+    font-size: 16px;
+
+
+
+    padding:6px 18px;
+
+
+
+    text-align: left;
+
+
+
+    cursor: pointer;
+
+
+
+    transition: all 0.18s;
+
+  }
+
+
+
+  .fyr-quiz-opt.selected {
+
+    background: rgba(200, 146, 26, 0.12);
+
+
+
+    border-color: rgba(200, 146, 26, 0.4);
+
+
+
+    color: var(--canvas);
+
+    pointer-events: none;
+
+
+  }
+
+
+
+  .fyr-result-badge {
+
+    font-family: var(--U);
+
+
+
+    font-size: 16px;
+
+
+
+    text-transform: capitalize;
+
+
+
+    color: white;
+
+
+
+    margin-bottom: 4px;
+
+  }
+
+
+
+  .fyr-result-name {
+
+    font-family: var(--D);
+
+
+
+    font-size: 26px;
+
+
+
+    font-weight: 300;
+
+
+
+    color: var(--canvas);
+
+
+
+    margin-bottom: 8px;
+
+  }
+
+
+
+  .fyr-result-desc {
+
+    font-family: var(--S);
+
+
+
+    font-size: 15px;
+
+
+
+    color: white;
+
+
+
+    line-height: 1.7;
+
+
+
+    margin-bottom: 16px;
+
+  }
+
+
+
+  .fyr-result-price {
+
+    font-family: var(--D);
+
+
+
+    font-size: 28px;
+
+
+
+    color: white;
+
+
+
+    margin-bottom: 16px;
+
+  }
+
+
+
+  .fyr-result-cta {
+
+    width: 100%;
+
+
+
+    background: var(--gold);
+
+
+
+    color: var(--canvas);
+
+
+
+    border: none;
+
+
+
+    padding: 11px 24px;
+
+
+
+    font-size: 17px;
+
+
+
+    letter-spacing: unset;
+
+
+
+    text-transform: capitalize;
+
+
+
+    cursor: pointer;
+
+
+
+    transition: background 0.2s;
+
+
+
+    margin-bottom: 8px;
+
+
+
+    border-radius: 5px;
+
+  }
+
+
+
+  .fyr-result-cta:hover {
+
+    background: #c8881e;
+
+  }
+
+
+
+  */* ── MOBILE ── */*
+
+
+
+  @media (max-width: 768px) {
+
+    .fyr-section {
+
+      padding: 29px 0 48px 0px;
+
+    }
+
+
+
+    .fyr-section .section {
+
+      display: block;
+
+    }
+
+
+
+    .fyr-grid {
+
+      grid-template-columns: 1fr;
+
+
+
+      grid-template-rows: auto auto auto;
+
+    }
+
+
+
+    .fyr-or {
+
+      flex-direction: row;
+
+
+
+      background: transparent;
+
+
+
+      padding: 16px 0;
+
+
+
+      border-top: 1px solid var(--canvas-dk);
+
+
+
+      border-bottom: 1px solid var(--canvas-dk);
+
+
+
+      display: none;
+
+    }
+
+
+
+    .fyr-quiz-opts {
+
+      display: grid;
+
+
+
+      grid-template-columns: 1fr 1fr;
+
+
+
+      gap: 8px;
+
+    }
+
+
+
+    .fyr-or-line {
+
+      flex: 1;
+
+
+
+      height: 1px;
+
+
+
+      width: auto;
+
+    }
+
+
+
+    .fyr-quiz-opt {
+
+      font-size: 14px;
+
+
+
+      padding: 5px 10px;
+
+    }
+
+
+
+    .fyr-or-badge {
+
+      writing-mode: horizontal-tb;
+
+
+
+      padding: 0 16px;
+
+
+
+      font-size: 11px;
+
+    }
+
+
+
+    .fyr-panel-badge {
+
+      display: none;
+
+    }
+
+
+
+    .fyr-scan {
+
+      min-height: auto;
+
+
+
+      background: transparent;
+
+    }
+
+
+
+    .fyr-vis {
+
+      padding: 28px 24px;
+
+
+
+      min-height: 220px;
+
+    }
+
+
+
+    .fyr-result-badge {
+
+      font-size: 13px;
+
+
+
+      margin-bottom: 4px;
+
+    }
+
+
+
+    .fyr-copy {
+
+      padding: 24px;
+
+
+
+      background: radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%);
+
+    }
+
+
+
+    .fyr-panel-h {
+
+      font-size: 19px;
+
+    }
+
+
+
+    .fyr-quiz-panel {
+
+      padding: 24px 16px;
+
+    }
+
+
+
+    .fyr-quiz-q {
+
+      font-size: 15px;
+
+    }
+
+
+
+    .hp-video-section .vid-placeholder {
+
+      height: 280px;
+
+    }
+
+
+
+    .fyr-quiz-desc {
+
+      font-size: 16px;
+
+
+
+      margin-bottom: 8px;
+
+
+
+      line-height: 21px;
+
+    }
+
+
+
+    .fyr-quiz-trust li {
+
+      font-size: 14px;
+
+    }
+
+
+
+    .fyr-quiz-panel .fyr-panel-h {
+
+      padding: 0px 0 10px 0;
+
+    }
+
+
+
+    .hp-video-section [style*='bottom:36px'] {
+
+      left: 20px;
+
+
+
+      right: 20px;
+
+
+
+      bottom: 20px;
+
+    }
+
+
+
+    .fyr-quiz-step-label {
+
+      font-size: 14px;
+
+
+
+      margin-bottom: 7px;
+
+    }
+
+
+
+    .fyr-result-name {
+
+      font-size: 17px;
+
+
+
+      margin-bottom: 0;
+
+    }
+
+
+
+    .fyr-result-desc {
+
+      font-size: 13px;
+
+
+
+      line-height: normal;
+
+
+
+      margin: 4px 0 13px;
+
+    }
+
+
+
+    .hp-quiz-restart {
+
+      font-size: 13px;
+
+
+
+      padding: 5px;
+
+    }
+
+
+
+    .fyr-result-cta {
+
+      padding: 5px 24px;
+
+
+
+      font-size: 13px;
+
+    }
+
+
+
+    .fyr-header h2 {
+
+      font-size: 20px;
+
+
+
+      padding: 0;
+
+    }
+
+
+
+    .fyr-copy h3 {
+
+      font-size: 18px;
+
+    }
+
+
+
+    .fyr-sn {
+
+      font-size: 14px;
+
+
+
+      line-height: 17px;
+
+    }
+
+
+
+    .fyr-step {
+
+      font-size: 13px;
+
+
+
+      line-height: 17px;
+
+
+
+      gap: 1px;
+
+    }
+
+
+
+    .fyr-result-price {
+
+      margin-bottom: 7px;
+
+
+
+      font-size: 20px;
+
+    }
+
+
+
+    .fyr-header {
+
+      margin-bottom: 3px;
+
+    }
+
+
+
+    .fyr-steps {
+
+      margin: 10px 0 14px 0;
+
+    }
+
+  }
+
+
+
+  @media all and (max-width: 480px) {
+
+    .fyr-step {
+
+      font-size: 14px;
+
+
+
+      line-height: 20px;
+
+
+
+      gap: 1px;
+
+    }
+
+
+
+    .content-fyr-main {
+
+      gap: 10px;
+
+
+
+      display: flex;
+
+
+
+      margin-bottom: 11px;
+
+
+
+      align-items: end;
+
+    }
+
+
+
+    .fyr-copy h3 {
+
+      font-size: 14px;
+
+
+
+      line-height: 21px;
+
+    }
+
+
+
+    .fyr-copy h3.fyr-panel-h-highlight {
+
+      color: var(--heading-color);
+
+
+
+      padding: 0;
+
+
+
+      line-height: 21px;
+
+    }
+
+
+
+    .fyr-steps {
+
+      margin: 0;
+
+    }
+
+  }
+
 </style>
 
+
+
 {% schema %}
+
 {
-  "name": "Find ritual",
 
-  "settings": [
-    {
-      "type": "text",
-      "id": "quiz_api_url",
-      "label": "Quiz data API URL",
-      "default": "/apps/dosha-quiz/quiz?code=1791954993424"
-    },
+  "name": "Find ritual",
 
-    {
-      "type": "header",
 
-      "content": "Top Content"
-    },
 
-    {
-      "type": "text",
+  "settings": [
 
-      "id": "caption",
+    {
 
-      "label": "Caption",
+      "type": "text",
 
-      "default": "Find Your Ritual"
-    },
+      "id": "quiz_api_url",
 
-    {
-      "type": "textarea",
+      "label": "Quiz data API URL",
 
-      "id": "title",
+      "default": "/apps/dosha-quiz/quiz?code=1791954993424"
 
-      "label": "Title",
+    },
 
-      "default": "Choose Your Personalized Ritual"
-    },
 
-    {
-      "type": "textarea",
 
-      "id": "description",
+    {
 
-      "label": "Description",
+      "type": "header",
 
-      "default": "Answer a few questions and discover your ideal skincare routine."
-    },
 
-    {
-      "type": "header",
 
-      "content": "Left Panel"
-    },
+      "content": "Top Content"
 
-    {
-      "type": "text",
+    },
 
-      "id": "badge",
 
-      "label": "Badge",
 
-      "default": "AI SKIN SCAN"
-    },
+    {
 
-    {
-      "type": "text",
+      "type": "text",
 
-      "id": "scan_live",
 
-      "label": "Live Scan Text",
 
-      "default": "Live AI Analysis"
-    },
+      "id": "caption",
 
-    {
-      "type": "inline_richtext",
 
-      "id": "label",
 
-      "label": "Panel Title",
+      "label": "Caption",
 
-      "default": "Scan your"
-    },
 
-    {
-      "type": "inline_richtext",
 
-      "id": "highlight",
+      "default": "Find Your Ritual"
 
-      "label": "Panel Highlight",
+    },
 
-      "default": "Your Ritual."
-    },
 
-    {
-      "type": "inline_richtext",
 
-      "id": "normal",
+    {
 
-      "label": "Panel normal",
+      "type": "textarea",
 
-      "default": "30 Seconds."
-    },
 
-    {
-      "type": "text",
 
-      "id": "chip_1",
+      "id": "title",
 
-      "label": "Chip 1",
 
-      "default": "Hydration"
-    },
 
-    {
-      "type": "text",
+      "label": "Title",
 
-      "id": "chip_2",
 
-      "label": "Chip 2",
 
-      "default": "Pigmentation"
-    },
+      "default": "Choose Your Personalized Ritual"
 
-    {
-      "type": "text",
+    },
 
-      "id": "chip_3",
 
-      "label": "Chip 3",
 
-      "default": "Texture"
-    },
+    {
 
-    {
-      "type": "text",
+      "type": "textarea",
 
-      "id": "chip_4",
 
-      "label": "Chip 4",
 
-      "default": "Elasticity"
-    },
+      "id": "description",
 
-    {
-      "type": "text",
 
-      "id": "chip_5",
 
-      "label": "Chip 5",
+      "label": "Description",
 
-      "default": "Radiance"
-    },
 
-    {
-      "type": "text",
 
-      "id": "chip_6",
+      "default": "Answer a few questions and discover your ideal skincare routine."
 
-      "label": "Chip 6",
+    },
 
-      "default": "Barrier"
-    },
 
-    {
-      "type": "text",
 
-      "id": "step1",
+    {
 
-      "label": "Step 1",
+      "type": "header",
 
-      "default": "Upload or capture your skin photo."
-    },
 
-    {
-      "type": "text",
 
-      "id": "step2",
+      "content": "Left Panel"
 
-      "label": "Step 2",
+    },
 
-      "default": "AI analyzes your skin concerns."
-    },
 
-    {
-      "type": "text",
 
-      "id": "step3",
+    {
 
-      "label": "Step 3",
+      "type": "text",
 
-      "default": "Get your custom ritual instantly."
-    },
 
-    {
-      "type": "text",
 
-      "id": "btn_txt",
+      "id": "badge",
 
-      "label": "Button Text",
 
-      "default": "Start Skin Scan"
-    },
 
-    {
-      "type": "url",
+      "label": "Badge",
 
-      "id": "btn_link",
 
-      "label": "Button Link"
-    },
 
-    {
-      "type": "text",
+      "default": "AI SKIN SCAN"
 
-      "id": "note",
+    },
 
-      "label": "Bottom Note",
 
-      "default": "Takes less than 60 seconds."
-    },
 
-    {
-      "type": "header",
+    {
 
-      "content": "Right Quiz Panel"
-    },
+      "type": "text",
 
-    {
-      "type": "text",
 
-      "id": "badge_quiz",
 
-      "label": "Quiz Badge",
+      "id": "scan_live",
 
-      "default": "QUIZ MODE"
-    },
 
-    {
-      "type": "textarea",
 
-      "id": "title_quiz",
+      "label": "Live Scan Text",
 
-      "label": "Quiz Title",
 
-      "default": "Take the Ritual Quiz"
-    },
 
-    {
-      "type": "text",
+      "default": "Live AI Analysis"
 
-      "id": "desc_quiz",
+    },
 
-      "label": "Quiz Description",
 
-      "default": "A quick guided quiz to discover your ideal skincare ritual."
-    },
 
-    {
-      "type": "inline_richtext",
+    {
 
-      "id": "trust_quiz1",
+      "type": "inline_richtext",
 
-      "label": "Trust Text 1",
 
-      "default": "2 min quiz"
-    },
 
-    {
-      "type": "inline_richtext",
+      "id": "label",
 
-      "id": "trust_quiz2",
 
-      "label": "Trust Text 2",
 
-      "default": "Personalized Results"
-    },
+      "label": "Panel Title",
 
-    {
-      "type": "header",
 
-      "content": "Question 1"
-    },
 
-    {
-      "type": "text",
+      "default": "Scan your"
 
-      "id": "q1_label",
+    },
 
-      "label": "Question Label",
 
-      "default": "Question 1 of 3"
-    },
 
-    {
-      "type": "text",
+    {
 
-      "id": "q1_title",
+      "type": "inline_richtext",
 
-      "label": "Question Title",
 
-      "default": "What's your skin type?"
-    },
 
-    {
-      "type": "text",
+      "id": "highlight",
 
-      "id": "q1_opt1",
 
-      "label": "Option 1",
 
-      "default": "Dry or Very Dry"
-    },
+      "label": "Panel Highlight",
 
-    {
-      "type": "text",
 
-      "id": "q1_opt2",
 
-      "label": "Option 2",
+      "default": "Your Ritual."
 
-      "default": "Oily or Combo"
-    },
+    },
 
-    {
-      "type": "text",
 
-      "id": "q1_opt3",
 
-      "label": "Option 3",
+    {
 
-      "default": "Sensitive or Reactive"
-    },
+      "type": "inline_richtext",
 
-    {
-      "type": "text",
 
-      "id": "q1_opt4",
 
-      "label": "Option 4",
+      "id": "normal",
 
-      "default": "Normal / Not Sure"
-    },
 
-    {
-      "type": "header",
 
-      "content": "Question 2"
-    },
+      "label": "Panel normal",
 
-    {
-      "type": "text",
 
-      "id": "q2_label",
 
-      "label": "Question Label",
+      "default": "30 Seconds."
 
-      "default": "Question 2 of 3"
-    },
+    },
 
-    {
-      "type": "text",
 
-      "id": "q2_title",
 
-      "label": "Question Title",
+    {
 
-      "default": "When do you care for your skin most?"
-    },
+      "type": "text",
 
-    {
-      "type": "text",
 
-      "id": "q2_opt1",
 
-      "label": "Option 1",
+      "id": "chip_1",
 
-      "default": "Morning — quick, protective"
-    },
 
-    {
-      "type": "text",
 
-      "id": "q2_opt2",
+      "label": "Chip 1",
 
-      "label": "Option 2",
 
-      "default": "Night — slow, restorative"
-    },
 
-    {
-      "type": "text",
+      "default": "Hydration"
 
-      "id": "q2_opt3",
+    },
 
-      "label": "Option 3",
 
-      "default": "Both — full ritual"
-    },
 
-    {
-      "type": "text",
+    {
 
-      "id": "q2_opt4",
+      "type": "text",
 
-      "label": "Option 4",
 
-      "default": "Weekly spa treatment"
-    },
 
-    {
-      "type": "header",
+      "id": "chip_2",
 
-      "content": "Question 3"
-    },
 
-    {
-      "type": "text",
 
-      "id": "q3_label",
+      "label": "Chip 2",
 
-      "label": "Question Label",
 
-      "default": "Question 3 of 3"
-    },
 
-    {
-      "type": "text",
+      "default": "Pigmentation"
 
-      "id": "q3_title",
+    },
 
-      "label": "Question Title",
 
-      "default": "Your #1 skin concern?"
-    },
 
-    {
-      "type": "text",
+    {
 
-      "id": "q3_opt1",
+      "type": "text",
 
-      "label": "Option 1",
 
-      "default": "Dullness / No glow"
-    },
 
-    {
-      "type": "text",
+      "id": "chip_3",
 
-      "id": "q3_opt2",
 
-      "label": "Option 2",
 
-      "default": "Fine lines / Firmness"
-    },
+      "label": "Chip 3",
 
-    {
-      "type": "text",
 
-      "id": "q3_opt3",
 
-      "label": "Option 3",
+      "default": "Texture"
 
-      "default": "Dark spots / Pigmentation"
-    },
+    },
 
-    {
-      "type": "text",
 
-      "id": "q3_opt4",
 
-      "label": "Option 4",
+    {
 
-      "default": "Breakouts / Texture"
-    },
+      "type": "text",
 
-    {
-      "type": "header",
 
-      "content": "Email Step"
-    },
 
-    {
-      "type": "text",
+      "id": "chip_4",
 
-      "id": "email_title",
 
-      "label": "Email Title",
 
-      "default": "Where should we send your ritual?"
-    },
+      "label": "Chip 4",
 
-    {
-      "type": "text",
 
-      "id": "email_placeholder",
 
-      "label": "Email Placeholder",
+      "default": "Elasticity"
 
-      "default": "your@email.com"
-    },
+    },
 
-    {
-      "type": "text",
 
-      "id": "email_button",
 
-      "label": "Email Button",
+    {
 
-      "default": "See My Ritual →"
-    },
+      "type": "text",
 
-    {
-      "type": "text",
 
-      "id": "skip_text",
 
-      "label": "Skip Text",
+      "id": "chip_5",
 
-      "default": "Skip"
-    },
 
-    {
-      "type": "header",
 
-      "content": "Result Step"
-    },
+      "label": "Chip 5",
 
-    {
-      "type": "text",
 
-      "id": "result_badge",
 
-      "label": "Result Badge",
+      "default": "Radiance"
 
-      "default": "Your Prana Ritual"
-    },
+    },
 
-    {
-      "type": "text",
 
-      "id": "result_button",
 
-      "label": "Result Button",
+    {
 
-      "default": "Shop My Ritual →"
-    },
+      "type": "text",
 
-    {
-      "type": "text",
 
-      "id": "restart_text",
 
-      "label": "Restart Text",
+      "id": "chip_6",
 
-      "default": "Retake Quiz"
-    },
 
-    {
-      "type": "text",
 
-      "id": "or_text",
+      "label": "Chip 6",
 
-      "label": "OR Text",
 
-      "default": "OR"
-    }
-  ],
 
-  "presets": [
-    {
-      "name": "Find ritual"
-    }
-  ]
+      "default": "Barrier"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "step1",
+
+
+
+      "label": "Step 1",
+
+
+
+      "default": "Upload or capture your skin photo."
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "step2",
+
+
+
+      "label": "Step 2",
+
+
+
+      "default": "AI analyzes your skin concerns."
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "step3",
+
+
+
+      "label": "Step 3",
+
+
+
+      "default": "Get your custom ritual instantly."
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "btn_txt",
+
+
+
+      "label": "Button Text",
+
+
+
+      "default": "Start Skin Scan"
+
+    },
+
+
+
+    {
+
+      "type": "url",
+
+
+
+      "id": "btn_link",
+
+
+
+      "label": "Button Link"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "note",
+
+
+
+      "label": "Bottom Note",
+
+
+
+      "default": "Takes less than 60 seconds."
+
+    },
+
+
+
+    {
+
+      "type": "header",
+
+
+
+      "content": "Right Quiz Panel"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "badge_quiz",
+
+
+
+      "label": "Quiz Badge",
+
+
+
+      "default": "QUIZ MODE"
+
+    },
+
+
+
+    {
+
+      "type": "textarea",
+
+
+
+      "id": "title_quiz",
+
+
+
+      "label": "Quiz Title",
+
+
+
+      "default": "Take the Ritual Quiz"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "desc_quiz",
+
+
+
+      "label": "Quiz Description",
+
+
+
+      "default": "A quick guided quiz to discover your ideal skincare ritual."
+
+    },
+
+
+
+    {
+
+      "type": "inline_richtext",
+
+
+
+      "id": "trust_quiz1",
+
+
+
+      "label": "Trust Text 1",
+
+
+
+      "default": "2 min quiz"
+
+    },
+
+
+
+    {
+
+      "type": "inline_richtext",
+
+
+
+      "id": "trust_quiz2",
+
+
+
+      "label": "Trust Text 2",
+
+
+
+      "default": "Personalized Results"
+
+    },
+
+
+
+    {
+
+      "type": "header",
+
+
+
+      "content": "Question 1"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q1_label",
+
+
+
+      "label": "Question Label",
+
+
+
+      "default": "Question 1 of 3"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q1_title",
+
+
+
+      "label": "Question Title",
+
+
+
+      "default": "What's your skin type?"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q1_opt1",
+
+
+
+      "label": "Option 1",
+
+
+
+      "default": "Dry or Very Dry"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q1_opt2",
+
+
+
+      "label": "Option 2",
+
+
+
+      "default": "Oily or Combo"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q1_opt3",
+
+
+
+      "label": "Option 3",
+
+
+
+      "default": "Sensitive or Reactive"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q1_opt4",
+
+
+
+      "label": "Option 4",
+
+
+
+      "default": "Normal / Not Sure"
+
+    },
+
+
+
+    {
+
+      "type": "header",
+
+
+
+      "content": "Question 2"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q2_label",
+
+
+
+      "label": "Question Label",
+
+
+
+      "default": "Question 2 of 3"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q2_title",
+
+
+
+      "label": "Question Title",
+
+
+
+      "default": "When do you care for your skin most?"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q2_opt1",
+
+
+
+      "label": "Option 1",
+
+
+
+      "default": "Morning — quick, protective"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q2_opt2",
+
+
+
+      "label": "Option 2",
+
+
+
+      "default": "Night — slow, restorative"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q2_opt3",
+
+
+
+      "label": "Option 3",
+
+
+
+      "default": "Both — full ritual"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q2_opt4",
+
+
+
+      "label": "Option 4",
+
+
+
+      "default": "Weekly spa treatment"
+
+    },
+
+
+
+    {
+
+      "type": "header",
+
+
+
+      "content": "Question 3"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q3_label",
+
+
+
+      "label": "Question Label",
+
+
+
+      "default": "Question 3 of 3"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q3_title",
+
+
+
+      "label": "Question Title",
+
+
+
+      "default": "Your #1 skin concern?"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q3_opt1",
+
+
+
+      "label": "Option 1",
+
+
+
+      "default": "Dullness / No glow"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q3_opt2",
+
+
+
+      "label": "Option 2",
+
+
+
+      "default": "Fine lines / Firmness"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q3_opt3",
+
+
+
+      "label": "Option 3",
+
+
+
+      "default": "Dark spots / Pigmentation"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "q3_opt4",
+
+
+
+      "label": "Option 4",
+
+
+
+      "default": "Breakouts / Texture"
+
+    },
+
+
+
+    {
+
+      "type": "header",
+
+
+
+      "content": "Email Step"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "email_title",
+
+
+
+      "label": "Email Title",
+
+
+
+      "default": "Where should we send your ritual?"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "email_placeholder",
+
+
+
+      "label": "Email Placeholder",
+
+
+
+      "default": "your@email.com"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "email_button",
+
+
+
+      "label": "Email Button",
+
+
+
+      "default": "See My Ritual →"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "skip_text",
+
+
+
+      "label": "Skip Text",
+
+
+
+      "default": "Skip"
+
+    },
+
+
+
+    {
+
+      "type": "header",
+
+
+
+      "content": "Result Step"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "result_badge",
+
+
+
+      "label": "Result Badge",
+
+
+
+      "default": "Your Prana Ritual"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "result_button",
+
+
+
+      "label": "Result Button",
+
+
+
+      "default": "Shop My Ritual →"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "restart_text",
+
+
+
+      "label": "Restart Text",
+
+
+
+      "default": "Retake Quiz"
+
+    },
+
+
+
+    {
+
+      "type": "text",
+
+
+
+      "id": "or_text",
+
+
+
+      "label": "OR Text",
+
+
+
+      "default": "OR"
+
+    }
+
+  ],
+
+
+
+  "presets": [
+
+    {
+
+      "name": "Find ritual"
+
+    }
+
+  ]
+
 }
+
 {% endschema %}
