@@ -432,7 +432,7 @@
 
 <style>
 
-  /\* Compact product recommendations. Card display only; quiz logic unchanged. \*/
+  /* Compact product recommendations. Card display only; quiz logic unchanged. */
 
   .fyr-product-grid {
 
@@ -588,7 +588,7 @@
 
 
 
-  /\* ── FIND YOUR RITUAL COMBINED ── \*/
+  /* ── FIND YOUR RITUAL COMBINED ── */
 
 
 
@@ -748,7 +748,7 @@
 
 
 
-  /\* Left panel — scan (canvas bg) \*/
+  /* Left panel — scan (canvas bg) */
 
 
 
@@ -968,7 +968,7 @@
 
 
 
-  /\* OR divider \*/
+  /* OR divider */
 
 
 
@@ -1064,7 +1064,7 @@
 
 
 
-  /\* Right panel — quiz (dark bg) \*/
+  /* Right panel — quiz (dark bg) */
 
 
 
@@ -1436,7 +1436,7 @@
 
 
 
-  /\* ── MOBILE ── \*/
+  /* ── MOBILE ── */
 
 
 
@@ -1910,6 +1910,18 @@
 
   }
 
+
+  /* Preserve the original burgundy quiz-panel gradient on every quiz step. */
+  #findYourRitual .fyr-panel.fyr-quiz-panel {
+    background: linear-gradient(-90deg, #461324, #813850) !important;
+    color: #fff;
+  }
+  #findYourRitual .fyr-quiz-panel .fyr-quiz-q,
+  #findYourRitual .fyr-quiz-panel .fyr-quiz-step-label,
+  #findYourRitual .fyr-quiz-panel .fyr-result-name,
+  #findYourRitual .fyr-quiz-panel .fyr-result-price {
+    color: #fff;
+  }
 
   /* Screenshot-matched quiz styling — visual only; quiz logic is untouched */
   #findYourRitual .fyr-quiz-opts {
