@@ -164,6 +164,8 @@
 
         <prana-ritual-quiz class="fyr-quiz-widget"
           data-api-url="{{ section.settings.quiz_api_url | default: '/apps/dosha-quiz/quiz?code=1791954993424' | escape }}"
+          data-skip="{{ section.settings.skip_text | default: 'Skip' | escape }}"
+          data-email-placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' | escape }}"
           data-loading="{{ 'prana_quiz.loading' | t | escape }}"
           data-error="{{ 'prana_quiz.error' | t | escape }}"
           data-empty="{{ 'prana_quiz.empty' | t | escape }}"
@@ -181,6 +183,8 @@
 
 
 <style>
+prana-ritual-quiz { display: block; }
+.fyr-email-input { width: 100%; padding: 14px; margin-bottom: 16px; background: var(--canvas2); color: var(--ink3); border: 1px solid var(--gold); border-radius: 4px; }
   
 /* ── FIND YOUR RITUAL COMBINED ── */
 .fyr-section {

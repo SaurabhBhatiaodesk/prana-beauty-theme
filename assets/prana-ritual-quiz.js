@@ -54,7 +54,7 @@
   question() {
     const index = this.answers.length;
     const question = this.questions[index];
-    if (!question) { this.score(); return; }
+    if (!question) { this.emailStep(); return; }
     const title = this.element('h4', 'fyr-quiz-q', question.text);
     title.tabIndex = -1;
     const options = this.element('div', 'fyr-quiz-opts', '');
@@ -64,12 +64,39 @@
     this.replaceChildren(this.element('p', 'fyr-quiz-step-label', (this.dataset.progress || '').replace('[current]', String(index + 1)).replace('[total]', String(this.questions.length))), title, options);
     if (index) title.focus();
   }
-  async score() {
+  emailStep() {
+    const config = this.quiz.emailCapture;
+    if (!config?.enabled) { this.score(); return; }
+    const form = document.createElement('form');
+    const title = this.element('h4', 'fyr-quiz-q', config.heading || '');
+    const input = document.createElement('input');
+    input.type = 'email';
+    input.name = 'email';
+    input.autocomplete = 'email';
+    input.required = true;
+    input.placeholder = this.dataset.emailPlaceholder || '';
+    input.setAttribute('aria-label', this.dataset.emailPlaceholder || 'Email');
+    input.className = 'fyr-email-input';
+    const submit = document.createElement('button');
+    submit.type = 'submit';
+    submit.className = 'fyr-result-cta';
+    submit.textContent = config.button || '';
+    form.append(title, input, submit);
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (form.reportValidity()) this.score(input.value.trim());
+    });
+    this.replaceChildren(form);
+    if (config.allowSkip) this.append(this.button(this.dataset.skip || 'Skip', () => this.score()));
+    input.focus();
+  }
+  /** @param {string} [email] */
+  async score(email) {
     this.status(this.dataset.loading || '');
     try {
       const response = await fetch(this.endpoint(this.quiz.endpoints.result), {
         method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ code: this.code, path: this.path, answers: this.answers }),
+        body: JSON.stringify({ code: this.code, path: this.path, answers: this.answers, ...(email ? { email } : {}) }),
         signal: AbortSignal.timeout(20000),
       });
       const payload = await response.json();
@@ -92,7 +119,7 @@
       this.append(this.button(this.dataset.restart || 'Retake Quiz', () => { this.answers = []; this.question(); }));
     } catch {
       this.status(this.dataset.error || '');
-      this.append(this.button(this.dataset.retry || '', () => this.score()));
+      this.append(this.button(this.dataset.retry || '', () => this.score(email)));
     }
   }
 }
