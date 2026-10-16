@@ -248,7 +248,6 @@
     },
     "dosha_quiz_PArMeV": {
       "type": "dosha-quiz",
-      "disabled": true,
       "name": "Dosha Quiz",
       "settings": {
         "brand_name": "PRANA Beauty & Wellness",
