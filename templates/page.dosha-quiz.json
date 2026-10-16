@@ -263,6 +263,22 @@
     },
     "17921480677563eec1": {
       "type": "_blocks",
+      "blocks": {
+        "skin_scan_and_quiz_dosha_quiz_UdrE3X": {
+          "type": "shopify://apps/skin-scan-and-quiz/blocks/dosha-quiz/01a12f69-60f6-72e8-bb59-ea0bdabda925",
+          "settings": {
+            "brand_name": "PRANA Beauty & Wellness",
+            "hero_title": "Find Your",
+            "hero_accent": "Skin Ritual",
+            "hero_subtitle": "Three paths. One result. Your personal Ayurvedic ritual.",
+            "quiz_code": "1791953911737",
+            "privacy_url": "/pages/privacy-policy"
+          }
+        }
+      },
+      "block_order": [
+        "skin_scan_and_quiz_dosha_quiz_UdrE3X"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
