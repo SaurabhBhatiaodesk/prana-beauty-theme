@@ -154,6 +154,52 @@
         "btn_link": "/checkout"
       }
     },
+    "1792393156b04450c2": {
+      "type": "_blocks",
+      "blocks": {
+        "skin_scan_and_quiz_dosha_quiz_QGirzk": {
+          "type": "shopify://apps/skin-scan-and-quiz/blocks/dosha-quiz/01a12f69-60f6-72e8-bb59-ea0bdabda925",
+          "settings": {
+            "brand_name": "PRANA Beauty & Wellness",
+            "hero_title": "Find Your",
+            "hero_accent": "Skin Ritual",
+            "hero_subtitle": "Three paths. One result. Your personal Ayurvedic ritual.",
+            "quiz_code": "1791978272744",
+            "privacy_url": "/pages/privacy-policy"
+          }
+        }
+      },
+      "block_order": [
+        "skin_scan_and_quiz_dosha_quiz_QGirzk"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "founder_section_4CgtMW": {
       "type": "founder-section",
       "custom_css": [],
@@ -343,6 +389,7 @@
       "type": "find-ritual-section",
       "name": "Find ritual",
       "settings": {
+        "quiz_api_url": "/apps/dosha-quiz/quiz?code=1791954993424",
         "caption": "Find Your Ritual",
         "title": "Two Paths. <em>One Ritual.</em>",
         "description": "Scan your face with AI in 30 seconds — or answer 3 quick questions. Either way, we'll build your perfect Prana ritual.",
@@ -1080,6 +1127,7 @@
     "hero_banner_jxwpbW",
     "custom_proof_jqHQB6",
     "custom_product_slider_qajQbd",
+    "1792393156b04450c2",
     "founder_section_4CgtMW",
     "prana_bestseller_banner",
     "custom_rituals_section_RJGTFd",
