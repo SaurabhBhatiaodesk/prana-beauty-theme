@@ -141,7 +141,7 @@
         "main_menu_right": "right-menu",
         "main_menu_mobile": "mobile-menu",
         "scan_btn": "Find MY RITUAL",
-        "scan_link": "shopify://pages/dosha-quiz",
+        "scan_link": "/#findYourRitual",
         "mobile_scan_btn": "AI Skin Scan",
         "mobile_scan_link": "shopify://pages/prana-glow-quiz"
       }
