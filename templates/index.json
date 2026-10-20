@@ -492,6 +492,24 @@
     "ugc_video_slider_Y9pfFV": {
       "type": "prana-ugc-videos",
       "blocks": {
+        "video_item_xRWCig": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/Hook 3 (3).MOV"
+          }
+        },
+        "video_item_3Ge7NN": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/Turmericmask (3).mov"
+          }
+        },
+        "video_item_nnaEgG": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/content-2703725 (1) (1).mp4"
+          }
+        },
         "video_item_DVPafq": {
           "type": "video_item",
           "settings": {
@@ -530,6 +548,9 @@
         }
       },
       "block_order": [
+        "video_item_xRWCig",
+        "video_item_3Ge7NN",
+        "video_item_nnaEgG",
         "video_item_DVPafq",
         "video_item_JYfgHm",
         "video_item_EWG7MR",
