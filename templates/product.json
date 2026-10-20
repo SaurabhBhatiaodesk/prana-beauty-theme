@@ -518,13 +518,13 @@
               "name": "Product Small Details",
               "settings": {
                 "icon1": "shopify://shop_images/eco-friendly-fabric_1_1.png",
-                "title1": "Certified Vegan",
+                "title1": "Certified Vegan Skincare",
                 "icon2": "shopify://shop_images/herbal-treatment_1.svg",
-                "title2": "All-Natural Botanical Blend",
+                "title2": "Ayurvedic Botanical Formula",
                 "icon3": "shopify://shop_images/Group_82fe7d54-6ee5-4936-819e-ab110a772d86.png",
-                "title3": "No Synthetic Additives",
+                "title3": "Zero-Synthetic Clean Beauty",
                 "icon4": "shopify://shop_images/Vector.png",
-                "title4": "Eco-Conscious Beauty"
+                "title4": "Sustainable, Cruelty-Free Skincare"
               },
               "blocks": {}
             }
