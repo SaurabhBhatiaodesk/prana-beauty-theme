@@ -136,7 +136,7 @@
       "settings": {
         "eyebrow": "The Founder",
         "heading": "Where Ayurveda meets <em>modern science.</em>",
-        "intro": "Blending a background in technology with a lifelong Ayurvedic inheritance — Prabha Iyer built PRANA to make ancient ritual as precise as anything she'd shipped in tech.",
+        "intro": "Blending a background in technology with a lifelong Ayurvedic inheritance — Prabha Iyer built PRANA to make ancient rituals as precise as anything she'd shipped in tech.",
         "quote": "\"I carried a lifelong belief in the healing power of nature — a gift from my Ayurvedic roots. I decided to create something better.\"",
         "founder_name": "Prabha Iyer",
         "founder_role": "Founder, PRANA Beauty & Wellness",
@@ -1548,6 +1548,7 @@
       "type": "find-ritual-section",
       "name": "Find ritual",
       "settings": {
+        "quiz_api_url": "/apps/dosha-quiz/quiz?code=1791954993424",
         "caption": "Find Your Ritual",
         "title": "Two Paths. One Ritual.",
         "description": "Scan your face with AI in 30 seconds — or answer 3 quick questions. Either way, we'll build your perfect Prana ritual.",
