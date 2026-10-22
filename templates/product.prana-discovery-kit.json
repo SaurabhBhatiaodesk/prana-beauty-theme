@@ -666,6 +666,59 @@
         "show_controls": false
       }
     },
+    "prana_ritual_steps": {
+      "type": "prana-ritual-steps",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Cleanse",
+            "text": "<p>Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup.</p>"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Apply",
+            "text": "<p>Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips.</p>"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Wait 12 minutes",
+            "text": "<p>Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8.</p>"
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Rinse and seal",
+            "text": "<p>Warm water, pat dry, then rose mist and the Saffron Glow Serum.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ],
+      "settings": {
+        "heading": "The 12-minute ritual",
+        "description": "<p>Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>",
+        "gradient_start": "#cb9646",
+        "gradient_end": "#f8f0e7",
+        "section_text_color": "#323232",
+        "heading_color": "#561a24",
+        "intro_color": "#323232",
+        "card_background": "#e3c39f",
+        "card_border_color": "#8a5a55",
+        "number_color": "#561A24",
+        "title_color": "#323232",
+        "description_color": "#323232"
+      }
+    },
     "complete_routine_BwPUHL": {
       "type": "complete-routine",
       "name": "Complete Your Ritual",
@@ -843,49 +896,6 @@
         "padding-block-start": 50,
         "padding-block-end": 50
       }
-    },
-    "prana_ritual_steps": {
-      "type": "prana-ritual-steps",
-      "settings": {
-        "heading": "The 12-minute ritual",
-        "description": "<p>Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>"
-      },
-      "blocks": {
-        "step_1": {
-          "type": "step",
-          "settings": {
-            "title": "Cleanse",
-            "text": "<p>Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup.</p>"
-          }
-        },
-        "step_2": {
-          "type": "step",
-          "settings": {
-            "title": "Apply",
-            "text": "<p>Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips.</p>"
-          }
-        },
-        "step_3": {
-          "type": "step",
-          "settings": {
-            "title": "Wait 12 minutes",
-            "text": "<p>Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8.</p>"
-          }
-        },
-        "step_4": {
-          "type": "step",
-          "settings": {
-            "title": "Rinse and seal",
-            "text": "<p>Warm water, pat dry, then rose mist and the Saffron Glow Serum.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "step_1",
-        "step_2",
-        "step_3",
-        "step_4"
-      ]
     }
   },
   "order": [
