@@ -493,6 +493,12 @@
     "ugc_video_slider_Y9pfFV": {
       "type": "prana-ugc-videos",
       "blocks": {
+        "video_item_8jUwHE": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/WhatsApp Video 2026-10-21 at 20.16.33.mp4"
+          }
+        },
         "video_item_MjLgkL": {
           "type": "video_item",
           "settings": {
@@ -555,6 +561,7 @@
         }
       },
       "block_order": [
+        "video_item_8jUwHE",
         "video_item_MjLgkL",
         "video_item_xRWCig",
         "video_item_3Ge7NN",
