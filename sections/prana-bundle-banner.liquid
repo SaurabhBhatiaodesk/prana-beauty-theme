@@ -1,0 +1,64 @@
+﻿{% liquid
+  assign bundle = section.settings.bundle_product
+  assign bundle_variant = bundle.selected_or_first_available_variant
+  assign target = section.settings.button_link | default: bundle.url
+%}
+{% if target != blank or request.design_mode %}
+<section class="prana-bundle-banner" style="--pbb-bg: {{ section.settings.background }}; --pbb-text: {{ section.settings.text_color }}; --pbb-button: {{ section.settings.button_color }}; --pbb-button-text: {{ section.settings.button_text_color }};">
+  <div class="section prana-bundle-banner__container">
+    <div class="prana-bundle-banner__panel">
+      <div class="prana-bundle-banner__copy">
+        {% if section.settings.heading != blank %}<h2>{{ section.settings.heading | escape }}</h2>{% endif %}
+        {% if section.settings.description != blank %}<div class="prana-bundle-banner__description">{{ section.settings.description }}</div>{% endif %}
+      </div>
+      <div class="prana-bundle-banner__action">
+        {% if bundle_variant != blank %}
+          <div class="prana-bundle-banner__price">
+            {% if bundle_variant.compare_at_price > bundle_variant.price %}<s>{{ bundle_variant.compare_at_price | money }}</s>{% endif %}
+            <span>{{ bundle_variant.price | money }}</span>
+          </div>
+        {% endif %}
+        {% if target != blank %}
+          <a class="prana-bundle-banner__button" href="{{ target | escape }}">{{ section.settings.button_label | escape }}</a>
+        {% elsif request.design_mode %}
+          <p>Select a bundle product or set a ritual page link to display this banner.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% stylesheet %}
+.prana-bundle-banner { padding: 32px 0; }
+.prana-bundle-banner__container { display: block; }
+.prana-bundle-banner__panel { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 40px; padding: 48px; border-radius: 24px; background: var(--pbb-bg); color: var(--pbb-text); }
+.prana-bundle-banner h2 { margin: 0 0 12px; font-family: var(--D, inherit); font-size: clamp(26px, 2.8vw, 42px); line-height: 1.2; font-weight: 400; color: inherit; }
+.prana-bundle-banner__description { font-size: 18px; line-height: 1.6; }
+.prana-bundle-banner__description p { margin: 0; }
+.prana-bundle-banner__action { min-width: 220px; }
+.prana-bundle-banner__price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.prana-bundle-banner__price s { font-size: 17px; opacity: .75; }
+.prana-bundle-banner__price span { font-family: var(--D, inherit); font-size: 40px; line-height: 1.1; }
+.prana-bundle-banner__button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 14px 28px; border-radius: 40px; text-align: center; background: var(--pbb-button); color: var(--pbb-button-text); font-size: 17px; font-weight: 600; text-decoration: none; }
+.prana-bundle-banner__button:hover { filter: brightness(1.08); }
+.prana-bundle-banner__button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+@media(max-width:749px) { .prana-bundle-banner { padding: 24px 0; } .prana-bundle-banner__panel { grid-template-columns: 1fr; padding: 28px 22px; gap: 24px; border-radius: 18px; } .prana-bundle-banner__description { font-size: 16px; } .prana-bundle-banner__action { min-width: 0; } .prana-bundle-banner__price span { font-size: 34px; } .prana-bundle-banner__button { width: 100%; } }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "PRANA Bundle Banner",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    {"type":"text","id":"heading","label":"Heading","default":"Make it the ABHYANGA weekly ritual"},
+    {"type":"richtext","id":"description","label":"Description","default":"<p>Rose Jasmine Milk Cleanser, this mask and the Saffron Glow Serum, together.</p>"},
+    {"type":"product","id":"bundle_product","label":"Bundle product","info":"Price and compare-at price come from this product. This section does not create a bundle or discount."},
+    {"type":"text","id":"button_label","label":"Button label","default":"Shop the ritual set"},
+    {"type":"url","id":"button_link","label":"Ritual page link (optional)","info":"Overrides the selected product link. Leave blank to open the bundle product."},
+    {"type":"color","id":"background","label":"Banner background","default":"#561A24"},
+    {"type":"color","id":"text_color","label":"Text colour","default":"#F8F2E6"},
+    {"type":"color","id":"button_color","label":"Button background","default":"#A8681A"},
+    {"type":"color","id":"button_text_color","label":"Button text colour","default":"#FFFFFF"}
+  ],
+  "presets": [{"name":"PRANA Bundle Banner"}]
+}
+{% endschema %}
