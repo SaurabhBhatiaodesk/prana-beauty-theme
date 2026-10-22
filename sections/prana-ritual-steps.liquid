@@ -1,0 +1,108 @@
+<section class="prana-ritual-steps">
+  <div class="section prana-ritual-steps__inner">
+    {% if section.settings.heading != blank %}<h2>{{ section.settings.heading | escape }}</h2>{% endif %}
+    {% if section.settings.description != blank %}<div class="prana-ritual-steps__intro">{{ section.settings.description }}</div>{% endif %}
+    <ol class="prana-ritual-steps__grid">
+      {% for block in section.blocks %}
+        <li class="prana-ritual-steps__step" {{ block.shopify_attributes }}>
+          <span class="prana-ritual-steps__number" aria-hidden="true">{{ forloop.index }}</span>
+          {% if block.settings.title != blank %}<h3>{{ block.settings.title | escape }}</h3>{% endif %}
+          {{ block.settings.text }}
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+{% stylesheet %}
+.prana-ritual-steps { padding: 60px 0; background: var(--canvas2, #f2ead8); color: var(--ink3, #323232); }
+.prana-ritual-steps__inner { display: block; }
+.prana-ritual-steps h2 { margin: 0 0 16px; color: var(--heading-color, #561a24); font-family: var(--D, inherit); font-size: clamp(28px, 3vw, 44px); font-weight: 400; line-height: 1.15; }
+.prana-ritual-steps__intro { max-width: 780px; font-size: 18px; line-height: 1.7; }
+.prana-ritual-steps p { margin: 0; }
+.prana-ritual-steps__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px; margin: 42px 0 0; padding: 0; list-style: none; }
+.prana-ritual-steps__number { display: block; margin-bottom: 12px; color: var(--gold, #a8681a); font-family: var(--D, inherit); font-size: 54px; line-height: 1; }
+.prana-ritual-steps h3 { margin: 0 0 8px; color: var(--heading-color, #561a24); font-size: 20px; line-height: 1.4; }
+.prana-ritual-steps__step p { font-size: 17px; line-height: 1.7; }
+@media (max-width: 989px) { .prana-ritual-steps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; } }
+@media (max-width: 599px) { .prana-ritual-steps { padding: 36px 0; } .prana-ritual-steps__grid { grid-template-columns: 1fr; margin-top: 28px; gap: 24px; } .prana-ritual-steps__intro, .prana-ritual-steps__step p { font-size: 16px; } .prana-ritual-steps__number { font-size: 40px; margin-bottom: 8px; } .prana-ritual-steps h3 { font-size: 19px; } }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "PRANA Ritual Steps",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The 12-minute ritual"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Introduction",
+      "default": "<p>Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Ritual step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Ritual step"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Describe this step.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PRANA Ritual Steps",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Cleanse",
+            "text": "<p>Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Apply",
+            "text": "<p>Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Wait 12 minutes",
+            "text": "<p>Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Rinse and seal",
+            "text": "<p>Warm water, pat dry, then rose mist and the Saffron Glow Serum.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
