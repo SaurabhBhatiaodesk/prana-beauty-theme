@@ -687,13 +687,12 @@
         "padding_bottom": 80,
         "mobile_padding_top": 48,
         "mobile_padding_bottom": 48,
-        "background_color": "#1E2649",
-        "heading_color": "#FFFFFF",
-        "description_color": "#F2EFF6",
-        "percentage_color": "#F5AD18",
-        "stat_text_color": "#FFFFFF",
-        "disclaimer_color": "#BFC9EF",
-        "divider_color": "#4B5273"
+        "heading_color": "#561A24",
+        "description_color": "#323232",
+        "percentage_color": "#f5ad18",
+        "stat_text_color": "#ffffff",
+        "disclaimer_color": "#bfc9ef",
+        "divider_color": "#4b5273"
       }
     },
     "timeline_qitJPB": {
