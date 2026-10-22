@@ -273,6 +273,8 @@
       ],
       "name": "PRANA Bestseller Banner",
       "settings": {
+        "image": "shopify://shop_images/prana-turmeric-sandalwood-clay-mask-product-banner.png",
+        "mobile_image": "shopify://shop_images/prana-turmeric-sandalwood-purifying-mask.png",
         "show_content": true,
         "eyebrow": "Best seller",
         "heading": "Turmeric &\nSandalwood Face Mask",
