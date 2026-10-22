@@ -8,12 +8,8 @@
   class="prana-consumer-results"
   style="
     --pcr-background: {{ section.settings.background_color }};
-    --pcr-heading: {{ section.settings.heading_color }};
-    --pcr-description: {{ section.settings.description_color }};
-    --pcr-percentage: {{ section.settings.percentage_color }};
-    --pcr-stat-text: {{ section.settings.stat_text_color }};
-    --pcr-disclaimer: {{ section.settings.disclaimer_color }};
-    --pcr-divider: {{ section.settings.divider_color }};
+    --pcr-text: #ffffff;
+    --pcr-divider: rgba(255, 255, 255, 0.22);
     --pcr-width: {{ section.settings.content_width }}px;
     --pcr-top: {{ section.settings.padding_top }}px;
     --pcr-bottom: {{ section.settings.padding_bottom }}px;
@@ -85,7 +81,7 @@
 
   .prana-consumer-results h2 {
     margin: 0 0 12px;
-    color: var(--pcr-heading);
+    color: var(--pcr-text);
     font-family: var(--D, inherit);
     font-size: clamp(30px, 3vw, 52px);
     font-weight: 400;
@@ -93,7 +89,7 @@
   }
 
   .prana-consumer-results__description {
-    color: var(--pcr-description);
+    color: var(--pcr-text);
     font-size: 18px;
     line-height: 1.75;
   }
@@ -131,7 +127,7 @@
   }
 
   .prana-consumer-results__percentage {
-    color: var(--pcr-percentage);
+    color: var(--pcr-text);
     font-family: var(--D, Georgia, serif);
     font-size: clamp(48px, 4vw, 78px);
     font-weight: 400;
@@ -142,7 +138,7 @@
 
   .prana-consumer-results__stat-description {
     margin-top: 8px;
-    color: var(--pcr-stat-text);
+    color: var(--pcr-text);
     font-size: 17px;
     line-height: 1.7;
     overflow-wrap: anywhere;
@@ -150,7 +146,7 @@
 
   .prana-consumer-results__disclaimer {
     margin-top: 34px;
-    color: var(--pcr-disclaimer);
+    color: var(--pcr-text);
     font-size: 14px;
     line-height: 1.8;
   }
@@ -234,7 +230,9 @@
 {
   "name": "PRANA Consumer Results",
   "enabled_on": {
-    "templates": ["product"]
+    "templates": [
+      "product"
+    ]
   },
   "max_blocks": 5,
   "settings": [
@@ -317,44 +315,8 @@
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background colour",
+      "label": "Theme background colour",
       "default": "#1E2649"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading colour",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "description_color",
-      "label": "Introduction colour",
-      "default": "#F2EFF6"
-    },
-    {
-      "type": "color",
-      "id": "percentage_color",
-      "label": "Percentage colour",
-      "default": "#F5AD18"
-    },
-    {
-      "type": "color",
-      "id": "stat_text_color",
-      "label": "Stats description colour",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "disclaimer_color",
-      "label": "Disclaimer colour",
-      "default": "#BFC9EF"
-    },
-    {
-      "type": "color",
-      "id": "divider_color",
-      "label": "Dividers colour",
-      "default": "#4B5273"
     }
   ],
   "blocks": [
