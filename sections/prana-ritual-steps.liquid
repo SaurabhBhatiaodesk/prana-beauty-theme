@@ -17,17 +17,15 @@
 >
   <div class="section prana-ritual-steps__inner">
     {% if section.settings.heading != blank %}
-      {% assign heading_words = section.settings.heading | split: ' ' %}
-      {% assign heading_half_count = heading_words.size | plus: 1 | divided_by: 2 %}
+      {% assign full_heading = section.settings.heading | escape %}
+      {% assign highlight_text = section.settings.highlight_heading | strip | escape %}
       <h2>
-        {% for word in heading_words %}
-          {% if forloop.index0 < heading_half_count %}
-            <span class="prana-ritual-steps__heading-black">{{ word | escape }}</span>
-          {% else %}
-            <span>{{ word | escape }}</span>
-          {% endif %}
-          {% unless forloop.last %} {% endunless %}
-        {% endfor %}
+        {% if highlight_text != blank and full_heading contains highlight_text %}
+          {% capture highlight_markup %}<span class="prana-ritual-steps__heading-black">{{ highlight_text }}</span>{% endcapture %}
+          {{ full_heading | replace: highlight_text, highlight_markup }}
+        {% else %}
+          {{ full_heading }}
+        {% endif %}
       </h2>
     {% endif %}
 
@@ -204,7 +202,9 @@
 {
   "name": "PRANA Ritual Steps",
   "enabled_on": {
-    "templates": ["product"]
+    "templates": [
+      "product"
+    ]
   },
   "max_blocks": 4,
   "settings": [
@@ -213,6 +213,13 @@
       "id": "heading",
       "label": "Heading",
       "default": "The 12-minute ritual"
+    },
+    {
+      "type": "text",
+      "id": "highlight_heading",
+      "label": "Highlight heading text",
+      "info": "Enter exact words from heading to show in the highlight colour.",
+      "default": "The 12-minute"
     },
     {
       "type": "richtext",
