@@ -690,10 +690,10 @@
         "mobile_padding_bottom": 48,
         "heading_color": "#323232",
         "description_color": "#323232",
-        "percentage_color": "#f5ad18",
-        "stat_text_color": "#ffffff",
-        "disclaimer_color": "#bfc9ef",
-        "divider_color": "#4b5273"
+        "percentage_color": "#561A24",
+        "stat_text_color": "#323232",
+        "disclaimer_color": "#323232",
+        "divider_color": "#561A24"
       }
     },
     "timeline_qitJPB": {
