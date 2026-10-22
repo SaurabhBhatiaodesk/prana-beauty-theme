@@ -273,8 +273,6 @@
       ],
       "name": "PRANA Bestseller Banner",
       "settings": {
-        "image": "shopify://shop_images/turmeric-banner.png",
-        "mobile_image": "shopify://shop_images/turmeric-mobile-banner_b19461b3-ccb6-4600-8fa6-afb7e9ab3a93.png",
         "show_content": true,
         "eyebrow": "Best seller",
         "heading": "Turmeric &\nSandalwood Face Mask",
@@ -282,7 +280,7 @@
         "description": "<p>A golden ritual to visibly brighten skin, calm inflammation and reveal a healthy, radiant glow.</p>",
         "button_label": "Shop now",
         "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
-        "background_color": "#f8f2e6",
+        "background_color": "#E3C39F",
         "eyebrow_color": "#a4773d",
         "heading_color": "#561a24",
         "subtitle_color": "#323232",
