@@ -614,61 +614,6 @@
         "padding_bottom": 52
       }
     },
-    "prana_ritual_steps": {
-      "type": "prana-ritual-steps",
-      "blocks": {
-        "step_1": {
-          "type": "step",
-          "settings": {
-            "title": "Cleanse",
-            "text": "<p>Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup.</p>"
-          }
-        },
-        "step_2": {
-          "type": "step",
-          "settings": {
-            "title": "Apply",
-            "text": "<p>Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips.</p>"
-          }
-        },
-        "step_3": {
-          "type": "step",
-          "settings": {
-            "title": "Wait 12 minutes",
-            "text": "<p>Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8.</p>"
-          }
-        },
-        "step_4": {
-          "type": "step",
-          "settings": {
-            "title": "Rinse and seal",
-            "text": "<p>Warm water, pat dry, then rose mist and the Saffron Glow Serum.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "step_1",
-        "step_2",
-        "step_3",
-        "step_4"
-      ],
-      "settings": {
-        "heading": "The 12",
-        "highlight_heading": "minute ritual",
-        "description": "<p>Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>",
-        "gradient_start": "#cb9646",
-        "gradient_end": "#f8f0e7",
-        "section_text_color": "#323232",
-        "heading_color": "#561a24",
-        "heading_half_color": "#323232",
-        "intro_color": "#323232",
-        "card_background": "#e3c39f",
-        "card_border_color": "#8a5a55",
-        "number_color": "#561a24",
-        "title_color": "#323232",
-        "description_color": "#323232"
-      }
-    },
     "key_ingredients_sec_R9mPEk": {
       "type": "key-ingredients-sec",
       "name": "Key Ingredients",
@@ -684,6 +629,71 @@
         "show_pagination": false,
         "show_empty_message": false,
         "empty_message_text": "No ingredients added yet."
+      }
+    },
+    "prana_consumer_results_VnLMnV": {
+      "type": "prana-consumer-results",
+      "blocks": {
+        "result_qTFGYK": {
+          "type": "result",
+          "settings": {
+            "percentage": "93%",
+            "description": "<p>said skin felt softer, smoother and less congested</p>"
+          }
+        },
+        "result_c6x7aA": {
+          "type": "result",
+          "settings": {
+            "percentage": "91%",
+            "description": "<p>said skin looked clearer, brighter and more even-toned</p>"
+          }
+        },
+        "result_M73rMW": {
+          "type": "result",
+          "settings": {
+            "percentage": "88%",
+            "description": "<p>would recommend it to a friend or family member</p>"
+          }
+        },
+        "result_yF4zhD": {
+          "type": "result",
+          "settings": {
+            "percentage": "86%",
+            "description": "<p>said pores looked smaller and less clogged</p>"
+          }
+        },
+        "result_UeByGz": {
+          "type": "result",
+          "settings": {
+            "percentage": "84%",
+            "description": "<p>said it cleansed deeply without leaving skin tight or dry</p>"
+          }
+        }
+      },
+      "block_order": [
+        "result_qTFGYK",
+        "result_c6x7aA",
+        "result_M73rMW",
+        "result_yF4zhD",
+        "result_UeByGz"
+      ],
+      "name": "PRANA Consumer Results",
+      "settings": {
+        "heading": "What 50 people saw in four weeks",
+        "description": "<p>An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*</p>",
+        "disclaimer": "<p>*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.</p>",
+        "content_width": 1380,
+        "padding_top": 72,
+        "padding_bottom": 80,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "background_color": "#1E2649",
+        "heading_color": "#FFFFFF",
+        "description_color": "#F2EFF6",
+        "percentage_color": "#F5AD18",
+        "stat_text_color": "#FFFFFF",
+        "disclaimer_color": "#BFC9EF",
+        "divider_color": "#4B5273"
       }
     },
     "timeline_qitJPB": {
@@ -876,8 +886,8 @@
   "order": [
     "main",
     "prana_duo_benefits_section_iVfdqQ",
-    "prana_ritual_steps",
     "key_ingredients_sec_R9mPEk",
+    "prana_consumer_results_VnLMnV",
     "timeline_qitJPB",
     "1765535430ded7c91a",
     "custom_faq_center_Et6tRx",
