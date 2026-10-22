@@ -7,6 +7,11 @@
     --prs-intro-color: {{ section.settings.intro_color }};
     --prs-gradient-start: {{ section.settings.gradient_start }};
     --prs-gradient-end: {{ section.settings.gradient_end }};
+    --prs-card-background: {{ section.settings.card_background }};
+    --prs-card-border: {{ section.settings.card_border_color }};
+    --prs-number-color: {{ section.settings.number_color }};
+    --prs-title-color: {{ section.settings.title_color }};
+    --prs-description-color: {{ section.settings.description_color }};
   "
 >
   <div class="section prana-ritual-steps__inner">
@@ -22,17 +27,7 @@
 
     <ol class="prana-ritual-steps__grid">
       {% for block in section.blocks %}
-        <li
-          class="prana-ritual-steps__step"
-          style="
-            --prs-card-bg: {{ block.settings.card_background }};
-            --prs-card-border: {{ block.settings.card_border_color }};
-            --prs-number-color: {{ block.settings.number_color }};
-            --prs-title-color: {{ block.settings.title_color }};
-            --prs-description-color: {{ block.settings.description_color }};
-          "
-          {{ block.shopify_attributes }}
-        >
+        <li class="prana-ritual-steps__step" {{ block.shopify_attributes }}>
           <span class="prana-ritual-steps__number" aria-hidden="true">
             {{ forloop.index }}
           </span>
@@ -41,9 +36,11 @@
             <h3>{{ block.settings.title | escape }}</h3>
           {% endif %}
 
-          <div class="prana-ritual-steps__step-text">
-            {{ block.settings.text }}
-          </div>
+          {% if block.settings.text != blank %}
+            <div class="prana-ritual-steps__step-text">
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
         </li>
       {% endfor %}
     </ol>
@@ -52,13 +49,29 @@
 
 {% stylesheet %}
   .prana-ritual-steps {
+    width: 100%;
+    max-width: 100%;
     padding: 60px 0;
+    overflow-x: clip;
     background: radial-gradient(
       100.75% 105.17% at 95.4% 0%,
-      var(--prs-gradient-start, #e3c39f) 0%,
-      var(--prs-gradient-end, #f9f1e8) 100%
+      var(--prs-gradient-start, #cb9646) 0%,
+      var(--prs-gradient-end, #f8f0e7) 100%
     );
     color: var(--prs-section-color, #323232);
+  }
+
+  .prana-ritual-steps,
+  .prana-ritual-steps * {
+    box-sizing: border-box;
+  }
+
+  .prana-ritual-steps__inner {
+    width: 100%;
+    max-width: 1440px;
+    min-width: 0;
+    margin-inline: auto;
+    padding-inline: 32px;
   }
 
   .prana-ritual-steps h2 {
@@ -83,18 +96,25 @@
 
   .prana-ritual-steps__grid {
     display: grid;
+    width: 100%;
+    min-width: 0;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 36px;
+    align-items: stretch;
+    gap: 20px;
     margin: 42px 0 0;
     padding: 0;
     list-style: none;
   }
 
   .prana-ritual-steps__step {
+    display: flex;
+    flex-direction: column;
     min-width: 0;
-    padding: 20px;
-    overflow: hidden;
-    background: var(--prs-card-bg, #e3c39f);
+    width: 100%;
+    height: 100%;
+    overflow-wrap: anywhere;
+    padding: 24px;
+    background: var(--prs-card-background, #e3c39f);
     border: 1px solid var(--prs-card-border, #8a5a55);
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
@@ -105,7 +125,7 @@
     margin-bottom: 12px;
     color: var(--prs-number-color, #a8681a);
     font-family: var(--D, inherit);
-    font-size: 54px;
+    font-size: clamp(40px, 4vw, 54px);
     line-height: 1;
   }
 
@@ -120,41 +140,46 @@
     color: var(--prs-description-color, #323232);
   }
 
-  .prana-ritual-steps__step-text p {
+  .prana-ritual-steps__step-text p,
+  .prana-ritual-steps__step-text li {
     color: inherit;
     font-size: 17px;
     line-height: 1.7;
   }
 
-
-  @media (max-width: 1024px){
-    .prana-ritual-steps__grid{
-      gap:10px;
+  @media screen and (max-width: 1100px) {
+    .prana-ritual-steps__inner {
+      padding-inline: 24px;
     }
-  }
 
-  @media (max-width: 989px) {
     .prana-ritual-steps__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap:10px;
+      gap: 20px;
     }
   }
 
- 
-
-  @media (max-width: 599px) {
+  @media screen and (max-width: 599px) {
     .prana-ritual-steps {
       padding: 36px 0;
     }
 
+    .prana-ritual-steps__inner {
+      padding-inline: 16px;
+    }
+
     .prana-ritual-steps__grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
       margin-top: 28px;
-      gap: 24px;
+    }
+
+    .prana-ritual-steps__step {
+      padding: 20px;
     }
 
     .prana-ritual-steps__intro,
-    .prana-ritual-steps__step-text p {
+    .prana-ritual-steps__step-text p,
+    .prana-ritual-steps__step-text li {
       font-size: 16px;
     }
 
@@ -224,6 +249,40 @@
       "id": "intro_color",
       "label": "Introduction colour",
       "default": "#323232"
+    },
+    {
+      "type": "header",
+      "content": "All cards colours"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#E3C39F"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border colour",
+      "default": "#8A5A55"
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "Step number colour",
+      "default": "#A8681A"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Step title colour",
+      "default": "#561A24"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description colour",
+      "default": "#323232"
     }
   ],
   "blocks": [
@@ -242,40 +301,6 @@
           "id": "text",
           "label": "Description",
           "default": "<p>Describe this step.</p>"
-        },
-        {
-          "type": "header",
-          "content": "Block colours"
-        },
-        {
-          "type": "color",
-          "id": "card_background",
-          "label": "Card background",
-          "default": "#E3C39F"
-        },
-        {
-          "type": "color",
-          "id": "card_border_color",
-          "label": "Card border colour",
-          "default": "#8A5A55"
-        },
-        {
-          "type": "color",
-          "id": "number_color",
-          "label": "Step number colour",
-          "default": "#A8681A"
-        },
-        {
-          "type": "color",
-          "id": "title_color",
-          "label": "Step title colour",
-          "default": "#561A24"
-        },
-        {
-          "type": "color",
-          "id": "description_color",
-          "label": "Description colour",
-          "default": "#323232"
         }
       ]
     }
