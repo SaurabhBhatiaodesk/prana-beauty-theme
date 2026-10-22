@@ -20,7 +20,7 @@
     --pcr-mobile-bottom: {{ section.settings.mobile_padding_bottom }}px;
   "
 >
-  <div class="prana-consumer-results__inner">
+  <div class="section">
     <div class="prana-consumer-results__intro">
       {% if section.settings.heading != blank %}
         <h2>{{ section.settings.heading | escape }}</h2>
@@ -72,11 +72,6 @@
     box-sizing: border-box;
   }
 
-  .prana-consumer-results__inner {
-    width: 100%;
-    max-width: var(--pcr-width);
-    margin: 0 auto;
-  }
 
   .prana-consumer-results__intro {
     max-width: 810px;
