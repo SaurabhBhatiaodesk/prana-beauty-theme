@@ -280,7 +280,7 @@
         "description": "<p>A golden ritual to visibly brighten skin, calm inflammation and reveal a healthy, radiant glow.</p>",
         "button_label": "Shop now",
         "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
-        "background_color": "#E3C39F",
+        "background_color": "#e3c39f",
         "eyebrow_color": "#a4773d",
         "heading_color": "#561a24",
         "subtitle_color": "#323232",
@@ -385,6 +385,7 @@
     },
     "find_ritual_section_XPMGpF": {
       "type": "find-ritual-section",
+      "disabled": true,
       "name": "Find ritual",
       "settings": {
         "quiz_api_url": "/apps/dosha-quiz/quiz?code=1791954993424",
