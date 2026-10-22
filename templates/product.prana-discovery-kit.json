@@ -706,15 +706,17 @@
       ],
       "settings": {
         "heading": "The 12-minute ritual",
+        "highlight_heading": "The 12-minute",
         "description": "<p>Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>",
         "gradient_start": "#cb9646",
         "gradient_end": "#f8f0e7",
         "section_text_color": "#323232",
-        "heading_color": "#561A24",
+        "heading_color": "#561a24",
+        "heading_half_color": "#323232",
         "intro_color": "#323232",
         "card_background": "#e3c39f",
         "card_border_color": "#8a5a55",
-        "number_color": "#561A24",
+        "number_color": "#561a24",
         "title_color": "#323232",
         "description_color": "#323232"
       }
