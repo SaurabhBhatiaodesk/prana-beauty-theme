@@ -4,6 +4,7 @@
   style="
     --prs-section-color: {{ section.settings.section_text_color }};
     --prs-heading-color: {{ section.settings.heading_color }};
+    --prs-heading-half-color: {{ section.settings.heading_half_color }};
     --prs-intro-color: {{ section.settings.intro_color }};
     --prs-gradient-start: {{ section.settings.gradient_start }};
     --prs-gradient-end: {{ section.settings.gradient_end }};
@@ -16,7 +17,18 @@
 >
   <div class="section prana-ritual-steps__inner">
     {% if section.settings.heading != blank %}
-      <h2>{{ section.settings.heading | escape }}</h2>
+      {% assign heading_words = section.settings.heading | split: ' ' %}
+      {% assign heading_half_count = heading_words.size | plus: 1 | divided_by: 2 %}
+      <h2>
+        {% for word in heading_words %}
+          {% if forloop.index0 < heading_half_count %}
+            <span class="prana-ritual-steps__heading-black">{{ word | escape }}</span>
+          {% else %}
+            <span>{{ word | escape }}</span>
+          {% endif %}
+          {% unless forloop.last %} {% endunless %}
+        {% endfor %}
+      </h2>
     {% endif %}
 
     {% if section.settings.description != blank %}
@@ -79,6 +91,10 @@
     font-size: clamp(28px, 3vw, 44px);
     font-weight: 400;
     line-height: 1.15;
+  }
+
+  .prana-ritual-steps h2 .prana-ritual-steps__heading-black {
+    color: var(--prs-heading-half-color, #000000);
   }
 
   .prana-ritual-steps__intro {
@@ -146,7 +162,6 @@
   }
 
   @media screen and (max-width: 1100px) {
-
     .prana-ritual-steps__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
@@ -189,9 +204,7 @@
 {
   "name": "PRANA Ritual Steps",
   "enabled_on": {
-    "templates": [
-      "product"
-    ]
+    "templates": ["product"]
   },
   "max_blocks": 4,
   "settings": [
@@ -232,8 +245,14 @@
     {
       "type": "color",
       "id": "heading_color",
-      "label": "Heading colour",
+      "label": "Heading colour (second half)",
       "default": "#561A24"
+    },
+    {
+      "type": "color",
+      "id": "heading_half_color",
+      "label": "Heading colour (first half)",
+      "default": "#000000"
     },
     {
       "type": "color",
