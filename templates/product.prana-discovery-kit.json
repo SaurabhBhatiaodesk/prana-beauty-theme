@@ -594,6 +594,7 @@
         "product_pdyRGW",
         "product_QTPxtm"
       ],
+      "disabled": true,
       "name": "PRANA Duo Benefits",
       "settings": {
         "bundle_id": "873923",
@@ -611,59 +612,6 @@
         "plus_color": "#f1e9d7",
         "padding_top": 52,
         "padding_bottom": 52
-      }
-    },
-    "daily_ritual_section_qz6Am8": {
-      "type": "daily-ritual-section",
-      "blocks": {
-        "step_qRdHKQ": {
-          "type": "step",
-          "settings": {
-            "title": "Cleanse",
-            "description": "Begin with the PRANA Rose Cleanser. Cleanse thoroughly before applying the mask."
-          }
-        },
-        "step_CaqW3d": {
-          "type": "step",
-          "settings": {
-            "title": "Detox & Nourish",
-            "description": "Apply a generous layer to clean skin. Leave for 12–15 minutes. Rinse with warm water. Use weekly — the glow typically lasts 48–72 hours."
-          }
-        },
-        "step_L3WXJA": {
-          "type": "step",
-          "settings": {
-            "title": "Saffron Glow Serum",
-            "description": "Dispense 3-5 drops of the Saffron Glow Serum into your palm. Press- do not rub- into the skin from center outward, then upward. Give it 60 seconds."
-          }
-        },
-        "step_zk4Cbp": {
-          "type": "step",
-          "settings": {
-            "title": "Moisturize",
-            "description": "Follow with saffron Radiance Moisturizer to lock in the saffron actives."
-          }
-        }
-      },
-      "block_order": [
-        "step_qRdHKQ",
-        "step_CaqW3d",
-        "step_L3WXJA",
-        "step_zk4Cbp"
-      ],
-      "disabled": true,
-      "name": "Daily Ritual",
-      "settings": {
-        "ingredient_header": "Key Conversion Points",
-        "heading": "Your daily ritual.",
-        "highlight_heading": "4 steps.",
-        "video": "{{ product.metafields.custom.product_video.value }}",
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/f2619d3d70144da9b32c014af3faa43d.mp4",
-        "video_image": "shopify://shop_images/Rectangle_51.png",
-        "autoplay": true,
-        "loop_video": true,
-        "muted": true,
-        "show_controls": false
       }
     },
     "prana_ritual_steps": {
@@ -721,20 +669,6 @@
         "description_color": "#323232"
       }
     },
-    "complete_routine_BwPUHL": {
-      "type": "complete-routine",
-      "name": "Complete Your Ritual",
-      "settings": {
-        "complete_set_label": "{{ product.metafields.custom.complete_your_ritual_heading.value }}",
-        "complete_set_text": "Save by ordering the complete ritual set",
-        "complete_set_button_text": "Shop the Ritual Now →",
-        "ingredient_header": "Complete Your Ritual",
-        "heading": "{{ product.metafields.custom.complete_your_ritual_heading.value }}",
-        "heading_2": "Three steps to all-day radiance.",
-        "products_limit": 10,
-        "buy_now_text": "+ Add to Bag"
-      }
-    },
     "key_ingredients_sec_R9mPEk": {
       "type": "key-ingredients-sec",
       "name": "Key Ingredients",
@@ -752,33 +686,72 @@
         "empty_message_text": "No ingredients added yet."
       }
     },
-    "custom_proof_giBmYt": {
-      "type": "custom-proof",
-      "disabled": true,
-      "name": "Custom Proof",
+    "timeline_qitJPB": {
+      "type": "timeline",
+      "blocks": {
+        "timeline_card_9JR3JM": {
+          "type": "timeline_card",
+          "settings": {
+            "badge": "1",
+            "label": "",
+            "title": "The First Quiet",
+            "description": "Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup."
+          }
+        },
+        "timeline_card_f8XyqU": {
+          "type": "timeline_card",
+          "settings": {
+            "badge": "2",
+            "label": "",
+            "title": "Apply",
+            "description": "Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips."
+          }
+        },
+        "timeline_card_pmgCB3": {
+          "type": "timeline_card",
+          "settings": {
+            "badge": "3",
+            "label": "",
+            "title": "Wait 12 minutes",
+            "description": "Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8."
+          }
+        },
+        "timeline_card_jetCxY": {
+          "type": "timeline_card",
+          "settings": {
+            "badge": "4",
+            "label": "",
+            "title": "Rinse and seal",
+            "description": "Warm water, pat dry, then rose mist and the Saffron Glow Serum."
+          }
+        },
+        "note_pgRcxK": {
+          "type": "note",
+          "settings": {
+            "note_label": "Pigment Shift",
+            "note_text": "If a formula promises a transformation in 72 hours, it is not delivering an active — it is delivering an effect. PRANA delivers actives, on the timeline the skin actually metabolises them. The benefits compound."
+          }
+        }
+      },
+      "block_order": [
+        "timeline_card_9JR3JM",
+        "timeline_card_f8XyqU",
+        "timeline_card_pmgCB3",
+        "timeline_card_jetCxY",
+        "note_pgRcxK"
+      ],
+      "name": "The Timeline",
       "settings": {
-        "title": "Clinical Results · 8-Week Independent Study",
-        "text_color": "#ffffff",
-        "desktop_grid": 4,
-        "number1": "94 %",
-        "text1": "Reported visibly brighter skin after 4 weeks",
-        "number2": "89 %",
-        "text2": "Saw reduction in dark spots within 8 weeks",
-        "number3": "96 %",
-        "text3": "Said skin felt more hydrated within 7 days",
-        "number4": "7 days",
-        "text4": "Average time to first visible radiance results",
-        "last-proof": "*Results from independent 8-week consumer study. Individual results may vary."
-      }
-    },
-    "clinic_data_pdp_dp8qWg": {
-      "type": "clinic-data-pdp",
-      "name": "Clinic Data",
-      "settings": {
-        "title": "Clinical Data — 4 & 8 Week Study",
-        "text_color": "#ffffff",
-        "desktop_grid": 4,
-        "last-proof": ""
+        "eyebrow": "The 12-minute ritual",
+        "heading": "The 12-minute",
+        "highlight": "Ritual",
+        "subtext": "Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.",
+        "subtext_link_label": "What they deliver, they keep.",
+        "subtext_link_url": "",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     },
     "1765535430ded7c91a": {
@@ -903,12 +876,9 @@
   "order": [
     "main",
     "prana_duo_benefits_section_iVfdqQ",
-    "daily_ritual_section_qz6Am8",
     "prana_ritual_steps",
-    "complete_routine_BwPUHL",
     "key_ingredients_sec_R9mPEk",
-    "custom_proof_giBmYt",
-    "clinic_data_pdp_dp8qWg",
+    "timeline_qitJPB",
     "1765535430ded7c91a",
     "custom_faq_center_Et6tRx",
     "custom_liquid_xqWARh",
