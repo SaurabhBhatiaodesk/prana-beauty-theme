@@ -679,7 +679,8 @@
       ],
       "name": "PRANA Consumer Results",
       "settings": {
-        "heading": "What 50 people saw in four weeks",
+        "heading": "What 50 people",
+        "bold_heading": "saw in four weeks",
         "description": "<p>An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*</p>",
         "disclaimer": "<p>*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.</p>",
         "content_width": 1380,
@@ -687,7 +688,7 @@
         "padding_bottom": 80,
         "mobile_padding_top": 48,
         "mobile_padding_bottom": 48,
-        "heading_color": "#561A24",
+        "heading_color": "#561a24",
         "description_color": "#323232",
         "percentage_color": "#f5ad18",
         "stat_text_color": "#ffffff",
