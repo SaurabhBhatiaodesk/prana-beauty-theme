@@ -1,38 +1,165 @@
-<section class="prana-ritual-steps">
+<section
+  id="prana-ritual-steps-{{ section.id }}"
+  class="prana-ritual-steps"
+  style="
+    --prs-section-color: {{ section.settings.section_text_color }};
+    --prs-heading-color: {{ section.settings.heading_color }};
+    --prs-intro-color: {{ section.settings.intro_color }};
+    --prs-gradient-start: {{ section.settings.gradient_start }};
+    --prs-gradient-end: {{ section.settings.gradient_end }};
+  "
+>
   <div class="section prana-ritual-steps__inner">
-    {% if section.settings.heading != blank %}<h2>{{ section.settings.heading | escape }}</h2>{% endif %}
-    {% if section.settings.description != blank %}<div class="prana-ritual-steps__intro">{{ section.settings.description }}</div>{% endif %}
+    {% if section.settings.heading != blank %}
+      <h2>{{ section.settings.heading | escape }}</h2>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="prana-ritual-steps__intro">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
     <ol class="prana-ritual-steps__grid">
       {% for block in section.blocks %}
-        <li class="prana-ritual-steps__step" {{ block.shopify_attributes }}>
-          <span class="prana-ritual-steps__number" aria-hidden="true">{{ forloop.index }}</span>
-          {% if block.settings.title != blank %}<h3>{{ block.settings.title | escape }}</h3>{% endif %}
-          {{ block.settings.text }}
+        <li
+          class="prana-ritual-steps__step"
+          style="
+            --prs-card-bg: {{ block.settings.card_background }};
+            --prs-card-border: {{ block.settings.card_border_color }};
+            --prs-number-color: {{ block.settings.number_color }};
+            --prs-title-color: {{ block.settings.title_color }};
+            --prs-description-color: {{ block.settings.description_color }};
+          "
+          {{ block.shopify_attributes }}
+        >
+          <span class="prana-ritual-steps__number" aria-hidden="true">
+            {{ forloop.index }}
+          </span>
+
+          {% if block.settings.title != blank %}
+            <h3>{{ block.settings.title | escape }}</h3>
+          {% endif %}
+
+          <div class="prana-ritual-steps__step-text">
+            {{ block.settings.text }}
+          </div>
         </li>
       {% endfor %}
     </ol>
   </div>
 </section>
+
 {% stylesheet %}
-.prana-ritual-steps { padding: 60px 0; background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%); color: var(--ink3, #323232); }
-.prana-ritual-steps h2 { margin: 0 0 16px; color: var(--heading-color, #561a24); font-family: var(--D, inherit); font-size: clamp(28px, 3vw, 44px); font-weight: 400; line-height: 1.15; }
-.prana-ritual-steps__intro { max-width: 780px; font-size: 18px; line-height: 1.7; }
-.prana-ritual-steps p { margin: 0; }
-li.prana-ritual-steps__step {
-    background: #E3C39F;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-    border: 1px solid #8A5A55;
+  .prana-ritual-steps {
+    padding: 60px 0;
+    background: radial-gradient(
+      100.75% 105.17% at 95.4% 0%,
+      var(--prs-gradient-start, #e3c39f) 0%,
+      var(--prs-gradient-end, #f9f1e8) 100%
+    );
+    color: var(--prs-section-color, #323232);
+  }
+
+  .prana-ritual-steps h2 {
+    margin: 0 0 16px;
+    color: var(--prs-heading-color, #561a24);
+    font-family: var(--D, inherit);
+    font-size: clamp(28px, 3vw, 44px);
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  .prana-ritual-steps__intro {
+    max-width: 780px;
+    color: var(--prs-intro-color, #323232);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .prana-ritual-steps p {
+    margin: 0;
+  }
+
+  .prana-ritual-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 36px;
+    margin: 42px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .prana-ritual-steps__step {
+    min-width: 0;
     padding: 20px;
-}
-.prana-ritual-steps__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px; margin: 42px 0 0; padding: 0; list-style: none; }
-.prana-ritual-steps__number { display: block; margin-bottom: 12px; color: var(--gold, #a8681a); font-family: var(--D, inherit); font-size: 54px; line-height: 1; }
-.prana-ritual-steps h3 { margin: 0 0 8px; color: var(--heading-color, #561a24); font-size: 20px; line-height: 1.4; }
-.prana-ritual-steps__step p { font-size: 17px; line-height: 1.7; }
-@media (max-width: 989px) { .prana-ritual-steps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; } }
-@media (max-width: 599px) { .prana-ritual-steps { padding: 36px 0; } .prana-ritual-steps__grid { grid-template-columns: 1fr; margin-top: 28px; gap: 24px; } .prana-ritual-steps__intro, .prana-ritual-steps__step p { font-size: 16px; } .prana-ritual-steps__number { font-size: 40px; margin-bottom: 8px; } .prana-ritual-steps h3 { font-size: 19px; } }
+    overflow: hidden;
+    background: var(--prs-card-bg, #e3c39f);
+    border: 1px solid var(--prs-card-border, #8a5a55);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .prana-ritual-steps__number {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--prs-number-color, #a8681a);
+    font-family: var(--D, inherit);
+    font-size: 54px;
+    line-height: 1;
+  }
+
+  .prana-ritual-steps h3 {
+    margin: 0 0 8px;
+    color: var(--prs-title-color, #561a24);
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .prana-ritual-steps__step-text {
+    color: var(--prs-description-color, #323232);
+  }
+
+  .prana-ritual-steps__step-text p {
+    color: inherit;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 989px) {
+    .prana-ritual-steps__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .prana-ritual-steps {
+      padding: 36px 0;
+    }
+
+    .prana-ritual-steps__grid {
+      grid-template-columns: 1fr;
+      margin-top: 28px;
+      gap: 24px;
+    }
+
+    .prana-ritual-steps__intro,
+    .prana-ritual-steps__step-text p {
+      font-size: 16px;
+    }
+
+    .prana-ritual-steps__number {
+      margin-bottom: 8px;
+      font-size: 40px;
+    }
+
+    .prana-ritual-steps h3 {
+      font-size: 19px;
+    }
+  }
 {% endstylesheet %}
+
 {% schema %}
 {
   "name": "PRANA Ritual Steps",
@@ -54,6 +181,40 @@ li.prana-ritual-steps__step {
       "id": "description",
       "label": "Introduction",
       "default": "<p>Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section colours"
+    },
+    {
+      "type": "color",
+      "id": "gradient_start",
+      "label": "Background gradient start",
+      "default": "#CB9646"
+    },
+    {
+      "type": "color",
+      "id": "gradient_end",
+      "label": "Background gradient end",
+      "default": "#F8F0E7"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "label": "Section text colour",
+      "default": "#323232"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading colour",
+      "default": "#561A24"
+    },
+    {
+      "type": "color",
+      "id": "intro_color",
+      "label": "Introduction colour",
+      "default": "#323232"
     }
   ],
   "blocks": [
@@ -72,6 +233,40 @@ li.prana-ritual-steps__step {
           "id": "text",
           "label": "Description",
           "default": "<p>Describe this step.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Block colours"
+        },
+        {
+          "type": "color",
+          "id": "card_background",
+          "label": "Card background",
+          "default": "#E3C39F"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card border colour",
+          "default": "#8A5A55"
+        },
+        {
+          "type": "color",
+          "id": "number_color",
+          "label": "Step number colour",
+          "default": "#A8681A"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Step title colour",
+          "default": "#561A24"
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description colour",
+          "default": "#323232"
         }
       ]
     }
