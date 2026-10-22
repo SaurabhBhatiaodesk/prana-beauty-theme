@@ -1,0 +1,423 @@
+{% comment %}
+  PRANA consumer perception results section.
+  The displayed study figures are merchant-editable content, not calculated results.
+{% endcomment %}
+
+<section
+  id="prana-consumer-results-{{ section.id }}"
+  class="prana-consumer-results"
+  style="
+    --pcr-background: {{ section.settings.background_color }};
+    --pcr-heading: {{ section.settings.heading_color }};
+    --pcr-description: {{ section.settings.description_color }};
+    --pcr-percentage: {{ section.settings.percentage_color }};
+    --pcr-stat-text: {{ section.settings.stat_text_color }};
+    --pcr-disclaimer: {{ section.settings.disclaimer_color }};
+    --pcr-divider: {{ section.settings.divider_color }};
+    --pcr-width: {{ section.settings.content_width }}px;
+    --pcr-top: {{ section.settings.padding_top }}px;
+    --pcr-bottom: {{ section.settings.padding_bottom }}px;
+    --pcr-mobile-top: {{ section.settings.mobile_padding_top }}px;
+    --pcr-mobile-bottom: {{ section.settings.mobile_padding_bottom }}px;
+  "
+>
+  <div class="prana-consumer-results__inner">
+    <div class="prana-consumer-results__intro">
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <div class="prana-consumer-results__description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="prana-consumer-results__stats" role="list">
+        {% for block in section.blocks %}
+          <div class="prana-consumer-results__stat" role="listitem" {{ block.shopify_attributes }}>
+            {% if block.settings.percentage != blank %}
+              <div class="prana-consumer-results__percentage">
+                {{ block.settings.percentage | escape }}
+              </div>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <div class="prana-consumer-results__stat-description">
+                {{ block.settings.description }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.disclaimer != blank %}
+      <div class="prana-consumer-results__disclaimer">
+        {{ section.settings.disclaimer }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .prana-consumer-results {
+    width: 100%;
+    background: var(--pcr-background);
+    padding: var(--pcr-top) 24px var(--pcr-bottom);
+  }
+
+  .prana-consumer-results *,
+  .prana-consumer-results *::before,
+  .prana-consumer-results *::after {
+    box-sizing: border-box;
+  }
+
+  .prana-consumer-results__inner {
+    width: 100%;
+    max-width: var(--pcr-width);
+    margin: 0 auto;
+  }
+
+  .prana-consumer-results__intro {
+    max-width: 810px;
+  }
+
+  .prana-consumer-results h2 {
+    margin: 0 0 12px;
+    color: var(--pcr-heading);
+    font-family: var(--D, inherit);
+    font-size: clamp(30px, 3vw, 52px);
+    font-weight: 400;
+    line-height: 1.16;
+  }
+
+  .prana-consumer-results__description {
+    color: var(--pcr-description);
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  .prana-consumer-results__description p,
+  .prana-consumer-results__stat-description p,
+  .prana-consumer-results__disclaimer p {
+    margin: 0;
+  }
+
+  .prana-consumer-results__description p + p,
+  .prana-consumer-results__stat-description p + p,
+  .prana-consumer-results__disclaimer p + p {
+    margin-top: 8px;
+  }
+
+  .prana-consumer-results__stats {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1px solid var(--pcr-divider);
+    margin-top: 44px;
+  }
+
+  .prana-consumer-results__stat {
+    min-width: 0;
+    padding: 24px 26px 8px;
+  }
+
+  .prana-consumer-results__stat:first-child {
+    padding-left: 0;
+  }
+
+  .prana-consumer-results__stat + .prana-consumer-results__stat {
+    border-left: 1px solid var(--pcr-divider);
+  }
+
+  .prana-consumer-results__percentage {
+    color: var(--pcr-percentage);
+    font-family: var(--D, Georgia, serif);
+    font-size: clamp(48px, 4vw, 78px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+
+  .prana-consumer-results__stat-description {
+    margin-top: 8px;
+    color: var(--pcr-stat-text);
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+
+  .prana-consumer-results__disclaimer {
+    margin-top: 34px;
+    color: var(--pcr-disclaimer);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .prana-consumer-results__stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .prana-consumer-results__stat,
+    .prana-consumer-results__stat:first-child {
+      padding: 24px 22px 18px;
+    }
+
+    .prana-consumer-results__stat:nth-child(3n + 1) {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    .prana-consumer-results__stat:nth-child(n + 4) {
+      border-top: 1px solid var(--pcr-divider);
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .prana-consumer-results {
+      padding: var(--pcr-mobile-top) 18px var(--pcr-mobile-bottom);
+    }
+
+    .prana-consumer-results h2 {
+      font-size: clamp(30px, 7.5vw, 40px);
+    }
+
+    .prana-consumer-results__description {
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    .prana-consumer-results__stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 28px;
+    }
+
+    .prana-consumer-results__stat,
+    .prana-consumer-results__stat:first-child,
+    .prana-consumer-results__stat:nth-child(3n + 1) {
+      padding: 20px 12px 16px;
+    }
+
+    .prana-consumer-results__stat:nth-child(odd) {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .prana-consumer-results__stat:nth-child(even) {
+      border-left: 1px solid var(--pcr-divider);
+    }
+
+    .prana-consumer-results__stat:nth-child(n + 3) {
+      border-top: 1px solid var(--pcr-divider);
+    }
+
+    .prana-consumer-results__percentage {
+      font-size: clamp(44px, 11vw, 65px);
+    }
+
+    .prana-consumer-results__stat-description {
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .prana-consumer-results__disclaimer {
+      margin-top: 25px;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PRANA Consumer Results",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What 50 people saw in four weeks"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Introduction",
+      "default": "<p>An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "disclaimer",
+      "label": "Results disclaimer",
+      "default": "<p>*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content width",
+      "min": 900,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1380
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop padding top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop padding bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Section colours"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour",
+      "default": "#1E2649"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading colour",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Introduction colour",
+      "default": "#F2EFF6"
+    },
+    {
+      "type": "color",
+      "id": "percentage_color",
+      "label": "Percentage colour",
+      "default": "#F5AD18"
+    },
+    {
+      "type": "color",
+      "id": "stat_text_color",
+      "label": "Stats description colour",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "disclaimer_color",
+      "label": "Disclaimer colour",
+      "default": "#BFC9EF"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Dividers colour",
+      "default": "#4B5273"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "result",
+      "name": "Study result",
+      "settings": [
+        {
+          "type": "text",
+          "id": "percentage",
+          "label": "Percentage",
+          "default": "93%"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Describe this study result.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PRANA Consumer Results",
+      "blocks": [
+        {
+          "type": "result",
+          "settings": {
+            "percentage": "93%",
+            "description": "<p>said skin felt softer, smoother and less congested</p>"
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "percentage": "91%",
+            "description": "<p>said skin looked clearer, brighter and more even-toned</p>"
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "percentage": "88%",
+            "description": "<p>would recommend it to a friend or family member</p>"
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "percentage": "86%",
+            "description": "<p>said pores looked smaller and less clogged</p>"
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "percentage": "84%",
+            "description": "<p>said it cleansed deeply without leaving skin tight or dry</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
