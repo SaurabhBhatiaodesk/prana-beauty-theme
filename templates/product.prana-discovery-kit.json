@@ -224,6 +224,7 @@
       "type": "prana-pdp-turmeric",
       "settings": {
         "heading": "Wild turmeric",
+        "harvest_image": "shopify://shop_images/prana-turmeric-sandalwood-mask-ingredient-benefits.png",
         "turmeric_type": "Kasthuri manjal, wild turmeric",
         "extraction": "Liquid root extract, used at up to 1%"
       }
