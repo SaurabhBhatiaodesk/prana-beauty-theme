@@ -1,7 +1,115 @@
 {
   "sections": {
     "main": {
-      "type": "prana-mask-pdp",
+      "type": "prana-pdp-hero",
+      "settings": {}
+    },
+    "benefits": {
+      "type": "prana-pdp-benefits",
+      "settings": {},
+      "blocks": {
+        "benefits_1": {
+          "type": "benefit",
+          "settings": {
+            "title": "Brighter-looking skin",
+            "text": "Turmeric and three clays leave skin looking fresh and luminous"
+          }
+        },
+        "benefits_2": {
+          "type": "benefit",
+          "settings": {
+            "title": "Clearer, more even-looking skin in 4 weeks",
+            "text": "91% agreed in our consumer study*"
+          }
+        },
+        "benefits_3": {
+          "type": "benefit",
+          "settings": {
+            "title": "Pores look smaller",
+            "text": "86% agreed in our consumer study*"
+          }
+        },
+        "benefits_4": {
+          "type": "benefit",
+          "settings": {
+            "title": "Calms the look of redness",
+            "text": "Sandalwood and rose cool skin as you rinse"
+          }
+        },
+        "benefits_5": {
+          "type": "benefit",
+          "settings": {
+            "title": "Blemish marks look less visible",
+            "text": "Turmeric evens out the look of dark spots and uneven tone"
+          }
+        },
+        "benefits_6": {
+          "type": "benefit",
+          "settings": {
+            "title": "Hydrating, never drying",
+            "text": "84% said it left skin neither tight nor dry*"
+          }
+        }
+      },
+      "block_order": [
+        "benefits_1",
+        "benefits_2",
+        "benefits_3",
+        "benefits_4",
+        "benefits_5",
+        "benefits_6"
+      ]
+    },
+    "results": {
+      "type": "prana-pdp-results",
+      "settings": {},
+      "blocks": {
+        "results_1": {
+          "type": "result",
+          "settings": {
+            "title": "93%",
+            "text": "said skin felt softer, smoother and less congested"
+          }
+        },
+        "results_2": {
+          "type": "result",
+          "settings": {
+            "title": "91%",
+            "text": "said skin looked clearer, brighter and more even-toned"
+          }
+        },
+        "results_3": {
+          "type": "result",
+          "settings": {
+            "title": "88%",
+            "text": "would recommend it to a friend or family member"
+          }
+        },
+        "results_4": {
+          "type": "result",
+          "settings": {
+            "title": "86%",
+            "text": "said pores looked smaller and less clogged"
+          }
+        },
+        "results_5": {
+          "type": "result",
+          "settings": {
+            "title": "84%",
+            "text": "said it cleansed deeply without leaving skin tight or dry"
+          }
+        }
+      },
+      "block_order": [
+        "results_1",
+        "results_2",
+        "results_3",
+        "results_4",
+        "results_5"
+      ]
+    },
+    "reviews": {
+      "type": "prana-pdp-reviews",
       "settings": {},
       "blocks": {
         "loox_reviews_loox_dynamic_section_TDddVP": {
@@ -21,9 +129,150 @@
       "block_order": [
         "loox_reviews_loox_dynamic_section_TDddVP"
       ]
+    },
+    "journeys": {
+      "type": "prana-pdp-journeys",
+      "settings": {}
+    },
+    "science": {
+      "type": "prana-pdp-science",
+      "settings": {}
+    },
+    "bridal": {
+      "type": "prana-pdp-bridal",
+      "settings": {}
+    },
+    "turmeric": {
+      "type": "prana-pdp-turmeric",
+      "settings": {}
+    },
+    "provenance": {
+      "type": "prana-pdp-provenance",
+      "settings": {}
+    },
+    "ritual": {
+      "type": "prana-pdp-ritual",
+      "settings": {},
+      "blocks": {
+        "ritual_1": {
+          "type": "step",
+          "settings": {
+            "title": "Cleanse",
+            "text": "Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup."
+          }
+        },
+        "ritual_2": {
+          "type": "step",
+          "settings": {
+            "title": "Apply",
+            "text": "Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips."
+          }
+        },
+        "ritual_3": {
+          "type": "step",
+          "settings": {
+            "title": "Wait 12 minutes",
+            "text": "Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8."
+          }
+        },
+        "ritual_4": {
+          "type": "step",
+          "settings": {
+            "title": "Rinse and seal",
+            "text": "Warm water, pat dry, then rose mist and the Saffron Glow Serum."
+          }
+        }
+      },
+      "block_order": [
+        "ritual_1",
+        "ritual_2",
+        "ritual_3",
+        "ritual_4"
+      ]
+    },
+    "bundle": {
+      "type": "prana-pdp-bundle",
+      "settings": {
+        "bundle_link": "/pages/abhyanga"
+      }
+    },
+    "faq": {
+      "type": "prana-pdp-faq",
+      "settings": {},
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "title": "Which skin types is it for?",
+            "text": "It's suitable for all skin types, and especially effective for acne-prone, oily and combination skin. The three clays absorb excess oil at different depths, and sandalwood and rose help calm the look of redness, so skin looks clearer without feeling stripped. If you're under a dermatologist's care or using prescription treatments, check with them before adding a new mask."
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "title": "How far before my wedding should I start?",
+            "text": "Eight weeks gives you enough time to see a difference. Use it twice a week for the first four weeks, then weekly. Do your last mask two or three days before the ceremony rather than the night before, and never try a new product for the first time in the final week."
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "title": "Will a clay mask dry out my skin?",
+            "text": "Kaolin, glycerin and caprylic/capric triglyceride keep the formula comfortable, which is why it rinses off soft rather than tight. Rinse while the mask is almost dry — letting it crack is what causes that stripped feeling."
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "title": "How often should I use it?",
+            "text": "Once a week for most skin. Oily or breakout-prone skin can use it twice a week for the first four weeks, then drop to weekly. Not for daily use."
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "title": "Is it suitable for sensitive skin?",
+            "text": "Yes, with care. No synthetic fragrance, parabens or alcohol. Start with 8 minutes, and patch test on your inner arm if you know you react to clays or botanical oils."
+          }
+        },
+        "faq_6": {
+          "type": "question",
+          "settings": {
+            "title": "Will the turmeric stain?",
+            "text": "It's a refined root extract, not raw powder, so it won't stain skin. Rinse thoroughly and use a dark towel — traces can mark light fabric if not fully rinsed."
+          }
+        },
+        "faq_7": {
+          "type": "question",
+          "settings": {
+            "title": "Can I use it with the Saffron Glow Serum?",
+            "text": "Yes. On mask nights, apply the serum right after rinsing. On other nights, use it after cleansing and toning as usual."
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7"
+      ]
     }
   },
   "order": [
-    "main"
+    "main",
+    "benefits",
+    "results",
+    "reviews",
+    "journeys",
+    "science",
+    "bridal",
+    "turmeric",
+    "provenance",
+    "ritual",
+    "bundle",
+    "faq"
   ]
 }

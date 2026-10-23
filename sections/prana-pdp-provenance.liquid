@@ -1,0 +1,32 @@
+{{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<div class="prana-mask-pdp pdp-provenance">
+<section class="chain" aria-label="From root to jar">
+  <div class="wrap">
+    <ol>
+      <li><b>Ingredient</b><span>Kasthuri manjal root</span></li>
+      <li><b>Origin</b><span>Tamil Nadu, India</span></li>
+      <li><b>Formulation</b><span>Version 20 of 20</span></li>
+      <li><b>Testing</b><span>4-week consumer study, 50 people</span></li>
+      <li><b>Finished product</b><span>Made in India</span></li>
+    </ol>
+  </div>
+</section>
+</div>
+{% schema %}
+{
+  "name": "PRANA PDP Provenance",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "PRANA PDP Provenance"
+    }
+  ]
+}
+{% endschema %}

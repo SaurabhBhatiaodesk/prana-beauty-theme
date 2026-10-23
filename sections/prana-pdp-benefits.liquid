@@ -1,0 +1,96 @@
+{{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<div class="prana-mask-pdp pdp-benefits">
+<section class="benefits wrap" aria-labelledby="ben-h-{{ section.id }}">
+      <h2 id="ben-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <ul>
+        {% for block in section.blocks %}<li {{ block.shopify_attributes }}><b>{{ block.settings.title | escape }}</b><span>{{ block.settings.text | escape }}</span></li>{% endfor %}
+      </ul>
+      <p class="free">*4-week independent consumer perception study, 50 participants. Individual results may vary.<br>Vegan and cruelty-free, with botanical and mineral actives. Free from parabens, sulfates and synthetic fragrance.</p>
+    </section>
+</div>
+{% schema %}
+{
+  "name": "PRANA PDP Benefits",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What it does for your skin"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PRANA PDP Benefits",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Brighter-looking skin",
+            "text": "Turmeric and three clays leave skin looking fresh and luminous"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Clearer, more even-looking skin in 4 weeks",
+            "text": "91% agreed in our consumer study*"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Pores look smaller",
+            "text": "86% agreed in our consumer study*"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Calms the look of redness",
+            "text": "Sandalwood and rose cool skin as you rinse"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Blemish marks look less visible",
+            "text": "Turmeric evens out the look of dark spots and uneven tone"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Hydrating, never drying",
+            "text": "84% said it left skin neither tight nor dry*"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

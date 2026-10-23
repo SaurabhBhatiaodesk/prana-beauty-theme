@@ -35,7 +35,7 @@
     {% form 'product', product, class: 'mask-product-form' %}
       {% if product.variants.size > 1 %}<label for="MaskVariant-{{ section.id }}">Variant</label>{% endif %}
       <select name="id" id="MaskVariant-{{ section.id }}" {% if product.variants.size == 1 %}hidden{% endif %}>
-        {% for variant in product.variants %}<option value="{{ variant.id }}" {% if variant.id == selected_variant.id %}selected{% endif %}>{{ variant.title | escape }} ? {{ variant.price | money }}</option>{% endfor %}
+        {% for variant in product.variants %}<option value="{{ variant.id }}" {% if variant.id == selected_variant.id %}selected{% endif %}>{{ variant.title | escape }} &middot; {{ variant.price | money }}</option>{% endfor %}
       </select>
       <fieldset class="purchase" style="border:0;padding:0;margin:0 0 16px">
         <legend class="sr">Purchase option</legend>
@@ -47,8 +47,8 @@
         {% endfor %}
       </fieldset>
       <div class="atc-row">
-        <div class="qty"><button type="button" data-q="-1" aria-label="Decrease quantity">?</button><input name="quantity" type="number" min="{{ selected_variant.quantity_rule.min | default: 1 }}" step="{{ selected_variant.quantity_rule.increment | default: 1 }}" {% if selected_variant.quantity_rule.max %}max="{{ selected_variant.quantity_rule.max }}"{% endif %} value="{{ selected_variant.quantity_rule.min | default: 1 }}" aria-label="Quantity"><button type="button" data-q="1" aria-label="Increase quantity">+</button></div>
-        <button class="atc" id="atc-{{ section.id }}" type="submit" {% unless selected_variant.available %}disabled{% endunless %}>{% if selected_variant.available %}{{ 'products.product.add_to_cart' | t }} ? <span class="price-now">{{ selected_variant.price | money }}</span>{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</button>
+        <div class="qty"><button type="button" data-q="-1" aria-label="Decrease quantity">&minus;</button><input name="quantity" type="number" min="{{ selected_variant.quantity_rule.min | default: 1 }}" step="{{ selected_variant.quantity_rule.increment | default: 1 }}" {% if selected_variant.quantity_rule.max %}max="{{ selected_variant.quantity_rule.max }}"{% endif %} value="{{ selected_variant.quantity_rule.min | default: 1 }}" aria-label="Quantity"><button type="button" data-q="1" aria-label="Increase quantity">+</button></div>
+        <button class="atc" id="atc-{{ section.id }}" type="submit" {% unless selected_variant.available %}disabled{% endunless %}>{% if selected_variant.available %}{{ 'products.product.add_to_cart' | t }} &middot; <span class="price-now">{{ selected_variant.price | money }}</span>{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</button>
       </div>
       <p class="ship" data-cart-message role="status"></p>
     {% endform %}
@@ -124,8 +124,46 @@
 </section>
 
 
+{% assign journey_blocks = section.blocks | where: 'type', 'journey' %}
+{% assign journey_count = 0 %}
+{% for block in journey_blocks %}{% if block.settings.before_image != blank and block.settings.after_image != blank %}{% assign journey_count = journey_count | plus: 1 %}{% endif %}{% endfor %}
+{% if journey_count > 0 %}
+<section class="journeys" aria-labelledby="journeys-heading-{{ section.id }}">
+  <div class="wrap">
+    <h2 id="journeys-heading-{{ section.id }}">Customer journeys</h2>
+    <p class="intro">Explore our customers' experiences. Drag the slider to compare.</p>
+    <div class="journey-tabs" role="tablist" aria-label="Customer journeys">
+      {% assign first_journey = true %}
+      {% for block in journey_blocks %}
+        {% if block.settings.before_image != blank and block.settings.after_image != blank %}
+          <button type="button" role="tab" id="journey-tab-{{ block.id }}" aria-controls="journey-panel-{{ block.id }}" aria-selected="{{ first_journey }}" tabindex="{% if first_journey %}0{% else %}-1{% endif %}">{{ block.settings.title | escape }}</button>
+          {% assign first_journey = false %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% assign first_journey = true %}
+    {% for block in journey_blocks %}
+      {% if block.settings.before_image != blank and block.settings.after_image != blank %}
+        <div class="ba-grid" role="tabpanel" id="journey-panel-{{ block.id }}" aria-labelledby="journey-tab-{{ block.id }}" {% unless first_journey %}hidden{% endunless %} {{ block.shopify_attributes }}>
+          <div class="ba">
+            <div class="img before">{{ block.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
+            <div class="img after">{{ block.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
+            <span class="lbl l">{{ block.settings.before_label | escape }}</span><span class="lbl r">{{ block.settings.after_label | escape }}</span><div class="handle" aria-hidden="true"></div>
+            <label class="sr" for="compare-{{ block.id }}">Compare before and after for {{ block.settings.title | escape }}</label>
+            <input type="range" id="compare-{{ block.id }}" min="0" max="100" value="50">
+          </div>
+          <div class="journey-copy"><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.skin | escape }}</p>{{ block.settings.story }}<p class="disclose">{{ block.settings.disclosure | escape }}</p></div>
+        </div>
+        {% assign first_journey = false %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% else %}
 {% if section.settings.before_image != blank and section.settings.after_image != blank %}
 <section class="journeys"><div class="wrap"><h2>Customer journeys</h2><div class="ba-grid"><div class="ba" id="ba-{{ section.id }}"><div class="img before">{{ section.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><div class="img after">{{ section.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><span class="lbl l">Before</span><span class="lbl r">After</span><div class="handle"></div><label class="sr" for="baRange-{{ section.id }}">Compare before and after</label><input type="range" id="baRange-{{ section.id }}" min="0" max="100" value="50"></div><div class="journey-copy">{{ section.settings.journey_text }}</div></div></div></section>{% endif %}
+{% if request.design_mode and section.settings.before_image == blank %}<section class="journeys"><div class="wrap"><h2>Customer journeys</h2><p>Add Customer journey blocks with approved before and after photos to display the comparison sliders here.</p></div></section>{% endif %}
+{% endif %}
 
 
 <section class="sec" aria-labelledby="sci-h-{{ section.id }}">
@@ -339,13 +377,13 @@
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "The South Asian bride?s turmeric, for her wedding glow. For visible brightness and uneven-looking skin tone."
+      "default": "The South Asian bride's turmeric, for her wedding glow. For visible brightness and uneven-looking skin tone."
     },
     {
       "type": "text",
       "id": "size_text",
       "label": "Size and treatments",
-      "default": "110 ml / 3.7 fl oz ? about 12?15 treatments"
+      "default": "110 ml / 3.7 fl oz - about 12-15 treatments"
     },
     {
       "type": "richtext",
@@ -395,13 +433,63 @@
     {
       "type": "url",
       "id": "bundle_link",
-      "label": "Ritual button link",
-      "default": "/pages/abhyanga"
+      "label": "Ritual button link"
     }
   ],
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "journey",
+      "name": "Customer journey",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Customer name",
+          "default": "Customer journey"
+        },
+        {
+          "type": "text",
+          "id": "skin",
+          "label": "Skin type"
+        },
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Before image"
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "After image"
+        },
+        {
+          "type": "text",
+          "id": "before_label",
+          "label": "Before label",
+          "default": "Before"
+        },
+        {
+          "type": "text",
+          "id": "after_label",
+          "label": "After label",
+          "default": "After"
+        },
+        {
+          "type": "richtext",
+          "id": "story",
+          "label": "Customer story and timeline"
+        },
+        {
+          "type": "textarea",
+          "id": "disclosure",
+          "label": "Results disclosure",
+          "default": "Individual results may vary."
+        }
+      ]
     }
   ],
   "presets": [

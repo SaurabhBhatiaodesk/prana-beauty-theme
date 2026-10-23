@@ -1,0 +1,132 @@
+{{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+{% assign selected_variant = product.selected_or_first_available_variant %}
+<prana-mask-pdp class="prana-mask-pdp" data-section-id="{{ section.id }}" data-added="{{ 'products.product.added_to_cart' | t | escape }}" data-currency="{{ cart.currency.iso_code }}" data-price="{{ selected_variant.price }}" data-error="{{ 'products.product.add_to_cart_error' | t | escape }}">
+
+
+
+<section class="wrap hero" id="product-{{ section.id }}">
+  <div class="gallery">
+    <div class="gallery-main">
+      {% if section.settings.skin_tag != blank %}<span class="skin-tag">{{ section.settings.skin_tag | escape }}</span>{% endif %}
+      {% assign hero_image = selected_variant.featured_image | default: product.featured_image %}
+      {% if hero_image %}{{ hero_image | image_url: width: 1200 | image_tag: id: 'mainImg', loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1200' }}{% endif %}
+    </div>
+    <div class="thumbs" role="group" aria-label="Product images">
+      {% for image in product.images %}<button type="button" data-src="{{ image | image_url: width: 1200 }}" data-alt="{{ image.alt | escape }}" aria-current="{% if image.id == hero_image.id %}true{% else %}false{% endif %}">{{ image | image_url: width: 160 | image_tag: loading: 'lazy' }}</button>{% endfor %}
+    </div>
+  </div>
+
+  <div class="buy">
+    <span class="for">Suitable for all skin types. Effective for acne-prone skin.</span>
+    <h1>{{ product.title | escape }}</h1>
+    <p class="sub">{{ section.settings.subtitle | escape }}</p>
+
+    <div class="rating">
+      
+      
+      <a href="#prana-pdp-reviews">Read verified customer reviews</a>
+      <a class="tested" href="#prana-pdp-results">Consumer tested*</a>
+    </div>
+
+    <p class="proof">Clearer, brighter-looking skin in 4 weeks.* <span>91% agreed in an independent consumer study.</span></p>
+
+    <p class="size">{{ section.settings.size_text | escape }}</p>
+
+    {% form 'product', product, class: 'mask-product-form' %}
+      {% if product.variants.size > 1 %}<label for="MaskVariant-{{ section.id }}">Variant</label>{% endif %}
+      <select name="id" id="MaskVariant-{{ section.id }}" {% if product.variants.size == 1 %}hidden{% endif %}>
+        {% for variant in product.variants %}<option value="{{ variant.id }}" {% if variant.id == selected_variant.id %}selected{% endif %}>{{ variant.title | escape }} &middot; {{ variant.price | money }}</option>{% endfor %}
+      </select>
+      <fieldset class="purchase" style="border:0;padding:0;margin:0 0 16px">
+        <legend class="sr">Purchase option</legend>
+        {% unless product.requires_selling_plan %}
+        <label class="opt"><input type="radio" name="selling_plan" value="" data-price="{{ selected_variant.price }}" checked><span class="t"><strong>One-time purchase</strong></span><span class="p">{{ selected_variant.price | money }}</span></label>
+        {% endunless %}
+        {% for allocation in selected_variant.selling_plan_allocations %}
+        <label class="opt"><input type="radio" name="selling_plan" value="{{ allocation.selling_plan.id }}" data-price="{{ allocation.price }}" {% if product.requires_selling_plan and forloop.first %}checked{% endif %}><span class="t"><strong>{{ allocation.selling_plan.name | escape }}</strong></span><span class="p">{% if allocation.compare_at_price > allocation.price %}<s>{{ allocation.compare_at_price | money }}</s>{% endif %}{{ allocation.price | money }}</span></label>
+        {% endfor %}
+      </fieldset>
+      <div class="atc-row">
+        <div class="qty"><button type="button" data-q="-1" aria-label="Decrease quantity">&minus;</button><input name="quantity" type="number" min="{{ selected_variant.quantity_rule.min | default: 1 }}" step="{{ selected_variant.quantity_rule.increment | default: 1 }}" {% if selected_variant.quantity_rule.max %}max="{{ selected_variant.quantity_rule.max }}"{% endif %} value="{{ selected_variant.quantity_rule.min | default: 1 }}" aria-label="Quantity"><button type="button" data-q="1" aria-label="Increase quantity">+</button></div>
+        <button class="atc" id="atc-{{ section.id }}" type="submit" {% unless selected_variant.available %}disabled{% endunless %}>{% if selected_variant.available %}{{ 'products.product.add_to_cart' | t }} &middot; <span class="price-now">{{ selected_variant.price | money }}</span>{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</button>
+      </div>
+      <p class="ship" data-cart-message role="status"></p>
+    {% endform %}
+
+    <p class="formulated">Gentle enough for every skin type, and especially good for blemish-prone skin. This blend of clean ingredients helps calm the look of redness, minimize the appearance of pores and reveal clearer-looking skin — all while staying hydrating, never drying.</p>
+
+    <ul class="checks">
+      <li>Three clays purify at every depth</li>
+      <li>Wild turmeric from India</li>
+      <li>Sandalwood cools and calms</li>
+      <li>12 minutes, once or twice a week</li>
+    </ul>
+
+    
+    <div class="buy-acc">
+      {% if section.settings.inci != blank %}<details><summary>Full ingredients</summary><div class="body inci">{{ section.settings.inci }}</div><p class="acc-link"><a href="#prana-pdp-formula">What each ingredient does</a></p></details>{% endif %}
+      <details>
+        <summary>How to use</summary>
+        <div class="body">Apply a thin, even layer to clean, dry skin, avoiding eyes and lips. Leave on for 12 minutes and rinse with warm water while it's still slightly damp. Use once a week, or twice a week if your skin is oily or blemish-prone. First time or sensitive skin? Start with 8 minutes.</div>
+      </details>
+      <details>
+        <summary>Shipping and returns</summary>
+        <div class="body">Free US shipping on orders over $100. Shipped from New Jersey. Not happy within 30 days? You get your money back. <a href="https://www.pranabeauty.com/pages/return-policy">Read the return policy</a>.</div>
+      </details>
+    </div>
+
+    <div class="assure">
+      <span>30-day money-back guarantee</span>
+      <span>Vegan and cruelty-free</span>
+      <span>No synthetic fragrance</span>
+    </div>
+  </div>
+    
+    
+</section>
+<div class="sticky" aria-hidden="true"><div class="n"><b>{{ product.title | escape }}</b><span class="price-now">{{ selected_variant.price | money }}</span></div><button class="atc" type="button" data-sticky tabindex="-1" {% unless selected_variant.available %}disabled{% endunless %}>{{ 'products.product.add_to_cart' | t }}</button></div>
+</prana-mask-pdp>
+<script type="module" src="{{ 'prana-mask-pdp.js' | asset_url }}"></script>
+
+{% schema %}
+{
+  "name": "PRANA PDP Hero",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "skin_tag",
+      "label": "Image badge",
+      "default": "Effective for acne-prone skin"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "The South Asian bride's turmeric, for her wedding glow. For visible brightness and uneven-looking skin tone."
+    },
+    {
+      "type": "text",
+      "id": "size_text",
+      "label": "Size and treatments",
+      "default": "110 ml / 3.7 fl oz - about 12-15 treatments"
+    },
+    {
+      "type": "richtext",
+      "id": "inci",
+      "label": "Full ingredients (verified label)"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "PRANA PDP Hero"
+    }
+  ]
+}
+{% endschema %}

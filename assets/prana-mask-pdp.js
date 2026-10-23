@@ -1,7 +1,7 @@
 ﻿import { CartAddEvent } from '@theme/events';
 class PranaMaskPdp extends HTMLElement {
   connectedCallback() {
-    if (this.dataset.ready) return;
+    if (this.dataset.ready) { const atc = this.querySelector('#atc-' + this.dataset.sectionId); if (atc) this.observer?.observe(atc); return; }
     this.dataset.ready = 'true';
     const form = this.querySelector('form');
     const quantity = this.querySelector('input[name="quantity"]');
@@ -61,6 +61,6 @@ class PranaMaskPdp extends HTMLElement {
     });
     updatePrice();
   }
-  disconnectedCallback(){this.observer?.disconnect();delete this.dataset.ready;}
+  disconnectedCallback(){this.observer?.disconnect();}
 }
 if(!customElements.get('prana-mask-pdp'))customElements.define('prana-mask-pdp',PranaMaskPdp);

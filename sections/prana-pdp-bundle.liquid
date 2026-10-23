@@ -1,0 +1,50 @@
+{{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<div class="prana-mask-pdp pdp-bundle">
+<section class="wrap" style="padding-bottom:88px" aria-labelledby="set-h-{{ section.id }}">
+  <div class="set">
+    <div>
+      <h2 id="set-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <p>Rose Jasmine Milk Cleanser, this mask and the Saffron Glow Serum, together.</p>
+    </div>
+    <div>
+      {% assign ritual_product = section.settings.bundle_product %}{% assign ritual_variant = ritual_product.selected_or_first_available_variant %}{% if ritual_variant %}<div class="price">{% if ritual_variant.compare_at_price > ritual_variant.price %}<s>{{ ritual_variant.compare_at_price | money }}</s>{% endif %}{{ ritual_variant.price | money }}</div>{% endif %}
+      <a class="btn" href="{{ section.settings.bundle_link | default: ritual_product.url | default: '/pages/abhyanga' }}">Shop the ritual set</a>
+    </div>
+  </div>
+</section>
+</div>
+{% schema %}
+{
+  "name": "PRANA PDP Bundle",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Make it the ABHYANGA weekly ritual"
+    },
+    {
+      "type": "product",
+      "id": "bundle_product",
+      "label": "Ritual bundle product (for live price)"
+    },
+    {
+      "type": "url",
+      "id": "bundle_link",
+      "label": "Ritual button link"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "PRANA PDP Bundle"
+    }
+  ]
+}
+{% endschema %}

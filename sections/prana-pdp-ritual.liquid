@@ -1,0 +1,84 @@
+{{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<div class="prana-mask-pdp pdp-ritual">
+<section class="sec" aria-labelledby="how-h-{{ section.id }}">
+  <div class="wrap">
+    <h2 id="how-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <p class="intro">Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>
+    <div class="how">
+      {% for block in section.blocks %}<div {{ block.shopify_attributes }}><b>{{ forloop.index }}</b><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.text | escape }}</p></div>{% endfor %}
+    </div>
+  </div>
+</section>
+</div>
+{% schema %}
+{
+  "name": "PRANA PDP Ritual",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The 12-minute ritual"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PRANA PDP Ritual",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Cleanse",
+            "text": "Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Apply",
+            "text": "Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Wait 12 minutes",
+            "text": "Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Rinse and seal",
+            "text": "Warm water, pat dry, then rose mist and the Saffron Glow Serum."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

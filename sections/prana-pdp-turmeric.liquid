@@ -1,0 +1,72 @@
+{{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<div class="prana-mask-pdp pdp-turmeric">
+<section class="dossier" id="turmeric-{{ section.id }}" aria-labelledby="tur-h-{{ section.id }}">
+  <div class="wrap dossier-grid">
+    <div class="tur-copy">
+      <h2 id="tur-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <p class="tur-lede">Not the turmeric in your spice rack.</p>
+      <p>We use a wild turmeric from Tamil Nadu, in southern India, known locally as kasthuri manjal. It's paler and more fragrant than the bright-yellow kitchen kind, and it's the one Indian women have long chosen for their skin, because it brightens without leaving a yellow tint.</p>
+      <p>In this mask, it helps even out the look of skin tone while three clays lift away excess oil and sandalwood keeps everything cool and calm.</p>
+      <div class="tur-pics">
+        <figure class="tur-pic">
+          <img src="https://www.pranabeauty.com/cdn/shop/files/Turmeirc_18463052-bc95-4d90-b93d-c1204ed175e5.png?v=1780384650&width=700" alt="Wild turmeric root" loading="lazy" width="700" height="700">
+          <figcaption>The root</figcaption>
+        </figure>
+        {% if section.settings.harvest_image != blank %}<figure class="tur-pic">{{ section.settings.harvest_image | image_url: width: 700 | image_tag: loading: 'lazy' }}<figcaption>The harvest</figcaption></figure>{% endif %}
+      </div>
+    </div>
+    <div class="spec">
+      <dl>
+        <div class="row"><dt>Origin</dt><dd>Tamil Nadu, India</dd></div>
+        
+        {% if section.settings.turmeric_type != blank %}<div class="row"><dt>Type</dt><dd>{{ section.settings.turmeric_type | escape }}</dd></div>{% endif %}
+        {% if section.settings.extraction != blank %}<div class="row"><dt>Extraction</dt><dd>{{ section.settings.extraction | escape }}</dd></div>{% endif %}
+        
+        
+        
+        <div class="row"><dt>Why it's in this formula</dt><dd>To bring brightness to uneven-looking skin while the clays purify, balanced by sandalwood so the mask calms rather than stings.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+</div>
+{% schema %}
+{
+  "name": "PRANA PDP Turmeric",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Wild turmeric"
+    },
+    {
+      "type": "image_picker",
+      "id": "harvest_image",
+      "label": "Harvest image"
+    },
+    {
+      "type": "text",
+      "id": "turmeric_type",
+      "label": "Turmeric type"
+    },
+    {
+      "type": "text",
+      "id": "extraction",
+      "label": "Extraction details"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "PRANA PDP Turmeric"
+    }
+  ]
+}
+{% endschema %}
