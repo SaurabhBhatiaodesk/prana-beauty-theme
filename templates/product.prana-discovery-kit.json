@@ -216,7 +216,8 @@
     "bridal": {
       "type": "prana-pdp-bridal",
       "settings": {
-        "heading": "The South Asian bride's turmeric, for her wedding glow"
+        "heading": "The South Asian bride's turmeric, for her wedding glow",
+        "bridal_image": "shopify://shop_images/prana-rose-water-toning-mist-turmeric-clay-mask.png"
       }
     },
     "turmeric": {
