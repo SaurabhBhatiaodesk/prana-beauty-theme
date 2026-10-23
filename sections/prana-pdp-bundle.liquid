@@ -1,19 +1,34 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+{% assign bundle_id = section.settings.bundle_id | strip %}
 <div class="prana-mask-pdp pm-pdp-bundle">
-<section class="pm-wrap" style="padding-bottom:88px" aria-labelledby="set-h-{{ section.id }}">
-  <div class="pm-set">
-    <div>
+<section class="pm-wrap pm-bundle-wrap" aria-labelledby="set-h-{{ section.id }}">
+  <div class="pm-set pm-bundle" data-pm-bundle data-bundle-id="{{ bundle_id | escape }}" data-shop="{{ shop.permanent_domain | escape }}" data-root="{{ routes.root_url }}" data-currency="{{ cart.currency.iso_code }}" data-shop-currency="{{ shop.currency }}" data-locale="{{ request.locale.iso_code }}" data-error="{{ section.settings.error_text | escape }}" data-added="{{ section.settings.added_text | escape }}" data-save="{{ section.settings.save_label | escape }}">
+    <div class="pm-bundle-copy">
+      {% if section.settings.eyebrow != blank %}<span class="pm-bundle-eyebrow">{% render 'prana-pdp-icon', name: 'sparkle' %}{{ section.settings.eyebrow | escape }}</span>{% endif %}
       <h2 id="set-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
-      <p>Rose Jasmine Milk Cleanser, this mask and the Saffron Glow Serum, together.</p>
+      {% if section.settings.description != blank %}<p class="pm-bundle-desc">{{ section.settings.description | escape }}</p>{% endif %}
+      {% if bundle_id != blank %}<ul class="pm-bundle-items" data-bundle-items hidden></ul>{% endif %}
+      <ul class="pm-bundle-perks">
+        {% if section.settings.perk_1 != blank %}<li>{% render 'prana-pdp-icon', name: 'truck' %}{{ section.settings.perk_1 | escape }}</li>{% endif %}
+        {% if section.settings.perk_2 != blank %}<li>{% render 'prana-pdp-icon', name: 'shield' %}{{ section.settings.perk_2 | escape }}</li>{% endif %}
+        {% if section.settings.perk_3 != blank %}<li>{% render 'prana-pdp-icon', name: 'leaf' %}{{ section.settings.perk_3 | escape }}</li>{% endif %}
+      </ul>
     </div>
-    <div>
-      {% assign ritual_product = section.settings.bundle_product %}{% assign ritual_variant = ritual_product.selected_or_first_available_variant %}{% if ritual_variant %}<div class="pm-price">{% if ritual_variant.compare_at_price > ritual_variant.price %}<s>{{ ritual_variant.compare_at_price | money }}</s>{% endif %}{{ ritual_variant.price | money }}</div>{% endif %}
-      <a class="pm-btn" href="{{ section.settings.bundle_link | default: ritual_product.url | default: '/pages/abhyanga' }}">Shop the ritual set</a>
+    <div class="pm-bundle-buy">
+      {% if bundle_id != blank %}
+        <div class="pm-price" data-bundle-price hidden></div>
+        <span class="pm-bundle-save" data-bundle-save hidden></span>
+        <button type="button" class="pm-btn pm-bundle-add" data-bundle-add disabled>{{ section.settings.button_label | escape }}</button>
+        <p class="pm-bundle-status" data-bundle-status role="status">{{ section.settings.loading_text | escape }}</p>
+      {% elsif request.design_mode %}
+        <p class="pm-bundle-status">Add a Bundler Bundle ID in this section's settings to show the bundle's products, price and Add to cart button.</p>
+      {% endif %}
+      {% if section.settings.bundle_link != blank %}<a class="pm-bundle-link" href="{{ section.settings.bundle_link }}">{{ section.settings.link_label | escape }} <span aria-hidden="true">&rarr;</span></a>{% endif %}
     </div>
   </div>
 </section>
 </div>
+{% if bundle_id != blank %}<script type="module" src="{{ 'prana-pdp-bundle.js' | asset_url }}"></script>{% endif %}
 {% schema %}
 {
   "name": "PRANA PDP Bundle",
@@ -25,19 +40,95 @@
   "settings": [
     {
       "type": "text",
+      "id": "bundle_id",
+      "label": "Bundler Bundle ID",
+      "info": "Products, prices and the discount load from this Bundler bundle, and the button adds the whole set to cart. Example: ABHYANGA BUNDLE = 804729."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Complete the ritual"
+    },
+    {
+      "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "Make it the ABHYANGA weekly ritual"
     },
     {
-      "type": "product",
-      "id": "bundle_product",
-      "label": "Ritual bundle product (for live price)"
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Rose Jasmine Milk Cleanser, this mask and the Saffron Glow Serum, together."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Add to cart label",
+      "default": "Add the ritual set"
+    },
+    {
+      "type": "text",
+      "id": "save_label",
+      "label": "Savings label",
+      "default": "You save [amount]",
+      "info": "[amount] is replaced with the saving calculated from Bundler."
     },
     {
       "type": "url",
       "id": "bundle_link",
-      "label": "Ritual button link"
+      "label": "Ritual page link"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Ritual page link label",
+      "default": "View the ritual"
+    },
+    {
+      "type": "header",
+      "content": "Perks"
+    },
+    {
+      "type": "text",
+      "id": "perk_1",
+      "label": "Perk 1 (truck icon)",
+      "default": "Free US shipping"
+    },
+    {
+      "type": "text",
+      "id": "perk_2",
+      "label": "Perk 2 (shield icon)",
+      "default": "30-day money-back guarantee"
+    },
+    {
+      "type": "text",
+      "id": "perk_3",
+      "label": "Perk 3 (leaf icon)",
+      "default": "Vegan and cruelty-free"
+    },
+    {
+      "type": "header",
+      "content": "Messages"
+    },
+    {
+      "type": "text",
+      "id": "loading_text",
+      "label": "Loading message",
+      "default": "Loading ritual set…"
+    },
+    {
+      "type": "text",
+      "id": "added_text",
+      "label": "Added message",
+      "default": "Ritual set added to cart."
+    },
+    {
+      "type": "text",
+      "id": "error_text",
+      "label": "Error message",
+      "default": "This ritual set is currently unavailable. Please try again later."
     }
   ],
   "blocks": [],

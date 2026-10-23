@@ -1,13 +1,20 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 <div class="prana-mask-pdp pm-pdp-ritual">
 <section class="pm-sec" aria-labelledby="how-h-{{ section.id }}">
   <div class="pm-wrap">
     <h2 id="how-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
-    <p class="pm-intro">Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>
-    <div class="pm-how">
-      {% for block in section.blocks %}<div {{ block.shopify_attributes }}><b>{{ forloop.index }}</b><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.text | escape }}</p></div>{% endfor %}
-    </div>
+    {% if section.settings.intro != blank %}<p class="pm-intro">{{ section.settings.intro | escape }}</p>{% endif %}
+    {% assign default_icons = 'droplet,brush,clock,waves,leaf,sparkle' | split: ',' %}
+    <ol class="pm-how">
+      {% for block in section.blocks %}
+        {% assign icon_index = forloop.index0 | modulo: 6 %}{% assign icon_name = block.settings.icon %}{% if icon_name == blank or icon_name == 'auto' %}{% assign icon_name = default_icons[icon_index] %}{% endif %}
+        <li class="pm-how-card" {{ block.shopify_attributes }}>
+          <div class="pm-how-top"><span class="pm-icon-badge">{% render 'prana-pdp-icon', name: icon_name %}</span><span class="pm-how-num">Step {{ forloop.index }}</span></div>
+          <h3>{{ block.settings.title | escape }}</h3>
+          <p>{{ block.settings.text | escape }}</p>
+        </li>
+      {% endfor %}
+    </ol>
   </div>
 </section>
 </div>
@@ -25,6 +32,12 @@
       "id": "heading",
       "label": "Heading",
       "default": "The 12-minute ritual"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out."
     }
   ],
   "blocks": [
@@ -32,6 +45,13 @@
       "type": "step",
       "name": "Step",
       "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "auto",
+          "options": [{"value":"auto","label":"Automatic"},{"value":"droplet","label":"Droplet"},{"value":"brush","label":"Brush"},{"value":"clock","label":"Clock"},{"value":"waves","label":"Water"},{"value":"sun","label":"Sun"},{"value":"sparkle","label":"Sparkle"},{"value":"circle-dots","label":"Pores"},{"value":"feather","label":"Feather"},{"value":"target","label":"Target"},{"value":"leaf","label":"Leaf"},{"value":"map-pin","label":"Map pin"},{"value":"flask","label":"Flask"},{"value":"clipboard","label":"Clipboard"},{"value":"jar","label":"Jar"},{"value":"shield","label":"Shield"},{"value":"truck","label":"Truck"}]
+        },
         {
           "type": "text",
           "id": "title",

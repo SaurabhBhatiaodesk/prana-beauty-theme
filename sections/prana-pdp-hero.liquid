@@ -1,5 +1,4 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 {% assign selected_variant = product.selected_or_first_available_variant %}
 <prana-mask-pdp class="prana-mask-pdp" data-section-id="{{ section.id }}" data-added="{{ 'products.product.added_to_cart' | t | escape }}" data-currency="{{ cart.currency.iso_code }}" data-price="{{ selected_variant.price }}" data-error="{{ 'products.product.add_to_cart_error' | t | escape }}">
 

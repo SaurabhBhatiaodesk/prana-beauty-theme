@@ -1,10 +1,13 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 <div class="prana-mask-pdp pm-pdp-benefits">
 <section class="pm-benefits pm-wrap" aria-labelledby="ben-h-{{ section.id }}">
       <h2 id="ben-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
-      <ul>
-        {% for block in section.blocks %}<li {{ block.shopify_attributes }}><b>{{ block.settings.title | escape }}</b><span>{{ block.settings.text | escape }}</span></li>{% endfor %}
+      {% assign default_icons = 'sun,sparkle,circle-dots,feather,target,droplet' | split: ',' %}
+      <ul class="pm-benefit-grid">
+        {% for block in section.blocks %}
+          {% assign icon_index = forloop.index0 | modulo: 6 %}{% assign icon_name = block.settings.icon %}{% if icon_name == blank or icon_name == 'auto' %}{% assign icon_name = default_icons[icon_index] %}{% endif %}
+          <li class="pm-benefit-card" {{ block.shopify_attributes }}><span class="pm-icon-badge">{% render 'prana-pdp-icon', name: icon_name %}</span><div><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.text | escape }}</p></div></li>
+        {% endfor %}
       </ul>
       <p class="pm-free">*4-week independent consumer perception study, 50 participants. Individual results may vary.<br>Vegan and cruelty-free, with botanical and mineral actives. Free from parabens, sulfates and synthetic fragrance.</p>
     </section>
@@ -30,6 +33,13 @@
       "type": "benefit",
       "name": "Benefit",
       "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "auto",
+          "options": [{"value":"auto","label":"Automatic"},{"value":"droplet","label":"Droplet"},{"value":"brush","label":"Brush"},{"value":"clock","label":"Clock"},{"value":"waves","label":"Water"},{"value":"sun","label":"Sun"},{"value":"sparkle","label":"Sparkle"},{"value":"circle-dots","label":"Pores"},{"value":"feather","label":"Feather"},{"value":"target","label":"Target"},{"value":"leaf","label":"Leaf"},{"value":"map-pin","label":"Map pin"},{"value":"flask","label":"Flask"},{"value":"clipboard","label":"Clipboard"},{"value":"jar","label":"Jar"},{"value":"shield","label":"Shield"},{"value":"truck","label":"Truck"}]
+        },
         {
           "type": "text",
           "id": "title",

@@ -1,14 +1,20 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 <div class="prana-mask-pdp pm-pdp-provenance">
-<section class="pm-chain" aria-label="From root to jar">
+<section class="pm-chain" aria-labelledby="chain-h-{{ section.id }}">
   <div class="pm-wrap">
-    <ol>
-      <li><b>Ingredient</b><span>Kasthuri manjal root</span></li>
-      <li><b>Origin</b><span>Tamil Nadu, India</span></li>
-      <li><b>Formulation</b><span>Version 20 of 20</span></li>
-      <li><b>Testing</b><span>4-week consumer study, 50 people</span></li>
-      <li><b>Finished product</b><span>Made in India</span></li>
+    {% if section.settings.heading != blank %}<h2 class="pm-chain-title" id="chain-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>{% endif %}
+    <ol class="pm-chain-steps">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <li {{ block.shopify_attributes }}><span class="pm-chain-node">{% render 'prana-pdp-icon', name: block.settings.icon %}</span><span class="pm-chain-label">{{ block.settings.label | escape }}</span><span class="pm-chain-value">{{ block.settings.value | escape }}</span></li>
+        {% endfor %}
+      {% else %}
+        <li><span class="pm-chain-node">{% render 'prana-pdp-icon', name: 'leaf' %}</span><span class="pm-chain-label">Ingredient</span><span class="pm-chain-value">Kasthuri manjal root</span></li>
+        <li><span class="pm-chain-node">{% render 'prana-pdp-icon', name: 'map-pin' %}</span><span class="pm-chain-label">Origin</span><span class="pm-chain-value">Tamil Nadu, India</span></li>
+        <li><span class="pm-chain-node">{% render 'prana-pdp-icon', name: 'flask' %}</span><span class="pm-chain-label">Formulation</span><span class="pm-chain-value">Version 20 of 20</span></li>
+        <li><span class="pm-chain-node">{% render 'prana-pdp-icon', name: 'clipboard' %}</span><span class="pm-chain-label">Testing</span><span class="pm-chain-value">4-week consumer study, 50 people</span></li>
+        <li><span class="pm-chain-node">{% render 'prana-pdp-icon', name: 'jar' %}</span><span class="pm-chain-label">Finished product</span><span class="pm-chain-value">Made in India</span></li>
+      {% endif %}
     </ol>
   </div>
 </section>
@@ -21,8 +27,47 @@
       "product"
     ]
   },
-  "settings": [],
-  "blocks": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From root to jar"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "leaf",
+          "options": [
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "map-pin", "label": "Map pin" },
+            { "value": "flask", "label": "Flask" },
+            { "value": "clipboard", "label": "Clipboard" },
+            { "value": "jar", "label": "Jar" },
+            { "value": "sparkle", "label": "Sparkle" },
+            { "value": "shield", "label": "Shield" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "PRANA PDP Provenance"

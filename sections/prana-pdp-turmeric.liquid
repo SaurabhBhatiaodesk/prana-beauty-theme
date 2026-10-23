@@ -1,5 +1,4 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 <div class="prana-mask-pdp pm-pdp-turmeric">
 <section class="pm-dossier" id="turmeric-{{ section.id }}" aria-labelledby="tur-h-{{ section.id }}">
   <div class="pm-wrap pm-dossier-grid">
@@ -10,10 +9,10 @@
       <p>In this mask, it helps even out the look of skin tone while three clays lift away excess oil and sandalwood keeps everything cool and calm.</p>
       <div class="pm-tur-pics">
         <figure class="pm-tur-pic">
-          <img src="https://www.pranabeauty.com/cdn/shop/files/Turmeirc_18463052-bc95-4d90-b93d-c1204ed175e5.png?v=1780384650&width=700" alt="Wild turmeric root" loading="lazy" width="700" height="700">
-          <figcaption>The root</figcaption>
+          {% if section.settings.root_image != blank %}{{ section.settings.root_image | image_url: width: 700 | image_tag: loading: 'lazy' }}{% else %}<img src="https://www.pranabeauty.com/cdn/shop/files/Turmeirc_18463052-bc95-4d90-b93d-c1204ed175e5.png?v=1780384650&width=700" alt="Wild turmeric root" loading="lazy" width="700" height="700">{% endif %}
+          {% if section.settings.root_caption != blank %}<figcaption>{{ section.settings.root_caption | escape }}</figcaption>{% endif %}
         </figure>
-        {% if section.settings.harvest_image != blank %}<figure class="pm-tur-pic">{{ section.settings.harvest_image | image_url: width: 700 | image_tag: loading: 'lazy' }}<figcaption>The harvest</figcaption></figure>{% else %}<figure class="pm-tur-pic"><div class="pm-tur-slot">Harvest photo slot<br>Real supplier photo from Tamil Nadu</div><figcaption>The harvest</figcaption></figure>{% endif %}
+        {% if section.settings.harvest_image != blank %}<figure class="pm-tur-pic">{{ section.settings.harvest_image | image_url: width: 700 | image_tag: loading: 'lazy' }}<figcaption>{{ section.settings.harvest_caption | escape }}</figcaption></figure>{% else %}<figure class="pm-tur-pic"><div class="pm-tur-slot">Harvest photo slot<br>Real supplier photo from Tamil Nadu</div><figcaption>{{ section.settings.harvest_caption | escape }}</figcaption></figure>{% endif %}
       </div>
     </div>
     <div class="pm-spec">
@@ -48,8 +47,25 @@
     },
     {
       "type": "image_picker",
+      "id": "root_image",
+      "label": "Root image"
+    },
+    {
+      "type": "text",
+      "id": "root_caption",
+      "label": "Root caption",
+      "default": "The root"
+    },
+    {
+      "type": "image_picker",
       "id": "harvest_image",
       "label": "Harvest image"
+    },
+    {
+      "type": "text",
+      "id": "harvest_caption",
+      "label": "Harvest caption",
+      "default": "The harvest"
     },
     {
       "type": "text",

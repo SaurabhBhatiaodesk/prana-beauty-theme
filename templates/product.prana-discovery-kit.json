@@ -279,8 +279,8 @@
       "type": "prana-pdp-bundle",
       "settings": {
         "heading": "Make it the ABHYANGA weekly ritual",
-        "bundle_product": "",
-        "bundle_link": "/pages/abhyanga"
+        "bundle_link": "/pages/abhyanga",
+        "bundle_id": "804729"
       }
     },
     "faq": {

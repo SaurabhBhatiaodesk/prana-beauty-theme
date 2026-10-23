@@ -113,3 +113,122 @@
 .prana-mask-pdp .pm-journey-story li { display:grid;grid-template-columns:78px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:16px; }
 .prana-mask-pdp .pm-journey-story li strong { color:var(--turmeric-deep); }
 @media (max-width:640px){ .prana-mask-pdp .pm-journey-story li { grid-template-columns:1fr;gap:2px; } }
+/* ---------- Site fonts: Prata headings, Ponomar body, regular weight only (no faux bold) ---------- */
+.prana-mask-pdp { --display:"Prata",Georgia,serif;--body:"Ponomar",Georgia,serif;font-synthesis:none;font-family:var(--body); }
+.prana-mask-pdp b,.prana-mask-pdp strong,.prana-mask-pdp dt,.prana-mask-pdp summary,.prana-mask-pdp h1,.prana-mask-pdp h2,.prana-mask-pdp h3,.prana-mask-pdp button,.prana-mask-pdp .pm-opt .pm-p,.prana-mask-pdp figcaption { font-weight:400; }
+.prana-mask-pdp .pm-icon { width:22px;height:22px;flex:none; }
+.prana-mask-pdp .pm-icon-badge { width:46px;height:46px;border-radius:50%;background:var(--clay);color:var(--turmeric);display:grid;place-items:center;flex:none; }
+
+/* ---------- Benefits: icon cards ---------- */
+.prana-mask-pdp.pm-pdp-benefits .pm-benefits { border-top:0;padding-top:8px; }
+.prana-mask-pdp.pm-pdp-benefits .pm-benefits h2 { font-size:clamp(26px,2.4vw,34px);margin-bottom:24px; }
+.prana-mask-pdp.pm-pdp-benefits .pm-benefits ul.pm-benefit-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;list-style:none;margin:0;padding:0; }
+.prana-mask-pdp .pm-benefits li.pm-benefit-card { display:flex;gap:16px;align-items:flex-start;padding:22px;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:18px;font-size:15px;line-height:1.5; }
+.prana-mask-pdp .pm-benefits li.pm-benefit-card::before { display:none; }
+.prana-mask-pdp .pm-benefit-card h3 { font-size:19px;line-height:1.3;margin:2px 0 6px; }
+.prana-mask-pdp .pm-benefit-card p { margin:0;color:#4E403C; }
+.prana-mask-pdp .pm-benefits .pm-free { margin-top:20px;font-size:13px;line-height:1.6; }
+
+/* ---------- 12-minute ritual: step cards ---------- */
+.prana-mask-pdp .pm-how { list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px; }
+.prana-mask-pdp .pm-how-card { background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:18px;padding:26px 24px; }
+.prana-mask-pdp .pm-how-top { display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px; }
+.prana-mask-pdp .pm-how-num { font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--turmeric); }
+.prana-mask-pdp .pm-how-card h3 { font-family:var(--display);font-size:22px;line-height:1.25;margin:0 0 8px;color:var(--heading); }
+.prana-mask-pdp .pm-how-card p { font-size:15.5px;line-height:1.6;margin:0;color:#4E403C; }
+
+/* ---------- Provenance: icon timeline ---------- */
+.prana-mask-pdp .pm-chain { background:var(--clay);padding:64px 0; }
+.prana-mask-pdp .pm-chain-title { font-size:clamp(24px,2.2vw,32px);text-align:center;margin:0 0 40px; }
+.prana-mask-pdp .pm-chain ol.pm-chain-steps { list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;position:relative; }
+.prana-mask-pdp .pm-chain-steps::before { content:"";position:absolute;top:28px;left:10%;right:10%;height:1px;background:var(--turmeric);opacity:.45; }
+.prana-mask-pdp .pm-chain ol.pm-chain-steps li { display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:0; }
+.prana-mask-pdp .pm-chain ol.pm-chain-steps li::after { display:none; }
+.prana-mask-pdp .pm-chain li .pm-chain-node { width:56px;height:56px;border-radius:50%;background:var(--paper);border:1px solid var(--turmeric);color:var(--turmeric);display:grid;place-items:center;position:relative;z-index:1;margin-bottom:12px; }
+.prana-mask-pdp .pm-chain li .pm-chain-label { font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--turmeric-deep); }
+.prana-mask-pdp .pm-chain li .pm-chain-value { font-family:var(--display);font-size:18px;line-height:1.35;color:var(--heading); }
+
+/* ---------- FAQ: lighter questions with a round toggle ---------- */
+.prana-mask-pdp.pm-pdp-faq details { border-bottom:1px solid var(--line); }
+.prana-mask-pdp.pm-pdp-faq summary { font-family:var(--display);font-size:20px;line-height:1.35;color:#323232;padding:22px 60px 22px 0; }
+.prana-mask-pdp.pm-pdp-faq summary::after { content:"+";top:50%;right:0;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-family:var(--body);font-size:18px;line-height:1;color:var(--turmeric);transform:translateY(-50%); }
+.prana-mask-pdp.pm-pdp-faq details[open] summary::after { transform:translateY(-50%) rotate(45deg); }
+.prana-mask-pdp.pm-pdp-faq details .pm-body { font-size:16px;line-height:1.7;color:#4E403C; }
+.prana-mask-pdp .pm-buy-acc summary { font-family:var(--display);font-size:17px; }
+
+/* ---------- Turmeric dossier: lighter spec table ---------- */
+.prana-mask-pdp .pm-spec dt { font-family:var(--display);font-size:17px;font-weight:400;color:var(--heading); }
+.prana-mask-pdp .pm-spec dd { font-size:16px;line-height:1.6;color:#4E403C; }
+.prana-mask-pdp .pm-tur-copy p:not(.pm-tur-lede) { color:#4E403C; }
+.prana-mask-pdp .pm-tur-pic figcaption { font-size:14px;color:#4E403C; }
+
+/* ---------- Bundle: live Bundler set ---------- */
+.prana-mask-pdp .pm-bundle-wrap { padding-top:24px;padding-bottom:88px; }
+.prana-mask-pdp .pm-set.pm-bundle { grid-template-columns:minmax(0,1fr) minmax(240px,320px);gap:48px;padding:48px;align-items:center; }
+.prana-mask-pdp .pm-bundle-eyebrow { display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light); }
+.prana-mask-pdp .pm-bundle-eyebrow .pm-icon { width:16px;height:16px; }
+.prana-mask-pdp .pm-set .pm-bundle-desc { margin:0 0 22px; }
+.prana-mask-pdp .pm-bundle-items { list-style:none;margin:0 0 24px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 30px; }
+.prana-mask-pdp .pm-bundle-items[hidden] { display:none; }
+.prana-mask-pdp .pm-bundle-item { position:relative;display:flex;align-items:center;gap:12px;padding:8px 14px 8px 8px;border:1px solid rgba(227,195,159,.28);border-radius:14px;background:rgba(248,242,230,.06); }
+.prana-mask-pdp .pm-bundle-item + .pm-bundle-item::before { content:"+";position:absolute;left:-21px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--gold-light); }
+.prana-mask-pdp .pm-bundle-item img { width:56px;height:56px;border-radius:10px;object-fit:cover;background:var(--clay); }
+.prana-mask-pdp .pm-bundle-item-name { display:block;font-family:var(--display);font-size:15px;line-height:1.3;color:var(--light); }
+.prana-mask-pdp .pm-bundle-item-price { display:block;font-size:13px;color:rgba(248,242,230,.65); }
+.prana-mask-pdp .pm-bundle-perks { list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 24px; }
+.prana-mask-pdp .pm-bundle-perks li { display:inline-flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,242,230,.85); }
+.prana-mask-pdp .pm-bundle-perks .pm-icon { width:18px;height:18px;color:var(--gold-light); }
+.prana-mask-pdp .pm-bundle-buy { display:flex;flex-direction:column;gap:12px; }
+.prana-mask-pdp .pm-bundle .pm-price { display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;font-size:16px; }
+.prana-mask-pdp .pm-bundle .pm-price span { font-family:var(--display);font-size:40px;line-height:1.1;color:var(--light); }
+.prana-mask-pdp .pm-bundle-save { align-self:flex-start;padding:4px 12px;border:1px solid rgba(227,195,159,.4);border-radius:999px;background:rgba(227,195,159,.14);font-size:13px;color:var(--gold-light); }
+.prana-mask-pdp .pm-bundle-add { width:100%;min-height:52px;padding:14px 26px;border:0;border-radius:999px;background:var(--turmeric);color:#fff;font:400 16px var(--body);cursor:pointer;transition:filter .2s; }
+.prana-mask-pdp .pm-bundle-add:hover { filter:brightness(1.08); }
+.prana-mask-pdp .pm-bundle-add:disabled { opacity:.6;cursor:wait; }
+.prana-mask-pdp .pm-bundle-status { margin:0;font-size:13px;color:rgba(248,242,230,.75); }
+.prana-mask-pdp .pm-bundle-status:empty { display:none; }
+.prana-mask-pdp .pm-bundle-link { font-size:14px;color:var(--gold-light);text-underline-offset:3px; }
+
+/* ---------- Tablet ---------- */
+@media (max-width:980px) {
+  .prana-mask-pdp.pm-pdp-benefits .pm-benefits ul.pm-benefit-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .prana-mask-pdp .pm-how { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .prana-mask-pdp .pm-chain ol.pm-chain-steps { grid-template-columns:1fr;gap:22px;max-width:520px;margin:0 auto; }
+  .prana-mask-pdp .pm-chain-steps::before { top:28px;bottom:28px;left:28px;right:auto;width:1px;height:auto; }
+  .prana-mask-pdp .pm-chain ol.pm-chain-steps li { display:grid;grid-template-columns:56px 1fr;grid-template-rows:auto auto;column-gap:18px;row-gap:2px;align-items:center;text-align:left; }
+  .prana-mask-pdp .pm-chain li .pm-chain-node { grid-row:1 / span 2;margin:0; }
+  .prana-mask-pdp .pm-chain li .pm-chain-label { align-self:end; }
+  .prana-mask-pdp .pm-chain li .pm-chain-value { align-self:start; }
+  .prana-mask-pdp .pm-set.pm-bundle { grid-template-columns:1fr;gap:28px;padding:36px 28px; }
+}
+/* ---------- Mobile ---------- */
+@media (max-width:640px) {
+  .prana-mask-pdp .pm-sec,.prana-mask-pdp .pm-results,.prana-mask-pdp .pm-dossier,.prana-mask-pdp .pm-journeys,.prana-mask-pdp .pm-bridal { padding:52px 0; }
+  .prana-mask-pdp .pm-sec .pm-intro { font-size:16px;margin-bottom:28px; }
+  .prana-mask-pdp.pm-pdp-benefits .pm-benefits ul.pm-benefit-grid,.prana-mask-pdp .pm-how { grid-template-columns:1fr;gap:12px; }
+  .prana-mask-pdp .pm-benefits li.pm-benefit-card { padding:18px; }
+  .prana-mask-pdp .pm-how-card { padding:20px;display:grid;grid-template-columns:46px 1fr;column-gap:16px; }
+  .prana-mask-pdp .pm-how-top { grid-row:1 / span 3;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;margin:0; }
+  .prana-mask-pdp .pm-how-num { font-size:11px; }
+  .prana-mask-pdp .pm-how-card h3 { font-size:20px; }
+  .prana-mask-pdp .pm-chain { padding:48px 0; }
+  .prana-mask-pdp.pm-pdp-faq summary { font-size:17px;padding:18px 52px 18px 0; }
+  .prana-mask-pdp.pm-pdp-faq summary::after { width:30px;height:30px;font-size:16px; }
+  .prana-mask-pdp .pm-stat-row.pm-five { grid-template-columns:1fr 1fr; }
+  .prana-mask-pdp .pm-stat b { font-size:40px; }
+  .prana-mask-pdp .pm-stat { padding:20px 14px 8px 0; }
+  .prana-mask-pdp .pm-stat:nth-child(even) { padding-left:14px; }
+  .prana-mask-pdp .pm-tur-pics { gap:10px; }
+  .prana-mask-pdp .pm-bridal-photo { aspect-ratio:4/3; }
+  .prana-mask-pdp .pm-ba { aspect-ratio:1/1; }
+  .prana-mask-pdp .pm-ba .pm-before .ph,.prana-mask-pdp .pm-ba .pm-after .ph { font-size:12px;padding:16px; }
+  .prana-mask-pdp .pm-ba .pm-before .ph { padding-right:52%; }
+  .prana-mask-pdp .pm-ba .pm-after .ph { padding-left:52%; }
+  .prana-mask-pdp .pm-bundle-wrap { padding-bottom:56px; }
+  .prana-mask-pdp .pm-set.pm-bundle { padding:28px 20px;gap:24px; }
+  .prana-mask-pdp .pm-bundle-items { grid-template-columns:1fr;gap:22px; }
+  .prana-mask-pdp .pm-bundle-item { width:100%; }
+  .prana-mask-pdp .pm-bundle-item + .pm-bundle-item::before { left:50%;top:-18px;transform:translateX(-50%); }
+  .prana-mask-pdp .pm-bundle .pm-price span { font-size:34px; }
+  .prana-mask-pdp .pm-thumbs button { flex-basis:60px;width:60px;height:60px; }
+}
