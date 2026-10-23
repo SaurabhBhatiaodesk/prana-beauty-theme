@@ -239,3 +239,37 @@
 .prana-mask-pdp .pm-how-card p { color:#4E403C; }
 /* Light sections use the site's warm radial gradient over the cream page colour. */
 .prana-mask-pdp { background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%), var(--paper); }
+/* ---------- One card style everywhere: light gold, thin maroon border, 10px corners ---------- */
+.prana-mask-pdp { --card-bg:#E3C39F;--card-border:#561A24;--card-radius:10px; }
+.prana-mask-pdp .pm-benefits li.pm-benefit-card,.prana-mask-pdp .pm-how-card,.prana-mask-pdp .pm-spec { background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--card-radius); }
+.prana-mask-pdp .pm-benefit-card .pm-icon-badge,.prana-mask-pdp .pm-how-card .pm-icon-badge { background:var(--paper);color:var(--card-border); }
+.prana-mask-pdp .pm-benefit-card h3,.prana-mask-pdp .pm-how-card h3,.prana-mask-pdp .pm-spec dt { color:var(--card-border); }
+.prana-mask-pdp .pm-benefit-card p,.prana-mask-pdp .pm-how-card p,.prana-mask-pdp .pm-spec dd { color:#4E403C; }
+.prana-mask-pdp .pm-spec .pm-row { border-bottom-color:rgba(86,26,36,.22); }
+.prana-mask-pdp .pm-ba,.prana-mask-pdp .pm-bridal-photo,.prana-mask-pdp .pm-tur-pic img,.prana-mask-pdp .pm-tur-slot { border:1px solid var(--card-border);border-radius:var(--card-radius); }
+.prana-mask-pdp .pm-bridal-photo { border-color:rgba(227,195,159,.5); }
+.prana-mask-pdp .pm-set,.prana-mask-pdp .pm-set.pm-bundle { border-radius:var(--card-radius); }
+.prana-mask-pdp .pm-bundle-item { border-radius:var(--card-radius); }
+.prana-mask-pdp .pm-chain li .pm-chain-node,.prana-mask-pdp .pm-step .pm-node { background:var(--card-bg);border:1px solid var(--card-border);color:var(--card-border); }
+.prana-mask-pdp .pm-tur-slot { background:var(--card-bg); }
+
+/* ---------- One vertical rhythm: 80px desktop, 64px tablet, 48px mobile ---------- */
+.prana-mask-pdp { --pm-space:80px; }
+.prana-mask-pdp .pm-sec,.prana-mask-pdp .pm-results,.prana-mask-pdp .pm-journeys,.prana-mask-pdp .pm-dossier,.prana-mask-pdp .pm-bridal,.prana-mask-pdp .pm-chain { padding-top:var(--pm-space);padding-bottom:var(--pm-space); }
+.prana-mask-pdp .pm-hero { padding-top:40px;padding-bottom:48px; }
+.prana-mask-pdp.pm-pdp-benefits { padding:0 0 var(--pm-space); }
+.prana-mask-pdp.pm-pdp-benefits .pm-benefits { padding-top:0; }
+.prana-mask-pdp .pm-bundle-wrap { padding-top:var(--pm-space);padding-bottom:var(--pm-space); }
+.prana-mask-pdp.pm-pdp-faq > section { padding-top:0;padding-bottom:var(--pm-space)!important; }
+.prana-mask-pdp.pm-pdp-provenance .pm-chain { padding-top:0; }
+.prana-mask-pdp.pm-pdp-ritual .pm-sec { padding-bottom:0; }
+@media (max-width:980px) { .prana-mask-pdp { --pm-space:64px; } }
+@media (max-width:640px) {
+  .prana-mask-pdp { --pm-space:48px; }
+  .prana-mask-pdp .pm-hero { padding-top:16px;padding-bottom:32px; }
+  .prana-mask-pdp .pm-sec .pm-intro,.prana-mask-pdp .pm-journeys .pm-intro { margin-bottom:24px; }
+}
+/* Journeys: a compact square comparison beside the story, not a full-height photo. */
+.prana-mask-pdp .pm-ba-grid { grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:56px;align-items:center; }
+.prana-mask-pdp .pm-ba { aspect-ratio:1/1;width:100%; }
+@media (max-width:980px) { .prana-mask-pdp .pm-ba-grid { grid-template-columns:1fr;gap:28px; } .prana-mask-pdp .pm-ba { max-width:560px; } }
