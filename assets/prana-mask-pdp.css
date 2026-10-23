@@ -57,3 +57,52 @@
 /* Match the theme's page width and margins so PDP sections align with the header and other templates. */
 .prana-mask-pdp .pm-wrap { max-width:var(--page-width,1248px);padding-left:var(--page-margin,24px);padding-right:var(--page-margin,24px); }
 .prana-mask-pdp .pm-hero { padding-inline:var(--page-margin,24px); }
+/* Hero gallery styled like the Saffron Glow Serum PDP: framed main image with a thumbnail row below. */
+.prana-mask-pdp .pm-gallery-main { background:#F3E4CD;border:1px solid #561A24;border-radius:10px;box-shadow:0 2px 4px rgba(70,19,36,.3); }
+.prana-mask-pdp .pm-gallery-main img { object-fit:cover; }
+.prana-mask-pdp .pm-thumbs { gap:8px;margin-top:0;padding:11px;scrollbar-width:none; }
+.prana-mask-pdp .pm-thumbs::-webkit-scrollbar { display:none; }
+.prana-mask-pdp .pm-thumbs button { flex:0 0 72px;width:72px;height:72px;border:0;border-radius:11px;background:transparent;outline-offset:3px; }
+.prana-mask-pdp .pm-thumbs button[aria-current="true"] { outline:1px solid #4E403C; }
+.prana-mask-pdp .pm-thumbs img { border-radius:11px; }
+/* Theme match: site fonts, heading sizes and the maroon / cream / gold palette used by the other sections. */
+.prana-mask-pdp {
+  --indigo:#461324;
+  --indigo-soft:#4E403C;
+  --turmeric:#A8681A;
+  --turmeric-deep:#8A5414;
+  --sandal:#E3C39F;
+  --clay:#F3E4CD;
+  --paper:#F8F2E6;
+  --line:rgba(78,64,60,.18);
+  --muted:#7A6654;
+  --display:var(--font-heading--family,"Prata",serif);
+  --body:var(--font-body--family,"Ponomar",sans-serif);
+  --heading:#561A24;
+  --light:#F8F2E6;
+  --gold-light:#E3C39F;
+  color:#4E403C;
+}
+.prana-mask-pdp h1,.prana-mask-pdp h2,.prana-mask-pdp h3 { color:var(--heading); }
+.prana-mask-pdp .pm-buy h1 { font-size:clamp(28px,2.8vw,40px);line-height:1.2; }
+.prana-mask-pdp .pm-sec h2,.prana-mask-pdp .pm-results h2,.prana-mask-pdp .pm-journeys h2,.prana-mask-pdp .pm-dossier h2,.prana-mask-pdp .pm-bridal h2,.prana-mask-pdp .pm-set h2,.prana-mask-pdp.pm-pdp-faq h2 { font-size:clamp(28px,2.7vw,38px)!important;line-height:1.1; }
+.prana-mask-pdp .pm-step h3,.prana-mask-pdp .pm-journey-copy h3 { font-size:24px; }
+.prana-mask-pdp .pm-benefits h2,.prana-mask-pdp .pm-f-title { font-size:26px; }
+/* Dark maroon sections */
+.prana-mask-pdp .pm-results,.prana-mask-pdp .pm-bridal,.prana-mask-pdp .pm-set { background:#461324;color:var(--light); }
+.prana-mask-pdp .pm-results h2,.prana-mask-pdp .pm-bridal h2,.prana-mask-pdp .pm-set h2,.prana-mask-pdp .pm-bridal .pm-tamil,.prana-mask-pdp .pm-bridal .pm-glow-line { color:var(--gold-light); }
+.prana-mask-pdp .pm-stat b { color:var(--gold-light); }
+.prana-mask-pdp .pm-results .pm-lede,.prana-mask-pdp .pm-stat span,.prana-mask-pdp .pm-bridal p,.prana-mask-pdp .pm-set p,.prana-mask-pdp .countdown li { color:rgba(248,242,230,.85); }
+.prana-mask-pdp .pm-foot,.prana-mask-pdp .pm-set .pm-price s { color:rgba(248,242,230,.6); }
+.prana-mask-pdp .pm-set .pm-price { color:var(--light); }
+.prana-mask-pdp .pm-bridal .pm-btn,.prana-mask-pdp .pm-set a.pm-btn { background:var(--turmeric);color:#fff; }
+/* Light sections */
+.prana-mask-pdp .pm-dossier { background:var(--clay); }
+.prana-mask-pdp .pm-dossier .pm-intro { color:#4E403C; }
+.prana-mask-pdp .pm-journeys { background:var(--clay); }
+.prana-mask-pdp .pm-chain { background:var(--sandal); }
+.prana-mask-pdp .pm-bridal-photo { background:var(--clay); }
+/* Buttons match the site's black Add to Cart */
+.prana-mask-pdp .pm-atc { background:#000; }
+.prana-mask-pdp .pm-atc:hover { background:#2E2014; }
+.prana-mask-pdp .pm-ba .pm-lbl,.prana-mask-pdp .root-img figcaption { background:rgba(70,19,36,.85); }
