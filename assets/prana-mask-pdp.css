@@ -282,3 +282,5 @@
 .prana-mask-pdp .pm-how-card { position:relative; }
 .prana-mask-pdp .pm-how-card .pm-how-num { position:absolute;top:24px;right:-1px;padding:8px 14px;border-radius:8px 0 0 8px;background:#561A24;color:#F8F2E6;font-family:var(--display);font-size:16px;line-height:1;letter-spacing:.02em;text-transform:none; }
 @media (max-width:640px) { .prana-mask-pdp .pm-how-card .pm-how-num { top:18px;padding:7px 12px;font-size:14px; } .prana-mask-pdp .pm-how-card h3 { padding-right:48px; } }
+/* Bundle card: heading, description, price and button only. */
+.prana-mask-pdp .pm-set .pm-bundle-desc { margin:0; }

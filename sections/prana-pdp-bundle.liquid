@@ -2,27 +2,21 @@
 {% assign bundle_id = section.settings.bundle_id | strip %}
 <div class="prana-mask-pdp pm-pdp-bundle">
 <section class="pm-wrap pm-bundle-wrap" aria-labelledby="set-h-{{ section.id }}">
-  <div class="pm-set pm-bundle" data-pm-bundle data-bundle-id="{{ bundle_id | escape }}" data-shop="{{ shop.permanent_domain | escape }}" data-root="{{ routes.root_url }}" data-currency="{{ cart.currency.iso_code }}" data-shop-currency="{{ shop.currency }}" data-locale="{{ request.locale.iso_code }}" data-error="{{ section.settings.error_text | escape }}" data-added="{{ section.settings.added_text | escape }}" data-save="{{ section.settings.save_label | escape }}">
+  <div class="pm-set pm-bundle" data-pm-bundle data-bundle-id="{{ bundle_id | escape }}" data-shop="{{ shop.permanent_domain | escape }}" data-root="{{ routes.root_url }}" data-currency="{{ cart.currency.iso_code }}" data-shop-currency="{{ shop.currency }}" data-locale="{{ request.locale.iso_code }}" data-error="{{ section.settings.error_text | escape }}" data-added="{{ section.settings.added_text | escape }}">
     <div class="pm-bundle-copy">
-      {% if section.settings.eyebrow != blank %}<span class="pm-bundle-eyebrow">{% render 'prana-pdp-icon', name: 'sparkle' %}{{ section.settings.eyebrow | escape }}</span>{% endif %}
       <h2 id="set-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
       {% if section.settings.description != blank %}<p class="pm-bundle-desc">{{ section.settings.description | escape }}</p>{% endif %}
-      <ul class="pm-bundle-perks">
-        {% if section.settings.perk_1 != blank %}<li>{% render 'prana-pdp-icon', name: 'truck' %}{{ section.settings.perk_1 | escape }}</li>{% endif %}
-        {% if section.settings.perk_2 != blank %}<li>{% render 'prana-pdp-icon', name: 'shield' %}{{ section.settings.perk_2 | escape }}</li>{% endif %}
-        {% if section.settings.perk_3 != blank %}<li>{% render 'prana-pdp-icon', name: 'leaf' %}{{ section.settings.perk_3 | escape }}</li>{% endif %}
-      </ul>
     </div>
     <div class="pm-bundle-buy">
       {% if bundle_id != blank %}
         <div class="pm-price" data-bundle-price hidden></div>
-        <span class="pm-bundle-save" data-bundle-save hidden></span>
         <button type="button" class="pm-btn pm-bundle-add" data-bundle-add disabled>{{ section.settings.button_label | escape }}</button>
         <p class="pm-bundle-status" data-bundle-status role="status">{{ section.settings.loading_text | escape }}</p>
+      {% elsif section.settings.bundle_link != blank %}
+        <a class="pm-btn" href="{{ section.settings.bundle_link }}">{{ section.settings.link_label | escape }}</a>
       {% elsif request.design_mode %}
-        <p class="pm-bundle-status">Add a Bundler Bundle ID in this section's settings to show the bundle's products, price and Add to cart button.</p>
+        <p class="pm-bundle-status">Add a Bundler Bundle ID to show the bundle price and Add to cart button.</p>
       {% endif %}
-      {% if section.settings.bundle_link != blank %}<a class="pm-bundle-link" href="{{ section.settings.bundle_link }}">{{ section.settings.link_label | escape }} <span aria-hidden="true">&rarr;</span></a>{% endif %}
     </div>
   </div>
 </section>
@@ -41,13 +35,7 @@
       "type": "text",
       "id": "bundle_id",
       "label": "Bundler Bundle ID",
-      "info": "Products, prices and the discount load from this Bundler bundle, and the button adds the whole set to cart. Example: ABHYANGA BUNDLE = 804729."
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "Complete the ritual"
+      "info": "Price, discount and Add to cart come from this Bundler bundle. Example: ABHYANGA BUNDLE = 804729."
     },
     {
       "type": "text",
@@ -68,44 +56,16 @@
       "default": "Add the ritual set"
     },
     {
-      "type": "text",
-      "id": "save_label",
-      "label": "Savings label",
-      "default": "You save [amount]",
-      "info": "[amount] is replaced with the saving calculated from Bundler."
-    },
-    {
       "type": "url",
       "id": "bundle_link",
-      "label": "Ritual page link"
+      "label": "Ritual page link",
+      "info": "Used as the button link only when no Bundler Bundle ID is set."
     },
     {
       "type": "text",
       "id": "link_label",
-      "label": "Ritual page link label",
-      "default": "View the ritual"
-    },
-    {
-      "type": "header",
-      "content": "Perks"
-    },
-    {
-      "type": "text",
-      "id": "perk_1",
-      "label": "Perk 1 (truck icon)",
-      "default": "Free US shipping"
-    },
-    {
-      "type": "text",
-      "id": "perk_2",
-      "label": "Perk 2 (shield icon)",
-      "default": "30-day money-back guarantee"
-    },
-    {
-      "type": "text",
-      "id": "perk_3",
-      "label": "Perk 3 (leaf icon)",
-      "default": "Vegan and cruelty-free"
+      "label": "Ritual page button label",
+      "default": "Shop the ritual set"
     },
     {
       "type": "header",
