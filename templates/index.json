@@ -273,6 +273,8 @@
       ],
       "name": "PRANA Bestseller Banner",
       "settings": {
+        "image": "shopify://shop_images/prana-turmeric-sandalwood-clay-mask-product-banner.png",
+        "mobile_image": "shopify://shop_images/prana-turmeric-sandalwood-purifying-mask.png",
         "show_content": true,
         "eyebrow": "Best seller",
         "heading": "Turmeric &\nSandalwood Face Mask",
@@ -280,7 +282,7 @@
         "description": "<p>A golden ritual to visibly brighten skin, calm inflammation and reveal a healthy, radiant glow.</p>",
         "button_label": "Shop now",
         "button_link": "shopify://products/turmeric-and-sandalwood-face-mask",
-        "background_color": "#E3C39F",
+        "background_color": "#e3c39f",
         "eyebrow_color": "#a4773d",
         "heading_color": "#561a24",
         "subtitle_color": "#323232",
@@ -385,6 +387,7 @@
     },
     "find_ritual_section_XPMGpF": {
       "type": "find-ritual-section",
+      "disabled": true,
       "name": "Find ritual",
       "settings": {
         "quiz_api_url": "/apps/dosha-quiz/quiz?code=1791954993424",
@@ -490,6 +493,12 @@
     "ugc_video_slider_Y9pfFV": {
       "type": "prana-ugc-videos",
       "blocks": {
+        "video_item_8jUwHE": {
+          "type": "video_item",
+          "settings": {
+            "video_file": "shopify://files/videos/WhatsApp Video 2026-10-21 at 20.16.33.mp4"
+          }
+        },
         "video_item_MjLgkL": {
           "type": "video_item",
           "settings": {
@@ -552,6 +561,7 @@
         }
       },
       "block_order": [
+        "video_item_8jUwHE",
         "video_item_MjLgkL",
         "video_item_xRWCig",
         "video_item_3Ge7NN",

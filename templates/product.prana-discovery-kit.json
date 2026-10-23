@@ -683,17 +683,16 @@
         "bold_heading": "saw in four weeks",
         "description": "<p>An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*</p>",
         "disclaimer": "<p>*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.</p>",
-        "content_width": 1380,
         "padding_top": 72,
         "padding_bottom": 80,
         "mobile_padding_top": 48,
         "mobile_padding_bottom": 48,
         "heading_color": "#323232",
         "description_color": "#323232",
-        "percentage_color": "#561A24",
+        "percentage_color": "#561a24",
         "stat_text_color": "#323232",
         "disclaimer_color": "#323232",
-        "divider_color": "#561A24"
+        "divider_color": "#561a24"
       }
     },
     "timeline_qitJPB": {
@@ -762,6 +761,21 @@
         "padding_bottom": 60,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
+      }
+    },
+    "prana_bundle_banner_ewF9z6": {
+      "type": "prana-bundle-banner",
+      "name": "PRANA Bundle Banner",
+      "settings": {
+        "heading": "Make it the ABHYANGA weekly ritual",
+        "description": "<p>Rose Jasmine Milk Cleanser, this mask and the Saffron Glow Serum, together.</p>",
+        "bundle_product": "",
+        "button_label": "Shop the ritual set",
+        "button_link": "",
+        "background": "#561A24",
+        "text_color": "#F8F2E6",
+        "button_color": "#A8681A",
+        "button_text_color": "#FFFFFF"
       }
     },
     "1765535430ded7c91a": {
@@ -889,6 +903,7 @@
     "key_ingredients_sec_R9mPEk",
     "prana_consumer_results_VnLMnV",
     "timeline_qitJPB",
+    "prana_bundle_banner_ewF9z6",
     "1765535430ded7c91a",
     "custom_faq_center_Et6tRx",
     "custom_liquid_xqWARh",
