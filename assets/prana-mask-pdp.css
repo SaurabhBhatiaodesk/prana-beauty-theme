@@ -271,3 +271,10 @@
 .prana-mask-pdp .pm-ba-grid { grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:56px;align-items:center; }
 .prana-mask-pdp .pm-ba { aspect-ratio:1/1;width:100%; }
 @media (max-width:980px) { .prana-mask-pdp .pm-ba-grid { grid-template-columns:1fr;gap:28px; } .prana-mask-pdp .pm-ba { max-width:560px; } }
+/* Provenance uses the same warm gradient as the other light sections. */
+.prana-mask-pdp .pm-chain { background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%), var(--paper); }
+/* Journeys: comparison and story in two equal columns. */
+.prana-mask-pdp .pm-ba-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media (max-width:980px) { .prana-mask-pdp .pm-ba-grid { grid-template-columns:1fr; } }
+/* Before/after handle shows drag arrows so the slider reads as draggable. */
+.prana-mask-pdp .pm-ba .pm-handle::after { background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23561A24' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 7-5 5 5 5'/%3E%3Cpath d='m15 7 5 5-5 5'/%3E%3C/svg%3E") center / 24px no-repeat;border:1px solid #561A24; }
