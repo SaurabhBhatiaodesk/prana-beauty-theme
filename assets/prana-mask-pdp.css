@@ -54,3 +54,6 @@
  .prana-mask-pdp .pm-set{padding:26px;} .prana-mask-pdp .pm-set h2{font-size:28px;}
  .prana-mask-pdp .pm-sticky .pm-n b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 }
+/* Match the theme's page width and margins so PDP sections align with the header and other templates. */
+.prana-mask-pdp .pm-wrap { max-width:var(--page-width,1248px);padding-left:var(--page-margin,24px);padding-right:var(--page-margin,24px); }
+.prana-mask-pdp .pm-hero { padding-inline:var(--page-margin,24px); }
