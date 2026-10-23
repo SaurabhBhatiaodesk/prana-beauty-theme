@@ -232,3 +232,10 @@
   .prana-mask-pdp .pm-bundle .pm-price span { font-size:34px; }
   .prana-mask-pdp .pm-thumbs button { flex-basis:60px;width:60px;height:60px; }
 }
+/* Ritual step cards use the site's gold card style (light gold with a thin maroon border). */
+.prana-mask-pdp .pm-how-card { background:#E3C39F;border:1px solid #561A24;border-radius:10px; }
+.prana-mask-pdp .pm-how-card .pm-icon-badge { background:#F8F2E6;color:#561A24; }
+.prana-mask-pdp .pm-how-card .pm-how-num { color:#561A24; }
+.prana-mask-pdp .pm-how-card p { color:#4E403C; }
+/* Light sections use the site's warm radial gradient over the cream page colour. */
+.prana-mask-pdp { background:radial-gradient(100.75% 105.17% at 95.4% 0%, #cb964675 0%, #e3c39f2e 100%), var(--paper); }
