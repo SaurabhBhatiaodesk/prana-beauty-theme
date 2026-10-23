@@ -7,7 +7,6 @@
       {% if section.settings.eyebrow != blank %}<span class="pm-bundle-eyebrow">{% render 'prana-pdp-icon', name: 'sparkle' %}{{ section.settings.eyebrow | escape }}</span>{% endif %}
       <h2 id="set-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
       {% if section.settings.description != blank %}<p class="pm-bundle-desc">{{ section.settings.description | escape }}</p>{% endif %}
-      {% if bundle_id != blank %}<ul class="pm-bundle-items" data-bundle-items hidden></ul>{% endif %}
       <ul class="pm-bundle-perks">
         {% if section.settings.perk_1 != blank %}<li>{% render 'prana-pdp-icon', name: 'truck' %}{{ section.settings.perk_1 | escape }}</li>{% endif %}
         {% if section.settings.perk_2 != blank %}<li>{% render 'prana-pdp-icon', name: 'shield' %}{{ section.settings.perk_2 | escape }}</li>{% endif %}

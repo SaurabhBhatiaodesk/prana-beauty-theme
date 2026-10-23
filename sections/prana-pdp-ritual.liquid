@@ -9,7 +9,7 @@
       {% for block in section.blocks %}
         {% assign icon_index = forloop.index0 | modulo: 6 %}{% assign icon_name = block.settings.icon %}{% if icon_name == blank or icon_name == 'auto' %}{% assign icon_name = default_icons[icon_index] %}{% endif %}
         <li class="pm-how-card" {{ block.shopify_attributes }}>
-          <div class="pm-how-top"><span class="pm-icon-badge">{% render 'prana-pdp-icon', name: icon_name %}</span><span class="pm-how-num">Step {{ forloop.index }}</span></div>
+          <div class="pm-how-top"><span class="pm-icon-badge">{% render 'prana-pdp-icon', name: icon_name %}</span><span class="pm-how-num"><span class="pm-sr">Step </span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span></div>
           <h3>{{ block.settings.title | escape }}</h3>
           <p>{{ block.settings.text | escape }}</p>
         </li>
