@@ -12,12 +12,14 @@
     "main": {
       "type": "prana-pdp-hero",
       "settings": {
+        "skin_tag": "Effective for acne-prone skin",
+        "subtitle": "The South Asian bride's turmeric, for her wedding glow. For visible brightness and uneven-looking skin tone.",
+        "size_text": "110 ml / 3.7 fl oz - about 12-15 treatments",
         "inci": "<p>Aqua (Water), Kaolin, Caprylic/Capric Triglyceride, Magnesium Aluminum Silicate, Glycerin, Propanediol, Magnesium Carbonate, Bentonite, Illite, Titanium Dioxide, Cetyl Alcohol, Ceteareth-20, Rosa Canina (Rosehip) Seed Oil, Phenoxyethanol, Ethylhexylglycerin, Santalum Album (Sandalwood) Oil, Rosa Damascena Flower Oil, Curcuma Longa (Turmeric) Root Extract.</p>"
       }
     },
     "benefits": {
       "type": "prana-pdp-benefits",
-      "settings": {},
       "blocks": {
         "benefits_1": {
           "type": "benefit",
@@ -69,11 +71,13 @@
         "benefits_4",
         "benefits_5",
         "benefits_6"
-      ]
+      ],
+      "settings": {
+        "heading": "What it does for your skin"
+      }
     },
     "results": {
       "type": "prana-pdp-results",
-      "settings": {},
       "blocks": {
         "results_1": {
           "type": "result",
@@ -117,11 +121,13 @@
         "results_3",
         "results_4",
         "results_5"
-      ]
+      ],
+      "settings": {
+        "heading": "What 50 people saw in four weeks"
+      }
     },
     "reviews": {
       "type": "prana-pdp-reviews",
-      "settings": {},
       "blocks": {
         "loox_reviews_loox_dynamic_section_TDddVP": {
           "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
@@ -139,11 +145,13 @@
       },
       "block_order": [
         "loox_reviews_loox_dynamic_section_TDddVP"
-      ]
+      ],
+      "settings": {
+        "heading": "What verified customers say"
+      }
     },
     "journeys": {
       "type": "prana-pdp-journeys",
-      "settings": {},
       "blocks": {
         "journey_maya": {
           "type": "journey",
@@ -151,6 +159,8 @@
             "title": "Maya, 27",
             "tab_label": "Maya",
             "skin": "Blemish-prone, combination skin",
+            "before_image": "shopify://shop_images/Before_turmeric_mask.png",
+            "after_image": "shopify://shop_images/Turmeric_mask_after_image.png",
             "before_label": "Week 0",
             "after_label": "Week 8",
             "story": "<ul><li><strong>Week 1</strong> “My skin felt clean but not tight, which never happens with clay masks.”</li><li><strong>Week 4</strong> “Redness around my chin looks calmer and my pores look smaller.”</li><li><strong>Week 8</strong> “My skin looks clearer and more even. I wear less foundation now.”</li></ul>",
@@ -186,19 +196,29 @@
         "journey_maya",
         "journey_aisha",
         "journey_jen"
-      ]
+      ],
+      "settings": {
+        "heading": "Customer journeys",
+        "intro": "Real customers with acne-prone skin, photographed at week 0 and week 8 of twice-weekly use. Drag to compare.",
+        "journey_text": ""
+      }
     },
     "science": {
       "type": "prana-pdp-science",
-      "settings": {}
+      "settings": {
+        "heading": "The science behind the ritual"
+      }
     },
     "bridal": {
       "type": "prana-pdp-bridal",
-      "settings": {}
+      "settings": {
+        "heading": "The South Asian bride's turmeric, for her wedding glow"
+      }
     },
     "turmeric": {
       "type": "prana-pdp-turmeric",
       "settings": {
+        "heading": "Wild turmeric",
         "turmeric_type": "Kasthuri manjal, wild turmeric",
         "extraction": "Liquid root extract, used at up to 1%"
       }
@@ -209,7 +229,6 @@
     },
     "ritual": {
       "type": "prana-pdp-ritual",
-      "settings": {},
       "blocks": {
         "ritual_1": {
           "type": "step",
@@ -245,17 +264,21 @@
         "ritual_2",
         "ritual_3",
         "ritual_4"
-      ]
+      ],
+      "settings": {
+        "heading": "The 12-minute ritual"
+      }
     },
     "bundle": {
       "type": "prana-pdp-bundle",
       "settings": {
+        "heading": "Make it the ABHYANGA weekly ritual",
+        "bundle_product": "",
         "bundle_link": "/pages/abhyanga"
       }
     },
     "faq": {
       "type": "prana-pdp-faq",
-      "settings": {},
       "blocks": {
         "faq_1": {
           "type": "question",
@@ -315,7 +338,10 @@
         "faq_5",
         "faq_6",
         "faq_7"
-      ]
+      ],
+      "settings": {
+        "heading": "Details and questions"
+      }
     }
   },
   "order": [
