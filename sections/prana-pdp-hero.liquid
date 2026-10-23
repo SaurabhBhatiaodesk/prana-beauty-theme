@@ -37,15 +37,8 @@
       <select name="id" id="MaskVariant-{{ section.id }}" {% if product.variants.size == 1 %}hidden{% endif %}>
         {% for variant in product.variants %}<option value="{{ variant.id }}" {% if variant.id == selected_variant.id %}selected{% endif %}>{{ variant.title | escape }} &middot; {{ variant.price | money }}</option>{% endfor %}
       </select>
-      <fieldset class="pm-purchase" style="border:0;padding:0;margin:0 0 16px">
-        <legend class="pm-sr">Purchase option</legend>
-        {% unless product.requires_selling_plan %}
-        <label class="pm-opt"><input type="radio" name="selling_plan" value="" data-price="{{ selected_variant.price }}" checked><span class="pm-t"><strong>One-time purchase</strong></span><span class="pm-p">{{ selected_variant.price | money }}</span></label>
-        {% endunless %}
-        {% for allocation in selected_variant.selling_plan_allocations %}
-        <label class="pm-opt"><input type="radio" name="selling_plan" value="{{ allocation.selling_plan.id }}" data-price="{{ allocation.price }}" {% if product.requires_selling_plan and forloop.first %}checked{% endif %}><span class="pm-t"><strong>{{ allocation.selling_plan.name | escape }}</strong></span><span class="pm-p">{% if allocation.compare_at_price > allocation.price %}<s>{{ allocation.compare_at_price | money }}</s>{% endif %}{{ allocation.price | money }}</span></label>
-        {% endfor %}
-      </fieldset>
+      <input type="hidden" name="selling_plan" id="selling-plan-input" value="">
+      <div class="pm-purchase">{% content_for 'block', type: 'recharge-widget', id: 'pdp-recharge' %}</div>
       <div class="pm-atc-row">
         <div class="pm-qty"><button type="button" data-q="-1" aria-label="Decrease quantity">&minus;</button><input name="quantity" type="number" min="{{ selected_variant.quantity_rule.min | default: 1 }}" step="{{ selected_variant.quantity_rule.increment | default: 1 }}" {% if selected_variant.quantity_rule.max %}max="{{ selected_variant.quantity_rule.max }}"{% endif %} value="{{ selected_variant.quantity_rule.min | default: 1 }}" aria-label="Quantity"><button type="button" data-q="1" aria-label="Increase quantity">+</button></div>
         <button class="pm-atc" id="atc-{{ section.id }}" type="submit" {% unless selected_variant.available %}disabled{% endunless %}>{% if selected_variant.available %}{{ 'products.product.add_to_cart' | t }} &middot; <span class="pm-price-now">{{ selected_variant.price | money }}</span>{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</button>
@@ -121,7 +114,9 @@
       "label": "Full ingredients (verified label)"
     }
   ],
-  "blocks": [],
+  "blocks": [
+    { "type": "recharge-widget" }
+  ],
   "presets": [
     {
       "name": "PRANA PDP Hero"

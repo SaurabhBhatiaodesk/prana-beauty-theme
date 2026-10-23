@@ -10,8 +10,12 @@ class PranaMaskPdp extends HTMLElement {
     if (!(form instanceof HTMLFormElement) || !(quantity instanceof HTMLInputElement) || !(atc instanceof HTMLButtonElement) || !message) return;
     const format = (/** @type {number} */ amount) => new Intl.NumberFormat(document.documentElement.lang || 'en', {style:'currency',currency:this.dataset.currency || 'USD'}).format(amount / 100);
     const updatePrice = () => {
-      const plan = this.querySelector('input[name="selling_plan"]:checked');
-      const amount = Number(plan instanceof HTMLInputElement ? plan.dataset.pm-price : this.dataset.price);
+      // Mirrors the Recharge block: percentage plans show the discounted price, others the full price.
+      const plan = this.querySelector('input[name="purchase_type"]:checked');
+      let amount = Number(this.dataset.price);
+      if (plan instanceof HTMLInputElement && plan.value === 'subscription' && plan.dataset.discountType === 'percentage') {
+        amount = Math.round(amount * (100 - Number(plan.dataset.discountValue || 0)) / 100);
+      }
       this.querySelectorAll('.pm-price-now').forEach(el => { el.textContent = format(amount * Number(quantity.value || 1)); });
     };
     form.addEventListener('change', updatePrice);
@@ -47,7 +51,7 @@ class PranaMaskPdp extends HTMLElement {
       atc.disabled=true; if(stickyButton instanceof HTMLButtonElement)stickyButton.disabled=true;
       atc.setAttribute('aria-busy','true'); message.textContent='';
       try {
-        const data=new FormData(form); if(!data.get('selling_plan'))data.delete('selling_plan');
+        const data=new FormData(form); data.delete('purchase_type'); if(!data.get('selling_plan'))data.delete('selling_plan');
         const sections=[...new Set(Array.from(document.querySelectorAll('cart-items-component')).map(el=>el.getAttribute('data-section-id')).filter(Boolean))].slice(0,5);
         data.set('sections',sections.join(','));data.set('sections_url',location.pathname);
         const response=await fetch(Theme.routes.cart_add_url,{method:'POST',headers:{Accept:'application/json'},body:data});
