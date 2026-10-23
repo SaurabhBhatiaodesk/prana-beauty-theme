@@ -253,20 +253,18 @@
 .prana-mask-pdp .pm-chain li .pm-chain-node,.prana-mask-pdp .pm-step .pm-node { background:var(--card-bg);border:1px solid var(--card-border);color:var(--card-border); }
 .prana-mask-pdp .pm-tur-slot { background:var(--card-bg); }
 
-/* ---------- One vertical rhythm: 80px desktop, 64px tablet, 48px mobile ---------- */
-.prana-mask-pdp { --pm-space:80px; }
-.prana-mask-pdp .pm-sec,.prana-mask-pdp .pm-results,.prana-mask-pdp .pm-journeys,.prana-mask-pdp .pm-dossier,.prana-mask-pdp .pm-bridal,.prana-mask-pdp .pm-chain { padding-top:var(--pm-space);padding-bottom:var(--pm-space); }
-.prana-mask-pdp .pm-hero { padding-top:40px;padding-bottom:48px; }
-.prana-mask-pdp.pm-pdp-benefits { padding:0 0 var(--pm-space); }
+/* ---------- One vertical rhythm: every section band gets equal space above and below ---------- */
+.prana-mask-pdp { --pm-space:72px; }
+.prana-mask-pdp .pm-sec,.prana-mask-pdp .pm-results,.prana-mask-pdp .pm-journeys,.prana-mask-pdp .pm-dossier,.prana-mask-pdp .pm-bridal,.prana-mask-pdp .pm-chain,.prana-mask-pdp .pm-bundle-wrap { padding-top:var(--pm-space);padding-bottom:var(--pm-space); }
+.prana-mask-pdp .pm-hero { padding-top:40px;padding-bottom:var(--pm-space); }
+.prana-mask-pdp.pm-pdp-benefits { padding:var(--pm-space) 0; }
 .prana-mask-pdp.pm-pdp-benefits .pm-benefits { padding-top:0; }
-.prana-mask-pdp .pm-bundle-wrap { padding-top:var(--pm-space);padding-bottom:var(--pm-space); }
-.prana-mask-pdp.pm-pdp-faq > section { padding-top:0;padding-bottom:var(--pm-space)!important; }
-.prana-mask-pdp.pm-pdp-provenance .pm-chain { padding-top:0; }
-.prana-mask-pdp.pm-pdp-ritual .pm-sec { padding-bottom:0; }
-@media (max-width:980px) { .prana-mask-pdp { --pm-space:64px; } }
+.prana-mask-pdp.pm-pdp-faq > section { padding-top:var(--pm-space);padding-bottom:var(--pm-space)!important; }
+.prana-mask-pdp .pm-sec h2,.prana-mask-pdp .pm-results h2,.prana-mask-pdp .pm-journeys h2,.prana-mask-pdp .pm-dossier h2,.prana-mask-pdp .pm-bridal h2,.prana-mask-pdp.pm-pdp-faq h2,.prana-mask-pdp.pm-pdp-benefits h2 { margin-top:0; }
+@media (max-width:980px) { .prana-mask-pdp { --pm-space:56px; } }
 @media (max-width:640px) {
-  .prana-mask-pdp { --pm-space:48px; }
-  .prana-mask-pdp .pm-hero { padding-top:16px;padding-bottom:32px; }
+  .prana-mask-pdp { --pm-space:44px; }
+  .prana-mask-pdp .pm-hero { padding-top:16px; }
   .prana-mask-pdp .pm-sec .pm-intro,.prana-mask-pdp .pm-journeys .pm-intro { margin-bottom:24px; }
 }
 /* Journeys: a compact square comparison beside the story, not a full-height photo. */
