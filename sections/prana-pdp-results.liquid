@@ -1,14 +1,14 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<div class="prana-mask-pdp pdp-results">
-<section class="results" id="prana-pdp-results" aria-labelledby="res-h-{{ section.id }}">
-  <div class="wrap">
+<div class="prana-mask-pdp pm-pdp-results">
+<section class="pm-results" id="prana-pdp-results" aria-labelledby="res-h-{{ section.id }}">
+  <div class="pm-wrap">
     <h2 id="res-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
-    <p class="lede">An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*</p>
-    <div class="stat-row five">
-      {% for block in section.blocks %}<div class="stat" {{ block.shopify_attributes }}><b>{{ block.settings.title | escape }}</b><span>{{ block.settings.text | escape }}</span></div>{% endfor %}
+    <p class="pm-lede">An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*</p>
+    <div class="pm-stat-row pm-five">
+      {% for block in section.blocks %}<div class="pm-stat" {{ block.shopify_attributes }}><b>{{ block.settings.title | escape }}</b><span>{{ block.settings.text | escape }}</span></div>{% endfor %}
     </div>
-    <p class="foot">*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.</p>
+    <p class="pm-foot">*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.</p>
   </div>
 </section>
 </div>

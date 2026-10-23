@@ -1,10 +1,10 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<div class="prana-mask-pdp pdp-reviews">
-<section class="sec" id="prana-pdp-reviews" aria-labelledby="rev-h-{{ section.id }}">
-  <div class="wrap">
+<div class="prana-mask-pdp pm-pdp-reviews">
+<section class="pm-sec" id="prana-pdp-reviews" aria-labelledby="rev-h-{{ section.id }}">
+  <div class="pm-wrap">
     <h2 id="rev-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
-    <p class="intro">Every review comes from a confirmed order and appears as the customer wrote it.</p>
+    <p class="pm-intro">Every review comes from a confirmed order and appears as the customer wrote it.</p>
     
     <div id="looxReviews-{{ section.id }}">{% for block in section.blocks %}{% if block.type == '@app' %}{% render block %}{% endif %}{% endfor %}</div>
   </div>

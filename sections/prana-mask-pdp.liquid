@@ -4,58 +4,58 @@
 <prana-mask-pdp class="prana-mask-pdp" data-section-id="{{ section.id }}" data-added="{{ 'products.product.added_to_cart' | t | escape }}" data-currency="{{ cart.currency.iso_code }}" data-price="{{ selected_variant.price }}" data-error="{{ 'products.product.add_to_cart_error' | t | escape }}">
 
 
-<section class="wrap hero" id="product-{{ section.id }}">
-  <div class="gallery">
-    <div class="gallery-main">
-      {% if section.settings.skin_tag != blank %}<span class="skin-tag">{{ section.settings.skin_tag | escape }}</span>{% endif %}
+<section class="pm-wrap pm-hero" id="product-{{ section.id }}">
+  <div class="pm-gallery">
+    <div class="pm-gallery-main">
+      {% if section.settings.skin_tag != blank %}<span class="pm-skin-tag">{{ section.settings.skin_tag | escape }}</span>{% endif %}
       {% assign hero_image = selected_variant.featured_image | default: product.featured_image %}
       {% if hero_image %}{{ hero_image | image_url: width: 1200 | image_tag: id: 'mainImg', loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1200' }}{% endif %}
     </div>
-    <div class="thumbs" role="group" aria-label="Product images">
+    <div class="pm-thumbs" role="group" aria-label="Product images">
       {% for image in product.images %}<button type="button" data-src="{{ image | image_url: width: 1200 }}" data-alt="{{ image.alt | escape }}" aria-current="{% if image.id == hero_image.id %}true{% else %}false{% endif %}">{{ image | image_url: width: 160 | image_tag: loading: 'lazy' }}</button>{% endfor %}
     </div>
   </div>
 
-  <div class="buy">
-    <span class="for">Suitable for all skin types. Effective for acne-prone skin.</span>
+  <div class="pm-buy">
+    <span class="pm-for">Suitable for all skin types. Effective for acne-prone skin.</span>
     <h1>{{ product.title | escape }}</h1>
-    <p class="sub">{{ section.settings.subtitle | escape }}</p>
+    <p class="pm-sub">{{ section.settings.subtitle | escape }}</p>
 
-    <div class="rating">
+    <div class="pm-rating">
       
       
       <a href="#reviews-{{ section.id }}">Read verified customer reviews</a>
-      <a class="tested" href="#results-{{ section.id }}">Consumer tested*</a>
+      <a class="pm-tested" href="#results-{{ section.id }}">Consumer tested*</a>
     </div>
 
-    <p class="proof">Clearer, brighter-looking skin in 4 weeks.* <span>91% agreed in an independent consumer study.</span></p>
+    <p class="pm-proof">Clearer, brighter-looking skin in 4 weeks.* <span>91% agreed in an independent consumer study.</span></p>
 
-    <p class="size">{{ section.settings.size_text | escape }}</p>
+    <p class="pm-size">{{ section.settings.size_text | escape }}</p>
 
-    {% form 'product', product, class: 'mask-product-form' %}
+    {% form 'product', product, class: 'pm-mask-product-form' %}
       {% if product.variants.size > 1 %}<label for="MaskVariant-{{ section.id }}">Variant</label>{% endif %}
       <select name="id" id="MaskVariant-{{ section.id }}" {% if product.variants.size == 1 %}hidden{% endif %}>
         {% for variant in product.variants %}<option value="{{ variant.id }}" {% if variant.id == selected_variant.id %}selected{% endif %}>{{ variant.title | escape }} &middot; {{ variant.price | money }}</option>{% endfor %}
       </select>
-      <fieldset class="purchase" style="border:0;padding:0;margin:0 0 16px">
-        <legend class="sr">Purchase option</legend>
+      <fieldset class="pm-purchase" style="border:0;padding:0;margin:0 0 16px">
+        <legend class="pm-sr">Purchase option</legend>
         {% unless product.requires_selling_plan %}
-        <label class="opt"><input type="radio" name="selling_plan" value="" data-price="{{ selected_variant.price }}" checked><span class="t"><strong>One-time purchase</strong></span><span class="p">{{ selected_variant.price | money }}</span></label>
+        <label class="pm-opt"><input type="radio" name="selling_plan" value="" data-price="{{ selected_variant.price }}" checked><span class="pm-t"><strong>One-time purchase</strong></span><span class="pm-p">{{ selected_variant.price | money }}</span></label>
         {% endunless %}
         {% for allocation in selected_variant.selling_plan_allocations %}
-        <label class="opt"><input type="radio" name="selling_plan" value="{{ allocation.selling_plan.id }}" data-price="{{ allocation.price }}" {% if product.requires_selling_plan and forloop.first %}checked{% endif %}><span class="t"><strong>{{ allocation.selling_plan.name | escape }}</strong></span><span class="p">{% if allocation.compare_at_price > allocation.price %}<s>{{ allocation.compare_at_price | money }}</s>{% endif %}{{ allocation.price | money }}</span></label>
+        <label class="pm-opt"><input type="radio" name="selling_plan" value="{{ allocation.selling_plan.id }}" data-price="{{ allocation.price }}" {% if product.requires_selling_plan and forloop.first %}checked{% endif %}><span class="pm-t"><strong>{{ allocation.selling_plan.name | escape }}</strong></span><span class="pm-p">{% if allocation.compare_at_price > allocation.price %}<s>{{ allocation.compare_at_price | money }}</s>{% endif %}{{ allocation.price | money }}</span></label>
         {% endfor %}
       </fieldset>
-      <div class="atc-row">
-        <div class="qty"><button type="button" data-q="-1" aria-label="Decrease quantity">&minus;</button><input name="quantity" type="number" min="{{ selected_variant.quantity_rule.min | default: 1 }}" step="{{ selected_variant.quantity_rule.increment | default: 1 }}" {% if selected_variant.quantity_rule.max %}max="{{ selected_variant.quantity_rule.max }}"{% endif %} value="{{ selected_variant.quantity_rule.min | default: 1 }}" aria-label="Quantity"><button type="button" data-q="1" aria-label="Increase quantity">+</button></div>
-        <button class="atc" id="atc-{{ section.id }}" type="submit" {% unless selected_variant.available %}disabled{% endunless %}>{% if selected_variant.available %}{{ 'products.product.add_to_cart' | t }} &middot; <span class="price-now">{{ selected_variant.price | money }}</span>{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</button>
+      <div class="pm-atc-row">
+        <div class="pm-qty"><button type="button" data-q="-1" aria-label="Decrease quantity">&minus;</button><input name="quantity" type="number" min="{{ selected_variant.quantity_rule.min | default: 1 }}" step="{{ selected_variant.quantity_rule.increment | default: 1 }}" {% if selected_variant.quantity_rule.max %}max="{{ selected_variant.quantity_rule.max }}"{% endif %} value="{{ selected_variant.quantity_rule.min | default: 1 }}" aria-label="Quantity"><button type="button" data-q="1" aria-label="Increase quantity">+</button></div>
+        <button class="pm-atc" id="atc-{{ section.id }}" type="submit" {% unless selected_variant.available %}disabled{% endunless %}>{% if selected_variant.available %}{{ 'products.product.add_to_cart' | t }} &middot; <span class="pm-price-now">{{ selected_variant.price | money }}</span>{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</button>
       </div>
-      <p class="ship" data-cart-message role="status"></p>
+      <p class="pm-ship" data-cart-message role="status"></p>
     {% endform %}
 
-    <p class="formulated">Gentle enough for every skin type, and especially good for blemish-prone skin. This blend of clean ingredients helps calm the look of redness, minimize the appearance of pores and reveal clearer-looking skin — all while staying hydrating, never drying.</p>
+    <p class="pm-formulated">Gentle enough for every skin type, and especially good for blemish-prone skin. This blend of clean ingredients helps calm the look of redness, minimize the appearance of pores and reveal clearer-looking skin — all while staying hydrating, never drying.</p>
 
-    <ul class="checks">
+    <ul class="pm-checks">
       <li>Three clays purify at every depth</li>
       <li>Wild turmeric from India</li>
       <li>Sandalwood cools and calms</li>
@@ -63,26 +63,26 @@
     </ul>
 
     
-    <div class="buy-acc">
-      {% if section.settings.inci != blank %}<details><summary>Full ingredients</summary><div class="body inci">{{ section.settings.inci }}</div><p class="acc-link"><a href="#formula-{{ section.id }}">What each ingredient does</a></p></details>{% endif %}
+    <div class="pm-buy-acc">
+      {% if section.settings.inci != blank %}<details><summary>Full ingredients</summary><div class="pm-body pm-inci">{{ section.settings.inci }}</div><p class="pm-acc-link"><a href="#formula-{{ section.id }}">What each ingredient does</a></p></details>{% endif %}
       <details>
         <summary>How to use</summary>
-        <div class="body">Apply a thin, even layer to clean, dry skin, avoiding eyes and lips. Leave on for 12 minutes and rinse with warm water while it's still slightly damp. Use once a week, or twice a week if your skin is oily or blemish-prone. First time or sensitive skin? Start with 8 minutes.</div>
+        <div class="pm-body">Apply a thin, even layer to clean, dry skin, avoiding eyes and lips. Leave on for 12 minutes and rinse with warm water while it's still slightly damp. Use once a week, or twice a week if your skin is oily or blemish-prone. First time or sensitive skin? Start with 8 minutes.</div>
       </details>
       <details>
         <summary>Shipping and returns</summary>
-        <div class="body">Free US shipping on orders over $100. Shipped from New Jersey. Not happy within 30 days? You get your money back. <a href="https://www.pranabeauty.com/pages/return-policy">Read the return policy</a>.</div>
+        <div class="pm-body">Free US shipping on orders over $100. Shipped from New Jersey. Not happy within 30 days? You get your money back. <a href="https://www.pranabeauty.com/pages/return-policy">Read the return policy</a>.</div>
       </details>
     </div>
 
-    <div class="assure">
+    <div class="pm-assure">
       <span>30-day money-back guarantee</span>
       <span>Vegan and cruelty-free</span>
       <span>No synthetic fragrance</span>
     </div>
   </div>
     
-    <section class="benefits hero-benefits" aria-labelledby="ben-h-{{ section.id }}">
+    <section class="pm-benefits pm-hero-benefits" aria-labelledby="ben-h-{{ section.id }}">
       <h2 id="ben-h-{{ section.id }}">What it does for your skin</h2>
       <ul>
         <li><b>Brighter-looking skin</b><span>Turmeric and three clays leave skin looking fresh and luminous</span></li>
@@ -92,32 +92,32 @@
         <li><b>Blemish marks look less visible</b><span>Turmeric evens out the look of dark spots and uneven tone</span></li>
         <li><b>Hydrating, never drying</b><span>84% said it left skin neither tight nor dry*</span></li>
       </ul>
-      <p class="free">*4-week independent consumer perception study, 50 participants. Individual results may vary.<br>Vegan and cruelty-free, with botanical and mineral actives. Free from parabens, sulfates and synthetic fragrance.</p>
+      <p class="pm-free">*4-week independent consumer perception study, 50 participants. Individual results may vary.<br>Vegan and cruelty-free, with botanical and mineral actives. Free from parabens, sulfates and synthetic fragrance.</p>
     </section>
 </section>
 
 
 
-<section class="results" id="results-{{ section.id }}" aria-labelledby="res-h-{{ section.id }}">
-  <div class="wrap">
+<section class="pm-results" id="results-{{ section.id }}" aria-labelledby="res-h-{{ section.id }}">
+  <div class="pm-wrap">
     <h2 id="res-h-{{ section.id }}">What 50 people saw in four weeks</h2>
-    <p class="lede">An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*</p>
-    <div class="stat-row five">
-      <div class="stat"><b>93%</b><span>said skin felt softer, smoother and less congested</span></div>
-      <div class="stat"><b>91%</b><span>said skin looked clearer, brighter and more even-toned</span></div>
-      <div class="stat"><b>88%</b><span>would recommend it to a friend or family member</span></div>
-      <div class="stat"><b>86%</b><span>said pores looked smaller and less clogged</span></div>
-      <div class="stat"><b>84%</b><span>said it cleansed deeply without leaving skin tight or dry</span></div>
+    <p class="pm-lede">An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*</p>
+    <div class="pm-stat-row pm-five">
+      <div class="pm-stat"><b>93%</b><span>said skin felt softer, smoother and less congested</span></div>
+      <div class="pm-stat"><b>91%</b><span>said skin looked clearer, brighter and more even-toned</span></div>
+      <div class="pm-stat"><b>88%</b><span>would recommend it to a friend or family member</span></div>
+      <div class="pm-stat"><b>86%</b><span>said pores looked smaller and less clogged</span></div>
+      <div class="pm-stat"><b>84%</b><span>said it cleansed deeply without leaving skin tight or dry</span></div>
     </div>
-    <p class="foot">*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.</p>
+    <p class="pm-foot">*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.</p>
   </div>
 </section>
 
 
-<section class="sec" id="reviews-{{ section.id }}" aria-labelledby="rev-h-{{ section.id }}">
-  <div class="wrap">
+<section class="pm-sec" id="reviews-{{ section.id }}" aria-labelledby="rev-h-{{ section.id }}">
+  <div class="pm-wrap">
     <h2 id="rev-h-{{ section.id }}">What verified customers say</h2>
-    <p class="intro">Every review comes from a confirmed order and appears as the customer wrote it.</p>
+    <p class="pm-intro">Every review comes from a confirmed order and appears as the customer wrote it.</p>
     
     <div id="looxReviews-{{ section.id }}">{% for block in section.blocks %}{% if block.type == '@app' %}{% render block %}{% endif %}{% endfor %}</div>
   </div>
@@ -128,11 +128,11 @@
 {% assign journey_count = 0 %}
 {% for block in journey_blocks %}{% if block.settings.before_image != blank and block.settings.after_image != blank %}{% assign journey_count = journey_count | plus: 1 %}{% endif %}{% endfor %}
 {% if journey_count > 0 %}
-<section class="journeys" aria-labelledby="journeys-heading-{{ section.id }}">
-  <div class="wrap">
+<section class="pm-journeys" aria-labelledby="journeys-heading-{{ section.id }}">
+  <div class="pm-wrap">
     <h2 id="journeys-heading-{{ section.id }}">Customer journeys</h2>
-    <p class="intro">Explore our customers' experiences. Drag the slider to compare.</p>
-    <div class="journey-tabs" role="tablist" aria-label="Customer journeys">
+    <p class="pm-intro">Explore our customers' experiences. Drag the slider to compare.</p>
+    <div class="pm-journey-tabs" role="tablist" aria-label="Customer journeys">
       {% assign first_journey = true %}
       {% for block in journey_blocks %}
         {% if block.settings.before_image != blank and block.settings.after_image != blank %}
@@ -144,15 +144,15 @@
     {% assign first_journey = true %}
     {% for block in journey_blocks %}
       {% if block.settings.before_image != blank and block.settings.after_image != blank %}
-        <div class="ba-grid" role="tabpanel" id="journey-panel-{{ block.id }}" aria-labelledby="journey-tab-{{ block.id }}" {% unless first_journey %}hidden{% endunless %} {{ block.shopify_attributes }}>
-          <div class="ba">
-            <div class="img before">{{ block.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
-            <div class="img after">{{ block.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
-            <span class="lbl l">{{ block.settings.before_label | escape }}</span><span class="lbl r">{{ block.settings.after_label | escape }}</span><div class="handle" aria-hidden="true"></div>
-            <label class="sr" for="compare-{{ block.id }}">Compare before and after for {{ block.settings.title | escape }}</label>
+        <div class="pm-ba-grid" role="tabpanel" id="journey-panel-{{ block.id }}" aria-labelledby="journey-tab-{{ block.id }}" {% unless first_journey %}hidden{% endunless %} {{ block.shopify_attributes }}>
+          <div class="pm-ba">
+            <div class="pm-img pm-before">{{ block.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
+            <div class="pm-img pm-after">{{ block.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
+            <span class="pm-lbl pm-l">{{ block.settings.before_label | escape }}</span><span class="pm-lbl pm-r">{{ block.settings.after_label | escape }}</span><div class="pm-handle" aria-hidden="true"></div>
+            <label class="pm-sr" for="compare-{{ block.id }}">Compare before and after for {{ block.settings.title | escape }}</label>
             <input type="range" id="compare-{{ block.id }}" min="0" max="100" value="50">
           </div>
-          <div class="journey-copy"><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.skin | escape }}</p>{{ block.settings.story }}<p class="disclose">{{ block.settings.disclosure | escape }}</p></div>
+          <div class="pm-journey-copy"><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.skin | escape }}</p>{{ block.settings.story }}<p class="pm-disclose">{{ block.settings.disclosure | escape }}</p></div>
         </div>
         {% assign first_journey = false %}
       {% endif %}
@@ -161,50 +161,50 @@
 </section>
 {% else %}
 {% if section.settings.before_image != blank and section.settings.after_image != blank %}
-<section class="journeys"><div class="wrap"><h2>Customer journeys</h2><div class="ba-grid"><div class="ba" id="ba-{{ section.id }}"><div class="img before">{{ section.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><div class="img after">{{ section.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><span class="lbl l">Before</span><span class="lbl r">After</span><div class="handle"></div><label class="sr" for="baRange-{{ section.id }}">Compare before and after</label><input type="range" id="baRange-{{ section.id }}" min="0" max="100" value="50"></div><div class="journey-copy">{{ section.settings.journey_text }}</div></div></div></section>{% endif %}
-{% if request.design_mode and section.settings.before_image == blank %}<section class="journeys"><div class="wrap"><h2>Customer journeys</h2><p>Add Customer journey blocks with approved before and after photos to display the comparison sliders here.</p></div></section>{% endif %}
+<section class="pm-journeys"><div class="pm-wrap"><h2>Customer journeys</h2><div class="pm-ba-grid"><div class="pm-ba" id="ba-{{ section.id }}"><div class="pm-img pm-before">{{ section.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><div class="pm-img pm-after">{{ section.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><span class="pm-lbl pm-l">Before</span><span class="pm-lbl pm-r">After</span><div class="pm-handle"></div><label class="pm-sr" for="baRange-{{ section.id }}">Compare before and after</label><input type="range" id="baRange-{{ section.id }}" min="0" max="100" value="50"></div><div class="pm-journey-copy">{{ section.settings.journey_text }}</div></div></div></section>{% endif %}
+{% if request.design_mode and section.settings.before_image == blank %}<section class="pm-journeys"><div class="pm-wrap"><h2>Customer journeys</h2><p>Add Customer journey blocks with approved before and after photos to display the comparison sliders here.</p></div></section>{% endif %}
 {% endif %}
 
 
-<section class="sec" aria-labelledby="sci-h-{{ section.id }}">
-  <div class="wrap">
+<section class="pm-sec" aria-labelledby="sci-h-{{ section.id }}">
+  <div class="pm-wrap">
     <h2 id="sci-h-{{ section.id }}">The science behind the ritual</h2>
-    <p class="intro">Every PRANA formula follows the same path, from what Ayurveda observed to what our customers see in the mirror.</p>
-    <div class="thread">
-      <div class="step">
-        <div class="node" aria-hidden="true">I</div>
+    <p class="pm-intro">Every PRANA formula follows the same path, from what Ayurveda observed to what our customers see in the mirror.</p>
+    <div class="pm-thread">
+      <div class="pm-step">
+        <div class="pm-node" aria-hidden="true">I</div>
         <h3>The ritual</h3>
-        <p class="q">What Ayurveda says</p>
+        <p class="pm-q">What Ayurveda says</p>
         <p>Ayurveda groups turmeric with the <em>varnya</em> herbs, those used to bring clarity and radiance to the complexion. Sandalwood, or <em>chandana</em>, is a cooling herb for skin that runs hot and red. Clay was used to purify. Mixed into a paste called ubtan, the three became the haldi ritual brides still follow before their weddings.</p>
         <a href="#bridal-{{ section.id }}">See the bridal ritual</a>
       </div>
-      <div class="step">
-        <div class="node" aria-hidden="true">II</div>
+      <div class="pm-step">
+        <div class="pm-node" aria-hidden="true">II</div>
         <h3>The formula</h3>
-        <p class="q">What we formulated</p>
+        <p class="pm-q">What we formulated</p>
         <p>Twenty versions over two years led to a smooth, pink clay cream with a skin-friendly pH of 5.0 to 7.0. Kaolin leads the clays, with bentonite and French pink clay behind it. Turmeric, sandalwood, rose and rosehip oil sit at up to 1% each, the range where botanical oils are typically used on the face. Glycerin and a coconut-derived emollient keep the mask from drying skin as it sets.</p>
         <a href="#formula-{{ section.id }}">See the full formula</a>
       </div>
-      <div class="step">
-        <div class="node" aria-hidden="true">III</div>
+      <div class="pm-step">
+        <div class="pm-node" aria-hidden="true">III</div>
         <h3>The evidence</h3>
-        <p class="q">What we tested</p>
+        <p class="pm-q">What we tested</p>
         <p>Fifty people aged 18 to 55, across skin tones and types, used the mask at home once or twice a week for four weeks. 91% said their skin looked clearer, brighter and more even; 93% said it felt softer and less congested. Before that, our manufacturer's safety data sheet confirmed the formula is non-toxic, non-hazardous, stable and pH 5.0 to 7.0.</p>
         <a href="#results-{{ section.id }}">See all the results</a>
       </div>
-      <div class="step">
-        <div class="node" aria-hidden="true">IV</div>
+      <div class="pm-step">
+        <div class="pm-node" aria-hidden="true">IV</div>
         <h3>The experience</h3>
-        <p class="q">What customers reported</p>
+        <p class="pm-q">What customers reported</p>
         <p>The best evidence of how a mask feels is what the people using it say. Every review below comes from a verified buyer, shown as written, including the ones that aren't five stars.</p>
         <a href="#reviews-{{ section.id }}">Read verified reviews</a>
       </div>
     </div>
 
     
-    <details class="formula" id="formula-{{ section.id }}">
-      <summary><span class="f-title">The full formula</span><span class="formula-note">17 ingredients, with the amount and job of each</span></summary>
-      <div class="formula-scroll">
+    <details class="pm-formula" id="formula-{{ section.id }}">
+      <summary><span class="pm-f-title">The full formula</span><span class="pm-formula-note">17 ingredients, with the amount and job of each</span></summary>
+      <div class="pm-formula-scroll">
       <table>
         <thead><tr><th scope="col">Ingredient</th><th scope="col">What it does</th><th scope="col">Amount</th></tr></thead>
         <tbody>
@@ -228,61 +228,61 @@
         </tbody>
       </table>
       </div>
-      <p class="formula-note" style="margin-top:14px">Ranges as declared on our manufacturer's safety data sheet.</p>
+      <p class="pm-formula-note" style="margin-top:14px">Ranges as declared on our manufacturer's safety data sheet.</p>
     </details>
   </div>
 </section>
 
 
-<section class="bridal" id="bridal-{{ section.id }}" aria-labelledby="bride-h-{{ section.id }}">
-  <div class="wrap bridal-grid">
-    {% if section.settings.bridal_image != blank %}<div class="bridal-photo">{{ section.settings.bridal_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>{% endif %}
+<section class="pm-bridal" id="bridal-{{ section.id }}" aria-labelledby="bride-h-{{ section.id }}">
+  <div class="pm-wrap pm-bridal-grid">
+    {% if section.settings.bridal_image != blank %}<div class="pm-bridal-photo">{{ section.settings.bridal_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>{% endif %}
     <div>
       <h2 id="bride-h-{{ section.id }}">The South Asian bride's turmeric, for her wedding glow</h2>
-      <p class="tamil">Haldi (HUL-dee): the Hindi word for turmeric</p>
+      <p class="pm-tamil">Haldi (HUL-dee): the Hindi word for turmeric</p>
       <p>A few days before a South Asian wedding, family and friends gather for the haldi ceremony. One by one, they smooth a paste of turmeric, often mixed with sandalwood and rosewater, onto the bride's face and arms. It's part blessing, part beauty ritual and always a party. The idea is simple: she should walk into her wedding glowing.</p>
       <p>The tradition goes by many names. Bengali families call it gaye holud. Pakistani and North Indian Muslim families hold a mayun, with a turmeric paste called ubtan. In Tamil Nadu, the bride's bath on her wedding morning begins with turmeric. Across regions and faiths, the ingredient stays the same.</p>
       <p>Our turmeric comes from Tamil Nadu. It's kasthuri manjal, a pale, fragrant wild turmeric that Tamil women have long used on their skin because it brightens without leaving a yellow stain.</p>
-      <p class="glow-line">Apply and leave on for just 12 minutes for the bridal glow.</p>
-      <a class="btn" href="https://www.pranabeauty.com/pages/soundarya">See the SOUNDARYA bridal glow set</a>
+      <p class="pm-glow-line">Apply and leave on for just 12 minutes for the bridal glow.</p>
+      <a class="pm-btn" href="https://www.pranabeauty.com/pages/soundarya">See the SOUNDARYA bridal glow set</a>
     </div>
   </div>
 </section>
 
 
-<section class="dossier" id="turmeric-{{ section.id }}" aria-labelledby="tur-h-{{ section.id }}">
-  <div class="wrap dossier-grid">
-    <div class="tur-copy">
+<section class="pm-dossier" id="turmeric-{{ section.id }}" aria-labelledby="tur-h-{{ section.id }}">
+  <div class="pm-wrap pm-dossier-grid">
+    <div class="pm-tur-copy">
       <h2 id="tur-h-{{ section.id }}">Wild turmeric</h2>
-      <p class="tur-lede">Not the turmeric in your spice rack.</p>
+      <p class="pm-tur-lede">Not the turmeric in your spice rack.</p>
       <p>We use a wild turmeric from Tamil Nadu, in southern India, known locally as kasthuri manjal. It's paler and more fragrant than the bright-yellow kitchen kind, and it's the one Indian women have long chosen for their skin, because it brightens without leaving a yellow tint.</p>
       <p>In this mask, it helps even out the look of skin tone while three clays lift away excess oil and sandalwood keeps everything cool and calm.</p>
-      <div class="tur-pics">
-        <figure class="tur-pic">
+      <div class="pm-tur-pics">
+        <figure class="pm-tur-pic">
           <img src="https://www.pranabeauty.com/cdn/shop/files/Turmeirc_18463052-bc95-4d90-b93d-c1204ed175e5.png?v=1780384650&width=700" alt="Wild turmeric root" loading="lazy" width="700" height="700">
           <figcaption>The root</figcaption>
         </figure>
-        {% if section.settings.harvest_image != blank %}<figure class="tur-pic">{{ section.settings.harvest_image | image_url: width: 700 | image_tag: loading: 'lazy' }}<figcaption>The harvest</figcaption></figure>{% endif %}
+        {% if section.settings.harvest_image != blank %}<figure class="pm-tur-pic">{{ section.settings.harvest_image | image_url: width: 700 | image_tag: loading: 'lazy' }}<figcaption>The harvest</figcaption></figure>{% endif %}
       </div>
     </div>
-    <div class="spec">
+    <div class="pm-spec">
       <dl>
-        <div class="row"><dt>Origin</dt><dd>Tamil Nadu, India</dd></div>
+        <div class="pm-row"><dt>Origin</dt><dd>Tamil Nadu, India</dd></div>
         
-        {% if section.settings.turmeric_type != blank %}<div class="row"><dt>Type</dt><dd>{{ section.settings.turmeric_type | escape }}</dd></div>{% endif %}
-        {% if section.settings.extraction != blank %}<div class="row"><dt>Extraction</dt><dd>{{ section.settings.extraction | escape }}</dd></div>{% endif %}
+        {% if section.settings.turmeric_type != blank %}<div class="pm-row"><dt>Type</dt><dd>{{ section.settings.turmeric_type | escape }}</dd></div>{% endif %}
+        {% if section.settings.extraction != blank %}<div class="pm-row"><dt>Extraction</dt><dd>{{ section.settings.extraction | escape }}</dd></div>{% endif %}
         
         
         
-        <div class="row"><dt>Why it's in this formula</dt><dd>To bring brightness to uneven-looking skin while the clays purify, balanced by sandalwood so the mask calms rather than stings.</dd></div>
+        <div class="pm-row"><dt>Why it's in this formula</dt><dd>To bring brightness to uneven-looking skin while the clays purify, balanced by sandalwood so the mask calms rather than stings.</dd></div>
       </dl>
     </div>
   </div>
 </section>
 
 
-<section class="chain" aria-label="From root to jar">
-  <div class="wrap">
+<section class="pm-chain" aria-label="From root to jar">
+  <div class="pm-wrap">
     <ol>
       <li><b>Ingredient</b><span>Kasthuri manjal root</span></li>
       <li><b>Origin</b><span>Tamil Nadu, India</span></li>
@@ -294,11 +294,11 @@
 </section>
 
 
-<section class="sec" aria-labelledby="how-h-{{ section.id }}">
-  <div class="wrap">
+<section class="pm-sec" aria-labelledby="how-h-{{ section.id }}">
+  <div class="pm-wrap">
     <h2 id="how-h-{{ section.id }}">The 12-minute ritual</h2>
-    <p class="intro">Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>
-    <div class="how">
+    <p class="pm-intro">Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>
+    <div class="pm-how">
       <div><b>1</b><h3>Cleanse</h3><p>Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup.</p></div>
       <div><b>2</b><h3>Apply</h3><p>Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips.</p></div>
       <div><b>3</b><h3>Wait 12 minutes</h3><p>Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8.</p></div>
@@ -308,54 +308,54 @@
 </section>
 
 
-<section class="wrap" style="padding-bottom:88px" aria-labelledby="set-h-{{ section.id }}">
-  <div class="set">
+<section class="pm-wrap" style="padding-bottom:88px" aria-labelledby="set-h-{{ section.id }}">
+  <div class="pm-set">
     <div>
       <h2 id="set-h-{{ section.id }}">Make it the ABHYANGA weekly ritual</h2>
       <p>Rose Jasmine Milk Cleanser, this mask and the Saffron Glow Serum, together.</p>
     </div>
     <div>
-      {% assign ritual_product = section.settings.bundle_product %}{% assign ritual_variant = ritual_product.selected_or_first_available_variant %}{% if ritual_variant %}<div class="price">{% if ritual_variant.compare_at_price > ritual_variant.price %}<s>{{ ritual_variant.compare_at_price | money }}</s>{% endif %}{{ ritual_variant.price | money }}</div>{% endif %}
-      <a class="btn" href="{{ section.settings.bundle_link | default: ritual_product.url | default: '/pages/abhyanga' }}">Shop the ritual set</a>
+      {% assign ritual_product = section.settings.bundle_product %}{% assign ritual_variant = ritual_product.selected_or_first_available_variant %}{% if ritual_variant %}<div class="pm-price">{% if ritual_variant.compare_at_price > ritual_variant.price %}<s>{{ ritual_variant.compare_at_price | money }}</s>{% endif %}{{ ritual_variant.price | money }}</div>{% endif %}
+      <a class="pm-btn" href="{{ section.settings.bundle_link | default: ritual_product.url | default: '/pages/abhyanga' }}">Shop the ritual set</a>
     </div>
   </div>
 </section>
 
 
-<section class="wrap" style="padding-bottom:96px" aria-labelledby="faq-h-{{ section.id }}">
+<section class="pm-wrap" style="padding-bottom:96px" aria-labelledby="faq-h-{{ section.id }}">
   <h2 id="faq-h-{{ section.id }}" style="font-size:clamp(32px,4vw,48px);margin-bottom:18px">Details and questions</h2>
 
   <details>
     <summary>Which skin types is it for?</summary>
-    <div class="body">It's suitable for all skin types, and especially effective for acne-prone, oily and combination skin. The three clays absorb excess oil at different depths, and sandalwood and rose help calm the look of redness, so skin looks clearer without feeling stripped. If you're under a dermatologist's care or using prescription treatments, check with them before adding a new mask.</div>
+    <div class="pm-body">It's suitable for all skin types, and especially effective for acne-prone, oily and combination skin. The three clays absorb excess oil at different depths, and sandalwood and rose help calm the look of redness, so skin looks clearer without feeling stripped. If you're under a dermatologist's care or using prescription treatments, check with them before adding a new mask.</div>
   </details>
   <details>
     <summary>How far before my wedding should I start?</summary>
-    <div class="body">Eight weeks gives you enough time to see a difference. Use it twice a week for the first four weeks, then weekly. Do your last mask two or three days before the ceremony rather than the night before, and never try a new product for the first time in the final week.</div>
+    <div class="pm-body">Eight weeks gives you enough time to see a difference. Use it twice a week for the first four weeks, then weekly. Do your last mask two or three days before the ceremony rather than the night before, and never try a new product for the first time in the final week.</div>
   </details>
   <details>
     <summary>Will a clay mask dry out my skin?</summary>
-    <div class="body">Kaolin, glycerin and caprylic/capric triglyceride keep the formula comfortable, which is why it rinses off soft rather than tight. Rinse while the mask is almost dry — letting it crack is what causes that stripped feeling.</div>
+    <div class="pm-body">Kaolin, glycerin and caprylic/capric triglyceride keep the formula comfortable, which is why it rinses off soft rather than tight. Rinse while the mask is almost dry — letting it crack is what causes that stripped feeling.</div>
   </details>
   <details>
     <summary>How often should I use it?</summary>
-    <div class="body">Once a week for most skin. Oily or breakout-prone skin can use it twice a week for the first four weeks, then drop to weekly. Not for daily use.</div>
+    <div class="pm-body">Once a week for most skin. Oily or breakout-prone skin can use it twice a week for the first four weeks, then drop to weekly. Not for daily use.</div>
   </details>
   <details>
     <summary>Is it suitable for sensitive skin?</summary>
-    <div class="body">Yes, with care. No synthetic fragrance, parabens or alcohol. Start with 8 minutes, and patch test on your inner arm if you know you react to clays or botanical oils.</div>
+    <div class="pm-body">Yes, with care. No synthetic fragrance, parabens or alcohol. Start with 8 minutes, and patch test on your inner arm if you know you react to clays or botanical oils.</div>
   </details>
   <details>
     <summary>Will the turmeric stain?</summary>
-    <div class="body">It's a refined root extract, not raw powder, so it won't stain skin. Rinse thoroughly and use a dark towel — traces can mark light fabric if not fully rinsed.</div>
+    <div class="pm-body">It's a refined root extract, not raw powder, so it won't stain skin. Rinse thoroughly and use a dark towel — traces can mark light fabric if not fully rinsed.</div>
   </details>
   <details>
     <summary>Can I use it with the Saffron Glow Serum?</summary>
-    <div class="body">Yes. On mask nights, apply the serum right after rinsing. On other nights, use it after cleansing and toning as usual.</div>
+    <div class="pm-body">Yes. On mask nights, apply the serum right after rinsing. On other nights, use it after cleansing and toning as usual.</div>
   </details>
 </section>
 
-<div class="sticky" aria-hidden="true"><div class="n"><b>{{ product.title | escape }}</b><span class="price-now">{{ selected_variant.price | money }}</span></div><button class="atc" type="button" data-sticky tabindex="-1" {% unless selected_variant.available %}disabled{% endunless %}>{{ 'products.product.add_to_cart' | t }}</button></div>
+<div class="pm-sticky" aria-hidden="true"><div class="pm-n"><b>{{ product.title | escape }}</b><span class="pm-price-now">{{ selected_variant.price | money }}</span></div><button class="pm-atc" type="button" data-sticky tabindex="-1" {% unless selected_variant.available %}disabled{% endunless %}>{{ 'products.product.add_to_cart' | t }}</button></div>
 </prana-mask-pdp>
 <script type="module" src="{{ 'prana-mask-pdp.js' | asset_url }}"></script>
 {% schema %}

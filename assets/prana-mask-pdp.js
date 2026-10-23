@@ -11,8 +11,8 @@ class PranaMaskPdp extends HTMLElement {
     const format = (/** @type {number} */ amount) => new Intl.NumberFormat(document.documentElement.lang || 'en', {style:'currency',currency:this.dataset.currency || 'USD'}).format(amount / 100);
     const updatePrice = () => {
       const plan = this.querySelector('input[name="selling_plan"]:checked');
-      const amount = Number(plan instanceof HTMLInputElement ? plan.dataset.price : this.dataset.price);
-      this.querySelectorAll('.price-now').forEach(el => { el.textContent = format(amount * Number(quantity.value || 1)); });
+      const amount = Number(plan instanceof HTMLInputElement ? plan.dataset.pm-price : this.dataset.price);
+      this.querySelectorAll('.pm-price-now').forEach(el => { el.textContent = format(amount * Number(quantity.value || 1)); });
     };
     form.addEventListener('change', updatePrice);
     quantity.addEventListener('input', updatePrice);
@@ -23,23 +23,23 @@ class PranaMaskPdp extends HTMLElement {
     this.querySelectorAll('[data-q]').forEach(button => button.addEventListener('click', () => {
       if (button.getAttribute('data-q') === '1') quantity.stepUp(); else quantity.stepDown(); updatePrice();
     }));
-    this.querySelectorAll('.thumbs button').forEach(button => button.addEventListener('click', () => {
-      const image = this.querySelector('.gallery-main img');
+    this.querySelectorAll('.pm-thumbs button').forEach(button => button.addEventListener('click', () => {
+      const image = this.querySelector('.pm-gallery-main img');
       if (!(image instanceof HTMLImageElement)) return;
       image.removeAttribute('srcset'); image.src = button.getAttribute('data-src') || image.src; image.alt = button.getAttribute('data-alt') || '';
-      this.querySelectorAll('.thumbs button').forEach(el => el.setAttribute('aria-current',String(el===button)));
+      this.querySelectorAll('.pm-thumbs button').forEach(el => el.setAttribute('aria-current',String(el===button)));
     }));
     this.querySelectorAll('a[href*="#formula-"]').forEach(link => link.addEventListener('click', () => {
-      const formula = this.querySelector('details.formula'); if (formula instanceof HTMLDetailsElement) formula.open = true;
+      const formula = this.querySelector('details.pm-formula'); if (formula instanceof HTMLDetailsElement) formula.open = true;
     }));
     this.querySelector('input[type="range"]')?.addEventListener('input',(event)=>{
-      const comparison=this.querySelector('.ba'); if(comparison instanceof HTMLElement && event.target instanceof HTMLInputElement) comparison.style.setProperty('--pos',event.target.value+'%');
+      const comparison=this.querySelector('.pm-ba'); if(comparison instanceof HTMLElement && event.target instanceof HTMLInputElement) comparison.style.setProperty('--pos',event.target.value+'%');
     });
-    const sticky = this.querySelector('.sticky');
+    const sticky = this.querySelector('.pm-sticky');
     const stickyButton = this.querySelector('[data-sticky]');
     stickyButton?.addEventListener('click',()=>{ if(!atc.disabled) form.requestSubmit(atc); });
     if(sticky && 'IntersectionObserver' in window){
-      this.observer = new IntersectionObserver(entries=>{const entry=entries[0];if(!entry)return;const visible=!entry.isIntersecting && entry.boundingClientRect.top<0;sticky.classList.toggle('show',visible);sticky.setAttribute('aria-hidden',String(!visible));if(stickyButton instanceof HTMLButtonElement)stickyButton.tabIndex=visible?0:-1;});
+      this.observer = new IntersectionObserver(entries=>{const entry=entries[0];if(!entry)return;const visible=!entry.isIntersecting && entry.boundingClientRect.top<0;sticky.classList.toggle('pm-show',visible);sticky.setAttribute('aria-hidden',String(!visible));if(stickyButton instanceof HTMLButtonElement)stickyButton.tabIndex=visible?0:-1;});
       this.observer.observe(atc);
     }
     form.addEventListener('submit', async (event) => {

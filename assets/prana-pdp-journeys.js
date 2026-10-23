@@ -21,7 +21,7 @@ class PranaPdpJourneys extends HTMLElement {
       }, options);
     });
     this.querySelectorAll('input[type="range"]').forEach(range => range.addEventListener('input', () => {
-      range.closest('.ba')?.style.setProperty('--pos', range.value + '%');
+      range.closest('.pm-ba')?.style.setProperty('--pos', range.value + '%');
     }, options));
     this.addEventListener('shopify:block:select', event => {
       const panel = event.target.closest('[role="tabpanel"]');

@@ -1,15 +1,15 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<prana-pdp-journeys class="prana-mask-pdp pdp-journeys">
+<prana-pdp-journeys class="prana-mask-pdp pm-pdp-journeys">
 {% assign journey_blocks = section.blocks | where: 'type', 'journey' %}
 {% assign journey_count = 0 %}
 {% for block in journey_blocks %}{% if block.settings.before_image != blank and block.settings.after_image != blank %}{% assign journey_count = journey_count | plus: 1 %}{% endif %}{% endfor %}
 {% if journey_count > 0 %}
-<section class="journeys" aria-labelledby="journeys-heading-{{ section.id }}">
-  <div class="wrap">
+<section class="pm-journeys" aria-labelledby="journeys-heading-{{ section.id }}">
+  <div class="pm-wrap">
     <h2 id="journeys-heading-{{ section.id }}">Customer journeys</h2>
-    <p class="intro">Explore our customers' experiences. Drag the slider to compare.</p>
-    <div class="journey-tabs" role="tablist" aria-label="Customer journeys">
+    <p class="pm-intro">Explore our customers' experiences. Drag the slider to compare.</p>
+    <div class="pm-journey-tabs" role="tablist" aria-label="Customer journeys">
       {% assign first_journey = true %}
       {% for block in journey_blocks %}
         {% if block.settings.before_image != blank and block.settings.after_image != blank %}
@@ -21,15 +21,15 @@
     {% assign first_journey = true %}
     {% for block in journey_blocks %}
       {% if block.settings.before_image != blank and block.settings.after_image != blank %}
-        <div class="ba-grid" role="tabpanel" id="journey-panel-{{ block.id }}" aria-labelledby="journey-tab-{{ block.id }}" {% unless first_journey %}hidden{% endunless %} {{ block.shopify_attributes }}>
-          <div class="ba">
-            <div class="img before">{{ block.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
-            <div class="img after">{{ block.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
-            <span class="lbl l">{{ block.settings.before_label | escape }}</span><span class="lbl r">{{ block.settings.after_label | escape }}</span><div class="handle" aria-hidden="true"></div>
-            <label class="sr" for="compare-{{ block.id }}">Compare before and after for {{ block.settings.title | escape }}</label>
+        <div class="pm-ba-grid" role="tabpanel" id="journey-panel-{{ block.id }}" aria-labelledby="journey-tab-{{ block.id }}" {% unless first_journey %}hidden{% endunless %} {{ block.shopify_attributes }}>
+          <div class="pm-ba">
+            <div class="pm-img pm-before">{{ block.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
+            <div class="pm-img pm-after">{{ block.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
+            <span class="pm-lbl pm-l">{{ block.settings.before_label | escape }}</span><span class="pm-lbl pm-r">{{ block.settings.after_label | escape }}</span><div class="pm-handle" aria-hidden="true"></div>
+            <label class="pm-sr" for="compare-{{ block.id }}">Compare before and after for {{ block.settings.title | escape }}</label>
             <input type="range" id="compare-{{ block.id }}" min="0" max="100" value="50">
           </div>
-          <div class="journey-copy"><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.skin | escape }}</p>{{ block.settings.story }}<p class="disclose">{{ block.settings.disclosure | escape }}</p></div>
+          <div class="pm-journey-copy"><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.skin | escape }}</p>{{ block.settings.story }}<p class="pm-disclose">{{ block.settings.disclosure | escape }}</p></div>
         </div>
         {% assign first_journey = false %}
       {% endif %}
@@ -38,8 +38,8 @@
 </section>
 {% else %}
 {% if section.settings.before_image != blank and section.settings.after_image != blank %}
-<section class="journeys"><div class="wrap"><h2>Customer journeys</h2><div class="ba-grid"><div class="ba" id="ba-{{ section.id }}"><div class="img before">{{ section.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><div class="img after">{{ section.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><span class="lbl l">Before</span><span class="lbl r">After</span><div class="handle"></div><label class="sr" for="baRange-{{ section.id }}">Compare before and after</label><input type="range" id="baRange-{{ section.id }}" min="0" max="100" value="50"></div><div class="journey-copy">{{ section.settings.journey_text }}</div></div></div></section>{% endif %}
-{% if request.design_mode and section.settings.before_image == blank %}<section class="journeys"><div class="wrap"><h2>Customer journeys</h2><p>Add Customer journey blocks with approved before and after photos to display the comparison sliders here.</p></div></section>{% endif %}
+<section class="pm-journeys"><div class="pm-wrap"><h2>Customer journeys</h2><div class="pm-ba-grid"><div class="pm-ba" id="ba-{{ section.id }}"><div class="pm-img pm-before">{{ section.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><div class="pm-img pm-after">{{ section.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div><span class="pm-lbl pm-l">Before</span><span class="pm-lbl pm-r">After</span><div class="pm-handle"></div><label class="pm-sr" for="baRange-{{ section.id }}">Compare before and after</label><input type="range" id="baRange-{{ section.id }}" min="0" max="100" value="50"></div><div class="pm-journey-copy">{{ section.settings.journey_text }}</div></div></div></section>{% endif %}
+{% if request.design_mode and section.settings.before_image == blank %}<section class="pm-journeys"><div class="pm-wrap"><h2>Customer journeys</h2><p>Add Customer journey blocks with approved before and after photos to display the comparison sliders here.</p></div></section>{% endif %}
 {% endif %}
 </prana-pdp-journeys>
 <script src="{{ 'prana-pdp-journeys.js' | asset_url }}" defer></script>

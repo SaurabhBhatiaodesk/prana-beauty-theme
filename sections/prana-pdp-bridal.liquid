@@ -1,17 +1,17 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<div class="prana-mask-pdp pdp-bridal">
-<section class="bridal" id="prana-pdp-bridal" aria-labelledby="bride-h-{{ section.id }}">
-  <div class="wrap bridal-grid">
-    {% if section.settings.bridal_image != blank %}<div class="bridal-photo">{{ section.settings.bridal_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>{% endif %}
+<div class="prana-mask-pdp pm-pdp-bridal">
+<section class="pm-bridal" id="prana-pdp-bridal" aria-labelledby="bride-h-{{ section.id }}">
+  <div class="pm-wrap pm-bridal-grid">
+    {% if section.settings.bridal_image != blank %}<div class="pm-bridal-photo">{{ section.settings.bridal_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>{% endif %}
     <div>
       <h2 id="bride-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
-      <p class="tamil">Haldi (HUL-dee): the Hindi word for turmeric</p>
+      <p class="pm-tamil">Haldi (HUL-dee): the Hindi word for turmeric</p>
       <p>A few days before a South Asian wedding, family and friends gather for the haldi ceremony. One by one, they smooth a paste of turmeric, often mixed with sandalwood and rosewater, onto the bride's face and arms. It's part blessing, part beauty ritual and always a party. The idea is simple: she should walk into her wedding glowing.</p>
       <p>The tradition goes by many names. Bengali families call it gaye holud. Pakistani and North Indian Muslim families hold a mayun, with a turmeric paste called ubtan. In Tamil Nadu, the bride's bath on her wedding morning begins with turmeric. Across regions and faiths, the ingredient stays the same.</p>
       <p>Our turmeric comes from Tamil Nadu. It's kasthuri manjal, a pale, fragrant wild turmeric that Tamil women have long used on their skin because it brightens without leaving a yellow stain.</p>
-      <p class="glow-line">Apply and leave on for just 12 minutes for the bridal glow.</p>
-      <a class="btn" href="https://www.pranabeauty.com/pages/soundarya">See the SOUNDARYA bridal glow set</a>
+      <p class="pm-glow-line">Apply and leave on for just 12 minutes for the bridal glow.</p>
+      <a class="pm-btn" href="https://www.pranabeauty.com/pages/soundarya">See the SOUNDARYA bridal glow set</a>
     </div>
   </div>
 </section>

@@ -1,10 +1,10 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<div class="prana-mask-pdp pdp-faq">
-<section class="wrap" style="padding-bottom:96px" aria-labelledby="faq-h-{{ section.id }}">
+<div class="prana-mask-pdp pm-pdp-faq">
+<section class="pm-wrap" style="padding-bottom:96px" aria-labelledby="faq-h-{{ section.id }}">
   <h2 id="faq-h-{{ section.id }}" style="font-size:clamp(32px,4vw,48px);margin-bottom:18px">{{ section.settings.heading | escape }}</h2>
 
-  {% for block in section.blocks %}<details {{ block.shopify_attributes }}><summary>{{ block.settings.title | escape }}</summary><div class="body">{{ block.settings.text | escape }}</div></details>{% endfor %}
+  {% for block in section.blocks %}<details {{ block.shopify_attributes }}><summary>{{ block.settings.title | escape }}</summary><div class="pm-body">{{ block.settings.text | escape }}</div></details>{% endfor %}
 </section>
 </div>
 {% schema %}

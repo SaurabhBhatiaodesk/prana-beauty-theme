@@ -1,11 +1,11 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<div class="prana-mask-pdp pdp-ritual">
-<section class="sec" aria-labelledby="how-h-{{ section.id }}">
-  <div class="wrap">
+<div class="prana-mask-pdp pm-pdp-ritual">
+<section class="pm-sec" aria-labelledby="how-h-{{ section.id }}">
+  <div class="pm-wrap">
     <h2 id="how-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
-    <p class="intro">Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>
-    <div class="how">
+    <p class="pm-intro">Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>
+    <div class="pm-how">
       {% for block in section.blocks %}<div {{ block.shopify_attributes }}><b>{{ forloop.index }}</b><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.text | escape }}</p></div>{% endfor %}
     </div>
   </div>

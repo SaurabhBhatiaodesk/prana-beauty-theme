@@ -1,12 +1,12 @@
 {{ 'prana-mask-pdp.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<div class="prana-mask-pdp pdp-benefits">
-<section class="benefits wrap" aria-labelledby="ben-h-{{ section.id }}">
+<div class="prana-mask-pdp pm-pdp-benefits">
+<section class="pm-benefits pm-wrap" aria-labelledby="ben-h-{{ section.id }}">
       <h2 id="ben-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
       <ul>
         {% for block in section.blocks %}<li {{ block.shopify_attributes }}><b>{{ block.settings.title | escape }}</b><span>{{ block.settings.text | escape }}</span></li>{% endfor %}
       </ul>
-      <p class="free">*4-week independent consumer perception study, 50 participants. Individual results may vary.<br>Vegan and cruelty-free, with botanical and mineral actives. Free from parabens, sulfates and synthetic fragrance.</p>
+      <p class="pm-free">*4-week independent consumer perception study, 50 participants. Individual results may vary.<br>Vegan and cruelty-free, with botanical and mineral actives. Free from parabens, sulfates and synthetic fragrance.</p>
     </section>
 </div>
 {% schema %}
