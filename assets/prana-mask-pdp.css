@@ -106,3 +106,10 @@
 .prana-mask-pdp .pm-atc { background:#000; }
 .prana-mask-pdp .pm-atc:hover { background:#2E2014; }
 .prana-mask-pdp .pm-ba .pm-lbl,.prana-mask-pdp .root-img figcaption { background:rgba(70,19,36,.85); }
+/* Placeholder slots shown until real photos are added, matching the client HTML. */
+.prana-mask-pdp .pm-bridal-photo.pm-photo-slot { padding:30px;color:#4E403C;font-size:15px; }
+.prana-mask-pdp .pm-tur-slot { aspect-ratio:1/1;border-radius:16px;background:var(--sandal);display:grid;place-items:center;text-align:center;padding:20px;font-size:14px;color:#4E403C; }
+.prana-mask-pdp .pm-journey-story ul { list-style:none;padding:0;margin:20px 0; }
+.prana-mask-pdp .pm-journey-story li { display:grid;grid-template-columns:78px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:16px; }
+.prana-mask-pdp .pm-journey-story li strong { color:var(--turmeric-deep); }
+@media (max-width:640px){ .prana-mask-pdp .pm-journey-story li { grid-template-columns:1fr;gap:2px; } }

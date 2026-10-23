@@ -3,7 +3,7 @@
 <div class="prana-mask-pdp pm-pdp-bridal">
 <section class="pm-bridal" id="prana-pdp-bridal" aria-labelledby="bride-h-{{ section.id }}">
   <div class="pm-wrap pm-bridal-grid">
-    {% if section.settings.bridal_image != blank %}<div class="pm-bridal-photo">{{ section.settings.bridal_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>{% endif %}
+    {% if section.settings.bridal_image != blank %}<div class="pm-bridal-photo">{{ section.settings.bridal_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>{% else %}<div class="pm-bridal-photo pm-photo-slot">Photo slot: a real haldi ceremony, with family applying turmeric paste to the bride, with permission<br>(no AI or stock imagery)</div>{% endif %}
     <div>
       <h2 id="bride-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
       <p class="pm-tamil">Haldi (HUL-dee): the Hindi word for turmeric</p>

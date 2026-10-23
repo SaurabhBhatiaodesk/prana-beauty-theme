@@ -13,7 +13,7 @@
           <img src="https://www.pranabeauty.com/cdn/shop/files/Turmeirc_18463052-bc95-4d90-b93d-c1204ed175e5.png?v=1780384650&width=700" alt="Wild turmeric root" loading="lazy" width="700" height="700">
           <figcaption>The root</figcaption>
         </figure>
-        {% if section.settings.harvest_image != blank %}<figure class="pm-tur-pic">{{ section.settings.harvest_image | image_url: width: 700 | image_tag: loading: 'lazy' }}<figcaption>The harvest</figcaption></figure>{% endif %}
+        {% if section.settings.harvest_image != blank %}<figure class="pm-tur-pic">{{ section.settings.harvest_image | image_url: width: 700 | image_tag: loading: 'lazy' }}<figcaption>The harvest</figcaption></figure>{% else %}<figure class="pm-tur-pic"><div class="pm-tur-slot">Harvest photo slot<br>Real supplier photo from Tamil Nadu</div><figcaption>The harvest</figcaption></figure>{% endif %}
       </div>
     </div>
     <div class="pm-spec">

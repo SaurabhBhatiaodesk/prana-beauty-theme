@@ -11,7 +11,9 @@
   "sections": {
     "main": {
       "type": "prana-pdp-hero",
-      "settings": {}
+      "settings": {
+        "inci": "<p>Aqua (Water), Kaolin, Caprylic/Capric Triglyceride, Magnesium Aluminum Silicate, Glycerin, Propanediol, Magnesium Carbonate, Bentonite, Illite, Titanium Dioxide, Cetyl Alcohol, Ceteareth-20, Rosa Canina (Rosehip) Seed Oil, Phenoxyethanol, Ethylhexylglycerin, Santalum Album (Sandalwood) Oil, Rosa Damascena Flower Oil, Curcuma Longa (Turmeric) Root Extract.</p>"
+      }
     },
     "benefits": {
       "type": "prana-pdp-benefits",
@@ -141,7 +143,50 @@
     },
     "journeys": {
       "type": "prana-pdp-journeys",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "journey_maya": {
+          "type": "journey",
+          "settings": {
+            "title": "Maya, 27",
+            "tab_label": "Maya",
+            "skin": "Blemish-prone, combination skin",
+            "before_label": "Week 0",
+            "after_label": "Week 8",
+            "story": "<ul><li><strong>Week 1</strong> “My skin felt clean but not tight, which never happens with clay masks.”</li><li><strong>Week 4</strong> “Redness around my chin looks calmer and my pores look smaller.”</li><li><strong>Week 8</strong> “My skin looks clearer and more even. I wear less foundation now.”</li></ul>",
+            "disclosure": "Unretouched photos shared with permission by a verified customer. Other products used: Rose Jasmine Milk Cleanser, usual SPF. Individual results vary."
+          }
+        },
+        "journey_aisha": {
+          "type": "journey",
+          "settings": {
+            "title": "Aisha, 34",
+            "tab_label": "Aisha",
+            "skin": "Blemish-prone, oily skin",
+            "before_label": "Week 0",
+            "after_label": "Week 8",
+            "story": "<ul><li><strong>Week 1</strong> “Less shine by midday, and my skin still felt soft after rinsing.”</li><li><strong>Week 4</strong> “My nose and forehead look less congested.”</li><li><strong>Week 8</strong> “Old marks look lighter and my skin tone looks more even.”</li></ul>",
+            "disclosure": "Unretouched photos shared with permission by a verified customer. Other products used: Usual cleanser and moisturizer. Individual results vary."
+          }
+        },
+        "journey_jen": {
+          "type": "journey",
+          "settings": {
+            "title": "Jen, 41",
+            "tab_label": "Jen",
+            "skin": "Blemish-prone, sensitive skin",
+            "before_label": "Week 0",
+            "after_label": "Week 8",
+            "story": "<ul><li><strong>Week 1</strong> “Started at 8 minutes. No stinging, and the scent is lovely.”</li><li><strong>Week 4</strong> “Moved up to 12 minutes. My skin looks calmer overall.”</li><li><strong>Week 8</strong> “Fewer blemishes showing up, and my skin looks brighter.”</li></ul>",
+            "disclosure": "Unretouched photos shared with permission by a verified customer. Other products used: Saffron Glow Serum, usual SPF. Individual results vary."
+          }
+        }
+      },
+      "block_order": [
+        "journey_maya",
+        "journey_aisha",
+        "journey_jen"
+      ]
     },
     "science": {
       "type": "prana-pdp-science",
@@ -153,7 +198,10 @@
     },
     "turmeric": {
       "type": "prana-pdp-turmeric",
-      "settings": {}
+      "settings": {
+        "turmeric_type": "Kasthuri manjal, wild turmeric",
+        "extraction": "Liquid root extract, used at up to 1%"
+      }
     },
     "provenance": {
       "type": "prana-pdp-provenance",

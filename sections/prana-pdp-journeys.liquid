@@ -2,37 +2,34 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 <prana-pdp-journeys class="prana-mask-pdp pm-pdp-journeys">
 {% assign journey_blocks = section.blocks | where: 'type', 'journey' %}
-{% assign journey_count = 0 %}
-{% for block in journey_blocks %}{% if block.settings.before_image != blank and block.settings.after_image != blank %}{% assign journey_count = journey_count | plus: 1 %}{% endif %}{% endfor %}
-{% if journey_count > 0 %}
+{% if journey_blocks.size > 0 %}
 <section class="pm-journeys" aria-labelledby="journeys-heading-{{ section.id }}">
   <div class="pm-wrap">
-    <h2 id="journeys-heading-{{ section.id }}">Customer journeys</h2>
-    <p class="pm-intro">Explore our customers' experiences. Drag the slider to compare.</p>
-    <div class="pm-journey-tabs" role="tablist" aria-label="Customer journeys">
-      {% assign first_journey = true %}
+    <h2 id="journeys-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <p class="pm-intro">{{ section.settings.intro | escape }}</p>
+    <div class="pm-journey-tabs" role="tablist" aria-label="{{ section.settings.heading | escape }}">
       {% for block in journey_blocks %}
-        {% if block.settings.before_image != blank and block.settings.after_image != blank %}
-          <button type="button" role="tab" id="journey-tab-{{ block.id }}" aria-controls="journey-panel-{{ block.id }}" aria-selected="{{ first_journey }}" tabindex="{% if first_journey %}0{% else %}-1{% endif %}">{{ block.settings.title | escape }}</button>
-          {% assign first_journey = false %}
-        {% endif %}
+        <button type="button" role="tab" id="journey-tab-{{ block.id }}" aria-controls="journey-panel-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">{{ block.settings.tab_label | default: block.settings.title | escape }}</button>
       {% endfor %}
     </div>
-    {% assign first_journey = true %}
     {% for block in journey_blocks %}
-      {% if block.settings.before_image != blank and block.settings.after_image != blank %}
-        <div class="pm-ba-grid" role="tabpanel" id="journey-panel-{{ block.id }}" aria-labelledby="journey-tab-{{ block.id }}" {% unless first_journey %}hidden{% endunless %} {{ block.shopify_attributes }}>
-          <div class="pm-ba">
-            <div class="pm-img pm-before">{{ block.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
-            <div class="pm-img pm-after">{{ block.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
-            <span class="pm-lbl pm-l">{{ block.settings.before_label | escape }}</span><span class="pm-lbl pm-r">{{ block.settings.after_label | escape }}</span><div class="pm-handle" aria-hidden="true"></div>
-            <label class="pm-sr" for="compare-{{ block.id }}">Compare before and after for {{ block.settings.title | escape }}</label>
-            <input type="range" id="compare-{{ block.id }}" min="0" max="100" value="50">
-          </div>
-          <div class="pm-journey-copy"><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.skin | escape }}</p>{{ block.settings.story }}<p class="pm-disclose">{{ block.settings.disclosure | escape }}</p></div>
+      {% assign has_photos = false %}{% if block.settings.before_image != blank and block.settings.after_image != blank %}{% assign has_photos = true %}{% endif %}
+      <div class="pm-ba-grid" role="tabpanel" id="journey-panel-{{ block.id }}" aria-labelledby="journey-tab-{{ block.id }}" {% unless forloop.first %}hidden{% endunless %} {{ block.shopify_attributes }}>
+        <div class="pm-ba">
+          <div class="pm-img pm-before">{% if block.settings.before_image != blank %}{{ block.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}{% else %}<div class="ph">Before photo slot — {{ block.settings.before_label | escape }}<br>Real customer, natural light, no makeup</div>{% endif %}</div>
+          <div class="pm-img pm-after">{% if block.settings.after_image != blank %}{{ block.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}{% else %}<div class="ph">After photo slot — {{ block.settings.after_label | escape }}<br>Same customer, same lighting, angle and camera</div>{% endif %}</div>
+          <span class="pm-lbl pm-l">{{ block.settings.before_label | escape }}</span><span class="pm-lbl pm-r">{{ block.settings.after_label | escape }}</span><div class="pm-handle" aria-hidden="true"></div>
+          <label class="pm-sr" for="compare-{{ block.id }}">Compare before and after for {{ block.settings.title | escape }}</label>
+          <input type="range" id="compare-{{ block.id }}" min="0" max="100" value="50">
         </div>
-        {% assign first_journey = false %}
-      {% endif %}
+        <div class="pm-journey-copy">
+          {% unless has_photos %}<span class="sample-tag">Sample data: replace before launch</span>{% endunless %}
+          <h3>{{ block.settings.title | escape }}</h3>
+          {% if block.settings.skin != blank %}<p>{{ block.settings.skin | escape }}</p>{% endif %}
+          <div class="pm-journey-story">{{ block.settings.story }}</div>
+          <p class="pm-disclose">{{ block.settings.disclosure | escape }}</p>
+        </div>
+      </div>
     {% endfor %}
   </div>
 </section>
@@ -52,6 +49,18 @@
     ]
   },
   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Customer journeys"
+    },
+    {
+      "type": "text",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Real customers with acne-prone skin, photographed at week 0 and week 8 of twice-weekly use. Drag to compare."
+    },
     {
       "type": "image_picker",
       "id": "before_image",
@@ -82,6 +91,12 @@
         },
         {
           "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "info": "Short name for the tab. Defaults to the customer name."
+        },
+        {
+          "type": "text",
           "id": "skin",
           "label": "Skin type"
         },
@@ -99,13 +114,13 @@
           "type": "text",
           "id": "before_label",
           "label": "Before label",
-          "default": "Before"
+          "default": "Week 0"
         },
         {
           "type": "text",
           "id": "after_label",
           "label": "After label",
-          "default": "After"
+          "default": "Week 8"
         },
         {
           "type": "richtext",
