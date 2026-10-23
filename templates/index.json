@@ -15,7 +15,6 @@
         "item_P9Pgzj": {
           "type": "item",
           "settings": {
-            "left_image": "shopify://shop_images/ffgmkfghkng_1.png",
             "title": "Ancient Rituals.",
             "title2": "Radiant Skin.",
             "text": "5,000 years of Ayurvedic wisdom distilled into six transformative formulas. Your skin doesn't need more products — it needs a ritual.",
@@ -72,8 +71,8 @@
       "type": "hero-banner",
       "name": "Hero Banner",
       "settings": {
-        "desktop_image": "shopify://shop_images/bb5449b6-7256-47ac-b35b-36f5cba87aa4_1.png",
-        "mobile_image": "shopify://shop_images/ChatGPT_Image_Jun_26_2026_04_43_56_PM_1.png",
+        "desktop_image": "shopify://shop_images/prana-skincare-collection-banner.png",
+        "mobile_image": "shopify://shop_images/prana-complete-skincare-collection.png",
         "desktop_image_position": "right center",
         "mobile_image_position": "center center",
         "eyebrow": "",
@@ -209,7 +208,6 @@
         "desktop_padding_bottom": 60,
         "mobile_padding_top": 0,
         "mobile_padding_bottom": 30,
-        "image": "shopify://shop_images/Gemini_Generated_Image_42ydps42ydps42yd.png",
         "name": "Prabha Iyer",
         "role": "Founder · Prana Beauty & Wellness · New York",
         "tag1": "South Asian Heritage",
