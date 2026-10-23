@@ -153,6 +153,20 @@
     "journeys": {
       "type": "prana-pdp-journeys",
       "blocks": {
+        "journey_jen": {
+          "type": "journey",
+          "settings": {
+            "title": "Jen, 41",
+            "tab_label": "Jen",
+            "skin": "Blemish-prone, sensitive skin",
+            "before_image": "shopify://shop_images/image_1_c1e705cd-8e9b-40c9-b8b9-95712100a4de.png",
+            "after_image": "shopify://shop_images/image_2.png",
+            "before_label": "Week 0",
+            "after_label": "Week 8",
+            "story": "<ul><li><strong>Week 1</strong> “Started at 8 minutes. No stinging, and the scent is lovely.”</li><li><strong>Week 4</strong> “Moved up to 12 minutes. My skin looks calmer overall.”</li><li><strong>Week 8</strong> “Fewer blemishes showing up, and my skin looks brighter.”</li></ul>",
+            "disclosure": "Unretouched photos shared with permission by a verified customer. Other products used: Saffron Glow Serum, usual SPF. Individual results vary."
+          }
+        },
         "journey_maya": {
           "type": "journey",
           "settings": {
@@ -180,26 +194,12 @@
             "story": "<ul><li><strong>Week 1</strong> “Less shine by midday, and my skin still felt soft after rinsing.”</li><li><strong>Week 4</strong> “My nose and forehead look less congested.”</li><li><strong>Week 8</strong> “Old marks look lighter and my skin tone looks more even.”</li></ul>",
             "disclosure": "Unretouched photos shared with permission by a verified customer. Other products used: Usual cleanser and moisturizer. Individual results vary."
           }
-        },
-        "journey_jen": {
-          "type": "journey",
-          "settings": {
-            "title": "Jen, 41",
-            "tab_label": "Jen",
-            "skin": "Blemish-prone, sensitive skin",
-            "before_image": "shopify://shop_images/image_1_c1e705cd-8e9b-40c9-b8b9-95712100a4de.png",
-            "after_image": "shopify://shop_images/image_2.png",
-            "before_label": "Week 0",
-            "after_label": "Week 8",
-            "story": "<ul><li><strong>Week 1</strong> “Started at 8 minutes. No stinging, and the scent is lovely.”</li><li><strong>Week 4</strong> “Moved up to 12 minutes. My skin looks calmer overall.”</li><li><strong>Week 8</strong> “Fewer blemishes showing up, and my skin looks brighter.”</li></ul>",
-            "disclosure": "Unretouched photos shared with permission by a verified customer. Other products used: Saffron Glow Serum, usual SPF. Individual results vary."
-          }
         }
       },
       "block_order": [
+        "journey_jen",
         "journey_maya",
-        "journey_aisha",
-        "journey_jen"
+        "journey_aisha"
       ],
       "settings": {
         "heading": "Customer journeys",
