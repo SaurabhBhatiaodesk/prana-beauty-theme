@@ -4,6 +4,19 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    {%- liquid
+      # UK store: Sutra pages listed in theme settings are hidden for visitors in the United Kingdom.
+      assign uk_hidden_pages = ''
+      if localization.country.iso_code == 'GB'
+        assign uk_hidden_pages = settings.uk_hidden_pages | remove: ' ' | downcase
+      endif
+      assign uk_hidden_list = uk_hidden_pages | split: ','
+    -%}
+    {%- if template.name == 'page' and uk_hidden_list contains page.handle and request.design_mode == false -%}
+      <meta name="robots" content="noindex">
+      <meta http-equiv="refresh" content="0;url={{ routes.root_url }}">
+      <script>location.replace({{ routes.root_url | json }});</script>
+    {%- endif -%}
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -226,6 +239,6 @@
       });
       </script>
 
-  <script src="{{ 'prana-market-visibility.js' | asset_url }}" defer data-prana-market-check data-store-domain="{{ shop.domain | escape }}" data-store-permanent-domain="{{ shop.permanent_domain | escape }}"></script>
+  <script src="{{ 'prana-market-visibility.js' | asset_url }}" defer data-prana-market-check data-hidden-pages="{{ uk_hidden_pages | escape }}" data-store-domain="{{ shop.domain | escape }}" data-store-permanent-domain="{{ shop.permanent_domain | escape }}"></script>
   </body>
 </html>

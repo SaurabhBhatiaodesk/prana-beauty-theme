@@ -33,7 +33,37 @@
     }
   }
 
+  // UK store: pages listed in theme settings (passed only for UK visitors) are hidden from menus and cards.
+  const hiddenPages = new Set((config.dataset.hiddenPages || '').split(',').map((handle) => handle.trim().toLowerCase()).filter(Boolean));
+
+  function hide(target) {
+    target.hidden = true;
+    target.style.setProperty('display', 'none', 'important');
+    target.setAttribute('aria-hidden', 'true');
+  }
+
+  function hidePageLinks() {
+    if (!hiddenPages.size) return;
+    document.querySelectorAll('a[href*="/pages/"]').forEach((anchor) => {
+      if (anchor.hidden) return;
+      let url;
+      try { url = new URL(anchor.href, location.href); } catch { return; }
+      if (!hosts.has(url.hostname)) return;
+      const match = url.pathname.match(/\/pages\/([^/]+)\/?$/);
+      if (!match || !hiddenPages.has(match[1].toLowerCase())) return;
+      const card = anchor.closest('.r3-col');
+      hide(card || anchor);
+      // A rituals section whose cards are all hidden goes away entirely.
+      const grid = card?.closest('.r3-grid');
+      if (grid && !grid.querySelector('.r3-col:not([hidden])')) hide(grid.closest('.shopify-section') || grid);
+      // Drop a desktop menu group once all of its links are hidden, so no empty heading is left.
+      const group = anchor.parentElement;
+      if (group?.matches('.sub-menu') && !group.querySelector('a:not([hidden])')) hide(group);
+    });
+  }
+
   function scan() {
+    hidePageLinks();
     document.querySelectorAll('a[href*="/products/"]').forEach((anchor) => {
       if (seen.has(anchor) || anchor.closest('cart-drawer-component, cart-items-component')) return;
       let url;

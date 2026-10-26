@@ -2294,5 +2294,17 @@
         "label": "Choose sticky product"
       }
     ]
+  },
+  {
+    "name": "UK store",
+    "settings": [
+      {
+        "type": "text",
+        "id": "uk_hidden_pages",
+        "label": "Sutra pages hidden in the UK",
+        "default": "abhyanga,dinacharya,shuddhi,swapna",
+        "info": "Page handles, comma separated. For visitors in the United Kingdom, links to these pages are hidden and visiting them redirects to the home page."
+      }
+    ]
   }
 ]

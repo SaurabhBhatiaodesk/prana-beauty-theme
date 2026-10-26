@@ -9,7 +9,13 @@
 {%- endcomment -%}
 
 <announcement-bar-component class="announcement-bar-mobile">
-  <p class="announcement-bar__text">{{ section.settings.anno_btn }}</p>
+  {%- liquid
+    assign announcement = section.settings.anno_btn
+    if localization.country.iso_code == 'GB' and section.settings.anno_btn_uk != blank
+      assign announcement = section.settings.anno_btn_uk
+    endif
+  -%}
+  <p class="announcement-bar__text">{{ announcement }}</p>
 </announcement-bar-component>
 
 <header id="hdr" class="scrolled">
@@ -2125,6 +2131,13 @@
       "id": "anno_btn",
 
       "label": "Announcement Bar Text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "anno_btn_uk",
+      "label": "Announcement Bar Text (UK)",
+      "default": "Free Shipping across UK on all orders",
+      "info": "Shown instead of the text above to visitors in the United Kingdom."
     },
 
     {
