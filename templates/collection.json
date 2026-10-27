@@ -14,7 +14,7 @@
       "name": "Collection Banner",
       "settings": {
         "default_banner": "shopify://shop_images/prana-skincare-banner.png",
-        "default_banner_mobile": "shopify://shop_images/Golden_Spa_Skincare_Ritual.png",
+        "default_banner_mobile": "shopify://shop_images/prana-clay-mask-application.png",
         "title": "Discover Our Beauty Collection",
         "subtitle": "A curated selection of skincare and makeup essentials crafted to elevate your routine with quality and care."
       }
