@@ -64,6 +64,7 @@
         "desktop_content_align": "center",
         "mobile_content_align": "center",
         "desktop_bg": "shopify://shop_images/prana-ai-skin-scan.png",
+        "mobile_bg": "shopify://shop_images/AI_Skin_Scan_in_a_Spa_Bathroom.png",
         "title": "Discover Your Dosha",
         "title_block": "",
         "description": "<p>Seven questions drawn from Ayurvedic tradition. Your answers reveal your prakriti — and the ritual your skin has always needed.</p>",
