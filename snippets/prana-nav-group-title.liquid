@@ -1,0 +1,12 @@
+{% doc %}
+  Prints a menu group title. UK (GB) shows only 3 sutra sets, so the
+  "Seven Sacred Sets" group reads "Three Sacred Sets" there.
+  @param {link} nav_link - Menu group link.
+{% enddoc %}
+{%- liquid
+  if localization.country.iso_code == 'GB' and nav_link.title == 'Seven Sacred Sets'
+    echo 'Three Sacred Sets'
+  else
+    echo nav_link.title
+  endif
+-%}

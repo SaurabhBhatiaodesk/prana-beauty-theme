@@ -46,7 +46,7 @@
                       {% for child_link in link.links %}
                         {% if child_link.links != blank %}
                           <div class="sub-menu">
-                            <div class="drop-head">{{ child_link.title }}</div>
+                            <div class="drop-head">{% render 'prana-nav-group-title', nav_link: child_link %}</div>
 
                             {% for grandchild_link in child_link.links %}
                               <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
@@ -73,13 +73,21 @@
 
                             {% if block.settings.title != blank %}
                               <p class="drop-feat-title">
-                                {{ block.settings.title }}
+                                {%- if localization.country.iso_code == 'GB' -%}
+                                  {{ block.settings.title | replace: 'Seven Sacred', 'Three Sacred' }}
+                                {%- else -%}
+                                  {{ block.settings.title }}
+                                {%- endif -%}
                               </p>
                             {% endif %}
 
                             {% if block.settings.description != blank %}
                               <p class="drop-feat-desc">
-                                {{ block.settings.description }}
+                                {%- if localization.country.iso_code == 'GB' -%}
+                                  {{ block.settings.description | replace: 'seven complete rituals', 'three complete rituals' }}
+                                {%- else -%}
+                                  {{ block.settings.description }}
+                                {%- endif -%}
                               </p>
                             {% endif %}
 
@@ -212,7 +220,7 @@
                     <div class="drop">
                       {% for child_link in link.links %}
                         <div class="sub-menu">
-                          <div class="drop-head">{{ child_link.title }}</div>
+                          <div class="drop-head">{% render 'prana-nav-group-title', nav_link: child_link %}</div>
 
                           {% if child_link.links != blank %}
                             {% for grandchild_link in child_link.links %}
@@ -478,7 +486,7 @@
 
                   aria-controls="MobileMenuPanel-{{ forloop.parentloop.index }}-{{ forloop.index }}"
                 >
-                  <span>{{ child_link.title }}</span>
+                  <span>{% render 'prana-nav-group-title', nav_link: child_link %}</span>
 
                   <svg
                     class="mobile-smart-menu__arrow"
@@ -531,7 +539,7 @@
                     <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
 
-                  <span>{{ child_link.title }}</span>
+                  <span>{% render 'prana-nav-group-title', nav_link: child_link %}</span>
                 </button>
 
                 {% for grandchild_link in child_link.links %}
