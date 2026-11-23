@@ -1,403 +1,201 @@
 {%- comment -%}
-  PRANA — Turmeric & Sandalwood PDP, built from prana-turmeric-mask-pdp (19).html.
-  Content and layout follow that file. Buy box is wired to the real product (variant, subscription plan,
-  quantity, theme cart drawer); reviews come from the Loox app block added to this section.
-  Anything in <mark class="fill"> is a placeholder from the source file that must be replaced with
-  verified data before launch.
-
-  COMPLIANCE NOTES (US — FDA cosmetic vs. OTC drug), kept from the source file:
-  • "Designed for acne-prone skin" describes a skin type. Keep it that way. Do NOT add
-    "treats / cures / prevents / heals acne" or "clears breakouts" anywhere, including featured reviews.
-  • Before/after images must be real, unretouched customer photos with signed consent.
-  • Every % in the results sections needs a study report on file.
+  PRANA Turmeric & Sandalwood PDP — hero / buy box (from prana-turmeric-mask-pdp v19).
+  Every text is a setting; checks, assurances and benefits are blocks. Price, subscription, images and the
+  Loox rating come from the product. Placeholders from the source file use <mark class="fill"> (html settings).
+  Compliance: describe a skin type ("for acne-prone skin"); never "treats / cures / clears acne".
 {%- endcomment -%}
-{{ 'prana-turmeric-face-mask.css' | asset_url | stylesheet_tag }}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-<script src="{{ 'prana-turmeric-face-mask.js' | asset_url }}" type="module" defer></script>
+{%- render 'ptm-assets' -%}
 
-{%- assign variant = product.selected_or_first_available_variant -%}
-{%- assign show_free_ship = false -%}
-{%- if localization.country.iso_code == 'US' -%}{%- assign show_free_ship = true -%}{%- endif -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign show_free_ship = false
+  if section.settings.free_ship_threshold > 0 and localization.country.iso_code == section.settings.free_ship_country
+    assign show_free_ship = true
+  endif
+  assign heading = section.settings.heading | default: product.title
+  assign rating = product.metafields.loox.avg_rating
+  assign rating_count = product.metafields.loox.num_reviews
+-%}
 
-<prana-tfm class="ptm" data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}" data-free-ship="{{ show_free_ship }}" data-added="{{ 'products.product.added_to_cart' | t | escape }}" data-error="{{ 'products.product.add_to_cart_error' | t | escape }}">
-<main>
-<!-- ================= ABOVE THE FOLD ================= -->
-<section class="wrap hero" id="product">
-  <div class="gallery">
-    <div class="gallery-main">
-      <span class="skin-tag">Effective for acne-prone skin</span>
-      <img id="mainImg" src="https://www.pranabeauty.com/cdn/shop/files/turmeric-sandalwood-purifying-mask-5897377.png?v=1780461673&width=1200" alt="PRANA Turmeric & Sandalwood Purifying Clay Mask jar, 110 ml" width="1200" height="1200" fetchpriority="high">
+<prana-tfm class="ptm ptm-has-sticky" data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}" data-free-ship="{{ show_free_ship }}" data-free-ship-cents="{{ section.settings.free_ship_threshold | times: 100 }}" data-ship-free="{{ section.settings.ship_free_text | escape }}" data-ship-away="{{ section.settings.ship_away_text | escape }}" data-added-label="{{ section.settings.added_label | escape }}" data-error="{{ 'products.product.add_to_cart_error' | t | escape }}">
+<section class="tm-wrap tm-hero" id="product">
+  <div class="tm-gallery">
+    <div class="tm-gallery-main">
+      {%- if section.settings.skin_tag != blank -%}<span class="tm-skin-tag">{{ section.settings.skin_tag }}</span>{%- endif -%}
+      {%- assign hero_image = variant.featured_image | default: product.featured_image -%}
+      {%- if hero_image -%}{{ hero_image | image_url: width: 1200 | image_tag: id: 'mainImg', fetchpriority: 'high', widths: '600,800,1200', sizes: '(min-width: 980px) 50vw, 100vw' }}{%- endif -%}
     </div>
-    <div class="thumbs" role="group" aria-label="Product images">
-      <button type="button" aria-current="true" data-src="https://www.pranabeauty.com/cdn/shop/files/turmeric-sandalwood-purifying-mask-5897377.png?v=1780461673&width=1200"><img src="https://www.pranabeauty.com/cdn/shop/files/turmeric-sandalwood-purifying-mask-5897377.png?v=1780461673&width=160" alt="Jar, front" width="160" height="160" loading="lazy"></button>
-      <button type="button" aria-current="false" data-src="https://www.pranabeauty.com/cdn/shop/files/1_2.jpg?v=1790111368&width=1200"><img src="https://www.pranabeauty.com/cdn/shop/files/1_2.jpg?v=1790111368&width=160" alt="Mask texture" width="160" height="160" loading="lazy"></button>
-      <button type="button" aria-current="false" data-src="https://www.pranabeauty.com/cdn/shop/files/2_2.jpg?v=1790111368&width=1200"><img src="https://www.pranabeauty.com/cdn/shop/files/2_2.jpg?v=1790111368&width=160" alt="Mask in use" width="160" height="160" loading="lazy"></button>
-      <button type="button" aria-current="false" data-src="https://www.pranabeauty.com/cdn/shop/files/3_2.jpg?v=1790111368&width=1200"><img src="https://www.pranabeauty.com/cdn/shop/files/3_2.jpg?v=1790111368&width=160" alt="Key ingredients" width="160" height="160" loading="lazy"></button>
-      <button type="button" aria-current="false" data-src="https://www.pranabeauty.com/cdn/shop/files/turmeric-sandalwood-purifying-mask-5676444.jpg?v=1780461672&width=1200"><img src="https://www.pranabeauty.com/cdn/shop/files/turmeric-sandalwood-purifying-mask-5676444.jpg?v=1780461672&width=160" alt="Ritual flat lay" width="160" height="160" loading="lazy"></button>
+    {%- if product.images.size > 1 -%}
+    <div class="tm-thumbs" role="group" aria-label="Product images">
+      {%- for image in product.images -%}
+        <button type="button" aria-current="{% if image.id == hero_image.id %}true{% else %}false{% endif %}" data-src="{{ image | image_url: width: 1200 }}" data-alt="{{ image.alt | escape }}">{{ image | image_url: width: 160 | image_tag: width: 160, height: 160, loading: 'lazy' }}</button>
+      {%- endfor -%}
     </div>
+    {%- endif -%}
   </div>
 
-  <div class="buy">
-    <span class="for">Suitable for all skin types. Effective for acne-prone skin.</span>
-    <h1>Turmeric Sandalwood Purifying Clay Mask</h1>
-    <p class="sub">The South Asian bride's turmeric, for her wedding glow. For visible brightness and uneven-looking skin tone.</p>
+  <div class="tm-buy">
+    {%- if section.settings.for_text != blank -%}<span class="tm-for">{{ section.settings.for_text }}</span>{%- endif -%}
+    <h1>{{ heading }}</h1>
+    {%- if section.settings.subtitle != blank -%}<p class="tm-sub">{{ section.settings.subtitle }}</p>{%- endif -%}
 
-    <div class="rating">
-      <span class="stars" aria-hidden="true">★★★★★</span>
-      <a href="#reviews">Read verified customer reviews</a>
-      <a class="tested" href="#results">Consumer tested*</a>
+    <div class="tm-rating">
+      <span class="tm-stars" aria-hidden="true">★★★★★</span>
+      {%- if rating != blank and rating_count > 0 -%}
+        <a href="#reviews">{{ rating }} · {{ rating_count }} {{ section.settings.reviews_count_label }}</a>
+      {%- else -%}
+        <a href="#reviews">{{ section.settings.reviews_link_text }}</a>
+      {%- endif -%}
+      {%- if section.settings.tested_text != blank -%}<a class="tm-tested" href="#results">{{ section.settings.tested_text }}</a>{%- endif -%}
     </div>
 
-    <p class="proof">Clearer, brighter-looking skin in 4 weeks.* <span>91% agreed in an independent consumer study.</span></p>
-
-    <p class="size">110 ml / 3.7 fl oz · about 12–15 treatments</p>
+    {%- if section.settings.proof != blank -%}<p class="tm-proof">{{ section.settings.proof }}{% if section.settings.proof_sub != blank %} <span>{{ section.settings.proof_sub }}</span>{% endif %}</p>{%- endif -%}
+    {%- if section.settings.size_text != blank -%}<p class="tm-size">{{ section.settings.size_text }}</p>{%- endif -%}
 
     {%- form 'product', product, id: 'ptm-product-form', novalidate: 'novalidate' -%}
       <input type="hidden" name="id" value="{{ variant.id }}">
       <input type="hidden" name="quantity" value="1" data-qty-input>
-      <fieldset class="purchase" style="border:0;padding:0;margin:0 0 16px">
-        <legend class="sr">Purchase option</legend>
+      <fieldset class="tm-purchase" style="border:0;padding:0;margin:0 0 16px">
+        <legend class="tm-sr">Purchase option</legend>
         {%- for allocation in variant.selling_plan_allocations -%}
           {%- assign compare = allocation.compare_at_price | default: variant.price -%}
-          <label class="opt">
+          <label class="tm-opt">
             <input type="radio" name="selling_plan" value="{{ allocation.selling_plan.id }}" data-price="{{ allocation.price }}" {% if forloop.first %}checked{% endif %}>
-            <span class="t"><strong>Subscribe & save {% if compare > allocation.price %}<span class="save-pill">{{ compare | minus: allocation.price | times: 100 | divided_by: compare }}% off</span>{% endif %}</strong><span>Delivered monthly · skip or cancel anytime</span></span>
-            <span class="p">{% if compare > allocation.price %}<s>{{ compare | money_without_trailing_zeros }}</s>{% endif %}{{ allocation.price | money_without_trailing_zeros }}</span>
+            <span class="tm-t"><strong>{{ section.settings.subscribe_label }}{% if compare > allocation.price %} <span class="tm-save-pill">{{ compare | minus: allocation.price | times: 100 | divided_by: compare }}% off</span>{% endif %}</strong><span>{{ section.settings.subscribe_note }}</span></span>
+            <span class="tm-p">{% if compare > allocation.price %}<s>{{ compare | money_without_trailing_zeros }}</s>{% endif %}{{ allocation.price | money_without_trailing_zeros }}</span>
           </label>
         {%- endfor -%}
         {%- unless product.requires_selling_plan -%}
-          <label class="opt">
+          <label class="tm-opt">
             <input type="radio" name="selling_plan" value="" data-price="{{ variant.price }}" {% if variant.selling_plan_allocations.size == 0 %}checked{% endif %}>
-            <span class="t"><strong>One-time purchase</strong><span>Ships in 1–2 business days</span></span>
-            <span class="p">{{ variant.price | money_without_trailing_zeros }}</span>
+            <span class="tm-t"><strong>{{ section.settings.onetime_label }}</strong><span>{{ section.settings.onetime_note }}</span></span>
+            <span class="tm-p">{{ variant.price | money_without_trailing_zeros }}</span>
           </label>
         {%- endunless -%}
       </fieldset>
 
-      <div class="atc-row">
-        <div class="qty" aria-label="Quantity">
+      <div class="tm-atc-row">
+        <div class="tm-qty" aria-label="Quantity">
           <button type="button" data-q="-1" aria-label="Decrease quantity">−</button>
           <output id="qty">1</output>
           <button type="button" data-q="1" aria-label="Increase quantity">+</button>
         </div>
-        <button class="atc" id="atc" type="submit" {% unless variant.available %}disabled{% endunless %}>
-          {%- if variant.available -%}Add to ritual — <span class="price-now"></span>{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+        <button class="tm-atc" id="atc" type="submit" {% unless variant.available %}disabled{% endunless %}>
+          {%- if variant.available -%}{{ section.settings.atc_label }} — <span class="tm-price-now"></span>{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
         </button>
       </div>
-      <p class="sr" role="status" aria-live="polite" data-message></p>
+      <p class="tm-sr" role="status" aria-live="polite" data-message></p>
     {%- endform -%}
 
-    <p class="ship" id="ship" aria-live="polite"></p>
+    <p class="tm-ship" id="ship" aria-live="polite"></p>
 
-    <p class="formulated">Gentle enough for every skin type, and especially good for blemish-prone skin. This blend of clean ingredients helps calm the look of redness, minimize the appearance of pores and reveal clearer-looking skin — all while staying hydrating, never drying.</p>
+    {%- if section.settings.formulated != blank -%}<p class="tm-formulated">{{ section.settings.formulated }}</p>{%- endif -%}
 
-    <ul class="checks">
-      <li>Three clays purify at every depth</li>
-      <li>Wild turmeric from India</li>
-      <li>Sandalwood cools and calms</li>
-      <li>12 minutes, once or twice a week</li>
+    {%- assign checks = section.blocks | where: 'type', 'check' -%}
+    {%- if checks.size > 0 -%}
+    <ul class="tm-checks">
+      {%- for block in checks -%}<li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>{%- endfor -%}
     </ul>
+    {%- endif -%}
 
-    <div class="buy-acc">
+    <div class="tm-buy-acc">
+      {%- if section.settings.ingredients != blank -%}
       <details>
-        <summary>Full ingredients</summary>
-        <div class="body inci">
-          <mark class="fill">Get the exact descending order from HNCO Organics; the MSDS gives ranges only.</mark> Aqua (Water), Kaolin, Caprylic/Capric Triglyceride, Magnesium Aluminum Silicate, Glycerin, Propanediol, Magnesium Carbonate, Bentonite, Illite, Titanium Dioxide, Cetyl Alcohol, Ceteareth-20, Rosa Canina (Rosehip) Seed Oil, Phenoxyethanol, Ethylhexylglycerin, Santalum Album (Sandalwood) Oil, Rosa Damascena Flower Oil, <mark class="fill">Curcuma [species] (Turmeric) Root Extract</mark>.
-        </div>
-        <p class="acc-link"><a href="#formula">What each ingredient does</a></p>
+        <summary>{{ section.settings.ingredients_title }}</summary>
+        <div class="tm-body tm-inci">{{ section.settings.ingredients }}</div>
+        {%- if section.settings.ingredients_link_text != blank -%}<p class="tm-acc-link"><a href="#formula">{{ section.settings.ingredients_link_text }}</a></p>{%- endif -%}
       </details>
+      {%- endif -%}
+      {%- if section.settings.how_to_use != blank -%}
       <details>
-        <summary>How to use</summary>
-        <div class="body">Apply a thin, even layer to clean, dry skin, avoiding eyes and lips. Leave on for 12 minutes and rinse with warm water while it's still slightly damp. Use once a week, or twice a week if your skin is oily or blemish-prone. First time or sensitive skin? Start with 8 minutes.</div>
+        <summary>{{ section.settings.how_to_use_title }}</summary>
+        <div class="tm-body">{{ section.settings.how_to_use }}</div>
       </details>
+      {%- endif -%}
+      {%- if section.settings.shipping != blank -%}
       <details>
-        <summary>Shipping and returns</summary>
-        <div class="body">Free US shipping on orders over $100. Shipped from New Jersey. Not happy within 30 days? You get your money back. <a href="/pages/return-policy">Read the return policy</a>.</div>
+        <summary>{{ section.settings.shipping_title }}</summary>
+        <div class="tm-body">{{ section.settings.shipping }}</div>
       </details>
+      {%- endif -%}
     </div>
 
-    <div class="assure">
-      <span>30-day money-back guarantee</span>
-      <span>Vegan and cruelty-free</span>
-      <span>No synthetic fragrance</span>
-    </div>
+    {%- assign assures = section.blocks | where: 'type', 'assure' -%}
+    {%- if assures.size > 0 -%}
+    <div class="tm-assure">{%- for block in assures -%}<span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>{%- endfor -%}</div>
+    {%- endif -%}
   </div>
 
-  <section class="benefits hero-benefits" aria-labelledby="ben-h">
-    <h2 id="ben-h">What it does for your skin</h2>
+  {%- assign benefits = section.blocks | where: 'type', 'benefit' -%}
+  {%- if benefits.size > 0 -%}
+  <section class="tm-benefits tm-hero-benefits" aria-labelledby="ben-h-{{ section.id }}">
+    {%- if section.settings.benefits_heading != blank -%}<h2 id="ben-h-{{ section.id }}">{{ section.settings.benefits_heading }}</h2>{%- endif -%}
     <ul>
-      <li><b>Brighter-looking skin</b><span>Turmeric and three clays leave skin looking fresh and luminous</span></li>
-      <li><b>Clearer, more even-looking skin in 4 weeks</b><span>91% agreed in our consumer study*</span></li>
-      <li><b>Pores look smaller</b><span>86% agreed in our consumer study*</span></li>
-      <li><b>Calms the look of redness</b><span>Sandalwood and rose cool skin as you rinse</span></li>
-      <li><b>Blemish marks look less visible</b><span>Turmeric evens out the look of dark spots and uneven tone</span></li>
-      <li><b>Hydrating, never drying</b><span>84% said it left skin neither tight nor dry*</span></li>
+      {%- for block in benefits -%}<li {{ block.shopify_attributes }}><b>{{ block.settings.title }}</b><span>{{ block.settings.text }}</span></li>{%- endfor -%}
     </ul>
-    <p class="free">*4-week independent consumer perception study, 50 participants. Individual results may vary.<br>Vegan and cruelty-free, with botanical and mineral actives. Free from parabens, sulfates and synthetic fragrance.</p>
+    {%- if section.settings.benefits_note != blank -%}<div class="tm-free">{{ section.settings.benefits_note }}</div>{%- endif -%}
   </section>
+  {%- endif -%}
 </section>
 
-<!-- ================= CONSUMER STUDY RESULTS ================= -->
-<section class="results" id="results" aria-labelledby="res-h">
-  <div class="wrap">
-    <h2 id="res-h">What 50 people saw in four weeks</h2>
-    <p class="lede">An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*</p>
-    <div class="stat-row five">
-      <div class="stat"><b>93%</b><span>said skin felt softer, smoother and less congested</span></div>
-      <div class="stat"><b>91%</b><span>said skin looked clearer, brighter and more even-toned</span></div>
-      <div class="stat"><b>88%</b><span>would recommend it to a friend or family member</span></div>
-      <div class="stat"><b>86%</b><span>said pores looked smaller and less clogged</span></div>
-      <div class="stat"><b>84%</b><span>said it cleansed deeply without leaving skin tight or dry</span></div>
-    </div>
-    <p class="foot">*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.</p>
-  </div>
-</section>
-
-<!-- ================= VERIFIED REVIEWS ================= -->
-<section class="sec" id="reviews" aria-labelledby="rev-h">
-  <div class="wrap">
-    <h2 id="rev-h">What verified customers say</h2>
-    <p class="intro">Every review comes from a confirmed order and appears as the customer wrote it.</p>
-    <div id="looxReviews">
-      {%- for block in section.blocks -%}{%- if block.type == '@app' -%}{% render block %}{%- endif -%}{%- endfor -%}
-      {%- if section.blocks.size == 0 -%}<div class="loox-slot">Loox review widget mounts here</div>{%- endif -%}
-    </div>
-  </div>
-</section>
-
-<!-- ================= BEFORE / AFTER JOURNEYS ================= -->
-<section class="journeys" aria-labelledby="jr-h">
-  <div class="wrap">
-    <h2 id="jr-h" style="font-size:clamp(32px,4vw,48px);margin-bottom:14px">Customer journeys</h2>
-    <p class="intro" style="max-width:620px;color:var(--indigo-soft);font-size:18px;margin-bottom:28px">Real customers with acne-prone skin, photographed at week 0 and week 8 of twice-weekly use. Drag to compare.</p>
-    <div class="journey-tabs" role="tablist" aria-label="Customer journeys">
-      <button type="button" role="tab" aria-selected="true" data-j="0">Maya</button>
-      <button type="button" role="tab" aria-selected="false" data-j="1">Aisha</button>
-      <button type="button" role="tab" aria-selected="false" data-j="2">Jen</button>
-    </div>
-    <div class="ba-grid">
-      <div class="ba" id="ba">
-        <div class="img before"><div class="ph" id="baBefore">Before photo slot — week 0<br>Real customer with visible breakouts, natural light, no makeup</div></div>
-        <div class="img after"><div class="ph" id="baAfter">After photo slot — week 8<br>Same customer, same lighting, angle and camera</div></div>
-        <span class="lbl l">Week 0</span><span class="lbl r">Week 8</span>
-        <div class="handle"></div>
-        <label class="sr" for="baRange">Compare before and after</label>
-        <input type="range" id="baRange" min="0" max="100" value="50">
-      </div>
-      <div class="journey-copy">
-        <span class="sample-tag">Sample data: replace before launch</span>
-        <h3 id="jName"></h3>
-        <p id="jSkin"></p>
-        <ul class="timeline" id="jTimeline"></ul>
-        <p class="disclose" id="jDisclose"></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SCIENCE BEHIND THE RITUAL ================= -->
-<section class="sec" aria-labelledby="sci-h">
-  <div class="wrap">
-    <h2 id="sci-h">The science behind the ritual</h2>
-    <p class="intro">Every PRANA formula follows the same path, from what Ayurveda observed to what our customers see in the mirror.</p>
-    <div class="thread">
-      <div class="step">
-        <div class="node" aria-hidden="true">I</div>
-        <h3>The ritual</h3>
-        <p class="q">What Ayurveda says</p>
-        <p>Ayurveda groups turmeric with the <em>varnya</em> herbs, those used to bring clarity and radiance to the complexion. Sandalwood, or <em>chandana</em>, is a cooling herb for skin that runs hot and red. Clay was used to purify. Mixed into a paste called ubtan, the three became the haldi ritual brides still follow before their weddings.</p>
-        <a href="#bridal">See the bridal ritual</a>
-      </div>
-      <div class="step">
-        <div class="node" aria-hidden="true">II</div>
-        <h3>The formula</h3>
-        <p class="q">What we formulated</p>
-        <p>Twenty versions over two years led to a smooth, pink clay cream with a skin-friendly pH of 5.0 to 7.0. Kaolin leads the clays, with bentonite and French pink clay behind it. Turmeric, sandalwood, rose and rosehip oil sit at up to 1% each, the range where botanical oils are typically used on the face. Glycerin and a coconut-derived emollient keep the mask from drying skin as it sets.</p>
-        <a href="#formula">See the full formula</a>
-      </div>
-      <div class="step">
-        <div class="node" aria-hidden="true">III</div>
-        <h3>The evidence</h3>
-        <p class="q">What we tested</p>
-        <p>Fifty people aged 18 to 55, across skin tones and types, used the mask at home once or twice a week for four weeks. 91% said their skin looked clearer, brighter and more even; 93% said it felt softer and less congested. Before that, our manufacturer's safety data sheet confirmed the formula is non-toxic, non-hazardous, stable and pH 5.0 to 7.0.</p>
-        <a href="#results">See all the results</a>
-      </div>
-      <div class="step">
-        <div class="node" aria-hidden="true">IV</div>
-        <h3>The experience</h3>
-        <p class="q">What customers reported</p>
-        <p>The best evidence of how a mask feels is what the people using it say. Every review below comes from a verified buyer, shown as written, including the ones that aren't five stars.</p>
-        <a href="#reviews">Read verified reviews</a>
-      </div>
-    </div>
-
-    <details class="formula" id="formula">
-      <summary><span class="f-title">The full formula</span><span class="formula-note">17 ingredients, with the amount and job of each</span></summary>
-      <div class="formula-scroll">
-      <table>
-        <thead><tr><th scope="col">Ingredient</th><th scope="col">What it does</th><th scope="col">Amount</th></tr></thead>
-        <tbody>
-          <tr><td>Water</td><td>Creamy base so the clays spread in an even layer</td><td>55–60%</td></tr>
-          <tr><td>Kaolin</td><td>Gentle surface clay; absorbs oil and smooths texture</td><td>5–10%</td></tr>
-          <tr><td>Caprylic/capric triglyceride</td><td>Coconut-derived emollient that stops the clay from drying skin</td><td>5–10%</td></tr>
-          <tr><td>Bentonite</td><td>Strongest oil-absorbing clay in the formula</td><td>1–5%</td></tr>
-          <tr><td>French pink clay (illite)</td><td>Milder, mineral-rich clay that balances the bentonite</td><td>1–5%</td></tr>
-          <tr><td>Magnesium carbonate</td><td>Mineral powder that absorbs extra oil</td><td>1–5%</td></tr>
-          <tr><td>Magnesium aluminum silicate</td><td>Mineral clay that gives the mask its smooth, stable texture</td><td>1–5%</td></tr>
-          <tr><td>Glycerin</td><td>Draws in moisture so skin rinses soft</td><td>1–5%</td></tr>
-          <tr><td>Propanediol</td><td>Plant-derived humectant that adds slip and hydration</td><td>1–5%</td></tr>
-          <tr><td>Titanium dioxide</td><td>Mineral that gives the mask its opaque, even finish</td><td>1–5%</td></tr>
-          <tr><td>Cetyl alcohol</td><td>Fatty alcohol that softens skin and thickens the cream</td><td>1–5%</td></tr>
-          <tr><td>Ceteareth-20</td><td>Emulsifier that keeps oils and water blended</td><td>1–5%</td></tr>
-          <tr><td>Turmeric extract</td><td>Brightens the look of uneven tone and blemish marks</td><td>Up to 1%</td></tr>
-          <tr><td>Sandalwood oil</td><td>Cools skin and calms the look of redness</td><td>Up to 1%</td></tr>
-          <tr><td>Rose oil</td><td>Soothes; with sandalwood, the mask's only scent</td><td>Up to 1%</td></tr>
-          <tr><td>Rosehip seed oil</td><td>Nourishing oil that leaves skin comfortable after rinsing</td><td>Up to 1%</td></tr>
-          <tr><td>Phenoxyethanol, ethylhexylglycerin</td><td>Preservative system that keeps a water-based formula safe</td><td>Up to 1%</td></tr>
-        </tbody>
-      </table>
-      </div>
-      <p class="formula-note" style="margin-top:14px">Ranges as declared on our manufacturer's safety data sheet.</p>
-    </details>
-  </div>
-</section>
-
-<!-- ================= BRIDAL RITUAL ================= -->
-<section class="bridal" id="bridal" aria-labelledby="bride-h">
-  <div class="wrap bridal-grid">
-    <div class="bridal-photo">Photo slot: a real haldi ceremony, with family applying turmeric paste to the bride, with permission<br>(no AI or stock imagery)</div>
-    <div>
-      <h2 id="bride-h">The South Asian bride's turmeric, for her wedding glow</h2>
-      <p class="tamil">Haldi (HUL-dee): the Hindi word for turmeric</p>
-      <p>A few days before a South Asian wedding, family and friends gather for the haldi ceremony. One by one, they smooth a paste of turmeric, often mixed with sandalwood and rosewater, onto the bride's face and arms. It's part blessing, part beauty ritual and always a party. The idea is simple: she should walk into her wedding glowing.</p>
-      <p>The tradition goes by many names. Bengali families call it gaye holud. Pakistani and North Indian Muslim families hold a mayun, with a turmeric paste called ubtan. In Tamil Nadu, the bride's bath on her wedding morning begins with turmeric. Across regions and faiths, the ingredient stays the same.</p>
-      <p>Our turmeric comes from Tamil Nadu. It's kasthuri manjal, a pale, fragrant wild turmeric that Tamil women have long used on their skin because it brightens without leaving a yellow stain.</p>
-      <p class="glow-line">Apply and leave on for just 12 minutes for the bridal glow.</p>
-      <a class="btn" href="/pages/soundarya">See the SOUNDARYA bridal glow set</a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= THE TURMERIC ================= -->
-<section class="dossier" id="turmeric" aria-labelledby="tur-h">
-  <div class="wrap dossier-grid">
-    <div class="tur-copy">
-      <h2 id="tur-h">Wild turmeric</h2>
-      <p class="tur-lede">Not the turmeric in your spice rack.</p>
-      <p>We use a wild turmeric from Tamil Nadu, in southern India, known locally as kasthuri manjal. It's paler and more fragrant than the bright-yellow kitchen kind, and it's the one Indian women have long chosen for their skin, because it brightens without leaving a yellow tint.</p>
-      <p>In this mask, it helps even out the look of skin tone while three clays lift away excess oil and sandalwood keeps everything cool and calm.</p>
-      <div class="tur-pics">
-        <figure class="tur-pic">
-          <img src="https://www.pranabeauty.com/cdn/shop/files/Turmeirc_18463052-bc95-4d90-b93d-c1204ed175e5.png?v=1780384650&width=700" alt="Wild turmeric root" width="700" height="700" loading="lazy">
-          <figcaption>The root</figcaption>
-        </figure>
-        <figure class="tur-pic">
-          {%- comment -%} The source file points to a local "turmeric-harvest-tamil-nadu.jpg" that was not supplied. Upload a real supplier photo to Shopify Files and put its CDN URL here, then caption it "The harvest". {%- endcomment -%}
-          <div class="ph-harvest" role="img" aria-label="Harvest photo slot">Harvest photo slot — upload the real supplier photo</div>
-          <figcaption>The harvest (illustration)</figcaption>
-        </figure>
-      </div>
-    </div>
-    <div class="spec">
-      <dl>
-        <div class="row"><dt>Origin</dt><dd>Tamil Nadu, India</dd></div>
-        <div class="row"><dt>Type</dt><dd>Kasthuri manjal, wild turmeric (<mark class="fill"><em>Curcuma aromatica</em> — confirm species vs. INCI</mark>)</dd></div>
-        <div class="row"><dt>Extraction</dt><dd>Liquid root extract, used at up to 1% (<mark class="fill">confirm solvent and extraction method with supplier</mark>)</dd></div>
-        <div class="row"><dt>Why it's in this formula</dt><dd>To bring brightness to uneven-looking skin while the clays purify, balanced by sandalwood so the mask calms rather than stings.</dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PROVENANCE CHAIN ================= -->
-<section class="chain" aria-label="From root to jar">
-  <div class="wrap">
-    <ol>
-      <li><b>Ingredient</b><span>Kasthuri manjal root</span></li>
-      <li><b>Origin</b><span>Tamil Nadu, India</span></li>
-      <li><b>Formulation</b><span>Version 20 of 20</span></li>
-      <li><b>Testing</b><span>4-week consumer study, 50 people</span></li>
-      <li><b>Finished product</b><span>Made in India</span></li>
-    </ol>
-  </div>
-</section>
-
-<!-- ================= HOW TO USE ================= -->
-<section class="sec" aria-labelledby="how-h">
-  <div class="wrap">
-    <h2 id="how-h">The 12-minute ritual</h2>
-    <p class="intro">Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out.</p>
-    <div class="how">
-      <div><b>1</b><h3>Cleanse</h3><p>Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup.</p></div>
-      <div><b>2</b><h3>Apply</h3><p>Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips.</p></div>
-      <div><b>3</b><h3>Wait 12 minutes</h3><p>Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8.</p></div>
-      <div><b>4</b><h3>Rinse and seal</h3><p>Warm water, pat dry, then rose mist and the Saffron Glow Serum.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= COMPLETE THE RITUAL ================= -->
-<section class="wrap" style="padding-bottom:88px" aria-labelledby="set-h">
-  <div class="set">
-    <div>
-      <h2 id="set-h">Make it the ABHYANGA weekly ritual</h2>
-      <p>Rose Jasmine Milk Cleanser, this mask and the Saffron Glow Serum, together.</p>
-    </div>
-    <div>
-      <div class="price"><s>$173</s>$147</div>
-      <a class="btn" href="/pages/abhyanga">Shop the ritual set</a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= DETAILS + FAQ ================= -->
-<section class="wrap" style="padding-bottom:96px" aria-labelledby="faq-h">
-  <h2 id="faq-h" style="font-size:clamp(32px,4vw,48px);margin-bottom:18px">Details and questions</h2>
-  <details>
-    <summary>Which skin types is it for?</summary>
-    <div class="body">It's suitable for all skin types, and especially effective for acne-prone, oily and combination skin. The three clays absorb excess oil at different depths, and sandalwood and rose help calm the look of redness, so skin looks clearer without feeling stripped. If you're under a dermatologist's care or using prescription treatments, check with them before adding a new mask.</div>
-  </details>
-  <details>
-    <summary>How far before my wedding should I start?</summary>
-    <div class="body">Eight weeks gives you enough time to see a difference. Use it twice a week for the first four weeks, then weekly. Do your last mask two or three days before the ceremony rather than the night before, and never try a new product for the first time in the final week.</div>
-  </details>
-  <details>
-    <summary>Will a clay mask dry out my skin?</summary>
-    <div class="body">Kaolin, glycerin and caprylic/capric triglyceride keep the formula comfortable, which is why it rinses off soft rather than tight. Rinse while the mask is almost dry — letting it crack is what causes that stripped feeling.</div>
-  </details>
-  <details>
-    <summary>How often should I use it?</summary>
-    <div class="body">Once a week for most skin. Oily or breakout-prone skin can use it twice a week for the first four weeks, then drop to weekly. Not for daily use.</div>
-  </details>
-  <details>
-    <summary>Is it suitable for sensitive skin?</summary>
-    <div class="body">Yes, with care. No synthetic fragrance, parabens or alcohol. Start with 8 minutes, and patch test on your inner arm if you know you react to clays or botanical oils.</div>
-  </details>
-  <details>
-    <summary>Will the turmeric stain?</summary>
-    <div class="body">It's a refined root extract, not raw powder, so it won't stain skin. Rinse thoroughly and use a dark towel — traces can mark light fabric if not fully rinsed.</div>
-  </details>
-  <details>
-    <summary>Can I use it with the Saffron Glow Serum?</summary>
-    <div class="body">Yes. On mask nights, apply the serum right after rinsing. On other nights, use it after cleansing and toning as usual.</div>
-  </details>
-</section>
-</main>
-
-<!-- ================= STICKY MOBILE ATC ================= -->
-<div class="sticky" id="sticky" aria-hidden="true">
-  <div class="n"><b>Turmeric Sandalwood Mask</b><span class="price-now"></span><span data-plan-note> · subscribe & save</span></div>
-  <button class="atc" type="button" data-sticky tabindex="-1">Add to ritual</button>
+<div class="tm-sticky" id="sticky" aria-hidden="true">
+  <div class="tm-n"><b>{{ section.settings.sticky_name | default: product.title }}</b><span class="tm-price-now"></span><span data-plan-note>{{ section.settings.sticky_plan_note }}</span></div>
+  <button class="tm-atc" type="button" data-sticky tabindex="-1">{{ section.settings.atc_label }}</button>
 </div>
 </prana-tfm>
 
 {% schema %}
 {
-  "name": "Turmeric mask PDP",
+  "name": "PDP: Hero & buy box",
   "tag": "section",
-  "class": "section-prana-tfm",
-  "blocks": [{ "type": "@app" }]
+  "class": "section-ptm",
+  "blocks": [
+    { "type": "check", "name": "Checklist item", "settings": [{ "type": "text", "id": "text", "label": "Text" }] },
+    { "type": "assure", "name": "Assurance", "settings": [{ "type": "text", "id": "text", "label": "Text" }] },
+    { "type": "benefit", "name": "Benefit", "settings": [
+      { "type": "text", "id": "title", "label": "Title" },
+      { "type": "text", "id": "text", "label": "Text" }
+    ] }
+  ],
+  "settings": [
+    { "type": "header", "content": "Product info" },
+    { "type": "text", "id": "skin_tag", "label": "Image badge" },
+    { "type": "text", "id": "for_text", "label": "Skin type line" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave empty to use the product title" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
+    { "type": "text", "id": "reviews_link_text", "label": "Reviews link (when Loox has no rating yet)", "default": "Read verified customer reviews" },
+    { "type": "text", "id": "reviews_count_label", "label": "Label after the Loox review count", "default": "verified reviews" },
+    { "type": "text", "id": "tested_text", "label": "Results link" },
+    { "type": "text", "id": "proof", "label": "Proof line" },
+    { "type": "text", "id": "proof_sub", "label": "Proof source" },
+    { "type": "text", "id": "size_text", "label": "Size line" },
+    { "type": "header", "content": "Purchase options" },
+    { "type": "text", "id": "subscribe_label", "label": "Subscription label", "default": "Subscribe & save" },
+    { "type": "text", "id": "subscribe_note", "label": "Subscription note" },
+    { "type": "text", "id": "onetime_label", "label": "One-time label", "default": "One-time purchase" },
+    { "type": "text", "id": "onetime_note", "label": "One-time note" },
+    { "type": "text", "id": "atc_label", "label": "Add to cart button", "default": "Add to cart" },
+    { "type": "text", "id": "added_label", "label": "Added message", "default": "Added to cart" },
+    { "type": "text", "id": "sticky_name", "label": "Sticky bar name", "info": "Mobile only. Leave empty to use the product title" },
+    { "type": "text", "id": "sticky_plan_note", "label": "Sticky bar subscription note" },
+    { "type": "header", "content": "Free shipping note" },
+    { "type": "number", "id": "free_ship_threshold", "label": "Free shipping threshold", "info": "In the store currency. 0 hides the note", "default": 100 },
+    { "type": "text", "id": "free_ship_country", "label": "Show only in country (ISO code)", "default": "US" },
+    { "type": "text", "id": "ship_free_text", "label": "Text when the order ships free", "default": "This order ships free." },
+    { "type": "html", "id": "ship_away_text", "label": "Text when below the threshold", "info": "[amount] is replaced with the amount left" },
+    { "type": "textarea", "id": "formulated", "label": "Formulation text" },
+    { "type": "header", "content": "Accordions" },
+    { "type": "text", "id": "ingredients_title", "label": "Ingredients title", "default": "Full ingredients" },
+    { "type": "html", "id": "ingredients", "label": "Ingredients" },
+    { "type": "text", "id": "ingredients_link_text", "label": "Link to the formula table" },
+    { "type": "text", "id": "how_to_use_title", "label": "How to use title", "default": "How to use" },
+    { "type": "richtext", "id": "how_to_use", "label": "How to use" },
+    { "type": "text", "id": "shipping_title", "label": "Shipping title", "default": "Shipping and returns" },
+    { "type": "richtext", "id": "shipping", "label": "Shipping and returns" },
+    { "type": "header", "content": "Benefits" },
+    { "type": "text", "id": "benefits_heading", "label": "Heading" },
+    { "type": "richtext", "id": "benefits_note", "label": "Footnote" }
+  ],
+  "presets": [{ "name": "PDP: Hero & buy box" }]
 }
 {% endschema %}

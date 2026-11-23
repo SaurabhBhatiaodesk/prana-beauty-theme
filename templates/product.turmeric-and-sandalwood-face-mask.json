@@ -11,8 +11,204 @@
   "sections": {
     "main": {
       "type": "prana-turmeric-face-mask",
+      "settings": {
+        "skin_tag": "Effective for acne-prone skin",
+        "for_text": "Suitable for all skin types. Effective for acne-prone skin.",
+        "heading": "Turmeric Sandalwood Purifying Clay Mask",
+        "subtitle": "The South Asian bride's turmeric, for her wedding glow. For visible brightness and uneven-looking skin tone.",
+        "reviews_link_text": "Read verified customer reviews",
+        "reviews_count_label": "verified reviews",
+        "tested_text": "Consumer tested*",
+        "proof": "Clearer, brighter-looking skin in 4 weeks.*",
+        "proof_sub": "91% agreed in an independent consumer study.",
+        "size_text": "110 ml / 3.7 fl oz · about 12–15 treatments",
+        "subscribe_label": "Subscribe & save",
+        "subscribe_note": "Delivered monthly · skip or cancel anytime",
+        "onetime_label": "One-time purchase",
+        "onetime_note": "Ships in 1–2 business days",
+        "atc_label": "Add to ritual",
+        "added_label": "Added to your ritual",
+        "sticky_name": "Turmeric Sandalwood Mask",
+        "sticky_plan_note": " · subscribe & save",
+        "free_ship_threshold": 100,
+        "free_ship_country": "US",
+        "ship_free_text": "This order ships free.",
+        "ship_away_text": "You're [amount] away from free shipping. Add a second jar, or get the <a href=\"/pages/abhyanga\">ABHYANGA ritual set</a> ($147), which ships free.",
+        "formulated": "Gentle enough for every skin type, and especially good for blemish-prone skin. This blend of clean ingredients helps calm the look of redness, minimize the appearance of pores and reveal clearer-looking skin — all while staying hydrating, never drying.",
+        "ingredients_title": "Full ingredients",
+        "ingredients": "<mark class=\"fill\">Get the exact descending order from HNCO Organics; the MSDS gives ranges only.</mark> Aqua (Water), Kaolin, Caprylic/Capric Triglyceride, Magnesium Aluminum Silicate, Glycerin, Propanediol, Magnesium Carbonate, Bentonite, Illite, Titanium Dioxide, Cetyl Alcohol, Ceteareth-20, Rosa Canina (Rosehip) Seed Oil, Phenoxyethanol, Ethylhexylglycerin, Santalum Album (Sandalwood) Oil, Rosa Damascena Flower Oil, <mark class=\"fill\">Curcuma [species] (Turmeric) Root Extract</mark>.",
+        "ingredients_link_text": "What each ingredient does",
+        "how_to_use_title": "How to use",
+        "how_to_use": "<p>Apply a thin, even layer to clean, dry skin, avoiding eyes and lips. Leave on for 12 minutes and rinse with warm water while it's still slightly damp. Use once a week, or twice a week if your skin is oily or blemish-prone. First time or sensitive skin? Start with 8 minutes.</p>",
+        "shipping_title": "Shipping and returns",
+        "shipping": "<p>Free US shipping on orders over $100. Shipped from New Jersey. Not happy within 30 days? You get your money back. <a href=\"/pages/return-policy\" title=\"Return policy\">Read the return policy</a>.</p>",
+        "benefits_heading": "What it does for your skin",
+        "benefits_note": "<p>*4-week independent consumer perception study, 50 participants. Individual results may vary.<br/>Vegan and cruelty-free, with botanical and mineral actives. Free from parabens, sulfates and synthetic fragrance.</p>"
+      },
       "blocks": {
-        "loox_reviews_loox_dynamic_section_ptm": {
+        "check_1": {
+          "type": "check",
+          "settings": {
+            "text": "Three clays purify at every depth"
+          }
+        },
+        "check_2": {
+          "type": "check",
+          "settings": {
+            "text": "Wild turmeric from India"
+          }
+        },
+        "check_3": {
+          "type": "check",
+          "settings": {
+            "text": "Sandalwood cools and calms"
+          }
+        },
+        "check_4": {
+          "type": "check",
+          "settings": {
+            "text": "12 minutes, once or twice a week"
+          }
+        },
+        "assure_1": {
+          "type": "assure",
+          "settings": {
+            "text": "30-day money-back guarantee"
+          }
+        },
+        "assure_2": {
+          "type": "assure",
+          "settings": {
+            "text": "Vegan and cruelty-free"
+          }
+        },
+        "assure_3": {
+          "type": "assure",
+          "settings": {
+            "text": "No synthetic fragrance"
+          }
+        },
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "title": "Brighter-looking skin",
+            "text": "Turmeric and three clays leave skin looking fresh and luminous"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "title": "Clearer, more even-looking skin in 4 weeks",
+            "text": "91% agreed in our consumer study*"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "title": "Pores look smaller",
+            "text": "86% agreed in our consumer study*"
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "title": "Calms the look of redness",
+            "text": "Sandalwood and rose cool skin as you rinse"
+          }
+        },
+        "benefit_5": {
+          "type": "benefit",
+          "settings": {
+            "title": "Blemish marks look less visible",
+            "text": "Turmeric evens out the look of dark spots and uneven tone"
+          }
+        },
+        "benefit_6": {
+          "type": "benefit",
+          "settings": {
+            "title": "Hydrating, never drying",
+            "text": "84% said it left skin neither tight nor dry*"
+          }
+        }
+      },
+      "block_order": [
+        "check_1",
+        "check_2",
+        "check_3",
+        "check_4",
+        "assure_1",
+        "assure_2",
+        "assure_3",
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4",
+        "benefit_5",
+        "benefit_6"
+      ]
+    },
+    "results": {
+      "type": "ptm-results",
+      "settings": {
+        "heading": "What 50 people saw in four weeks",
+        "lede": "An independent consumer perception study. Participants aged 18 to 55, across a range of skin tones and types, used the mask once or twice a week at home as part of their usual routine, then rated their skin.*",
+        "footnote": "*Results based on a 4-week independent consumer perception study of 50 participants using the product as directed, conducted under an in-home use testing protocol. Self-assessed results. Individual results may vary.",
+        "anchor": "results"
+      },
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "93%",
+            "text": "said skin felt softer, smoother and less congested"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "91%",
+            "text": "said skin looked clearer, brighter and more even-toned"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "88%",
+            "text": "would recommend it to a friend or family member"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "86%",
+            "text": "said pores looked smaller and less clogged"
+          }
+        },
+        "stat_5": {
+          "type": "stat",
+          "settings": {
+            "value": "84%",
+            "text": "said it cleansed deeply without leaving skin tight or dry"
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4",
+        "stat_5"
+      ]
+    },
+    "reviews": {
+      "type": "ptm-reviews",
+      "settings": {
+        "heading": "What verified customers say",
+        "intro": "Every review comes from a confirmed order and appears as the customer wrote it.",
+        "empty_text": "Loox review widget mounts here"
+      },
+      "blocks": {
+        "loox_reviews": {
           "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
           "settings": {
             "reviews_to_display": "",
@@ -27,12 +223,541 @@
         }
       },
       "block_order": [
-        "loox_reviews_loox_dynamic_section_ptm"
-      ],
-      "settings": {}
+        "loox_reviews"
+      ]
+    },
+    "journeys": {
+      "type": "ptm-journeys",
+      "settings": {
+        "heading": "Customer journeys",
+        "intro": "Real customers with acne-prone skin, photographed at week 0 and week 8 of twice-weekly use. Drag to compare.",
+        "sample_tag": "Sample data: replace before launch",
+        "before_label": "Week 0",
+        "after_label": "Week 8",
+        "before_placeholder": "Before photo slot — week 0. Real customer with visible breakouts, natural light, no makeup",
+        "after_placeholder": "After photo slot — week 8. Same customer, same lighting, angle and camera",
+        "disclosure": "Unretouched photos shared with permission by a verified customer.",
+        "other_label": "Other products used:",
+        "results_vary": "Individual results vary."
+      },
+      "blocks": {
+        "journey_1": {
+          "type": "journey",
+          "settings": {
+            "name": "Maya, 27",
+            "tab_label": "Maya",
+            "skin": "Blemish-prone, combination skin",
+            "w1_label": "Week 1",
+            "w1_text": "My skin felt clean but not tight, which never happens with clay masks.",
+            "w2_label": "Week 4",
+            "w2_text": "Redness around my chin looks calmer and my pores look smaller.",
+            "w3_label": "Week 8",
+            "w3_text": "My skin looks clearer and more even. I wear less foundation now.",
+            "other": "Rose Jasmine Milk Cleanser, usual SPF"
+          }
+        },
+        "journey_2": {
+          "type": "journey",
+          "settings": {
+            "name": "Aisha, 34",
+            "tab_label": "Aisha",
+            "skin": "Blemish-prone, oily skin",
+            "w1_label": "Week 1",
+            "w1_text": "Less shine by midday, and my skin still felt soft after rinsing.",
+            "w2_label": "Week 4",
+            "w2_text": "My nose and forehead look less congested.",
+            "w3_label": "Week 8",
+            "w3_text": "Old marks look lighter and my skin tone looks more even.",
+            "other": "Usual cleanser and moisturizer"
+          }
+        },
+        "journey_3": {
+          "type": "journey",
+          "settings": {
+            "name": "Jen, 41",
+            "tab_label": "Jen",
+            "skin": "Blemish-prone, sensitive skin",
+            "w1_label": "Week 1",
+            "w1_text": "Started at 8 minutes. No stinging, and the scent is lovely.",
+            "w2_label": "Week 4",
+            "w2_text": "Moved up to 12 minutes. My skin looks calmer overall.",
+            "w3_label": "Week 8",
+            "w3_text": "Fewer blemishes showing up, and my skin looks brighter.",
+            "other": "Saffron Glow Serum, usual SPF"
+          }
+        }
+      },
+      "block_order": [
+        "journey_1",
+        "journey_2",
+        "journey_3"
+      ]
+    },
+    "science": {
+      "type": "ptm-science",
+      "settings": {
+        "heading": "The science behind the ritual",
+        "intro": "Every PRANA formula follows the same path, from what Ayurveda observed to what our customers see in the mirror.",
+        "formula_title": "The full formula",
+        "formula_subtitle": "17 ingredients, with the amount and job of each",
+        "col_ingredient": "Ingredient",
+        "col_job": "What it does",
+        "col_amount": "Amount",
+        "formula_note": "Ranges as declared on our manufacturer's safety data sheet."
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "numeral": "I",
+            "title": "The ritual",
+            "question": "What Ayurveda says",
+            "text": "<p>Ayurveda groups turmeric with the <em>varnya</em> herbs, those used to bring clarity and radiance to the complexion. Sandalwood, or <em>chandana</em>, is a cooling herb for skin that runs hot and red. Clay was used to purify. Mixed into a paste called ubtan, the three became the haldi ritual brides still follow before their weddings.</p>",
+            "link_text": "See the bridal ritual",
+            "link_url": "#bridal"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "numeral": "II",
+            "title": "The formula",
+            "question": "What we formulated",
+            "text": "<p>Twenty versions over two years led to a smooth, pink clay cream with a skin-friendly pH of 5.0 to 7.0. Kaolin leads the clays, with bentonite and French pink clay behind it. Turmeric, sandalwood, rose and rosehip oil sit at up to 1% each, the range where botanical oils are typically used on the face. Glycerin and a coconut-derived emollient keep the mask from drying skin as it sets.</p>",
+            "link_text": "See the full formula",
+            "link_url": "#formula"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "numeral": "III",
+            "title": "The evidence",
+            "question": "What we tested",
+            "text": "<p>Fifty people aged 18 to 55, across skin tones and types, used the mask at home once or twice a week for four weeks. 91% said their skin looked clearer, brighter and more even; 93% said it felt softer and less congested. Before that, our manufacturer's safety data sheet confirmed the formula is non-toxic, non-hazardous, stable and pH 5.0 to 7.0.</p>",
+            "link_text": "See all the results",
+            "link_url": "#results"
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "numeral": "IV",
+            "title": "The experience",
+            "question": "What customers reported",
+            "text": "<p>The best evidence of how a mask feels is what the people using it say. Every review below comes from a verified buyer, shown as written, including the ones that aren't five stars.</p>",
+            "link_text": "Read verified reviews",
+            "link_url": "#reviews"
+          }
+        },
+        "row_1": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Water",
+            "job": "Creamy base so the clays spread in an even layer",
+            "amount": "55–60%"
+          }
+        },
+        "row_2": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Kaolin",
+            "job": "Gentle surface clay; absorbs oil and smooths texture",
+            "amount": "5–10%"
+          }
+        },
+        "row_3": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Caprylic/capric triglyceride",
+            "job": "Coconut-derived emollient that stops the clay from drying skin",
+            "amount": "5–10%"
+          }
+        },
+        "row_4": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Bentonite",
+            "job": "Strongest oil-absorbing clay in the formula",
+            "amount": "1–5%"
+          }
+        },
+        "row_5": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "French pink clay (illite)",
+            "job": "Milder, mineral-rich clay that balances the bentonite",
+            "amount": "1–5%"
+          }
+        },
+        "row_6": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Magnesium carbonate",
+            "job": "Mineral powder that absorbs extra oil",
+            "amount": "1–5%"
+          }
+        },
+        "row_7": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Magnesium aluminum silicate",
+            "job": "Mineral clay that gives the mask its smooth, stable texture",
+            "amount": "1–5%"
+          }
+        },
+        "row_8": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Glycerin",
+            "job": "Draws in moisture so skin rinses soft",
+            "amount": "1–5%"
+          }
+        },
+        "row_9": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Propanediol",
+            "job": "Plant-derived humectant that adds slip and hydration",
+            "amount": "1–5%"
+          }
+        },
+        "row_10": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Titanium dioxide",
+            "job": "Mineral that gives the mask its opaque, even finish",
+            "amount": "1–5%"
+          }
+        },
+        "row_11": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Cetyl alcohol",
+            "job": "Fatty alcohol that softens skin and thickens the cream",
+            "amount": "1–5%"
+          }
+        },
+        "row_12": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Ceteareth-20",
+            "job": "Emulsifier that keeps oils and water blended",
+            "amount": "1–5%"
+          }
+        },
+        "row_13": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Turmeric extract",
+            "job": "Brightens the look of uneven tone and blemish marks",
+            "amount": "Up to 1%"
+          }
+        },
+        "row_14": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Sandalwood oil",
+            "job": "Cools skin and calms the look of redness",
+            "amount": "Up to 1%"
+          }
+        },
+        "row_15": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Rose oil",
+            "job": "Soothes; with sandalwood, the mask's only scent",
+            "amount": "Up to 1%"
+          }
+        },
+        "row_16": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Rosehip seed oil",
+            "job": "Nourishing oil that leaves skin comfortable after rinsing",
+            "amount": "Up to 1%"
+          }
+        },
+        "row_17": {
+          "type": "formula_row",
+          "settings": {
+            "ingredient": "Phenoxyethanol, ethylhexylglycerin",
+            "job": "Preservative system that keeps a water-based formula safe",
+            "amount": "Up to 1%"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5",
+        "row_6",
+        "row_7",
+        "row_8",
+        "row_9",
+        "row_10",
+        "row_11",
+        "row_12",
+        "row_13",
+        "row_14",
+        "row_15",
+        "row_16",
+        "row_17"
+      ]
+    },
+    "bridal": {
+      "type": "ptm-bridal",
+      "settings": {
+        "image_placeholder": "Photo slot: a real haldi ceremony, with family applying turmeric paste to the bride, with permission (no AI or stock imagery)",
+        "heading": "The South Asian bride's turmeric, for her wedding glow",
+        "subheading": "Haldi (HUL-dee): the Hindi word for turmeric",
+        "text": "<p>A few days before a South Asian wedding, family and friends gather for the haldi ceremony. One by one, they smooth a paste of turmeric, often mixed with sandalwood and rosewater, onto the bride's face and arms. It's part blessing, part beauty ritual and always a party. The idea is simple: she should walk into her wedding glowing.</p><p>The tradition goes by many names. Bengali families call it gaye holud. Pakistani and North Indian Muslim families hold a mayun, with a turmeric paste called ubtan. In Tamil Nadu, the bride's bath on her wedding morning begins with turmeric. Across regions and faiths, the ingredient stays the same.</p><p>Our turmeric comes from Tamil Nadu. It's kasthuri manjal, a pale, fragrant wild turmeric that Tamil women have long used on their skin because it brightens without leaving a yellow stain.</p>",
+        "glow_line": "Apply and leave on for just 12 minutes for the bridal glow.",
+        "button_text": "See the SOUNDARYA bridal glow set",
+        "button_url": "/pages/soundarya"
+      }
+    },
+    "turmeric": {
+      "type": "ptm-turmeric",
+      "settings": {
+        "heading": "Wild turmeric",
+        "lede": "Not the turmeric in your spice rack.",
+        "text": "<p>We use a wild turmeric from Tamil Nadu, in southern India, known locally as kasthuri manjal. It's paler and more fragrant than the bright-yellow kitchen kind, and it's the one Indian women have long chosen for their skin, because it brightens without leaving a yellow tint.</p><p>In this mask, it helps even out the look of skin tone while three clays lift away excess oil and sandalwood keeps everything cool and calm.</p>",
+        "image_1": "shopify://shop_images/Turmeirc_18463052-bc95-4d90-b93d-c1204ed175e5.png",
+        "caption_1": "The root",
+        "image_1_placeholder": "Root photo slot",
+        "caption_2": "The harvest (illustration)",
+        "image_2_placeholder": "Harvest photo slot — upload the real supplier photo"
+      },
+      "blocks": {
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "label": "Origin",
+            "value": "Tamil Nadu, India"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "label": "Type",
+            "value": "Kasthuri manjal, wild turmeric (<mark class=\"fill\"><em>Curcuma aromatica</em> — confirm species vs. INCI</mark>)"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "label": "Extraction",
+            "value": "Liquid root extract, used at up to 1% (<mark class=\"fill\">confirm solvent and extraction method with supplier</mark>)"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "label": "Why it's in this formula",
+            "value": "To bring brightness to uneven-looking skin while the clays purify, balanced by sandalwood so the mask calms rather than stings."
+          }
+        }
+      },
+      "block_order": [
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4"
+      ]
+    },
+    "provenance": {
+      "type": "ptm-provenance",
+      "settings": {
+        "label": "From root to jar"
+      },
+      "blocks": {
+        "chain_1": {
+          "type": "link",
+          "settings": {
+            "title": "Ingredient",
+            "text": "Kasthuri manjal root"
+          }
+        },
+        "chain_2": {
+          "type": "link",
+          "settings": {
+            "title": "Origin",
+            "text": "Tamil Nadu, India"
+          }
+        },
+        "chain_3": {
+          "type": "link",
+          "settings": {
+            "title": "Formulation",
+            "text": "Version 20 of 20"
+          }
+        },
+        "chain_4": {
+          "type": "link",
+          "settings": {
+            "title": "Testing",
+            "text": "4-week consumer study, 50 people"
+          }
+        },
+        "chain_5": {
+          "type": "link",
+          "settings": {
+            "title": "Finished product",
+            "text": "Made in India"
+          }
+        }
+      },
+      "block_order": [
+        "chain_1",
+        "chain_2",
+        "chain_3",
+        "chain_4",
+        "chain_5"
+      ]
+    },
+    "how": {
+      "type": "ptm-how",
+      "settings": {
+        "heading": "The 12-minute ritual",
+        "intro": "Once a week for most skin. Twice a week for the first month if you're oily or breakout-prone. Getting married? Start eight weeks out."
+      },
+      "blocks": {
+        "how_1": {
+          "type": "how_step",
+          "settings": {
+            "number": "1",
+            "title": "Cleanse",
+            "text": "Start with the Rose Jasmine Milk Cleanser on bare skin, no makeup."
+          }
+        },
+        "how_2": {
+          "type": "how_step",
+          "settings": {
+            "number": "2",
+            "title": "Apply",
+            "text": "Spread a thin, even layer over forehead, cheeks, nose and chin. Avoid eyes and lips."
+          }
+        },
+        "how_3": {
+          "type": "how_step",
+          "settings": {
+            "number": "3",
+            "title": "Wait 12 minutes",
+            "text": "Rinse while it's almost dry, not cracked. First time or sensitive? Start at 8."
+          }
+        },
+        "how_4": {
+          "type": "how_step",
+          "settings": {
+            "number": "4",
+            "title": "Rinse and seal",
+            "text": "Warm water, pat dry, then rose mist and the Saffron Glow Serum."
+          }
+        }
+      },
+      "block_order": [
+        "how_1",
+        "how_2",
+        "how_3",
+        "how_4"
+      ]
+    },
+    "ritual_set": {
+      "type": "ptm-ritual-set",
+      "settings": {
+        "heading": "Make it the ABHYANGA weekly ritual",
+        "text": "Rose Jasmine Milk Cleanser, this mask and the Saffron Glow Serum, together.",
+        "compare_text": "$173",
+        "price_text": "$147",
+        "button_text": "Shop the ritual set",
+        "button_url": "/pages/abhyanga"
+      }
+    },
+    "faq": {
+      "type": "ptm-faq",
+      "settings": {
+        "heading": "Details and questions"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Which skin types is it for?",
+            "answer": "<p>It's suitable for all skin types, and especially effective for acne-prone, oily and combination skin. The three clays absorb excess oil at different depths, and sandalwood and rose help calm the look of redness, so skin looks clearer without feeling stripped. If you're under a dermatologist's care or using prescription treatments, check with them before adding a new mask.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How far before my wedding should I start?",
+            "answer": "<p>Eight weeks gives you enough time to see a difference. Use it twice a week for the first four weeks, then weekly. Do your last mask two or three days before the ceremony rather than the night before, and never try a new product for the first time in the final week.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Will a clay mask dry out my skin?",
+            "answer": "<p>Kaolin, glycerin and caprylic/capric triglyceride keep the formula comfortable, which is why it rinses off soft rather than tight. Rinse while the mask is almost dry — letting it crack is what causes that stripped feeling.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How often should I use it?",
+            "answer": "<p>Once a week for most skin. Oily or breakout-prone skin can use it twice a week for the first four weeks, then drop to weekly. Not for daily use.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Is it suitable for sensitive skin?",
+            "answer": "<p>Yes, with care. No synthetic fragrance, parabens or alcohol. Start with 8 minutes, and patch test on your inner arm if you know you react to clays or botanical oils.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "Will the turmeric stain?",
+            "answer": "<p>It's a refined root extract, not raw powder, so it won't stain skin. Rinse thoroughly and use a dark towel — traces can mark light fabric if not fully rinsed.</p>"
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I use it with the Saffron Glow Serum?",
+            "answer": "<p>Yes. On mask nights, apply the serum right after rinsing. On other nights, use it after cleansing and toning as usual.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7"
+      ]
     }
   },
   "order": [
-    "main"
+    "main",
+    "results",
+    "reviews",
+    "journeys",
+    "science",
+    "bridal",
+    "turmeric",
+    "provenance",
+    "how",
+    "ritual_set",
+    "faq"
   ]
 }

@@ -1,0 +1,37 @@
+{%- render 'ptm-assets' -%}
+<div class="ptm">
+<section class="tm-bridal" id="bridal" aria-labelledby="bride-h-{{ section.id }}">
+  <div class="tm-wrap tm-bridal-grid">
+    {%- if section.settings.image -%}
+      <div class="tm-bridal-photo tm-has-img">{{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}</div>
+    {%- else -%}
+      <div class="tm-bridal-photo">{{ section.settings.image_placeholder }}</div>
+    {%- endif -%}
+    <div>
+      {%- if section.settings.heading != blank -%}<h2 id="bride-h-{{ section.id }}">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.subheading != blank -%}<p class="tm-tamil">{{ section.settings.subheading }}</p>{%- endif -%}
+      {{ section.settings.text }}
+      {%- if section.settings.glow_line != blank -%}<p class="tm-glow-line">{{ section.settings.glow_line }}</p>{%- endif -%}
+      {%- if section.settings.button_text != blank -%}<a class="tm-btn" href="{{ section.settings.button_url }}">{{ section.settings.button_text }}</a>{%- endif -%}
+    </div>
+  </div>
+</section>
+</div>
+{% schema %}
+{
+  "name": "PDP: Bridal ritual",
+  "tag": "section",
+  "class": "section-ptm",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "A real haldi ceremony, with permission (no AI or stock imagery)" },
+    { "type": "textarea", "id": "image_placeholder", "label": "Placeholder when no photo" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "glow_line", "label": "Closing line" },
+    { "type": "text", "id": "button_text", "label": "Button text" },
+    { "type": "url", "id": "button_url", "label": "Button link" }
+  ],
+  "presets": [{ "name": "PDP: Bridal ritual" }]
+}
+{% endschema %}

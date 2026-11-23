@@ -1,0 +1,9 @@
+{% doc %}
+  Loads the shared CSS, fonts and script of the PRANA turmeric mask PDP sections (ptm-*).
+  Every ptm section renders this so a section still works when added on its own.
+{% enddoc %}
+{{ 'prana-turmeric-face-mask.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<script src="{{ 'prana-turmeric-face-mask.js' | asset_url }}" type="module" defer></script>

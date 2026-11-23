@@ -1,0 +1,27 @@
+{%- render 'ptm-assets' -%}
+<div class="ptm">
+<section class="tm-wrap tm-faq-wrap" aria-labelledby="faq-h-{{ section.id }}">
+  {%- if section.settings.heading != blank -%}<h2 id="faq-h-{{ section.id }}" class="tm-sec-h">{{ section.settings.heading }}</h2>{%- endif -%}
+  {%- for block in section.blocks -%}
+  <details {{ block.shopify_attributes }}>
+    <summary>{{ block.settings.question }}</summary>
+    <div class="tm-body">{{ block.settings.answer }}</div>
+  </details>
+  {%- endfor -%}
+</section>
+</div>
+{% schema %}
+{
+  "name": "PDP: FAQ",
+  "tag": "section",
+  "class": "section-ptm",
+  "blocks": [{ "type": "faq", "name": "Question", "settings": [
+    { "type": "text", "id": "question", "label": "Question" },
+    { "type": "richtext", "id": "answer", "label": "Answer" }
+  ] }],
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" }
+  ],
+  "presets": [{ "name": "PDP: FAQ" }]
+}
+{% endschema %}
