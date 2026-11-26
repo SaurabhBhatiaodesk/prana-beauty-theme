@@ -132,7 +132,7 @@
       ],
       "name": "Custom Header",
       "settings": {
-        "anno_btn": "Free Shipping across USA on all orders",
+        "anno_btn": "20% off sitewide · Free Shipping across USA on all orders",
         "show_country": true,
         "country_selector_style": true,
         "show_language": true,
