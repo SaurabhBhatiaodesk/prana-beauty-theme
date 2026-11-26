@@ -330,7 +330,10 @@
             "pdt_desc_1": "Lifts overnight buildup. The ritual starts here.",
             "pdt_desc_2": "Restores pH. Primes skin for everything that follows.",
             "pdt_desc_3": "Liquid Kashmir saffron. Carries your glow all day.",
-            "review": "\"My skin has never looked better before 8am.\""
+            "review": "\"My skin has never looked better before 8am.\"",
+            "bundle_price_1": "29",
+            "bundle_price_2": "31",
+            "bundle_price_3": "80"
           }
         },
         "item_nNV6FV": {
@@ -349,7 +352,10 @@
             "pdt_desc_1": "Release the day. Emulsifies without stripping the barrier.",
             "pdt_desc_2": "Nature's retinol. Resurfaces and firms through the night.",
             "pdt_desc_3": "Triple hyaluronic acid seals everything in overnight.",
-            "review": "\"Eight weeks in — I genuinely look different.\""
+            "review": "\"Eight weeks in — I genuinely look different.\"",
+            "bundle_price_1": "27",
+            "bundle_price_2": "67",
+            "bundle_price_3": "61"
           }
         },
         "item_kQ77m6": {
@@ -368,7 +374,10 @@
             "pdt_desc_1": "Bare, clean skin first. The clay needs direct contact.",
             "pdt_desc_2": "12–15 minutes. Your Sunday ceremony. Three days of glow.",
             "pdt_desc_3": "Finish with Kashmir saffron. Radiance held for three days.",
-            "review": "\"The Sunday ritual I've been doing for 6 months.\""
+            "review": "\"The Sunday ritual I've been doing for 6 months.\"",
+            "bundle_price_1": "29",
+            "bundle_price_2": "46",
+            "bundle_price_3": "80"
           }
         }
       },

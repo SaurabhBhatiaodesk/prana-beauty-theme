@@ -26,7 +26,7 @@
             <div class="r3-img-ph">
               {% if block.settings.bundle_image != blank %}
                 <a href="{{ block.settings.ritual_link }}">
-                  <img width="" height="" loading="lazy" src="{{ block.settings.bundle_image | img_url: 'original' }}">
+                  {% assign r3_alt = block.settings.sanskrit | append: ' ritual bundle by PRANA Beauty' %}<img width="" height="" loading="lazy" src="{{ block.settings.bundle_image | img_url: 'original' }}" alt="{{ block.settings.bundle_image.alt | default: r3_alt | strip_html | escape }}">
                 </a>
               {% else %}
                 <div class="r3-img-ph-inner">
@@ -71,6 +71,23 @@
                     {% endif %}
                   {% endif %}
 
+                  {%- liquid
+                    comment
+                      Bundle prices per product (in dollars) set on the block override the subscription price.
+                    endcomment
+                    assign r3_override = ''
+                    if forloop.index == 1
+                      assign r3_override = block.settings.bundle_price_1
+                    elsif forloop.index == 2
+                      assign r3_override = block.settings.bundle_price_2
+                    elsif forloop.index == 3
+                      assign r3_override = block.settings.bundle_price_3
+                    endif
+                    if r3_override != blank
+                      assign product_original_price = variant.price
+                      assign product_selling_price = r3_override | times: 100
+                    endif
+                  -%}
                   {% if product_original_price > product_selling_price %}
                     {% assign product_saving = product_original_price | minus: product_selling_price %}
                   {% endif %}
@@ -817,25 +834,8 @@
       });
   }
 
-  document.querySelectorAll('.r3-add-bundle').forEach(function(btn) {
-    btn.addEventListener('click', function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      var rawItems = btn.getAttribute('data-bundle-items');
-      var items = [];
-
-      if (rawItems) {
-        try {
-          items = JSON.parse(rawItems);
-        } catch (error) {
-          console.error('Bundle JSON parse error:', error);
-        }
-      }
-
-      addItemsToCart(items, btn);
-    });
-  });
+  // The "Add full ritual" buttons are handled by assets/custom.js (one-time purchase, opens the cart drawer).
+  // Binding them here as well added every product twice (once as a subscription), so it is disabled.
 })();
 </script>
 
@@ -933,6 +933,26 @@
           "type": "text",
           "id": "review",
           "label": "Static review"
+        },
+        {
+          "type": "header",
+          "content": "Bundle prices (USD)"
+        },
+        {
+          "type": "text",
+          "id": "bundle_price_1",
+          "label": "Bundle price, product 1",
+          "info": "Whole dollars, e.g. 29. Leave empty to use the subscription price."
+        },
+        {
+          "type": "text",
+          "id": "bundle_price_2",
+          "label": "Bundle price, product 2"
+        },
+        {
+          "type": "text",
+          "id": "bundle_price_3",
+          "label": "Bundle price, product 3"
         }
       ]
     }

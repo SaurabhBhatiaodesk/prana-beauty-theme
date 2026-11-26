@@ -552,14 +552,14 @@ $(document).ready(function() {
     window.location.reload(link); 
   });
 
-  $('.product-image-slider').slick({
+  if ($.fn.slick) $('.product-image-slider').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     fade: false,
     asNavFor: '.product-thumnbail-slider'
   });
-  $('.product-thumnbail-slider').slick({
+  if ($.fn.slick) $('.product-thumnbail-slider').slick({
     slidesToShow: 4,
     slidesToScroll: 1,
     asNavFor: '.product-image-slider',

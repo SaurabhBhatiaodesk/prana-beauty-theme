@@ -81,7 +81,7 @@
                     <div class="fv-cap-line"></div>
                   </a>
 
-                  <div class="sutra-sanskrit-big" id="sutra-sanskrit">{{ block.settings.title }}</div>
+                  <h1 class="sutra-sanskrit-big" id="sutra-sanskrit" style="font-family: Cormorant, serif !important;">{{ block.settings.title }}</h1>
                   <div class="sutra-pronounce" id="sutra-pronounce">{{ block.settings.sub_title }}</div>
                   <div class="sutra-meaning" id="sutra-meaning">{{ block.settings.caption }}</div>
 
@@ -1192,6 +1192,17 @@
     if (discountType === 'percentage') {
       var percentage = parseFloat(bundle.percentage_value || '0');
       return Math.round(originalTotal - (originalTotal * percentage / 100));
+    }
+
+    // Bundler "Set discounts on products": subtract each product's discount amount.
+    if (discountType === 'products_discounts') {
+      var bundleProducts = bundle.products || {};
+      var productsDiscount = 0;
+      Object.keys(bundleProducts).forEach(function(key) {
+        var bundleProduct = bundleProducts[key] || {};
+        productsDiscount += moneyValueToCents(bundleProduct.discount_amount) * (Number(bundleProduct.quantity) || 1);
+      });
+      return Math.max(0, originalTotal - productsDiscount);
     }
 
     if (discountType === 'fixed_amount') {
