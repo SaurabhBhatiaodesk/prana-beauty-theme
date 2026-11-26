@@ -582,7 +582,9 @@ $(document).ready(function() {
     var price = $(this).text();
       let number = parseFloat(price.replace(/[^0-9.]/g, ''));
     let rounded = Math.round(number);
-      $(this).text("$"+rounded);
+    // Keep the market currency symbol (e.g. GBP for UK); only fall back to $ when none is present.
+    let symbol = (price.trim().match(/^[^0-9.,\s]+/) || ['$'])[0];
+      $(this).text(symbol+rounded);
   });
 
 });

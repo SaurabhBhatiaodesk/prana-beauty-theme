@@ -397,7 +397,9 @@
             "collection_link": "shopify://pages/tejas",
             "pdt_desc_1": "Liquid Kashmir saffron. Carries your glow all day.",
             "pdt_desc_2": "Triple butter formula seals everything overnight.",
-            "show_in": "uk_only"
+            "show_in": "uk_only",
+            "bundle_price_1": "58.78",
+            "bundle_price_2": "47.55"
           }
         },
         "uk_soundarya": {
@@ -414,7 +416,9 @@
             "collection_link": "shopify://pages/soundarya",
             "pdt_desc_1": "12–15 minutes. Your Sunday ceremony. Three days of glow.",
             "pdt_desc_2": "Liquid Kashmir saffron. Carries your glow all day.",
-            "show_in": "uk_only"
+            "show_in": "uk_only",
+            "bundle_price_1": "35.97",
+            "bundle_price_2": "61.57"
           }
         },
         "uk_chirayu": {
@@ -431,7 +435,9 @@
             "collection_link": "shopify://pages/chirayu",
             "pdt_desc_1": "Nature's retinol. Resurfaces and firms through the night.",
             "pdt_desc_2": "Triple butter formula seals everything overnight.",
-            "show_in": "uk_only"
+            "show_in": "uk_only",
+            "bundle_price_1": "52.94",
+            "bundle_price_2": "48.25"
           }
         }
       },
