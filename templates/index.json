@@ -333,7 +333,8 @@
             "review": "\"My skin has never looked better before 8am.\"",
             "bundle_price_1": "29",
             "bundle_price_2": "31",
-            "bundle_price_3": "80"
+            "bundle_price_3": "80",
+            "show_in": "non_uk"
           }
         },
         "item_nNV6FV": {
@@ -355,7 +356,8 @@
             "review": "\"Eight weeks in — I genuinely look different.\"",
             "bundle_price_1": "27",
             "bundle_price_2": "67",
-            "bundle_price_3": "61"
+            "bundle_price_3": "61",
+            "show_in": "non_uk"
           }
         },
         "item_kQ77m6": {
@@ -377,14 +379,69 @@
             "review": "\"The Sunday ritual I've been doing for 6 months.\"",
             "bundle_price_1": "29",
             "bundle_price_2": "46",
-            "bundle_price_3": "80"
+            "bundle_price_3": "80",
+            "show_in": "non_uk"
+          }
+        },
+        "uk_tejas": {
+          "type": "item",
+          "settings": {
+            "bundle_image": "shopify://shop_images/TEJAS_-_saffron_glow_serum_and_saffron_radiance_moisturizer.jpg",
+            "bundle_label": "TEJAS",
+            "bundle_name": "Saffron Radiance Duo",
+            "sanskrit": "TEJAS",
+            "ritual_name": "Saffron Radiance Duo",
+            "ritual_link": "shopify://pages/tejas",
+            "meaning": "Tejas — the fire of transformation",
+            "collection": "tejas",
+            "collection_link": "shopify://pages/tejas",
+            "pdt_desc_1": "Liquid Kashmir saffron. Carries your glow all day.",
+            "pdt_desc_2": "Triple butter formula seals everything overnight.",
+            "show_in": "uk_only"
+          }
+        },
+        "uk_soundarya": {
+          "type": "item",
+          "settings": {
+            "bundle_image": "shopify://shop_images/SOUNDARYA_-_TURMERIC_mask_and_Saffron_glow_serum.jpg",
+            "bundle_label": "SOUNDARYA",
+            "bundle_name": "Bridal Glow Set",
+            "sanskrit": "SOUNDARYA",
+            "ritual_name": "Bridal Glow Set",
+            "ritual_link": "shopify://pages/soundarya",
+            "meaning": "Soundarya — radiance from within",
+            "collection": "soundarya",
+            "collection_link": "shopify://pages/soundarya",
+            "pdt_desc_1": "12–15 minutes. Your Sunday ceremony. Three days of glow.",
+            "pdt_desc_2": "Liquid Kashmir saffron. Carries your glow all day.",
+            "show_in": "uk_only"
+          }
+        },
+        "uk_chirayu": {
+          "type": "item",
+          "settings": {
+            "bundle_image": "shopify://shop_images/CHIRAYU.jpg",
+            "bundle_label": "CHIRAYU",
+            "bundle_name": "Age Defying Duo",
+            "sanskrit": "CHIRAYU",
+            "ritual_name": "Age Defying Duo",
+            "ritual_link": "shopify://pages/chirayu",
+            "meaning": "Chirayu — eternal vitality",
+            "collection": "chirayu",
+            "collection_link": "shopify://pages/chirayu",
+            "pdt_desc_1": "Nature's retinol. Resurfaces and firms through the night.",
+            "pdt_desc_2": "Triple butter formula seals everything overnight.",
+            "show_in": "uk_only"
           }
         }
       },
       "block_order": [
         "item_fRezTL",
         "item_nNV6FV",
-        "item_kQ77m6"
+        "item_kQ77m6",
+        "uk_tejas",
+        "uk_soundarya",
+        "uk_chirayu"
       ],
       "name": "Custom Ritual",
       "settings": {

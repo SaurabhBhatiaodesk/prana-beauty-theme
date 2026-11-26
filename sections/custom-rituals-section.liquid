@@ -11,6 +11,9 @@
     <!-- THREE RITUAL COLUMNS -->
     <div class="r3-grid">
       {% for block in section.blocks %}
+        {%- comment -%} Market visibility: UK (GB) shows only the UK sutras; other cards can be hidden in the UK. {%- endcomment -%}
+        {%- if block.settings.show_in == 'uk_only' and localization.country.iso_code != 'GB' -%}{%- continue -%}{%- endif -%}
+        {%- if block.settings.show_in == 'non_uk' and localization.country.iso_code == 'GB' -%}{%- continue -%}{%- endif -%}
         {% assign products = block.settings.collection.products %}
         {% assign collection = block.settings.collection %}
         {% assign total_original_price = 0 %}
@@ -185,7 +188,7 @@
                   </div>
                 </div>
 
-                <div class="r3-proof">★★★★★ {{ block.settings.review }}</div>
+                {%- if block.settings.review != blank -%}<div class="r3-proof">★★★★★ {{ block.settings.review }}</div>{%- endif -%}
               </div>
             </div>
           </div>
@@ -953,6 +956,21 @@
           "type": "text",
           "id": "bundle_price_3",
           "label": "Bundle price, product 3"
+        },
+        {
+          "type": "header",
+          "content": "Markets"
+        },
+        {
+          "type": "select",
+          "id": "show_in",
+          "label": "Show this ritual in",
+          "options": [
+            { "value": "all", "label": "All countries" },
+            { "value": "uk_only", "label": "United Kingdom only" },
+            { "value": "non_uk", "label": "All countries except the United Kingdom" }
+          ],
+          "default": "all"
         }
       ]
     }
