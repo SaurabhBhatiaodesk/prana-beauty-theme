@@ -104,8 +104,8 @@
   .announcement-bar__text {
    font-family: Poppins, sans-serif !important;
     font-weight: 300;
-    font-size: 11.01px;
-    line-height: 100%;
+    font-size: 14px;
+    line-height: 1.3;
     letter-spacing: 0%;
     text-align: center;
     padding: 8px;
@@ -113,6 +113,10 @@
     background-color: #A8681A;
 
     color: #fff;
+  }
+  @media screen and (max-width: 749px) {
+    .announcement-bar__text a,
+    .announcement-bar__text { font-size: 13px; }
   }
   .announcement-bar__text::before {
     background: #443531;
